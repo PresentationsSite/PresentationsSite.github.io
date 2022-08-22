@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>Énergie/Puissance</title>
+
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="/reveal-js/css/reset.css">
+<link rel="stylesheet" href="/reveal-js/css/reveal.css"><link rel="stylesheet" href="/reveal-js/css/theme/sky.css" id="theme">
+<link rel="stylesheet" href="/highlight-js/github-dark.min.css">
+    
+  </head>
+  <body>
+    
+    <div class="reveal">
+      <div class="slides">
+  
+
+    <section><h2 id="énergie--puissance">Énergie / Puissance</h2>
+</section><section>
+
+
+<section data-shortcode-section>
+<p><strong>Puissance instantanée</strong> :
+<br></p>
+<div style="display: flex;justify-content: center;">
+<div style = "border:solid red 5px;width:min-content;padding: 0px 10px 0px 10px;">
+$$p(t) = \frac{\mathrm{d}E}{\mathrm{d}t}$$
+</div></div>
+<p>La puissance instantanée est la <strong>dérivée</strong><br>par rapport au temps de l’énergie</p>
+</section><section>
+<p>La courbe suivante représente l&rsquo;évolution de l&rsquo;énergie dépensée par un cycliste pendant 20 min.</p>
+<ul>
+<li>
+<p>Déterminer sa puissance instantanée<br>
+à $t =\pu{5 min}$ et à  $t =\pu{18 min}$.</p>
+</li>
+<li>
+<p>Tracer $p(t)$.</p>
+</li>
+</ul>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/egieexo.png"
+      data-background-size="50%"
+      data-background-transition="concave">
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/egieexosol.png"
+      data-background-size="50%"
+      data-background-transition="concave">
+</section><section>
+<p>Pour déterminer la puissance<br>à partir d&rsquo;une série de mesures de $E$ :</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-size="100%"
+      data-background-transition="concave"
+      data-background-video="/gifderpuiss.m4v"
+      data-background-video-loop="loop">
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<p>L’<strong>énergie</strong> mise en jeu par un système<br>
+pendant un intervalle de temps vaut l&rsquo;aire<br>
+sous la courbe représentant la puissance<br>
+en fonction du temps pendant cet intervalle.</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-size="100%"
+      data-background-transition="concave"
+      data-background-video="/egieaire.m4v"
+      data-background-video-loop="loop">
+</section><section>
+<p>Mathématiquement, l&rsquo;énergie délivrée<br>entre $t_1$ et $t_2$ est donnée par :
+<br></p>
+<div style="display: flex;justify-content: center;">
+<div style = "border:solid red 5px;width:min-content;padding: 0px 10px 0px 10px;">
+$$E = \int_{t_1}^{t_2}p(t)dt$$
+</div></div>
+</section><section>
+<p>Le graphe suivant présente<br>la puissance instantanée consommée<br>par un dispositif de chauffage.</p>
+<ul>
+<li>
+<p>Quelle est l&rsquo;énergie totale consommée<br>entre 0 et 120 s ?</p>
+</li>
+<li>
+<p>Tracer $E(t)$.</p>
+</li>
+</ul>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/puissexo.png"
+      data-background-size="50%"
+      data-background-transition="concave">
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/puissexosol.png"
+      data-background-size="50%"
+      data-background-transition="concave">
+</section><section>
+<p>Pour déterminer l&rsquo;énergie<br>à partir d&rsquo;une série de mesures de $P$ :</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-size="100%"
+      data-background-transition="concave"
+      data-background-video="/gifintegie.m4v"
+      data-background-video-loop="loop">
+
+</section>
+</section><section>
+<p><a href="https://coursphychi.github.io/tsti2d/egiepuiss/">Retour site</a></p>
+</section>
+
+  
+
+
+</div>
+      
+
+    </div>
+<script type="text/javascript" src=/reveal-hugo/object-assign.js></script>
+
+<a href="/reveal-js/css/print/" id="print-location" style="display: none;"></a>
+<script type="text/javascript">
+  var printLocationElement = document.getElementById('print-location');
+  var link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.type = 'text/css';
+  link.href = printLocationElement.href + (window.location.search.match(/print-pdf/gi) ? 'pdf.css' : 'paper.css');
+  document.getElementsByTagName('head')[0].appendChild(link);
+</script>
+
+<script type="application/json" id="reveal-hugo-site-params">{"highlight_theme":"github-dark","line-numbers":true,"theme":"sky","transition":"concave","transition_speed":"fast"}</script>
+<script type="application/json" id="reveal-hugo-page-params">null</script>
+
+<script src="/reveal-js/js/reveal.js"></script>
+
+<script type="text/javascript">
+  
+  
+  function camelize(map) {
+    if (map) {
+      Object.keys(map).forEach(function(k) {
+        newK = k.replace(/(\_\w)/g, function(m) { return m[1].toUpperCase() });
+        if (newK != k) {
+          map[newK] = map[k];
+          delete map[k];
+        }
+      });
+    }
+    return map;
+  }
+  
+  var revealHugoDefaults = { center: true, controls: true, history: true, progress: true, transition: "slide" };
+  var revealHugoSiteParams = JSON.parse(document.getElementById('reveal-hugo-site-params').innerHTML);
+  var revealHugoPageParams = JSON.parse(document.getElementById('reveal-hugo-page-params').innerHTML);
+  
+  var options = Object.assign({},
+    camelize(revealHugoDefaults),
+    camelize(revealHugoSiteParams),
+    camelize(revealHugoPageParams));
+  Reveal.initialize(options);
+</script>
+
+
+  
+  
+  <script type="text/javascript" src="/reveal-js/plugin/markdown/marked.js"></script>
+  
+  <script type="text/javascript" src="/reveal-js/plugin/markdown/markdown.js"></script>
+  
+  <script type="text/javascript" src="/reveal-js/plugin/highlight/highlight.js"></script>
+  
+  <script type="text/javascript" src="/reveal-js/plugin/zoom-js/zoom.js"></script>
+  
+  
+  <script type="text/javascript" src="/reveal-js/plugin/notes/notes.js"></script>
+
+
+
+
+
+
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({startOnLoad: false});
+    let render = (event) => {
+      let mermaidElems = event.currentSlide.querySelectorAll('.mermaid');
+      if (!mermaidElems.length){
+          return
+      }
+      mermaidElems.forEach(mermaidElem => {
+          let processed = mermaidElem.getAttribute('data-processed');
+          if (!processed){
+              
+              mermaid.init(undefined, mermaidElem);
+          }
+      });
+    };
+    Reveal.addEventListener('slidechanged', render);
+    Reveal.addEventListener('ready', render);
+  </script>
+
+    
+
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']]
+  },
+  svg: {
+    fontCache: 'global'
+  }
+};
+</script>
+
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+</script>
+    
+  </body>
+</html>

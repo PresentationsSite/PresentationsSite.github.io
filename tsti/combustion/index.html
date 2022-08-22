@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>Énergie/Puissance</title>
+
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="/reveal-js/css/reset.css">
+<link rel="stylesheet" href="/reveal-js/css/reveal.css"><link rel="stylesheet" href="/reveal-js/css/theme/sky.css" id="theme">
+<link rel="stylesheet" href="/highlight-js/github-dark.min.css">
+    
+  </head>
+  <body>
+    
+    <div class="reveal">
+      <div class="slides">
+  
+
+    <section><h2 id="combustions">Combustions</h2>
+</section>
+
+
+<section data-shortcode-section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/sp95e10.png"
+      data-background-size="70%"
+      data-background-transition="concave">
+<p>L&rsquo;essence SP95-E10 (SP pour sans plomb et E10 pour 10% d&rsquo;éthanol en volume) est composé d&rsquo;un mélange dont la composition moyenne comprend :</p>
+<p><br><br><br><br><br><br></p>
+</section><section>
+<p>Exemples de molécules présentent<br>
+dans le SP95-E10 :</p>
+<img data-id="img" src="/molsp95.png">
+<p><span class='fragment ' >Quel est le point commun de ces molécules ?<br> Comment les appelle-t-on ?</span></p>
+</section><section>
+<img data-id="img" src="/molsp95.png">
+<p>Donnez la formule brute<br>de chacune de ces molécules.</p>
+</section><section>
+<img data-id="img" src="/molsp95.png">
+<p>Associez une famille à chacune de ces molécules.</p>
+<p><img src="/sp95e10simple.pdf" alt=""></p>
+</section><section>
+<p>Quels sont les produits dégagés par une <strong>combustion complète</strong> de ces molécules ?</p>
+</section><section>
+<p>Écrire les équations de la combustion complète</p>
+<ul>
+<li>de l&rsquo;octane</li>
+<li>du pent-1-ène</li>
+<li>de l&rsquo;éthanol</li>
+</ul>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h3 id="énergie-dégagée-par-une-combustion">Énergie dégagée par une combustion</h3>
+</section><section>
+<div style="display: flex;justify-content: center;">
+<div style = "border:solid red 5px;width:100%;padding: 20px 0px 20px 0px;">
+<span style="font-weight:bold">Le pouvoir calorifique inférieur (PCI)</span> :<br>
+énergie par unité de masse libérée par la combustion d'un combustible (les fumées contenant de l'eau sous forme de vapeur).
+</div>
+</div>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/chaudpci.png"
+      data-background-size="50%"
+      data-background-transition="concave">
+</section><section>
+<p>La chaleur dégagée $Q$ est donnée par :
+<br><br></p>
+<div style="display: flex;justify-content: center;">
+<div style = "border:solid red 5px;width:min;padding: 20px 10px 20px 20px;">
+$\displaystyle Q = m_{\text{combustible}}\times \text{PCI}$
+</div>
+</div>
+<br>
+<div style="color:gray">
+<ul>
+<li>$Q$ en $\pu{J}$</li>
+<li>$m_{\text{combustible}}$ en $\pu{kg}$</li>
+<li>$\text{PCI}$ en $\pu{J * kg-1}$</li>
+</ul>
+</div>
+</section><section>
+<div style="display: flex;justify-content: center;">
+<div style = "border:solid red 5px;width:100%;padding: 20px 0px 20px 0px;">
+<span style="font-weight:bold">Le pouvoir calorifique supérieur (PCS)</span> :<br>
+énergie par unité de masse libérée par la combustion d'un combustible à laquelle<br>vient s'ajouter l'énergie libérée par la condensation de la vapeur d'eau des fumées.
+</div>
+</div>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/chaudpcs.png"
+      data-background-size="50%"
+      data-background-transition="concave">
+</section><section>
+<p>La chaleur dégagée $Q$ est donnée par :
+<br><br></p>
+<div style="display: flex;justify-content: center;">
+<div style = "border:solid red 5px;width:min;padding: 20px 10px 20px 20px;">
+$\displaystyle Q = m_{\text{combustible}}\times \text{PCS} = m_{\text{combustible}}\times \text{PCI} + m_{\text{eau}} \times l_v$
+</div>
+</div>
+<br>
+<div style="color:gray">
+<ul>
+<li>$\text{PCS}$ en $\pu{J * kg-1}$</li>
+<li>$m_\text{eau}$ en $\pu{kg}$</li>
+<li>$l_v = \pu{2,26E6 J * kg-1}$</li>
+</ul>
+</div>
+
+</section>
+</section><section>
+<p><a href="https://coursphychi.github.io/tsti2d/combustion/">Retour site</a></p>
+</section>
+
+  
+
+
+</div>
+      
+
+    </div>
+<script type="text/javascript" src=/reveal-hugo/object-assign.js></script>
+
+<a href="/reveal-js/css/print/" id="print-location" style="display: none;"></a>
+<script type="text/javascript">
+  var printLocationElement = document.getElementById('print-location');
+  var link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.type = 'text/css';
+  link.href = printLocationElement.href + (window.location.search.match(/print-pdf/gi) ? 'pdf.css' : 'paper.css');
+  document.getElementsByTagName('head')[0].appendChild(link);
+</script>
+
+<script type="application/json" id="reveal-hugo-site-params">{"highlight_theme":"github-dark","line-numbers":true,"theme":"sky","transition":"concave","transition_speed":"fast"}</script>
+<script type="application/json" id="reveal-hugo-page-params">null</script>
+
+<script src="/reveal-js/js/reveal.js"></script>
+
+<script type="text/javascript">
+  
+  
+  function camelize(map) {
+    if (map) {
+      Object.keys(map).forEach(function(k) {
+        newK = k.replace(/(\_\w)/g, function(m) { return m[1].toUpperCase() });
+        if (newK != k) {
+          map[newK] = map[k];
+          delete map[k];
+        }
+      });
+    }
+    return map;
+  }
+  
+  var revealHugoDefaults = { center: true, controls: true, history: true, progress: true, transition: "slide" };
+  var revealHugoSiteParams = JSON.parse(document.getElementById('reveal-hugo-site-params').innerHTML);
+  var revealHugoPageParams = JSON.parse(document.getElementById('reveal-hugo-page-params').innerHTML);
+  
+  var options = Object.assign({},
+    camelize(revealHugoDefaults),
+    camelize(revealHugoSiteParams),
+    camelize(revealHugoPageParams));
+  Reveal.initialize(options);
+</script>
+
+
+  
+  
+  <script type="text/javascript" src="/reveal-js/plugin/markdown/marked.js"></script>
+  
+  <script type="text/javascript" src="/reveal-js/plugin/markdown/markdown.js"></script>
+  
+  <script type="text/javascript" src="/reveal-js/plugin/highlight/highlight.js"></script>
+  
+  <script type="text/javascript" src="/reveal-js/plugin/zoom-js/zoom.js"></script>
+  
+  
+  <script type="text/javascript" src="/reveal-js/plugin/notes/notes.js"></script>
+
+
+
+
+
+
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({startOnLoad: false});
+    let render = (event) => {
+      let mermaidElems = event.currentSlide.querySelectorAll('.mermaid');
+      if (!mermaidElems.length){
+          return
+      }
+      mermaidElems.forEach(mermaidElem => {
+          let processed = mermaidElem.getAttribute('data-processed');
+          if (!processed){
+              
+              mermaid.init(undefined, mermaidElem);
+          }
+      });
+    };
+    Reveal.addEventListener('slidechanged', render);
+    Reveal.addEventListener('ready', render);
+  </script>
+
+    
+
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']]
+  },
+  svg: {
+    fontCache: 'global'
+  }
+};
+</script>
+
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+</script>
+    
+  </body>
+</html>
