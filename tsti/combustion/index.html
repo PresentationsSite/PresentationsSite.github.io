@@ -11,7 +11,14 @@
     <link rel="stylesheet" href="/reveal-js/css/reset.css">
 <link rel="stylesheet" href="/reveal-js/css/reveal.css"><link rel="stylesheet" href="/reveal-js/css/theme/sky.css" id="theme">
 <link rel="stylesheet" href="/highlight-js/github-dark.min.css">
-    
+    <script>
+const btn = document.getElementById('btn');
+btn.addEventListener('click', () => {
+	btn.style.display = 'none';
+  const box = document.getElementById('box');
+  box.style.display = 'block';
+});
+</script>
   </head>
   <body>
     
@@ -20,6 +27,18 @@
   
 
     <section><h2 id="combustions">Combustions</h2>
+<p><button  id="btn" onclick="toggleButton()" style="border: none; background-color: Transparent; overflow: hidden; outline: none; cursor: pointer;"><img id='image' src="/pleinecran.png" width="50px" style="border: none;background-color: Transparent;box-shadow: none"></button></p>
+<script>
+function toggleButton(){
+	Reveal.triggerKey(70)
+  var x = document.getElementById("btn");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+</script>
 </section>
 
 

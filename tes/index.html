@@ -11,7 +11,14 @@
     <link rel="stylesheet" href="/reveal-js/css/reset.css">
 <link rel="stylesheet" href="/reveal-js/css/reveal.css"><link rel="stylesheet" href="/reveal-js/css/theme/sky.css" id="theme">
 <link rel="stylesheet" href="/highlight-js/github-dark.min.css">
-    
+    <script>
+const btn = document.getElementById('btn');
+btn.addEventListener('click', () => {
+	btn.style.display = 'none';
+  const box = document.getElementById('box');
+  box.style.display = 'block';
+});
+</script>
   </head>
   <body>
     
