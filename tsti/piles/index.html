@@ -27,16 +27,11 @@ btn.addEventListener('click', () => {
   
 
     <section><h2 id="piles-accumulateursbrpiles-à-combustible">Piles, accumulateurs,<br>piles à combustible</h2>
-</section>
+</section><section>
 
 
 <section data-shortcode-section>
-<section data-noprocess data-shortcode-slide
-      data-background-image="/chenpile.png"
-      data-background-size="contain"
-      data-background-transition="concave">
 <p>Les piles et les accumulateurs<br>sont des <strong>générateurs électrochimiques</strong>.</p>
-<p><br><br><br><br><br><br></p>
 </section><section>
 <p>Piles et accus délivrent<br>
 <strong>un courant et une tension continus</strong>.
@@ -67,6 +62,30 @@ L&rsquo;oxydant est souvent le dioxygène $\ce{O2}$.</p>
 
 
 <section data-shortcode-section>
+<h3 id="chaîne-énergétique-dune-pile">Chaîne énergétique d&rsquo;une pile</h3>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/chenpile.png"
+      data-background-size="contain"
+      data-background-transition="convexe">
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h3 id="chaînes-énergétiquesbrdun-accumulateur">Chaînes énergétiques<br>d&rsquo;un accumulateur</h3>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/chenaccu.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
 <h3 id="que-se-passe-t-ilbraux-électrodes-">Que se passe-t-il<br>aux électrodes ?</h3>
 </section><section>
 <p>Une pile fonctionne grâce<br>
@@ -78,6 +97,7 @@ mettant en œuvre <strong>2 couples oxydant-réducteur</strong>
 contenant chacune une électrode connectée<br>
 au circuit électrique extérieur,<br>
 la <strong>cathode</strong> et l'<strong>anode</strong>.</p>
+<p>Chaque demi-pile contient un des couple.</p>
 </section><section>
 <p>Que cela soit lors de la charge ou de la décharge :
 <br>
@@ -120,51 +140,91 @@ $\ce{Ox = Red + n e-}$
 <p>À la <span style="font-weight:bold;color:red">borne $+$</span> :<br>
 $\ce{Ox_1 + n_1 e- = Red_1}$<br>
 Pour chaque mole d'$\ce{Ox_1}$ consommée,<br>il y a $\ce{n_1}$ moles d&rsquo;électrons échangées.</p>
+<br>
 <p>À la <span style="font-weight:bold;color:blue">borne $-$</span> :<br>
 $\ce{Red_2 = Ox_2 + n_2 e-}$<br>
 Pour chaque mole de $\ce{Red_2}$ consommée,<br>il y a $\ce{n_2}$ moles d&rsquo;électrons échangées.</p>
 </section><section>
-<p>Si on connaît la quantité de matière initiale d&rsquo;un des réactifs, on sait combien de moles d&rsquo;électrons $n_{e^{-}}$ vont pouvoir circuler.</p>
-<p>La quantité d&rsquo;électricité $Q$ (<strong>capacité</strong>)<br>de la pile est alors donnée par :</p>
+<p>Si on connaît la quantité de matière initiale<br>d&rsquo;un des réactifs, on sait combien de moles d&rsquo;électrons $n_{e^{-}}$ vont pouvoir circuler.</p>
 </section><section>
+<p>La quantité d&rsquo;électricité $Q$ (<strong>capacité</strong>)<br>de la pile est alors donnée par :</p>
+<br>
 <div style="display: flex;justify-content: center;">
 <div style = "border:solid red 5px;width:50%;padding: 20px 0px 20px 0px;">
-$Q=n_{e^{-}}F$
+$\displaystyle Q=n_{e^{-}}F$
 </div></div>
-<p>$Q$ en Coulomb (C)<br>
-$n_{e^{-}}$ en moles (mol)<br>
-$F=\pu{96500 C * mol-1}$ est la constante de Faraday</p>
+<br>
+<style>
+ul {
+    width: 90%;
+    margin: 10%;
+    color: gray;
+}
+.court {
+    width: 60%;
+    margin: 40%;
+    color: gray;
+}
+.moyen {
+    width: 75%;
+    margin: 25%;
+    color: gray;
+}
+.long {
+    width: 100%;
+    margin: 0%;
+    color: gray;
+}
+li {
+		width:100%;
+		margin: auto;
+}
+span {
+		font-weight: bold;
+}
+</style>
+<ul class="court">
+<li>$Q$ en coulombs (C)</li>
+<li>$n_{e^{-}}$ en moles (mol)</li>
+<li>$F=\pu{96500 C * mol-1}$ <br>est la <span>constante de Faraday</span></li>
+</ul>
 </section><section>
 <p>Dans le cas d&rsquo;une pile à combustible,<br>
 l&rsquo;énergie chimique $E_{chim}$ contenue<br>
-est donnée par :<br></p>
-<blockquote>
-<p>$$E_{chim} = m_{comb}\times PCI$$</p>
-</blockquote>
-<div style="color:gray;text-align:left">
+est donnée par :</p>
+<br>
+<div style="display: flex;justify-content: center;">
+<div style = "border:solid black 5px;width:50%;padding: 20px 0px 20px 0px;">
+$\displaystyle E_{chim} = m_{comb}\times \text{PCI}$
+</div></div>
+<br>
 <ul>
-<li> $m_{comb}$ est la masse du combustible (en $\pu{kg}$)</li>
-<li> $PCI$ est le pouvoir calorifique inférieur<br>
+<li> $m_{comb}$ est la masse<br>du combustible (en $\pu{kg}$)</li>
+<li> $\text{PCI}$ est le pouvoir calorifique inférieur<br>
 du combustible (en $\pu{J.kg-1}$)</li>
-</div>
+</ul>
 </section><section>
 <p>Et dans tous les cas,<br>
 l&rsquo;énergie électrique $E_{elec}$ délivrée<br>
 est donnée par :</p>
-<blockquote>
-<p>$$E_{elec} = Q\times U$$</p>
-</blockquote>
-<div style="color:gray;text-align:left">
+<br>
+<div style="display: flex;justify-content: center;">
+<div style = "border:solid red 5px;width:50%;padding: 20px 0px 20px 0px;">
+$\displaystyle E_{elec} = Q\times U$
+</div></div>
+<br>
 <ul>
 <li>  $Q$ est la capacité (en $\pu{C}$)</li>
 <li> $U$ est la tension nominale de la pile (en $\pu{V}$)</li>
 </ul>
-</div>
 </section><section>
-<p>Rendement $\eta$ de la pile :</p>
-<blockquote>
-<p>$$\eta=\frac{E_{elec}}{E_{chim}}$$</p>
-</blockquote>
+<p>Rendement $\eta$ de la pile à combustible :</p>
+<br>
+<div style="display: flex;justify-content: center;">
+<div style = "border:solid black 5px;width:50%;padding: 20px 0px 20px 0px;">
+$\displaystyle \eta=\frac{E_{elec}}{E_{chim}}$
+</div></div>
+<br>
 
 </section>
 </section><section>
@@ -175,12 +235,12 @@ est donnée par :</p>
 </section>
 <section data-noprocess data-shortcode-slide
       data-background-image="/plsrspiles.png"
-      data-background-size="contain"
+      data-background-size="80%"
       data-background-transition="concave">
 </section>
 <section data-noprocess data-shortcode-slide
       data-background-image="/plsrsbatteries.png"
-      data-background-size="contain"
+      data-background-size="80%"
       data-background-transition="concave">
 </section><section>
 <p>La <strong>tension nominale</strong> (en V) :</p>
@@ -195,14 +255,11 @@ est donnée par :</p>
 $\displaystyle E_{elec} = Q\times U$
 </div></div>
 <br>
-<div style="color:gray;text-align:left">
-<ul>
+<ul class="moyen">
 <li>  Si $Q$ est donnée en coulombs (C),<br>$E_{elec}$ est en joules (J).</li>
-<li> Mais le plus souvent,<br>$Q$ est donnée
-en ampères-heures ($\pu{A*h}$)<br>
-et $E_{elec}$ est alors en watts-heures ($\pu{W*h}$).</li>
+<li> Mais le plus souvent,$Q$ est donnée
+en ampères-heures ($\pu{A*h}$) et $E_{elec}$ est alors en watts-heures ($\pu{W*h}$).</li>
 </ul>
-</div>
 </section><section>
 <p><strong>Durée $t$ de décharge</strong> (ou de charge)<br>
 dépend de l&rsquo;intensité $I$ du courant débité :</p>
@@ -212,16 +269,14 @@ dépend de l&rsquo;intensité $I$ du courant débité :</p>
 $\displaystyle t = \frac{Q}{I}$
 </div></div>
 <br>
-<div style="color:gray;text-align:left">
-<ul>
+<ul class="long">
 <li> $I$ est l'intensité du courant dans le circuit (en A)
 <li> <ul><li>Si $Q$ est donnée en coulombs (C),<br>$t$ est en secondes (s).</li>
 <li>Si $Q$ est donnée en ampère-heures ($\pu{A*h})$,<br>$t$ est en heures (h).</li></li>
 </ul></ul>
-</div>
 </section><section>
 <p>L'<strong>énergie massique</strong><br>ou densité massique d&rsquo;énergie<br></p>
-<p>Généralement donnée<br>en watts-heures par kilogramme ($\pu{W * h * kg-1}$)</p>
+<p>généralement donnée<br>en watts-heures par kilogramme ($\pu{W * h * kg-1}$)</p>
 <br>
 <p><span class='fragment ' data-fragment-index='1'>Plus elle est grande,</span></p>
 <p><span class='fragment ' data-fragment-index='2'>mieux c’est.</span></p>
