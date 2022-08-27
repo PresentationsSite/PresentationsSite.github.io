@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>Conduction thermique</title>
+
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="/reveal-js/css/reset.css">
+<link rel="stylesheet" href="/reveal-js/css/reveal.css"><link rel="stylesheet" href="/reveal-js/css/theme/sky.css" id="theme">
+<link rel="stylesheet" href="/highlight-js/github-dark.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+  </head>
+  <body>
+    
+    <div class="reveal">
+      <div class="slides">
+  
+
+    <section>
+
+<section data-shortcode-section>
+<h2 id="flux-thermique">Flux thermique</h2>
+</section><section>
+<p><img src="/infrarimm.png" alt=""></p>
+<p>Que nous apprend cette image ?</p>
+</section><section>
+<p>Le flux thermique à travers une paroi est l&rsquo;énergie qui traverse cette paroi par unité de temps.<br></p>
+<p>Le flux est toujours orienté du chaud vers le froid.</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/fluxther.png"
+      data-background-size="50%"
+      data-background-transition="concave">
+</section><section>
+<p>Flus thermique $\Phi$ à travers la paroi (en W) :</p>
+<br>
+<div style="display: flex;justify-content: center;">
+<div style = "border:solid red 5px;width:min;padding: 20px 20px 20px 20px;">
+$\displaystyle \Phi = \frac{S \Delta \theta}{R_{th}}=\frac{S\left(\theta_{\text{chaud}}-\theta_{\text{froid}}\right)}{R_{th}}$
+</div>
+</div>
+<br>
+<ul class="moyen">
+<li>$S$ : surface de la paroi (en $\pu{m2}$)</li>
+<li>$\theta_{\text{chaud}}$ et $\theta_{\text{froid}}$ : températures de part<br>et d'autre de la paroi (en °C ou K)</li>
+<li>$R_{th}$ : est la résistance thermique<br>de la paroi (en $\pu{K.W-1}$)</li>
+</ul>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/poelle.png"
+      data-background-size="10%"
+      data-background-transition="concave">
+<p>En hiver, $\Phi$ donne l&rsquo;énergie thermique perdue chaque seconde par une habitation.
+<br><br><br><br><br><br><br>
+Elle doit être compensée par un chauffage<br>de même puissance pour maintenir l&rsquo;écart de température $\Delta \theta$ entre intérieur et extérieur.</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/climatiseur.png"
+      data-background-size="20%"
+      data-background-transition="concave">
+<p>À l&rsquo;inverse, en été, le flux est souvent en journée de l&rsquo;extérieur vers l&rsquo;intérieur.
+<br><br><br><br><br><br><br>
+Il donne la puissance d&rsquo;un climatiseur devant maintenir une température intérieure<br>plus fraiche que l&rsquo;extérieur.</p>
+</section><section>
+<p><span>Comment faire pour diminuer $\Phi$ ?</span></p>
+<br>
+<p><span class='fragment ' >➘ $\Delta \theta$</span></p>
+<p><span class='fragment ' ><span style="font-weight:normal">ce qui revient à diminuer son confort thermique</span></span></p>
+<p><span class='fragment ' >➘ $S$</span></p>
+<p><span class='fragment ' ><span style="font-weight:normal">ce qui revient à avoir des petites ouvertures<br>et le moins de décrochements possible</span></span></p>
+<p><span class='fragment ' >➚ $R_{th}$</span></p>
+<p><span class='fragment ' ><span style="font-weight:normal">ce qui revient à améliorer l’isolation</span></span></p>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h2 id="résistance-thermique">Résistance thermique</h2>
+</section><section>
+<p>La résistance thermique $R_{th}$<br>d&rsquo;une paroi d'$\pu{1 m2}$ dépend :</p>
+<ul class="long">
+<li>de son épaisseur $e$ (en $\pu{m}$),</li>
+<li>de la conductivité thermique $\lambda$ (en $\pu{W * m-1 * K-1}$) du matériau qui la constitue. </li>
+</ul>
+</section><section>
+<p>La <strong>conductivité thermique</strong> est une caractéristique intrinsèque d&rsquo;un matériau traduisant sa capacité à diffuser l&rsquo;énergie thermique  à travers lui.</p>
+<img src="/tableaulambda.pdf" height="400px">
+</section><section>
+<p>Expliquez le double vitrage<br>à l&rsquo;aide du tableau précédent.</p>
+</section><section>
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/vqDbMEdLiCs" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+</section><section>
+<p>Comment construire la grandeur $R_{th}$<br>à partir de $e$ et $\lambda$.</p>
+</section><section>
+<p>Pour une paroi homogène :</p>
+<br>
+<div style="display: flex;justify-content: center;">
+<div style = "border:solid red 5px;width:min;padding: 20px 20px 20px 20px;">
+$\displaystyle R_{th} = \frac{e}{\lambda}$
+</div>
+</div>
+<br>
+<p>unité de $R_{th}$ :</p>
+<p><span class='fragment ' >$\pu{m2 * K * W-1}$</span></p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/superprth.png"
+      data-background-size="40%"
+      data-background-transition="concave">
+<p>Les résistances thermiques<br>de parois superposées s&rsquo;ajoutent.
+<br><br><br><br><br><br><br><br><br><br><br></p>
+
+</section>
+</section><section>
+<p><a href="https://coursphychi.github.io/tsti2d/conduction/">Retour site</a></p>
+</section>
+
+  
+
+
+</div>
+      
+
+    </div>
+<script type="text/javascript" src=/reveal-hugo/object-assign.js></script>
+
+<a href="/reveal-js/css/print/" id="print-location" style="display: none;"></a>
+<script type="text/javascript">
+  var printLocationElement = document.getElementById('print-location');
+  var link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.type = 'text/css';
+  link.href = printLocationElement.href + (window.location.search.match(/print-pdf/gi) ? 'pdf.css' : 'paper.css');
+  document.getElementsByTagName('head')[0].appendChild(link);
+</script>
+
+<script type="application/json" id="reveal-hugo-site-params">{"highlight_theme":"github-dark","line-numbers":true,"theme":"sky","transition":"concave","transition_speed":"fast"}</script>
+<script type="application/json" id="reveal-hugo-page-params">null</script>
+
+<script src="/reveal-js/js/reveal.js"></script>
+
+<script type="text/javascript">
+  
+  
+  function camelize(map) {
+    if (map) {
+      Object.keys(map).forEach(function(k) {
+        newK = k.replace(/(\_\w)/g, function(m) { return m[1].toUpperCase() });
+        if (newK != k) {
+          map[newK] = map[k];
+          delete map[k];
+        }
+      });
+    }
+    return map;
+  }
+  
+  var revealHugoDefaults = { center: true, controls: true, history: true, progress: true, transition: "slide" };
+  var revealHugoSiteParams = JSON.parse(document.getElementById('reveal-hugo-site-params').innerHTML);
+  var revealHugoPageParams = JSON.parse(document.getElementById('reveal-hugo-page-params').innerHTML);
+  
+  var options = Object.assign({},
+    camelize(revealHugoDefaults),
+    camelize(revealHugoSiteParams),
+    camelize(revealHugoPageParams));
+  Reveal.initialize(options);
+</script>
+
+
+  
+  
+  <script type="text/javascript" src="/reveal-js/plugin/markdown/marked.js"></script>
+  
+  <script type="text/javascript" src="/reveal-js/plugin/markdown/markdown.js"></script>
+  
+  <script type="text/javascript" src="/reveal-js/plugin/highlight/highlight.js"></script>
+  
+  <script type="text/javascript" src="/reveal-js/plugin/zoom-js/zoom.js"></script>
+  
+  
+  <script type="text/javascript" src="/reveal-js/plugin/notes/notes.js"></script>
+
+
+
+
+
+
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({startOnLoad: false});
+    let render = (event) => {
+      let mermaidElems = event.currentSlide.querySelectorAll('.mermaid');
+      if (!mermaidElems.length){
+          return
+      }
+      mermaidElems.forEach(mermaidElem => {
+          let processed = mermaidElem.getAttribute('data-processed');
+          if (!processed){
+              
+              mermaid.init(undefined, mermaidElem);
+          }
+      });
+    };
+    Reveal.addEventListener('slidechanged', render);
+    Reveal.addEventListener('ready', render);
+  </script>
+
+    
+
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']]
+  },
+  svg: {
+    fontCache: 'global'
+  }
+};
+</script>
+
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+</script>
+    
+  </body>
+</html>
