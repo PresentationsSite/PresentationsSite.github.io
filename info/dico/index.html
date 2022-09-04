@@ -10,7 +10,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link rel="stylesheet" href="/reveal-js/css/reset.css">
 <link rel="stylesheet" href="/reveal-js/css/reveal.css"><link rel="stylesheet" href="/reveal-js/css/theme/sky.css" id="theme">
-<link rel="stylesheet" href="/highlight-js/atom-one-light.min.css">
+<link rel="stylesheet" href="/highlight-js/atom-one-dark-reasonable.min.css">
     <link rel="stylesheet" href="/css/styles.css">
   </head>
   <body>
@@ -108,7 +108,7 @@ function rot13() {
         } else{
         dst.value += src.value[i];
         }
-				}
+    			}
     }
 </script>
 </section><section>
@@ -159,6 +159,21 @@ print(dico)
 </code></pre>
 </section><section>
 <p style="font-family:menlo"><span style="color:red">TypeError:</span> unhashable type: 'list'</p>
+</section><section>
+<p>Quelle est la taille du dictionnaire <code>Notes</code> ?</p>
+<br>
+<pre><code class="language-python">Notes = {&quot;Bob&quot; : 5 , &quot;Joe&quot; : 12 , &quot;Bob&quot; : 10}
+</code></pre>
+<br>
+<p><span class='fragment ' >2</span></p>
+</section><section>
+<p>Les commandements :</p>
+<br>
+<p style="background-color:rgb(255,0,0,0.2);font-weight:bold;border-radius:10px;color:rgb(200,0,0);padding:10px 0px 15px 0px;border: solid red 5px">Une clé est unique</p>
+<br>
+<p style="background-color:rgb(255,0,0,0.2);font-weight:bold;border-radius:10px;color:rgb(200,0,0);padding:10px 0px 15px 0px;border: solid red 5px">Une clé est non mutable</p>
+</section><section>
+<p>En fait, le 2<sup>e</sup> commandement<br>est là pour s&rsquo;assurer du premier&hellip;</p>
 
 </section>
 </section><section>
@@ -167,8 +182,134 @@ print(dico)
 <section data-shortcode-section>
 <h3 id="principe-du-hachage">Principe du hachage</h3>
 </section><section>
+<p>On se fixe au départ une taille de tableau.<br>Pour Python, c&rsquo;est 64 bits<br>
+(taille d&rsquo;un espace mémoire).</p>
+<br>
+<p><span class='fragment ' ><span style="font-weight:normal">On utilise ensuite une fonction de hachage<br>qui transforme l’objet non mutable donné en argument en un entier compris entre $0$ et $2^{64}-1$.</span></span></p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/principhachage.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+</section><section>
+<p>Python donne accès nativement<br>à la fonction de hachage <code>hach</code> :</p>
+<pre><code class="language-python">&gt;&gt;&gt; hash(28)
+28
+&gt;&gt;&gt; hash(28.0)
+28
+&gt;&gt;&gt; hash(28.1)
+230584300921372700
+&gt;&gt;&gt; hash(&quot;2&quot;)
+7599881246238757835
+&gt;&gt;&gt; hash(&quot;Eh alors ?&quot;)
+2149932438138104006
+&gt;&gt;&gt; hash(&quot;🍇&quot;)
+3426984333240570475
+&gt;&gt;&gt; hash((1,2,3))
+529344067295497451
+</code></pre>
+</section><section>
+<p>Ses propriétés peuvent être interrogées :</p>
+<br>
+<pre><code class="language-python">&gt;&gt;&gt; import sys
+&gt;&gt;&gt; sys.hash_info
+sys.hash_info(width=64, modulus=2305843009213693951, inf=314159, nan=0, imag=1000003, algorithm='siphash24', hash_bits=64, seed_bits=128, cutoff=0)
+</code></pre>
+<br>
+<p><span class='fragment ' ><span style="font-weight:normal">modulus = $2^{61}-1$ est le plus grand<br>nombre premier de Mersenne $&lt;2^{64}$<br>(ça permet d’optimiser la distribution des<br>entiers obtenus tout en ayant des calculs rapides)</span></span></p>
+</section><section>
+<p>Une fonction de hachage<br>travaille en temps constant<br>(complexité en $O(1)$).</p>
+</section><section>
+<p>Et que faire si le hachage donne le même entier pour deux clés différentes<br>(ce qu&rsquo;on appelle une <strong>collision</strong>) ?</p>
+<br>
+<p><span class='fragment ' ><span style="font-weight:normal">Une idée possible est de commencer<br>une liste chaînée depuis l’emplacement<br>déjà occupée du tableau.</span></span></p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/gestioncollision.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+</section><section>
+<p>Si ça n&rsquo;arrive pas trop souvent,<br>l&rsquo;accès à une valeur et l&rsquo;insertion d&rsquo;une nouvelle reste globalement en $O(1)$.</p>
 
 </section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h3 id="atout-dun-dictionnaire">Atout d&rsquo;un dictionnaire</h3>
+</section><section>
+<p>Sa rapidité !</p>
+</section><section>
+<p>Supposons que l&rsquo;on veuille la note de Bob :</p>
+<br>
+<pre><code class="language-python"># Liste de tuples :
+L = [(&quot;Joe&quot;,12),(&quot;Bill&quot;,8),(&quot;Al&quot;,4),(&quot;Bob&quot;,13),(&quot;Tom&quot;,9)]
+# Dictionnaire
+D = { &quot;Joe&quot;:12 , &quot;Bill&quot;:8 , &quot;Al&quot;:4 , &quot;Bob&quot;:13 , &quot;Tom&quot;:9 }
+</code></pre>
+</section><section>
+<p>Pour afficher la note de Bob avec <code>L</code> :</p>
+<pre><code class="language-python">for prenom,note in L :
+	if prenom == &quot;Bob&quot; :
+		print(note)
+</code></pre>
+<p>ou</p>
+<pre><code class="language-python">for i in range(len(L)) :
+	if L[i][0] == &quot;Bob&quot; :
+		print(L[i][1])
+</code></pre>
+</section><section>
+<p>Complexité ?</p>
+<p><span class='fragment ' >$\color{red}O(len(L))$</span></p>
+</section><section>
+<p>Pour afficher la note de Bob avec <code>D</code> :</p>
+<br>
+<pre><code class="language-python">print(D[&quot;Bob&quot;])
+</code></pre>
+</section><section>
+<p>Complexité ?</p>
+<p><span class='fragment ' >$\color{red}O(1)$</span></p>
+</section><section>
+<p>On a mis à profit cette rapidité dans l&rsquo;implémentation de <strong>BFS</strong> et <strong>DFS</strong> pour tester<br>si un sommet avait déjà été visité.</p>
+<br>
+<p>Utiliser une liste répertoriant les sommets visités plutôt qu&rsquo;un dictionnaire fait passer la complexité de linéaire à quadratique !</p>
+</section><section>
+<p>Pas bien 🤮</p>
+<pre><code class="language-python" data-line-numbers="|6,10,12">from collections import deque
+
+def parcours_largeur(G,depart):
+    file = deque()
+    file.append(depart)
+    Vus = []
+    Sommets = []
+    while file : # tant que la file n'est pas vide
+        sommet = file.popleft()  
+        if not sommet in Vus :
+            file += G[sommet]
+            Vus.append(sommet)
+            Sommets.append(sommet) 
+    return Sommets
+</code></pre>
+</section><section>
+<p>Bien 😇</p>
+<pre><code class="language-python" data-line-numbers="|6,10,12">from collections import deque
+
+def parcours_largeur(G,depart):
+    file = deque()
+    file.append(depart)
+    Vus = {s : False for s in G}
+    Sommets = []
+    while file : # tant que la file n'est pas vide
+        sommet = file.popleft()  
+        if not Vus[sommet] :
+            file += G[sommet]
+            Vus[sommet] = True
+            Sommets.append(sommet) 
+    return Sommets
+</code></pre>
+
+</section>
+</section><section>
 </section>
 
   
@@ -191,7 +332,7 @@ print(dico)
 </script>
 
 <script type="application/json" id="reveal-hugo-site-params">{"highlight_theme":"github-dark","line-numbers":true,"theme":"sky","transition":"concave","transition_speed":"fast"}</script>
-<script type="application/json" id="reveal-hugo-page-params">{"highlight_theme":"atom-one-light"}</script>
+<script type="application/json" id="reveal-hugo-page-params">{"highlight_theme":"atom-one-dark-reasonable"}</script>
 
 <script src="/reveal-js/js/reveal.js"></script>
 
