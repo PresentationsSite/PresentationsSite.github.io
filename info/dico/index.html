@@ -47,15 +47,15 @@ for i in range(26) :
 <p>Par compréhension :</p>
 <br>
 <pre><code class="language-python" data-line-numbers="2">abc = &quot;abcdefghijklmnopqrstuvwxyz&quot;
-rot13 = {abc[i] : abc[(i+13)%26]}
+rot13 = {abc[i] : abc[(i+13)%26] for i in range(26)}
 </code></pre>
 </section><section>
 <p>Utilisation :</p>
 <br>
-<pre><code class="language-python" data-line-numbers="|5">def encode(texte) :
+<pre><code class="language-python" data-line-numbers="|4|5">def encode(texte) :
     secret = &quot;&quot;
     for char in texte :
-        if char in rot13 :
+        if char in rot13 : # vérifie si char est une clé
             secret += rot13[char]
         else :
             secret += char
@@ -125,15 +125,42 @@ function rot13() {
 <pre><code class="language-python">for k in dico.keys() :
 	print(k)
 </code></pre>
+<br>
+<p>équivalent à :</p>
+<pre><code class="language-python">for k in dico :
+	print(k)
+</code></pre>
+</section><section>
+<p>Pour obtenir la liste des clés :</p>
+<pre><code class="language-python">L_keys = list(dico.keys()) 
+</code></pre>
 </section><section>
 <h4 id="parcourir-les-valeurs-">Parcourir les valeurs :</h4>
 <pre><code class="language-python">for v in dico.values() :
 	print(v)
 </code></pre>
+<br>
+<p>équivalent à :</p>
+<pre><code class="language-python">for k in dico :
+	print(dico[k])
+</code></pre>
+</section><section>
+<p>Pour obtenir la liste des valeurs :</p>
+<pre><code class="language-python">L_valeurs = list(dico.values()) 
+</code></pre>
 </section><section>
 <h4 id="parcourir-les-couples-clés-valeurs-">Parcourir les couples clés-valeurs :</h4>
 <pre><code class="language-python">for k,v in dico.items() :
 	print(f&quot;{k}:{v}&quot;)
+</code></pre>
+<br>
+<p>équivalent à :</p>
+<pre><code class="language-python">for k in dico :
+	print(f&quot;{k}:{dico[k]}&quot;)
+</code></pre>
+</section><section>
+<p>Pour obtenir la liste des tuples (clé,valeur) :</p>
+<pre><code class="language-python">L_couples = list(dico.items()) 
 </code></pre>
 
 </section>
@@ -145,14 +172,12 @@ function rot13() {
 </section><section>
 <pre><code class="language-python" data-line-numbers>dico = {}
 dico[(46.16,-1.15)] = &quot;La Rochelle&quot;   # ajoute la clé
-print(dico)
 </code></pre>
 <br>
 <pre><code class="language-python" data-line-numbers>del dico[(46.16,-1.15)]               # retire la clé
-print(dico)
 </code></pre>
 </section><section>
-<p>Un tuple est une clé possible, car c&rsquo;est une structure <strong>non mutable</strong>.</p>
+<p>Un tuple est une clé possible,<br>car c&rsquo;est une structure <strong>non mutable</strong>.</p>
 <br>
 <p>Par contre, l&rsquo;instruction suivante lève une erreur :</p>
 <pre><code class="language-python">dico[[46.16,-1.15]] = &quot;La Rochelle&quot;
@@ -310,6 +335,7 @@ def parcours_largeur(G,depart):
 
 </section>
 </section><section>
+<p><a href="https://info-tsi-vieljeux.github.io/python/typesstruct/#dictionnaires">Retour site</a></p>
 </section>
 
   
