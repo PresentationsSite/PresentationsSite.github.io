@@ -23,6 +23,10 @@
 
     <section><h1 id="pivot-de-gauss">Pivot de Gauss</h1>
 </section><section>
+<p>On se restreint ici à la résolution de systèmes d&rsquo;équations où le nombre d&rsquo;inconnues<br>est ≤ au nombre d&rsquo;équations.</p>
+</section><section>
+<p>On transforme la matrice augmentée du système en matrice échelonnée grâce à la méthode du pivot de Gauss, puis on substitue successivement de bas en haut pour obtenir la solution.</p>
+</section><section>
 
 
 <section data-shortcode-section>
@@ -41,7 +45,7 @@
 <section data-shortcode-section>
 <h2 id="avec-pivot-partiel">Avec pivot partiel</h2>
 </section><section>
-<p>Déroulons maintenant l&rsquo;algo en utilisant<br>la méthode du <strong>pivot partiel</strong> <br>(la ligne du pivot est choisie pour que le pivot ait<br>la plus grande valeur absolue possible).</p>
+<p>Déroulons maintenant l&rsquo;algo<br>en utilisant la méthode du <strong>pivot partiel</strong> <br>(la ligne du pivot est choisie pour que le pivot ait<br>la plus grande valeur absolue possible).</p>
 </section><section>
 <video controls>
   <source src="/gausspartiel.mp4" type="video/mp4">
@@ -52,7 +56,8 @@
 
 
 <section data-shortcode-section>
-<pre><code class="language-python" data-line-numbers="|5-6">def Gauss(M,recherchePivot) :
+<pre><code class="language-python" data-line-numbers="|2,6-7">def Gauss(M,recherchePivot) :
+    tol = 1e-9
     while h &lt; m and k &lt; n :                       
         ipivot = recherchePivot(M,h,k)            
         pivot = M[ipivot][k]
@@ -60,7 +65,22 @@
             k += 1
         else :       
             h +=1
+</code></pre>
+</section><section>
+<pre><code class="language-python" data-line-numbers="5">def Gauss(M,recherchePivot) :
+    while h &lt; m and k &lt; n :                       
+        ipivot = recherchePivot(M,h,k)            
+        pivot = M[ipivot][k]
+        if abs(pivot) == 0 :                     
             k += 1
+        else :       
+            h +=1
+</code></pre>
+<br>
+<p>Pourquoi ne pas avoir écrit ça à la place ?</p>
+</section><section>
+<pre><code class="language-python">&gt;&gt;&gt; 0.1**2-0.01 == 0
+False
 </code></pre>
 </section><section>
 <p>Cette partie du code prouve que cette implémentation de l&rsquo;algorithme est en fait seulement adaptée au pivot partiel.</p>
@@ -74,22 +94,158 @@
 <section data-shortcode-section>
 <h2 id="intérêt-du-pivot-partiel">Intérêt du pivot partiel</h2>
 </section><section>
+<p>Cherchons à résoudre le système suivant<br>en supposant que l&rsquo;on soit limité<br>à 3 chiffres significatifs</p>
 <p>$$
 \begin{cases}
-10^{-4}x &amp;+ &amp;y&amp;=1 \\
-\hphantom{10^{-4}}x &amp;+ &amp;y &amp;=2 \\
+10^{-4}x &amp;+ &amp;y&amp;=&amp;1 \\
+\hphantom{10^{-4}}x &amp;+ &amp;y &amp;=&amp;2 \\
+\end{cases}
+$$</p>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h3 id="sans-pivot-partiel">Sans pivot partiel</h3>
+</section><section>
+<p>$$
+\begin{cases}
+10^{-4}x &amp;+ &amp;y&amp;=&amp;1 \\
+\hphantom{10^{-4}}x &amp;+ &amp;y &amp;=&amp;2 \\
 \end{cases}
 $$</p>
 </section><section>
 <p>$$
 \begin{pmatrix}
 10^{-4} &amp; 1 &amp; 1 \\<br>
-0 &amp; 1 &amp; 2
+1 &amp; 1 &amp; 2
 \end{pmatrix}
 $$</p>
 </section><section>
+<p>$$
+\begin{pmatrix}
+\color{red}{10^{-4}} &amp; 1 &amp; 1 \\<br>
+1 &amp; 1 &amp; 2
+\end{pmatrix}
+$$</p>
+</section><section>
+<p>$$
+\begin{pmatrix}
+\color{red}{1} &amp; 10^4 &amp; 10^4 \\<br>
+1 &amp; 1 &amp; 2
+\end{pmatrix}
+$$</p>
+</section><section>
+<p>$$
+\begin{pmatrix}
+\color{red}{1} &amp; 10^4 &amp; 10^4 \\<br>
+1-1 &amp; 1-10^4 &amp; 2-10^4
+\end{pmatrix}
+$$</p>
+</section><section>
+<p>$$
+\begin{pmatrix}
+\color{red}{1} &amp; 10^4 &amp; 10^4 \\<br>
+0 &amp; -10^4 &amp; -10^4
+\end{pmatrix}
+$$</p>
+</section><section>
+<p>$$
+\begin{pmatrix}
+1 &amp; 10^4 &amp; 10^4 \\<br>
+0 &amp; \color{red}{-10^4} &amp; -10^4
+\end{pmatrix}
+$$</p>
+</section><section>
+<p>$$
+\begin{pmatrix}
+1 &amp; 10^4 &amp; 10^4 \\<br>
+0 &amp; \color{red}{1} &amp; 1
+\end{pmatrix}
+$$</p>
+</section><section>
+<p>$$
+\begin{cases}
+1 &amp;x &amp;+ &amp;10^4&amp;y&amp;=&amp;10^4 \\
+&amp;&amp;&amp;1&amp;y &amp;=&amp;2 \\
+\end{cases}
+$$</p>
+</section><section>
+<p>$$
+\begin{cases}
+&amp;x &amp;= &amp;-10^4 \\
+&amp;y &amp;= &amp;2 \\
+\end{cases}
+$$</p>
 
 </section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h3 id="avec-pivot-partiel">Avec pivot partiel</h3>
+</section><section>
+<p>$$
+\begin{cases}
+10^{-4}x &amp;+ &amp;y&amp;=&amp;1 \\
+\hphantom{10^{-4}}x &amp;+ &amp;y &amp;=&amp;2 \\
+\end{cases}
+$$</p>
+</section><section>
+<p>$$
+\begin{pmatrix}
+10^{-4} &amp; 1 &amp; 1 \\<br>
+1 &amp; 1 &amp; 2
+\end{pmatrix}
+$$</p>
+</section><section>
+<p>$$
+\begin{pmatrix}
+10^{-4} &amp; 1 &amp; 1 \\<br>
+\color{red}{1} &amp; 1 &amp; 2
+\end{pmatrix}
+$$</p>
+</section><section>
+<p>$$
+\begin{pmatrix}
+\color{red}{1} &amp; 1 &amp; 2 \\<br>
+10^{-4} &amp; 1 &amp; 1
+\end{pmatrix}
+$$</p>
+</section><section>
+<p>$$
+\begin{pmatrix}
+\color{red}{1} &amp; 1 &amp; 2 \\<br>
+1-1 &amp; 1-1\times 10^{-4} &amp; 1-2\times 10^{-4}
+\end{pmatrix}
+$$</p>
+</section><section>
+<p>$$
+\begin{pmatrix}
+\color{red}{1} &amp; 1 &amp; 2 \\<br>
+0 &amp; 1 &amp; 1
+\end{pmatrix}
+$$</p>
+</section><section>
+<p>$$
+\begin{cases}
+1 &amp;x &amp;+ &amp;1&amp;y&amp;=&amp;2 \\
+&amp;&amp;&amp;1&amp;y &amp;=&amp;1 \\
+\end{cases}
+$$</p>
+</section><section>
+<p>$$
+\begin{cases}
+&amp;x &amp;= &amp;1 \\
+&amp;y &amp;= &amp;1 \\
+\end{cases}
+$$</p>
+
+</section>
+</section><section>
+<p><a href="https://www.wolframalpha.com/input?i=1e-4+x+%2B+y+%3D1%2C+x+%2B+y+%3D+2">WolframAlpha</a></p>
+<p>En cliquant sur <code>step-by-step solution</code>,<br>que peut-on dire de la méthode utilisée ?</p>
 </section><section>
 <p><a href="https://coursphychi.github.io/">Retour site</a></p>
 </section>
