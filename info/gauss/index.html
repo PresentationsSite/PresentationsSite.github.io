@@ -247,6 +247,13 @@ $$</p>
 <p><a href="https://www.wolframalpha.com/input?i=1e-4+x+%2B+y+%3D1%2C+x+%2B+y+%3D+2">WolframAlpha</a></p>
 <p>En cliquant sur <code>step-by-step solution</code>,<br>que peut-on dire de la méthode utilisée ?</p>
 </section><section>
+<p>Inventaire des erreurs :</p>
+<ul>
+<li>postcondition pour la fonction <code>Gauss</code> : &ldquo;M est mutée sous la forme d&rsquo;une matrice échelonnée&rdquo; (pas échelonnée réduite).</li>
+<li>précondition de <code>substitution</code> : pareil, M est échelonnée et non échelonnée réduite.</li>
+<li><code>recherchePivotPartiel</code> devra fournir l&rsquo;indice de la ligne où se trouve l&rsquo;élément de <strong>plus grande valeur absolue</strong> (et non de plus faible valeur absolue) !!!</li>
+</ul>
+</section><section>
 <p><a href="https://coursphychi.github.io/">Retour site</a></p>
 </section>
 
