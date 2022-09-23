@@ -262,6 +262,38 @@ $$</p>
 <li><code>recherchePivotPartiel</code> devra fournir l&rsquo;indice de la ligne où se trouve l&rsquo;élément de <strong>plus grande valeur absolue</strong> (et non de plus faible valeur absolue) !!!</li>
 </ul>
 </section><section>
+
+
+<section data-shortcode-section>
+<h3 id="un-peu-de-théorie">Un peu de théorie</h3>
+</section><section>
+<p>On cherche à résoudre :</p>
+<p>$$A\textbf{x}=\textbf{b}$$</p>
+</section><section>
+<p>On passe à la matrice augmentée :</p>
+<p>$$
+\tilde{A}=\begin{bmatrix}A|\textbf{b}\end{bmatrix}=\begin{bmatrix}
+a_{11} &amp; a_{12} &amp; \cdots &amp; a_{1n} &amp;|&amp; b_1 \\<br>
+a_{21} &amp; a_{22} &amp; \cdots &amp; a_{2n} &amp;|&amp; b_2 \\<br>
+\vdots &amp;        &amp;        &amp; \vdots &amp;|&amp; \vdots \\<br>
+a_{n1} &amp; a_{n2} &amp; \cdots &amp; a_{nn} &amp;|&amp; b_n
+\end{bmatrix}
+$$</p>
+</section><section>
+<p>$$
+\begin{bmatrix}
+\color{blue}0&amp;\color{red}{\rule{0.5em}{0.5em}}&amp; * &amp; * &amp; * &amp; * &amp; * &amp; * &amp; *   \\<br>
+\color{blue}0&amp;\color{blue}0&amp;\color{blue}0&amp;\color{red}\rule{0.5em}{0.5em} &amp; * &amp; * &amp; * &amp; * &amp; *  \\<br>
+\color{blue}0&amp;\color{blue}0&amp;\color{blue}0&amp;\color{blue}0&amp;\color{red}\rule{0.5em}{0.5em}&amp; * &amp; * &amp; * &amp; *  \\<br>
+\color{blue}0&amp;\color{blue}0&amp;\color{blue}0&amp;\color{blue}0&amp;\color{blue}0&amp;\color{red}\rule{0.5em}{0.5em}&amp; * &amp; * &amp; *  \\<br>
+\color{blue}0&amp;\color{blue}0&amp;\color{blue}0&amp;\color{blue}0&amp;\color{blue}0&amp;\color{blue}0&amp;\color{blue}0&amp;\color{red}\rule{0.5em}{0.5em}&amp; *  \\<br>
+\color{blue}0&amp;\color{blue}0&amp;\color{blue}0&amp;\color{blue}0&amp;\color{blue}0&amp;\color{blue}0&amp;\color{blue}0&amp;\color{blue}0&amp; * \\<br>
+\end{bmatrix}
+$$</p>
+</section><section>
+
+</section>
+</section><section>
 <p><a href="https://info-tsi-vieljeux.github.io/semestre_3/tp11/">Retour site</a></p>
 </section>
 
