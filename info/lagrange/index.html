@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>Interpolation</title>
+
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="/reveal-js/css/reset.css">
+<link rel="stylesheet" href="/reveal-js/css/reveal.css"><link rel="stylesheet" href="/reveal-js/css/theme/sky.css" id="theme">
+<link rel="stylesheet" href="/highlight-js/atom-one-dark-reasonable.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  </head>
+  <body>
+    
+    <div class="reveal">
+      <div class="slides">
+  
+
+    <section><h2 id="interpolation-polynomialebrde-lagrange">Interpolation polynomiale<br>de Lagrange</h2>
+</section><section>
+
+
+<section data-shortcode-section>
+<p>L&rsquo;idée est d&rsquo;approximer une fonction<br>par un polynôme passant par un ensemble de points $\{(x_i,f(x_i))\}$ sur la courbe de la fonction.</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/interpvierge.png"
+      data-background-size="content"
+      data-background-transition="concave">
+</section><section>
+<p>Pur ça, on utilise cette formule :</p>
+<p>$$
+P(x) = \sum_{j=1}^n f(x_j)\left(\color{purple}\prod_{i=1,i≠j}^n \frac{x-x_i}{x_j-x_i}\color{black}\right)
+$$</p>
+</section><section>
+<p>Pour notre exemple à 3 points, on obtient :
+$$
+\begin{aligned}
+P(x) = &amp;&amp;y_0\color{purple}\frac{(x-x_1)(x-x_2)}{(x_0-x_1)(x_0-x_2)}\color{black}\\&amp;+&amp;y_1\color{purple}\frac{(x-x_0)(x-x_2)}{(x_1-x_0)(x_1-x_2)}\color{black}\\&amp;+&amp;y_2\color{purple}\frac{(x-x_1)(x-x_0)}{(x_2-x_1)(x_2-x_0)}
+\end{aligned}
+$$</p>
+<p><span class='fragment ' ><span style="font-weight:normal">Que vaut $P(x_0)$, $P(x_1)$, $P(x_2)$ ?</span></span></p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/interp3.png"
+      data-background-size="content"
+      data-background-transition="concave">
+</section><section>
+<p>Problème : augmenter le nombre de points<br>afin d&rsquo;améliorer la fidélité de l&rsquo;interpolation<br>peut générer des instabilités !</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/interp5.png"
+      data-background-size="content"
+      data-background-transition="concave">
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/interp10.png"
+      data-background-size="content"
+      data-background-transition="concave">
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/interp20.png"
+      data-background-size="content"
+      data-background-transition="concave">
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<p>L&rsquo;idée est alors utiliser<br>une <strong>interpolation par morceaux</strong>.</p>
+<p>On découpe l&rsquo;intervalle $I$ de départ<br>en $N$ morceaux et on interpolle la fonction<br>pour chaque intervalle de taille $I/N$<br>sur les nœuds qu&rsquo;il contient.</p>
+</section><section>
+<p>Choisissons 21 nœuds sur la courbe<br>et découpons l&rsquo;intervalle en 20.</p>
+<p>On peut considérer :</p>
+<ul>
+<li>soit que chaque intervalle contient un seul nœud : on interpole alors par un polynôme<br>de <strong>degré 0</strong>.</li>
+</ul>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/interpmorc0.png"
+      data-background-size="70%"
+      data-background-transition="concave">
+</section><section>
+<ul>
+<li>soit que chaque intervalle contient deux nœuds : on interpole alors par un polynôme de <strong>degré 1</strong>.</li>
+</ul>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/interpmorc1.png"
+      data-background-size="70%"
+      data-background-transition="concave">
+</section><section>
+<p>Si on veut interpoler à l&rsquo;ordre supérieur,<br>il faut garder 3 nœuds par intervalle.</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/interpmorc2.png"
+      data-background-size="70%"
+      data-background-transition="concave">
+
+</section>
+</section><section>
+<p><a href="https://info-tsi-vieljeux.github.io/semestre_3/tp11/#interpolation-polynomiale-de-lagrange">Retour site</a></p>
+</section>
+
+  
+
+
+</div>
+      
+
+    </div>
+<script type="text/javascript" src=/reveal-hugo/object-assign.js></script>
+
+<a href="/reveal-js/css/print/" id="print-location" style="display: none;"></a>
+<script type="text/javascript">
+  var printLocationElement = document.getElementById('print-location');
+  var link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.type = 'text/css';
+  link.href = printLocationElement.href + (window.location.search.match(/print-pdf/gi) ? 'pdf.css' : 'paper.css');
+  document.getElementsByTagName('head')[0].appendChild(link);
+</script>
+
+<script type="application/json" id="reveal-hugo-site-params">{"highlight_theme":"github-dark","line-numbers":true,"theme":"sky","transition":"concave","transition_speed":"fast"}</script>
+<script type="application/json" id="reveal-hugo-page-params">{"highlight_theme":"atom-one-dark-reasonable"}</script>
+
+<script src="/reveal-js/js/reveal.js"></script>
+
+<script type="text/javascript">
+  
+  
+  function camelize(map) {
+    if (map) {
+      Object.keys(map).forEach(function(k) {
+        newK = k.replace(/(\_\w)/g, function(m) { return m[1].toUpperCase() });
+        if (newK != k) {
+          map[newK] = map[k];
+          delete map[k];
+        }
+      });
+    }
+    return map;
+  }
+  
+  var revealHugoDefaults = { center: true, controls: true, history: true, progress: true, transition: "slide" };
+  var revealHugoSiteParams = JSON.parse(document.getElementById('reveal-hugo-site-params').innerHTML);
+  var revealHugoPageParams = JSON.parse(document.getElementById('reveal-hugo-page-params').innerHTML);
+  
+  var options = Object.assign({},
+    camelize(revealHugoDefaults),
+    camelize(revealHugoSiteParams),
+    camelize(revealHugoPageParams));
+  Reveal.initialize(options);
+</script>
+
+
+  
+  
+  <script type="text/javascript" src="/reveal-js/plugin/markdown/marked.js"></script>
+  
+  <script type="text/javascript" src="/reveal-js/plugin/markdown/markdown.js"></script>
+  
+  <script type="text/javascript" src="/reveal-js/plugin/highlight/highlight.js"></script>
+  
+  <script type="text/javascript" src="/reveal-js/plugin/zoom-js/zoom.js"></script>
+  
+  
+  <script type="text/javascript" src="/reveal-js/plugin/notes/notes.js"></script>
+
+
+
+
+
+
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({startOnLoad: false});
+    let render = (event) => {
+      let mermaidElems = event.currentSlide.querySelectorAll('.mermaid');
+      if (!mermaidElems.length){
+          return
+      }
+      mermaidElems.forEach(mermaidElem => {
+          let processed = mermaidElem.getAttribute('data-processed');
+          if (!processed){
+              
+              mermaid.init(undefined, mermaidElem);
+          }
+      });
+    };
+    Reveal.addEventListener('slidechanged', render);
+    Reveal.addEventListener('ready', render);
+  </script>
+
+    
+
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']]
+  },
+  svg: {
+    fontCache: 'global'
+  }
+};
+</script>
+
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+</script>
+    
+  </body>
+</html>
