@@ -268,29 +268,180 @@ $$</p>
 <h3 id="un-peu-de-théorie">Un peu de théorie</h3>
 </section><section>
 <p>On cherche à résoudre :</p>
-<p>$$A\textbf{x}=\textbf{b}$$</p>
+<p>$$A\textbf{x}=\color{green}{\textbf{b}}$$</p>
 </section><section>
 <p>On passe à la matrice augmentée :</p>
 <p>$$
 \tilde{A}=\begin{bmatrix}A|\textbf{b}\end{bmatrix}=\begin{bmatrix}
-a_{11} &amp; a_{12} &amp; \cdots &amp; a_{1n} &amp;|&amp; b_1 \\<br>
-a_{21} &amp; a_{22} &amp; \cdots &amp; a_{2n} &amp;|&amp; b_2 \\<br>
-\vdots &amp;        &amp;        &amp; \vdots &amp;|&amp; \vdots \\<br>
-a_{n1} &amp; a_{n2} &amp; \cdots &amp; a_{nn} &amp;|&amp; b_n
+a_{11} &amp; a_{12} &amp; \cdots &amp; a_{1n} &amp;|&amp; \color{green}b_1 \\<br>
+a_{21} &amp; a_{22} &amp; \cdots &amp; a_{2n} &amp;|&amp; \color{green}b_2 \\<br>
+\vdots &amp;        &amp;        &amp; \vdots &amp;|&amp; \color{green}\vdots \\<br>
+a_{n1} &amp; a_{n2} &amp; \cdots &amp; a_{nn} &amp;|&amp; \color{green}b_n
 \end{bmatrix}
 $$</p>
+</section><section>
+<p>On utilise &ldquo;<em><strong>Gaussian elimination</strong></em>&quot;<br>pour transformer $\tilde{A}$ en matrice échelonnée.</p>
+</section><section>
+<pre><code class="language-python">def Gauss(M,recherchePivot) :
+    m = len(M)                                    
+    n = len(M[0])                                 
+    h = k = 0
+    tol = 1e-9                        
+    while h &lt; m and k &lt; n :                       
+        ipivot = recherchePivot(M,h,k)            
+        pivot = M[ipivot][k]
+        if abs(pivot) &lt; tol :                     
+            k += 1
+        else :
+            if h != ipivot :
+                M[h],M[ipivot] = M[ipivot],M[h]   
+            for j in range(k,n) :
+                M[h][j] /= pivot                  
+            for i in range(h+1,m) :
+                f = M[i][k]
+                for j in range(k,n) :
+                    M[i][j] -= M[h][j] * f
+            h +=1
+            k += 1
+</code></pre>
 </section><section>
 <p>$$
-\begin{bmatrix}
-\color{blue}0&amp;\color{red}{\rule{0.5em}{0.5em}}&amp; * &amp; * &amp; * &amp; * &amp; * &amp; * &amp; *   \\<br>
-\color{blue}0&amp;\color{blue}0&amp;\color{blue}0&amp;\color{red}\rule{0.5em}{0.5em} &amp; * &amp; * &amp; * &amp; * &amp; *  \\<br>
-\color{blue}0&amp;\color{blue}0&amp;\color{blue}0&amp;\color{blue}0&amp;\color{red}\rule{0.5em}{0.5em}&amp; * &amp; * &amp; * &amp; *  \\<br>
-\color{blue}0&amp;\color{blue}0&amp;\color{blue}0&amp;\color{blue}0&amp;\color{blue}0&amp;\color{red}\rule{0.5em}{0.5em}&amp; * &amp; * &amp; *  \\<br>
-\color{blue}0&amp;\color{blue}0&amp;\color{blue}0&amp;\color{blue}0&amp;\color{blue}0&amp;\color{blue}0&amp;\color{blue}0&amp;\color{red}\rule{0.5em}{0.5em}&amp; *  \\<br>
-\color{blue}0&amp;\color{blue}0&amp;\color{blue}0&amp;\color{blue}0&amp;\color{blue}0&amp;\color{blue}0&amp;\color{blue}0&amp;\color{blue}0&amp; * \\<br>
+\tilde{A}\rightarrow\begin{bmatrix}
+\color{red}{\rule{0.5em}{0.5em}}&amp; * &amp; * &amp; * &amp; * &amp; * &amp; \color{green}*   \\<br>
+\color{blue}0&amp;\color{blue}0&amp;\color{red}\rule{0.5em}{0.5em} &amp; *  &amp; * &amp; * &amp; \color{green}*  \\<br>
+\color{blue}0&amp;\color{blue}0&amp;\color{blue}0&amp;\color{red}\rule{0.5em}{0.5em}&amp; *  &amp; * &amp; \color{green}*  \\<br>
+\color{blue}0&amp;\color{blue}0&amp;\color{blue}0&amp;\color{blue}0&amp; \color{red}\rule{0.5em}{0.5em}&amp; * &amp; \color{green}*  \\<br>
+\color{blue}0&amp;\color{blue}0&amp;\color{blue}0&amp;\color{blue}0&amp;\color{blue}0&amp;\color{red}\rule{0.5em}{0.5em}&amp; \color{green}*  \\<br>
+\color{blue}0&amp;\color{blue}0&amp;\color{blue}0&amp;\color{blue}0&amp;\color{blue}0&amp;\color{blue}0&amp; \color{green}0 \\<br>
 \end{bmatrix}
 $$</p>
 </section><section>
+<p>Puis on utilise &ldquo;<strong>back substitution</strong>&quot;<br>pour obtenir la solution $\textbf{x}$.
+<br><br></p>
+<p><span class='fragment ' ><span style="font-weight:normal">Que vaut $x_2$ dans l’exemple précédent ?</span></span></p>
+<p><span class='fragment ' ><span style="font-weight:normal">Quel objet géométrique $\textbf{x}$ représente-t-il ?</span></span></p>
+<p><span class='fragment ' ><span style="font-weight:normal">Que vaut le rang de la matrice ?</span></span></p>
+<p><span class='fragment ' ><span style="font-weight:normal">Solution générale pour calculer<br>le rang d’une matrice ?</span></span></p>
+</section><section>
+<p>Pour <strong>réduire</strong> $\tilde{A}$,<br>on utilise &ldquo;<em><strong>Gauss-Jordan elimination</strong></em>&rdquo;</p>
+</section><section>
+<p>On obtient alors :</p>
+<p>$$
+\tilde{A}\rightarrow\begin{bmatrix}
+\color{red}{\boxed{1}}&amp; * &amp; \color{blue}0 &amp; \color{blue}0 &amp; \color{blue}0 &amp; \color{blue}0 &amp; \color{green}*   \\<br>
+\color{blue}0&amp;\color{blue}0&amp;\color{red}{\boxed{1}} &amp; \color{blue}0   &amp; \color{blue}0  &amp; \color{blue}0  &amp; \color{green}*  \\<br>
+\color{blue}0&amp;\color{blue}0&amp;\color{blue}0&amp;\color{red}{\boxed{1}}&amp; \color{blue}0   &amp; \color{blue}0  &amp; \color{green}*  \\<br>
+\color{blue}0&amp;\color{blue}0&amp;\color{blue}0&amp;\color{blue}0&amp; \color{red}{\boxed{1}}&amp; \color{blue}0  &amp; \color{green}*  \\<br>
+\color{blue}0&amp;\color{blue}0&amp;\color{blue}0&amp;\color{blue}0&amp;\color{blue}0&amp;\color{red}{\boxed{1}}&amp; \color{green}*  \\<br>
+\color{blue}0&amp;\color{blue}0&amp;\color{blue}0&amp;\color{blue}0&amp;\color{blue}0&amp;\color{blue}0&amp; \color{green}0 \\<br>
+\end{bmatrix}
+$$</p>
+</section><section>
+<p>Seule une toute petite modification est nécessaire pour passer de Gauss à Gauss-Jordan :</p>
+<pre><code class="language-python" data-line-numbers="|16">def Gauss(M,recherchePivot) :
+    m = len(M)                                    
+    n = len(M[0])                                 
+    h = k = 0
+    tol = 1e-9                        
+    while h &lt; m and k &lt; n :                       
+        ipivot = recherchePivot(M,h,k)            
+        pivot = M[ipivot][k]
+        if abs(pivot) &lt; tol :                     
+            k += 1
+        else :
+            if h != ipivot :
+                M[h],M[ipivot] = M[ipivot],M[h]   
+            for j in range(k,n) :
+                M[h][j] /= pivot                  
+            for i in range(h+1,m) :
+                f = M[i][k]
+                for j in range(k,n) :
+                    M[i][j] -= M[h][j] * f
+            h +=1
+            k += 1
+</code></pre>
+</section><section>
+<pre><code class="language-python" data-line-numbers="|16">def GaussJordan(M,recherchePivot) :
+    m = len(M)                                    
+    n = len(M[0])                                 
+    h = k = 0
+    tol = 1e-9                        
+    while h &lt; m and k &lt; n :                       
+        ipivot = recherchePivot(M,h,k)            
+        pivot = M[ipivot][k]
+        if abs(pivot) &lt; tol :                    
+            k += 1
+        else :
+            if h != ipivot :
+                M[h],M[ipivot] = M[ipivot],M[h]   
+            for j in range(k,n) :
+                M[h][j] /= pivot                  
+            for i in range(m) :
+                if i != h :
+                    f = M[i][k]
+                    for j in range(k,n) :
+                        M[i][j] -= M[h][j] * f      
+            h +=1
+            k += 1
+</code></pre>
+</section><section>
+<p>Qui est le plus rapide pour résoudre un système ?</p>
+<br>
+<ul>
+<li><em><strong>Gaussian elimination</strong></em> + <em><strong>back substitution</strong></em><br><br></li>
+<li><em><strong>Gauss-Jordan elimination</strong></em></li>
+</ul>
+</section><section>
+<pre><code class="language-python">from random import randint
+n = 10
+A = [[randint(-20,20) for j in range(n+1)] for i in range(n)]
+</code></pre>
+<pre><code class="language-python">%%timeit
+Gauss(A,recherchePivotPartiel)
+V = substitution(A)
+</code></pre>
+<p><code>115 µs ± 755 ns per loop</code><br>
+<code>(mean ± std. dev. of 7 runs,</code><br>
+<code>10000 loops each)</code></p>
+</section><section>
+<pre><code class="language-python">%%timeit
+GaussJordan(A,recherchePivotPartiel)
+Vp = [A[i][n] for i in range(n)]
+</code></pre>
+<p><code>155 µs ± 1.07 µs ns per loop</code><br>
+<code>(mean ± std. dev. of 7 runs,</code><br>
+<code>10000 loops each)</code></p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/complgauss.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+<p>En terme de calculs, Gauss-Jordan revient à ça :</p>
+</section><section>
+<p>Gauss-Jordan ajoute la phase retour à Gauss.<br>C&rsquo;est elle qu&rsquo;on doit comparer à  back substitution.</p>
+</section><section>
+<p>Pour finir, le one-liner permettant d&rsquo;obtenir la <strong>rref</strong> (row-reduced  echelon form) :</p>
+<pre><code class="language-python">import sympy as sym
+sym.Matrix(A).rref()
+</code></pre>
+</section><section>
+<pre><code class="language-python">A = [[4,4,0,3,1,9,3],
+     [8,8,4,2,8,6,4],
+     [4,4,1,5,1,4,2],
+     [4,4,2,1,4,3,2],
+     [4,4,9,8,4,3,2],
+     [4,4,0,2,2,6,8]]
+     
+sym.Matrix(A).rref()
+</code></pre>
+<pre><code class="language-nohighlight">(Matrix([
+ [1, 1, 0, 0, 0, 0, -135/2],
+ [0, 0, 1, 0, 0, 0,  -83/2],
+ [0, 0, 0, 1, 0, 0,   83/2],
+ [0, 0, 0, 0, 1, 0,     72],
+ [0, 0, 0, 0, 0, 1,   17/2],
+ [0, 0, 0, 0, 0, 0,      0]]), (0, 2, 3, 4, 5))
+</code></pre>
 
 </section>
 </section><section>
