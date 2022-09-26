@@ -34,7 +34,7 @@
 </section><section>
 <ul>
 <li>Lorsque le déphasage est positif on dit que $u_2$ est <strong>en avance</strong> de phase par rapport à $u_1$.</li>
-<li>Lorsque le déphasage est positif on dit que $u_2$ est <strong>en retard</strong> de phase par rapport à $u_1$.</li>
+<li>Lorsque le déphasage est négatif on dit que $u_2$ est <strong>en retard</strong> de phase par rapport à $u_1$.</li>
 </ul>
 </section><section>
 <p><a href="https://www.geogebra.org/m/tm5cx5qh">déphasage par une bobine</a></p>
@@ -65,7 +65,7 @@ $$p(t)=u(t)\times i(t)$$
 <p>La <strong>puissance électrique moyenne</strong><br>est la moyenne de la puissance instantanée<br>sur une période.</p>
 <div style="display: flex;justify-content: center;">
 <div style = "border:solid red 5px;width:min-content;padding: 0px 10px 0px 10px;">
-$$P=\frac{1}{T}\int_{t}^{t+T}p(t)dt$$
+$$P=\frac{1}{T}\int_{t}^{t+T}\!\!\!\!\!p(t)dt$$
 </div></div>
 <p>Aire (algébrique) sous la courbe pendant<br>une période, divisée par la période.</p>
 </section>
@@ -111,18 +111,71 @@ pour consommer de la puissance<br>lorsqu&rsquo;il est traversé par un courant.<
 <li>Pour les positions intermédiaires de la pédale, seule une fraction de la puissance est transmise, le facteur varie alors entre 0 et 1.</li>
 </ul>
 </section><section>
-<p>C&rsquo;est le déphasage entre la tension et l&rsquo;intensité du générateur qui fait varier le facteur de puissance.</p>
+<p>C&rsquo;est le <strong>déphasage entre la tension et l&rsquo;intensité</strong> dans un dipôle qui fait varier<br>le facteur de puissance.</p>
+</section><section>
+<iframe scrolling="no" title="puissance et déphasage" src="https://www.geogebra.org/material/iframe/id/qrgcnkcm/width/964/height/446/border/888888/sfsb/true/smb/false/stb/false/stbh/false/ai/false/asb/false/sri/true/rc/false/ld/false/sdz/false/ctl/false" width="964px" height="422px" style="border:0px;"> </iframe>
+</section><section>
 <ul>
-<li>Si le déphasage est nul ($u(t)$ et $i(t)$ sont en phase), le facteur de puissance vaut 1 ;<br>toute la puissance délivrée est consommée.</li>
+<li>Si le déphasage est nul ($u(t)$ et $i(t)$ sont en phase), le facteur de puissance vaut 1 ;<br>toute la puissance délivrée est consommée. C&rsquo;est le cas si le dipôle récepteur est purement résistif. La puissance est alors entièrement perdue par effet Joule.</li>
 </ul>
 </section><section>
 <ul>
-<li>Si le déphasage vaut $\pi/2$ ($u(t)$ et $i(t)$ sont en quadrature de phase), le facteur de puissance vaut 0 ; la puissance délivrée n&rsquo;est pas consommée par le récepteur.</li>
+<li>Si le déphasage vaut $\pi/2$ ($u(t)$ et $i(t)$ sont en quadrature de phase), le facteur de puissance vaut 0.<br>C&rsquo;est le cas si le dipôle récepteur est purement réactif (une bobine ou un condensateur parfait).<br>La puissance n&rsquo;est alors pas consommée<br>mais renvoyée au générateur.</li>
 </ul>
-</section><section>
 
 </section>
 </section><section>
+
+
+<section data-shortcode-section>
+<h2 id="puissance-active-et-puissance-apparente">Puissance active et puissance apparente</h2>
+</section><section>
+<p>La <strong>puissance active</strong> est le nom qu&rsquo;on donne<br>à la  moyenne $P$ de la puissance instantanée.</p>
+<br>
+<div style="display: flex;justify-content: center;">
+<div style = "border:solid red 5px;width:max-content;padding: 10px 30px 10px 30px;">
+$$P = k\cdot U\cdot I$$
+</div></div>
+<br>
+<ul>
+<li>$P$ : puissance active (en W)</li>
+<li>$U$ : tension efficace (en V),</li>
+<li>$I$ : intensité efficace (en A),</li>
+<li>$k$ : facteur de puissance (sans unité, $\in[0;1]$)</li>
+</ul>
+</section><section>
+<p>La puissance active est la puissance servant réellement à produire de la chaleur ou du travail.</p>
+</section><section>
+<p>La <strong>puissance apparente</strong> $S$ est la puissance qui serait dépensée si le dipôle était purement résistif (lorsque $u(t)$ et $i(t)$ sont en phase) :</p>
+<br>
+<div style="display: flex;justify-content: center;">
+<div style = "border:solid red 5px;width:max-content;padding: 10px 30px 10px 30px;">
+$$S = U\cdot I$$
+</div></div>
+<br>
+<ul>
+<li>$S$ : en voltampères (<strong>V.A.</strong>)</li>
+<li>$U$ : tension efficace (en V),</li>
+<li>$I$ : intensité efficace (en A)</li>
+</ul>
+</section><section>
+<p>Le <strong>facteur de puissance</strong> s&rsquo;obtient donc comme<br>le rapport de la puissance active<br>sur la puissance apparente :</p>
+<br>
+<div style="display: flex;justify-content: center;">
+<div style = "border:solid red 5px;width:max-content;padding: 10px 30px 10px 30px;">
+$$k = \frac{P}{S}$$
+</div></div>
+</section><section>
+<p>Vu autrement, la <span style="color:red">puissance active</span> est la <span style="color:red"><em>puissance réellement consommée</em></span> et elle vaut la <span style="color:blue"><em>puissance maximale théorique</em></span> (<span style="color:blue">puissance apparente</span>) multipliée par le facteur de puissance :</p>
+<br>
+<div style="display: flex;justify-content: center;">
+<div style = "border:solid red 5px;width:max-content;padding: 10px 30px 10px 30px;">
+$$\color{red}{P}\color{black} = k\cdot \color{blue}{S}$$
+</div></div>
+
+</section>
+</section><section>
+<p>Les distributeurs d&rsquo;électricité</p>
 <p><a href="https://coursphychi.github.io/tsti2d/puisselec/">Retour site</a></p>
 </section>
 
