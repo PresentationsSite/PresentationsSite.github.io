@@ -384,6 +384,14 @@ $$</p>
             h +=1
             k += 1
 </code></pre>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/complgauss.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+<p>En terme de calculs, Gauss-Jordan revient à ça :</p>
+</section><section>
+<p>Gauss-Jordan ajoute la phase retour à Gauss.<br>C&rsquo;est elle qu&rsquo;on doit comparer à  back substitution.</p>
 </section><section>
 <p>Qui est le plus rapide pour résoudre un système ?</p>
 <br>
@@ -411,14 +419,6 @@ Vp = [A[i][n] for i in range(n)]
 <p><code>155 µs ± 1.07 µs ns per loop</code><br>
 <code>(mean ± std. dev. of 7 runs,</code><br>
 <code>10000 loops each)</code></p>
-</section>
-<section data-noprocess data-shortcode-slide
-      data-background-image="/complgauss.png"
-      data-background-size="contain"
-      data-background-transition="concave">
-<p>En terme de calculs, Gauss-Jordan revient à ça :</p>
-</section><section>
-<p>Gauss-Jordan ajoute la phase retour à Gauss.<br>C&rsquo;est elle qu&rsquo;on doit comparer à  back substitution.</p>
 </section><section>
 <p>Pour finir, le one-liner permettant d&rsquo;obtenir la <strong>rref</strong> (row-reduced  echelon form) :</p>
 <pre><code class="language-python">import sympy as sym
