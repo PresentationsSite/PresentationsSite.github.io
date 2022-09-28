@@ -41,10 +41,10 @@ $$</p>
 <p>Pour notre exemple à 3 points, on obtient :
 $$
 \begin{aligned}
-P(x) = &amp;&amp;y_1\color{purple}\frac{(x-x_2)(x-x_3)}{(x_1-x_2)(x_1-x_3)}\color{black}\\&amp;+&amp;y_2\color{purple}\frac{(x-x_1)(x-x_3)}{(x_2-x_1)(x_2-x_3)}\color{black}\\&amp;+&amp;y_3\color{purple}\frac{(x-x_1)(x-x_2)}{(x_2-x_0)(x_2-x_1)}
+P(x) = &amp;&amp;y_1\color{purple}\frac{(x-x_2)(x-x_3)}{(x_1-x_2)(x_1-x_3)}\color{black}\\&amp;+&amp;y_2\color{purple}\frac{(x-x_1)(x-x_3)}{(x_2-x_1)(x_2-x_3)}\color{black}\\&amp;+&amp;y_3\color{purple}\frac{(x-x_1)(x-x_2)}{(x_3-x_1)(x_3-x_2)}
 \end{aligned}
 $$</p>
-<p><span class='fragment ' ><span style="font-weight:normal">Que vaut $P(x_0)$, $P(x_1)$, $P(x_2)$ ?</span></span></p>
+<p><span class='fragment ' ><span style="font-weight:normal">Que vaut $P(x_1)$, $P(x_2)$, $P(x_3)$ ?</span></span></p>
 </section>
 <section data-noprocess data-shortcode-slide
       data-background-image="/interp3.png"
@@ -56,17 +56,17 @@ $$</p>
 <section data-noprocess data-shortcode-slide
       data-background-image="/interp5.png"
       data-background-size="content"
-      data-background-transition="concave">
+      data-background-transition="fade">
 </section>
 <section data-noprocess data-shortcode-slide
       data-background-image="/interp10.png"
       data-background-size="content"
-      data-background-transition="concave">
+      data-background-transition="fade">
 </section>
 <section data-noprocess data-shortcode-slide
       data-background-image="/interp20.png"
       data-background-size="content"
-      data-background-transition="concave">
+      data-background-transition="fade">
 
 </section>
 </section><section>
@@ -74,9 +74,9 @@ $$</p>
 
 <section data-shortcode-section>
 <p>L&rsquo;idée est alors utiliser<br>une <strong>interpolation par morceaux</strong>.</p>
-<p>On découpe l&rsquo;intervalle $I$ de départ<br>en $N$ morceaux et on interpolle la fonction<br>pour chaque intervalle de taille $I/N$<br>sur les nœuds qu&rsquo;il contient.</p>
+<p>On découpe l&rsquo;intervalle $I$ de départ<br>en $N$ morceaux et on interpole la fonction<br>pour chaque intervalle de taille $I/N$<br>sur les nœuds qu&rsquo;il contient.</p>
 </section><section>
-<p>Choisissons 21 nœuds sur la courbe<br>et découpons l&rsquo;intervalle en 20.</p>
+<p>Choisissons 15 nœuds sur la courbe<br>et découpons l&rsquo;intervalle en 14.</p>
 <p>On peut considérer :</p>
 <ul>
 <li>soit que chaque intervalle contient un seul nœud : on interpole alors par un polynôme<br>de <strong>degré 0</strong>.</li>
@@ -96,7 +96,7 @@ $$</p>
       data-background-size="70%"
       data-background-transition="concave">
 </section><section>
-<p>Si on veut interpoler à l&rsquo;ordre supérieur,<br>il faut garder 3 nœuds par intervalle.</p>
+<p>Si on veut interpoler à l&rsquo;ordre supérieur,<br>il faut garder 3 nœuds par intervalle, ce qui oblige, pour le même nombre de nœuds,<br>à grandir les intervalles.</p>
 </section>
 <section data-noprocess data-shortcode-slide
       data-background-image="/interpmorc2.png"
