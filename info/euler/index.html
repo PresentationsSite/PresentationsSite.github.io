@@ -1,0 +1,398 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>Euler</title>
+
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="/reveal-js/css/reset.css">
+<link rel="stylesheet" href="/reveal-js/css/reveal.css"><link rel="stylesheet" href="/reveal-js/css/theme/sky.css" id="theme">
+<link rel="stylesheet" href="/highlight-js/atom-one-dark-reasonable.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  </head>
+  <body>
+    
+    <div class="reveal">
+      <div class="slides">
+  
+
+    <section><h1 id="méthode-deuler">Méthode d&rsquo;Euler</h1>
+</section><section>
+
+
+<section data-shortcode-section>
+<p>On cherche à résoudre numériquement<br>une <strong>équation différentielle</strong>.</p>
+<br>
+<p>Plus précisément, on cherche la solution<br>au problème de Cauchy suivant :</p>
+<div style="text-align:left;width:max-content;border: solid black 5px; margin: auto; padding:30px">
+$
+\begin{cases}
+y'(t) = f(t,y(t)) \\\\ 
+y(t_0) = y_0 
+\end{cases}
+$
+</div>
+</section><section>
+<p>L&rsquo;idée générale est de <strong>discrétiser le temps</strong><br>par un pas $h$ tel que $t_{i+1}=t_i + h$<br>et d&rsquo;utiliser $f(t,y)$ pour approximer<br>$y(t_{i+1})$ à partir de $y(t_i)$.</p>
+
+</section>
+</section><section>
+<h2 id="explicite--implicite">Explicite / Implicite</h2>
+</section><section>
+<p>Dans les exemples qui suivent, on utilise :</p>
+<div style="text-align:left;width:max-content;border: solid black 5px; margin: auto; padding:30px">
+$\displaystyle f(t,y) =  \frac{y_\infty -y}{\tau}$
+</div>
+<br>
+avec :
+<div style="padding:0 370px">
+<ul>
+<li> $y_\infty = 10$</li>
+<li> $\tau = 2$</li>
+</ul>
+</div>
+</section><section>
+
+
+<section data-shortcode-section>
+<h3 id="méthode-deuler-explicite">Méthode d&rsquo;Euler explicite</h3>
+</section><section>
+<div style="display:flex;justify-content:center;">
+<div style="overflow: hidden;width:800px;">
+<video autoplay controls style="width:100% !important;height:auto !important;">
+  <source src="/animeulerexpl.mp4" type="video/mp4">
+</video>
+</div>
+</div>
+</section><section>
+<p>Dans cette méthode, on utilise la pente au point de départ pour obtenir le point d&rsquo;arrivée :</p>
+<img src="/forwardeuler.png" style="border:solid 0px;width:450px">
+<div style="text-align:left;width:max-content;border: solid red 5px; margin: auto; padding:30px">
+$y_{i+1}=y_i+h\times f(t_i,y_i)$
+</div>
+<br>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h3 id="méthode-deuler-implicite">Méthode d&rsquo;Euler implicite</h3>
+</section><section>
+<div style="display:flex;justify-content:center;">
+<div style="overflow: hidden;width:800px;">
+<video autoplay controls style="width:100% !important;height:auto !important;">
+  <source src="/animeulerimpl.mp4" type="video/mp4">
+</video>
+</div>
+</div>
+</section><section>
+<p>Dans cette méthode, on utilise la pente au point d&rsquo;arrivée pour obtenir le point d&rsquo;arrivée :</p>
+<img src="/backwardeuler.png" style="border:solid 0px;width:450px">
+<div style="text-align:left;width:max-content;border: solid red 5px; margin: auto; padding:30px">
+$y_{i+1}=y_i+h\times f(t_{i+1},y_{i+1})$
+</div>
+</section><section>
+<p>La méthode implicite demande plus de calculs puisqu&rsquo;on souhaite utiliser $y_{i+1}$<br>pour déterminer $y_{i+1}$.</p>
+<br>
+<p>$\Rightarrow$ on se retrouve avec une équation à résoudre&hellip;</p>
+</section><section>
+<p>Dans notre exemple :</p>
+<p>$$
+\begin{aligned}
+y_{i+1} &amp;= y_i + h\times f(t_{i+1},y_{i+1})\\<br>
+&amp;= y_i + h\times \frac{y_\infty-y_{i+1}}{\tau}
+\end{aligned}
+$$
+D&rsquo;où</p>
+<p>$$
+\displaystyle
+y_{i+1}= \frac{y_i +  \frac{hy_\infty}{\tau}}{1+\frac{h}{\tau} }
+$$</p>
+
+</section>
+</section>
+
+<section data-noprocess data-shortcode-slide
+      data-background-image="/impletexpl.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+  
+</section><section>
+
+
+<section data-shortcode-section>
+<h3 id="equa-diff-dordre--1">Equa diff d&rsquo;ordre &gt; 1</h3>
+</section><section>
+<p>Pour gérer une équa diff d&rsquo;ordre $n$,<br>on la transforme en un système de $n$ équa diff d&rsquo;ordre 1 en définissant une nouvelle variable<br>pour chaque $y^{(i)}$ pour $i\in\{1\ldots n-1\}$</p>
+</section><section>
+<p>Exemple :</p>
+<p>l&rsquo;équation d&rsquo;un oscillateur amorti</p>
+<p>$$
+\ddot{x}(t) = -\frac{k}{m}(x(t)-l_0)-\frac{\alpha}{m} \dot{x}(t)
+$$</p>
+<p>devient :</p>
+<p>$$
+\begin{cases}
+\dot{x}(t) = v(t) \\
+\dot{v}(t) = -\frac{k}{m}(x(t)-l_0)-\frac{\alpha}{m} v(t)
+\end{cases}
+$$</p>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h3 id="erreur-de-troncature-locale">Erreur de troncature locale</h3>
+</section><section>
+<p>C&rsquo;est la <strong>petite erreur faite à chaque étape</strong>.</p>
+<p>De $(t_0,y_0)$ à $(t_1,y_1)$ avec $t_1 = t_0+h$,<br>la solution numérique donne :</p>
+<p>$y_1 = y_0 + hf(t_0,y_0)$</p>
+<p>Et la solution exacte (développement de Taylor) :</p>
+<p>$y(t_1) = y(t_0) + hy'(t_0) + \frac{1}{2}h^2 y''(t_0)+O(h^3)$</p>
+<p>D&rsquo;où une erreur $|y_1-y(t_1)|$ en $\color{red}O(h^2)$.</p>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h3 id="erreur-de-troncature-globale">Erreur de troncature globale</h3>
+</section><section>
+<p>C&rsquo;est l'<strong>accumulation des erreurs locales</strong> de $t_0$ à $t$.</p>
+<p>Nombre d&rsquo;étapes : $\lfloor \frac{t-t_0}{h}\rfloor$ $\Rightarrow$ en $O(1/h)$.<br>D&rsquo;où une erreur de troncature globale en $O(h)$.</p>
+<p>C&rsquo;est pour cette erreur linéaire en $h$<br>que la méthode d&rsquo;Euler (explicite ou implicite)<br>est dite d'<strong>ordre 1</strong>.</p>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h3 id="erreur-darrondi">Erreur d&rsquo;arrondi</h3>
+</section><section>
+<p>Explique pourquoi diminuer $h$ finit par ne plus apporter de précision supplémentaire.</p>
+</section><section>
+<pre><code class="language-python">x = 1.0
+p = 0
+while x != x+1 :
+	x *= 2
+	p += 1
+print(x)
+print(p)
+</code></pre>
+<p><span class='fragment ' ><span style="font-weight:normal">Le code ci-dessous trouve la première puissance de 2, $x$, pour laquelle $x+1$ est arrondie à $x$ (<strong>absorption</strong>), provoquant une erreur relative<br>(la plus grande possible) de $1/x$.</span></span></p>
+</section><section>
+<p><strong>l&rsquo;epsilon machine</strong> ou <strong>précision machine</strong><br>est la limite supérieure de l'<strong>erreur relative</strong> d&rsquo;approximation causée par l&rsquo;arrondi.</p>
+<br>
+<p>En python, comme la mantisse d&rsquo;un flottant correspond à 53 bits, l&rsquo;errreur relative se fait sur le dernier bit et vaut donc $2^{-53}$ ($\varepsilon=2^{-52}$  au pire entre deux arrondis consécutifs).</p>
+</section><section>
+<p>Par conséquent, l&rsquo;erreur d&rsquo;arrondi sur chaque valeur $y_n$ obtenue par la méthode d&rsquo;Euler<br>est de l&rsquo;ordre de $\varepsilon y_n$.</p>
+<p>Et en considérant ces erreurs d&rsquo;arrondi comme<br>des variables aléatoires indépendantes,<br>l&rsquo;erreur d&rsquo;arrondi totale va être de l&rsquo;ordre de $\varepsilon\sqrt{n}$ où $n$, le nombre de valeurs calculées,<br>est inversement proportionnel au pas.</p>
+</section><section>
+<p>Finalement, l&rsquo;erreur d&rsquo;arrondi globale<br>est proportionnelle à $\frac{\varepsilon}{\sqrt{h}}$<br>et donc diverge lorsque $h$ tend vers 0 !</p>
+<p><strong>Réduire l&rsquo;erreur de troncature se fait<br>au détriment de l&rsquo;erreur d&rsquo;arrondi</strong>.</p>
+<p>Néanmoins, on peut se prémunir en bonne part des erreurs d&rsquo;arrondi grâce à une sommation compensée (algorithme de Kahan).</p>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h3 id="stabilité-numérique">Stabilité numérique</h3>
+</section><section>
+<p>Partons de l&rsquo;équation différentielle linéaire $y'=ky$</p>
+<p>Alors $y_{n+1}=(1+hk)y_n$</p>
+<p>Et donc $y_n = y_0(1+hk)^n$</p>
+<p>la solution numérique ne sera stable que si le produit $hk$ est dans la région $\left\{z \in\mathbb{C} ,|z+1| ≤ 1\right\}$.</p>
+</section><section>
+<p>En généralisant à un système différentiel linéaire de la forme : $y'(t)=My(t)$<br>
+(où $M$ est une matrice carrée)</p>
+<p>il faudra, pour obtenir une solution stable,<br>que chaque valeur propre de $M$<br>soit dans le disque précédent.</p>
+</section><section>
+<p>Pour l&rsquo;exemple de l&rsquo;oscillateur amorti :
+$$\begin{pmatrix}\dot{z}_1\\ \dot{z}_2\end{pmatrix}=\begin{pmatrix}0&amp;1\\ -{\omega_0}^2 &amp; -\frac{\omega_0}{Q}\end{pmatrix}\begin{pmatrix}z_1\\ z_2\end{pmatrix}$$</p>
+<p>On obtient deux valeurs propres imaginaires pures si $Q&gt;1/2$ :
+$$\lambda_{\genfrac{}{}{0pt}{}{1}{2}} = \omega_0\left(\frac{1}{2Q} \pm i\sqrt{\left(1-\frac{1}{2Q}\right)^2}\right)$$</p>
+</section><section>
+<p>et donc pour que $hk=h\lambda_{\genfrac{}{}{0pt}{}{1}{2}}$ soit à l&rsquo;intérieur<br>du domaîne de stabilité, il faut que</p>
+<p>$\left(-\frac{h\omega_0}{2Q}+1\right)^2 + \left(\frac{h\omega_0}{2Q}\right)^2(4Q^2-1) ≤ 1$.</p>
+</section><section>
+<iframe scrolling="no" title="stableuler" src="https://www.geogebra.org/material/iframe/id/edcaephz/width/673/height/649/border/888888/sfsb/true/smb/false/stb/false/stbh/false/ai/false/asb/false/sri/true/rc/false/ld/false/sdz/false/ctl/false" width="673px" height="649px" style="border:0px;"> </iframe>
+</section><section>
+<iframe src="https://trinket.io/embed/glowscript/8c5cae9f64" width="100%" height="600" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+</section><section>
+<p>La <strong>domaîne de stabilité</strong><br>de la méthode d&rsquo;Euler implicite est<br>beaucoup plus grand que celui de l&rsquo;explicite :</p>
+<p>il correspond au complément du<br>disque de rayon 1 centré sur $(1;0)$.</p>
+<p>Donc dans le cas de l&rsquo;oscillateur amorti, toutes les solutions sont stables, quel que soit le pas !</p>
+</section><section>
+<iframe scrolling="no" title="stableulerimpl" src="https://www.geogebra.org/material/iframe/id/brxgaygr/width/673/height/649/border/888888/sfsb/true/smb/false/stb/false/stbh/false/ai/false/asb/false/sri/true/rc/false/ld/false/sdz/false/ctl/false" width="673px" height="649px" style="border:0px;"> </iframe>
+</section><section>
+<iframe src="https://trinket.io/embed/glowscript/f86a70b7cc" width="100%" height="600" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h3 id="conservation-de-lénergie">Conservation de l&rsquo;énergie</h3>
+</section><section>
+<p>Comme on peut le voir sur l&rsquo;exemple précédent, aucune des deux méthodes ne sait gérer de manière satisfaisante l&rsquo;oscillateur harmonique !</p>
+<p>On dit que ces méthodes ne sont pas symplectiques (elles ne conservent pas l&rsquo;énergie).</p>
+</section><section>
+<p>Une solution simple existe :</p>
+<p>la métode d&rsquo;Euler <strong>semi-implicite</strong> !</p>
+<p>C&rsquo;est aussi une méthode d&rsquo;ordre 1, mais l&rsquo;erreur n&rsquo;est plus maintenant concentrée sur l&rsquo;amplitude, mais sur la phase.</p>
+</section><section>
+<p>principe :</p>
+<p>on mixe méthode explicite et implicite en utilisant le vieux ${z_2}_i$ pour obtenir ${z_1}_{i+1}$ :</p>
+<p>${z_1}_{i+1} = {z_1}_i + h{z_2}_i$</p>
+<p>et le nouveau ${z_1}_{i+1}$ pour obtenir ${z_2}_{i+1}$ :</p>
+<p>${z_2}_{i+1} = {z_2}_i + hf({z_1}_{i+1},{z_2}_i,t_i)$</p>
+</section><section>
+<p>Son implémentation est très simple (plus simple même que l&rsquo;explicite) puisqu&rsquo;on n' a même plus besoin des variables <code>z1_old</code> et <code>z2_old</code> :</p>
+<br>
+<pre><code class="language-python">z1 += h*z2
+z2 += h*alpha/m*z2 + h*k/m*(z1-l0)
+</code></pre>
+</section><section>
+<iframe src="https://trinket.io/embed/glowscript/87875c3a25" width="100%" height="600" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+</section><section>
+<p>La méthode semi-implicite peut s&rsquo;avérer instabe.</p>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h3 id="méthodes-dordre-supérieure">Méthodes d&rsquo;ordre supérieure</h3>
+</section><section>
+<p>Ces méthodes permettent d&rsquo;obtenir une erreur<br>de troncature globale en $O(h^\text{ordre})$.</p>
+<p>Les plus simples à implémenter sont les méthodes de type Runge-Kutta qui consiste à moyenner<br>les tangentes en différentes positions.</p>
+</section><section>
+<p><img src="/methodeHeun.gif" alt=""></p>
+</section><section>
+<p>En pratique, les physiciens utilisent le plus fréquement la méthode <strong>Runge-Kutta d&rsquo;ordre 4</strong> (RK4) qui offre un bon compromis entre précision et vitesse (le pas n&rsquo;a pas besoin d&rsquo;être très faible pour obtenir des résultats convenables).</p>
+
+</section>
+</section><section>
+<p><a href="https://info-tsi-vieljeux.github.io/semestre_3/tp11/#m%C3%A9thode-deuler">Retour site</a></p>
+</section>
+
+  
+
+
+</div>
+      
+
+    </div>
+<script type="text/javascript" src=/reveal-hugo/object-assign.js></script>
+
+<a href="/reveal-js/css/print/" id="print-location" style="display: none;"></a>
+<script type="text/javascript">
+  var printLocationElement = document.getElementById('print-location');
+  var link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.type = 'text/css';
+  link.href = printLocationElement.href + (window.location.search.match(/print-pdf/gi) ? 'pdf.css' : 'paper.css');
+  document.getElementsByTagName('head')[0].appendChild(link);
+</script>
+
+<script type="application/json" id="reveal-hugo-site-params">{"highlight_theme":"github-dark","line-numbers":true,"theme":"sky","transition":"concave","transition_speed":"fast"}</script>
+<script type="application/json" id="reveal-hugo-page-params">{"highlight_theme":"atom-one-dark-reasonable"}</script>
+
+<script src="/reveal-js/js/reveal.js"></script>
+
+<script type="text/javascript">
+  
+  
+  function camelize(map) {
+    if (map) {
+      Object.keys(map).forEach(function(k) {
+        newK = k.replace(/(\_\w)/g, function(m) { return m[1].toUpperCase() });
+        if (newK != k) {
+          map[newK] = map[k];
+          delete map[k];
+        }
+      });
+    }
+    return map;
+  }
+  
+  var revealHugoDefaults = { center: true, controls: true, history: true, progress: true, transition: "slide" };
+  var revealHugoSiteParams = JSON.parse(document.getElementById('reveal-hugo-site-params').innerHTML);
+  var revealHugoPageParams = JSON.parse(document.getElementById('reveal-hugo-page-params').innerHTML);
+  
+  var options = Object.assign({},
+    camelize(revealHugoDefaults),
+    camelize(revealHugoSiteParams),
+    camelize(revealHugoPageParams));
+  Reveal.initialize(options);
+</script>
+
+
+  
+  
+  <script type="text/javascript" src="/reveal-js/plugin/markdown/marked.js"></script>
+  
+  <script type="text/javascript" src="/reveal-js/plugin/markdown/markdown.js"></script>
+  
+  <script type="text/javascript" src="/reveal-js/plugin/highlight/highlight.js"></script>
+  
+  <script type="text/javascript" src="/reveal-js/plugin/zoom-js/zoom.js"></script>
+  
+  
+  <script type="text/javascript" src="/reveal-js/plugin/notes/notes.js"></script>
+
+
+
+
+
+
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({startOnLoad: false});
+    let render = (event) => {
+      let mermaidElems = event.currentSlide.querySelectorAll('.mermaid');
+      if (!mermaidElems.length){
+          return
+      }
+      mermaidElems.forEach(mermaidElem => {
+          let processed = mermaidElem.getAttribute('data-processed');
+          if (!processed){
+              
+              mermaid.init(undefined, mermaidElem);
+          }
+      });
+    };
+    Reveal.addEventListener('slidechanged', render);
+    Reveal.addEventListener('ready', render);
+  </script>
+
+    
+
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']]
+  },
+  svg: {
+    fontCache: 'global'
+  }
+};
+</script>
+
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+</script>
+    
+  </body>
+</html>
