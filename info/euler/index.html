@@ -27,15 +27,16 @@
 
 <section data-shortcode-section>
 <p>On cherche à résoudre numériquement<br>une <strong>équation différentielle</strong>.</p>
-<br>
 <p>Plus précisément, on cherche la solution<br>au problème de Cauchy suivant :</p>
 <div style="text-align:left;width:max-content;border: solid black 5px; margin: auto; padding:30px">
-$
-\begin{cases}
-y'(t) = f(t,y(t)) \\\\ 
-y(t_0) = y_0 
-\end{cases}
-$
+<p>$
+\left\{
+\begin{aligned}
+&amp;y'(t) = f(t,y(t)) \\
+&amp;y(t_0) = y_0
+\end{aligned}
+\right.
+$</p>
 </div>
 </section><section>
 <p>L&rsquo;idée générale est de <strong>discrétiser le temps</strong><br>par un pas $h$ tel que $t_{i+1}=t_i + h$<br>et d&rsquo;utiliser $f(t,y)$ pour approximer<br>$y(t_{i+1})$ à partir de $y(t_i)$.</p>
@@ -186,14 +187,14 @@ while x != x+1 :
 print(x)
 print(p)
 </code></pre>
-<p><span class='fragment ' ><span style="font-weight:normal">Le code ci-dessous trouve la première puissance de 2, $x$, pour laquelle $x+1$ est arrondie à $x$ (<strong>absorption</strong>), provoquant une erreur relative<br>(la plus grande possible) de $1/x$.</span></span></p>
+<p><span class='fragment ' ><span style="font-weight:normal">Le code ci-dessous trouve la première puissance de 2, $x$, pour laquelle $x+1$ est arrondi à $x$ (<strong>absorption</strong>), provoquant une erreur relative<br>(la plus grande possible) de $1/x$.</span></span></p>
 </section><section>
 <p><strong>l&rsquo;epsilon machine</strong> ou <strong>précision machine</strong><br>est la limite supérieure de l'<strong>erreur relative</strong> d&rsquo;approximation causée par l&rsquo;arrondi.</p>
 <br>
 <p>En python, comme la mantisse d&rsquo;un flottant correspond à 53 bits, l&rsquo;errreur relative se fait sur le dernier bit et vaut donc $2^{-53}$ ($\varepsilon=2^{-52}$  au pire entre deux arrondis consécutifs).</p>
 </section><section>
 <p>Par conséquent, l&rsquo;erreur d&rsquo;arrondi sur chaque valeur $y_n$ obtenue par la méthode d&rsquo;Euler<br>est de l&rsquo;ordre de $\varepsilon y_n$.</p>
-<p>Et en considérant ces erreurs d&rsquo;arrondi comme<br>des variables aléatoires indépendantes,<br>l&rsquo;erreur d&rsquo;arrondi totale va être de l&rsquo;ordre de $\varepsilon\sqrt{n}$ où $n$, le nombre de valeurs calculées,<br>est inversement proportionnel au pas.</p>
+<p>Et en considérant ces erreurs d&rsquo;arrondi<br>comme des variables aléatoires indépendantes,<br>l&rsquo;erreur relative d&rsquo;arrondi totale va être de l&rsquo;ordre de $\varepsilon\sqrt{n}$ où $n$, le nombre de valeurs calculées,<br>est inversement proportionnel au pas.</p>
 </section><section>
 <p>Finalement, l&rsquo;erreur d&rsquo;arrondi globale<br>est proportionnelle à $\frac{\varepsilon}{\sqrt{h}}$<br>et donc diverge lorsque $h$ tend vers 0 !</p>
 <p><strong>Réduire l&rsquo;erreur de troncature se fait<br>au détriment de l&rsquo;erreur d&rsquo;arrondi</strong>.</p>
@@ -206,10 +207,11 @@ print(p)
 <section data-shortcode-section>
 <h3 id="stabilité-numérique">Stabilité numérique</h3>
 </section><section>
-<p>Partons de l&rsquo;équation différentielle linéaire $y'=ky$</p>
-<p>Alors $y_{n+1}=(1+hk)y_n$</p>
-<p>Et donc $y_n = y_0(1+hk)^n$</p>
-<p>la solution numérique ne sera stable que si le produit $hk$ est dans la région $\left\{z \in\mathbb{C} ,|z+1| ≤ 1\right\}$.</p>
+<p>Partons de l&rsquo;équation différentielle linéaire $y'=ky$ La méthode explicite donne alors :</p>
+<p>$y_{n+1}= y_n(1+hk)$</p>
+<p>$\Rightarrow y_n = y_0(1+hk)^n$</p>
+<p>la solution numérique ne sera stable que si<br>
+$|1+z| ≤ 1$ avec $z \equiv hk \in\mathbb{C}$</p>
 </section><section>
 <p>En généralisant à un système différentiel linéaire de la forme : $y'(t)=My(t)$<br>
 (où $M$ est une matrice carrée)</p>
@@ -217,7 +219,7 @@ print(p)
 </section><section>
 <p>Pour l&rsquo;exemple de l&rsquo;oscillateur amorti :
 $$\begin{pmatrix}\dot{z}_1\\ \dot{z}_2\end{pmatrix}=\begin{pmatrix}0&amp;1\\ -{\omega_0}^2 &amp; -\frac{\omega_0}{Q}\end{pmatrix}\begin{pmatrix}z_1\\ z_2\end{pmatrix}$$</p>
-<p>On obtient deux valeurs propres imaginaires pures si $Q&gt;1/2$ :
+<p>On obtient deux valeurs propres complexes<br>si $Q&gt;1/2$ :
 $$\lambda_{\genfrac{}{}{0pt}{}{1}{2}} = \omega_0\left(\frac{1}{2Q} \pm i\sqrt{\left(1-\frac{1}{2Q}\right)^2}\right)$$</p>
 </section><section>
 <p>et donc pour que $hk=h\lambda_{\genfrac{}{}{0pt}{}{1}{2}}$ soit à l&rsquo;intérieur<br>du domaîne de stabilité, il faut que</p>
@@ -255,7 +257,7 @@ $$\lambda_{\genfrac{}{}{0pt}{}{1}{2}} = \omega_0\left(\frac{1}{2Q} \pm i\sqrt{\l
 <p>et le nouveau ${z_1}_{i+1}$ pour obtenir ${z_2}_{i+1}$ :</p>
 <p>${z_2}_{i+1} = {z_2}_i + hf({z_1}_{i+1},{z_2}_i,t_i)$</p>
 </section><section>
-<p>Son implémentation est très simple (plus simple même que l&rsquo;explicite) puisqu&rsquo;on n' a même plus besoin des variables <code>z1_old</code> et <code>z2_old</code> :</p>
+<p>Son implémentation est souvent très simple (plus simple même que l&rsquo;explicite) puisqu&rsquo;on n' a même plus besoin des variables <code>z1_old</code> et <code>z2_old</code> :</p>
 <br>
 <pre><code class="language-python">z1 += h*z2
 z2 += h*alpha/m*z2 + h*k/m*(z1-l0)
@@ -263,14 +265,14 @@ z2 += h*alpha/m*z2 + h*k/m*(z1-l0)
 </section><section>
 <iframe src="https://trinket.io/embed/glowscript/87875c3a25" width="100%" height="600" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
 </section><section>
-<p>La méthode semi-implicite peut s&rsquo;avérer instabe.</p>
+<p>La méthode semi-implicite peut s&rsquo;avérer instabe (contrairement à l&rsquo;implicite).</p>
 
 </section>
 </section><section>
 
 
 <section data-shortcode-section>
-<h3 id="méthodes-dordre-supérieure">Méthodes d&rsquo;ordre supérieure</h3>
+<h3 id="méthodes-dordre-supérieur">Méthodes d&rsquo;ordre supérieur</h3>
 </section><section>
 <p>Ces méthodes permettent d&rsquo;obtenir une erreur<br>de troncature globale en $O(h^\text{ordre})$.</p>
 <p>Les plus simples à implémenter sont les méthodes de type Runge-Kutta qui consiste à moyenner<br>les tangentes en différentes positions.</p>
