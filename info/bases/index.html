@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>Interpolation</title>
+<title>bases de données</title>
 
 
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -22,21 +22,512 @@
   
 
     <section><h2 id="bases-de-données">Bases de données</h2>
+</section>
+
+
+<section data-shortcode-section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/tabfruits.png"
+      data-background-size="60%"
+      data-background-transition="concave">
+</section><section>
+<ul>
+<li><code>production</code> correspond à la porduction mondiale annuelle du fruit (en tonnes),</li>
+<li><code>departement</code> correspond au département français ayant la plus forte production<br>du fruit,</li>
+<li><code>paysUE</code> correspond au plus grand pays producteur de l&rsquo;UE,</li>
+<li><code>paysMonde</code> au plus grand pays producteur mondial du fruit.</li>
+</ul>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/tabvoc.png"
+      data-background-size="60%"
+      data-background-transition="concave">
+</section><section>
+<p>Schéma de tables :</p>
+<p>Donne les relation entre les différentes tables.
+Précise en particulier les <strong>clés primaires</strong>, les <strong>clés étrangères</strong> et les liens entre clés primaires et clés étrangères (une clé étrangère référence toujours une clé primaire d&rsquo;une autre table).</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/tabschema.png"
+      data-background-size="60%"
+      data-background-transition="concave">
+</section><section>
+<p>Le <strong>domaine</strong> correspond à l&rsquo;ensemble des valeurs possibles pour un champ de l&rsquo;attribut.</p>
+<p>Par exemple, les attributs <code>emoji</code> et <code>drapeau</code> attendent des chaînes de caractères<br>d&rsquo;un seul caractère.</p>
+</section><section>
+<p>Remarque : une clé primaire n&rsquo;est pas nécessairement associée à un unique attribut.</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/tabnompren.png"
+      data-background-size="60%"
+      data-background-transition="concave">
+
+</section>
+</section><section>
+<h2 id="requêtes-sql">Requêtes SQL</h2>
 </section><section>
 
 
 <section data-shortcode-section>
-<p>L&rsquo;idée est d&rsquo;approximer une fonction<br>par un polynôme passant par un ensemble de points $\{(x_i,f(x_i))\}$ sur la courbe de la fonction.</p>
+<h3 id="projection--sélection">Projection + sélection</h3>
+</section><section>
+<p>Vocabulaire :</p>
+<ul>
+<li><strong>projection</strong> : filtrage des colonnes/attributs (via <code>SELECT</code>)</li>
+<li><strong>sélection</strong> : filtrage des lignes/enregistrements (via <code>WHERE</code>)</li>
+</ul>
+</section><section>
+<p>Requête pour afficher toute une table :</p>
+<pre><code class="language-sql">SELECT * 
+FROM prodfruits;
+</code></pre>
+<br>
+<p><code>*</code> joue le rôle d&rsquo;un joker</p>
 </section>
 <section data-noprocess data-shortcode-slide
-      data-background-image="/interpvierge.png"
-      data-background-size="content"
+      data-background-image="/tabtout.png"
+      data-background-size="60%"
       data-background-transition="concave">
 </section><section>
+<p>Requête pour afficher seulement<br>une sélection d&rsquo;attributs (= projection) :</p>
+<br>
+<pre><code class="language-sql">SELECT nom, departement 
+FROM prodfruits;
+</code></pre>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/tabproj.png"
+      data-background-size="30%"
+      data-background-transition="concave">
 </section><section>
-<p><a href="https://info-tsi-vieljeux.github.io/semestre_3/tp12/">Retour site</a></p>
+<p>Requête pour filtrer les enregistrements<br>(= selection) :</p>
+<br>
+<pre><code class="language-sql">SELECT * 
+FROM prodfruits
+WHERE production &gt; 100000;
+</code></pre>
+<br>
+<p>Le <code>WHERE</code> est suivi d&rsquo;une condition.</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/tabselec.png"
+      data-background-size="50%"
+      data-background-transition="concave">
+</section><section>
+<p>Opérateurs utilisables dans les conditions :</p>
+<p><code>=</code>, <code>&lt;&gt;</code>, <code>&lt;</code>, <code>&lt;=</code>, <code>&gt;</code>, <code>&gt;=</code>, <code>AND</code>, <code>OR</code>, <code>NOT</code>, <code>IN</code></p>
+<p>Exemple, pour un encadrement :</p>
+<pre><code class="language-sql">SELECT * 
+FROM prodfruits
+WHERE production &gt; 50000 AND production &lt; 100000 ;
+</code></pre>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/tabencadr.png"
+      data-background-size="50%"
+      data-background-transition="concave">
+</section><section>
+<p>On peut aussi réaliser des opérations mathématiques sur les attributs grâce à : <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>.</p>
+<p>On obtient par exemple le même résultat<br>que précédemment en écrivant :</p>
+<pre><code class="language-sql">SELECT * 
+FROM prodfruits
+WHERE production*2+50000 &gt; 150000 AND production*2+50000 &lt; 250000 ;
+</code></pre>
+</section><section>
+<p>🤨🤨🤨</p>
+<p>Écrire une requête pemettant d&rsquo;afficher uniquement les enregistrements où la chine<br>n&rsquo;est pas le premier producteur mondial.</p>
+</section><section>
+<pre><code class="language-sql">SELECT * 
+FROM prodfruits
+WHERE paysMonde &lt;&gt; &quot;Chine&quot; ;
+</code></pre>
+</section><section>
+<p>On peut bien sûr combiner projection et sélection :</p>
+<br>
+<pre><code class="language-sql">SELECT nom,Departement
+FROM prodfruits
+WHERE paysUE = &quot;Italie&quot; ;
+</code></pre>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/tabselproj.png"
+      data-background-size="80%"
+      data-background-transition="concave">
+</section><section>
+<p>Pour se limiter aux n premiers résultats,<br>on utilise <code>LIMIT n</code>,  et grâce à <code>OFFSET m</code>,<br>on peut sauter les m premiers.</p>
+<br>
+<pre><code class="language-sql">SELECT *
+FROM drapeaux
+LIMIT 3
+OFFSET 2 ;
+</code></pre>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/tablimit.png"
+      data-background-size="50%"
+      data-background-transition="concave">
+</section><section>
+<p>On peut aussi combiner des projections/sélections à partir de différentes tables.</p>
+<p>Lorsque des attributs de tables différentes<br>ont le même nom, il faut préciser leur table d&rsquo;origine via un point (<code>table.attribut</code>) :</p>
+<br>
+<pre><code class="language-sql">SELECT departement, emoji
+FROM prodfruits, emojifruits
+WHERE prodfruits.nom = emojifruits.nom AND paysUE = &quot;Espagne&quot; ;
+</code></pre>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/tabdeuxtab.png"
+      data-background-size="30%"
+      data-background-transition="concave">
+</section><section>
+<p>Sans la condition<br><code>prodfruits.nom = emojifruits.nom</code>,<br>on aurait obtenu le <strong>produit cartésien</strong><br>des deux sous-tables&hellip;</p>
+<br>
+<pre><code class="language-sql">SELECT departement, emoji
+FROM prodfruits, emojifruits
+WHERE paysUE = &quot;Espagne&quot; ;
+</code></pre>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/tabdeuxtabsans.png"
+      data-background-size="40%"
+      data-background-transition="concave">
+</section><section>
+<p><code>WHERE prodfruits.nom = emojifruits.nom</code><br>a donc permi d&rsquo;opérer une <strong>jointure interne</strong><br>entre les tables.</p>
+<p>On verra plus loin une méthode plus naturelle.</p>
+</section><section>
+<p>Le mot clé <code>DISTINCT</code> permet d&rsquo;éliminer les doublons dans les enregistrements.</p>
+<p>Montrons-le sur l&rsquo;exemple précédent :</p>
+<pre><code>SELECT DISTINCT departement
+FROM prodfruits, emojifruits
+WHERE paysUE = &quot;Espagne&quot; ;
+</code></pre>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/tabdistinct.png"
+      data-background-size="20%"
+      data-background-transition="concave">
 
 </section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h3 id="tri-des-résultats">Tri des résultats</h3>
+</section><section>
+<p>Pour trier suivant un attribut, on utilise<br><code>ORDER BY attribut</code> (et pour que le tri<br>soit descendant, on ajoute <code>DESC</code>)</p>
+<br>
+<pre><code class="language-sql">SELECT nom,production
+FROM prodfruits
+ORDER BY production DESC
+LIMIT 3 ;
+</code></pre>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/taborder.png"
+      data-background-size="30%"
+      data-background-transition="concave">
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h3 id="utilisation-dun-alias">Utilisation d&rsquo;un alias</h3>
+</section><section>
+<p>Un alias, introduit par <code>AS</code> permet<br>de renommer un attribut dans l&rsquo;affichage :</p>
+<br>
+<pre><code class="language-sql">SELECT nom AS &quot;fruits espagnols&quot;, production
+FROM prodfruits
+WHERE paysUE = &quot;Espagne&quot; ;
+</code></pre>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/tabalias.png"
+      data-background-size="30%"
+      data-background-transition="concave">
+</section><section>
+<p>Un alias permet aussi de donner un nom à une table obtenue par une requête, ce qui rend possible l&rsquo;enchassement des requêtes<br>les unes dans les autres.</p>
+</section><section>
+<p>La requête suivante réalise par exemple le produit cartésien des deux premiers départements<br>avec les 3 premiers emojis.</p>
+<br>
+<pre><code class="language-sql">SELECT tab1.departement, tab2.emoji
+FROM (SELECT *
+      FROM prodfruits
+      LIMIT 2) AS tab1,
+     (SELECT *
+      FROM emojifruits
+      LIMIT 3) AS tab2 ;
+</code></pre>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/tabprodcart.png"
+      data-background-size="40%"
+      data-background-transition="concave">
+
+</section>
+</section><section>
+<h2 id="opérateurs-ensemblistes">Opérateurs ensemblistes</h2>
+</section><section>
+
+
+<section data-shortcode-section>
+<h3 id="produit-cartésien">Produit cartésien</h3>
+</section><section>
+<p>On l&rsquo;a déjà croisé par deux fois.</p>
+<p>On obtient un produit cartésient en combinant<br>des <code>SELECT</code> de tables différentes<br>sans condition de jointure.</p>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h3 id="union">Union</h3>
+</section><section>
+<p>Permet de réunir deux tables ou deux sous-tables.</p>
+<br>
+<pre><code class="language-sql">SELECT *
+FROM emojifruits
+UNION
+SELECT *
+FROM flags ;
+</code></pre>
+<br>
+<p>Rq : il faut que les deux tables<br>aient le même nombre de colonnes.</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/tabunion.png"
+      data-background-size="60%"
+      data-background-transition="concave">
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h3 id="intersect">INTERSECT</h3>
+</section><section>
+<p>Ne garde que les colonnes communes.</p>
+<p>Dans cet exemple, on obtient les noms de fruits<br>de la table <code>prodfruits</code> ayant un emoji<br>dans la table <code>emojifruits</code>.</p>
+<pre><code class="language-sql">SELECT nom
+FROM prodfruits
+INTERSECT
+SELECT nom
+FROM emojifruits ;
+</code></pre>
+<br>
+<p>Rq : il faut que les deux tables<br>aient le même nombre de colonnes.</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/tabinters.png"
+      data-background-size="70%"
+      data-background-transition="concave">
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h3 id="except">EXCEPT</h3>
+</section><section>
+<p>Revient à retirer ce qu&rsquo;il y a en commun<br>entre deux tables.</p>
+<br>
+<pre><code class="language-sql">SELECT nom
+FROM prodfruits
+EXCEPT
+SELECT nom
+FROM emojifruits ;
+</code></pre>
+<br>
+<p>Rq : il faut que les deux tables<br>aient le même nombre de colonnes.</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/tabexcept1.png"
+      data-background-size="70%"
+      data-background-transition="concave">
+</section><section>
+<p>Attention, l&rsquo;ordre compte :</p>
+<br>
+<pre><code class="language-sql">SELECT nom
+FROM emojifruits
+EXCEPT
+SELECT nom
+FROM prodfruits ;
+</code></pre>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/tabexcept2.png"
+      data-background-size="70%"
+      data-background-transition="concave">
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h2 id="agrégation">Agrégation</h2>
+</section><section>
+<p>On peut utiliser les fonctions suivantes pour réaliser des calculs sur des attributs<br>(et ainsi agréger ses valeurs) :</p>
+<ul>
+<li><code>MIN</code> : donne la valeur minimale</li>
+<li><code>MAX</code> : donne la valeur maximale</li>
+<li><code>SUM</code> : donne la somme des valeurs</li>
+<li><code>AVG</code> : donne la moyenne des valeurs</li>
+<li><code>COUNT</code> : donne le nombre de valeurs</li>
+</ul>
+</section><section>
+<pre><code class="language-sql">SELECT AVG(production) AS &quot;production moyenne&quot;
+FROM prodfruits ;
+</code></pre>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/tabagreg.png"
+      data-background-size="20%"
+      data-background-transition="concave">
+</section><section>
+<p>🤨🤨🤨</p>
+<p>Écrire une requête donnant le nombre de pays différents, autre que la Chine, plus gros producteurs mondiaux pour au moins un fruit.</p>
+</section><section>
+<pre><code class="language-sql">SELECT COUNT(paysMonde)
+FROM (SELECT DISTINCT paysMonde
+      FROM prodfruits
+      WHERE paysMonde &lt;&gt; &quot;Chine&quot;) ;
+</code></pre>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/tabagregexo.png"
+      data-background-size="20%"
+      data-background-transition="concave">
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h2 id="group-by">GROUP BY</h2>
+</section><section>
+<p>Grâce à la clause <code>GROUP BY</code>, on peut grouper ensemble (partitionner) des lignes qui ont les mêmes valeurs dans une ou plusieurs colonne.</p>
+<p>Mais c’est l’application d’une fonction sur chaque agregat obtenu qui en fait tout son intérêt.</p>
+</section><section>
+<p>Cela va permettre par exemple de compter<br>le nombre de positions dominantes<br>d&rsquo;un département dans la production d&rsquo;un fruit :</p>
+<br>
+<pre><code class="language-sql">SELECT departement,COUNT(departement)
+FROM prodfruits
+GROUP BY departement ;
+</code></pre>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/tabgpby.png"
+      data-background-size="50%"
+      data-background-transition="concave">
+</section><section>
+<p>On peut filtrer (sélection) l&rsquo;agrégat obtenu par un <code>GROUP BY</code> à l&rsquo;aide du mot clé <code>HAVING</code>.</p>
+<p>Cela permet par exemple de ne conserver que les départements dominant la production française pour au moins deux fruits.</p>
+<br>
+<pre><code class="language-sql">SELECT departement,COUNT(departement) AS &quot;nombre de fruits&quot;
+FROM prodfruits
+GROUP BY departement
+HAVING &quot;nombre de fruits&quot; &gt; 1 ;
+</code></pre>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/tabhaving.png"
+      data-background-size="50%"
+      data-background-transition="concave">
+</section><section>
+<p><code>HAVING</code> fonctionne comme <code>WHERE</code><br>en demandant une condition.</p>
+<p>Les deux opèrent une sélection<br>(un filtrage sur les lignes).</p>
+<p>La différence réside dans leur ordre d&rsquo;utilisation : <code>WHERE</code> filtre une projection (après une <code>SELECT</code>)<br>et <code>HAVING</code> filtre un agrégat (après un <code>GROUP BY</code>).</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/tabgen.png"
+      data-background-size="90%"
+      data-background-transition="concave">
+</section><section>
+<p>La requête suivante sélectionne les départements dominant sur au moins deux fruits ayant une production mondiale supérieure à 10000 tonnes.</p>
+<br>
+<pre><code class="language-sql">SELECT departement,COUNT(departement) AS &quot;nombre de fruits&quot;
+FROM prodfruits
+WHERE production &gt; 100000
+GROUP BY departement
+HAVING &quot;nombre de fruits&quot; &gt; 1 ;
+</code></pre>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h2 id="jointure">JOINTURE</h2>
+</section><section>
+<p>Nous n&rsquo;étudierons que les <em>équi</em>-jointures <em>internes</em>.</p>
+<ul>
+<li><em>interne</em> signifie qu&rsquo;on ne garde que<br>ce qu&rsquo;il y a en commun entre deux tables.</li>
+<li><em>equi</em> signifie que la jointure se fait<br>là où il y a <em>égalité</em>.</li>
+</ul>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/opjoint.png"
+      data-background-size="50%"
+      data-background-transition="concave">
+</section><section>
+<p>On utilise la structure<br>
+<code>table1 JOIN table2</code><br><code>ON condition d'égalité</code>.</p>
+<p>Lorsqu&rsquo;on joint deux tables, le plus souvent<br>la jointure se fait entre une clé primaire<br>et la clé étrangère référant cette clé primaire.</p>
+</section><section>
+<p>Exemple :</p>
+<p>Supposons que l&rsquo;on veuille remplacer les noms des fruits par leur emoji dans la table <code>prodfruits</code>.</p>
+<br>
+<pre><code class="language-sql">SELECT emoji AS fruit, production, departement, paysUE, paysMonde
+FROM prodfruits
+JOIN emojifruits
+ON prodfruits.nom = emojifruits.nom ;
+</code></pre>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/tabjoin1.png"
+      data-background-size="50%"
+      data-background-transition="concave">
+</section><section>
+<p>Remarque : les fruits sans emoji sont éliminés.</p>
+</section><section>
+<p>Remplaçons maintenant aussi<br>les noms des pays par leurs drapeaux.</p>
+<p>Commençons par les pays européens :</p>
+<br>
+<pre><code class="language-sql">SELECT emoji AS fruit, production, departement, drapeau AS paysUE, paysMonde 
+FROM prodfruits
+JOIN emojifruits
+ON prodfruits.nom = emojifruits.nom
+JOIN flags
+ON prodfruits.paysUE = flags.pays ;
+</code></pre>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/tabjoin2.png"
+      data-background-size="50%"
+      data-background-transition="concave">
+</section><section>
+<p>Si on veut aussi remplacer les champions mondiaux par leurs drapeaux, on se heurte à un problème : l&rsquo;attribut <code>drapeau</code> devient ambigü&hellip;</p>
+<p>On peut s&rsquo;en sortie en créant<br>des sous-tables intermédiaires :</p>
+<pre><code class="language-sql">SELECT emoji AS fruit, production, departement, drapUE AS paysUE, drapMonde AS paysMonde 
+FROM prodfruits
+JOIN emojifruits
+ON prodfruits.nom = emojifruits.nom
+JOIN (SELECT pays, drapeau AS drapUE 
+      FROM flags) AS tabdrapmonde
+ON prodfruits.paysUE = tabdrapmonde.pays
+JOIN (SELECT pays, drapeau AS drapMonde 
+      FROM flags) AS tabdrapue
+ON prodfruits.paysMonde = tabdrapue.pays ;
+</code></pre>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/tabjoin3.png"
+      data-background-size="50%"
+      data-background-transition="concave">
+
+</section>
+</section><section>
+<p><a href="https://info-tsi-vieljeux.github.io/semestre_3/tp12/">Retour site</a></p>
 </section>
 
   
