@@ -45,6 +45,11 @@
     return ipivot
 </code></pre>
 </section><section>
+<p>$f:x\mapsto\frac{1}{1+x^2}$</p>
+<pre><code class="language-python">def f(x) :
+    return 1/(1+x**2)
+</code></pre>
+</section><section>
 
 
 <section data-shortcode-section>
@@ -105,6 +110,26 @@ $$</p>
 
 
 <section data-shortcode-section>
+<p>Intégrer le système d&rsquo;équations différentielles<br>du premier ordre suivant pour $t$ allant de 0 à 100 :
+$$
+\begin{cases}
+x'=\sigma(y-x)\\<br>
+y'=\rho x-y-xz\\<br>
+z'=xy-\beta z
+\end{cases}
+$$</p>
+</section><section>
+<p>on prendra :
+$$
+\begin{cases}
+\sigma = 3\\<br>
+\rho = 26.5\\<br>
+\beta = 1
+\end{cases}
+$$
+et $(x_0,; y_0,; z_0) = (0,;1,; 1,05)$.</p>
+<p>Vous utiliserez la méthode d&rsquo;Euler explicite<br>et prendrez un pas de  0,01.</p>
+</section><section>
 <p>Attracteur étrange de Lorentz :</p>
 <pre><code class="language-python">s,r,b = 3,26.5,1
 x0,y0,z0 = 0,1,1.05
