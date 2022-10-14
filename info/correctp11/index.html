@@ -37,7 +37,7 @@
 </section><section>
 <p>Pivot partiel (recherche de l&rsquo;indice<br>d&rsquo;une valeur max dans une liste) :</p>
 <pre><code class="language-python">def recherchePivotPartiel(M :list,h :int,k :int) -&gt; int:
-    ipivot, pivot = h, M[h][k]
+    ipivot, pivot = h, abs(M[h][k])
     for i in range(h+1,len(M)) :
         if abs(M[i][k]) &gt; pivot :
             pivot = abs(M[i][k])
