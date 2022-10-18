@@ -31,6 +31,14 @@
 
 <section data-shortcode-section>
 <p><a href="https://app.coderpad.io/sandbox?question_id=226378"><image src="/defiimage.png" style="width:90%;"></a></p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/dessdefmat.png"
+      data-background-size="40%"
+      data-background-transition="concave">
+</section><section>
+<p>Comment faire pour réussir<br>cette rotation de 90° en place ?</p>
+<p>Remarque : <strong>en place</strong> ne veut pas dire<br>qu&rsquo;on ne peut pas créer de variables !<br>Tant que leur nombre est fixe,<br>cela ne change pas la <strong>complexité en espace</strong>.</p>
 </section><section>
 <p>Une solution possible :</p>
 <pre><code class="language-python">def rotate_in_place(matrix):
@@ -63,15 +71,15 @@
 <p>Pour &ldquo;legend&rdquo;, il faut réussir à travailler <strong>en place</strong> :</p>
 <pre><code class="language-python">def solution(nums):
     n = len(nums)
-    iav , iap = 0 , 0
+    iav, iap = 0, 0
     while iap&lt;n :
-      if nums[iap] :
-        nums[iap],nums[iav] = nums[iav],nums[iap]
-        iap += 1
-        iav += 1
-      else :
-        while iap&lt;n and nums[iap]==0 :
-          iap += 1
+        if nums[iap] :
+            nums[iap],nums[iav] = nums[iav],nums[iap]
+            iap += 1
+            iav += 1
+        else :
+            while iap&lt;n and nums[iap]==0 :
+                iap += 1
     return nums
 </code></pre>
 
@@ -127,7 +135,7 @@ ON sub1.problem_id = sub2.problem_id and sub1.user_id = sub2.user_id and sub1.la
 WHERE tablex.user_id = players.user_id
 </code></pre>
 </section><section>
-<p>Une solution assez différentutilisant<br>un <code>GROUP BY</code> sur plusieurs attributs :</p>
+<p>Une solution assez différente utilisant<br>un <code>GROUP BY</code> sur plusieurs attributs :</p>
 <pre><code class="language-sql">SELECT DISTINCT nickname
 FROM
 (SELECT user_id, COUNT(language) AS nb_language

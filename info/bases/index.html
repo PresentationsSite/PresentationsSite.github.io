@@ -417,7 +417,18 @@ GROUP BY departement ;
 </section>
 <section data-noprocess data-shortcode-slide
       data-background-image="/tabgpby.png"
-      data-background-size="50%"
+      data-background-size="80%"
+      data-background-transition="concave">
+</section><section>
+<p>Demandons maintenant la production totale par département (production totale mondiale pour<br>les fruits où le département arrive en tête) :</p>
+<pre><code class="language-sql">SELECT departement, SUM(production) AS &quot;production totale&quot;
+FROM prodfruits
+GROUP BY departement
+</code></pre>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/tabgpby2.png"
+      data-background-size="80%"
       data-background-transition="concave">
 </section><section>
 <p>On peut filtrer (sélection) l&rsquo;agrégat obtenu par un <code>GROUP BY</code> à l&rsquo;aide du mot clé <code>HAVING</code>.</p>
@@ -443,7 +454,7 @@ HAVING &quot;nombre de fruits&quot; &gt; 1 ;
       data-background-size="90%"
       data-background-transition="concave">
 </section><section>
-<p>La requête suivante sélectionne parmi les départements ayant une production mondiale supérieure à 10000 tonnes, ceux qui dominent le marché avec au moins deux fruits .</p>
+<p>La requête suivante sélectionne parmi les départements ayant une production mondiale supérieure à 10000 tonnes, ceux qui dominent<br>le marché avec au moins deux fruits.</p>
 <br>
 <pre><code class="language-sql">SELECT departement,COUNT(departement) AS &quot;nombre de fruits&quot;
 FROM prodfruits
@@ -507,7 +518,7 @@ ON prodfruits.paysUE = flags.pays ;
       data-background-transition="concave">
 </section><section>
 <p>Si on veut aussi remplacer les champions mondiaux par leurs drapeaux, on se heurte à un problème : l&rsquo;attribut <code>drapeau</code> devient ambigü&hellip;</p>
-<p>On peut s&rsquo;en sortie en créant<br>des sous-tables intermédiaires :</p>
+<p>On peut s&rsquo;en sortir en créant<br>des sous-tables intermédiaires :</p>
 <pre><code class="language-sql">SELECT emoji AS fruit, production, departement, drapUE AS paysUE, drapMonde AS paysMonde 
 FROM prodfruits
 JOIN emojifruits
