@@ -27,12 +27,201 @@
   <iframe src="https://www.youtube.com/embed/-73jokmqmd0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
 </div>
 </section><section>
+
+
+<section data-shortcode-section>
 <p><a href="https://app.coderpad.io/sandbox?question_id=226378"><image src="/defiimage.png" style="width:90%;"></a></p>
 </section><section>
+<p>Une solution possible :</p>
+<pre><code class="language-python">def rotate_in_place(matrix):
+    n = len(matrix)
+    for r in range(n//2):
+        for c in range(r,n-1-r):
+            hg = matrix[r][c]
+            hd = matrix[c][n-r-1]
+            bd = matrix[n-r-1][n-c-1]
+            bg = matrix[n-c-1][r]
+            matrix[c][n-r-1] = hg
+            matrix[n-r-1][n-c-1] = hd
+            matrix[n-c-1][r] = bd
+            matrix[r][c] = bg
+</code></pre>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
 <p><a href="https://app.coderpad.io/sandbox?question_id=230552&utm_campaign=Tiny+Interviews&utm_source=twitter&utm_medium=mathishammel"><image src="/defizeros.png"></a></p>
 </section><section>
+<p>Pour atteindre le niveau &ldquo;advanced&rdquo; :</p>
+<pre><code class="language-python">def solution(nums):
+    Sanszeros = [pazero for pazero in nums if pazero] 
+    return Sanszeros + (len(nums)-len(Sanszeros))*[0]
+</code></pre>
+</section><section>
+<p>Pour &ldquo;legend&rdquo;, il faut réussir à travailler <strong>en place</strong> :</p>
+<pre><code class="language-python">def solution(nums):
+    n = len(nums)
+    iav , iap = 0 , 0
+    while iap&lt;n :
+      if nums[iap] :
+        nums[iap],nums[iav] = nums[iav],nums[iap]
+        iap += 1
+        iav += 1
+      else :
+        while iap&lt;n and nums[iap]==0 :
+          iap += 1
+    return nums
+</code></pre>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
 <p><a href="https://app.coderpad.io/sandbox?question_id=225822&utm_campaign=Tiny+Interviews&utm_source=twitter&utm_medium=mathishammel"><image src="/defisql.png" style="width:40%;"></a></p>
 <p>Précision pour 2<sup>e</sup> question :<br>le challenge a été lancé le 20 septembre 2022.</p>
+</section><section>
+<p>Solutions possibles :</p>
+<ol>
+<li>nombre de submissions par langage</li>
+</ol>
+<pre><code class="language-sql">SELECT language, COUNT(problem_id) AS lang_count
+FROM submissions
+GROUP BY language;
+</code></pre>
+</section><section>
+<ol start="2">
+<li>Joueurs de 25 ans</li>
+</ol>
+<pre><code class="language-sql">SELECT nickname 
+FROM players
+WHERE birth &lt; &quot;1997-09-20&quot; AND birth &gt;= &quot;1996-09-20&quot;;
+</code></pre>
+</section><section>
+<ol start="3">
+<li>Les 10 joueurs ayant présenté<br>le plus de problèmes.</li>
+</ol>
+<pre><code class="language-sql">SELECT nickname, COUNT(problem_id) AS problem_attempted
+FROM (SELECT DISTINCT user_id, problem_id FROM submissions) AS pbunique
+JOIN players ON pbunique.user_id = players.user_id
+GROUP BY nickname
+ORDER BY problem_attempted DESC
+LIMIT 10;
+</code></pre>
+</section><section>
+<ol start="4">
+<li>Les joueurs ayant tenté le même problème<br>avec au moins deux langages.</li>
+</ol>
+<p>Avec autojointure :</p>
+<pre><code class="language-sql">SELECT nickname
+FROM
+(SELECT DISTINCT sub1.user_id
+FROM (SELECT *
+FROM submissions) AS sub1
+JOIN
+(SELECT *
+FROM submissions) AS sub2
+ON sub1.problem_id = sub2.problem_id and sub1.user_id = sub2.user_id and sub1.language &lt;&gt; sub2.language) AS tablex, players
+WHERE tablex.user_id = players.user_id
+</code></pre>
+</section><section>
+<p>Une solution assez différentutilisant<br>un <code>GROUP BY</code> sur plusieurs attributs :</p>
+<pre><code class="language-sql">SELECT DISTINCT nickname
+FROM
+(SELECT user_id, COUNT(language) AS nb_language
+FROM
+(SELECT DISTINCT user_id, problem_id, language
+FROM submissions) AS tab1
+GROUP BY user_id, problem_id
+HAVING nb_language &gt; 1) AS tab2
+JOIN players ON players.user_id = tab2.user_id
+</code></pre>
+</section><section>
+<ol start="5">
+<li>Joueurs ayant passé au moins 60%<br>des problèmes MEDIUM et HARD<br>avec un score de 100%.</li>
+</ol>
+<pre><code class="language-sql">SELECT nickname
+FROM
+(SELECT user_id,COUNT(*) AS nombre
+FROM ((SELECT DISTINCT problem_id, user_id FROM submissions WHERE score = 100) AS sub1
+JOIN (SELECT * FROM problems WHERE (problems.difficulty = &quot;MEDIUM&quot; OR problems.difficulty = &quot;HARD&quot;)) AS prob1
+ON sub1.problem_id = prob1.problem_id)
+GROUP BY user_id) AS tablex
+JOIN players
+ON players.user_id = tablex.user_id
+WHERE tablex.nombre &gt;= 60
+</code></pre>
+</section><section>
+<p>Autre possibilité (assez proche) :</p>
+<pre><code class="language-sql">SELECT nickname
+FROM (SELECT nickname, COUNT(*) AS nbproblem
+FROM 
+(SELECT DISTINCT nickname, submissions.problem_id
+FROM submissions
+JOIN problems ON submissions.problem_id = problems.problem_id
+JOIN players ON submissions.user_id = players.user_id
+WHERE submissions.score = 100 AND (problems.difficulty = &quot;HARD&quot; OR problems.difficulty = &quot;MEDIUM&quot;)) AS tab1
+GROUP BY nickname
+HAVING nbproblem &gt;= 60) AS tab2
+</code></pre>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<p><a href="https://app.coderpad.io/sandbox?question_id=225409&utm_campaign=Tiny+Interviews&utm_source=twitter&utm_medium=mathishammel"><image src="/defiquadruplets.png" style="width:80%;"></a></p>
+</section><section>
+<p>Complexité de <code>find_quadruplet_sum</code> ?</p>
+</section><section>
+<pre><code class="language-python">def find_quadruplet_sum_fast(numbers, target):
+    sommesdeuxadeux = {}
+    for a in numbers:
+        for b in numbers:
+            sommesdeuxadeux[a+b] = (a,b)
+    for a in numbers :
+        for b in numbers :
+            if target - (a+b) in sommesdeuxadeux :
+                return (a,b) + sommesdeuxadeux[target - (a+b)]
+</code></pre>
+<p>Complexité de <code>find_quadruplet_sum_fast</code> ?<br>(recherche dans un dictionnaire via <code>in</code> en O(1))</p>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/ywWBy6J5gz8" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+</section><section>
+<p>Implémenter cette version<br>&ldquo;dance hongroise&rdquo; du tri rapide.</p>
+<p>Vérifier que le tri créé est bien <strong>en place</strong>.</p>
+</section><section>
+<p>Une possibilité :</p>
+<pre><code class="language-python">def partition(L) :
+    p = 0         # pivot (chapeau noir)
+    i = len(L)-1  # chapeau rouge
+    while i != p :
+      if (L[p]-L[i])*(p-i) &lt; 0 :
+        L[p],L[i] = L[i],L[p]
+        p,i = i,p
+      i -= (i-p)//abs(i-p)
+    return p
+    
+def trirapide(L) :
+    if len(L) &lt;= 1 :
+      return L
+    else :
+      p = partition(L)
+      L[:p] = trirapide(L[:p])
+      L[p+1:] = trirapide(L[p+1:])
+      return L
+</code></pre>
+
+</section>
 </section><section>
 <p><a href="https://info-tsi-vieljeux.github.io/projets/">Retour site</a></p>
 </section>
