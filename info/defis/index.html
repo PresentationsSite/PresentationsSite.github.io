@@ -205,8 +205,7 @@ HAVING nbproblem &gt;= 60) AS tab2
   <iframe src="https://www.youtube.com/embed/ywWBy6J5gz8" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
 </div>
 </section><section>
-<p>Implémenter cette version<br>&ldquo;dance hongroise&rdquo; du tri rapide.</p>
-<p>Vérifier que le tri créé est bien <strong>en place</strong>.</p>
+<p>Implémenter cette version<br>&ldquo;dance hongroise&rdquo; du tri rapide<br>en s&rsquo;assurant que le tri créé<br>est bien <strong>en place</strong>.</p>
 </section><section>
 <p>Une possibilité :</p>
 <pre><code class="language-python">def partition(L) :
@@ -228,6 +227,112 @@ def trirapide(L) :
       L[p+1:] = trirapide(L[p+1:])
       return L
 </code></pre>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<p><a href="https://app.coderpad.io/sandbox?question_id=228984&utm_campaign=Tiny+Interviews&utm_source=twitter&utm_medium=MathisHammel"><image src="/defigraphe.png" style="width:65%;"></a></p>
+</section><section>
+<ol>
+<li>D&rsquo;après le programme, que vaut le chemin<br>le plus court entre 6 et 3 ?</li>
+<li>Pourquoi le programme n&rsquo;est-il pas correct ?</li>
+<li>Pourquoi le chemin entre 6 et 5 est-il quand même bon ?</li>
+<li>Réparer le programme pour qu&rsquo;il devienne correct.</li>
+</ol>
+</section><section>
+<p>Il manque dans ce code un registre des sommets déjà visités pour éviter d&rsquo;y retourner<br>dans le cas de cycles 😵‍💫.</p>
+<br>
+<p>$6\rightarrow 5$ passe par le cycle $1\leftrightarrow 2$ mais comme<br>on avance <strong>en profondeur</strong> et que l&rsquo;ordre des successeurs de 2 dans le graphe est <code>[5,4,1]</code>,<br>on évite de boucler 😅.</p>
+</section><section>
+<p>Pour ne pas changer de classe de complexité,<br>l&rsquo;idée est d&rsquo;utiliser un dictionnaire dans lequel<br>on ajoutera chaque sommet visité.</p>
+<p>On profite alors du fait que la recherche d&rsquo;une clé dans un dictionnaire (<code>if key in dico :</code>)<br>se fait en temps constant ($(O(1)$) 🥳.</p>
+</section><section>
+<p>Code modifié :</p>
+<pre><code class="language-python">def path_search(start, end, graph, vus=None):
+    if vus is None : # explication slides suivantes
+        vus = {}
+    vus[start]=True
+    if start == end:
+        return [start]
+    if graph[start] == []:
+        return None
+    for neighbor_node in graph[start]:
+        if not neighbor_node in vus :
+            path = path_search(neighbor_node, end, graph, vus)
+            if path is not None:
+                return [start] + path
+</code></pre>
+</section><section>
+<h3 id="vus--none-"><code>vus = None</code> ?</h3>
+<p>L&rsquo;idée première est d&rsquo;utiliser l&rsquo;argument nommé : <code>vus = {}</code>.</p>
+<p>Un argument nommé permet d&rsquo;avoir une valeur par défaut pour l&rsquo;argument qui n&rsquo;est alors plus nécessaire lors de l&rsquo;appel.</p>
+</section><section>
+<p>Exemple :</p>
+<pre><code class="language-python">def presentation(prenom,nom,job=&quot;sans&quot;) :
+	print(f&quot;identité : {prenom} {nom}, activité : {job}&quot;)
+</code></pre>
+<br>
+<pre><code class="language-python">&gt;&gt;&gt; presentation(&quot;Alan&quot;,&quot;Turing&quot;,&quot;génie&quot;)
+identité : Alan Turing, activité : génie
+</code></pre>
+<pre><code class="language-python">&gt;&gt;&gt; presentation(&quot;John&quot;,&quot;Doe&quot;)
+identité : John Doe, activité : sans
+</code></pre>
+</section><section>
+<p>Comme dans le test, il n' y a pas de 4<sup>e</sup> argument,<br>et que modifier le test pourrait passer pour de la triche, les arguments nommés semblent<br>être une bonne solution.</p>
+<p>Mais on se confronte alors à l'<a href="https://florimond.dev/en/posts/2018/08/python-mutable-defaults-are-the-source-of-all-evil/">un des plus vicieux problèmes</a> que peuvent poser les objets mutables en python, à chaque fois que l&rsquo;argument par défaut est appelé, le même objet est utilisé !</p>
+</section><section>
+<p>Exemple :</p>
+<pre><code class="language-python">def vicieux(L=[]) :
+	L.append(1)
+	return L
+</code></pre>
+<pre><code class="language-python">&gt;&gt;&gt; vicieux([0])
+[0,1]
+</code></pre>
+<p>Normal.</p>
+<pre><code class="language-python">&gt;&gt;&gt; vicieux()
+[1]
+</code></pre>
+<p>C&rsquo;est bien ce qu&rsquo;on voulait&hellip;<br>Mais que renvoit un nouveau <code>vicieux()</code> ?</p>
+</section><section>
+<pre><code class="language-python">&gt;&gt;&gt; vicieux()
+[1,1]
+</code></pre>
+<p>🤯</p>
+<p>Et du coup, ça fiche en l&rsquo;air notre stratégie !
+<br>car à chaque test, le même dictionnaire<br>des sommets visités va être utilisé<br>et il sera donc tout à fait inutile.</p>
+</section><section>
+<p>La bidouille pour se sauver est d&rsquo;utiliser <code>None</code> comme valeur par défaut afin de s&rsquo;en servir<br>comme test de premier appel<br>pour initialiser l&rsquo;objet mutable.</p>
+<p>Rq : plutôt que <code>None</code>, on aurait pu utiliser un entier ou une chaîne de caractères, c&rsquo;est juste plus propre<br>et logique avec <code>None</code> (l&rsquo;objet n&rsquo;existe pas encore).</p>
+</section><section>
+<p>Exemple avec une chaîne de caractères :</p>
+<pre><code class="language-python">def path_search(start, end, graph, vus=&quot;init&quot;):
+    if vus == &quot;init&quot; :
+        vus = {}
+    vus[start]=True
+    if start == end:
+        return [start]
+    if graph[start] == []:
+        return None
+    for neighbor_node in graph[start]:
+        if not neighbor_node in vus :
+            path = path_search(neighbor_node, end, graph, vus)
+            if path is not None:
+                return [start] + path
+</code></pre>
+<p>Ça passe tout aussi bien les tests.</p>
+</section><section>
+<p>À propos des tests :</p>
+<pre><code class="language-python">for a, b in zip(result, result[1:]):
+	# Iterate over all consecutive pairs
+	# Super helpful Python trick using zip :)
+	assert b in graph[a]
+</code></pre>
+<p>Cela permet de tester ici qu&rsquo;un sommet est bien un successeur du sommet qu&rsquo;il suit dans la liste retournée par la fonction.</p>
+<p>Comment aurait-on fait sans cette astuce ?</p>
 
 </section>
 </section><section>
