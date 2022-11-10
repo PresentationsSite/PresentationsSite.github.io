@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>Radioactivité</title>
+
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="/reveal-js/css/reset.css">
+<link rel="stylesheet" href="/reveal-js/css/reveal.css"><link rel="stylesheet" href="/reveal-js/css/theme/sky.css" id="theme">
+<link rel="stylesheet" href="/highlight-js/atom-one-dark-reasonable.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  </head>
+  <body>
+    
+    <div class="reveal">
+      <div class="slides">
+  
+
+    <section><h1 id="soleil">Soleil</h1>
+</section><section>
+
+
+<section data-shortcode-section>
+<h2 id="rayonnement-solaire">rayonnement solaire</h2>
+</section><section>
+<p>Le Soleil, grâce à la fusion nucléaire de l&rsquo;hydrogène au sein de son cœur, délivre une puissance phénoménale.</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/soleiltot.png"
+      data-background-size="100%"
+      data-background-transition="concave">
+</section><section>
+<p>L'<strong>énergie</strong> $E$ mesure la capacité<br>
+à chauffer et à bouger un objet.</p>
+<br>
+<p>La <strong>puissance</strong> $P$, c&rsquo;est le taux de conversion<br>de l&rsquo;énergie $E$, sa vitesse de variation.</p>
+</section><section>
+<p>On passe de l&rsquo;une à l&rsquo;autre grâce à la formule :</p>
+<br>
+<div style="background-color:rgb(255,0,0,0.2);border:solid red 5px;padding:10px 10px 15px 10px;border-radius:10px;width:40%;margin-left:auto;margin-right:auto">
+$E=P\times t$
+</div>
+<br>
+<p>où $E$ est en joules (J)<br>si $P$ est en watts (W)<br>et $t$ en secondes (s).</p>
+</section><section>
+<p>En une microseconde,<br>
+le Soleil libère donc<br>une énergie de &hellip;</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/einstein.png"
+      data-background-size="100%"
+      data-background-transition="concave">
+<p>Grâce à la fameuse formule d&rsquo;Einstein<br>$E=mc^2$ qui lie la masse à l&rsquo;énergie,<br>on déduit que l&rsquo;énergie libérée par le Soleil pendant une microseconde correspond<br>à une perte de masse de $E/c^2 = \ldots$</p>
+</section><section>
+<p>Concentrons-nous sur la partie de la puissance solaire qui parvient sur Terre.</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/soleilterre.png"
+      data-background-size="100%"
+      data-background-transition="concave">
+</section><section>
+<p>La puissance solaire totale arrivant<br>sur le sol terrestre vaut alors :</p>
+<p>$\displaystyle 70\% \times \frac{K}{4}\times\pi R_T^2 \approx \pu{3,0E16 W}$</p>
+<p>En un an, on peut donc récupérer une énergie de :</p>
+<p>$\pu{3,8E24  J} = \pu{3,8 YJ}$</p>
+<p>Comparons aux autres sources d&rsquo;énergie.</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/compsol.png"
+      data-background-size="100%"
+      data-background-transition="concave">
+
+</section>
+</section><section>
+<p><a href="https://coursphychi.github.io/1es/soleil/">Retour site</a></p>
+</section>
+
+  
+
+
+</div>
+      
+
+    </div>
+<script type="text/javascript" src=/reveal-hugo/object-assign.js></script>
+
+<a href="/reveal-js/css/print/" id="print-location" style="display: none;"></a>
+<script type="text/javascript">
+  var printLocationElement = document.getElementById('print-location');
+  var link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.type = 'text/css';
+  link.href = printLocationElement.href + (window.location.search.match(/print-pdf/gi) ? 'pdf.css' : 'paper.css');
+  document.getElementsByTagName('head')[0].appendChild(link);
+</script>
+
+<script type="application/json" id="reveal-hugo-site-params">{"highlight_theme":"github-dark","line-numbers":true,"theme":"sky","transition":"concave","transition_speed":"fast"}</script>
+<script type="application/json" id="reveal-hugo-page-params">{"highlight_theme":"atom-one-dark-reasonable"}</script>
+
+<script src="/reveal-js/js/reveal.js"></script>
+
+<script type="text/javascript">
+  
+  
+  function camelize(map) {
+    if (map) {
+      Object.keys(map).forEach(function(k) {
+        newK = k.replace(/(\_\w)/g, function(m) { return m[1].toUpperCase() });
+        if (newK != k) {
+          map[newK] = map[k];
+          delete map[k];
+        }
+      });
+    }
+    return map;
+  }
+  
+  var revealHugoDefaults = { center: true, controls: true, history: true, progress: true, transition: "slide" };
+  var revealHugoSiteParams = JSON.parse(document.getElementById('reveal-hugo-site-params').innerHTML);
+  var revealHugoPageParams = JSON.parse(document.getElementById('reveal-hugo-page-params').innerHTML);
+  
+  var options = Object.assign({},
+    camelize(revealHugoDefaults),
+    camelize(revealHugoSiteParams),
+    camelize(revealHugoPageParams));
+  Reveal.initialize(options);
+</script>
+
+
+  
+  
+  <script type="text/javascript" src="/reveal-js/plugin/markdown/marked.js"></script>
+  
+  <script type="text/javascript" src="/reveal-js/plugin/markdown/markdown.js"></script>
+  
+  <script type="text/javascript" src="/reveal-js/plugin/highlight/highlight.js"></script>
+  
+  <script type="text/javascript" src="/reveal-js/plugin/zoom-js/zoom.js"></script>
+  
+  
+  <script type="text/javascript" src="/reveal-js/plugin/notes/notes.js"></script>
+
+
+
+
+
+
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({startOnLoad: false});
+    let render = (event) => {
+      let mermaidElems = event.currentSlide.querySelectorAll('.mermaid');
+      if (!mermaidElems.length){
+          return
+      }
+      mermaidElems.forEach(mermaidElem => {
+          let processed = mermaidElem.getAttribute('data-processed');
+          if (!processed){
+              
+              mermaid.init(undefined, mermaidElem);
+          }
+      });
+    };
+    Reveal.addEventListener('slidechanged', render);
+    Reveal.addEventListener('ready', render);
+  </script>
+
+    
+
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']]
+  },
+  svg: {
+    fontCache: 'global'
+  }
+};
+</script>
+
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+</script>
+    
+  </body>
+</html>

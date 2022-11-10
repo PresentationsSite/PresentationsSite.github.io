@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>Correction DS piles</title>
+
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="/reveal-js/css/reset.css">
+<link rel="stylesheet" href="/reveal-js/css/reveal.css"><link rel="stylesheet" href="/reveal-js/css/theme/sky.css" id="theme">
+<link rel="stylesheet" href="/highlight-js/github-dark.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  </head>
+  <body>
+    
+    <div class="reveal">
+      <div class="slides">
+  
+
+    <section><h2 id="correc-ds-piles">Correc DS piles</h2>
+<p>Extrait d&rsquo;un sujet 0</p>
+</section><section>
+
+
+<section data-shortcode-section>
+<ol>
+<li>Nombre d&rsquo;accus à placer en série et en parallèle.</li>
+</ol>
+<p>On sait que pour 1 accu :</p>
+<p>$\pu{U = 3,2 V}$ et $\pu{Q = 1100 mA*h}$</p>
+<p>Et on veut $\pu{U = 48 V}$ et $\pu{Q = 3300 mA*h}$</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/batterieserie.png"
+      data-background-size="100%"
+      data-background-transition="concave">
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<ol start="2">
+<li>Masse du pack : $\pu{45 \times 38,8 g}$</li>
+</ol>
+<p>Combien de chiffres significatifs ?</p>
+</section><section>
+<p>$\pu{1,7 kg}$</p>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<ol start="3">
+<li>Énergie du pack :</li>
+</ol>
+<br>
+<br>
+<div style="display: flex;justify-content: center;">
+<div style = "border:solid red 5px;width:30%;padding: 20px 0px 20px 0px;">
+$E = Q\times U$
+</div></div>
+<p>On connaît les valeurs des deux grandeurs :</p>
+<p>$\pu{Q = 3300 mA*h}$ et $\pu{U = 48 V}$</p>
+<p>$\pu{E = Q\times U = 3,300 \times 48 = \ldots}$</p>
+<p>chiffres significatifs ? Unité ?</p>
+</section><section>
+<p>$\begin{aligned}
+U &amp;= \pu{1,6E2 W*h}\\<br>
+&amp;= \pu{5,7E5 J}
+\end{aligned}$</p>
+
+</section>
+</section><section>
+<ol start="4">
+<li>N&rsquo;importe quelle phrase qui dit que c&rsquo;est mieux d&rsquo;avoir une meilleure énergie massique et un plus grand nombre de charges/décharges pour un robot.</li>
+</ol>
+</section><section>
+
+
+<section data-shortcode-section>
+<ol start="5">
+<li></li>
+</ol>
+<p>Autonomie :</p>
+<div style="display: flex;justify-content: center;">
+<div style = "border:solid red 5px;width:30%;padding: 20px 0px 20px 0px;">
+$\displaystyle t = \frac{Q}{I}$
+</div></div>
+<p>$\displaystyle t=\frac{3,300}{2,8}=\ldots$</p>
+<p>Chiffres significatifs ? Unité ?</p>
+</section><section>
+<p>$t=\pu{1,2 h}=\pu{1,2\times 60 min}=\pu{72 min}$</p>
+<p>Commentaire : pas terrible&hellip;<br>Doit se recharger souvent dans la journée.<br>Ne peut pas aider une personne en continu<br>sur plusieurs heures.</p>
+
+</section>
+</section><section>
+<ol start="6">
+<li>Équation de la décharge :
+<br><br></li>
+</ol>
+<ul>
+<li>$\ce{FePO4(s) + Li+ + e- -&gt; LiFePO4(s)}$</li>
+<li>$\ce{LiC6(s) -&gt; 6 C(s) + Li+ + e-}$</li>
+</ul>
+<p>$\ce{FePO4(s) +LiC6(s) -&gt; LiFePO4(s) + 6 C(s)}$</p>
+</section><section>
+<ol start="7">
+<li></li>
+</ol>
+<p>À la borne -, les électrons sont libérées<br>par l'<strong>oxydation</strong> du réducteur.</p>
+</section><section>
+
+
+<section data-shortcode-section>
+<ol start="8">
+<li>Quantité de matière d&rsquo;électrons<br>(= nombre de moles) :</li>
+</ol>
+<p>$Q = n(\ce{e-}) F$</p>
+<p>$\displaystyle \Rightarrow n(\ce{e-})=\frac{Q}{F}$</p>
+</section><section>
+<p>$Q$ doit être en Coulombs !</p>
+<p>$Q = \pu{1100 mA*h} = \pu{1,100 A} \times \pu{3600 s} = \pu{3960 C}$</p>
+<p>$\displaystyle
+\begin{aligned}
+n(\ce{e-})&amp;=\frac{Q}{F}\\<br>
+&amp;=\frac{3960}{\pu{9,65E4}}\\<br>
+&amp;=\pu{4,10E-2 mol}
+\end{aligned}
+$</p>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<ol start="9">
+<li>Masse des électrodes</li>
+</ol>
+<p>D&rsquo;après les demi-équations électroniques, pour chaque mole de $\ce{FePO4}$ et pour chaque mole de $\ce{LiC6}$, il y a une mole d&rsquo;électrons échangée.</p>
+<p>Donc pour pouvoir échanger $n(\ce{e-})$ moles d&rsquo;électrons, il faut au minimum :</p>
+<p>$n(\ce{FePO4})=n(\ce{LiC6})=n(\ce{e-})$</p>
+</section><section>
+<p>On sait que :</p>
+<div style="display: flex;justify-content: center;">
+<div style = "border:solid black 5px;width:30%;padding: 20px 0px 20px 0px;">
+$\displaystyle n = \frac{m}{M}$
+</div></div>
+<p>On a déterminé les quantités de matière minimales nécessaires, il nous reste à obtenir les masses molaires pour en déduire<br>les masses des électrodes.</p>
+</section><section>
+<p>$\begin{aligned}
+M(\ce{FePO4}) &amp;= M(\ce{Fe}) + M(\ce{P}) + 4\times M(\ce{O}) \\<br>
+&amp; = 55,8 + 31,0 + 4\times 16,0\\<br>
+&amp; = \pu{150,8 g*mol-1}
+\end{aligned}$</p>
+<p>Pourquoi autant de chiffres significatifs ?</p>
+</section><section>
+<p>$\begin{aligned}
+M(\ce{LiC6}) &amp;= M(\ce{Li}) + 6\times M(\ce{C}) \\<br>
+&amp; = 6,9 + 6\times 12,0\\<br>
+&amp; = \ldots
+\end{aligned}$</p>
+</section><section>
+<p>$\begin{aligned}
+M(\ce{LiC6}) &amp;= M(\ce{Li}) + 6\times M(\ce{C}) \\<br>
+&amp; = 6,9 + 6\times 12,0\\<br>
+&amp; = \pu{78,9 g*mol-1}
+\end{aligned}$</p>
+</section><section>
+<p>Masses minimales des électrodes :</p>
+<br>
+<p>$\begin{aligned}
+m(\ce{FePO4}) &amp;= n(\ce{e-})\times M(\ce{FePO4}) \\<br>
+&amp;= 4,10\cdot 10^{-2}\times 150,8\\<br>
+&amp;= \pu{6,18 g}
+\end{aligned}$</p>
+<br>
+<p>$\begin{aligned}
+m(\ce{LiC6}) &amp;= n(\ce{e-})\times M(\ce{LiC6}) \\<br>
+&amp;= 4,10\cdot 10^{-2}\times 78,9\\<br>
+&amp;= \pu{3,23 g}
+\end{aligned}$</p>
+
+</section>
+</section><section>
+<p><a href="https://coursphychi.github.io/tsti2d/piles/">Retour site</a></p>
+</section>
+
+  
+
+
+</div>
+      
+
+    </div>
+<script type="text/javascript" src=/reveal-hugo/object-assign.js></script>
+
+<a href="/reveal-js/css/print/" id="print-location" style="display: none;"></a>
+<script type="text/javascript">
+  var printLocationElement = document.getElementById('print-location');
+  var link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.type = 'text/css';
+  link.href = printLocationElement.href + (window.location.search.match(/print-pdf/gi) ? 'pdf.css' : 'paper.css');
+  document.getElementsByTagName('head')[0].appendChild(link);
+</script>
+
+<script type="application/json" id="reveal-hugo-site-params">{"highlight_theme":"github-dark","line-numbers":true,"theme":"sky","transition":"concave","transition_speed":"fast"}</script>
+<script type="application/json" id="reveal-hugo-page-params">null</script>
+
+<script src="/reveal-js/js/reveal.js"></script>
+
+<script type="text/javascript">
+  
+  
+  function camelize(map) {
+    if (map) {
+      Object.keys(map).forEach(function(k) {
+        newK = k.replace(/(\_\w)/g, function(m) { return m[1].toUpperCase() });
+        if (newK != k) {
+          map[newK] = map[k];
+          delete map[k];
+        }
+      });
+    }
+    return map;
+  }
+  
+  var revealHugoDefaults = { center: true, controls: true, history: true, progress: true, transition: "slide" };
+  var revealHugoSiteParams = JSON.parse(document.getElementById('reveal-hugo-site-params').innerHTML);
+  var revealHugoPageParams = JSON.parse(document.getElementById('reveal-hugo-page-params').innerHTML);
+  
+  var options = Object.assign({},
+    camelize(revealHugoDefaults),
+    camelize(revealHugoSiteParams),
+    camelize(revealHugoPageParams));
+  Reveal.initialize(options);
+</script>
+
+
+  
+  
+  <script type="text/javascript" src="/reveal-js/plugin/markdown/marked.js"></script>
+  
+  <script type="text/javascript" src="/reveal-js/plugin/markdown/markdown.js"></script>
+  
+  <script type="text/javascript" src="/reveal-js/plugin/highlight/highlight.js"></script>
+  
+  <script type="text/javascript" src="/reveal-js/plugin/zoom-js/zoom.js"></script>
+  
+  
+  <script type="text/javascript" src="/reveal-js/plugin/notes/notes.js"></script>
+
+
+
+
+
+
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({startOnLoad: false});
+    let render = (event) => {
+      let mermaidElems = event.currentSlide.querySelectorAll('.mermaid');
+      if (!mermaidElems.length){
+          return
+      }
+      mermaidElems.forEach(mermaidElem => {
+          let processed = mermaidElem.getAttribute('data-processed');
+          if (!processed){
+              
+              mermaid.init(undefined, mermaidElem);
+          }
+      });
+    };
+    Reveal.addEventListener('slidechanged', render);
+    Reveal.addEventListener('ready', render);
+  </script>
+
+    
+
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']]
+  },
+  svg: {
+    fontCache: 'global'
+  }
+};
+</script>
+
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+</script>
+    
+  </body>
+</html>
