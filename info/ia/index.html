@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>Défis</title>
+
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="/reveal-js/css/reset.css">
+<link rel="stylesheet" href="/reveal-js/css/reveal.css"><link rel="stylesheet" href="/reveal-js/css/theme/sky.css" id="theme">
+<link rel="stylesheet" href="/highlight-js/atom-one-dark-reasonable.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  </head>
+  <body>
+    
+    <div class="reveal">
+      <div class="slides">
+  
+
+    <section><h2 id="ia">IA</h2>
+</section><section>
+<p>L'<strong>intelligence arificielle</strong> (IA) est une discipline  scientifique qui a vu officiellement le jour en 1956.</p>
+<p>Elle repose sur la conjecture selon laquelle toutes les fonctions cognitives, en particulier l&rsquo;apprentissage, le raisonnement, le calcul,<br>la perception, la mémorisation, voire la découverte scientifique ou la créativité artistique, peuvent<br>être reproduites sur des ordinateurs.</p>
+</section><section>
+<p>L'<strong>apprentissage automatique</strong> (Machine Learning) est à l&rsquo;intersection de l&rsquo;IA et d&rsquo;un autre champ scientifique : la science des données (data science).</p>
+</section>
+
+<section data-noprocess data-shortcode-slide
+      data-background-image="/vennia.png"
+      data-background-size="70%"
+      data-background-transition="concave">
+  
+</section><section>
+<p>En pratique, il s&rsquo;agit de produire des réponses adaptées aux données fournies en entrée (identifier des motifs, des tendances, construire des modèles, faire des prédictions).</p>
+<p>L&rsquo;apprentissage automatique n&rsquo;est donc ni plus ni moins que du traitement de données visant à prédire des résultats en fonction<br>des données entrantes.</p>
+</section><section>
+<br>
+<div style=" position: relative;overflow: hidden;max-width: max(100%,900px);margin: auto; padding-bottom: min(100%,900px);"> 
+<iframe width="900" height="800" frameborder="0" scrolling="no" src="//plotly.com/~Chinasky/10.embed"></iframe>
+</div>
+</section>
+
+<section data-noprocess data-shortcode-slide
+      data-background-image="https://i.vas3k.ru/7w1.jpg"
+      data-background-size="60%"
+      data-background-transition="concave">
+  
+</section><section>
+
+
+<section data-shortcode-section>
+<h4 id="exemple-dapprentissage-supervisé-">Exemple d&rsquo;apprentissage supervisé :</h4>
+<h2 id="algorithme-des-kbrplus-proches-voisins">Algorithme des K<br>plus proches voisins</h2>
+</section><section>
+<p>KNN est un algorithme d’<strong>apprentissage supervisé</strong> cela signifie que l’algorithme nécessite<br>des données classifiées en amont qui vont lui servir à trouver la bonne étiquette pour<br>d’autres données non encore classifiées.</p>
+</section><section>
+<p>Suivant la nature de l’étiquette, KNN peut servir à :</p>
+<ul>
+<li>une classification des nouvelles données<br>si les étiquettes sont des catagories ;</li>
+<li>une régression si les étiquettes<br>sont des nombres.</li>
+</ul>
+</section><section>
+<p>KNN enregistre, dans un premier temps, tous les points de données étiquetées qui vont lui servir à l&rsquo;apprentissage (c&rsquo;est le training set).</p>
+<p>Puis, quand arrive un point de donnée non étiqueté, l&rsquo;algorithme calcule sa distance aux autres points et sélectionne les <strong>k</strong> plus proches.</p>
+<p>On a alors deux cas possibles :</p>
+</section><section>
+<ul>
+<li>
+<p>si les étiquettes sont des catégories, l&rsquo;algorithme calcule <strong>le mode</strong> des catégories des voisins sélectionnés (catégorie la plus représentée).</p>
+</li>
+<li>
+<p>si les étiquettes sont des nombres, l&rsquo;algorithme calcule <strong>la moyenne</strong> des étiquettes des voisins sélectionnés.</p>
+</li>
+</ul>
+</section><section>
+<p>Dans l&rsquo;animation suivante, on utilise KNN pour répondre à la question suivante :</p>
+<p>Quelle est la couleur du nouveau point ?</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-size="100%"
+      data-background-transition="concave"
+      data-background-video="/knnvid.mp4">
+</section><section>
+<p>L&rsquo;algorithme des <em>k</em> plus proches voisins<br>est <strong>non paramétrique</strong>.</p>
+<p>Aucun modèle mathématique de classification ou régression n&rsquo;est construit à partir des données<br>(pas de paramètre à ajuster).</p>
+<p>Les données d&rsquo;apprentissage<br>sont enregistrées telles quelles.</p>
+</section><section>
+<p>Cela signifie qu&rsquo;on ne présuppose rien de particulier sur les données (à part que des points proches appartiennent à la même catégorie).</p>
+<p>L&rsquo;algorithme est donc particulièrement<br>robuste (les données parlent d&rsquo;elles-même)<br>et simple à mettre à jour (suffit d&rsquo;ajouter<br>les nouvelles données d&rsquo;apprentissage).</p>
+</section><section>
+<p>Le <strong>choix de k</strong> modifie le résultat obtenu.</p>
+<ul>
+<li>Si <em>k</em> est trop petit, le moyennage est faible et donc la variabilité va être très grande. On parle alors de surapprentissage (<strong>overfitting</strong>).</li>
+</ul>
+</section><section>
+<ul>
+<li>En augmentant <em>k</em>, les résultats obtenus se stabilisent (vote de la majorité) et les erreurs diminuent, jusqu&rsquo;au moment où la boule à l&rsquo;intérieur de laquelle se fait le moyennage devient trop grosse, amenant in fine l&rsquo;algorithme a choisir systématiquement la catégorie majoritaire, quel que soit le point&hellip; On augmente alors le <strong>biais</strong> (ici, le biais est le préjudice en faveur du plus grand nombre). L&rsquo;ajustement ne suit plus les variations, on parle de sous-apprentissage (<strong>underfitting</strong>).</li>
+</ul>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/tabloverfit.png"
+      data-background-size="90%"
+      data-background-transition="concave">
+</section><section>
+<p>Le choix de <em>k</em> est donc affaire de compromis. Pour le rendre plus scientifique, on peut chercher à mesurer la performance de l&rsquo;algorithme pour différentes valeurs de <em>k</em>.</p>
+<p>Mais comment mesure-t-on la <strong>performance d&rsquo;un algorithme d&rsquo;apprentissage automatique</strong> ?</p>
+</section><section>
+<p>La <strong>matrice de confusion</strong> permet d&rsquo;évaluer<br>la qualité des prédictions d&rsquo;un algorithme.</p>
+<p>Utilisons KNN sur une banque d&rsquo;images de chiffres écrits à la main et concentrons-nous sur<br>sa capacité à reconnaître des &ldquo;3&rdquo;.</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/MnistExamples.png"
+      data-background-size="70%"
+      data-background-transition="concave">
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/matconfus.png"
+      data-background-size="60%"
+      data-background-transition="concave">
+</section><section>
+<p>Un algorithme peut très bien être <strong>très précis</strong><br>(les prédictions positives sont bien des 3),<br>mais <strong>peu sensible</strong>, avec un faible taux de rappel (parmi tous les 3, peu ont été identifiés).</p>
+</section><section>
+<p>À l&rsquo;inverse, on peut avoir une <strong>bonne sensibilité</strong><br>(la plupart des vrais 3 ont été identifiés comme tel), mais <strong>peu précis</strong> (beaucoup de chiffres identifiés comme des 3 sont en fait d&rsquo;autres chiffres).</p>
+
+</section>
+</section><section>
+<p><a href="https://info-tsi-vieljeux.github.io/Semestre_3/tp13">Retour site</a></p>
+</section>
+
+  
+
+
+</div>
+      
+
+    </div>
+<script type="text/javascript" src=/reveal-hugo/object-assign.js></script>
+
+<a href="/reveal-js/css/print/" id="print-location" style="display: none;"></a>
+<script type="text/javascript">
+  var printLocationElement = document.getElementById('print-location');
+  var link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.type = 'text/css';
+  link.href = printLocationElement.href + (window.location.search.match(/print-pdf/gi) ? 'pdf.css' : 'paper.css');
+  document.getElementsByTagName('head')[0].appendChild(link);
+</script>
+
+<script type="application/json" id="reveal-hugo-site-params">{"highlight_theme":"github-dark","line-numbers":true,"theme":"sky","transition":"concave","transition_speed":"fast"}</script>
+<script type="application/json" id="reveal-hugo-page-params">{"highlight_theme":"atom-one-dark-reasonable"}</script>
+
+<script src="/reveal-js/js/reveal.js"></script>
+
+<script type="text/javascript">
+  
+  
+  function camelize(map) {
+    if (map) {
+      Object.keys(map).forEach(function(k) {
+        newK = k.replace(/(\_\w)/g, function(m) { return m[1].toUpperCase() });
+        if (newK != k) {
+          map[newK] = map[k];
+          delete map[k];
+        }
+      });
+    }
+    return map;
+  }
+  
+  var revealHugoDefaults = { center: true, controls: true, history: true, progress: true, transition: "slide" };
+  var revealHugoSiteParams = JSON.parse(document.getElementById('reveal-hugo-site-params').innerHTML);
+  var revealHugoPageParams = JSON.parse(document.getElementById('reveal-hugo-page-params').innerHTML);
+  
+  var options = Object.assign({},
+    camelize(revealHugoDefaults),
+    camelize(revealHugoSiteParams),
+    camelize(revealHugoPageParams));
+  Reveal.initialize(options);
+</script>
+
+
+  
+  
+  <script type="text/javascript" src="/reveal-js/plugin/markdown/marked.js"></script>
+  
+  <script type="text/javascript" src="/reveal-js/plugin/markdown/markdown.js"></script>
+  
+  <script type="text/javascript" src="/reveal-js/plugin/highlight/highlight.js"></script>
+  
+  <script type="text/javascript" src="/reveal-js/plugin/zoom-js/zoom.js"></script>
+  
+  
+  <script type="text/javascript" src="/reveal-js/plugin/notes/notes.js"></script>
+
+
+
+
+
+
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({startOnLoad: false});
+    let render = (event) => {
+      let mermaidElems = event.currentSlide.querySelectorAll('.mermaid');
+      if (!mermaidElems.length){
+          return
+      }
+      mermaidElems.forEach(mermaidElem => {
+          let processed = mermaidElem.getAttribute('data-processed');
+          if (!processed){
+              
+              mermaid.init(undefined, mermaidElem);
+          }
+      });
+    };
+    Reveal.addEventListener('slidechanged', render);
+    Reveal.addEventListener('ready', render);
+  </script>
+
+    
+
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']]
+  },
+  svg: {
+    fontCache: 'global'
+  }
+};
+</script>
+
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+</script>
+    
+  </body>
+</html>
