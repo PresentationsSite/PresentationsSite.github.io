@@ -59,10 +59,6 @@
   </url>
   
   <url>
-    <loc>http://PresentationsSite.github.io/info/ia/</loc>
-  </url>
-  
-  <url>
     <loc>http://PresentationsSite.github.io/1es/</loc>
   </url>
   
@@ -92,6 +88,10 @@
   
   <url>
     <loc>http://PresentationsSite.github.io/info/gauss/</loc>
+  </url>
+  
+  <url>
+    <loc>http://PresentationsSite.github.io/info/ia/</loc>
   </url>
   
   <url>
