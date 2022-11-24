@@ -63,31 +63,24 @@ $$p(t)=u(t)\times i(t)$$
 </div></div>
 </section><section>
 <p>La <strong>puissance électrique moyenne</strong><br>est la moyenne de la puissance instantanée<br>sur une période.</p>
+</section><section>
+<p>Mathématiquement, on l&rsquo;obtient<br>grâce à l&rsquo;intégrale suivante :</p>
 <div style="display: flex;justify-content: center;">
 <div style = "border:solid red 5px;width:min-content;padding: 0px 10px 0px 10px;">
 $$P=\frac{1}{T}\int_{t}^{t+T}\!\!\!\!\!p(t)dt$$
 </div></div>
 <p>Aire (algébrique) sous la courbe pendant<br>une période, divisée par la période.</p>
+</section><section>
+<p>Mais en pratique, le petit calcul suivant suffit :<br><br></p>
+<div style="display: flex;justify-content: center;">
+<div style = "border:solid red 5px;width:min-content;padding: 0px 10px 0px 10px;">
+$$\textcolor{Fuchsia}{P}=\frac{\textcolor{green}{p_{max}}+\textcolor{orange}{p_{min}}}{2}$$
+</div></div>
 </section>
 <section data-noprocess data-shortcode-slide
-      data-background-image="/puiss1.png"
-      data-background-size="50%"
-      data-background-transition="fade">
-</section>
-<section data-noprocess data-shortcode-slide
-      data-background-image="/puiss2.png"
-      data-background-size="50%"
-      data-background-transition="fade">
-</section>
-<section data-noprocess data-shortcode-slide
-      data-background-image="/puiss3.png"
-      data-background-size="50%"
-      data-background-transition="fade">
-</section>
-<section data-noprocess data-shortcode-slide
-      data-background-image="/puiss4.png"
-      data-background-size="50%"
-      data-background-transition="fade">
+      data-background-image="/pmoy.png"
+      data-background-size="70%"
+      data-background-transition="concave">
 
 </section>
 </section><section>
@@ -180,7 +173,8 @@ $$\color{red}{P}\color{black} = k\cdot \color{blue}{S}$$
 <section data-shortcode-section>
 <p>Les distributeurs d&rsquo;électricité facturent généralement la <strong>puissance active</strong> consommée<br>sur la base de la mesure réalisée<br>au point de fourniture.</p>
 </section><section>
-<p>Les pertes dans les lignes sont, elles, facturées globalement. Or celles-ci dépendent de l&rsquo;intensité apparente appelée par les consommateurs<br>(pertes par effet Joule).</p>
+<p>Par contre, les pertes dans les lignes (pertes par <strong>effet Joule</strong> dues à l&rsquo;intensité qui y circule)<br>sont facturées globalement.</p>
+<p>Or celles-ci dépendent de la <strong>puissance apparente</strong> appelée par les consommateurs.</p>
 </section><section>
 <div style="display: flex;justify-content: center;">
 <div style = "border:solid black 5px;width:max-content;padding: 10px 30px 15px 30px;">
@@ -196,7 +190,7 @@ est &hellip;</p>
 <p>Pourtant, la <strong>puissance apparente</strong> vaut &hellip; VA<br>
 Et il passe réellement 1A dans la ligne, ce qui implique des pertes par effet joule et oblige le distributeur à <strong>dimensionner son matériel</strong> (transformateurs, lignes, etc.) en conséquence.</p>
 </section><section>
-<p>Pour le consommateur, la puissance réactive ainsi « consommée » n&rsquo;est qu&rsquo;un échange de charges électriques entre le générateur et le dipôle, de puissance moyenne nulle sur la période.</p>
+<p>Pour le consommateur, la puissance active ainsi « consommée » n&rsquo;est qu&rsquo;un échange de charges électriques entre le générateur et le dipôle, de puissance moyenne nulle sur la période.</p>
 </section><section>
 <p>C&rsquo;est pourquoi, pour les gros consommateurs (installations raccordées à la haute tension),<br>la facturation ne tient pas uniquement compte<br>de la puissance active consommée.</p>
 
