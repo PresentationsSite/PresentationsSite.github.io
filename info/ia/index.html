@@ -128,6 +128,75 @@
 
 </section>
 </section><section>
+
+
+<section data-shortcode-section>
+<h4 id="exemple-dapprentissage-non-supervisé-">Exemple d&rsquo;apprentissage non-supervisé :</h4>
+<h2 id="algorithme-desbrk-moyennes">Algorithme des<br>K-moyennes</h2>
+</section><section>
+<p>L&rsquo;algorithme des k-moyennes regroupe<br>en catégories des données<br><em>dont on ne connaît rien a priori</em>.</p>
+<br>
+<p>C&rsquo;est un algorithme<br>de <strong>partitionnement</strong><br>des données (clustering).</p>
+</section><section>
+<p>L&rsquo;algorithme depend d&rsquo;un seul paramètre<br>(en plus des données) :<br>le nombre de partitions <em>k</em>.</p>
+</section><section>
+<ul>
+<li>
+<p>On commence par choisir <em>k</em> points au hasard dans l&rsquo;espace des données (il peut s&rsquo;agir de <em>k</em> points de données ou de <em>k</em> autres points). Ce sont les <em>k</em> centres (ou centroïdes).</p>
+</li>
+<li>
+<p>On attribue ensuite à chaque centre tous les points de données qui lui sont le plus proches, formant ainsi <em>k</em> groupes.</p>
+</li>
+<li>
+<p>Enfin, on déplace chaque centre au barycentre de son groupe.</p>
+</li>
+</ul>
+</section><section>
+<p>On répète les deux dernières opérations (attribution des points les plus près<br>et déplacement des centres)<br>tant que les centres bougent<br>d&rsquo;une itération à l&rsquo;autre.</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-size="100%"
+      data-background-transition="concave"
+      data-background-video="/vidkmean.mp4">
+</section><section>
+<p>L&rsquo;algorithme vise à résoudre au final un problème d&rsquo;optimisation ; son but est en effet de trouver le minimum de la distance entre les points à l&rsquo;intérieur de chaque partition.</p>
+</section><section>
+<p>Mathématiquement, étant donné un ensemble<br>de points $(x_1,x_2,\ldots,x_n)$, on cherche à partitionner les $n$ points en $k$ ensembles $S=\{S_1,S_2,\ldots,S_k\}$ en minimisant la grandeur
+$$I = \sum_{i=1}^{k}\sum_{x_j \in S_i}||x_i-\mu_i||^2$$
+où $\mu_i$ est le barycentre des points dans $S_i$.</p>
+<p>$I$ est la variance intra-classe ou <strong>inertie</strong> intra-classe (terme surtout utilisé en anglais).</p>
+</section><section>
+<h3 id="choix-de-k">Choix de k</h3>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/choixdek.png"
+      data-background-size="100%"
+      data-background-transition="concave">
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/inertiefctk3.png"
+      data-background-size="80%"
+      data-background-transition="concave">
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/inertiefctk5.png"
+      data-background-size="100%"
+      data-background-transition="concave">
+</section><section>
+<h3 id="choix-de-k-1">Choix de k</h3>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/localglobal.png"
+      data-background-size="60%"
+      data-background-transition="concave">
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/subopti.png"
+      data-background-size="26%"
+      data-background-transition="concave">
+
+</section>
+</section><section>
 <p><a href="https://info-tsi-vieljeux.github.io/semestre_3/tp13/">Retour site</a></p>
 </section>
 
