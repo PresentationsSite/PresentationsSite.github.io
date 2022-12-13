@@ -201,8 +201,7 @@ où $\mu_i$ est le barycentre des points dans $S_i$.</p>
 
 <section data-shortcode-section>
 <h2 id="jeux-daccessibilitébrsur-un-graphe">Jeux d&rsquo;accessibilité<br>sur un graphe</h2>
-</section><section>
-<p>On quitte l&rsquo;apprentissage automatique pour revenir dans le champ plus général de l&rsquo;IA.</p>
+<p>On quitte l&rsquo;apprentissage automatique<br>mais on reste dans le champ de l&rsquo;IA.</p>
 </section><section>
 <p><u>Vocabulaire</u></p>
 <p>On entendra ici par jeu :</p>
@@ -213,7 +212,7 @@ où $\mu_i$ est le barycentre des points dans $S_i$.</p>
 <li><strong>non randomisés</strong> (pas de hasard)</li>
 </ul>
 </section><section>
-<p>L'<strong>arène</strong> dans laquelle le jeu prend place est un <strong>graphe orienté biparti</strong>.</p>
+<p>L'<strong>arène</strong> dans laquelle le jeu prend place<br>est un <strong>graphe orienté biparti</strong>.</p>
 <div style="color:gray;text-align:left">
 Un graphe biparti (ou bipartite) $G$ est un graphe dont l'ensemble des sommets peut être divisé en deux sous-ensembles de sommets disjoints $S_1$ et $S_2$ ($S_1$ et $S_2$ sont une partition de $S$&nbsp;: $S_1\cup S_2=S$, $S_1\cap S_2=\varnothing$) tels que chaque arête de $G$ a une extrémité dans $S_1$ et l'autre dans $S_2$.
 </div>
@@ -244,7 +243,7 @@ Un graphe biparti (ou bipartite) $G$ est un graphe dont l'ensemble des sommets p
       data-background-transition="concave">
 </section><section>
 <p><strong>Autre variante du jeu de Nim :</strong></p>
-<p>Eve joue en premier et peut retirer autant d’allumettes qu’elle le souhaite dans un tas du moment qu’elle en prend au moins une et qu’elle en laisse au moins une.</p>
+<p>Eve joue en premier et peut retirer autant d’allumettes qu’elle le souhaite dans un tas<br>du moment qu’elle en prend au moins une<br>et qu’elle en laisse au moins une.</p>
 </section><section>
 <p>C’est ensuite au tour d’Adam de retirer des allumettes avec pour tous les tours qui suivent<br>une contrainte supplémentaire :</p>
 <p>on ne peut pas retirer plus de deux fois le nombre d’allumettes prises par son adversaire<br>au tour précédent.</p>
@@ -346,7 +345,7 @@ En effet, Adam ne peut alors pas éviter de mettre Eve dans une position gagnant
       data-background-size="70%"
       data-background-transition="concave">
 </section><section>
-<p>Sur l&rsquo;exemple du morpion, l&rsquo;attracteur contient 13 sommets dont celui de départ 🥳.</p>
+<p>Sur l&rsquo;exemple du morpion, l&rsquo;attracteur contient<br>13 sommets dont celui de départ 🥳.</p>
 </section>
 <section data-noprocess data-shortcode-slide
       data-background-size="100%"
@@ -389,7 +388,9 @@ def propage(sommet,Joueur1,Attr,Pred,n) :
 <p>Un joueur sur une position $s$ suit une stratégie s&rsquo;il emprunte le chemin $&lt;s,\sigma(s),\sigma^2(s),\ldots&gt;$.</p>
 <p>Elle est dite <strong>sans mémoire</strong> car pour une position donnée, la stratégie est indépendante du chemin qui y a mené ($\sigma$ ne dépend que du sommet).</p>
 </section><section>
-<p>Une <strong>stratégie sans mémoire gagnante</strong> depuis une position donnée garantit la victoire au joueur en un nombre de coups limité. Pour le joueur 1, une stratégie gagnante garantit d&rsquo;arriver sur un sommet de $F$. Mais suivant la position de départ, une telle stratégie n&rsquo;existe pas forcément&hellip;</p>
+<p>Une <strong>stratégie sans mémoire gagnante</strong> depuis une position donnée garantit la victoire au joueur en un nombre de coups limité.</p>
+<p>Pour le joueur 1, une stratégie gagnante garantit d&rsquo;arriver sur un sommet de $F$.</p>
+<p>Mais suivant la position de départ, une telle stratégie n&rsquo;existe pas forcément&hellip;</p>
 </section><section>
 <p>En construisant l&rsquo;attracteur,<br>on répond à notre première question :</p>
 <p>La <strong>position</strong> d&rsquo;Eve est-elle <strong>gagnante</strong> ?<br>$\rightarrow$ Il suffit de vérifier qu&rsquo;elle<br><strong>appartient à l&rsquo;attracteur</strong>.</p>
@@ -406,7 +407,7 @@ def propage(sommet,Joueur1,Attr,Pred,n) :
 </section><section>
 <ul>
 <li>
-<p>Pour la variante de Nim, c&rsquo;est foutu ! Quelle sue soit notre stratégie, elle sera perdante&hellip;</p>
+<p>Pour la variante de Nim, c&rsquo;est foutu ! Quelle que soit notre stratégie, elle sera perdante&hellip;</p>
 </li>
 <li>
 <p>Enfin, pour le morpion, la victoire tend les bras au joueur 1. Et, sans surprise, son premier mouvement doit être de prendre<br>le milieu.</p>
