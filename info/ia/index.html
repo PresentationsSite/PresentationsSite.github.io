@@ -197,6 +197,224 @@ où $\mu_i$ est le barycentre des points dans $S_i$.</p>
 
 </section>
 </section><section>
+
+
+<section data-shortcode-section>
+<h2 id="jeux-daccessibilitébrsur-un-graphe">Jeux d&rsquo;accessibilité<br>sur un graphe</h2>
+</section><section>
+<p>On quitte l&rsquo;apprentissage automatique pour revenir dans le champ plus général de l&rsquo;IA.</p>
+</section><section>
+<p><u>Vocabulaire</u></p>
+<p>On entendra ici par jeu :</p>
+<ul>
+<li>des jeux à deux joueurs<br>($J_1$ et $J_2$ ou Eve et Adam)</li>
+<li>à <strong>information complète</strong> : les deux joueurs savent tout (pas comme aux cartes)</li>
+<li><strong>alternés</strong> (pas comme à chifoumi)</li>
+<li><strong>non randomisés</strong> (pas de hasard)</li>
+</ul>
+</section><section>
+<p>L'<strong>arène</strong> dans laquelle le jeu prend place est un <strong>graphe orienté biparti</strong>.</p>
+<div style="color:gray;text-align:left">
+Un graphe biparti (ou bipartite) $G$ est un graphe dont l'ensemble des sommets peut être divisé en deux sous-ensembles de sommets disjoints $S_1$ et $S_2$ ($S_1$ et $S_2$ sont une partition de $S$&nbsp;: $S_1\cup S_2=S$, $S_1\cap S_2=\varnothing$) tels que chaque arête de $G$ a une extrémité dans $S_1$ et l'autre dans $S_2$.
+</div>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/animbipar.gif"
+      data-background-size="100%"
+      data-background-transition="concave">
+</section><section>
+<p>Deux joueurs, $J_1$ et $J_2$, s&rsquo;affrontent sur un graphe orienté biparti $G=(S,A)$ où $S$ est constitué des sommets contrôlés par le joueur 1, $S_1$, et de ceux contrôlés par le joueur 2, $S_2$. Chaque sommet est une position valide du jeu et chaque arête est un mouvement autorisé entre ces positions.</p>
+</section><section>
+<p>Dans le cas d&rsquo;un <strong>jeu d&rsquo;accessibilité</strong>, on attribue à chaque joueur un sous-ensemble de sommets correspondant à des états gagnants qu&rsquo;il doit atteindre pour&hellip; gagner.</p>
+<p>Il peut aussi exister un sous-ensemble de sommets correspondant à des états de partie nulle.</p>
+</section><section>
+<p>Un jeu d&rsquo;accessibilité est alors défini<br>par un quadruplet $(G,S_1,S_2,F)$</p>
+<p>où $(G,S_1,S_2)$ est une arène et $F$ est l&rsquo;ensemble des sommets gagnants pour $J_1$.</p>
+</section><section>
+<h3 id="exemples">Exemples</h3>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-size="100%"
+      data-background-transition="concave"
+      data-background-video="/chompintro.mp4">
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/arenechomp.png"
+      data-background-size="60%"
+      data-background-transition="concave">
+</section><section>
+<p><strong>Autre variante du jeu de Nim :</strong></p>
+<p>Eve joue en premier et peut retirer autant d’allumettes qu’elle le souhaite dans un tas du moment qu’elle en prend au moins une et qu’elle en laisse au moins une.</p>
+</section><section>
+<p>C’est ensuite au tour d’Adam de retirer des allumettes avec pour tous les tours qui suivent<br>une contrainte supplémentaire :</p>
+<p>on ne peut pas retirer plus de deux fois le nombre d’allumettes prises par son adversaire<br>au tour précédent.</p>
+</section><section>
+<p>Le joueur qui retire la dernière allumette gagne.<br>Il n’y a pas de match nul.</p>
+</section><section>
+<p>En commençant avec un tas de 5 allumettes,<br>on obtient l&rsquo;arène suivante</p>
+<p>où chaque sommet est étiqueté par le couple<br>(nombre d&rsquo;allumettes présentes,<br>nombre d&rsquo;allumettes prenables).</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/variantenim.png"
+      data-background-size="60%"
+      data-background-transition="concave">
+</section><section>
+<p>L&rsquo;arène s&rsquo;écrit donc :</p>
+<p>$$
+\begin{aligned}
+&amp;(G,\color{blue}\{(5,4,0),(3,2,0),(2,2,0),(1,1,0),(0,0,0)\}\color{black},\\<br>
+&amp;\color{magenta}\{(4,2,1),(3,3,1),(2,2,1),(1,1,1),(0,0,1)\}\color{black},\color{orange}(0,0,1)\color{black})
+\end{aligned}
+$$</p>
+</section><section>
+<p><u>Remarque</u></p>
+<p>Tout jeu impartial à deux joueurs est une variante du jeu de Nim (théorème de Sprague-Grundy).</p>
+</section><section>
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/2jahbr5wMHk" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+</section><section>
+<p>Un <strong>jeu impartial</strong> est un jeu tour par tour dans lequel les coups autorisés, ainsi que les gains obtenus, dépendent uniquement de la position,<br>et pas du joueur dont c&rsquo;est le tour.</p>
+<p>Un jeu qui n&rsquo;est pas impartial est appelé <strong>jeu partisan</strong> (le morpion ou les échecs par exemple).</p>
+</section><section>
+<p><strong>Le morpion :</strong></p>
+<p>On part ici d&rsquo;une partie avancée.</p>
+<p>Eve a les ronds et c&rsquo;est son tour.</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/graphetictac1.png"
+      data-background-size="60%"
+      data-background-transition="concave">
+</section><section>
+<h3 id="mise-au-point-dune-stratégie-gagnante-pour-eve">Mise au point d&rsquo;une stratégie gagnante pour Eve</h3>
+</section><section>
+<p>Il faut pouvoir s&rsquo;assurer qu&rsquo;Eve arrive sur $F$.</p>
+<p>Comment faire ?</p>
+</section><section>
+<p><strong>Positions gagnantes et attracteurs</strong></p>
+<p>Pour déterminer l&rsquo;ensemble des positions gagnantes pour Eve sur l&rsquo;arène, on travaille récursivement depuis les sommets de $F$<br>en suivant les deux préceptes suivants :</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/sommetgagnant1.png"
+      data-background-size="20%"
+      data-background-transition="concave">
+<ul>
+<li>un sommet d&rsquo;Eve est gagnant si <strong>un</strong> de ses arcs sortants le lie à un sommet gagnant.<br>
+Eve n&rsquo;a alors plus qu&rsquo;à emprunter ce chemin.<br></li>
+</ul>
+<p><br><br><br><br><br><br></p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/sommetgagnant2.png"
+      data-background-size="20%"
+      data-background-transition="concave">
+<ul>
+<li>un sommet d&rsquo;Adam est gagnant (pour Eve)<br>si <strong>tous</strong> ses arcs sortants le lie à un sommet gagnant.<br>
+En effet, Adam ne peut alors pas éviter de mettre Eve dans une position gagnante.</li>
+</ul>
+<p><br><br><br><br><br><br></p>
+</section><section>
+<p>Formalisons en définissant la suite $Attr_i(F)$<br>qui contient l&rsquo;ensemble des sommets<br>gagnants après $i$ étapes :</p>
+<p>$$ \begin{array}{lll} Attr_0(F) &amp;= &amp;F \\  Attr_{i+1}(F) &amp;= &amp;Attr_{i}(F) \\ &amp;&amp;\cup \{s \in S_1|Succ(s)\cap Attr_i(F) ≠ \varnothing \} \\ &amp;&amp;\cup \{s\in S_2| Succ(s)\subseteq Attr_i(F)\} \end{array} $$</p>
+</section><section>
+<p>Étant donné que $Attr_i(F) \subseteq Attr_{i+1}(F) \subseteq S$, pour tout $i≥0$, si on suppose le graphe fini,<br>la suite est croissante et bornée<br>et donc stationnaire<br>(à partir d&rsquo;un certain $i=i_0$,<br>$Attr_i(F)$ est constante).</p>
+<p>Et si $|G|=n$, $i_0$ vaut au plus $n-1$.</p>
+</section><section>
+<p>On appelle <strong>attracteur</strong> de $F$ pour le joueur $J_1$<br> la limite de $Attr_i(F)$.</p>
+<p>On le note $Attr(F)$.</p>
+<p>Tout sommet dans l&rsquo;attracteur<br>est une <strong>position gagnante</strong> pour $J_1$.</p>
+</section><section>
+<p>Le complémentaire d&rsquo;un attracteur<br>est appelé <strong>piège</strong>.</p>
+</section><section>
+<p>Si le joueur 1 est sur une position n&rsquo;appartenant pas à son attracteur (et appartenant<br>donc à son piège), cela signifie que :</p>
+<ul>
+<li>si c&rsquo;est son tour, tous les mouvements possibles restent dans le piège,</li>
+<li>si c&rsquo;est le tour de l&rsquo;adversaire, celui-ci a toujours au moins une possibilité de laisser le joueur 1 dans le piège.</li>
+</ul>
+<p>Cette position est donc perdante&hellip;</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-size="100%"
+      data-background-transition="concave"
+      data-background-video="/chompattract.mp4">
+</section><section>
+<p>Dans le cas de la variante de Nim, l&rsquo;attracteur se réduit à $Attr(G) = \{(0,0,1) , (1,1,0) , (2,2,0) \}$</p>
+<p>Le sommet de départ $(5,4,0)$ n&rsquo;est pas dedans $F$<br>$\Rightarrow$ c&rsquo;est perdu pour Eve 😭.</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/nimvarattr.png"
+      data-background-size="70%"
+      data-background-transition="concave">
+</section><section>
+<p>Sur l&rsquo;exemple du morpion, l&rsquo;attracteur contient 13 sommets dont celui de départ 🥳.</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-size="100%"
+      data-background-transition="concave"
+      data-background-video="/morpionattr.mp4">
+</section><section>
+<p><strong>Programme permettant de calculer l&rsquo;attracteur</strong></p>
+</section><section>
+<p>On peut écrire un programme récursif calculant l&rsquo;attracteur en temps linéaire en $|S | + |A|$ <br>(le parcours complet d&rsquo;un graphe est au mieux en $O(|S | + |A|)$ car cela correspond à parcourir<br>les $|S|$ sommets et les $|A|$ arêtes).</p>
+<p>Pour éviter de calculer plusieurs fois le même élément, l&rsquo;algorithme tient à jour, pour chaque sommet $s$, un compteur <code>n</code> des successeurs non encore inspectés (sous la forme d&rsquo;un dictionnaire) .</p>
+</section><section>
+<pre><code class="language-python">def attracteur(G: dict, F: list) -&gt; list:
+    &quot;&quot;&quot;
+    préconditions : G est est un graphe sous forme de liste d'adjacence implémentée par un dictionnaire
+                    F est la liste des sommets gagnants pour le joueur 1
+    postcondition : la fonction retourne l'attracteur de F pour le joueur 1 sous forme d'un dictionnaire
+                    dont les clés sont les sommets de G et les valeurs True ou False suivant que le sommet appartienne ou non à l'attracteur
+    &quot;&quot;&quot;
+    Pred = inverseGraphe(G)
+    n = {s:len(G[s]) for s in G}
+    Attr = {s:False for s in G}
+    for sommet in F :
+        Joueur1 = True
+        propage(sommet,Joueur1,Attr,Pred,n)
+    return Attr
+
+def propage(sommet,Joueur1,Attr,Pred,n) :
+    if Attr[sommet] :
+        return
+    Attr[sommet] = True
+    for s in Pred[sommet] :
+        n[s] -= 1
+        if Joueur1 or (n[s] == 0) :
+            propage(s,not Joueur1,Attr,Pred,n)
+</code></pre>
+</section><section>
+<h3 id="stratégie-sans-mémoire-gagnante">Stratégie sans mémoire gagnante</h3>
+</section><section>
+<p>Une <strong>stratégie sans mémoire</strong> est une fonction $\sigma$ qui assigne un mouvement autorisé à un joueur pour chaque position non terminale : $\forall s\in S, (s,\sigma(s))\in A.$</p>
+<p>Un joueur sur une position $s$ suit une stratégie s&rsquo;il emprunte le chemin $&lt;s,\sigma(s),\sigma^2(s),\ldots&gt;$.</p>
+<p>Elle est dite <strong>sans mémoire</strong> car pour une position donnée, la stratégie est indépendante du chemin qui y a mené ($\sigma$ ne dépend que du sommet).</p>
+</section><section>
+<p>Une <strong>stratégie sans mémoire gagnante</strong> depuis une position donnée garantit la victoire au joueur en un nombre de coups limité. Pour le joueur 1, une stratégie gagnante garantit d&rsquo;arriver sur un sommet de $F$. Mais suivant la position de départ, une telle stratégie n&rsquo;existe pas forcément&hellip;</p>
+</section><section>
+<p>En construisant l&rsquo;attracteur,<br>on répond à notre première question :</p>
+<p>La <strong>position</strong> d&rsquo;Eve est-elle <strong>gagnante</strong> ?<br>$\rightarrow$ Il suffit de vérifier qu&rsquo;elle<br><strong>appartient à l&rsquo;attracteur</strong>.</p>
+<p>Si c&rsquo;est le cas, une stratégie gagnante est facile à mettre en place ; il faut faire en sorte que chaque déplacement sur le graphe (chaque coup joué) se fasse vers un sommet de l&rsquo;attracteur. Chaque coup d&rsquo;Eve vers un sommet de l&rsquo;attracteur piège aussi le coup suivant d&rsquo;Adam dans l&rsquo;attracteur.</p>
+</section><section>
+<p>Comme son nom l&rsquo;indique, l&rsquo;attracteur attire irrémédiablement vers $F$,<br>assurant la victoire<br> au joueur 1.</p>
+</section><section>
+<p>Le joueur 2 aussi, bien sûr, a son attracteur,<br>et il appartient au complémentaire de l&rsquo;attracteur du joueur 1, piège du joueur 1.</p>
+<p>Donc un seul écart du joueur 1 en dehors de son attracteur, et s&rsquo;en est fini pour lui, le joueur 2 peut le condanner à rester dans le piège.</p>
+</section><section>
+<ul>
+<li>Pour Chomp, le joueur 1 appartient à l&rsquo;attracteur, ce qui signifie que sa position de départ est gagnante. Par conséquent, il a une stratégie gagnante. Mais attention à ne pas se tromper au début ! Sur 5 mouvements possibles, le seul assurant la victoire est de manger le carré en haut à droite.</li>
+</ul>
+</section><section>
+<ul>
+<li>
+<p>Pour la variante de Nim, c&rsquo;est foutu ! Quelle sue soit notre stratégie, elle sera perdante&hellip;</p>
+</li>
+<li>
+<p>Enfin, pour le morpion, la victoire tend les bras au joueur 1. Et, sans surprise, son premier mouvement doit être de prendre<br>le milieu.</p>
+</li>
+</ul>
+
+</section>
+</section><section>
 <p><a href="https://info-tsi-vieljeux.github.io/semestre_3/tp13/">Retour site</a></p>
 </section>
 
