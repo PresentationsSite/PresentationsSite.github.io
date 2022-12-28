@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>Signaux</title>
+
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="/reveal-js/css/reset.css">
+<link rel="stylesheet" href="/reveal-js/css/reveal.css"><link rel="stylesheet" href="/reveal-js/css/theme/sky.css" id="theme">
+<link rel="stylesheet" href="/highlight-js/github-dark.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  </head>
+  <body>
+    
+    <div class="reveal">
+      <div class="slides">
+  
+
+    <section><h2 id="décomposition-dun-signal-et-transmission">Décomposition d&rsquo;un signal et transmission</h2>
+</section><section>
+
+
+<section data-shortcode-section>
+<h3 id="spectre-damplitudebrdun-signal-périodique">Spectre d&rsquo;amplitude<br>d&rsquo;un signal périodique</h3>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/decomp.gif"
+      data-background-size="content"
+      data-background-transition="concave">
+</section><section>
+<p>Tout signal périodique (comme un son musical) peut se <strong>décomposer</strong> en une<br><strong>série de signaux sinusoïdaux</strong>.</p>
+<p><span class='fragment ' ><span style="font-weight:normal">En représentant l'</span>amplitude<span style="font-weight:normal"><br>de chacun de ces signaux sinusoïdaux</span><br>en fonction de leur fréquence<span style="font-weight:normal">, on obtient<br>le </span>spectre d’amplitude<span style="font-weight:normal"> du signal.</span></span></p>
+</section><section>
+<p>Exemple : <a href="https://www.compadre.org/osp/pwa/soundanalyzer/">https://www.compadre.org/osp/pwa/soundanalyzer/</a></p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/spectreweb.png"
+      data-background-size="content"
+      data-background-transition="concave">
+</section><section>
+<ul>
+<li>Que peut-on dire de la fréquence du premier pic du spectre de fréquence non nulle par rapport à la fréquence du signal ?<br></li>
+</ul>
+<p><br><br></p>
+<p><span class='fragment ' ><span style="font-weight:normal">Ce premier pic où $f&gt;0$<br>est appelé le </span>fondamental<span style="font-weight:normal">.</span></span></p>
+</section><section>
+<ul>
+<li>Que remarque-ton sur la fréquence des autres pics ?<br></li>
+</ul>
+<p><br><br></p>
+<p><span class='fragment ' ><span style="font-weight:normal">On  appelle ces autres pics<br>les </span>harmoniques<span style="font-weight:normal"> du signal.</span></span></p>
+</section><section>
+<p>Dans <a href="https://www.geogebra.org/m/s4jhpvt2">cet applet Geogebra</a>, on voit qu&rsquo;en plus<br>du <strong>fondamental</strong> et des <strong>harmoniques</strong>,<br>il peut y avoir une composante continue<br>(un signal continu ou &ldquo;offset&rdquo; qui décale le zéro).</p>
+</section><section>
+<p>Le <strong>rang</strong> d&rsquo;un harmonique correspond à son multiple de la fréquence.</p>
+<ul>
+<li>Le fondamental est ainsi aussi l&rsquo;harmonique de rang 1 car $f_1=1\times f$</li>
+<li>L&rsquo;harmonique de rang $n$ correspond à la fréquence $f_n=n\times f$</li>
+</ul>
+</section><section>
+<p><u>Remarque</u> :</p>
+<p>Il se peut très bien que l&rsquo;harmonique d&rsquo;un certain rang ait une amplitude nulle (pas de pic)<br>sans que cela empèche des harmoniques<br>de rang supérieur d&rsquo;exister.</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/spectramp.png"
+      data-background-size="90%"
+      data-background-transition="concave">
+</section><section>
+<p>Le spectre d&rsquo;amplitude est une recette donnant<br>les ingrédients élémentaires d&rsquo;un signal<br>et leurs proportions.</p>
+<ul>
+<li>les ingrédients élémentaires sont les sinusoïdes dont la fréquence est donnée<br>par la position horizontale des pics.</li>
+<li>leur proportion dans le mélange correspond<br>à la hauteur du pic.</li>
+</ul>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h3 id="transmission-dun-signal">Transmission d&rsquo;un signal</h3>
+</section><section>
+<p>Les canaux de transmission d&rsquo;un signal ne laisse généralement pas passer toutes les fréquences mais seulement celles comprises entre deux fréquences limites : $f_{min}$ et $f_{max}$.</p>
+<p><span class='fragment ' ><span style="font-weight:normal">On appelle l’intervalle $[f_{min},f_{max}]$<br>la </span><strong>bande passante</strong>.</span></p>
+</section><section>
+<p>Le spectre d&rsquo;amplitude du signal à transmettre nous permet de déterminer la bande passante dont on a besoin :</p>
+</section><section>
+<p>Si le plus haut rang d&rsquo;un harmonique significatif<br>du signal est $n$, alors la bande passante<br>du canal de transmission doit être :</p>
+<ul>
+<li>$[f,f_n]$ si le signal ne possède pas de composante continue</li>
+<li>et $[0,f_n]$ s&rsquo;il y a une composante continue.</li>
+</ul>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/exspectre.png"
+      data-background-size="90%"
+      data-background-transition="concave">
+<p>Exemple : quelle devra être la bande passante pour transmettre fidèlement le signal de fréquence 200 Hz dont le spectre est donné ci-dessous ?
+<br><br><br><br></p>
+</section><section>
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/w7y-1eY0mcE" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/freqcom.png"
+      data-background-size="100%"
+      data-background-transition="concave">
+<p><a href="/freqcom.pdf">Lien vers pdf de l&rsquo;ANFR</a>
+<br><br><br><br><br><br><br><br><br><br></p>
+
+</section>
+</section><section>
+<p><a href="https://coursphychi.github.io/tsti2d/signaux/">Retour site</a></p>
+</section>
+
+  
+
+
+</div>
+      
+
+    </div>
+<script type="text/javascript" src=/reveal-hugo/object-assign.js></script>
+
+<a href="/reveal-js/css/print/" id="print-location" style="display: none;"></a>
+<script type="text/javascript">
+  var printLocationElement = document.getElementById('print-location');
+  var link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.type = 'text/css';
+  link.href = printLocationElement.href + (window.location.search.match(/print-pdf/gi) ? 'pdf.css' : 'paper.css');
+  document.getElementsByTagName('head')[0].appendChild(link);
+</script>
+
+<script type="application/json" id="reveal-hugo-site-params">{"highlight_theme":"github-dark","line-numbers":true,"theme":"sky","transition":"concave","transition_speed":"fast"}</script>
+<script type="application/json" id="reveal-hugo-page-params">null</script>
+
+<script src="/reveal-js/js/reveal.js"></script>
+
+<script type="text/javascript">
+  
+  
+  function camelize(map) {
+    if (map) {
+      Object.keys(map).forEach(function(k) {
+        newK = k.replace(/(\_\w)/g, function(m) { return m[1].toUpperCase() });
+        if (newK != k) {
+          map[newK] = map[k];
+          delete map[k];
+        }
+      });
+    }
+    return map;
+  }
+  
+  var revealHugoDefaults = { center: true, controls: true, history: true, progress: true, transition: "slide" };
+  var revealHugoSiteParams = JSON.parse(document.getElementById('reveal-hugo-site-params').innerHTML);
+  var revealHugoPageParams = JSON.parse(document.getElementById('reveal-hugo-page-params').innerHTML);
+  
+  var options = Object.assign({},
+    camelize(revealHugoDefaults),
+    camelize(revealHugoSiteParams),
+    camelize(revealHugoPageParams));
+  Reveal.initialize(options);
+</script>
+
+
+  
+  
+  <script type="text/javascript" src="/reveal-js/plugin/markdown/marked.js"></script>
+  
+  <script type="text/javascript" src="/reveal-js/plugin/markdown/markdown.js"></script>
+  
+  <script type="text/javascript" src="/reveal-js/plugin/highlight/highlight.js"></script>
+  
+  <script type="text/javascript" src="/reveal-js/plugin/zoom-js/zoom.js"></script>
+  
+  
+  <script type="text/javascript" src="/reveal-js/plugin/notes/notes.js"></script>
+
+
+
+
+
+
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({startOnLoad: false});
+    let render = (event) => {
+      let mermaidElems = event.currentSlide.querySelectorAll('.mermaid');
+      if (!mermaidElems.length){
+          return
+      }
+      mermaidElems.forEach(mermaidElem => {
+          let processed = mermaidElem.getAttribute('data-processed');
+          if (!processed){
+              
+              mermaid.init(undefined, mermaidElem);
+          }
+      });
+    };
+    Reveal.addEventListener('slidechanged', render);
+    Reveal.addEventListener('ready', render);
+  </script>
+
+    
+
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']]
+  },
+  svg: {
+    fontCache: 'global'
+  }
+};
+</script>
+
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+</script>
+    
+  </body>
+</html>

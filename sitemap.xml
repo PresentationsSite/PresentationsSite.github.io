@@ -11,6 +11,10 @@
   </url>
   
   <url>
+    <loc>http://PresentationsSite.github.io/calculette/calc/</loc>
+  </url>
+  
+  <url>
     <loc>http://PresentationsSite.github.io/categories/</loc>
   </url>
   
@@ -67,6 +71,10 @@
   </url>
   
   <url>
+    <loc>http://PresentationsSite.github.io/calculette/</loc>
+  </url>
+  
+  <url>
     <loc>http://PresentationsSite.github.io/essai/</loc>
   </url>
   
@@ -95,6 +103,10 @@
   </url>
   
   <url>
+    <loc>http://PresentationsSite.github.io/tsti/incertitudes/</loc>
+  </url>
+  
+  <url>
     <loc>http://PresentationsSite.github.io/info/lagrange/</loc>
   </url>
   
@@ -115,6 +127,10 @@
   </url>
   
   <url>
+    <loc>http://PresentationsSite.github.io/info/oracle/</loc>
+  </url>
+  
+  <url>
     <loc>http://PresentationsSite.github.io/tsti/piles/</loc>
   </url>
   
@@ -124,6 +140,10 @@
   
   <url>
     <loc>http://PresentationsSite.github.io/1es/radioact/</loc>
+  </url>
+  
+  <url>
+    <loc>http://PresentationsSite.github.io/tsti/signaux/</loc>
   </url>
   
   <url>

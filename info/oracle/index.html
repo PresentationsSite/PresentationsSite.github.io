@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>Oracle</title>
+
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="/reveal-js/css/reset.css">
+<link rel="stylesheet" href="/reveal-js/css/reveal.css"><link rel="stylesheet" href="/reveal-js/css/theme/sky.css" id="theme">
+<link rel="stylesheet" href="/highlight-js/atom-one-dark-reasonable.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  </head>
+  <body>
+    
+    <div class="reveal">
+      <div class="slides">
+  
+
+    <section><h2 id="oracle">Oracle</h2>
+</section><section>
+  <style>
+  
+.align-stretch-grid {
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: 1fr 150px 150px 1fr;
+    grid-template-rows: 60px 150px;
+    align-items: stretch;
+}
+
+.predit {
+    background-color: #ffcc00;
+    border-radius: 25px;
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+}
+.tape {
+    background-color: #ffcc00;
+    border-radius: 25px;
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+
+#lettreA {
+		background-color: #FF8DC6;
+    border-radius: 50px;
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    font-size:50px;
+    font-weight:bold;
+    color: #CB297B;
+}
+
+#lettreZ {
+    background-color: #56C1FF;
+    border-radius: 50px;
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    font-size:50px;
+    font-weight:bold;
+    color: #0076BA;
+}
+
+.int {
+    border-radius: 50px;
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.int2 {
+    border-radius: 50px;
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+#lettreA:hover {
+  background-color: #EF5FA7;
+  color: white;
+}
+  
+#lettreZ:hover {
+  background-color: #00A2FF;
+  color: white;
+}
+
+</style>
+<p style="text-align:center">Taper ou toucher <span style="font-weight:bold">a</span> ou <span style="font-weight:bold">z</span>.<br>
+L'oracle va tenter de prédire votre prochaine lettre.<br>
+Il faut au moins 6 lettres pour le réveiller.
+</p>
+<div class="align-stretch-grid">
+   <div id="lettreA" style="grid-row:span 2;">a</div>
+   <div style="grid-column:2;" class="int2">Prédit :</div>
+   <div style="grid-column:3;" class="int2">Tapé :</div>
+   <div id="lettreZ" style="grid-row:span 2;">z</div>
+   <div class="predit" id="pred" style="grid-column:2;">
+      <div class="int" id=res1></div>
+   </div>
+   <div class="tape" id="tap" style="grid-column:3;">
+      <div class="int" id=res2></div>
+   </div>
+</div>
+<br>
+<div style="text-align:center">
+Pourcentage de bonnes prédictions :<br><br>
+<div style="font-weight:bold"><span id=res3>0</span> %
+</div>
+</div>
+<script>
+var Dico = {};
+for (let i = 0; i < 2**5; i++) { 
+  Dico[i]=[0,0]}
+
+
+function tradMot(mot) {
+	//console.log("mot :",mot)
+	var nb = 0;
+  for (let i = 0; i < 5; i++) {
+  if (mot[i] == "z"){
+  	nb += 2**(4-i)
+  }
+}
+return nb
+}
+
+
+var good = [];
+var tot = 0;
+var Ltap = [];
+var Lmot = 0;
+var predit;
+var pourcent = 0;
+var test = true;
+
+function principale(name,e1,e2,e3,e4,e5){
+	if (name === 'a') {
+    Ltap.push("a");
+  }
+  else if (name === 'z'){
+  	Ltap.push("z");
+  }
+  if (name == "a" || name == "z"){
+    if (Ltap.length >= 7){
+      dernb = tradMot(Ltap.slice(-7,-2));
+      if (Ltap[Ltap.length-2] === 'z'){
+        Dico[dernb][1] += 1;
+      }
+      else {
+        Dico[dernb][0] += 1 
+      }
+      var nvnb = tradMot(Ltap.slice(-6,-1));
+      if (Dico[nvnb][0] >= Dico[nvnb][1]){
+        predit = "a";
+      }
+      else {
+        predit = "z";
+      }
+      var reel = name;
+      if (reel == predit){
+        good.push(1);
+        test = true;
+      }
+      else {
+        good.push(0);
+        test = false;
+      }
+      tot += 1;
+      let sum = 0;
+      if (good.length > 100){
+        for (const nb of good.slice(-100,)) {
+          sum += nb;
+        }
+        pourcent = Math.round(sum);
+      }
+      else {
+        for (const nb of good) {
+          sum += nb;
+        }
+        pourcent = Math.round(sum/tot*100);
+      }
+      //console.log(reel,predit,pourcent,tot,good.length);
+      //console.log(Dico);
+      //console.log(Ltap);
+      e3.innerHTML = predit;
+      e1.style.backgroundColor = "#ffcc00";
+      e2.style.backgroundColor = "#ffcc00";
+      e4.innerHTML = "";
+      setTimeout(() => { e4.innerHTML = name; if (test == true){e1.style.backgroundColor = "#1DB100";e2.style.backgroundColor = "#1DB100";} else {e1.style.backgroundColor = "#FF644E";e2.style.backgroundColor = "#FF644E";}}, 300);
+      e5.innerHTML = pourcent;
+    }
+  }
+}
+
+const boitetape = document.getElementById("tap");
+const boitepredit = document.getElementById("pred");
+const el1 = document.getElementById("res1");
+const el2 = document.getElementById("res2");
+const el3 = document.getElementById("res3");
+const elA = document.getElementById('lettreA');
+const elZ = document.getElementById('lettreZ');
+
+
+document.addEventListener('keyup', (event) => {
+  var name = event.key;
+  principale(name,boitetape,boitepredit,el1,el2,el3);} , false);
+
+elA.addEventListener("click", (event) => {
+  principale("a",boitetape,boitepredit,el1,el2,el3);});
+  
+elA.addEventListener("touchend", (event) => {
+  principale("a",boitetape,boitepredit,el1,el2,el3);});
+  
+elZ.addEventListener("click", (event) => {
+  principale("z",boitetape,boitepredit,el1,el2,el3);});
+  
+elZ.addEventListener("touchend", (event) => {
+  principale("z",boitetape,boitepredit,el1,el2,el3);});
+</script>
+<br>
+</section><section>
+<p><a href="https://info-tsi-vieljeux.github.io/projets/">Retour site</a></p>
+</section>
+
+  
+
+
+</div>
+      
+
+    </div>
+<script type="text/javascript" src=/reveal-hugo/object-assign.js></script>
+
+<a href="/reveal-js/css/print/" id="print-location" style="display: none;"></a>
+<script type="text/javascript">
+  var printLocationElement = document.getElementById('print-location');
+  var link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.type = 'text/css';
+  link.href = printLocationElement.href + (window.location.search.match(/print-pdf/gi) ? 'pdf.css' : 'paper.css');
+  document.getElementsByTagName('head')[0].appendChild(link);
+</script>
+
+<script type="application/json" id="reveal-hugo-site-params">{"highlight_theme":"github-dark","line-numbers":true,"theme":"sky","transition":"concave","transition_speed":"fast"}</script>
+<script type="application/json" id="reveal-hugo-page-params">{"highlight_theme":"atom-one-dark-reasonable"}</script>
+
+<script src="/reveal-js/js/reveal.js"></script>
+
+<script type="text/javascript">
+  
+  
+  function camelize(map) {
+    if (map) {
+      Object.keys(map).forEach(function(k) {
+        newK = k.replace(/(\_\w)/g, function(m) { return m[1].toUpperCase() });
+        if (newK != k) {
+          map[newK] = map[k];
+          delete map[k];
+        }
+      });
+    }
+    return map;
+  }
+  
+  var revealHugoDefaults = { center: true, controls: true, history: true, progress: true, transition: "slide" };
+  var revealHugoSiteParams = JSON.parse(document.getElementById('reveal-hugo-site-params').innerHTML);
+  var revealHugoPageParams = JSON.parse(document.getElementById('reveal-hugo-page-params').innerHTML);
+  
+  var options = Object.assign({},
+    camelize(revealHugoDefaults),
+    camelize(revealHugoSiteParams),
+    camelize(revealHugoPageParams));
+  Reveal.initialize(options);
+</script>
+
+
+  
+  
+  <script type="text/javascript" src="/reveal-js/plugin/markdown/marked.js"></script>
+  
+  <script type="text/javascript" src="/reveal-js/plugin/markdown/markdown.js"></script>
+  
+  <script type="text/javascript" src="/reveal-js/plugin/highlight/highlight.js"></script>
+  
+  <script type="text/javascript" src="/reveal-js/plugin/zoom-js/zoom.js"></script>
+  
+  
+  <script type="text/javascript" src="/reveal-js/plugin/notes/notes.js"></script>
+
+
+
+
+
+
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({startOnLoad: false});
+    let render = (event) => {
+      let mermaidElems = event.currentSlide.querySelectorAll('.mermaid');
+      if (!mermaidElems.length){
+          return
+      }
+      mermaidElems.forEach(mermaidElem => {
+          let processed = mermaidElem.getAttribute('data-processed');
+          if (!processed){
+              
+              mermaid.init(undefined, mermaidElem);
+          }
+      });
+    };
+    Reveal.addEventListener('slidechanged', render);
+    Reveal.addEventListener('ready', render);
+  </script>
+
+    
+
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']]
+  },
+  svg: {
+    fontCache: 'global'
+  }
+};
+</script>
+
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+</script>
+    
+  </body>
+</html>
