@@ -36,17 +36,17 @@
     align-items: stretch;
 }
 
-.predit {
-    background-color: #ffcc00;
-    border-radius: 25px;
+.tape {
+    background-color: #888888;
+    border-radius: 75px;
     display: flex;
     height: 100%;
     align-items: center;
     justify-content: center;
 }
-.tape {
+.predit {
     background-color: #ffcc00;
-    border-radius: 25px;
+    border-radius: 75px;
     display: flex;
     height: 100%;
     align-items: center;
@@ -56,24 +56,24 @@
 
 #lettreA {
 		background-color: #FF8DC6;
-	border-radius: 50px;
+	border-radius: 90px;
 	display: flex;
 	height: 100%;
 	align-items: center;
 	justify-content: center;
-	font-size:50px;
+	font-size:80px;
 	font-weight:bold;
 	color: #CB297B;
 }
 
 #lettreZ {
     background-color: #56C1FF;
-    border-radius: 50px;
+    border-radius: 90px;
     display: flex;
     height: 100%;
     align-items: center;
     justify-content: center;
-    font-size:50px;
+    font-size:80px;
     font-weight:bold;
     color: #0076BA;
 }
@@ -84,6 +84,8 @@
     height: 100%;
     align-items: center;
     justify-content: center;
+    color:white;
+    font-weight:bold;
 }
 
 .int2 {
@@ -103,6 +105,12 @@
   background-color: #00A2FF;
   color: white;
 }
+  
+#final {
+	font-weight: bold;
+	font-size: 80px;
+	color: #dd2200;
+}
 
 </style>
 <p style="text-align:center">Taper ou toucher <span style="font-weight:bold">a</span> ou <span style="font-weight:bold">z</span>.<br>
@@ -111,21 +119,20 @@ Il faut au moins 6 lettres pour le réveiller.
 </p>
 <div class="align-stretch-grid">
    <div id="lettreA" style="grid-row:span 2;">a</div>
-   <div style="grid-column:2;" class="int2">Prédit :</div>
-   <div style="grid-column:3;" class="int2">Tapé :</div>
+   <div style="grid-column:2;" class="int2">Tapé :</div>
+   <div style="grid-column:3;" class="int2">Prédit :</div>
    <div id="lettreZ" style="grid-row:span 2;">z</div>
-   <div class="predit" id="pred" style="grid-column:2;">
+   <div class="tape" id="tap" style="grid-column:2;">
       <div class="int" id=res1></div>
    </div>
-   <div class="tape" id="tap" style="grid-column:3;">
+   <div class="predit" id="pred" style="grid-column:3;">
       <div class="int" id=res2></div>
    </div>
 </div>
 <br>
 <div style="text-align:center">
-Pourcentage de bonnes prédictions :<br><br>
-<div style="font-weight:bold"><span id=res3>0</span> %
-</div>
+Pourcentage de bonnes prédictions :<br>
+<div id="final"><span id=res3>0</span> %</div>
 </div>
 <script>
 var Dico = {};
@@ -161,6 +168,7 @@ function principale(name,e1,e2,e3,e4,e5){
   	Ltap.push("z");
   }
   if (name == "a" || name == "z"){
+  	e3.innerHTML = name;
     if (Ltap.length >= 7){
       dernb = tradMot(Ltap.slice(-7,-2));
       if (Ltap[Ltap.length-2] === 'z'){
@@ -202,11 +210,10 @@ function principale(name,e1,e2,e3,e4,e5){
       //console.log(reel,predit,pourcent,tot,good.length);
       //console.log(Dico);
       //console.log(Ltap);
-      e3.innerHTML = predit;
-      e1.style.backgroundColor = "#ffcc00";
       e2.style.backgroundColor = "#ffcc00";
+      e1.style.backgroundColor = "#888888";
       e4.innerHTML = "";
-      setTimeout(() => { e4.innerHTML = name; if (test == true){e1.style.backgroundColor = "#1DB100";e2.style.backgroundColor = "#1DB100";} else {e1.style.backgroundColor = "#FF644E";e2.style.backgroundColor = "#FF644E";}}, 500);
+      setTimeout(() => { e4.innerHTML = predit; if (test == true){e2.style.backgroundColor = "#1DB100";} else {e2.style.backgroundColor = "#FF644E";}}, 300);
       e5.innerHTML = pourcent;
     }
   }
