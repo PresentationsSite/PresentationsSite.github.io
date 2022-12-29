@@ -21,7 +21,10 @@
       <div class="slides">
   
 
-    <section><h2 id="oracle-daaronson">Oracle d&rsquo;Aaronson</h2>
+    <section>
+
+<section data-shortcode-section>
+<h2 id="oracle-daaronson">Oracle d&rsquo;Aaronson</h2>
 </section><section>
   <style>
 
@@ -237,6 +240,107 @@ elZ.addEventListener("touchend", (event) => {
   principale("z",boitetape,boitepredit,el1,el2,el3);});
 </script>
 <br>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h2 id="autre-oracle">Autre oracle</h2>
+</section><section>
+<p>L&rsquo;oracle va tâcher de déterminer si les chiffres que vous allez transmettre ont été générés par<br>un humain ou par une machine.</p>
+<style>
+  .btn {
+    text-decoration: none;
+    border: none;
+    padding: 12px 40px;
+    font-size: 16px;
+    background-color: green;
+    color: #fff;
+    border-radius: 5px;
+    box-shadow: 7px 6px 28px 1px rgba(0, 0, 0, 0.24);
+    cursor: pointer;
+    outline: none;
+    transition: 0.2s all;
+  }
+  /* Adding transformation when the button is active */
+
+  .btn:active {
+    transform: scale(0.98);
+    /* Scaling button to 0.98 to its original size */
+    box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24);
+    /* Lowering the shadow */
+  }
+</style>
+<div style="text-align:center;">
+<textarea id="champ" rows="7" cols="50" style="font-size:20px">
+Entrer une série d'au moins 200 "1" et "0".
+</textarea>
+</div>
+<div style="text-align:center;">
+<button class="btn" onclick="verdict()">Verdict</button>
+</div>
+<p id="err" style="text-align:center"></p>
+<p id="res" style="text-align:center;font-size:50px;font-weight:bold;"></p>
+<br>
+<br>
+<script>
+function verdict() {
+    var serie = document.getElementById("champ").value;
+    var test = false;
+    const n = serie.length;
+    const el1 = document.getElementById("err");
+    const el2 = document.getElementById("res");
+    for (let i=0; i<n; i++){
+    	if (serie[i] !== "1" & serie[i] !== "0"){
+    	  el2.innerHTML = ""
+      	console.log(serie[i])
+      	el1.innerHTML = "Il n'y a pas que des 1 et des 0 sans espace";
+        test = true;
+        return false;
+        }
+       }
+    
+    if (n < 200) {
+    	el2.innerHTML = ""
+    	var manque = 200-n;
+    	el1.innerHTML = "L'oracle a besoin d'au moins " + manque + " chiffres de plus...";
+    	}
+    else {
+    	 el1.innerHTML = "";
+     	 var lmax = 0;
+       for (let i=0; i<n; i++) {
+       let j = i+1;
+       let l = 0;
+			 while (j < n){
+        	if (serie[j] != serie[i]){
+          	break;
+          }
+          j += 1;
+        }
+       l = j-i;
+       if (lmax < l){
+       	lmax = l;
+       }
+      }
+      let s = 0;
+      for (let i=0; i<n; i++){
+      	s += parseInt(serie[i]);
+      }
+    if (lmax >= 7 & lmax < 20 & s > (n/2 - Math.sqrt(n/2*1/4)*3) & s < (n/2 + Math.sqrt(n/2*1/4)*3)){
+    	el2.innerHTML = "🤖 MACHINE 🤖"
+    }
+    else if (lmax > 20 | s < (n/2 - Math.sqrt(n/2*1/4)*3) | s > (n/2 + Math.sqrt(n/2*1/4)*3)){
+    	el2.innerHTML = "🧟‍♂️ ZOMBIE 🧟‍♂️";
+      }
+    else {
+    	el2.innerHTML = "🧠 HUMAIN 🧠";
+    }
+     }
+    } 
+</script>
+
+</section>
 </section><section>
 <p><a href="https://info-tsi-vieljeux.github.io/projets/oracle">Retour site</a></p>
 </section>
