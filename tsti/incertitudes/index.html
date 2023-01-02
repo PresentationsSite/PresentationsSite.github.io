@@ -23,6 +23,14 @@
 
     <section><h2 id="incertitudes">Incertitudes</h2>
 </section><section>
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/d8zjqaraO0k" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+</section><section>
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/KOvHirpl7vk" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+</section><section>
 
 
 <section data-shortcode-section>
@@ -33,72 +41,6 @@
 <li><a href="../../calculette/calc/#/0/2">numworks</a></li>
 <li><a href="../../calculette/calc/#/0/3">casio</a></li>
 </ul>
-</section><section>
-<p>Exemple : <a href="https://www.compadre.org/osp/pwa/soundanalyzer/">https://www.compadre.org/osp/pwa/soundanalyzer/</a></p>
-</section>
-<section data-noprocess data-shortcode-slide
-      data-background-image="/spectreweb.png"
-      data-background-size="content"
-      data-background-transition="concave">
-</section><section>
-<ul>
-<li>Que peut-on dire de la fréquence du premier pic du spectre de fréquence non nulle par rapport à la fréquence du signal ?<br></li>
-</ul>
-<p><br><br></p>
-<p><span class='fragment ' ><span style="font-weight:normal">Ce premier pic où $f&gt;0$<br>est appelé le </span>fondamental<span style="font-weight:normal">.</span></span></p>
-</section><section>
-<ul>
-<li>Que remarque-ton sur la fréquence des autres pics ?<br></li>
-</ul>
-<p><br><br></p>
-<p><span class='fragment ' ><span style="font-weight:normal">On  appelle ces autres pics<br>les </span>harmoniques<span style="font-weight:normal"> du signal.</span></span></p>
-</section><section>
-<p>Dans <a href="https://www.geogebra.org/m/s4jhpvt2">cet applet Geogebra</a>, on voit qu&rsquo;en plus<br>du <strong>fondamental</strong> et des <strong>harmoniques</strong>,<br>il peut y avoir une composante continue<br>(un signal continu ou &ldquo;offset&rdquo; qui décale le zéro).</p>
-</section><section>
-<p>Le <strong>rang</strong> d&rsquo;un harmonique correspond à son multiple de la fréquence.</p>
-<ul>
-<li>Le fondamental est ainsi aussi l&rsquo;harmonique de rang 1 car $f_1=1\times f$</li>
-<li>L&rsquo;harmonique de rang $n$ correspond à la fréquence $f_n=n\times f$</li>
-</ul>
-</section><section>
-<p><u>Remarque</u> :</p>
-<p>Il se peut très bien que l&rsquo;harmonique d&rsquo;un certain rang ait une amplitude nulle (pas de pic)<br>sans que cela empèche des harmoniques<br>de rang supérieur d&rsquo;exister.</p>
-</section>
-<section data-noprocess data-shortcode-slide
-      data-background-image="/spectramp.png"
-      data-background-size="90%"
-      data-background-transition="concave">
-</section><section>
-<p>Le spectre d&rsquo;amplitude est une recette donnant les ingrédients élémentaires qu&rsquo;il faut ajouter pour obtenir le signal et dans quelles proportions.</p>
-<ul>
-<li>les ingrédients élémentaires sont les sinusoïdes dont la fréquence est donnée<br>par la position horizontale des pics.</li>
-<li>leur proportion dans le mélange correspond<br>à la hauteur du pic.</li>
-</ul>
-
-</section>
-</section><section>
-
-
-<section data-shortcode-section>
-<h3 id="transmission-dun-signal">Transmission d&rsquo;un signal</h3>
-</section><section>
-<p>Les canaux de transmission d&rsquo;un signal ne laisse généralement pas passer toutes les fréquences mais seulement celles comprises entre deux fréquences limites : $f_{min}$ et $f_{max}$.</p>
-<p><span class='fragment ' ><span style="font-weight:normal">On appelle l’intervalle $[f_{min},f_{max}]$<br>la </span><strong>bande passante</strong>.</span></p>
-</section><section>
-<p>Le spectre d&rsquo;amplitude du signal à transmettre nous permet de déterminer la bande passante dont on a besoin :</p>
-</section><section>
-<p>Si le plus haut rang d&rsquo;un harmonique significatif<br>du signal est $n$, alors la bande passante<br>du canal de transmission doit être :</p>
-<ul>
-<li>$[f,f_n]$ si le signal ne possède pas de composante continue</li>
-<li>et $[0,f_n]$ s&rsquo;il y a une composante continue.</li>
-</ul>
-</section>
-<section data-noprocess data-shortcode-slide
-      data-background-image="/exspectre.png"
-      data-background-size="90%"
-      data-background-transition="concave">
-<p>Exemple : quelle devra être la bande passante pour transmettre fidèlement le signal de fréquence 200 Hz dont le spectre est donné ci-dessous ?
-<br><br><br><br></p>
 
 </section>
 </section><section>
