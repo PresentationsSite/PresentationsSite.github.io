@@ -21,7 +21,7 @@
       <div class="slides">
   
 
-    <section><h2 id="ia">IA</h2>
+    <section><h1 id="ia">IA</h1>
 </section><section>
 <p>L'<strong>intelligence arificielle</strong> (IA) est une discipline  scientifique qui a vu officiellement le jour en 1956.</p>
 <p>Elle repose sur la conjecture selon laquelle toutes les fonctions cognitives, en particulier l&rsquo;apprentissage, le raisonnement, le calcul,<br>la perception, la mémorisation, voire la découverte scientifique ou la créativité artistique, peuvent<br>être reproduites sur des ordinateurs.</p>
@@ -413,6 +413,83 @@ def propage(sommet,Joueur1,Attr,Pred,n) :
 <p>Enfin, pour le morpion, la victoire tend les bras au joueur 1. Et, sans surprise, son premier mouvement doit être de prendre<br>le milieu.</p>
 </li>
 </ul>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h2 id="algorithme-du-minimax">Algorithme du minimax</h2>
+</section><section>
+<p>Algorithme star pour les jeux. C&rsquo;est ce type d&rsquo;algorithme que Deep Blue a utilisé<br>pour battre  Kasaparov en 1997.</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/Kasparov.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+</section><section>
+<p>Le principe de l&rsquo;algo est proche de celui de l&rsquo;attracteur, mais il est plus souple et permet surtout de n&rsquo;explorer qu&rsquo;une petite partie de l&rsquo;arène (au détriment de sa performance).</p>
+</section><section>
+<p>Le plus grand changement par rapport au raisonnement sur l&rsquo;attracteur : on transforme<br>le graphe de l&rsquo;arêne en <strong>arbre</strong>.</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/morpionarbre.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+</section><section>
+<ul>
+<li>
+<p>Avantage ?</p>
+</li>
+<li>
+<p>Inconvénient ?</p>
+</li>
+</ul>
+</section><section>
+<p>Le but va être de trouver un chemin entre la racine de l&rsquo;arbre et une feuille gagnante (victoire finale).</p>
+</section><section>
+<p>L&rsquo;idée est, comme pour l&rsquo;attracteur,<br>de partir de la situation finale et de remonter récursivement tour par tour.</p>
+<p>On score chaque feuille terminale<br>avec une valeur de $+\infty$ si le joueur 1 gagne<br>et de $-\infty$ si c&rsquo;est le joueur 2.</p>
+</section><section>
+<p>On remonte ensuite niveau par niveau :</p>
+<ul>
+<li>si c&rsquo;est le tour du joueur 1, on choisi le sommet au plus grand score (<strong>max</strong>)</li>
+<li>si c&rsquo;est au joueur 2, on choisi le sommet au plus petit score (<strong>min</strong>)</li>
+</ul>
+<p>Chaque joueur simulé joue bien ainsi<br>de manière optimale.</p>
+</section><section>
+<p>L&rsquo;intérêt majeur de minimax est la possibilité<br>de partir de n&rsquo;importe quel niveau<br>et pas seulement des positions finales !</p>
+<p>On peut donce se contenter de  regarder<br>seulement quelques coups à l&rsquo;avance.</p>
+<br>
+<p><span class='fragment ' ><span style="font-weight:normal">Quel est l’intérêt ?</span></span></p>
+</section><section>
+<p>Mais pour se limiter à une certaine profondeur dans l&rsquo;arbre, il faut pouvoir scorer<br>les sommets du niveau de départ !</p>
+<br>
+<p>On utilise alors une <strong>heuristique</strong>.</p>
+</section><section>
+<div style="display: flex;justify-content: center;">
+<div style = "border:solid red 5px;padding: 20px 0px 30px 0px; font-size:40px">
+Une heuristique est une méthode de calcul qui fournit rapidement une solution réalisable,<br><span>pas nécessairement optimale ou exacte</span>,<br>pour un problème d’optimisation difficile.<br>
+Une heuristique est donc un compromis entre d’un côté l’optimalité (trouver la meilleure solution) et/ou la complétude (trouver toutes les solutions) de l’algorithme et de l’autre côté sa vitesse.
+</div></div>
+</section><section>
+<p>Exemples :</p>
+<p>Au morpion, si c&rsquo;est au tour du joueur 1, on peut compter le nombre de diagonales encore possibles pour le joueur 1 et soustraire le nombre de celles encore possibles pour le joueur 2.</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-size="100%"
+      data-background-transition="concave"
+      data-background-video="/gifmorp.mp4">
+</section><section>
+<iframe src="https://trinket.io/embed/python/5a7f499742?start=result" width="100%" height="600" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+</section><section>
+<p>L&rsquo;arbre total du morpion n&rsquo;est pas si gros :<br>le <strong>facteur de ramification</strong> $b$ est de 5 en moyenne et il y a au plus 9 niveaux (9 coups),<br>ce qui donne $\approx 5^9 = 1\,953\,125$</p>
+<p>Aux échecs, $b\approx35$ et un partie dure en moyenne 100 coups, ce qui donne $b^m\approx10^{54}$<br>sommets à inspecter&hellip;</p>
+</section><section>
+<p>Minimax inspecte en réalité environ 4 fois moins de sommets que les deux millions prédits (beaucoup de parties se terminent<br>avant le neuvième coup).</p>
+</section><section>
+<p>Il en inspecte néanmoins beaucoup trop puisqu&rsquo;il n&rsquo;y a que $9!=362\,880$ coups possibles<br>si l&rsquo;ordi commence.</p>
+<p>Cela illustre le fait qu&rsquo;un arbre contient beaucoup de sommets redondants par rapport au graphe<br>du jeu dont il est tiré (c&rsquo;est le prix à payer<br>pour casser les cycles).</p>
 
 </section>
 </section><section>
