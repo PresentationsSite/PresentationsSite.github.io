@@ -1,0 +1,421 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>Nim</title>
+
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="/reveal-js/css/reset.css">
+<link rel="stylesheet" href="/reveal-js/css/reveal.css"><link rel="stylesheet" href="/reveal-js/css/theme/sky.css" id="theme">
+<link rel="stylesheet" href="/highlight-js/atom-one-dark-reasonable.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  </head>
+  <body>
+    
+    <div class="reveal">
+      <div class="slides">
+  
+
+    <section><style>
+  button {
+    text-decoration: none;
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    background-color: #0076BA;
+    color: #fff;
+    border-radius: 5px;
+    box-shadow: 7px 6px 28px 1px rgba(0, 0, 0, 0.24);
+    cursor: pointer;
+    outline: none;
+    transition: 0.2s all;
+  }
+  /* Adding transformation when the button is active */
+
+.hum {
+background-color:#1DB100;
+}
+
+.mach {
+background-color:#D41876;
+}
+
+.jet {
+background-color:#F27200;
+}
+
+  button:active {
+    transform: scale(0.98);
+    /* Scaling button to 0.98 to its original size */
+    box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24);
+    /* Lowering the shadow */
+  }
+</style>
+<h2 id="jeu-de-nim-classique">Jeu de Nim classique</h2>
+</section><section>
+<p id="ligne1" style="text-align:center">
+</p>
+<p id="ligne2" style="text-align:center">
+</p>
+<p id="ligne3" style="text-align:center">
+</p>
+<p id="ligne4" style="text-align:center">
+</p>
+<p id="prompt">
+</p>
+<script>
+var lignes = ["ligne1","ligne2","ligne3","ligne4"];
+var plateau = [1,3,5,7];
+var numligne = -1;
+var Fini = false;
+const tourMach = '<button class="mach" onclick="fHIA()">Au tour de la machine</button>';
+const tourHum = '<button class="hum" onclick="fIAH()">À votre tour</button>';
+
+    
+function dessinePlateau(){
+    for (let i = 0; i < lignes.length; i++){
+        const el = document.getElementById(lignes[i]);
+        if (plateau[i] == 0){
+            el.innerHTML = "<br>";
+        }
+        else {
+            const chaine = "😀".repeat(plateau[i]);
+            el.innerHTML = chaine;
+        }
+    }
+}
+
+
+
+function somme(tab){
+    let S = 0;
+    for (let i = 0; i < tab.length; i++){
+        S += tab[i];
+    }
+    return S;
+}
+
+function uneSeuleLigne(tab){
+    let compt = 0;
+    let numLigne = -1;
+    for (let i = 0; i < tab.length; i++){
+        if (tab[i] != 0){
+            numLigne = i;
+            compt += 1;
+        }
+    }
+    if (compt > 1){
+        numLigne = -1;
+        return [false,numLigne];
+    }
+    else {
+        return [true,numLigne];
+    }
+}
+    
+dessinePlateau();
+const pr = document.getElementById("prompt");
+pr.innerHTML = 'Qui commence ?<br><button class="hum" id="moi" onclick="fmoi()">Moi</button>  <button class="mach" id="machine" onclick="fmachine()">Machine</button>';
+
+    
+function choixJeton(){
+    const pr = document.getElementById("prompt");
+    if (plateau[numligne] > 1){
+        pr.innerHTML = "Choisir un nombre de jetons :<br>";
+        for (let i = 0; i < plateau[numligne]; i++){
+            pr.innerHTML += '<button class="jet" onclick="fj'+i+'()">'+ (i+1) +'</button> ';
+        }
+    }
+    else {
+        plateau[numligne] = 0;
+        dessinePlateau();
+        victoire(plateau);
+        if (!Fini){
+            pr.innerHTML = tourMach;
+        }
+    }
+}    
+
+function victoire(tab){
+    if (somme(tab) == 0){
+    		const fin = document.getElementById("ligne2");
+        fin.innerHTML = "🍾 🥳 Vous avez gagné 🥳 🎉";
+        fin.style = "font-weight:bold;";
+        Fini = true;
+    }
+}    
+
+function f0(){
+    numligne = 0;
+    console.log(numligne);
+    choixJeton();
+}
+function f1(){
+    numligne = 1;
+    console.log(numligne);
+    choixJeton();
+}
+function f2(){
+    numligne = 2;
+    console.log(numligne);
+    choixJeton();
+}
+function f3(){
+    numligne = 3;
+    console.log(numligne);
+    choixJeton();
+}    
+
+function fj0(){
+    plateau[numligne] -= 1;
+    dessinePlateau();
+    victoire(plateau);
+    if (!Fini){
+        pr.innerHTML = tourMach;
+    }
+}
+function fj1(){
+    plateau[numligne] -= 2;
+    dessinePlateau();
+    pr.innerHTML = tourMach;
+}
+function fj2(){
+    plateau[numligne] -= 3;
+    dessinePlateau();
+    victoire(plateau);
+    if (!Fini){
+        pr.innerHTML = tourMach;
+    }
+}
+function fj3(){
+    plateau[numligne] -= 4;
+    dessinePlateau();
+    victoire(plateau);
+    if (!Fini){
+        pr.innerHTML = tourMach;
+    }
+}
+function fj4(){
+    plateau[numligne] -= 5;
+    dessinePlateau();
+    victoire(plateau);
+    if (!Fini){
+        pr.innerHTML = tourMach;
+    }
+}
+function fj5(){
+    plateau[numligne] -= 6;
+    dessinePlateau();
+    victoire(plateau);
+    if (!Fini){
+        pr.innerHTML = tourMach;
+    }
+}
+function fj6(){
+    plateau[numligne] -= 7;
+    dessinePlateau();
+    victoire(plateau);
+    if (!Fini){
+        pr.innerHTML = tourMach;
+    }
+}
+
+function tourHumain(){
+    const pr = document.getElementById("prompt");
+    pr.innerHTML = "Choisir une ligne :<br>";
+    for (let i = 0; i < 4; i++){
+        if (plateau[i] != 0){
+            pr.innerHTML += '<button onclick="f'+i+'()">'+ (i+1) +'</button> ';
+        }
+    }
+}
+ 
+function fIAH(){
+    tourHumain();
+}
+    
+function fHIA(){
+    tourIA();
+} 
+
+function tourIA(){
+    const pr = document.getElementById("prompt");
+    resLignes = uneSeuleLigne(plateau);
+    if (resLignes[0]){
+        numLigne = resLignes[1];
+        plateau[numLigne] = 0;
+        dessinePlateau();
+        pr.innerHTML = "L'IA a vidé le plateau.<br><br>";
+        const fin2 = document.getElementById("ligne2");
+        fin2.innerHTML = "Vous avez perdu...😭";
+        fin2.style = "font-weight:bold;";
+        Fini = true;
+        return;
+    }
+    console.log(plateau)
+    let nimSum = 0;
+    for (let i = 0; i < 4; i++){
+        nimSum = nimSum^plateau[i];
+    }
+    console.log(nimSum);
+    if (nimSum == 0){
+        let j = Math.floor(Math.random() * 4);
+        while (plateau[j] == 0){
+            j = Math.floor(Math.random() * 4)
+        }
+        let nbjetons = Math.max(1,Math.floor(Math.random() * plateau[j]));
+        plateau[j] -= nbjetons;
+        dessinePlateau();
+        pr.innerHTML = "L'IA a pris "+ nbjetons +" jeton(s) sur la ligne " +(j+1)+".<br>";
+    }
+    else {
+        let j = 0;
+        while ((plateau[j]^nimSum) > plateau[j]){
+            j += 1;
+        }
+        const old = plateau[j];
+        plateau[j] = plateau[j]^nimSum;
+        console.log(plateau)
+        dessinePlateau();
+        pr.innerHTML = "L'IA a pris "+ (old-plateau[j]) +" jeton(s) sur la ligne " +(j+1)+".<br>";
+    }
+    victoire(plateau);
+    if (!Fini){
+        pr.innerHTML += tourHum;
+    }
+}  
+
+function fmoi(){
+    const pr = document.getElementById("prompt");
+    pr.innerHTML = "Vous allez perdre...<br><br>";
+    tourHumain();
+}
+
+function fmachine(){
+    const pr = document.getElementById("prompt");
+    pr.innerHTML = "Vous pouvez encore gagner...<br><br>";
+    tourIA();
+}
+
+</script>
+</section><section>
+<p><a href="https://info-tsi-vieljeux.github.io/projets/nim">Retour site</a></p>
+</section>
+
+  
+
+
+</div>
+      
+
+    </div>
+<script type="text/javascript" src=/reveal-hugo/object-assign.js></script>
+
+<a href="/reveal-js/css/print/" id="print-location" style="display: none;"></a>
+<script type="text/javascript">
+  var printLocationElement = document.getElementById('print-location');
+  var link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.type = 'text/css';
+  link.href = printLocationElement.href + (window.location.search.match(/print-pdf/gi) ? 'pdf.css' : 'paper.css');
+  document.getElementsByTagName('head')[0].appendChild(link);
+</script>
+
+<script type="application/json" id="reveal-hugo-site-params">{"highlight_theme":"github-dark","line-numbers":true,"theme":"sky","transition":"concave","transition_speed":"fast"}</script>
+<script type="application/json" id="reveal-hugo-page-params">{"highlight_theme":"atom-one-dark-reasonable"}</script>
+
+<script src="/reveal-js/js/reveal.js"></script>
+
+<script type="text/javascript">
+  
+  
+  function camelize(map) {
+    if (map) {
+      Object.keys(map).forEach(function(k) {
+        newK = k.replace(/(\_\w)/g, function(m) { return m[1].toUpperCase() });
+        if (newK != k) {
+          map[newK] = map[k];
+          delete map[k];
+        }
+      });
+    }
+    return map;
+  }
+  
+  var revealHugoDefaults = { center: true, controls: true, history: true, progress: true, transition: "slide" };
+  var revealHugoSiteParams = JSON.parse(document.getElementById('reveal-hugo-site-params').innerHTML);
+  var revealHugoPageParams = JSON.parse(document.getElementById('reveal-hugo-page-params').innerHTML);
+  
+  var options = Object.assign({},
+    camelize(revealHugoDefaults),
+    camelize(revealHugoSiteParams),
+    camelize(revealHugoPageParams));
+  Reveal.initialize(options);
+</script>
+
+
+  
+  
+  <script type="text/javascript" src="/reveal-js/plugin/markdown/marked.js"></script>
+  
+  <script type="text/javascript" src="/reveal-js/plugin/markdown/markdown.js"></script>
+  
+  <script type="text/javascript" src="/reveal-js/plugin/highlight/highlight.js"></script>
+  
+  <script type="text/javascript" src="/reveal-js/plugin/zoom-js/zoom.js"></script>
+  
+  
+  <script type="text/javascript" src="/reveal-js/plugin/notes/notes.js"></script>
+
+
+
+
+
+
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({startOnLoad: false});
+    let render = (event) => {
+      let mermaidElems = event.currentSlide.querySelectorAll('.mermaid');
+      if (!mermaidElems.length){
+          return
+      }
+      mermaidElems.forEach(mermaidElem => {
+          let processed = mermaidElem.getAttribute('data-processed');
+          if (!processed){
+              
+              mermaid.init(undefined, mermaidElem);
+          }
+      });
+    };
+    Reveal.addEventListener('slidechanged', render);
+    Reveal.addEventListener('ready', render);
+  </script>
+
+    
+
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']]
+  },
+  svg: {
+    fontCache: 'global'
+  }
+};
+</script>
+
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+</script>
+    
+  </body>
+</html>
