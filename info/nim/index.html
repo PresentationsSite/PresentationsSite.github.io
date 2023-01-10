@@ -76,7 +76,7 @@ var Fini = false;
 const tourMach = '<button class="mach" onclick="fHIA()">Au tour de la machine</button>';
 const tourHum = '<button class="hum" onclick="fIAH()">À votre tour</button>';
 
-    
+
 function dessinePlateau(){
     for (let i = 0; i < lignes.length; i++){
         const el = document.getElementById(lignes[i]);
@@ -120,15 +120,18 @@ function uneSeuleLigne(tab){
     
 dessinePlateau();
 const pr = document.getElementById("prompt");
-pr.innerHTML = 'Qui commence ?<br><button class="hum" id="moi" onclick="fmoi()">Moi</button>  <button class="mach" id="machine" onclick="fmachine()">Machine</button>';
+pr.innerHTML = 'Qui commence ?<br><button class="hum" id="moi" onclick="fmoi()">Moi</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button class="mach" id="machine" onclick="fmachine()">Machine</button>';
 
-    
+
 function choixJeton(){
     const pr = document.getElementById("prompt");
     if (plateau[numligne] > 1){
         pr.innerHTML = "Choisir un nombre de jetons :<br>";
         for (let i = 0; i < plateau[numligne]; i++){
-            pr.innerHTML += '<button class="jet" onclick="fj'+i+'()">'+ (i+1) +'</button> ';
+            pr.innerHTML += '<button class="jet" onclick="fj'+i+'()">'+ (i+1) +'</button>';
+            if (i < plateau[numligne]-1){
+                pr.innerHTML += '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
+            }
         }
     }
     else {
@@ -228,13 +231,15 @@ function fj6(){
 function tourHumain(){
     const pr = document.getElementById("prompt");
     pr.innerHTML = "Choisir une ligne :<br>";
+    pr.innerHTML += '&nbsp;&nbsp;&nbsp;&nbsp;';
     for (let i = 0; i < 4; i++){
         if (plateau[i] != 0){
             pr.innerHTML += '<button onclick="f'+i+'()">'+ (i+1) +'</button> ';
+            pr.innerHTML += '&nbsp;&nbsp;&nbsp;&nbsp;';
         }
     }
 }
- 
+
 function fIAH(){
     tourHumain();
 }
