@@ -509,6 +509,112 @@ Une heuristique est donc un compromis entre d’un côté l’optimalité (trouv
 <p>Supposons que l&rsquo;on ait $n$ objets.</p>
 <p>Un algorithme force brute consiste<br>à étudier les &hellip; possibilités.</p>
 <p>Et dès qu&rsquo;il s&rsquo;agit d&rsquo;explorer un ensemble de combinaisons, la récursivité est l&rsquo;outil de choix.</p>
+</section><section>
+<p>Supposons que l&rsquo;on cherche à placer les objets suivants dans un sac de capacité 900.</p>
+<table>
+<thead>
+<tr>
+<th>objets</th>
+<th style="text-align:center">🥏</th>
+<th style="text-align:center">🎺</th>
+<th style="text-align:center">🥊</th>
+<th style="text-align:center">🧸</th>
+<th style="text-align:center">🪠</th>
+<th style="text-align:center">⏰</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>valeurs $v$</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">50</td>
+<td style="text-align:center">65</td>
+<td style="text-align:center">20</td>
+<td style="text-align:center">10</td>
+<td style="text-align:center">12</td>
+</tr>
+<tr>
+<td>poids $p$</td>
+<td style="text-align:center">320</td>
+<td style="text-align:center">700</td>
+<td style="text-align:center">845</td>
+<td style="text-align:center">180</td>
+<td style="text-align:center">70</td>
+<td style="text-align:center">420</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/arbresac.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+</section><section>
+<pre><code class="language-python">def KS(v,p,c,i,valeur,poids):
+    n = len(v)
+    if i == n: # cas de base (i = n-ième objet)
+        if poids &gt; c:
+            return 0
+        else:
+            return valeur
+    else:
+        valeurAvec = valeur + v[i]
+        poidsAvec = poids + p[i]
+        return max(KS(v,p,c,i+1,valeur,poids),KS(v,p,c,i+1,valeurAvec,poidsAvec))
+</code></pre>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/arbresacsol.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+</section><section>
+<p>C&rsquo;est bien sûr trop long si le nombre<br>d&rsquo;objets devient conséquent.</p>
+<p>Pour accélérer les choses, on peut se tourner vers une <strong>stratégie gloutonne</strong> (stratégie étape par étape où un critère de classement permet de sélectionner le prochain objet à ajouter).</p>
+<p>La complexité devient alors &hellip;</p>
+</section><section>
+<p>Le ratio valeur/poids de chaque objet<br>semble un bon critère.</p>
+<table>
+<thead>
+<tr>
+<th>objets</th>
+<th style="text-align:center">🥏</th>
+<th style="text-align:center">🎺</th>
+<th style="text-align:center">🥊</th>
+<th style="text-align:center">🧸</th>
+<th style="text-align:center">🪠</th>
+<th style="text-align:center">⏰</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ratio $v/p$</td>
+<td style="text-align:center">1/64</td>
+<td style="text-align:center">1/14</td>
+<td style="text-align:center">1/13</td>
+<td style="text-align:center">1/9</td>
+<td style="text-align:center">1/7</td>
+<td style="text-align:center">1/35</td>
+</tr>
+</tbody>
+</table>
+</section><section>
+<p>Problème : ça ne marche pas forcément&hellip;</p>
+<p>Ici, on se retrouve avec 🪠 et 🧸 dans le sac<br>pour une valeur de 30€ ce qui n&rsquo;est<br>évidemment pas optimal.</p>
+</section><section>
+<p>Une autre démarche consiste à construire l&rsquo;abre binaire comme pour l&rsquo;approche force brute mais en l&rsquo;élaguant au fur et à mesure quand des branches ne peuvent plus donner la solution.</p>
+<p>C&rsquo;est la méthode  “séparation et évaluation”<br>(branch and bond ou BB en anglais).</p>
+</section><section>
+<p>Ici, deux élagages possibles :</p>
+<ul>
+<li>lorsque tout objet ajouté dépasse la capacité, pas la peine d&rsquo;aller plus loin.</li>
+<li>et si la valeur maximale du sous-arbre est inférieure à la valeur trouvée par l&rsquo;approche gloutonne, pas la peine non plus d&rsquo;aller plus loin.</li>
+</ul>
+<p>On se sert donc ici de l&rsquo;approche gloutonne<br>comme d&rsquo;une &hellip;</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/arbresacbb.png"
+      data-background-size="contain"
+      data-background-transition="concave">
 
 </section>
 </section><section>
