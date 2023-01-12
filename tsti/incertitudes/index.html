@@ -34,6 +34,98 @@
 
 
 <section data-shortcode-section>
+<h2 id="expérience">Expérience</h2>
+</section><section>
+<style>
+#stop {
+text-decoration: none;
+border: none;
+padding: 20px 20px;
+font-size: 80px;
+font-weight: bold;
+background-color: #EE2200;
+color: #fff;
+border-radius: 20px;
+box-shadow: 7px 6px 28px 1px rgba(0, 0, 0, 0.24);
+cursor: pointer;
+outline: none;
+transition: 0.2s all;
+}
+
+#start {
+text-decoration: none;
+border: none;
+padding: 12px 20px;
+font-size: 30px;
+font-weight: bold;
+background-color: #0076BA;
+color: #fff;
+border-radius: 5px;
+box-shadow: 7px 6px 28px 1px rgba(0, 0, 0, 0.24);
+cursor: pointer;
+outline: none;
+transition: 0.2s all;
+}
+
+button:active {
+transform: scale(0.98);
+/* Scaling button to 0.98 to its original size */
+box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24);
+/* Lowering the shadow */
+}
+</style>
+<p id="prompt" style="text-align:center">
+</p>
+<p id="boutexp" style="text-align:center;font-weight:bold;color:red">
+</p>    
+<p id="redo" style="text-align:center">
+</p>    
+</body>
+</html>
+<script>
+var t0;
+var t1;
+const exp = document.getElementById("prompt");
+const mil = document.getElementById("boutexp");
+const rec = document.getElementById("redo");
+const bouton = '<br><button id="stop" onclick="fstop()">STOP</button>';
+const texte1= 'Après avoir appuyé sur le bouton <span style="color:#0076BA">START</span>,<br>cliquez sur le bouton rouge <span style="color:#EE2200">STOP</span><br>dès que vous le voyez.<br><br>';
+const boutonstart = '<button id="start" onclick="fstart()">START</button>';
+exp.innerHTML = texte1;
+exp.innerHTML += boutonstart;
+exp.innerHTML += "<br><br><br><br><br><br>";
+
+function affiche(){
+mil.innerHTML = bouton;
+t0 = new Date().getTime();
+}    
+
+function fstart(){
+console.log("yo")
+console.log(t0);
+mil.innerHTML = '';
+rec.innerHTML = '';
+exp.innerHTML = texte1;
+setTimeout(affiche, 2000+4000*Math.random());
+}
+
+function fstop(){
+console.log("fini");
+t1 = new Date().getTime();
+duree = (t1-t0)/1000;
+mil.innerHTML = duree+" s";
+rec.innerHTML = '<br> Cliquez sur <span style="color:#0076BA">START</span> pour recommencer.<br><br>';
+rec.innerHTML += boutonstart;
+}    
+
+
+</script>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
 <h3 id="moyenne-et-écart-type-expérimental-à-la-calculette">Moyenne et écart-type expérimental à la calculette</h3>
 </section><section>
 <ul>
