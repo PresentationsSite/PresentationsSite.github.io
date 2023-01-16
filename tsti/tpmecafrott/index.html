@@ -29,6 +29,9 @@
 <h3 id="forces-de-frottementbrentre-un-fluide-et-un-solide">Forces de frottement<br>entre un fluide et un solide</h3>
 </section><section>
 <p>On appelle aussi la force d&rsquo;un fluide sur un solide qui se déplace à travers lui une <strong>force de résistance aérodynamique</strong>.</p>
+</section><section>
+<h3 id="partie-a-">Partie A :</h3>
+<p>Chute d&rsquo;une goutte d&rsquo;eau colorée dans de l&rsquo;huile</p>
 </section>
 <section data-noprocess data-shortcode-slide
       data-background-size="contain"
@@ -36,14 +39,89 @@
       data-background-video="/huile.mp4"
       data-background-video-muted="true">
 </section><section>
-<p>Il s&rsquo;agit d&rsquo;une goutte d&rsquo;eau colorée dans de l&rsquo;huile. Les traits rouges sont tracés tous les 3 cm.</p>
-<br>
-<p>Déterminer la force de frottement<br>de l&rsquo;huile sur la goutte.</p>
+<p>Données :</p>
+<ul>
+<li>
+<p>Les traits rouges sont espacés de 3 cm.</p>
+</li>
+<li>
+<p>rayon de la goutte :  $r = \pu{2,0 mm}$</p>
+</li>
+<li>
+<p>masse volumique de l’eau colorée :  $\rho_{goutte} = \pu{1,0E3 kg*m-3}$</p>
+</li>
+<li>
+<p>masse volumique de l’huile :  $\rho_{huile} = \pu{9,0E2 kg*m-3}$</p>
+</li>
+<li>
+<p>pesanteur :  $g = \pu{9,8 m*s-2}$</p>
+</li>
+</ul>
 </section><section>
+<ol>
+<li>Que peut-on dire de l’évolution de la vitesse de la goutte au fur et à mesure de sa chute ?</li>
+</ol>
+</section><section>
+<p>La <strong>poussée d’Archimède</strong> est une force qui s’oppose au poids et dont la valeur est<br>donnée par la formule suivante :</p>
+<p>$$\pi_A = \rho_{fluide}\times V_{objet}\times g$$</p>
+<ol start="2">
+<li>
+<p>Faire le bilan des forces qui s’appliquent<br>sur la goutte pendant sa chute.</p>
+</li>
+<li>
+<p>Montrer que l’on peut ici négliger la poussée d’Archimède par rapport au poids de la goutte.</p>
+</li>
+</ol>
+</section><section>
+<ol start="4">
+<li>
+<p>Qu’est-ce que l’application du principe fondamental de la dynamique nous permet de conclure sur la force de frottement de l’huile<br>sur la bille.</p>
+</li>
+<li>
+<p>Déterminer numériquement cette force.</p>
+</li>
+</ol>
+</section><section>
+<h3 id="partie-b-">Partie B :</h3>
 <p>Quel danger représente une pièce de 5 centimes lâchée du haut de la Tour Eiffel ?</p>
 </section><section>
+<p>Pour répondre, on va déterminer comment la force de l&rsquo;air sur la pièce varie en fonction de sa masse<br>et de sa surface en extrapolant<br>l&rsquo;expérience du parachutiste.</p>
+</section><section>
+<p>Regardons d&rsquo;abord comment<br>la force de frottement de l&rsquo;air<br>dépend de la masse.</p>
+<br>
+<ol start="6">
+<li>Sur le graphe suivant, que peut-on dire<br>des forces qui s&rsquo;appliquent sur le parachutiste<br>avant qu&rsquo;il ouvre son parachute ?</li>
+</ol>
+</section><section>
 <div style="text-align:center">                           
-<iframe src="plot1.html" width="100%" height="500"></iframe>                                              </div>
+<iframe src="plot1.html" width="100%" height="500"></iframe>                                             </div>
+</section><section>
+<ol start="7">
+<li>
+<p>Tracer la valeur de $P$ en fonction de la vitesse limite $v_{lim}^2$ atteinte avant d&rsquo;ouvrir le parachute.</p>
+</li>
+<li>
+<p>En déduire la dépendance de la force<br>de frottement avec la vitesse.</p>
+</li>
+</ol>
+</section><section>
+<p>Dans le graphe suivant, on a fait varier<br>l&rsquo;aire du parachutiste sans changer<br>sa masse (fixée à 80 kg).</p>
+</section><section>
+<div style="text-align:center">                           
+<iframe src="plot2.html" width="100%" height="500"></iframe>                                             </div>
+</section><section>
+<ol start="9">
+<li>
+<p>Tracer l&rsquo;aire en fonction de l&rsquo;inverse de la vitesse limite au carré $1/v_{lim}^2$.</p>
+</li>
+<li>
+<p>Comme pour une même masse, la valeur de la force de frottement doit rester constante, déduire de la question précédente la dépendance de la force avec l&rsquo;aire.</p>
+</li>
+</ol>
+</section><section>
+<ol start="11">
+<li>En supposant pour simplifier que seule la masse et l&rsquo;aire interviennent dans les frottements (en réalité, la forme joue aussi mais moins), estimer la vitesse limite de la pièce de 5 cts.<br>Peut-elle tuer quelqu&rsquo;un ?</li>
+</ol>
 
 </section>
 </section><section>
@@ -51,7 +129,30 @@
 
 <section data-shortcode-section>
 <h3 id="forces-de-frottementbrentre-deux-solides">Forces de frottement<br>entre deux solides</h3>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/tgvdalle.png"
+      data-background-size="100%"
+      data-background-transition="concave">
 </section><section>
+<p>Un TGV de 400 tonnes lancé à 324 km/h<br>actionne son freinage d&rsquo;urgence.</p>
+<p>On suppose que la force de frottement<br>est constante pendant le freinage<br>et que l&rsquo;altitude est constante.</p>
+<p>Il faut 3,2 km pour que le TGV s&rsquo;immobilse !!</p>
+</section><section>
+<ol>
+<li>
+<p>Que dit le théorème de l&rsquo;énergie cinétique.</p>
+</li>
+<li>
+<p>Faire un bilan des forces.</p>
+</li>
+<li>
+<p>Quelles sont les forces qui travaillent ?</p>
+</li>
+<li>
+<p>Déterminer la valeur de la force $f$ de frottement solide des rails sur le train.</p>
+</li>
+</ol>
 
 </section>
 </section><section>
