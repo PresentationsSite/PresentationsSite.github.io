@@ -21,7 +21,254 @@
       <div class="slides">
   
 
-    <section><p>Que donnent ces deux codes ?</p>
+    <section><h2 id="éléments-de-correction-du-tp-13">Éléments de correction du TP 13</h2>
+</section><section>
+
+
+<section data-shortcode-section>
+<h3 id="k-voisins">k-voisins</h3>
+</section><section>
+<pre><code class="language-python">def KNN_interp(x: float, k: int, Pts: list) -&gt; float:
+    &quot;&quot;&quot;
+    préconditions : Pts est une liste de tuples contenant les coordonnées (x,y) des points d'entraînement
+    postcondition : la fonction retourne la moyenne des ordonnées des k points dont l'abscisse est la plus proche de x
+    &quot;&quot;&quot;
+    Nv_Pts = []
+    for pt in Pts :
+        Nv_Pts.append((abs(pt[0]-x),pt[1]))
+    y = 0
+    Nv_Pts.sort()
+    for pt in Nv_Pts[:k] :
+        y += pt[1]
+    y /= k
+    return y
+</code></pre>
+</section><section>
+<pre><code class="language-python">def dist(x: list, Pts: list) -&gt; list:
+    &quot;&quot;&quot;
+    préconditions : x contient les coordonnées d'un point
+                    Pts est une liste de tuples ou chaque tuple contient les coordonnées d'un point
+                    tous les points doivent avoir le même nombre de coordonnées
+    postcondition : la fonction doit retourner la liste des distances entre le points x et chacun des points de la liste Pts.
+    &quot;&quot;&quot;
+    n = len(x)
+    for pt in Pts :
+        assert n == len(pt), &quot;Les points n'ont pas tous le même nombre de coordonnées !&quot;
+    L = []
+    for pt in Pts :
+        d = 0
+        for i in range(n) :
+            d += (pt[i]-x[i])**2
+        d = d**0.5
+        L.append(d)
+    return L
+</code></pre>
+</section><section>
+<pre><code class="language-python">def lignetomatrice(liste64: list) -&gt; list:
+    &quot;&quot;&quot;
+    posctconditions : la liste retournée doit être de dimension 2 et de format 8*8
+    &quot;&quot;&quot;
+    mat = []
+    for j in range(64) :
+        if j%8 == 0 :
+            mat.append([])
+        mat[-1].append(liste64[j])
+    return mat
+</code></pre>
+</section><section>
+<pre><code class="language-python">def lignetomatrice(liste64: list) -&gt; list:
+    &quot;&quot;&quot;
+    posctconditions : la liste retournée doit être de dimension 2 et de format 8*8
+    &quot;&quot;&quot;
+    mat = []
+    for j in range(64) :
+        if j%8 == 0 :
+            mat.append([])
+        mat[-1].append(liste64[j])
+    return mat
+</code></pre>
+</section><section>
+<pre><code class="language-python">from scipy import stats
+
+def KNN_class(X: list, k: int, Appr: list, Etiq: list) -&gt; int:
+    &quot;&quot;&quot;
+    préconditions :  X est l'image dont on veut déterminer l'étiquette
+                     Appr est l'ensemble des données d'apprentissage, c'est une liste de listes,
+                     chacune de ces liste correspond à une image
+                     Etiq est une liste d'entiers correspondant aux étiquettes de chaque image.
+    postconditions : la fonction doit retourner l'étiquette la plus fréquente (mode) parmi les k images les plus proches
+    &quot;&quot;&quot;
+    ### BEGIN SOLUTION
+    L = dist(X,Appr)
+    LplusEtiq = []
+    for i in range(len(L)) :
+        LplusEtiq.append((L[i],Etiq[i]))
+    LplusEtiq.sort()
+    EtiqFin = []
+    for e in LplusEtiq[:k] :
+        EtiqFin.append(e[1])
+    return stats.mode(EtiqFin).mode[0]
+    # le module statistics a un mode plus simple, mais avant python 3.8, il lève une erreur si deux modes sont possibles
+    # Or Colab fonctionne encore avec python 3.7
+</code></pre>
+</section><section>
+<pre><code class="language-python"># VP : chiffres prédits comme 3 et qui sont des 3
+VP = M[3][3]
+# FP : chiffre qui sont prédits comme des 3 mais qui n'en sont pas
+FP = sum([M[i][3] for i in range(len(M)) if i != 3])
+# VN : chiffres prédits comme autre chose que des 3 et qui sont bien autre chose
+VN = sum([sum([M[i][j] for j in range(len(M)) if j != 3]) for i in range(len(M)) if i!= 3]) 
+# FN : chiffres qui sont prédits comme autre chose que des 3 mais qui en sont
+FN = sum([sum([M[i][j] for j in range(len(M)) if j != 3]) for i in range(len(M)) if i== 3])
+
+Mc3 = [[VP,FN],[FP,VN]]
+</code></pre>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h3 id="k-moyenne">k-moyenne</h3>
+</section><section>
+<pre><code class="language-python">def attribution(k: int, data: list, Dist: list) -&gt; list:
+    &quot;&quot;&quot;
+    préconditions :  Dist est une liste à deux dimensions contenant k sous-listes
+                     chaque sous-liste contient les distances de chaque point de data à un des centres
+                     Une sous-liste correspond à un centre
+    postconditions : la fonction doit retourner (sous forme de liste) le numéro de cluster (de 0 à k-1) associé à chaque point de data
+                     Si le premier point appartient au cluster 1, le deuxième au cluster 3, le troisème au cluster 0,
+                     la liste Clusters commencera ainsi [1,3,0,...]
+    &quot;&quot;&quot;
+    Cluster = []
+    n = len(data)
+    for m in range(n) :
+        imin = 0
+        mini = Dist[0][m]
+        for i in range(1,k) :
+            if Dist[i][m] &lt; mini :
+                mini = Dist[i][m]
+                imin = i
+        Cluster.append(imin)
+    return Cluster
+</code></pre>
+</section><section>
+<pre><code class="language-python">def deplacement(k: int, Clusters: list, Centres: list, data: list) -&gt; None:
+    &quot;&quot;&quot;
+    préconditions:   Clusters est une liste du numéro de cluster associé au point à la même position dans data
+                     Centres doit être mutable
+    postconditions : en sortie, les positions des centres sont mis à jour 
+                     et correspondent aux barycentres des points qui leur sont attribués
+    &quot;&quot;&quot;
+    dim = len(data[0])
+    DataCluster = []
+    n = len(data)
+    for i in range(k) :
+        DataCluster.append([])
+    for i in range(n) :
+        DataCluster[Clusters[i]].append(data[i])
+    for i in range(k) :
+        lcluster = len(DataCluster[i])
+        if lcluster != 0 :
+            for l in range(dim) :
+                moy = 0
+                for j in range(lcluster) :
+                    moy += DataCluster[i][j][l]
+                moy /= lcluster
+                Centres[i][l] = moy
+</code></pre>
+</section><section>
+<pre><code class="language-python">k = 8
+clusters,centres = kmoyennes(k,image_1D)
+for i in range(k) :
+    for j in range(3) :
+        centres[i][j] = int(centres[i][j])
+for i in range(len(image_1D)) :
+    image_1D[i] = centres[clusters[i]]
+image_2D_seg4 = []
+i1D = 0
+for i in range(64) :
+    image_2D_seg4.append([])
+    for j in range(64) :
+        image_2D_seg4[i].append(image_1D[i1D])
+        i1D += 1
+</code></pre>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h3 id="graphes">Graphes</h3>
+</section><section>
+<p>Test graphe biparti :</p>
+<p>revient à tester la présence de cycle impair :</p>
+<ul>
+<li>s&rsquo;il y en a au moins 1 $\rightarrow$ pas biparti</li>
+<li>sinon $\rightarrow$ biparti</li>
+</ul>
+</section><section>
+<p>Pourquoi ?</p>
+<p>(voir cours pour démo)</p>
+<p>Comment ?</p>
+<ul>
+<li>s&rsquo;il y a un cycle impair, il y a forcément un sommet ayant la même distance que son prédécesseur.</li>
+<li>sinon, cela n&rsquo;arrive pas.</li>
+</ul>
+</section><section>
+<pre><code class="language-python">from collections import deque
+
+def testBipartite(G,depart) :
+    &quot;&quot;&quot;
+    precondition :   le graphe G doit être non orienté
+    postconditions : le dictionnaire Vus dit si un sommet a été exploré ou non
+                     le dictionnaire Distance donne la distance de chaque sommet ajouté par rapport au sommet de départ
+                     la fonction retourne Vrai si on tombe sur un sommet déjà exploré 
+                     dont la distance au sommet de départ est la même que celle de son prédécesseur
+                     et Faux si aucun tel cas n'est rencontré.
+    &quot;&quot;&quot;
+    Vus = {s : False for s in G}
+    Distance = {s : 0 for s in G}
+    file = deque()
+    file.append(depart)
+    while file :
+        sommet = file.popleft()
+        if not Vus[sommet] :
+            Vus[sommet] = True
+            for s in G[sommet] :
+                if Vus[s] :
+                    if Distance[s] == Distance[sommet] :
+                        return False
+                Distance[s] = Distance[sommet] + 1
+                file.append(s)
+    return True
+</code></pre>
+</section><section>
+<pre><code class="language-python">def inverseGraphe(G: dict) -&gt; dict:
+    &quot;&quot;&quot;
+    précondition : G est la liste d'adjacence (sous forme de dictionnaire) d'un graphe orienté
+    &quot;&quot;&quot;
+    inv = {s:[] for s in G}
+    for pred in G :
+        for succ in G[pred] :
+            inv[succ].append(pred)
+    return inv
+</code></pre>
+
+</section>
+</section><section>
+<h3 id="les-jeux">Les jeux</h3>
+<p><a href="https://colab.research.google.com/drive/1d6AR2SMrN2tmnmd_1bdQCBkrcUK22bL2?usp=sharing">Notebook</a></p>
+</section><section>
+<h3 id="sac-à-dos">Sac-à-dos</h3>
+<p><a href="https://colab.research.google.com/drive/1tEKgcwUvv6mA_LXZS0S9iNB2a4bWVU_R?usp=sharing">Notebook</a></p>
+</section><section>
+
+
+<section data-shortcode-section>
+<h3 id="remarques">Remarques</h3>
+</section><section>
+<p>Que donnent ces deux codes ?</p>
 <pre><code class="language-python">L = [0 for i in range(5)]
 
 for i in range(len(L)):
@@ -35,9 +282,6 @@ while i &lt; len(L):
 	i += 1
 </code></pre>
 </section><section>
-
-
-<section data-shortcode-section>
 <p>Le bug Sébastien</p>
 <pre><code class="language-python">from random import shuffle
 def chambouletout():
@@ -65,16 +309,9 @@ Chi = chambouletout()[1]
       data-background-image="/bugseb.png"
       data-background-size="contain"
       data-background-transition="concave">
-
-</section>
 </section><section>
-
-
-<section data-shortcode-section>
 <p>Le pouvoir de la récursivité.</p>
 <p>Comme elle délègue les tâches aux appels récursifs, il n&rsquo;y a pas plus pratique pour explorer un ensemble de combinaisons (un arbre) ou pour construire le graphe d&rsquo;un jeu comme dans le TP.</p>
-</section><section>
-<p><a href="https://colab.research.google.com/drive/1d6AR2SMrN2tmnmd_1bdQCBkrcUK22bL2?usp=sharing">Exemple tiré du TP</a></p>
 </section>
 <section data-noprocess data-shortcode-slide
       data-background-image="/spiderman.png"
@@ -87,6 +324,9 @@ Mais un grand pouvoir implique<br>de grandes responsabilités.</p>
 
 </section>
 </section><section>
+<h3 id="dernier-petit-exercice">Dernier petit exercice</h3>
+<p>Construire une fonction <code>plusGrandeMoyenne</code>.</p>
+<p><a href="https://colab.research.google.com/drive/1qpvNPaLas0ECSvPVbfNAwzYzFbF4bLMD?usp=sharing">Lien vers notebook</a></p>
 </section>
 
   
