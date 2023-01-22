@@ -10,7 +10,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link rel="stylesheet" href="/reveal-js/css/reset.css">
 <link rel="stylesheet" href="/reveal-js/css/reveal.css"><link rel="stylesheet" href="/reveal-js/css/theme/sky.css" id="theme">
-<link rel="stylesheet" href="/highlight-js/github-dark.min.css">
+<link rel="stylesheet" href="/highlight-js/atom-one-dark-reasonable.min.css">
     <link rel="stylesheet" href="/css/styles.css">
 
 <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
@@ -51,6 +51,14 @@ $$p(t) = \frac{\mathrm{d}E}{\mathrm{d}t}$$
 </div></div>
 <p>La puissance instantanée est la <strong>dérivée</strong><br>par rapport au temps de l’énergie</p>
 </section><section>
+<p>C&rsquo;est donc aussi la limite lorsque $\Delta t$ tend vers 0<br>de la puissance moyenne $P=\frac{\Delta E}{\Delta t}$.</p>
+</section><section>
+<div style=" position: relative;overflow: hidden;max-width: 758px;margin: auto; padding-bottom: min(63.19%,479px);"> 
+<iframe scrolling="no" title="Puissance" src="https://www.geogebra.org/material/iframe/id/ny4d6hy2/width/758/height/479/border/888888/sfsb/true/smb/false/stb/false/stbh/false/ai/false/asb/false/sri/true/rc/false/ld/false/sdz/false/ctl/false" style="position: absolute;top: 0;left: 0;bottom: 0;right: 0;width: 100%;height: 100%;"> </iframe>
+</div>
+</section><section>
+<p><a href="https://www.geogebra.org/m/wduzyd4w">Lien vers l&rsquo;applet Geogebra</a> (au cas où ça s&rsquo;affiche mal sur la diapo précédente).</p>
+</section><section>
 <p>La courbe suivante représente l&rsquo;évolution de l&rsquo;énergie dépensée par un cycliste pendant 20 min.</p>
 <ul>
 <li>
@@ -66,11 +74,15 @@ $$p(t) = \frac{\mathrm{d}E}{\mathrm{d}t}$$
       data-background-image="/egieexo.png"
       data-background-size="contain"
       data-background-transition="concave">
+</section><section>
+<p>Solution :</p>
 </section>
 <section data-noprocess data-shortcode-slide
       data-background-image="/egieexosol.png"
       data-background-size="contain"
       data-background-transition="concave">
+</section><section>
+<p>Lors d&rsquo;une situation expérimentale réelle,<br>on ne dispose quasiment jamais des courbes continues de $p(t)$ ou de $E(t)$, car les mesures sont généralement des séries discrètes de points.</p>
 </section><section>
 <p>Pour déterminer la puissance<br>à partir d&rsquo;une série de mesures de $E$ :</p>
 </section>
@@ -80,7 +92,30 @@ $$p(t) = \frac{\mathrm{d}E}{\mathrm{d}t}$$
       data-background-video="/gifderpuiss.mp4"
       data-background-video-loop="loop">
 </section><section>
-<img src="/ddxdead.jpg" width="300px">
+<p>Code Python pour déterminer la puissance<br>à partir d&rsquo;une série de mesures de $E$ :</p>
+</section><section>
+<pre><code class="language-python"># mesures de E(t) à différents t
+E  = [0.0, 0.226, 0.905, 2.150, 3.960, 6.676, 10.297, 15.502, 22.178, 30.552, 39.943, 49.675, 57.935, 64.611, 69.590, 73.324, 76.040, 77.850, 79.095, 79.774, 80.0]  
+n = len(E)
+dt = 0.1  # temps entre 2 mesures
+
+P = []
+for i in range(1,n-1) :
+	### Code à déterminer
+	P.append(p)
+T = [i*dt for i in range(n)] # liste des temps
+
+import matplotlib.pyplot as plt
+fig, ax1 = plt.subplots(figsize=(15,10))
+ax2 = ax1.twinx()
+ax1.plot(T,E,'ro--')
+ax2.plot(T[1:n-1],P,'bo--')
+ax1.set_xlabel('temps (s)')
+ax1.set_ylabel('Énergie (J)',c='red')
+ax2.set_ylabel('Puissance (W)',c='blue')
+</code></pre>
+</section><section>
+<p><a href="https://colab.research.google.com/drive/1Spnaf9eOirMYTT5JxFcRUcGbLXnR0nuJ?usp=sharing">Lien vers Colab</a> pour compléter les codes<br>(il faut vous connecter à un compte Google<br>pour pouvoir exécuter le code).</p>
 
 </section>
 </section><section>
@@ -105,6 +140,12 @@ en fonction du temps pendant cet intervalle.</p>
 $$E = \int_{t_1}^{t_2}p(t)dt$$
 </div></div>
 </section><section>
+<div style=" position: relative;overflow: hidden;max-width: 758px;margin: auto; padding-bottom: min(63.19%,479px);"> 
+<iframe scrolling="no" title="Énergie - Puissance" src="https://www.geogebra.org/material/iframe/id/zzhegfep/width/758/height/479/border/888888/sfsb/true/smb/false/stb/false/stbh/false/ai/false/asb/false/sri/true/rc/false/ld/false/sdz/false/ctl/false" style="position: absolute;top: 0;left: 0;bottom: 0;right: 0;width: 100%;height: 100%;"> </iframe>
+</div>
+</section><section>
+<p><a href="https://www.geogebra.org/m/wcqnssch">Lien vers l&rsquo;applet Geogebra</a> (au cas où ça s&rsquo;affiche mal sur la diapo précédente).</p>
+</section><section>
 <p>Le graphe suivant présente<br>la puissance instantanée consommée<br>par un dispositif de chauffage.</p>
 <ul>
 <li>
@@ -119,6 +160,8 @@ $$E = \int_{t_1}^{t_2}p(t)dt$$
       data-background-image="/puissexo.png"
       data-background-size="contain"
       data-background-transition="concave">
+</section><section>
+<p>Solution :</p>
 </section>
 <section data-noprocess data-shortcode-slide
       data-background-image="/puissexosol.png"
@@ -132,6 +175,33 @@ $$E = \int_{t_1}^{t_2}p(t)dt$$
       data-background-transition="concave"
       data-background-video="/gifintegie.mp4"
       data-background-video-loop="loop">
+</section><section>
+<pre><code class="language-python"># mesures de p(t) à différents t
+P = [4.525, 9.62, 15.275, 22.63, 31.685, 44.13, 59.405, 75.25, 88.825, 95.615, 89.96, 74.68, 58.275, 43.565, 32.25, 22.63, 15.275, 9.62, 4.525]
+n = len(P)
+dt = 0.1  # temps entre 2 mesures
+
+Etot = 0
+E = []
+for i in range(n-1) :
+		### Code à déterminer
+		E.append(Etot)
+T = [i*dt for i in range(n)] # liste des temps
+
+import matplotlib.pyplot as plt
+fig, ax1 = plt.subplots(figsize=(15,10))
+ax2 = ax1.twinx()
+ax1.plot(T,P,'bo--',label='Puissance')
+ax2.plot(T[1:n],E,'ro--',label='Energie')
+
+ax1.set_xlabel('temps (s)')
+ax1.set_ylabel('Puissance (W)',c='blue')
+ax2.set_ylabel('Énergie (J)',c='red')
+
+print(f'E = {Etot} J')
+</code></pre>
+</section><section>
+<p><a href="https://colab.research.google.com/drive/1Spnaf9eOirMYTT5JxFcRUcGbLXnR0nuJ?usp=sharing">Lien vers Colab</a> pour compléter les codes<br>(il faut vous connecter à un compte Google<br>pour pouvoir exécuter le code).</p>
 
 </section>
 </section><section>
@@ -158,7 +228,7 @@ $$E = \int_{t_1}^{t_2}p(t)dt$$
 </script>
 
 <script type="application/json" id="reveal-hugo-site-params">{"highlight_theme":"github-dark","line-numbers":true,"theme":"sky","transition":"concave","transition_speed":"fast"}</script>
-<script type="application/json" id="reveal-hugo-page-params">null</script>
+<script type="application/json" id="reveal-hugo-page-params">{"highlight_theme":"atom-one-dark-reasonable"}</script>
 
 <script src="/reveal-js/js/reveal.js"></script>
 
