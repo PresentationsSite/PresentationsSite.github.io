@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>Mécanique</title>
+<title>PFD</title>
 
 
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -21,93 +21,138 @@
       <div class="slides">
   
 
-    <section><h1 id="mécanique">Mécanique</h1>
-</section><section>
+    <section><h2 id="exercices-pfd">Exercices PFD</h2>
+</section>
 
 
 <section data-shortcode-section>
-<h2 id="principe-fondamental-de-la-dynamique">Principe fondamental de la dynamique</h2>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/parachutiste.png"
+      data-background-size="100%"
+      data-background-transition="concave">
+<p><br><br><br><br><br><br><br><br><br></p>
+<h3 id="parachutiste">Parachutiste</h3>
 </section><section>
-<p>Rappel sur le principe d&rsquo;inertie :</p>
+<p><a href="https://trinket.io/glowscript/5223678e05?outputOnly=true">Lien vers la simulation de l&rsquo;évolution<br>de l&rsquo;altitude en fonction du temps</a></p>
 </section>
 <section data-noprocess data-shortcode-slide
-      data-background-size="contain"
-      data-background-transition="concave"
-      data-background-video="/vidtwitcons.mp4"
-      data-background-video-loop="true">
-</section><section>
-<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-  <iframe src="https://www.youtube.com/embed/j1URC2G2qnc" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
-</div>
-</section>
-<section data-noprocess data-shortcode-slide
-      data-background-size="contain"
-      data-background-transition="concave"
-      data-background-video="/inertiechaussure.mp4"
-      data-background-video-loop="true">
-</section><section>
-<p>Explication ?</p>
-</section><section>
-<p>Que provoque une <strong>force</strong> ?</p>
-</section>
-<section data-noprocess data-shortcode-slide
-      data-background-image="/normpeople.png"
+      data-background-image="/pospara.png"
       data-background-size="contain"
       data-background-transition="concave">
 </section><section>
-<div style="display: flex;justify-content: center;">
-<div style = "border:solid black 5px;padding: 20px 20px 30px 20px; font-size:60px">
-$\sum \vec{F}_{ext} = m\vec{a}$
-</div></div>
-<p>où $\sum \vec{F}_{ext}$ est la somme des forces extérieures<br>qui s&rsquo;appliquent sur le système</p>
-<p>Le vecteur correspondant à cette somme s&rsquo;appelle la <strong>résultante des forces</strong> extérieures.</p>
+<ol>
+<li>
+<p>Tracer l&rsquo;évolution de la vitesse</p>
+</li>
+<li>
+<p>Tracer l&rsquo;évolution de l&rsquo;accélération</p>
+</li>
+</ol>
 </section><section>
-<p>En appelant $\vec{F}$ la résultante des forces extérieures, la relation devient :</p>
-<br>
-<div style="display: flex;justify-content: center;">
-<div style = "border:solid red 5px;padding: 20px 20px 30px 20px; font-size:60px">
-$F = ma$
-</div></div>
-<br>
-<p>C&rsquo;est le <strong><span style="color:black">principe fondamental de la dynamique</span></strong>.</p>
-<ul>
-<li>$F$ : résultante des forces en $\pu{N}$</li>
-<li>$m$ : masse en $\pu{kg}$</li>
-<li>$a$ : accélération en $\pu{m*s-2}$</li>
-</ul>
+<p><a href="https://trinket.io/glowscript/caf7337a29?outputOnly=true">Lien vers simulation de l&rsquo;évolution<br>de la vitesse et de l&rsquo;accélération</a></p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/vitpara.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/accpara.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/superpyva.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+</section><section>
+<ol start="3">
+<li>Décomposer le mouvement en 4 phases.</li>
+</ol>
+</section><section>
+<ol start="4">
+<li>Représenter les forces qui s&rsquo;appliquent<br>sur le parachutiste lors de chaque phase.</li>
+</ol>
+</section><section>
+<ol start="5">
+<li>Que vaut la résultante des forces<br>au moment du saut ?<br>
+<small style="color:gray">La masse du parachutiste avec son parachute est de 100 kg.</small></li>
+</ol>
+<p><span class='fragment ' ><span style="font-weight:normal;color:green">On a au départ : $a\approx\pu{10 m*s-2}$<br>Donc d’après le PFD : <br> $F=ma\Rightarrow F \approx 80\times 10 \approx \pu{800 N}$<br><br>On retrouve qu’au départ,<br>l’unique force subie est le poids $mg$.</span></span></p>
+</section><section>
+<ol start="6">
+<li>Que vaut la résultante des forces au moment de l&rsquo;ouverture du parachute ?
+<br><br></li>
+</ol>
+<p><span class='fragment ' ><span style="font-weight:normal;color:green">On a maintenant $a\approx\pu{60 m*s-2}$ (soit environ $6g$)<br> L’utilisation du PFD nous donne alors :<br>$F \approx 80\times 60 \approx \pu{5,4 kN}$</span></span></p>
+</section><section>
+<p><a href="https://trinket.io/glowscript/6c0f225b03?outputOnly=true">Lien vers simulation</a></p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/paraforces.png"
+      data-background-size="contain"
+      data-background-transition="concave">
 
 </section>
-</section><section>
-<h2 id="exercices-pfd">Exercices PFD</h2>
-<p><a href="https://presentationssite.github.io/tsti/tppfd/#/">Lien vers les exos</a></p>
-</section><section>
+</section>
 
 
 <section data-shortcode-section>
-<h2 id="modèle-debrla-chute-libre">Modèle de<br>la chute libre</h2>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/poing.png"
+      data-background-size="100%"
+      data-background-transition="concave">
+<p><br><br><br><br><br><br><br><br><br></p>
+<h3 id="coup-de-poing">Coup de poing</h3>
 </section><section>
-<p>En physique, on dit qu&rsquo;il y a chute libre lorsque<br>la seule force qui agit sur le système est</p>
-<p><span class='fragment ' >le poids</span></p>
+<p>On tient fermement son téléphone dans la main pendant qu&rsquo;on envoie un coup de poing<br>dans le vide.</p>
+</section><section>
+<p>L&rsquo;accéléromètre du smartphone<br>a enregistré le graphe suivant :</p>
+<div style="text-align:center">                           
+<iframe src="plotacc.html" width="100%" height="500"></iframe>                                             </div>
+</section><section>
+<ul>
+<li>
+<p>À quel instant le smartphone va-t-il le plus vite (sachant qu&rsquo;il est initialement immobile) ?</p>
+</li>
+<li>
+<p>Que vaut au maximum la force reçue par le smartphone vers l&rsquo;avant (masse du smartphone : 200 g) ?</p>
+</li>
+<li>
+<p>Et vers l&rsquo;arrière ?</p>
+</li>
+</ul>
+
+</section>
+</section>
+
+
+<section data-shortcode-section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/skieur.png"
+      data-background-size="60%"
+      data-background-transition="concave">
+<h3 id="nbspnbspnbspnbspnbspnbspnbspnbspnbspnbspnbspnbspnbspnbspnbspnbspnbspnbspnbspnbspnbspnbspnbspnbspnbspnbspnbspnbspnbspnbspnbspnbspnbspnbspnbspnbspnbspnbspnbspnbspskieur">                                        Skieur</h3>
+<p><br><br><br><br></p>
+</section><section>
+<ul>
+<li>
+<p>Bilan des forces sur le skieur ?</p>
+</li>
+<li>
+<p>Valeur de ces forces ?</p>
+</li>
+<li>
+<p>Accélération du skieur ?</p>
+</li>
+</ul>
 </section>
 <section data-noprocess data-shortcode-slide
       data-background-size="contain"
       data-background-transition="concave"
-      data-background-video="/ballon.mp4">
-</section><section>
-<p>Contrairement au nom qu&rsquo;on lui donne,<br>la chute du parachutiste n&rsquo;est pas libre.</p>
-<br>
-<p>Par contre, le mouvement du ballon est bien approximativement une chute libre !</p>
-</section><section>
-<p>Petites expériences sur l&rsquo;apesanteur :</p>
-</section><section>
-<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-  <iframe src="https://www.youtube.com/embed/yAEWhl7Ge38" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
-</div>
+      data-background-video="/skieur.mp4">
 
 </section>
-</section><section>
-<h2 id="forces-de-frottement">Forces de frottement</h2>
-<p><a href="https://presentationssite.github.io/tsti/tpmecafrott/#/">Lien vers TD</a></p>
 </section><section>
 <p><a href="https://coursphychi.github.io/tsti2d/mecanique/">Retour site</a></p>
 </section>
