@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>Correction</title>
+
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="/reveal-js/css/reset.css">
+<link rel="stylesheet" href="/reveal-js/css/reveal.css"><link rel="stylesheet" href="/reveal-js/css/theme/sky.css" id="theme">
+<link rel="stylesheet" href="/highlight-js/github-dark.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  </head>
+  <body>
+    
+    <div class="reveal">
+      <div class="slides">
+  
+
+    <section><h3 id="1">1.</h3>
+<p>Dans le cas d&rsquo;une chute libre, seul le poids agit.<br>Le principe fondamental de la dynamique donne :</p>
+<p>$$
+\begin{aligned}
+ma &amp;= P\\<br>
+ma &amp;= mg\\<br>
+a &amp;= g
+\end{aligned}
+$$</p>
+<p>En lisant l&rsquo;accélération sur l&rsquo;enregistrement,<br>on obtient une valeur de $g$ entre 9,4 et 10 $\pu{m*s-2}$.</p>
+</section><section>
+<h3 id="2">2.</h3>
+<p>D&rsquo;après l&rsquo;énoncé, le modèle de la chute libre implique $t_{ch}=\sqrt{\frac{2h}{g}}$.</p>
+<p>En mettant au carré : $t_{ch}^2 = \frac{\color{green}2\color{red}h}{\color{green}g}=\color{green}k\color{black}\times\color{red}h$.</p>
+<p>Le carré du temps de chute est donc sensé être proportionnel à la hauteur, et c&rsquo;est bien ce que suppose la modélisation linéaire choisie.</p>
+</section><section>
+<h3 id="3">3.</h3>
+<p>On voit dans la réponse de la question 2. que $\color{green} k\color{black}=\color{green}\frac{2}{g}$</p>
+<p>D&rsquo;où $g=\frac{2}{k}=\frac{2}{0,206}=\pu{9,71 m*s-2}$</p>
+</section><section>
+<h3 id="4">4.</h3>
+<p>$$\frac{u(g)}{g}=2\times\frac{u(k)}{k}$$
+$$
+\begin{aligned}
+\Rightarrow u(g) &amp;= 2g\times \frac{u(k)}{k}\\<br>
+&amp;= 2\times 9,71 \times\frac{0,003}{0,206}\\<br>
+&amp;= \pu{0,3 m*s-2}
+\end{aligned}
+$$</p>
+</section><section>
+<h3 id="5">5.</h3>
+<p>$g = \pu{9,7 \pm 0,3m*s-2}$</p>
+<p>Cette valeur est compatible avec celle<br>de la première expérience.</p>
+</section><section>
+<h3 id="6">6.</h3>
+<p>On utilise la formule donnée : $t_{ch} = \sqrt{\frac{2h}{g}}$<br>
+Cela donne $t_{ch} = \sqrt{\frac{2\times 128}{9,80}} = \pu{5,11 s}$</p>
+</section><section>
+<h3 id="7">7.</h3>
+<p>On lit sur le graphique qu&rsquo;à cette altitude, $c_{son} = \pu{323 m*s-1}$.</p>
+<p>On a alors :</p>
+<p>$$
+\begin{aligned}
+t_{totale} &amp;= t_{chute}+t_{son}\\<br>
+&amp;= t_{chute}+\frac{h}{c_{son}}\\<br>
+&amp;= 5,11 + 0,396\\<br>
+&amp;= \pu{5,51 s}
+\end{aligned}
+$$</p>
+</section><section>
+<h3 id="8">8.</h3>
+<p>Les frottements qu&rsquo;on a négligés vont ralentir<br>la chute et donc augmenter $t_{totale}$.</p>
+</section><section>
+<p><a href="https://coursphychi.github.io/tsti2d/mecanique/">Retour site</a></p>
+</section>
+
+  
+
+
+</div>
+      
+
+    </div>
+<script type="text/javascript" src=/reveal-hugo/object-assign.js></script>
+
+<a href="/reveal-js/css/print/" id="print-location" style="display: none;"></a>
+<script type="text/javascript">
+  var printLocationElement = document.getElementById('print-location');
+  var link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.type = 'text/css';
+  link.href = printLocationElement.href + (window.location.search.match(/print-pdf/gi) ? 'pdf.css' : 'paper.css');
+  document.getElementsByTagName('head')[0].appendChild(link);
+</script>
+
+<script type="application/json" id="reveal-hugo-site-params">{"highlight_theme":"github-dark","line-numbers":true,"theme":"sky","transition":"concave","transition_speed":"fast"}</script>
+<script type="application/json" id="reveal-hugo-page-params">null</script>
+
+<script src="/reveal-js/js/reveal.js"></script>
+
+<script type="text/javascript">
+  
+  
+  function camelize(map) {
+    if (map) {
+      Object.keys(map).forEach(function(k) {
+        newK = k.replace(/(\_\w)/g, function(m) { return m[1].toUpperCase() });
+        if (newK != k) {
+          map[newK] = map[k];
+          delete map[k];
+        }
+      });
+    }
+    return map;
+  }
+  
+  var revealHugoDefaults = { center: true, controls: true, history: true, progress: true, transition: "slide" };
+  var revealHugoSiteParams = JSON.parse(document.getElementById('reveal-hugo-site-params').innerHTML);
+  var revealHugoPageParams = JSON.parse(document.getElementById('reveal-hugo-page-params').innerHTML);
+  
+  var options = Object.assign({},
+    camelize(revealHugoDefaults),
+    camelize(revealHugoSiteParams),
+    camelize(revealHugoPageParams));
+  Reveal.initialize(options);
+</script>
+
+
+  
+  
+  <script type="text/javascript" src="/reveal-js/plugin/markdown/marked.js"></script>
+  
+  <script type="text/javascript" src="/reveal-js/plugin/markdown/markdown.js"></script>
+  
+  <script type="text/javascript" src="/reveal-js/plugin/highlight/highlight.js"></script>
+  
+  <script type="text/javascript" src="/reveal-js/plugin/zoom-js/zoom.js"></script>
+  
+  
+  <script type="text/javascript" src="/reveal-js/plugin/notes/notes.js"></script>
+
+
+
+
+
+
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({startOnLoad: false});
+    let render = (event) => {
+      let mermaidElems = event.currentSlide.querySelectorAll('.mermaid');
+      if (!mermaidElems.length){
+          return
+      }
+      mermaidElems.forEach(mermaidElem => {
+          let processed = mermaidElem.getAttribute('data-processed');
+          if (!processed){
+              
+              mermaid.init(undefined, mermaidElem);
+          }
+      });
+    };
+    Reveal.addEventListener('slidechanged', render);
+    Reveal.addEventListener('ready', render);
+  </script>
+
+    
+
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']]
+  },
+  svg: {
+    fontCache: 'global'
+  }
+};
+</script>
+
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+</script>
+    
+  </body>
+</html>
