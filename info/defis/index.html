@@ -195,6 +195,50 @@ HAVING nbproblem &gt;= 60) AS tab2
                 return (a,b) + sommesdeuxadeux[target - (a+b)]
 </code></pre>
 <p>Complexité de <code>find_quadruplet_sum_fast</code> ?<br>(recherche dans un dictionnaire via <code>in</code> en O(1))</p>
+</section><section>
+<p>Une version plus simple du problème :
+<img src="/deficarbonsomme.png" alt=""></p>
+</section><section>
+<p>Algo naïf quadratique :</p>
+<pre><code class="language-python">def test_naif(L,k):
+    for i in range(len(L)-1):
+        for j in range(i+1,len(L)):
+            if L[i]+L[j] == k:
+                return True
+    return False
+</code></pre>
+<p>Comment passer à une complexité linéaire ?</p>
+<p><span class='fragment ' >La recherche dans un dictionnaire pardi !</span></p>
+</section><section>
+<pre><code class="language-python">def test_lin(L,k):
+    dico = {}
+    for e in L:
+        if k-e in dico:
+            return True
+        dico[e] = True
+    return False
+</code></pre>
+</section><section>
+<p>En réalité, on se sert ici du dictionnaire comme d&rsquo;un <strong>ensemble</strong> (l&rsquo;association clé-valeur ne nous intéresse pas, on veut seulement savoir<br>si la clé est présente).</p>
+<p>Or l&rsquo;ensemble est une structure de données native en Python (mais pas au programme).</p>
+</section><section>
+<p>L&rsquo;ensemble est une collection non ordonné d&rsquo;éléments uniques (tout comme il ne peut y avoir deux clés identiques dans un dictionnaire).</p>
+<p><code>{'a',2.18,7}</code> est un ensemble<br>
+(c&rsquo;est donc bien une sorte de dictionnaire<br>ne contenant que des clés).</p>
+</section><section>
+<p>Comme dans un dictionnaire, la recherche<br>dans un ensemble se fait en temps constant.</p>
+<p>Remplacer le dictionnaire par un ensemble<br>dans <code>test_lin</code> donne :</p>
+<pre><code class="language-python">def test_lin(L,k):
+    Vu = set() # Vu est un ensemble vide
+    for e in L:
+        if k-e in Vu:
+            return True
+        Vu.add(e) # pour ajouter un élément
+    return False
+</code></pre>
+</section><section>
+<p>Les ensembles sont très pratiques<br>lorsqu&rsquo;on a besoin d&rsquo;éliminer des doublons.</p>
+<p>Ainsi, <code>set([1,2,3,1,2,5])</code> renvoie <code>{1,2,3,5}</code>.</p>
 
 </section>
 </section><section>
@@ -208,20 +252,20 @@ HAVING nbproblem &gt;= 60) AS tab2
 <p>Implémenter cette version<br>&ldquo;dance hongroise&rdquo; du tri rapide<br>en s&rsquo;assurant que le tri créé<br>est bien <strong>en place</strong>.</p>
 </section><section>
 <p>Une possibilité :</p>
-<pre><code class="language-python">def partition(L) :
+<pre><code class="language-python">def partition(L):
     p = 0         # pivot (chapeau noir)
     i = len(L)-1  # chapeau rouge
-    while i != p :
-      if (L[p]-L[i])*(p-i) &lt; 0 :
+    while i != p:
+      if (L[p]-L[i])*(p-i) &lt; 0:
         L[p],L[i] = L[i],L[p]
         p,i = i,p
       i -= (i-p)//abs(i-p)
     return p
     
-def trirapide(L) :
-    if len(L) &lt;= 1 :
+def trirapide(L):
+    if len(L) &lt;= 1:
       return L
-    else :
+    else:
       p = partition(L)
       L[:p] = trirapide(L[:p])
       L[p+1:] = trirapide(L[p+1:])
@@ -335,6 +379,57 @@ identité : John Doe, activité : sans
 </code></pre>
 <p>Cela permet de tester ici qu&rsquo;un sommet est bien un successeur du sommet qu&rsquo;il suit dans la liste retournée par la fonction.</p>
 <p>Comment aurait-on fait sans cette astuce ?</p>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<p><img src="/deficarbonpdt.png" alt=""></p>
+</section><section>
+<p>Un algo naïf serait :</p>
+<pre><code class="language-python">def produitsaufi(L):
+    n = len(L)
+    L_sortie = []
+    for i in range(n):
+        p = 1
+        for j in range(n):
+            if j != i:
+                p *= L[j]
+        L_sortie.append(p)
+    return L_sortie
+</code></pre>
+<p>Peut-on faire mieux que cette<br>complexité quadratique ?</p>
+</section><section>
+<p>Oui :</p>
+<pre><code class="language-python">def produitsaufi(L):
+    n = len(L)
+    p = 1
+    for i in range(n):
+        p *= L[i]
+    return [p//i for i in range(n)]
+</code></pre>
+</section><section>
+<p>Mais si on vous demande de garder<br>une complexité linéaire tout en vous<br>interdisant les divisions ?</p>
+</section><section>
+<p>On peut utiliser deux listes <code>L_gauche</code> et <code>L_droite</code> qui vont contenir les produits à gauche<br>et à droite de <code>i</code> :</p>
+<ul>
+<li><code>L_gauche[i]</code> = $\prod_{j=0}^{i-1}$<code>L[j]</code></li>
+<li><code>L_droite[i]</code> = $\prod_{j=i+1}^{n-1}$<code>L[j]</code></li>
+</ul>
+<p>On aura bien ainsi :<br>
+<code>L_gauche[i]*L_droite[i]</code> =  $\displaystyle \prod_{\substack{j=0\\j≠i}}^{n-1}$L[j]</p>
+</section><section>
+<pre><code class="language-python">def produitsaufi(L):
+    n = len(L)
+    L_gauche = [1]*n
+    L_droite = [1]*n
+    for i in range(1,n):
+        L_gauche[i] = L[i-1]*L_gauche[i-1]
+    for i in range(n-2,-1,-1):
+        L_droite[i] = L[i+1]*L_droite[i+1]
+    return [L_gauche[i]*L_droite[i] for i in range(n)]
+</code></pre>
 
 </section>
 </section><section>
