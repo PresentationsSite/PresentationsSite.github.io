@@ -72,13 +72,13 @@
 <pre><code class="language-python">def solution(nums):
     n = len(nums)
     iav, iap = 0, 0
-    while iap&lt;n :
-        if nums[iap] :
+    while iap&lt;n:
+        if nums[iap]:
             nums[iap],nums[iav] = nums[iav],nums[iap]
             iap += 1
             iav += 1
-        else :
-            while iap&lt;n and nums[iap]==0 :
+        else:
+            while iap&lt;n and nums[iap]==0:
                 iap += 1
     return nums
 </code></pre>
@@ -189,9 +189,9 @@ HAVING nbproblem &gt;= 60) AS tab2
     for a in numbers:
         for b in numbers:
             sommesdeuxadeux[a+b] = (a,b)
-    for a in numbers :
-        for b in numbers :
-            if target - (a+b) in sommesdeuxadeux :
+    for a in numbers:
+        for b in numbers:
+            if target - (a+b) in sommesdeuxadeux:
                 return (a,b) + sommesdeuxadeux[target - (a+b)]
 </code></pre>
 <p>Complexité de <code>find_quadruplet_sum_fast</code> ?<br>(recherche dans un dictionnaire via <code>in</code> en O(1))</p>
@@ -305,7 +305,7 @@ def trirapide(L):
     if graph[start] == []:
         return None
     for neighbor_node in graph[start]:
-        if not neighbor_node in vus :
+        if not neighbor_node in vus:
             path = path_search(neighbor_node, end, graph, vus)
             if path is not None:
                 return [start] + path
@@ -327,29 +327,29 @@ identité : Alan Turing, activité : génie
 identité : John Doe, activité : sans
 </code></pre>
 </section><section>
-<p>Comme dans le test, il n' y a pas de 4<sup>e</sup> argument,<br>et que modifier le test pourrait passer pour de la triche, les arguments nommés semblent<br>être une bonne solution.</p>
-<p>Mais on se confronte alors à l'<a href="https://florimond.dev/en/posts/2018/08/python-mutable-defaults-are-the-source-of-all-evil/">un des plus vicieux problèmes</a> que peuvent poser les objets mutables en python, à chaque fois que l&rsquo;argument par défaut est appelé, le même objet est utilisé !</p>
+<p>Comme il n' y a pas de 4<sup>e</sup> argument dans le test, <br>et que modifier le test pourrait passer pour de la triche, les arguments nommés semblent<br>être une bonne solution.</p>
+<p>Mais on se confronte alors à l'<a href="https://florimond.dev/en/posts/2018/08/python-mutable-defaults-are-the-source-of-all-evil/">un des plus vicieux problèmes</a> que peuvent poser les objets mutables<br>en python, à chaque fois que l&rsquo;argument par défaut est appelé, le même objet est utilisé !</p>
 </section><section>
 <p>Exemple :</p>
-<pre><code class="language-python">def vicieux(L=[]) :
+<pre><code class="language-python">def vicieux(L=[]):
 	L.append(1)
 	return L
 </code></pre>
 <pre><code class="language-python">&gt;&gt;&gt; vicieux([0])
 [0,1]
 </code></pre>
-<p>Normal.</p>
+<p><span class='fragment ' ><span style="font-weight:normal">Normal.</span></span></p>
 <pre><code class="language-python">&gt;&gt;&gt; vicieux()
 [1]
 </code></pre>
-<p>C&rsquo;est bien ce qu&rsquo;on voulait&hellip;<br>Mais que renvoit un nouveau <code>vicieux()</code> ?</p>
+<p><span class='fragment ' ><span style="font-weight:normal">C’est bien ce qu’on voulait…</span></span></p>
+<p><span class='fragment ' ><span style="font-weight:normal">Mais que renvoit un nouveau <code>vicieux()</code> ? </span></span></p>
 </section><section>
 <pre><code class="language-python">&gt;&gt;&gt; vicieux()
 [1,1]
 </code></pre>
 <p>🤯</p>
-<p>Et du coup, ça fiche en l&rsquo;air notre stratégie !
-<br>car à chaque test, le même dictionnaire<br>des sommets visités va être utilisé<br>et il sera donc tout à fait inutile.</p>
+<p><span class='fragment ' ><span style="font-weight:normal">Et du coup, ça fiche en l’air notre stratégie !<br>car à chaque test, le même dictionnaire<br>des sommets visités va être utilisé<br>et il sera donc tout à fait inutile.</span></span></p>
 </section><section>
 <p>La bidouille pour se sauver est d&rsquo;utiliser <code>None</code><br>comme valeur par défaut afin de s&rsquo;en servir comme test de premier appel pour initialiser l&rsquo;objet mutable.</p>
 <p>Rq : plutôt que <code>None</code>, on aurait pu utiliser un entier<br>ou une chaîne de caractères, c&rsquo;est juste plus propre<br>et logique avec <code>None</code> (l&rsquo;objet n&rsquo;existe pas encore).</p>
