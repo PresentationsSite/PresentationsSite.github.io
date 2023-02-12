@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link rel="stylesheet" href="/reveal-js/css/reset.css">
-<link rel="stylesheet" href="/reveal-js/css/reveal.css"><link rel="stylesheet" href="/reveal-js/css/theme/sky.css" id="theme">
+<link rel="stylesheet" href="/reveal-js/css/reveal.css"><link rel="stylesheet" href="/reveal-js/css/theme/black.css" id="theme">
 <link rel="stylesheet" href="/highlight-js/atom-one-dark-reasonable.min.css">
     <link rel="stylesheet" href="/css/styles.css">
 
@@ -219,8 +219,8 @@ HAVING nbproblem &gt;= 60) AS tab2
     return False
 </code></pre>
 </section><section>
-<p>En réalité, on se sert ici du dictionnaire comme d&rsquo;un <strong>ensemble</strong> (l&rsquo;association clé-valeur ne nous intéresse pas, on veut seulement savoir<br>si la clé est présente).</p>
-<p>Or l&rsquo;ensemble est une structure de données native en Python (mais pas au programme).</p>
+<p>En réalité, on se sert ici du dictionnaire comme d&rsquo;un <strong>ensemble</strong> (l&rsquo;association clé-valeur ne nous intéresse pas, on veut seulement savoir si la clé est présente).</p>
+<p>Or l&rsquo;ensemble est une structure de données native<br>en Python (mais pas au programme).</p>
 </section><section>
 <p>L&rsquo;ensemble est une collection non ordonné d&rsquo;éléments uniques (tout comme il ne peut y avoir deux clés identiques dans un dictionnaire).</p>
 <p><code>{'a',2.18,7}</code> est un ensemble<br>
@@ -312,8 +312,8 @@ def trirapide(L):
 </code></pre>
 </section><section>
 <h3 id="vus--none-"><code>vus = None</code> ?</h3>
-<p>L&rsquo;idée première est d&rsquo;utiliser l&rsquo;argument nommé : <code>vus = {}</code>.</p>
-<p>Un argument nommé permet d&rsquo;avoir une valeur par défaut pour l&rsquo;argument qui n&rsquo;est alors plus nécessaire lors de l&rsquo;appel.</p>
+<p>L&rsquo;idée première est d&rsquo;utiliser l&rsquo;argument nommé :<br><code>vus = {}</code>.</p>
+<p>Un argument nommé permet d&rsquo;avoir une valeur<br>par défaut pour l&rsquo;argument qui n&rsquo;est alors<br>plus nécessaire lors de l&rsquo;appel.</p>
 </section><section>
 <p>Exemple :</p>
 <pre><code class="language-python">def presentation(prenom,nom,job=&quot;sans&quot;) :
@@ -351,8 +351,8 @@ identité : John Doe, activité : sans
 <p>Et du coup, ça fiche en l&rsquo;air notre stratégie !
 <br>car à chaque test, le même dictionnaire<br>des sommets visités va être utilisé<br>et il sera donc tout à fait inutile.</p>
 </section><section>
-<p>La bidouille pour se sauver est d&rsquo;utiliser <code>None</code> comme valeur par défaut afin de s&rsquo;en servir<br>comme test de premier appel<br>pour initialiser l&rsquo;objet mutable.</p>
-<p>Rq : plutôt que <code>None</code>, on aurait pu utiliser un entier ou une chaîne de caractères, c&rsquo;est juste plus propre<br>et logique avec <code>None</code> (l&rsquo;objet n&rsquo;existe pas encore).</p>
+<p>La bidouille pour se sauver est d&rsquo;utiliser <code>None</code><br>comme valeur par défaut afin de s&rsquo;en servir comme test de premier appel pour initialiser l&rsquo;objet mutable.</p>
+<p>Rq : plutôt que <code>None</code>, on aurait pu utiliser un entier<br>ou une chaîne de caractères, c&rsquo;est juste plus propre<br>et logique avec <code>None</code> (l&rsquo;objet n&rsquo;existe pas encore).</p>
 </section><section>
 <p>Exemple avec une chaîne de caractères :</p>
 <pre><code class="language-python">def path_search(start, end, graph, vus=&quot;init&quot;):
@@ -412,11 +412,12 @@ identité : John Doe, activité : sans
 </section><section>
 <p>Mais si on vous demande de garder<br>une complexité linéaire tout en vous<br>interdisant les divisions ?</p>
 </section><section>
-<p>On peut utiliser deux listes <code>L_gauche</code> et <code>L_droite</code> qui vont contenir les produits à gauche<br>et à droite de <code>i</code> :</p>
+<p>On peut utiliser deux listes <code>L_gauche</code> et <code>L_droite</code> qui vont contenir les produits à gauche et à droite de <code>i</code></p>
 <ul>
 <li><code>L_gauche[i]</code> = $\prod_{j=0}^{i-1}$<code>L[j]</code></li>
 <li><code>L_droite[i]</code> = $\prod_{j=i+1}^{n-1}$<code>L[j]</code></li>
 </ul>
+<br>
 <p>On aura bien ainsi :<br>
 <code>L_gauche[i]*L_droite[i]</code> =  $\displaystyle \prod_{\substack{j=0\\j≠i}}^{n-1}$L[j]</p>
 </section><section>
@@ -484,30 +485,30 @@ identité : John Doe, activité : sans
 <strong>$n-i$ est un variant de boucle</strong> :<br>
 <ul>
 <li>$n-i&gt;0$ par la condition du <code>while</code></li>
-<li>pour prouver que $n-i$ est strictement décroissante, on va prouver qu&rsquo;on ne peut pas être bloqué plus de $n$ itérations sur le <code>if</code>:</li>
+<li>pour prouver que $n-i$ est strictement décroissante, on va prouver qu&rsquo;on ne peut pas être bloqué plus de $n$ itérations<br>sur le <code>if</code> :</li>
 </ul>
 </li>
 </ul>
 </section><section>
 <div style="text-align:left;color:gray">
-en effet, à chaque permutation de deux éléments de la liste, on retourne dans le <code>if</code> aux conditions que le nouvel élément en position <code>i</code> est entre 1 et $n$ et que l'élément vers lequel il renvoie n'est pas identique à celui qu'il contient.<br> Or, dans le pire des cas ($n$ éléments différents ≤ $n$), le <a href="https://fr.wikipedia.org/wiki/Principe_des_tiroirs">principe des tiroirs</a> nous assure qu'au bout de $n$ itérations au maximum, on se retrouvera à placer un élément dans sa propre case.
+en effet, à chaque permutation de deux éléments<br>de la liste, on retourne dans le <code>if</code> aux conditions que le nouvel élément en position <code>i</code> est entre 1 et $n$ et que l'élément vers lequel il renvoie n'est pas identique à celui qu'il contient.<br> Or, dans le pire des cas ($n$ éléments différents ≤ $n$), le <a href="https://fr.wikipedia.org/wiki/Principe_des_tiroirs">principe des tiroirs</a> nous assure qu'au bout de $n$ itérations au maximum, on se retrouvera à placer un élément dans sa propre case.
 </div>
 </section><section>
 <ul>
 <li>Pour la correction partielle, l&rsquo;invariant qu&rsquo;on cherche à maintenir dans la boucle  <code>while</code> est :</li>
 </ul>
 <blockquote>
-<p><code>L[L[j]-1]</code>$=$<code>L[j]</code> si <code>L[j]</code>$≤$<code>n</code><br>pour tout $j≤i$<br><br>
+<p><code>L[L[j]-1]</code>$=$<code>L[j]</code> si <code>L[j]</code>$≤$<code>n</code><br>pour tout $j≤i$<br>$\equiv$<br>
 <strong>Chaque élément <code>L[j]</code>$≤$ <code>n</code> <br> a été placé à la position correspondant à sa valeur</strong></p>
 </blockquote>
 </section><section>
 <div style="text-align:left;color:gray">
-Et si l'invariant est supposé vrai au rang <code>i</code>, le code de la boucle <code>while</code> nous le maintient vrai au rang <code>i+1</code> (car si ce n'était pas le cas en début d'itération, la permutation dans le <code>if</code> nous assure que ça le sera en fin d'itération).<br>
-L'invariant sera donc vrai sur toute la liste : <br><b>on trouve à chaque position de la liste l'élément ayant pour valeur cette position s'il était bien présent dans la liste au départ</b>.
+Et si l'invariant est supposé vrai au rang <code>i</code>, le code de la boucle <code>while</code> nous le maintient vrai au rang <code>i+1</code> (car si ce n'est pas le cas en début d'itération, la permutation dans le <code>if</code> nous assure que ça le sera<br>en fin d'itération).<br>
+L'invariant sera donc vrai sur toute la liste : <br><b style="color:white">on trouve à chaque position de la liste l'élément ayant pour valeur cette position s'il était bien présent dans la liste au départ</b>.
 </div>
 </section><section>
 <div style="text-align:left;color:gray">
-Finalement, le parcours de la boucle <code>for</code> nous permet bien de sortir le premier entier non nul absent de la liste&nbsp;; il correspond au premier élément dont la position et la valeur<br>ne coïncident pas.
+Finalement, le parcours de la boucle <code>for</code> nous permet bien de sortir le premier entier non nul absent de la liste&nbsp;; il correspond au premier élément dont la position et la valeur ne coïncident pas.
 </div>
 
 </section>
@@ -535,7 +536,7 @@ Finalement, le parcours de la boucle <code>for</code> nous permet bien de sortir
 </script>
 
 <script type="application/json" id="reveal-hugo-site-params">{"highlight_theme":"github-dark","line-numbers":true,"theme":"sky","transition":"concave","transition_speed":"fast"}</script>
-<script type="application/json" id="reveal-hugo-page-params">{"highlight_theme":"atom-one-dark-reasonable"}</script>
+<script type="application/json" id="reveal-hugo-page-params">{"highlight_theme":"atom-one-dark-reasonable","theme":"black"}</script>
 
 <script src="/reveal-js/js/reveal.js"></script>
 
