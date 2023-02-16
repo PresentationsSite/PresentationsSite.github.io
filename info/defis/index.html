@@ -513,6 +513,61 @@ Finalement, le parcours de la boucle <code>for</code> nous permet bien de sortir
 
 </section>
 </section><section>
+
+
+<section data-shortcode-section>
+<p><img src="/defifacebook.png" alt=""></p>
+</section><section>
+<p>La récursivité semble une voix prometteuse puisqu&rsquo;il s&rsquo;agit de compter toutes les branches possibles aboutissant à un mot différent en partant de la racine commune que représente le message initial.</p>
+<p>Faisons aussi afficher le mot décrypter à notre code pour que cela soit plus parlant.</p>
+</section><section>
+<p>Construisons d&rsquo;abord pour nos tests le dictionnaire permettant de coder et le dictionnaire inverse permettant le décodage.</p>
+<pre><code class="language-python">alphabet = &quot;abcdefghijklmnopqrstuvwxyz&quot;
+code = {i:alphabet[i-1] for i in range(1,27)}
+decode = {val:str(key) for key,val in dico.items()}
+</code></pre>
+<pre><code class="language-python">message = &quot;athlete&quot;
+crypt = &quot;&quot;
+for c in message:
+  crypt += decode[c]
+crypt
+</code></pre>
+<p><code>&lsquo;1208125205&rsquo;</code></p>
+</section><section>
+<p>La fonction récursive construisant<br>et comptant les mots différents :</p>
+<pre><code class="language-python">def nbdemotsdiff(mess,i=0,mot=&quot;&quot;):
+  global compt
+  n = len(mess)
+  if i &gt; n-1:
+    compt += 1
+    print(mot)
+    return mot
+  if mess[i] == &quot;0&quot;:
+    return
+  if i != n-1 and (mess[i] == &quot;1&quot; or (mess[i] == &quot;2&quot; and int(mess[i+1]) &lt;= 6)):
+    nbdemotsdiff(mess,i+1,mot+code[int(mess[i])])
+    nbdemotsdiff(mess,i+2,mot+code[int(mess[i:i+2])])
+  else:
+    nbdemotsdiff(mess,i+1,mot+code[int(mess[i])])
+</code></pre>
+</section><section>
+<pre><code class="language-python">compt = 0
+nbdemotsdiff(&quot;1208125205&quot;)
+print(compt)
+</code></pre>
+<p>On obtient :<br>
+<code>athabete</code><br>
+<code>athayte</code><br>
+<code>athlete</code><br>
+<code>3</code></p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/arbredefimots.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+
+</section>
+</section><section>
 <p><a href="https://info-tsi-vieljeux.github.io/projets/">Retour site</a></p>
 </section>
 

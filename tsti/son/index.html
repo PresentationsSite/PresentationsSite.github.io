@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>Son</title>
+
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="/reveal-js/css/reset.css">
+<link rel="stylesheet" href="/reveal-js/css/reveal.css"><link rel="stylesheet" href="/reveal-js/css/theme/black.css" id="theme">
+<link rel="stylesheet" href="/highlight-js/github-dark.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  </head>
+  <body>
+    
+    <div class="reveal">
+      <div class="slides">
+  
+
+    <section><h1 id="ondes-sonores">Ondes sonores</h1>
+</section><section>
+
+
+<section data-shortcode-section>
+<h2 id="son-pur-et-son-complexe">Son pur et son complexe</h2>
+</section><section>
+<iframe class="embed" src="https://teropa.info/harmonics-explorer/" frameborder="0" width="60%" height="600px" style="background: #AAAAAA;border:solid #3EA0E4 10px"></iframe>
+</section><section>
+<div style="display: flex;justify-content: center;">
+<div style = "border:solid #43AFFA 10px;padding: 20px 20px 30px 20px; font-size:60px">
+Un <b>son pur</b> est associé<br>à un signal sinusoïdal<br>= son spectre d'amplitude est composé d'une seule fréquence.
+</div></div>
+</section><section>
+<div style="display: flex;justify-content: center;">
+<div style = "border:solid #43AFFA 10px;padding: 20px 20px 30px 20px; font-size:60px">
+Un <b>son complexe</b> est<br>un son qui n'est pas pur<br>= son spectre d'amplitude est composé de plusieurs fréquences.
+</div></div>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/purcomplexe.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+</section><section>
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/UrBZsUBibtk" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h2 id="hauteur-dun-son">Hauteur d&rsquo;un son</h2>
+</section><section>
+<div style="display: flex;justify-content: center;">
+<div style = "border:solid #43AFFA 10px;padding: 20px 20px 30px 20px; font-size:60px">
+La <b>hauteur</b> d'un son est la <b>fréquence</b> de son <b>fondamental</b>.
+</div></div>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/hauteurson.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h2 id="timbre-dun-son">Timbre d&rsquo;un son</h2>
+</section><section>
+<p>Le timbre est ce qui distingue deux sons<br>de la même hauteur (même note) jouées<br>sur deux instruments différents.</p>
+<p><audio id="sound1" src="https://mind-sized-bites.firebaseapp.com/timbre/audio/trumpet-bflat.mp3" preload="auto"></audio><a onclick="document.getElementById('sound1').play();" style="font-size:100px;cursor: pointer">🎺 </a>
+<audio id="sound2" src="https://cdn.freesound.org/previews/68/68439_871124-lq.mp3" preload="auto"></audio><a onclick="document.getElementById('sound2').play();" style="font-size:100px;cursor: pointer">🎹 </a></p>
+</section><section>
+<ul>
+<li><a href="https://vagabond-grove-brook.glitch.me">Synthétiseur simplifié permettant<br>de modifier le timbre</a></li>
+<li><a href="https://www.geogebra.org/material/download/format/file/id/cyqhtffn">Appliquette geogebra à télécharger</a> :<br>infuence des harmoniques et de l&rsquo;enveloppe<br>sur le timbre</li>
+</ul>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h2 id="intensité-et-niveau-sonore">Intensité et niveau sonore</h2>
+</section><section>
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/mVLKQWImJH8" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/trompettesint.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+<p>L&rsquo;intensité acoustique $I$<br>(en watt par mètre carré)<br>est additive :</p>
+<p>s&rsquo;il y a 2 ou 10 fois plus de sources sonores,<br>l&rsquo;intensité est multipliée par 2 ou 10.</p>
+</section><section>
+<p>Mais notre sensation auditive ne semble pas, elle, proportionnelle au nombre de sources.<br></p>
+<p>C&rsquo;est cette non proportionnalité qui permet<br>d&rsquo;avoir une plage de sensibilité si étendue <br>(de $\pu{1E-12 W*m-2}$ à $\pu{10 W*m-2}$).</p>
+<p>Notre sensibilité est logarithmique.</p>
+</section><section>
+<p>Pour quantifier notre sensation,<br>on utilise le <strong>niveau sonore</strong> $L$.</p>
+<div style="display: flex;justify-content: center;">
+<div style = "border:solid #43AFFA 10px;padding: 30px 20px 30px 20px; font-size:60px">
+$L=10\log\left(\frac{I}{I_0}\right)$
+</div></div>
+<br>
+<ul>
+<li>$L$ en $\pu dB$</li>
+<li>$I$ en $\pu{W*m-2}$</li>
+<li>$I_0 = \pu{1E-12 W*m-2}$ seuil d&rsquo;audibilité<br>pour une fréquence de $\pu{1000 Hz}$</li>
+</ul>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/trompettesdb.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+<p>Doubler l&rsquo;intensité acoustique revient ainsi<br>à ajouter 3 dB au niveau sonore<br>et <strong><span style="color:#43AFFA">multiplier</span></strong> l&rsquo;intensité par 10<br><strong><span style="color:#43AFFA">ajoute</span></strong> 10 dB.</p>
+</section><section>
+<p>Pour passer de $L$ à $I$ :</p>
+<div style="display: flex;justify-content: center;">
+<div style = "border:solid #43AFFA 10px;padding: 30px 20px 30px 20px; font-size:60px">
+$\displaystyle I = I_0\times 10^{\left(\frac{L}{10}\right)}$
+</div></div>
+</section><section>
+<div style="display: flex;justify-content: center;">
+<div style = "border:solid #43AFFA 10px;padding: 30px 20px 30px 20px; ">
+<b>L'intensité acoustique varie<br>comme le carré inverse<br>de la distance à la source</b>
+</div></div>
+<p>(sauf si la source est fortement directionnelle).</p>
+<p>Prouvons-le grâce à <a href="https://www.geogebra.org/m/v22fbv4v">cette appliquette geogebra</a>.</p>
+</section><section>
+<iframe scrolling="no" title="inversesquarelaw" src="https://www.geogebra.org/material/iframe/id/fbyk36y6/width/704/height/526/border/888888/sfsb/true/smb/false/stb/false/stbh/false/ai/false/asb/false/sri/true/rc/false/ld/false/sdz/true/ctl/false" width="704px" height="526px" style="border:0px;"> </iframe>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h2 id="sensibilité-debrloreille-humaine">Sensibilité de<br>l&rsquo;oreille humaine</h2>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/sensibiliteson.png"
+      data-background-size="80%"
+      data-background-transition="concave">
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/loudness.png"
+      data-background-size="30%"
+      data-background-transition="concave">
+
+</section>
+</section><section>
+<p><a href="https://coursphychi.github.io/tsti2d/son/">Retour site</a></p>
+</section>
+
+  
+
+
+</div>
+      
+
+    </div>
+<script type="text/javascript" src=/reveal-hugo/object-assign.js></script>
+
+<a href="/reveal-js/css/print/" id="print-location" style="display: none;"></a>
+<script type="text/javascript">
+  var printLocationElement = document.getElementById('print-location');
+  var link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.type = 'text/css';
+  link.href = printLocationElement.href + (window.location.search.match(/print-pdf/gi) ? 'pdf.css' : 'paper.css');
+  document.getElementsByTagName('head')[0].appendChild(link);
+</script>
+
+<script type="application/json" id="reveal-hugo-site-params">{"highlight_theme":"github-dark","line-numbers":true,"theme":"sky","transition":"concave","transition_speed":"fast"}</script>
+<script type="application/json" id="reveal-hugo-page-params">{"theme":"black"}</script>
+
+<script src="/reveal-js/js/reveal.js"></script>
+
+<script type="text/javascript">
+  
+  
+  function camelize(map) {
+    if (map) {
+      Object.keys(map).forEach(function(k) {
+        newK = k.replace(/(\_\w)/g, function(m) { return m[1].toUpperCase() });
+        if (newK != k) {
+          map[newK] = map[k];
+          delete map[k];
+        }
+      });
+    }
+    return map;
+  }
+  
+  var revealHugoDefaults = { center: true, controls: true, history: true, progress: true, transition: "slide" };
+  var revealHugoSiteParams = JSON.parse(document.getElementById('reveal-hugo-site-params').innerHTML);
+  var revealHugoPageParams = JSON.parse(document.getElementById('reveal-hugo-page-params').innerHTML);
+  
+  var options = Object.assign({},
+    camelize(revealHugoDefaults),
+    camelize(revealHugoSiteParams),
+    camelize(revealHugoPageParams));
+  Reveal.initialize(options);
+</script>
+
+
+  
+  
+  <script type="text/javascript" src="/reveal-js/plugin/markdown/marked.js"></script>
+  
+  <script type="text/javascript" src="/reveal-js/plugin/markdown/markdown.js"></script>
+  
+  <script type="text/javascript" src="/reveal-js/plugin/highlight/highlight.js"></script>
+  
+  <script type="text/javascript" src="/reveal-js/plugin/zoom-js/zoom.js"></script>
+  
+  
+  <script type="text/javascript" src="/reveal-js/plugin/notes/notes.js"></script>
+
+
+
+
+
+
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({startOnLoad: false});
+    let render = (event) => {
+      let mermaidElems = event.currentSlide.querySelectorAll('.mermaid');
+      if (!mermaidElems.length){
+          return
+      }
+      mermaidElems.forEach(mermaidElem => {
+          let processed = mermaidElem.getAttribute('data-processed');
+          if (!processed){
+              
+              mermaid.init(undefined, mermaidElem);
+          }
+      });
+    };
+    Reveal.addEventListener('slidechanged', render);
+    Reveal.addEventListener('ready', render);
+  </script>
+
+    
+
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']]
+  },
+  svg: {
+    fontCache: 'global'
+  }
+};
+</script>
+
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+</script>
+    
+  </body>
+</html>
