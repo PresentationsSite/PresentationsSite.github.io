@@ -525,7 +525,7 @@ Finalement, le parcours de la boucle <code>for</code> nous permet bien de sortir
 <p>Construisons d&rsquo;abord pour nos tests le dictionnaire permettant de décoder et le dictionnaire inverse permettant l&rsquo;encodage.</p>
 <pre><code class="language-python">alphabet = &quot;abcdefghijklmnopqrstuvwxyz&quot;
 decode = {i:alphabet[i-1] for i in range(1,27)}
-encode = {val:str(key) for key,val in dico.items()}
+encode = {val:str(key) for key,val in decode.items()}
 </code></pre>
 <pre><code class="language-python">message = &quot;athlete&quot;
 crypt = &quot;&quot;
