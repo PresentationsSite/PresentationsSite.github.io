@@ -570,6 +570,88 @@ print(compt)
 
 </section>
 </section><section>
+
+
+<section data-shortcode-section>
+<p><img src="/defimaisons.png" alt=""></p>
+</section><section>
+<img src="/burano.png" style="border-radius:5%">
+<p>C&rsquo;est typiquement un problème<br>pour la programmation dynamique :</p>
+</section><section>
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/F48AbiZGds0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+</section><section>
+<p>L&rsquo;idée va être de construire une matrice N par K<br>où on trouve à la ligne n le coût minimal<br>pour peindre la maison n de la couleur k<br><strong><u>et</u></strong> toutes les maisons qui précèdent.</p>
+</section><section>
+<p>La première ligne de la matrice correspond simplement aux coûts pour peindre la première maison dans les k couleurs différentes.</p>
+</section><section>
+<p>Supposons que la ligne n donne bien pour chaque couleur de la maison n le coût total minimal<br>pour peindre les n premières maisons.</p>
+<p>La case k de la ligne n+1 s&rsquo;obtient alors en prenant<br>le coût pour peindre la maison n+1 de la couleur k auquel on ajoute le plus petit coût de la ligne n<br>pour toutes les couleurs autres que k.</p>
+<p>On s&rsquo;assure bien ainsi du coût total optimal<br>pour chaque couleur de la maison n+1 !</p>
+</section><section>
+<p>Une fois la matrice construite, on obtient le coût total minimal final en prenant la valeur minimale<br>de la dernière ligne.</p>
+</section><section>
+<pre><code class="language-python">def cout_tot_min(mat_couts):
+  N = len(mat_couts)
+  K = len(mat_couts[0])
+  M_tot = [[0]*K for i in range(N)]
+  for k in range(K):
+    M_tot[0][k] = mat_couts[0][k]
+  for n in range(1,N):
+    for k in range(K):
+      M_tot[n][k] = mat_couts[n][k] + min([M_tot[n-1][kprime] for kprime in range(K) if kprime != k])
+  return min(M_tot[n-1])
+</code></pre>
+</section><section>
+<p>Complexité ?</p>
+<p><span class='fragment ' >$O(NK^2)$</span></p>
+</section><section>
+<p>On peut aussi s&rsquo;amuser à déterminer les couleurs<br>avec lesquelles il faut peindre chaque maison<br>pour aboutir au coût minimum.</p>
+<p>Faisons d&rsquo;abord retourner par <code>cout_tot_min</code> la matrice construite en plus du coût total minimal :</p>
+<pre><code class="language-python">return min(M_tot[n-1]),M_tot
+</code></pre>
+<br>
+<p>Il n&rsquo;y a plus ensuie qu&rsquo;à &ldquo;remonter&rdquo; la matrice&hellip;</p>
+</section><section>
+<pre><code class="language-python">def reconstruction(M_tot,mat_couts,Lcouleurs):
+  N = len(M_tot)
+  K = len(M_tot[0])
+  Couleurs_maisons = [&quot;&quot;]*N
+  Min = min(M_tot[N-1])
+  for n in range(N-1,-1,-1):
+    k = 0
+    while M_tot[n][k] != Min:
+      k += 1
+    Couleurs_maisons[n] = Lcouleurs[k]
+    Min = Min - mat_couts[n][k]
+  return Couleurs_maisons
+</code></pre>
+</section><section>
+<p>Exemple :</p>
+<pre><code class="language-python">Mcoutpeinture = [[2000,2500,3000,1500],
+                 [4000,4500,1500,2000],
+                 [2800,3900,4200,3000],
+                 [1500,1800,2000,1200],
+                 [1000,2000,1400,1500],
+                 [5000,3500,7000,4000]]
+
+Couleurs = [&quot;Rouge&quot;,&quot;Vert&quot;,&quot;Bleu&quot;,&quot;Jaune&quot;]
+</code></pre>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/defimaisonsdess.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+<pre><code class="language-python">coutmin,M_tot = cout_tot_min(Mcoutpeinture)
+print(coutmin)
+print(reconstruction(M_tot,Mcoutpeinture,Couleurs))
+</code></pre>
+<p><code>11500</code><br>
+<code style="font-size:1.5rem !important">[&lsquo;Jaune&rsquo;, &lsquo;Bleu&rsquo;, &lsquo;Rouge&rsquo;, &lsquo;Jaune&rsquo;, &lsquo;Rouge&rsquo;, &lsquo;Vert&rsquo;]</code></p>
+
+</section>
+</section><section>
 <p><a href="https://info-tsi-vieljeux.github.io/projets/">Retour site</a></p>
 </section>
 

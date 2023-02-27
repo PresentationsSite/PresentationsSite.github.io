@@ -276,7 +276,12 @@ function tourIA(){
         let nbjetons = Math.max(1,Math.floor(Math.random() * plateau[j]));
         plateau[j] -= nbjetons;
         dessinePlateau();
-        pr.innerHTML = "L'IA a pris "+ nbjetons +" jeton(s) sur la ligne " +(j+1)+".<br>";
+        if (nbjetons == 1){
+            pr.innerHTML = "L'IA a pris 1 jeton sur la ligne" +(j+1)+".<br>";
+            }
+        else {
+            pr.innerHTML = "L'IA a pris "+ nbjetons +" jetons sur la ligne " +(j+1)+".<br>";
+            }
     }
     else {
         let j = 0;
@@ -287,7 +292,12 @@ function tourIA(){
         plateau[j] = plateau[j]^nimSum;
         console.log(plateau)
         dessinePlateau();
-        pr.innerHTML = "L'IA a pris "+ (old-plateau[j]) +" jeton(s) sur la ligne " +(j+1)+".<br>";
+        if (old-plateau[j] == 1){
+            pr.innerHTML = "L'IA a pris 1 jeton sur la ligne " +(j+1)+".<br>";
+            }
+        else {
+            pr.innerHTML = "L'IA a pris "+ (old-plateau[j]) +" jetons sur la ligne " +(j+1)+".<br>";
+            }
     }
     victoire(plateau);
     if (!Fini){
