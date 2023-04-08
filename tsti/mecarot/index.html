@@ -1,0 +1,394 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>Mécanique-Rotations</title>
+
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="/reveal-js/css/reset.css">
+<link rel="stylesheet" href="/reveal-js/css/reveal.css"><link rel="stylesheet" href="/reveal-js/css/theme/black.css" id="theme">
+<link rel="stylesheet" href="/highlight-js/github-dark.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  </head>
+  <body>
+    
+    <div class="reveal">
+      <div class="slides">
+  
+
+    <section><h1 id="forces-et-rotation">Forces et rotation</h1>
+</section><section>
+
+
+<section data-shortcode-section>
+<h2 id="moment-et-couple">Moment et couple</h2>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/rappelbateau.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+</section><section>
+<p>Dans quel sens cherche-t-elle<br>à faire pivoter le bateau ?</p>
+<p>Pourquoi ?</p>
+</section><section>
+<p>Où appliquer la force pour faire pivoter<br>le plus facilement une porte ?</p>
+<p><span class='fragment ' ><span style="font-weight:normal;color:#1DB100">$\rightarrow$ le plus loin possible des gonds</span></span></p>
+<p><span class='fragment ' ><span style="font-weight:normal;">Et quelle direction doit-elle avoir ?</span></span></p>
+<p><span class='fragment ' ><span style="font-weight:normal;color:#1DB100">$\rightarrow$ normale à la porte</span></span></p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/momentdist.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+</section><section>
+<p>Une <span style="font-weight:bold;color:#FF644E">force</span> mesure la capacité à <strong>modifier<br>le mouvement de</strong> <span style="font-weight:bold;color:#FF644E">translation</span> d&rsquo;un objet.</p>
+<br>
+<p><span class='fragment ' ><span style="font-weight:normal;">Le</span> <span style="font-weight:bold;color:#1DB100">moment d’une force</span> <span style="font-weight:normal;">mesure la capacité à </span> modifier le mouvement de <span style="font-weight:bold;color:#1DB100">rotation</span> <span style="font-weight:normal;">de l’objet.</span></span></p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/momentdef.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+<p>Moment de la force $\vec{F}$<br>par rapport à l&rsquo;axe de rotation $\Delta$ :</p>
+<div style="display: flex;justify-content: center;">
+<div style = "border:solid #1DB100 5px;width:contain;padding: 0px 30px 0px 30px;">
+$$\mathcal{M}_\Delta(\vec{F}) = F\cdot d$$
+</div></div>
+<p>$d$ est le <strong><span style="color:#1DB100">bras de levier</span></strong></p>
+<br>
+<br>
+<br>
+<br>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/momentperp.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+<p>Si la force est perpendiculaire à la planche,<br>le bras de levier $d$ et donc le moment<br>sont plus grands.</p>
+<p><br><br><br><br><br><br>
+<br>
+<br>
+<br></p>
+</section><section>
+<p>Unité du moment $\mathcal{M}$ ?</p>
+<br>
+<p><span class='fragment ' ><span style="font-weight:bold;color:#1DB100">le newton-mètre $\pu{N*m}$</span></span></p>
+</section><section>
+<p>Souvent, un <span style="font-weight:bold;color:#1DB100">couple de forces</span> (deux forces opposées ayant le même bras de levier) est apliqué.</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/demontepneu.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+</section><section>
+<p>Le moment $C$ du couple de forces vaut alors :</p>
+<p>$C = \mathcal{M}(\vec{F_1})+\mathcal{M}(\vec{F_2})$</p>
+<p>Et comme $||\vec{F_1}||=||\vec{F_2}||=F$<br>et que  $\mathcal{M}(\vec{F_1})=\mathcal{M}(\vec{F_2})=F\cdot \frac{d}{2}$</p>
+<br>
+<div style="display: flex;justify-content: center;">
+<div style = "border:solid #1DB100 5px;width:contain;padding: 0px 30px 0px 30px;">
+$$C = F\cdot d$$
+</div></div>
+</section><section>
+<p><strong>À l&rsquo;équilibre</strong> :<br><br></p>
+<ul>
+<li>On sait déjà qu'il faut que<br> <span style="color:#FF644E">la somme des forces soit nulle</span>.</li>
+<br>
+<li>Mais il faut aussi que<br> <span style="color:#1DB100">la somme des moments soit nulle</span> !</li>
+</ul>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h2 id="exercices">Exercices</h2>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/bobjack.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+<h4 id="exercice-1">Exercice 1</h4>
+<p>Qui porte le plus, Bob ou Jack ?<br>
+Quelle force chacun exerce ?</p>
+<p><br><br><br><br><br><br><br><br></p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/bobjackcorr.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/bobjackpenche.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+<p>Et maintenant qui porte plus ?</p>
+<p><br><br><br><br><br><br><br><br></p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/bobjackpenchecorr.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+</section><section>
+<p>Mêmes bras de levier et mêmes moments<br>$\Rightarrow$ mêmes forces !</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/chatplanche.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+<h4 id="exercice-2">Exercice 2</h4>
+<p>Si le chat avance encore d&rsquo;un poil, la planche bascule.<br>
+Quelle est la masse de la planche ?</p>
+<p><br><br><br><br><br><br><br><br></p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/pbechelle.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+<h4 id="exercice-3">Exercice 3</h4>
+<p>Que peut-il se passer ?</p>
+<p><br><br><br><br><br><br><br><br></p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="https://thumbs.gfycat.com/SmoggyHarmfulBluetonguelizard-size_restricted.gif"
+      data-background-size="contain"
+      data-background-transition="concave">
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/pbechellesuite.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+</section><section>
+<ul>
+<li>Quelles relations existent-ils entre les forces ?</li>
+</ul>
+<p>Plaçons l&rsquo;axe de rotation au point de contact de l&rsquo;échelle avec le sol (on a le choix).</p>
+<ul>
+<li>Que vallent les moments par rapport à cet axe ?</li>
+<li>Quelle relation existe-t-il entre eux ?</li>
+</ul>
+<p>En déduire le barreau le plus haut sur lequel peut monter Bob sans que l&rsquo;échelle ne glisse.</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/exobalance.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+<h4 id="exercice-4--déterminer-son-centre-de-masse">Exercice 4 : déterminer son centre de masse</h4>
+<p><br><br><br><br><br><br><br><br><br></p>
+<p>Trouver sa masse et à quelle distance de ses pieds<br>se situe son centre de masse.</p>
+</section><section>
+<h4 id="défi">Défi</h4>
+<p>Qui est capable de toucher ses pieds<br>en ayant ses jambes contre un mur ?</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/defipiedmur.png"
+      data-background-size="80%"
+      data-background-transition="concave">
+</section><section>
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/2VpzHJ_R55I" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+</section><section>
+<p>Et lorsqu&rsquo;il y a <strong>accélération</strong> ?</p>
+</section><section>
+<h4 id="exercice-6--que-provoquebrlaccélération-dune-voiture-">Exercice 6 : que provoque<br>l&rsquo;accélération d&rsquo;une voiture ?</h4>
+<ul style="margin: 0;
+  list-style: none;
+  float: left;">
+<li><input type="checkbox" style=" float: left;width: 50px;height: 50px;">une force verticale plus importante sur les roues avant (la voiture pique du nez)</li>
+<li><input type="checkbox"  style=" float: left;width: 50px;height: 50px;"> une force verticale plus importante sur les roues arrière (la voiture se cabre)</li>
+<li><input type="checkbox"  style=" float: left;width: 50px;height: 50px;"> ni l'un ni l'autre</li>
+</ul>
+</section><section>
+<p>Même chose pour une traction<br>que pour une propulsion ?</p>
+<p><br><br></p>
+<p>Et lorsqu&rsquo;on freine ?</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/voitacc.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/camionbasc.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+<h4 id="exercice-7--pour-quelle-accélérationbrdu-camion-la-boite-bascule-t-elle-">Exercice 7 : Pour quelle accélération<br>du camion la boite bascule-t-elle ?</h4>
+<p><br><br><br><br><br><br><br><br><br></p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/exocamion.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+</section><section>
+<p>On trouve :</p>
+<p>$$a_{max}=\frac{gD}{2H}$$</p>
+<p>Si la caisse fait 1 m de large et 2 m de haut ?</p>
+</section><section>
+<p>Dans le référentiel du camion, tout se passe comme si la caisse ressentait un poids apparent<br>pointant vers l&rsquo;arrière.</p>
+<p>La composante horizontale de ce poids apparent<br>vaut $ma$ où $a$ est l&rsquo;accélération du camion.</p>
+<p>Et lorsque sa direction dépasse la coin,<br>la caisse bascule.</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/camionpoidsapp.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/camionpente.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+</section><section>
+<p>Application aux tonneaux</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="https://i.gifer.com/Gw9x.gif"
+      data-background-size="contain"
+      data-background-transition="concave">
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/accelvirage.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/voitonneau.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+</section><section>
+<p>Une moto se penche dans les virages pour que son poids apparent pointe vers la zone d&rsquo;appui<br>(contact entre la route et les pneus).</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/motopoidsapp.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+</section><section>
+<p>On retrouve la même chose avec les moments.</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/motocouple.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+
+</section>
+</section><section>
+<p><a href="https://coursphychi.github.io/tsti2d/mecanique/">Retour site</a></p>
+</section>
+
+  
+
+
+</div>
+      
+
+    </div>
+<script type="text/javascript" src=/reveal-hugo/object-assign.js></script>
+
+<a href="/reveal-js/css/print/" id="print-location" style="display: none;"></a>
+<script type="text/javascript">
+  var printLocationElement = document.getElementById('print-location');
+  var link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.type = 'text/css';
+  link.href = printLocationElement.href + (window.location.search.match(/print-pdf/gi) ? 'pdf.css' : 'paper.css');
+  document.getElementsByTagName('head')[0].appendChild(link);
+</script>
+
+<script type="application/json" id="reveal-hugo-site-params">{"highlight_theme":"github-dark","line-numbers":true,"theme":"sky","transition":"concave","transition_speed":"fast"}</script>
+<script type="application/json" id="reveal-hugo-page-params">{"theme":"black"}</script>
+
+<script src="/reveal-js/js/reveal.js"></script>
+
+<script type="text/javascript">
+  
+  
+  function camelize(map) {
+    if (map) {
+      Object.keys(map).forEach(function(k) {
+        newK = k.replace(/(\_\w)/g, function(m) { return m[1].toUpperCase() });
+        if (newK != k) {
+          map[newK] = map[k];
+          delete map[k];
+        }
+      });
+    }
+    return map;
+  }
+  
+  var revealHugoDefaults = { center: true, controls: true, history: true, progress: true, transition: "slide" };
+  var revealHugoSiteParams = JSON.parse(document.getElementById('reveal-hugo-site-params').innerHTML);
+  var revealHugoPageParams = JSON.parse(document.getElementById('reveal-hugo-page-params').innerHTML);
+  
+  var options = Object.assign({},
+    camelize(revealHugoDefaults),
+    camelize(revealHugoSiteParams),
+    camelize(revealHugoPageParams));
+  Reveal.initialize(options);
+</script>
+
+
+  
+  
+  <script type="text/javascript" src="/reveal-js/plugin/markdown/marked.js"></script>
+  
+  <script type="text/javascript" src="/reveal-js/plugin/markdown/markdown.js"></script>
+  
+  <script type="text/javascript" src="/reveal-js/plugin/highlight/highlight.js"></script>
+  
+  <script type="text/javascript" src="/reveal-js/plugin/zoom-js/zoom.js"></script>
+  
+  
+  <script type="text/javascript" src="/reveal-js/plugin/notes/notes.js"></script>
+
+
+
+
+
+
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({startOnLoad: false});
+    let render = (event) => {
+      let mermaidElems = event.currentSlide.querySelectorAll('.mermaid');
+      if (!mermaidElems.length){
+          return
+      }
+      mermaidElems.forEach(mermaidElem => {
+          let processed = mermaidElem.getAttribute('data-processed');
+          if (!processed){
+              
+              mermaid.init(undefined, mermaidElem);
+          }
+      });
+    };
+    Reveal.addEventListener('slidechanged', render);
+    Reveal.addEventListener('ready', render);
+  </script>
+
+    
+
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']]
+  },
+  svg: {
+    fontCache: 'global'
+  }
+};
+</script>
+
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+</script>
+    
+  </body>
+</html>
