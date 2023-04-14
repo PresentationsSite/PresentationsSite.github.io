@@ -2,14 +2,14 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>Radioactivité</title>
+<title>Expérience radioactivité</title>
 
 
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link rel="stylesheet" href="/reveal-js/css/reset.css">
-<link rel="stylesheet" href="/reveal-js/css/reveal.css"><link rel="stylesheet" href="/reveal-js/css/theme/sky.css" id="theme">
+<link rel="stylesheet" href="/reveal-js/css/reveal.css"><link rel="stylesheet" href="/reveal-js/css/theme/black.css" id="theme">
 <link rel="stylesheet" href="/highlight-js/atom-one-dark-reasonable.min.css">
     <link rel="stylesheet" href="/css/styles.css">
 
@@ -21,19 +21,19 @@
       <div class="slides">
   
 
-    <section><h1 id="radioactivité">Radioactivité</h1>
-</section><section>
-
+    <section>
 
 <section data-shortcode-section>
-<h3 id="simulation-de-labrdésintégration-radiactivebrde-la-classe">Simulation de la<br><strong>désintégration radiactive</strong><br>de la classe&hellip;</h3>
+<h1 id="désintégration-radioactivebrde-la-classe">Désintégration radioactive<br>de la classe</h1>
+</section><section>
+<h3 id="expérience">Expérience</h3>
+<p>Tout le monde commence debout<br>et à chaque tour, on a 1 chance sur 4 de s&rsquo;assoir.<br></p>
+<p>Quelle sera l&rsquo;allure de la courbe donnant<br>l&rsquo;évolution du nombre d&rsquo;élèves debouts<br>en fonction du nombre de tours ?</p>
 </section>
 <section data-noprocess data-shortcode-slide
       data-background-image="/pileface.png"
       data-background-size="30%"
       data-background-transition="concave">
-</section><section>
-<img src="/qrcoderadioact.png" width="50%">
 </section><section>
 <style>
 .bouton {
@@ -79,7 +79,7 @@ function pileface() {
 </section><section>
 <iframe src="https://www.desmos.com/calculator/titas84izy?embed" width="500" height="500" style="border: 5px solid #ccc" frameborder=0></iframe>
 </section><section>
-<p>Si on répète l&rsquo;expérience<br>avec toutes les premières,<br>puis avec tout La Rochelle,<br>combien faudra-t-il de tours<br>pour diviser la population par 2 ?</p>
+<p>Si on répète l&rsquo;expérience<br>avec toutes les terminales,<br>puis avec tout La Rochelle,<br>combien faudra-t-il de tours<br>pour diviser la population par 2 ?</p>
 </section><section>
 <iframe src="https://trinket.io/embed/python/d91a436656?toggleCode=true" width="100%" height="600" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
 </section><section>
@@ -101,61 +101,21 @@ while N != 0 :            # Tant qu'il y a des survivants
 <iframe src="https://www.desmos.com/calculator/2uaww5ek4k?embed" width="500" height="500" style="border: 5px solid #ccc" frameborder=0></iframe>
 </section><section>
 <div style="display: flex;justify-content: center;">
-<div style="background-color:rgb(0,0,255,0.2);border:solid blue 5px;padding:20px 50px 30px 50px;border-radius:20px;width:contain">
+<div style="background-color:rgb(0,0,255,0.2);border:solid blue 20px;padding:20px 50px 30px 50px;width:contain">
 L'évolution de la population<br>ne dépend pas de la<br>population de départ.
 </div>
 </section><section>
 <p>Et que peut-on conclure de ce graphe ?</p>
-<iframe src="https://www.desmos.com/calculator/iqwixcdhgr?embed" width="500" height="500" style="border: 5px solid #ccc" frameborder=0></iframe>
+<iframe src="https://www.desmos.com/calculator/f425jmrshz?embed" width="500" height="500" style="border: 5px solid #ccc" frameborder=0></iframe>
 </section><section>
 <div style="display: flex;justify-content: center;">
-<div style="background-color:rgb(0,0,255,0.2);border:solid blue 5px;padding:20px 50px 30px 50px;border-radius:20px;width:contain">
+<div style="background-color:rgb(0,0,255,0.2);border:solid blue 20px;padding:20px 50px 30px 50px;width:contain">
 L'écart en tours (= en temps)<br>entre chaque division<br>par 2 de la population<br>est le même.
 </div></div>
 
 </section>
 </section><section>
-
-
-<section data-shortcode-section>
-<h3 id="décroissance-radioactive">Décroissance radioactive</h3>
-</section>
-<section data-noprocess data-shortcode-slide
-      data-background-image="/expdiv2.png"
-      data-background-size="70%"
-      data-background-transition="concave">
-</section><section>
-<div style="background-color:rgb(255,0,0,0.2);border:solid red 5px;padding:10px 10px 15px 10px;border-radius:20px;width:70%;margin:15%;">
-La <span style="font-weight:bold;">demi-vie</span> (souvent notée t<sub>1/2</sub>)<br>est la <span style="font-weight:boled">durée</span> au bout de laquelle<br>la population initiale $N_0$<br>est divisée par deux.
-</div>
-</section><section>
-<p>Population restante au bout de <span style="color:red;font-weight:bold">n</span> demi-vies :</p>
-<div style="background-color:rgb(0,0,255,0.2);border:solid blue 5px;width:20%;margin-left:40%;display:flex;justify-content:center;padding:10px 10px 15px 10px;border-radius:20px">
-$\displaystyle \frac{N_0}{2^{\color{red}n}}$
-</div>
-</section><section>
-<p>Plusieurs phénomènes suivent des évolutions similaires aux décroissances radioactives.</p>
-<p>L&rsquo;ingrédient commun est la destruction<br>d&rsquo;une <strong>proportion constante</strong> de la population<br>sur des laps de temps égaux.</p>
-</section><section>
-<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-  <iframe src="https://www.youtube.com/embed/w6kFzeR3m1Q" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
-</div>
-
-</section>
-</section><section>
-
-
-<section data-shortcode-section>
-<h3 id="types-de-rayonnements-">Types de rayonnements :</h3>
-</section>
-<section data-noprocess data-shortcode-slide
-      data-background-image="/typesrayonnements.png"
-      data-background-size="80%"
-      data-background-transition="concave">
-
-</section>
-</section><section>
-<p><a href="https://coursphychi.github.io/1es/matiere/">Retour site</a></p>
+<p><a href="https://coursphychi.github.io/tsti2d/radiact/">Retour site</a></p>
 </section>
 
   
@@ -178,7 +138,7 @@ $\displaystyle \frac{N_0}{2^{\color{red}n}}$
 </script>
 
 <script type="application/json" id="reveal-hugo-site-params">{"highlight_theme":"github-dark","line-numbers":true,"theme":"sky","transition":"concave","transition_speed":"fast"}</script>
-<script type="application/json" id="reveal-hugo-page-params">{"highlight_theme":"atom-one-dark-reasonable"}</script>
+<script type="application/json" id="reveal-hugo-page-params">{"highlight_theme":"atom-one-dark-reasonable","theme":"black"}</script>
 
 <script src="/reveal-js/js/reveal.js"></script>
 
