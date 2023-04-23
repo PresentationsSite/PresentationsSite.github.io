@@ -1,0 +1,373 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>Radioactivité</title>
+
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="/reveal-js/css/reset.css">
+<link rel="stylesheet" href="/reveal-js/css/reveal.css"><link rel="stylesheet" href="/reveal-js/css/theme/black.css" id="theme">
+<link rel="stylesheet" href="/highlight-js/atom-one-dark-reasonable.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  </head>
+  <body>
+    
+    <div class="reveal">
+      <div class="slides">
+  
+
+    <section><style>
+span {font-weight:bold;color:#00A2FF;}
+</style>
+
+
+<section data-shortcode-section>
+<h2 id="radioactivité">Radioactivité</h2>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/noyau.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/symbchim.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+</section><section>
+<p>Exprimer le nombre de neutrons N<br>en fonction de A et Z :</p>
+<p><span class='fragment ' >N = A-Z</span></p>
+</section><section>
+<p>Deux mêmes éléments chimiques (même Z) ayant des nombres de nucléons différents (A différents, donc nombre de neutrons N différents) sont dits</p>
+<p><span class='fragment ' >isotopes</span></p>
+</section><section>
+<p>Chaque élément chimique<br>peut posséder plusieurs isotopes naturels.</p>
+</section><section>
+<p>Exemple :</p>
+<p>Dans un échantillon de carbone pur,<br>on trouve trois isotopes :</p>
+<ul>
+<li>98,93% des atomes de carbone présents ont des noyaux à 12 nucléons, du carbone-12 <sup>12</sup>C,</li>
+<li>1,109% sont des carbone-13 <sup>13</sup>C,</li>
+<li>et environ 10<sup>-10</sup> % sont des carbone-14 <sup>14</sup>C.</li>
+</ul>
+</section><section>
+<p>Combien un noyau de carbone-14<br>possède-t-il de neutrons ?</p>
+<p><span class='fragment ' >8</span></p>
+</section><section>
+<p>Les éléments légers peuvent avoir des isotopes stables (carbone-12 et carbone-13 pour le carbone)<br>et d’autres instables (carbone-14) mais au-delà de Z=83 (le bismuth), plus aucun noyau n’est stable.</p>
+</section><section>
+<p>Un noyau instable va se désintégrer en noyaux fils<br>plus stables. Parfois, les noyaux fils sont eux-mêmes radioactifs, on a alors une <span>chaîne de désintégration</span> jusqu’à des noyaux stables.</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/stabilitenoyau.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+</section><section>
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/clRcF7emyiM" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+</section><section>
+<h4 id="radioactivité-">Radioactivité :</h4>
+<p>transformation spontanée de <span>noyaux atomiques instables</span> (dits radionucléides ou radioisotopes)<br>en d&rsquo;autres noyaux (<span>désintégration</span>) en émettant simultanément des <span>rayonnements</span><br>de particules  ou d&rsquo;énergie.</p>
+</section><section>
+<p>On peut créer artificiellement des noyaux radioactifs (en bombardant par exemple une cible de neutrons).</p>
+<p>À quoi cela peut-il servir ?</p>
+<p><span class='fragment ' >De traceurs pour la médecine nucléaire par exemple</span></p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/pet.gif"
+      data-background-size="contain"
+      data-background-transition="concave">
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h2 id="décroissance-radioactive">Décroissance radioactive</h2>
+</section><section>
+<p>Une population de noyaux radioactifs suit la loi de décroissance exponentielle suivante :</p>
+<div style="background-color:#0076BA;padding:10px 10px 15px 10px;;width:70%;margin:15%;color:white">
+$$N(t)=N_0\exp(-\lambda t)$$
+</div>
+<p>$\lambda$ (en s<sup>-1</sup>) est la constante radioactive de l&rsquo;élément.</p>
+</section><section>
+<iframe scrolling="no" title="décroissance radioactive" src="https://www.geogebra.org/material/iframe/id/rnfpcJBx/width/652/height/938/border/888888/sfsb/true/smb/false/stb/false/stbh/false/ai/false/asb/false/sri/true/rc/true/ld/false/sdz/false/ctl/false" width="417px" height="600px" style="border:0px;"> </iframe>
+</section><section>
+<p>On peut aussi écrire :</p>
+<div style="background-color:#0076BA;padding:10px 10px 15px 10px;;width:70%;margin:15%;color:white">
+$$N(t)=N_0\exp(-\frac{t}{\tau})$$
+</div>
+<p>où $\tau=1/\lambda$ est le temps de vie moyen d&rsquo;un noyau.</p>
+</section><section>
+<p>Demi-vie $t_{1/2}$ :</p>
+<div style="background-color:#0076BA;padding:10px 10px 15px 10px;;width:70%;margin:15%;color:white">
+La demi-vie mesure la durée au bout de laquelle la population radioactive est divisée par deux.
+</div>
+</section><section>
+<p>On peut obtenir $t_{1/2}$ graphiquement<br>ou à partir de $\tau$ ou $\lambda$ :</p>
+<div style="background-color:#505050;padding:10px 10px 15px 10px;;width:70%;margin:15%;color:white">
+$$t_{1/2}=\tau\times \ln(2) = \ln(2)/\lambda$$
+</div>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/expdiv22.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+</section><section>
+<p>Population restante au bout de <span style="color:#FF968D;font-weight:bold">n</span> demi-vies ?</p>
+</section><section>
+<div style="display: flex;justify-content: center;">
+<div style="background-color:#505050;padding:10px 50px 15px 50px;width:contain;color:white">
+$$\displaystyle \frac{N_0}{2^{\color{#FF968D}n}}$$
+</div>
+</div>
+</section><section>
+<p>Plusieurs phénomènes suivent des évolutions similaires aux décroissances radioactives.</p>
+<p>L&rsquo;ingrédient commun est la destruction<br>d&rsquo;une <span>proportion constante</span> de la population<br>sur des laps de temps égaux (exemple : TP mousse).</p>
+</section><section>
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/w6kFzeR3m1Q" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+</section><section>
+<div style="background-color:#0076BA;padding:20px 10px 30px 10px;;width:85%;margin:15%;color:white">
+L'<span style="color:white">activité</span> d'une source radioactive est son nombre de désintégrations par seconde.<br>
+Elle se mesure en <span style="color:white">becquerel</span><br>(1 Bq = 1 désintégration par seconde).
+</div>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h2 id="types-de-rayonnements-radioactifs-">Types de rayonnements radioactifs :</h2>
+</section><section>
+<p><span>Radioactivité alpha $\alpha$ </span></p>
+<p>Exemple :</p>
+<p>$$\ce{^{238}_{92} U -&gt; ^{234}_{90} Th + \alpha}$$</p>
+<p>Par conservation de la charge et du nombre de nucléons, déterminer la nature des rayons alpha.</p>
+</section><section>
+<p><span>Le rayonnement alpha est constitué<br>de noyaux d&rsquo;Hélium $\ce{^4_2He}$</span></p>
+</section><section>
+<p><span>Radioactivité beta $\beta$ </span></p>
+<p>Exemple :</p>
+<p>$$\ce{^{14}_{6} C -&gt; ^{14}_{7} N + \beta}$$</p>
+<p>Par conservation de la charge et du nombre de nucléons, déterminer la nature des rayons beta.</p>
+</section><section>
+<p><span>Les rayons beta sont des électrons $^{\;\; 0}_{-1}e$</span></p>
+</section><section>
+<p><span>Radioactivité gamma $\gamma$ </span></p>
+<p>Exemple :</p>
+<p>$$\ce{^{60}_{28} Ni^* -&gt; ^{60}_{28} Ni + \gamma}$$</p>
+<p>Par conservation de la charge et du nombre de nucléons, déterminer la nature des rayons gamma.</p>
+</section><section>
+<p><span>Les rayons gamma sont des photons</span></p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/gammahf.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/diffrayons.png"
+      data-background-size="80%"
+      data-background-transition="concave">
+</section><section>
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/i15ef618DP0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h2 id="fusion-et-fission-nucléaire">Fusion et fission nucléaire</h2>
+</section><section>
+<p>Déterminer le deuxième noyau fils<br>d&rsquo;une des réactions nucléaires ayant lieu<br>au sein des réacteurs des centrales électriques<br>sachant que le noyau père est de l’Uranium 235<br>et que le premier noyau fils est du Krypton 92.</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/fissionexo.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+<p><br><br><br><br><br><br><br><br></p>
+<span style="font-size:60px">
+$$^\square_\square\text{n} + \; ^\square_\square\text{U} \rightarrow   \; ^\square_\square\text{Kr} + \; ^\square_\square ? + \; 3 ^\square_\square\text{n}$$
+</span>
+</section><section>
+<p>Fusion ou fission ?</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/reactchainenoir.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/explosion-boom.gif"
+      data-background-size="content"
+      data-background-transition="concave">
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/centrnucl.png"
+      data-background-size="content"
+      data-background-transition="concave">
+</section><section>
+<p>Donner l’équation d’une des réactions nucléaires qui pourra prendre place au sein du plasma torique des tokamaks qui seront peut-être au cœur des centrales électriques du futur.</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/tokamak.png"
+      data-background-size="content"
+      data-background-transition="concave">
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/fusionexo.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+<p><br><br><br><br><br><br><br><br><br></p>
+<span style="font-size:60px">
+$$^\square_\square\text{?} + \; ^\square_\square\text{?} \rightarrow   \; ^\square_\square\text{?} + \; ^\square_\square ? $$
+</span>
+</section><section>
+<p>Fusion ou fission ?</p>
+</section><section>
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/n5cAi6-jrMs" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+</section><section>
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/1MUcizMqVAc" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h2 id="défaut-de-massebret-énergie-libérée">Défaut de masse<br>et énergie libérée</h2>
+</section><section>
+<div style="background-color:#0076BA;padding:20px 10px 30px 10px;;width:70%;margin:15%;color:white">
+$E_{libérée}=|\Delta m|\times c^2$<br>
+$=|m_{produits}-m_{réactifs}|\times c^2$
+</div>
+
+</section>
+</section><section>
+<p><a href="https://coursphychi.github.io/tsti2d/radiact/">Retour site</a></p>
+</section>
+
+  
+
+
+</div>
+      
+
+    </div>
+<script type="text/javascript" src=/reveal-hugo/object-assign.js></script>
+
+<a href="/reveal-js/css/print/" id="print-location" style="display: none;"></a>
+<script type="text/javascript">
+  var printLocationElement = document.getElementById('print-location');
+  var link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.type = 'text/css';
+  link.href = printLocationElement.href + (window.location.search.match(/print-pdf/gi) ? 'pdf.css' : 'paper.css');
+  document.getElementsByTagName('head')[0].appendChild(link);
+</script>
+
+<script type="application/json" id="reveal-hugo-site-params">{"highlight_theme":"github-dark","line-numbers":true,"theme":"sky","transition":"concave","transition_speed":"fast"}</script>
+<script type="application/json" id="reveal-hugo-page-params">{"highlight_theme":"atom-one-dark-reasonable","theme":"black"}</script>
+
+<script src="/reveal-js/js/reveal.js"></script>
+
+<script type="text/javascript">
+  
+  
+  function camelize(map) {
+    if (map) {
+      Object.keys(map).forEach(function(k) {
+        newK = k.replace(/(\_\w)/g, function(m) { return m[1].toUpperCase() });
+        if (newK != k) {
+          map[newK] = map[k];
+          delete map[k];
+        }
+      });
+    }
+    return map;
+  }
+  
+  var revealHugoDefaults = { center: true, controls: true, history: true, progress: true, transition: "slide" };
+  var revealHugoSiteParams = JSON.parse(document.getElementById('reveal-hugo-site-params').innerHTML);
+  var revealHugoPageParams = JSON.parse(document.getElementById('reveal-hugo-page-params').innerHTML);
+  
+  var options = Object.assign({},
+    camelize(revealHugoDefaults),
+    camelize(revealHugoSiteParams),
+    camelize(revealHugoPageParams));
+  Reveal.initialize(options);
+</script>
+
+
+  
+  
+  <script type="text/javascript" src="/reveal-js/plugin/markdown/marked.js"></script>
+  
+  <script type="text/javascript" src="/reveal-js/plugin/markdown/markdown.js"></script>
+  
+  <script type="text/javascript" src="/reveal-js/plugin/highlight/highlight.js"></script>
+  
+  <script type="text/javascript" src="/reveal-js/plugin/zoom-js/zoom.js"></script>
+  
+  
+  <script type="text/javascript" src="/reveal-js/plugin/notes/notes.js"></script>
+
+
+
+
+
+
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({startOnLoad: false});
+    let render = (event) => {
+      let mermaidElems = event.currentSlide.querySelectorAll('.mermaid');
+      if (!mermaidElems.length){
+          return
+      }
+      mermaidElems.forEach(mermaidElem => {
+          let processed = mermaidElem.getAttribute('data-processed');
+          if (!processed){
+              
+              mermaid.init(undefined, mermaidElem);
+          }
+      });
+    };
+    Reveal.addEventListener('slidechanged', render);
+    Reveal.addEventListener('ready', render);
+  </script>
+
+    
+
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']]
+  },
+  svg: {
+    fontCache: 'global'
+  }
+};
+</script>
+
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+</script>
+    
+  </body>
+</html>
