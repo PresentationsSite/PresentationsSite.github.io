@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>Transport électricité</title>
+
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="/reveal-js/css/reset.css">
+<link rel="stylesheet" href="/reveal-js/css/reveal.css"><link rel="stylesheet" href="/reveal-js/css/theme/black.css" id="theme">
+<link rel="stylesheet" href="/highlight-js/atom-one-dark-reasonable.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  </head>
+  <body>
+    
+    <div class="reveal">
+      <div class="slides">
+  
+
+    <section><style>
+span {font-weight:bold;color:#00A2FF;}
+</style>
+
+
+<section data-shortcode-section>
+<h2 id="transport-de-lélectricité">Transport de l&rsquo;électricité</h2>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/reselec.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+</section><section>
+<p>Pourquoi des hautes tensions<br>pour les grandes distances ?</p>
+<p>Et comment modifie-t-on la tension ?</p>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h3 id="pertes-par-effet-joule">Pertes par effet Joule</h3>
+</section><section>
+<p>La puissance perdue par effet joule (sous forme de chaleur) par un dipole de résistance $R$ vaut :</p>
+<div style="background-color:#0076BA;padding:20px 10px 30px 10px;;width:70%;margin:15%;color:white">
+$P_J = RI^2$
+</div>
+<p>$P_J$ en W, $R$ en $\Omega$ et $I$ en A</p>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h3 id="transformateurs">Transformateurs</h3>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/transfopuissance.jpg"
+      data-background-size="contain"
+      data-background-transition="concave">
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/transfoligne.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/transfolycee.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/transfoschema.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+</section><section>
+<p>Le transformateur permet d&rsquo;élever (ou d&rsquo;abaisser)<br>une <span>tension alternative</span>.</p>
+<div style="background-color:#0076BA;padding:20px 10px 30px 10px;;width:70%;margin:15%;color:white">
+$U_2=U_1\times\frac{N_2}{N_1}$
+</div>
+</section><section>
+<p>À l&rsquo;inverse, l&rsquo;intensité est divisée par le même rapport.</p>
+<p>En effet, pour un transformateur idéal (rendement de 100%), la puissance $P=UI$ doit être intégralement transmise du primaire au secondaire.</p>
+</section><section>
+<p>Autre utilitié d&rsquo;un transformateur :</p>
+<p>isoler électriquement deux parties d&rsquo;un circuit<br>(les parties ne communiquent pas par un conducteur). On parle d'<span>isolation galvanique</span>.</p>
+</section><section>
+<p>On utilise alors souvent<br>un rapport de transformation de 1:1.<br></p>
+<p>C&rsquo;est le cas par exemple dans les prises dites &ldquo;rasoir&rdquo; qu&rsquo;on trouve parfois dans les salles de bain. Si le rasoir électrique tombe dans l&rsquo;eau, pas de problème.</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/giftransfoisolement.gif"
+      data-background-size="50%"
+      data-background-transition="concave">
+</section><section>
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/D8EQPx-ptKk" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<div style="background-color:#0076BA;padding:20px 10px 30px 10px;;width:70%;margin:15%;color:white">
+Élever la tension permet de diminuer les pertes en lignes par effet Joule.
+</div>
+<p>Pourquoi ?</p>
+</section><section>
+<p><span>Pour la même puissance transportée, si $U \nearrow$ , $I \searrow$  et donc les pertes par effet Joule ($RI^2$) $ \searrow \searrow$ ! </span></p>
+</section><section>
+<p>D&rsquo;autre part, un facteur de puissance faible pour une installation électrique entraîne lui aussi<br>des pertes en lignes plus grande.</p>
+<p>Pourquoi ?</p>
+</section><section>
+<p>Rappel :</p>
+<p>on fournit à l&rsquo;utilisateur une puissance utile $P$ mais on transporte pour cela une puissance apparente $S=P/k$.</p>
+<p><span class='fragment ' >Pour une tension donnée, il faut donc transporter une plus forte intensité pour fournir une même puissance si $k$ est faible.</span></p>
+
+</section>
+</section><section>
+<p><a href="https://coursphychi.github.io/tsti2d/pression/">Retour site</a></p>
+</section>
+
+  
+
+
+</div>
+      
+
+    </div>
+<script type="text/javascript" src=/reveal-hugo/object-assign.js></script>
+
+<a href="/reveal-js/css/print/" id="print-location" style="display: none;"></a>
+<script type="text/javascript">
+  var printLocationElement = document.getElementById('print-location');
+  var link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.type = 'text/css';
+  link.href = printLocationElement.href + (window.location.search.match(/print-pdf/gi) ? 'pdf.css' : 'paper.css');
+  document.getElementsByTagName('head')[0].appendChild(link);
+</script>
+
+<script type="application/json" id="reveal-hugo-site-params">{"highlight_theme":"github-dark","line-numbers":true,"theme":"sky","transition":"concave","transition_speed":"fast"}</script>
+<script type="application/json" id="reveal-hugo-page-params">{"highlight_theme":"atom-one-dark-reasonable","theme":"black"}</script>
+
+<script src="/reveal-js/js/reveal.js"></script>
+
+<script type="text/javascript">
+  
+  
+  function camelize(map) {
+    if (map) {
+      Object.keys(map).forEach(function(k) {
+        newK = k.replace(/(\_\w)/g, function(m) { return m[1].toUpperCase() });
+        if (newK != k) {
+          map[newK] = map[k];
+          delete map[k];
+        }
+      });
+    }
+    return map;
+  }
+  
+  var revealHugoDefaults = { center: true, controls: true, history: true, progress: true, transition: "slide" };
+  var revealHugoSiteParams = JSON.parse(document.getElementById('reveal-hugo-site-params').innerHTML);
+  var revealHugoPageParams = JSON.parse(document.getElementById('reveal-hugo-page-params').innerHTML);
+  
+  var options = Object.assign({},
+    camelize(revealHugoDefaults),
+    camelize(revealHugoSiteParams),
+    camelize(revealHugoPageParams));
+  Reveal.initialize(options);
+</script>
+
+
+  
+  
+  <script type="text/javascript" src="/reveal-js/plugin/markdown/marked.js"></script>
+  
+  <script type="text/javascript" src="/reveal-js/plugin/markdown/markdown.js"></script>
+  
+  <script type="text/javascript" src="/reveal-js/plugin/highlight/highlight.js"></script>
+  
+  <script type="text/javascript" src="/reveal-js/plugin/zoom-js/zoom.js"></script>
+  
+  
+  <script type="text/javascript" src="/reveal-js/plugin/notes/notes.js"></script>
+
+
+
+
+
+
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({startOnLoad: false});
+    let render = (event) => {
+      let mermaidElems = event.currentSlide.querySelectorAll('.mermaid');
+      if (!mermaidElems.length){
+          return
+      }
+      mermaidElems.forEach(mermaidElem => {
+          let processed = mermaidElem.getAttribute('data-processed');
+          if (!processed){
+              
+              mermaid.init(undefined, mermaidElem);
+          }
+      });
+    };
+    Reveal.addEventListener('slidechanged', render);
+    Reveal.addEventListener('ready', render);
+  </script>
+
+    
+
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']]
+  },
+  svg: {
+    fontCache: 'global'
+  }
+};
+</script>
+
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+</script>
+    
+  </body>
+</html>
