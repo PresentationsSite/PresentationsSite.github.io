@@ -3,6 +3,10 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>http://PresentationsSite.github.io/2nde/</loc>
+  </url>
+  
+  <url>
     <loc>http://PresentationsSite.github.io/tsti/acide/</loc>
   </url>
   
@@ -160,6 +164,10 @@
   
   <url>
     <loc>http://PresentationsSite.github.io/tsti/mecarot/</loc>
+  </url>
+  
+  <url>
+    <loc>http://PresentationsSite.github.io/2nde/melanges/</loc>
   </url>
   
   <url>
