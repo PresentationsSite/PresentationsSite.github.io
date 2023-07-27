@@ -1,0 +1,576 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>Cortège</title>
+
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="/reveal-js/css/reset.css">
+<link rel="stylesheet" href="/reveal-js/css/reveal.css"><link rel="stylesheet" href="/reveal-js/css/theme/black.css" id="theme">
+<link rel="stylesheet" href="/highlight-js/atom-one-dark-reasonable.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  </head>
+  <body>
+    
+    <div class="reveal">
+      <div class="slides">
+  
+
+    <section><style>
+img {border: none !important}
+
+.imp {font-weight:bold;color:#00A2FF;}
+
+span {font-weight:normal;color:white;}
+
+ul {
+margin-left: auto;
+margin-right: auto;
+text-align: left;
+width: fit-content;
+list-style-position: inside;
+}
+
+ul li {
+text-indent: -1em;
+padding-left: 1em;
+}
+
+td {
+text-align: center !important;
+}
+
+th:not(:last-child), td:not(:last-child) { border-right: 1px solid #00A2FF; }
+
+table {
+  margin: auto;
+  border-collapse: collapse;
+}
+td {
+  width: 60px;
+  height: 60px;
+  border: 1px solid white !important;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 0.3em;
+}
+.s-block {
+  background-color: #FEAE00;
+}
+.p-block {
+  background-color: #1DB100;
+}
+.neutre {
+  background-color: #0076BA;
+}
+.noble-gas {
+  background-color: #FF644E;
+}
+.empty {
+  border: none !important;
+}
+.symbol {
+  font-size: 1.2em;
+  font-weight:bold;
+}
+
+</style>
+
+
+<section data-shortcode-section>
+<h2 id="cortège-électroniquebret-stabilité">Cortège électronique<br>et stabilité</h2>
+</section><section>
+<table>
+<tr>
+<td class="empty">Colonne 1</a></td><td class="empty">Colonne 2</td><td class="empty">...</td><td class="empty">Colonne 13</td><td class="empty">Colonne 14</td><td class="empty">Colonne 15</td><td class="empty">Colonne 16</td><td class="empty">Colonne 17</td><td class="empty">Colonne 18</td>
+<tr>
+  <td class="s-block"><span class="atomic-number">1</span><br><span class="symbol">H</span><br><span class="electron-configuration">$\text{1s}^1$</span></td>
+  <td class="empty"></td>
+  <td class="empty"></td>
+  <td class="empty"></td>
+  <td class="empty"></td>
+  <td class="empty"></td>
+  <td class="empty"></td>
+  <td class="empty"></td>
+  <td class="noble-gas"><span class="atomic-number">2</span><br><span class="symbol">He</span><br><span class="electron-configuration">$\text{1s}^2$</span></td>
+  </tr>
+  <tr>
+    <td class="s-block"><span class="atomic-number">3</span><br><span class="symbol">Li</span><br><span class="electron-configuration">$\text{1s}^2\,\text{2s}^1$<br></span></td>
+    <td class="s-block"><span class="atomic-number">4</span><br><span class="symbol">Be</span><br><span class="electron-configuration">$\text{1s}^2\,\text{2s}^2$<br></span></td>
+    <td class="empty"></td>
+    <td class="p-block"><span class="atomic-number">5</span><br><span class="symbol">B</span><br><span class="electron-configuration">$\text{1s}^2\,\text{2s}^2\,\text{2p}^1$</span></td>
+    <td class="p-block"><span class="atomic-number">6</span><br><span class="symbol">C</span><br><span class="electron-configuration">$\text{1s}^2\,\text{2s}^2\,\text{2p}^2$</span></td>
+    <td class="p-block"><span class="atomic-number">7</span><br><span class="symbol">N</span><br><span class="electron-configuration">$\text{1s}^2\,\text{2s}^2\,\text{2p}^3$</span></td>
+    <td class="p-block"><span class="atomic-number">8</span><br><span class="symbol">O</span><br><span class="electron-configuration">$\text{1s}^2\,\text{2s}^2\,\text{2p}^4$</span></td>
+    <td class="p-block"><span class="atomic-number">9</span><br><span class="symbol">F</span><br><span class="electron-configuration">$\text{1s}^2\,\text{2s}^2\,\text{2p}^5$</span></td>
+    <td class="noble-gas"><span class="atomic-number">10</span><br><span class="symbol">Ne</span><br><span class="electron-configuration">$\text{1s}^2\,\text{2s}^2\,\text{2p}^6$<br></span></td>
+  </tr>
+  <tr>
+    <td class="s-block"><span class="atomic-number">11</span><br><span class="symbol">Na</span><br><span class="electron-configuration">$\text{1s}^2\,\text{2s}^2\,\text{2p}^6\,\text{3s}^1$</span></td>
+    <td class="s-block"><span class="atomic-number">12</span><br><span class="symbol">Mg</span><br><span class="electron-configuration">$\text{1s}^2\,\text{2s}^2\,\text{2p}^6\,\text{3s}^2$</span></td>
+    <td class="empty"></td>
+    <td class="p-block"><span class="atomic-number">13</span><br><span class="symbol">Al</span><br><span class="electron-configuration">$\text{1s}^2\,\text{2s}^2\,\text{2p}^6\,\text{3s}^2\,\text{3p}^1$</span></td>
+    <td class="p-block"><span class="atomic-number">14</span><br><span class="symbol">Si</span><br><span class="electron-configuration">$\text{1s}^2\,\text{2s}^2\,\text{2p}^6\,\text{3s}^2\,\text{3p}^2$</span></td>
+    <td class="p-block"><span class="atomic-number">15</span><br><span class="symbol">P</span><br><span class="electron-configuration">$\text{1s}^2\,\text{2s}^2\,\text{2p}^6\,\text{3s}^2\,\text{3p}^3$</span></td>
+    <td class="p-block"><span class="atomic-number">16</span><br><span class="symbol">S</span><br><span class="electron-configuration">$\text{1s}^2\,\text{2s}^2\,\text{2p}^6\,\text{3s}^2\,\text{3p}^4$</span></td>
+    <td class="p-block"><span class="atomic-number">17</span><br><span class="symbol">Cl</span><br><span class="electron-configuration">$\text{1s}^2\,\text{2s}^2\,\text{2p}^6\,\text{3s}^2\,\text{3p}^5$</span></td>
+    <td class="noble-gas"><span class="atomic-number">18</span><br><span class="symbol">Ar</span><br><span class="electron-configuration">$\text{1s}^2\,\text{2s}^2\,\text{2p}^6\,\text{3s}^2\,\text{3p}^6$</span></td>
+  </tr>
+</table>
+</section><section>
+<table>
+<tr>
+<td class="empty">Colonne 1</a></td><td class="empty">Colonne 2</td><td class="empty">...</td><td class="empty">Colonne 13</td><td class="empty">Colonne 14</td><td class="empty">Colonne 15</td><td class="empty">Colonne 16</td><td class="empty">Colonne 17</td><td class="empty">Colonne 18</td>
+<tr>
+  <td class="s-block"><span class="atomic-number">1</span><br><span class="symbol">H</span><br><span class="electron-configuration">$\text{1s}^1$<br>&nbsp;</span></td>
+  <td class="empty"></td>
+  <td class="empty"></td>
+  <td class="empty"></td>
+  <td class="empty"></td>
+  <td class="empty"></td>
+  <td class="empty"></td>
+  <td class="empty"></td>
+  <td class="s-block"><span class="atomic-number">2</span><br><span class="symbol">He</span><br><span class="electron-configuration">$\text{1s}^2$</span></td>
+  </tr>
+  <tr>
+    <td class="s-block"><span class="atomic-number">3</span><br><span class="symbol">Li</span><br><span class="electron-configuration">$\text{1s}^2\,\text{2s}^1$<br>$\ce{[He]}\,\text{2s}^1$</span></td>
+    <td class="s-block"><span class="atomic-number">4</span><br><span class="symbol">Be</span><br><span class="electron-configuration">$\text{1s}^2\,\text{2s}^2$<br>$\ce{[He]}\,\text{2s}^2$</span></td>
+    <td class="empty"></td>
+    <td class="p-block"><span class="atomic-number">5</span><br><span class="symbol">B</span><br><span class="electron-configuration">$\text{1s}^2\,\text{2s}^2\,\text{2p}^1$<br>$\ce{[He]}\,\text{2s}^2\,\text{2p}^1$</span></td>
+    <td class="p-block"><span class="atomic-number">6</span><br><span class="symbol">C</span><br><span class="electron-configuration">$\text{1s}^2\,\text{2s}^2\,\text{2p}^2$<br>$\ce{[He]}\,\text{2s}^2\,\text{2p}^2$</span></td>
+    <td class="p-block"><span class="atomic-number">7</span><br><span class="symbol">N</span><br><span class="electron-configuration">$\text{1s}^2\,\text{2s}^2\,\text{2p}^3$<br>$\ce{[He]}\,\text{2s}^2\,\text{2p}^3$</span></td>
+    <td class="p-block"><span class="atomic-number">8</span><br><span class="symbol">O</span><br><span class="electron-configuration">$\text{1s}^2\,\text{2s}^2\,\text{2p}^4$<br>$\ce{[He]}\,\text{2s}^2\,\text{2p}^4$</span></td>
+    <td class="p-block"><span class="atomic-number">9</span><br><span class="symbol">F</span><br><span class="electron-configuration">$\text{1s}^2\,\text{2s}^2\,\text{2p}^5$<br>$\ce{[He]}\,\text{2s}^2\,\text{2p}^5$</span></td>
+    <td class="p-block"><span class="atomic-number">10</span><br><span class="symbol">Ne</span><br><span class="electron-configuration">$\text{1s}^2\,\text{2s}^2\,\text{2p}^6$<br>$\ce{[He]}\,\text{2s}^2\,\text{2p}^6$</span></td>
+  </tr>
+  <tr>
+    <td class="s-block"><span class="atomic-number">11</span><br><span class="symbol">Na</span><br><span class="electron-configuration">$\text{1s}^2\,\text{2s}^2\,\text{2p}^6\,\text{3s}^1$<br>$\ce{[Ne]}\,\text{3s}^1$</span></td>
+    <td class="s-block"><span class="atomic-number">12</span><br><span class="symbol">Mg</span><br><span class="electron-configuration">$\text{1s}^2\,\text{2s}^2\,\text{2p}^6\,\text{3s}^2$<br>$\ce{[Ne]}\,\text{3s}^2$</span></td>
+    <td class="empty"></td>
+    <td class="p-block"><span class="atomic-number">13</span><br><span class="symbol">Al</span><br><span class="electron-configuration">$\text{1s}^2\,\text{2s}^2\,\text{2p}^6\,\text{3s}^2\,\text{3p}^1$<br>$\ce{[Ne]}\,\text{3s}^2\,\text{3p}^1$</span></td>
+    <td class="p-block"><span class="atomic-number">14</span><br><span class="symbol">Si</span><br><span class="electron-configuration">$\text{1s}^2\,\text{2s}^2\,\text{2p}^6\,\text{3s}^2\,\text{3p}^2$<br>$\ce{[Ne]}\,\text{3s}^2\,\text{3p}^2$</span></td>
+    <td class="p-block"><span class="atomic-number">15</span><br><span class="symbol">P</span><br><span class="electron-configuration">$\text{1s}^2\,\text{2s}^2\,\text{2p}^6\,\text{3s}^2\,\text{3p}^3$<br>$\ce{[Ne]}\,\text{3s}^2\,\text{3p}^3$</span></td>
+    <td class="p-block"><span class="atomic-number">16</span><br><span class="symbol">S</span><br><span class="electron-configuration">$\text{1s}^2\,\text{2s}^2\,\text{2p}^6\,\text{3s}^2\,\text{3p}^4$<br>$\ce{[Ne]}\,\text{3s}^2\,\text{3p}^4$</span></td>
+    <td class="p-block"><span class="atomic-number">17</span><br><span class="symbol">Cl</span><br><span class="electron-configuration">$\text{1s}^2\,\text{2s}^2\,\text{2p}^6\,\text{3s}^2\,\text{3p}^5$<br>$\ce{[Ne]}\,\text{3s}^2\,\text{3p}^5$</span></td>
+    <td class="p-block"><span class="atomic-number">18</span><br><span class="symbol">Ar</span><br><span class="electron-configuration">$\text{1s}^2\,\text{2s}^2\,\text{2p}^6\,\text{3s}^2\,\text{3p}^6$<br>$\ce{[Ne]}\,\text{3s}^2\,\text{3p}^6$</span></td>
+  </tr>
+</table>
+</section><section>
+<table>
+<tr>
+<td class="neutre">1<br><span class="symbol">H</span><br>1s<sup>1</sup></td>
+<td class="empty"></td>
+<td class="empty"></td>
+<td class="empty"></td>
+<td class="empty"></td>
+<td class="empty"></td>
+<td class="empty"></td>
+<td class="noble-gas">2<br><span class="symbol">He</span><br>1s<sup>2</sup></td>
+</tr>
+<tr>
+<td class="neutre">3<br><span class="symbol">Li</span><br>1s<sup>2</sup>2s<sup>1</sup></td>
+<td class="neutre">4<br><span class="symbol">Be</span><br>1s<sup>2</sup>2s<sup>2</sup></td>
+<td class="neutre">5<br><span class="symbol">B</span><br>1s<sup>2</sup>2s<sup>2</sup>2p<sup>1</sup></td>
+<td class="neutre">6<br><span class="symbol">C</span><br>1s<sup>2</sup>2s<sup>2</sup>2p<sup>2</sup></td>
+<td class="neutre">7<br><span class="symbol">N</span><br>1s<sup>2</sup>2s<sup>2</sup>2p<sup>3</sup></td>
+<td class="neutre">8<br><span class="symbol">O</span><br>1s<sup>2</sup>2s<sup>2</sup>2p<sup>4</sup></td>
+<td class="neutre">9<br><span class="symbol">F</span><br>1s<sup>2</sup>2s<sup>2</sup>2p<sup>5</sup></td>
+<td class="noble-gas">10<br><span class="symbol">Ne</span><br>1s<sup>2</sup>2s<sup>2</sup>2p<sup>6</sup></td>
+</tr>
+<tr>
+<td class="neutre">11<br><span class="symbol">Na</span><br>1s<sup>2</sup>2s<sup>2</sup>2p<sup>6</sup>3s<sup>1</sup></td>
+<td class="neutre">12<br><span class="symbol">Mg</span><br>1s<sup>2</sup>2s<sup>2</sup>2p<sup>6</sup>3s<sup>2</sup></td>
+<td class="neutre">13<br><span class="symbol">Al</span><br>1s<sup>2</sup>2s<sup>2</sup>2p<sup>6</sup>3s<sup>2</sup>3p<sup>1</sup></td>
+<td class="neutre">14<br><span class="symbol">Si</span><br>1s<sup>2</sup>2s<sup>2</sup>2p<sup>6</sup>3s<sup>2</sup>3p<sup>2</sup></td>
+<td class="neutre">15<br><span class="symbol">P</span><br>1s<sup>2</sup>2s<sup>2</sup>2p<sup>6</sup>3s<sup>2</sup>3p<sup>3</sup></td>
+<td class="neutre">16<br><span class="symbol">S</span><br>1s<sup>2</sup>2s<sup>2</sup>2p<sup>6</sup>3s<sup>2</sup>3p<sup>4</sup></td>
+<td class="neutre">17<br><span class="symbol">Cl</span><br>1s<sup>2</sup>2s<sup>2</sup>2p<sup>6</sup>3s<sup>2</sup>3p<sup>5</sup></td>
+<td class="noble-gas">18<br><span class="symbol">Ar</span><br>1s<sup>2</sup>2s<sup>2</sup>2p<sup>6</sup>3s<sup>2</sup>3p<sup>6</sup></td>
+</tr>
+</table>
+</section><section>
+<p>À partir des informations données dans la vidéo<br>qui suit, on peut déterminer l'<span class="imp"><a href="../maths">ordre de grandeur</a></span><br>de la <span class="imp" style="color:#FF644E">taille d&rsquo;un atome</span> et de la <span class="imp" style="color:#1DB100">taille de son noyau</span>.
+<br><br></p>
+<p class="fragment">
+Notez les informations utiles<br>et essayez de déterminer<br>ces ordres de grandeur.</p>
+</section><section>
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/hWn0NOptFHU" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+</section><section>
+<p>diamètre cheveu $\approx$ <span class="fragment">$\pu{10^{-4}m}$ </span></p>
+<p><span class="fragment imp">$\Rightarrow$ diamètre atome $\approx$ </span>  <span class="fragment imp">$\pu{10^{-10}m}$ </span></p>
+<p><span class="fragment imp" style="color:#FEAE00">$\Rightarrow$ diamètre noyau $\approx$ </span>  <span class="fragment imp" style="color:#FEAE00">$\pu{10^{-15}m}$ </span></p>
+</section><section>
+<p>En utilisant des unités plus adaptées<br>grâce aux bons sous-multiples :</p>
+<br>
+<ul>
+<li>
+<p>taille d&rsquo;un atome : <span class="fragment imp">$\pu{0,1 nm}$</span></p>
+</li>
+<li>
+<p>taille du noyau : <span class="fragment imp" style="color:#FEAE00">$\pu{1 fm}$</span></p>
+</li>
+</ul>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h2 id="modèle-de-latome">Modèle de l&rsquo;atome</h2>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/atpres.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+<p>L&rsquo;atome est constitué d&rsquo;un <span class="fragment imp">nuage électronique</span> entourant son <span class="fragment imp" style="color:#FEAE00">noyau</span>.
+<br><br><br><br><br><br><br><br>
+Le <span class="fragment imp">nuage électronique</span> est entièrement<br>responsable de la <span class="fragment imp">taille</span> de l&rsquo;atome.</p>
+</section><section>
+<p>Le nuage électronique est constitué <span class="fragment imp">d&rsquo;électrons</span>, particules élémentaires ponctuelles<br>portant une charge <span class="fragment imp">négative</span>.</p>
+</section><section>
+<p><b>Caractéristiques d&rsquo;un électron :</b></p>
+<ul>
+<li>charge  : <span class="imp">$\pu{-1,6E-19 C}$</imp></li>
+<li>masse : $\pu{9,1E-31 kg}$</li>
+</ul>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/noypres.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+<p>Le noyau est composé <span class="fragment imp" style="color:#FF644E">de protons</span>,<br>particules portant une charge <span class="fragment imp" style="color:#FF644E">positive</span><br>et de <span class="fragment imp" style="color:#61D836">neutrons</span>, particules de charge <span class="fragment imp" style="color:#61D836">nulle</span>.</p>
+<p class="fragment">Protons et neutrons sont des <span class="fragment imp" style="color:#FEAE00">nucléons</span>.</p>
+<br><br><br><br><br><br><br><br>
+</section><section>
+<p><b>Caractéristiques d&rsquo;un proton :</b></p>
+<ul>
+<li>charge  : <span class="imp" style="color:#FF644E">$\pu{+1,6E-19 C}$</imp></li>
+<li>masse : $\pu{1,7E-27 kg}$</li>
+</ul>
+<br>
+<p><b>Caractéristiques d&rsquo;un neutron :</b></p>
+<ul>
+<li>charge  : <span class="imp" style="color:#61D836">$\pu{0 C}$</imp></li>
+<li>masse : $\pu{1,7E-27 kg}$</li>
+</ul>
+<p><span class="fragment">Que remarquez-vous ?</span></p>
+</section><section>
+<ul>
+<li>concernant les charges :</li>
+</ul>
+<br>
+<p>La charge d&rsquo;un proton est<br>parfaitement <span class="fragment imp">opposée</span> à celle d&rsquo;un électron.<br>
+Or un atome étant électriquement <span class="fragment imp" style="color:#61D836">neutre</span>, il y a donc dans un atome autant <span class="fragment imp">d&rsquo;électrons</span> que de <span class="fragment imp" style="color:#FF644E">protons</span>.</p>
+</section><section>
+<ul>
+<li>concernant les masses :</li>
+</ul>
+<br>
+<p>Les <span class="fragment imp" style="color:#FF644E">protons</span> et <span class="fragment imp" style="color:#61D836">neutrons</span> ont quasiment<br>la même <span class="fragment imp" style="color:#FEAE00">masse</span> qui est environ<br><span class="fragment imp" style="color:#FEAE00">2000 fois plus grande</span> que celle<br>d&rsquo;un <span class="fragment imp">électron</span>.</p>
+<p class="fragment">
+On en conclut que le <span class="fragment imp" style="color:#FEAE00">noyau</span> est responsable de<br>la quasi intégralité de la <span class="fragment imp" style="color:#FEAE00">masse</span> d'un atome.</p>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h3 id="ions">Ions</h3>
+</section><section>
+<p>Un ion est un atome ou une molécule qui a gagné<br>ou perdu un ou plusieurs électrons.</p>
+</section><section>
+<p>Comme atomes et molécules sont<br>électriquement <span class="fragment imp" style="color:#61D836">neutres</span>, les ions sont <span class="fragment imp" style="color:#FF42A1">chargés</span> :</p>
+<ul>
+<li><span class="fragment imp">négativement</span> pour les <span class="fragment imp">anions</span><br>qui ont <b class="fragment" style="color:white">gagné</b> des électrons</li>
+<li><span class="fragment imp" style="color:#FF644E">positivement</span> pour les <span class="fragment imp" style="color:#FF644E">cations</span><br>qui ont <b class="fragment" style="color:white">perdu</b> des électrons</li>
+</ul>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h3 id="molécules">Molécules</h3>
+</section><section>
+<p>Entité électriquement neutre<br>comprenant plus d&rsquo;un atome.</p>
+<p>Exemple : le saccharose $\ce{C12H22O11}$</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/saccharose.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/sachareal.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h3 id="lélément-chimique">L&rsquo;élément chimique</h3>
+</section><section>
+<p>Le noyau renferme l&rsquo;identité de l&rsquo;atome :</p>
+<p>Son <span class="fragment imp" style="color:#FEAE00">nombre de nucléons</span>, noté <span class="fragment imp" style="color:#FEAE00">$A$</span> et appelé le &ldquo;nombre de masses&rdquo;, permet de déterminer approximativement sa masse.</p>
+</section><section>
+<p>Son <span class="fragment imp" style="color:#FF644E">nombre de protons</span>, noté <span class="fragment imp" style="color:#FF644E">$Z$</span> et appelé <span class="fragment imp" style="color:#FF644E">numéro atomique</span>, conditionne le nombre d&rsquo;électrons<br>et ainsi toutes ses propriétés chimiques.</p>
+<p class="fragment">À un numéro atomique correspond un <span class="imp" style="color:#FF644E">symbole chimique</span> unique fait d'une majuscule parfois associé à une minuscule. Il désigne l'élément chimique.</p>
+</section><section>
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/dyoVw-bjsU8" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+<aside class="notes"><p>si pas le temps
+évoque à la fin la raison du sang bleu de certaines bestioles</p>
+</aside>
+</section><section>
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/p6ek7RhZXv8" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+<aside class="notes"><p>si du temps (mais faut quand même accélérer cetaines phases)
+Passage par le complexe en plus</p>
+</aside>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/cyclecuivre.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+</section><section>
+<p>Le cuivre n&rsquo;a jamais disparu.<br>
+La preuve : on le retrouve à la fin.</p>
+<p class="fragment">
+Jamais son noyau n'est modifié<br>par les transformations chimiques,<br>seul son nuage électronique l'est. </p>
+<p class="fragment">
+L'identité de l'élément cuivre est gardée<br>en son cœur, dans les 29 protons de son noyau.</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/alchimiste.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+<p>Le rêve des alchimistes de transformer<br>le plomb en or était donc voué à l&rsquo;échec.</p>
+<p class="fragment">Aucune réaction chimique ne sera jamais capable de modifier un élément. Seules les réactions nucléaires (beaucoup plus énergétiques) le peuvent.</p>
+</section><section>
+<p>Tous les éléments connus sont répertoriés<br>dans le <span class="imp">tableau périodique des éléments</span>.</p>
+<img src="/mendeleiev.png" style="width:40%; border-radius:20px">
+<p class="fragment">La première mouture du tableau a été conçue<br>par le chimiste russe Mendeleïev en 1869.</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/tabpersimple.png"
+      data-background-size="contain"
+      data-background-transition="none">
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/tabperetat.png"
+      data-background-size="contain"
+      data-background-transition="none">
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/tabperbloc.png"
+      data-background-size="contain"
+      data-background-transition="none">
+</section><section>
+<p>Le tableau contient aujourd&rsquo;hui 118 éléments.</p>
+<p>À partir du bismuth $\ce{Bi}$ (Z = 83),<br>ils sont tous radioactifs (instables).</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/tabperrad.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/tabpertot.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h3 id="écriture-conventionnellebrdun-noyau">Écriture conventionnelle<br>d&rsquo;un noyau</h3>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/ecrconvnu.png"
+      data-background-size="contain"
+      data-background-transition="none">
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/ecrconv.png"
+      data-background-size="contain"
+      data-background-transition="none">
+</section><section>
+<p><u>Rq</u> :</p>
+<p>Comme le numéro atomique n&rsquo;est associé qu&rsquo;à un unique symbole chimique, on peut se passer de Z pour déterminer la composition du noyau.</p>
+</section><section>
+<p>Comment obtenir le nombre de neutrons N<br>si on connaît Z et A ?</p>
+<br>
+<p><span class="imp fragment" style="font-size:80px">N = A - Z</span></p>
+</section><section>
+<p><b>Petits exercices :</b></p>
+<ul>
+<li>Donner la composition du noyau s'écrivant $\ce{_{7}^{15}N}$ :</li>
+<ul>
+<li class="fragment" style="color:#1DB100">Z = 7 $\Rightarrow$ 7 protons</li>
+<li class="fragment" style="color:#1DB100">A = 15 $\Rightarrow$ N = A - Z = 15 - 7 = 8 neutrons </li>
+</ul>
+<li>Donner la composition du noyau s'écrivant $\ce{^{1}H}$ :</li>
+<ul>
+<li class="fragment" style="color:#1DB100">Z = 1 $\Rightarrow$ 1 protons</li>
+<li class="fragment" style="color:#1DB100">A = 1 $\Rightarrow$ N = A - Z = 1 - 1 = 0 neutron</li>
+</ul>
+<li>Donner la composition du noyau s'écrivant $\ce{^{63}Cu}$ :</li>
+<ul>
+<li class="fragment" style="color:#1DB100">Z = 29 $\Rightarrow$ 29 protons</li>
+<li class="fragment" style="color:#1DB100">A = 63 $\Rightarrow$ N = A - Z = 63 - 29 = 34 neutrons </li>
+</ul>
+</ul>
+</section><section>
+<ul>
+<li>Donner l'écriture symbolique du noyau<br>contenant 6 protons et 8 neutrons :</li>
+<ul>
+<li class="fragment" style="color:#1DB100">6 protons $\Rightarrow$ Z = 6 $\Rightarrow$ symbole : $\ce C$</li>
+<li class="fragment" style="color:#1DB100">8 neutrons $\Rightarrow$ A = 6 + 8 = 14 nucléons</li>
+<li class="fragment" style="color:#1DB100">D'où $\ce{^{14}_6 C}$ (c'est le carbone 14)</li>
+</ul>
+<li>Donner l'écriture symbolique du noyau<br>contenant 79 protons et 118 neutrons :</li>
+<ul>
+<li class="fragment" style="color:#1DB100">79 protons $\Rightarrow$ Z = 79 $\Rightarrow$ symbole : $\ce Au$</li>
+<li class="fragment" style="color:#1DB100">118 neutrons $\Rightarrow$ A = 79 + 118 = 197 nucléons</li>
+<li class="fragment" style="color:#1DB100">D'où $\ce{^{197}_{79} Au}$ (c'est l'or 197)</li>
+</ul>
+</ul>
+
+</section>
+</section>
+
+<section data-noprocess data-shortcode-slide
+      data-background-image="/parach.gif"
+      data-background-size="contain"
+      data-background-transition="concave">
+  
+</section><section>
+<p><a href="https://coursphychi.github.io/2nde/lewis/">Retour site</a></p>
+</section>
+
+  
+
+
+</div>
+      
+
+    </div>
+<script type="text/javascript" src=/reveal-hugo/object-assign.js></script>
+
+<a href="/reveal-js/css/print/" id="print-location" style="display: none;"></a>
+<script type="text/javascript">
+  var printLocationElement = document.getElementById('print-location');
+  var link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.type = 'text/css';
+  link.href = printLocationElement.href + (window.location.search.match(/print-pdf/gi) ? 'pdf.css' : 'paper.css');
+  document.getElementsByTagName('head')[0].appendChild(link);
+</script>
+
+<script type="application/json" id="reveal-hugo-site-params">{"highlight_theme":"github-dark","line-numbers":true,"theme":"sky","transition":"concave","transition_speed":"fast"}</script>
+<script type="application/json" id="reveal-hugo-page-params">{"highlight_theme":"atom-one-dark-reasonable","theme":"black"}</script>
+
+<script src="/reveal-js/js/reveal.js"></script>
+
+<script type="text/javascript">
+  
+  
+  function camelize(map) {
+    if (map) {
+      Object.keys(map).forEach(function(k) {
+        newK = k.replace(/(\_\w)/g, function(m) { return m[1].toUpperCase() });
+        if (newK != k) {
+          map[newK] = map[k];
+          delete map[k];
+        }
+      });
+    }
+    return map;
+  }
+  
+  var revealHugoDefaults = { center: true, controls: true, history: true, progress: true, transition: "slide" };
+  var revealHugoSiteParams = JSON.parse(document.getElementById('reveal-hugo-site-params').innerHTML);
+  var revealHugoPageParams = JSON.parse(document.getElementById('reveal-hugo-page-params').innerHTML);
+  
+  var options = Object.assign({},
+    camelize(revealHugoDefaults),
+    camelize(revealHugoSiteParams),
+    camelize(revealHugoPageParams));
+  Reveal.initialize(options);
+</script>
+
+
+  
+  
+  <script type="text/javascript" src="/reveal-js/plugin/markdown/marked.js"></script>
+  
+  <script type="text/javascript" src="/reveal-js/plugin/markdown/markdown.js"></script>
+  
+  <script type="text/javascript" src="/reveal-js/plugin/highlight/highlight.js"></script>
+  
+  <script type="text/javascript" src="/reveal-js/plugin/zoom-js/zoom.js"></script>
+  
+  
+  <script type="text/javascript" src="/reveal-js/plugin/notes/notes.js"></script>
+
+
+
+
+
+
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({startOnLoad: false});
+    let render = (event) => {
+      let mermaidElems = event.currentSlide.querySelectorAll('.mermaid');
+      if (!mermaidElems.length){
+          return
+      }
+      mermaidElems.forEach(mermaidElem => {
+          let processed = mermaidElem.getAttribute('data-processed');
+          if (!processed){
+              
+              mermaid.init(undefined, mermaidElem);
+          }
+      });
+    };
+    Reveal.addEventListener('slidechanged', render);
+    Reveal.addEventListener('ready', render);
+  </script>
+
+    
+
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']]
+  },
+  svg: {
+    fontCache: 'global'
+  }
+};
+</script>
+
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+</script>
+    
+  </body>
+</html>
