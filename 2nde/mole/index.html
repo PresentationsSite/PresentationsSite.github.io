@@ -1,0 +1,375 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>Mole</title>
+
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="/reveal-js/css/reset.css">
+<link rel="stylesheet" href="/reveal-js/css/reveal.css"><link rel="stylesheet" href="/reveal-js/css/theme/black.css" id="theme">
+<link rel="stylesheet" href="/highlight-js/atom-one-dark-reasonable.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  </head>
+  <body>
+    
+    <div class="reveal">
+      <div class="slides">
+  
+
+    <section><style>
+img {border: none !important}
+
+.imp {font-weight:bold;color:#00A2FF;}
+
+span {font-weight:normal;color:white;}
+
+ul {
+margin-left: auto;
+margin-right: auto;
+text-align: left;
+width: fit-content;
+list-style-position: inside;
+}
+
+ul li {
+text-indent: -1em;
+padding-left: 1em;
+}
+
+td {
+text-align: center !important;
+}
+
+th:not(:last-child), td:not(:last-child) { border-right: 1px solid #00A2FF; }
+</style>
+
+
+<section data-shortcode-section>
+<h2 id="la-quantité-de-matière">La quantité de matière</h2>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/huitres.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+<p>Vous connaissez la masse d&rsquo;un sac d&rsquo;huitre et la masse d&rsquo;une huitre, comment savoir combien  de<br><span style="color:#FEAE00;font-weight:bold">douzaines</span> d&rsquo;huitres contient le sac ?</p>
+<p><br><br><br><br><br></p>
+</section><section>
+<p>Une <span style="color:#FEAE00;font-weight:bold">mole</span>, c&rsquo;est comme une douzaine,<br>c&rsquo;est une unité de comptage.</p>
+<p class="fragment">Mais dans une mole, il y a beaucoup,<br>beaucoup plus de 12 éléments...</p>
+<p class="fragment">Il y en a 602 mille milliards de milliards !</p>
+</section><section>
+<p>Plus précisément, il y en a pile-poil :</p>
+<br>
+<p><span style="font-size:70px;color:#FEAE00;">$\pu{602214076000000000000000}$ </span></p>
+<br>
+<p class="fragment">soit <span style="color:#FEAE00;">$\pu{6,02214076E23}$ </span></p>
+</section><section>
+<p>Pourquoi ce nombre ?</p>
+<p class="fragment">L'idée est d'avoir une mole de nucléons<br>dans un gramme de matière.</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/molemicromacro.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+<p>Les moles sont l&rsquo;unité de comptage adaptée pour compter des entités microscopiques comme les atomes ou molécules dans un échantillon macroscopique.</p>
+<p><br><br><br><br><br></p>
+</section><section>
+<p><img src="/molexemple.png" alt=""></p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/molexemple2.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+<aside class="notes"><ul>
+<li>hélium</li>
+<li>eau</li>
+<li>aluminium</li>
+<li>cuivre</li>
+<li>sel</li>
+<li>saccharose</li>
+</ul>
+</aside>
+
+</section>
+</section>
+
+
+<section data-shortcode-section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/eaudistillee.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+<p>Vérifions-le par un premier calcul : combien y a-t-il de moles de molécules d&rsquo;eau dans un litre d&rsquo;eau pure ?</p>
+<p><br><br><br><br><br><br><br><br><br></p>
+<aside class="notes"><p>Pourquoi ne pas injecter ?
+Par osmolarité (équilibre des concentrations à l&rsquo;intérieur et à l&rsquo;extérieur des cellules), l&rsquo;eau extérieure va entrer dans les cellules pour diluer l&rsquo;intérieur jusqu&rsquo;à ce que les cellules éclatent.</p>
+</aside>
+</section><section>
+<p><span style="color:#808080">Données :</span></p>
+<ul>
+<li>la molécule d'eau $\ce{H2O}$ est faite d'un atome d'oxygène et deux atomes d'hydrogène.</li>
+<li>Écriture conventionnelle<br>des deux noyaux : $\ce{^1_1 H}$ et $\ce{^{16}_8 O}$</li>
+<li>masse d'un nucléon : $\approx \pu{1,7E-27 kg}$</li>
+</ul>
+</section><section>
+<p style="color:#1DB100">
+On commence par déterminer la masse approximative de la molécule d'eau (en négligeant les électrons) : </p>
+<p class="fragment" style="color:#1DB100">
+$$
+\begin{align}
+m_{\ce{H2O}} &\approx (2\times 1+16)\times \pu{1,7E-27kg} \\
+&\approx \pu{3,1E-26kg}
+\end{align}
+$$
+<p>
+<p class="fragment" style="color:#1DB100">
+Puis le nombre $N$ de ces molécules dans 1 kg d'eau :<p>
+<p class="fragment" style="color:#1DB100">
+$$
+N \approx \frac{\pu{1 kg}}{\pu{3,1E-26kg}} \approx \pu{3,2E25}
+$$
+<p>
+</section><section>
+<p style="color:#1DB100">
+Enfin, on cherche le nombre $n$ de moles<br>que cela représente :<p>
+<p class="fragment" style="color:#1DB100">
+$$
+n \approx \frac{\pu{3,2E25}}{\pu{6,02E23}} \approx \pu{53 mol}
+$$
+<p>
+<p class="fragment"><u>Rq</u> : moles s'abrège mol<p>
+</section><section>
+<p>On appelle le nombre de mole d&rsquo;une entité<br>sa <span style="font-weight:bold;color:#FEAE00;">quantité de matière $n$</span>.</p>
+
+</section>
+</section>
+
+
+<section data-shortcode-section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/salleclasse.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+<p><span style="color:#808080">2<sup>e</sup> exercice :</span> déterminer la quantité de matière de dioxygène et de diazote dans l&rsquo;air de la salle de cours.</p>
+<p><br><br><br><br><br><br><br><br><br></p>
+</section><section>
+<p><span style="color:#808080">Données :</span></p>
+<ul>
+<li>masse volumique de l'air : <span class="fragment" style="color:#808080">$\rho_{air} = \pu{1,2 kg/m3}$</span></li>
+<li>masse d'une molécule de dioxygène : $m_{\ce{O2}} = \pu{5,3E-26 kg}$</li>
+<li>masse d'une molécule de diazote : $m_{\ce{N2}} = \pu{4,7E-26 kg}$</li>
+<li>composition massique de l'air : <span class="fragment" style="color:#808080">76% $\ce{N2}$ et 23% $\ce{O2}$ </span></li>
+</ul>
+<aside class="notes"><p>Sensé savoir maintenant que l&rsquo;air pèse à peu près 1 kg par mètre cube.
+Pourquoi la proportion massique de l&rsquo;air n&rsquo;est pas à 80%/20% ?</p>
+</aside>
+</section><section>
+<p style="color:#1DB100">
+Cherchons d'abord le volume<br>approximatif de la pièce :<br>
+<span class="fragment" style="color:#1DB100">
+$\pu{10 m} \times \pu{5 m} \times \pu{3 m} = \pu{150 m3}$</span>
+</p>
+<p class="fragment" style="color:#1DB100">
+On en déduit la masse d'air dans la pièce :<br>
+<span class="fragment" style="color:#1DB100">$\pu{150 m3}\times \pu{1,2 kg/m3} = \pu{180 kg}$</span>
+<p>
+<p class="fragment" style="color:#1DB100">
+Et ainsi la masse de dioxygène :<br><span class="fragment" style="color:#1DB100">$25\%\times \pu{180 kg} = \pu{45 kg}$</span><br>
+Et  celle de diazote :<br><span class="fragment" style="color:#1DB100">$75\%\times \pu{180 kg}  = \pu{135 kg}$</span>
+<p>
+</section><section>
+<p style="color:#1DB100">
+On est prêt pour le nombre<br>de molécules de dioxygène :<br>
+<span class="fragment" style="color:#1DB100">
+$$\frac{\pu{45 kg}}{\pu{5,3E-26 kg}}\approx \pu{8,5E26}$$ </span>
+</p>
+<p class="fragment" style="color:#1DB100">
+Et pour le nombre de molécules de diazote :<br>
+<span class="fragment" style="color:#1DB100">
+$$\frac{\pu{135 kg}}{\pu{4,7E-26 kg}}\approx \pu{2,9E27}$$ </span>
+</p>
+</section><section>
+<p style="color:#1DB100">
+Déterminons enfin la quantité de matière<br>en dioxygène dans la pièce :<br>
+<span class="fragment" style="color:#1DB100">
+$$\frac{ \pu{8,5E26}}{\pu{6,02E23}}\approx \pu{1,4E3 mol}$$ </span>
+</p>
+<p class="fragment" style="color:#1DB100">
+Et la quantité de matière en diazote dans la pièce :<br>
+<span class="fragment" style="color:#1DB100">
+$$\frac{ \pu{2,9E27}}{ \pu{6,02E23}}\approx \pu{4,8E3 mol}$$ </span>
+</p>
+
+</section>
+</section>
+
+
+<section data-shortcode-section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/50ct.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+<p><span style="color:#808080">3<sup>e</sup> exercice :</span> déterminer les quantités de matière<br>des différents métaux présents dans une pièce<br>de 50 centimes d’euros en or nordique.</p>
+<p><br><br><br><br><br><br><br><br><br><br><br></p>
+</section><section>
+<p><span style="color:#808080">Données :</span></p>
+<ul>
+<li>composition massique de la pièce :<br>89 % de cuivre, 5 % d’aluminium,<br>5 % de zinc et 1 % d’étain</li>
+<li>masse de la pièce : $\pu{7,8 g}$ </li>
+<li>masse des différentes entités : $m_{\ce{Cu}} = \pu{1,1E-22 g}$, $m_{\ce{Al}} = \pu{4,5E-23 g}$, $m_{\ce{Zn}} = \pu{1,1E-22 g}$, $m_{\ce{Sn}} = \pu{2,0E-22 g}$</li>
+</ul>
+<aside class="notes"><p>Même arrondi pour Zinc et Cuivre car proches dans la classification.</p>
+</aside>
+</section><section>
+<p style="color:#1DB100">
+Cherchons d'abord les masses<br>approximatives de chaque métal dans la pièce :</p>
+<ul style="color:#1DB100">
+<li class="fragment">$\ce{Cu}$ : <span class="fragment" style="color:#1DB100">$89\%\times \pu{7,8 g} = \pu{6,9 g}$</span></li>
+<li class="fragment">$\ce{Al}$ : <span class="fragment" style="color:#1DB100">$5\%\times \pu{7,8 g} = \pu{0,39 g}$</span></li>
+<li class="fragment">$\ce{Zn}$ : <span class="fragment" style="color:#1DB100">$5\%\times \pu{7,8 g} = \pu{0,39 g}$</span></li>
+<li class="fragment">$\ce{Sn}$ : <span class="fragment" style="color:#1DB100">$5\%\times \pu{7,8 g} = \pu{0,078 g}$</span></li>
+</ul>
+</section><section>
+<p style="color:#1DB100">
+On en déduit le nombre d'entités de chaque métal :</p>
+<ul style="color:#1DB100">
+<li class="fragment">$\ce{Cu}$ : <span class="fragment" style="color:#1DB100">$\frac{\pu{6,9 g}}{\pu{1,1E-22 g}}\approx \pu{6,3E22}$</span></li>
+<li class="fragment">$\ce{Al}$ : <span class="fragment" style="color:#1DB100">$\frac{\pu{0,39 g}}{\pu{4,5E-23 g}}\approx \pu{8,7E21}$</span></li>
+<li class="fragment">$\ce{Zn}$ : <span class="fragment" style="color:#1DB100">$\frac{\pu{0,39 g}}{\pu{1,1E-22 g}}\approx \pu{3,5E21}$</span></li>
+<li class="fragment">$\ce{Sn}$ : <span class="fragment" style="color:#1DB100">$\frac{\pu{0,078 g}}{\pu{2,0E-22 g}}\approx \pu{3,9E20}$</span></li>
+</ul>
+<p class="fragment" style="color:#1DB100">On remarque que bien qu'ils interviennent pour la même masse, il n'y a pas autant d'atomes de zinc dans la pièce que d'atomes d'aluminium !</p>
+</section><section>
+<p style="color:#1DB100">
+Déterminons enfin les quantités de matière<br>des différents métaux :</p>
+<ul style="color:#1DB100">
+<li class="fragment">$n_\ce{Cu}=$ <span class="fragment" style="color:#1DB100">$\frac{\pu{6,3E22}}{\pu{6,02E23}}\approx \pu{0,10 mol}$</span></li>
+<li class="fragment">$n_\ce{Al}=$ <span class="fragment" style="color:#1DB100">$\frac{\pu{8,7E21}}{\pu{6,02E23}}\approx \pu{14E-3 mol} = \pu{14 mmol}$ </span></li>
+<li class="fragment">$n_\ce{Zn} =$ <span class="fragment" style="color:#1DB100">$\frac{\pu{3,5E21}}{\pu{6,02E23}}\approx  \pu{5,8 mmol}$</span></li>
+<li class="fragment">$n_\ce{Sn} =$ <span class="fragment" style="color:#1DB100">$\frac{\pu{3,9E20}}{\pu{6,02E23}}\approx  \pu{0,65 mmol}$ </span></li>
+</ul>
+
+</section>
+</section><section>
+<p><a href="https://coursphychi.github.io/2nde/mole/">Retour site</a></p>
+</section>
+
+  
+
+
+</div>
+      
+
+    </div>
+<script type="text/javascript" src=/reveal-hugo/object-assign.js></script>
+
+<a href="/reveal-js/css/print/" id="print-location" style="display: none;"></a>
+<script type="text/javascript">
+  var printLocationElement = document.getElementById('print-location');
+  var link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.type = 'text/css';
+  link.href = printLocationElement.href + (window.location.search.match(/print-pdf/gi) ? 'pdf.css' : 'paper.css');
+  document.getElementsByTagName('head')[0].appendChild(link);
+</script>
+
+<script type="application/json" id="reveal-hugo-site-params">{"highlight_theme":"github-dark","line-numbers":true,"theme":"sky","transition":"concave","transition_speed":"fast"}</script>
+<script type="application/json" id="reveal-hugo-page-params">{"highlight_theme":"atom-one-dark-reasonable","theme":"black"}</script>
+
+<script src="/reveal-js/js/reveal.js"></script>
+
+<script type="text/javascript">
+  
+  
+  function camelize(map) {
+    if (map) {
+      Object.keys(map).forEach(function(k) {
+        newK = k.replace(/(\_\w)/g, function(m) { return m[1].toUpperCase() });
+        if (newK != k) {
+          map[newK] = map[k];
+          delete map[k];
+        }
+      });
+    }
+    return map;
+  }
+  
+  var revealHugoDefaults = { center: true, controls: true, history: true, progress: true, transition: "slide" };
+  var revealHugoSiteParams = JSON.parse(document.getElementById('reveal-hugo-site-params').innerHTML);
+  var revealHugoPageParams = JSON.parse(document.getElementById('reveal-hugo-page-params').innerHTML);
+  
+  var options = Object.assign({},
+    camelize(revealHugoDefaults),
+    camelize(revealHugoSiteParams),
+    camelize(revealHugoPageParams));
+  Reveal.initialize(options);
+</script>
+
+
+  
+  
+  <script type="text/javascript" src="/reveal-js/plugin/markdown/marked.js"></script>
+  
+  <script type="text/javascript" src="/reveal-js/plugin/markdown/markdown.js"></script>
+  
+  <script type="text/javascript" src="/reveal-js/plugin/highlight/highlight.js"></script>
+  
+  <script type="text/javascript" src="/reveal-js/plugin/zoom-js/zoom.js"></script>
+  
+  
+  <script type="text/javascript" src="/reveal-js/plugin/notes/notes.js"></script>
+
+
+
+
+
+
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({startOnLoad: false});
+    let render = (event) => {
+      let mermaidElems = event.currentSlide.querySelectorAll('.mermaid');
+      if (!mermaidElems.length){
+          return
+      }
+      mermaidElems.forEach(mermaidElem => {
+          let processed = mermaidElem.getAttribute('data-processed');
+          if (!processed){
+              
+              mermaid.init(undefined, mermaidElem);
+          }
+      });
+    };
+    Reveal.addEventListener('slidechanged', render);
+    Reveal.addEventListener('ready', render);
+  </script>
+
+    
+
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']]
+  },
+  svg: {
+    fontCache: 'global'
+  }
+};
+</script>
+
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+</script>
+    
+  </body>
+</html>
