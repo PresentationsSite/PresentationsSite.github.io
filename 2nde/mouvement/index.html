@@ -94,7 +94,7 @@ Le référentiel, c'est l'observateur du mouvement.<br>On le munit d'un <span cl
 <li class="fragment"> le <span class="imp">référentiel terrestre</span>, lié au sol (dans notre exemple de trains, on peut imaginer un arbre).</li>
 <li class="fragment"> le référentiel du train où se trouve la croix verte<br>(ce que voit un passager immobile de ce train).</li>
 <li class="fragment"> le référentiel de l'autre train (ce que voit un passager immobile dans l'autre train).</li>
-<li class="fragment"> le référentiel géocentrique<br>(dont on reparlera plus loin).</li>
+<li class="fragment"> le référentiel géocentrique<br>(pour étudier le mouvement<br>d'un satellite par exemple).</li>
 </section><section>
 <p><u>Remarque</u> : un passager immobile par rapport au train n'est pas immobile dans le référentiel terrestre si le train avance... <span class="imp">Le mouvement est relatif</span> !</p>
 </section><section>
@@ -127,7 +127,7 @@ Le référentiel, c'est l'observateur du mouvement.<br>On le munit d'un <span cl
 Pour ça, on a besoin de :</p>
 <ul class="fragment imp">
 <li> sa trajectoire
-<li> sa vitesse
+<li style="color:#FFD932"> sa vitesse
 </ul>
 </section><section>
 <p>La <span class="imp">trajectoire</span> d’un point, dans un référentiel d’étude donné, correspond à la courbe formée par l’ensemble des positions successivement occupées par ce point au cours de son mouvement.</p>
@@ -150,6 +150,18 @@ tous les points du système (sauf un) ont pour trajectoire un cercle</li>
 <p class="fragment">La rotation a ceci de particulier<br>qu'elle se fait toujours autour d'un point précis :<br>le <span class="imp">centre de masse</span> du système.</p>
 </section><section>
 <iframe src="https://trinket.io/embed/glowscript/4cf55de1e0?outputOnly=true" width="100%" height="600" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-size="contain"
+      data-background-transition="concave"
+      data-background-video="/marteauvrai.mp4">
+<aside class="notes"><p>On récupère une image sur 10</p>
+</aside>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/chronophmarteau.png"
+      data-background-size="contain"
+      data-background-transition="concave">
 </section><section>
 <p>Le centre de masse est ainsi le point du système<br>qui a la trajectoire la plus simple puisque sa trajectoire est celle que tous les autres points auraient<br>si le mouvement était une pure rotation.</p>
 </section><section>
@@ -164,6 +176,11 @@ Mais on perd alors l&rsquo;information sur sa rotation<br>(c&rsquo;est le prix �
 <li class="fragment"><span class="imp">circulaire</span> si la trajectoire forme un cercle,</li>
 <li class="fragment"><span class="imp">curviligne</span> ou quelconque dans les autres cas.</li>
 </ul>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/trajnounours.png"
+      data-background-size="contain"
+      data-background-transition="concave">
 
 </section>
 </section><section>
@@ -172,10 +189,76 @@ Mais on perd alors l&rsquo;information sur sa rotation<br>(c&rsquo;est le prix �
 <section data-shortcode-section>
 <h2 id="déplacement-et-vitesse">Déplacement et vitesse</h2>
 </section><section>
+<p>La vitesse est un élément essentiel<br>de la description d&rsquo;un mouvement.</p>
+<br>
+<p class="fragment">Mais plutôt que de se contenter de la seule valeur<br>de la vitesse, on va introduire le <span style="font-weight:bold;color:#FFD932">vecteur vitesse</span> qui contient, en plus de la valeur, l'information<br>sur la direction et le sens du mouvement.</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/vecdepl.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+<p>Pour définir le vecteur vitesse, on va avoir besoin<br>du <span class="imp" style="color:#00AB8E">vecteur déplacement $\textstyle \overrightarrow{MM'}$</span>.</p>
+<p><br><br><br><br><br><br><br></p>
 </section><section>
-<p><a href="https://coursphychi.github.io/2nde/mouvement/">Retour site</a></p>
+<p>Le <span class="imp" style="color:#FFD932">vecteur vitesse moyenne $\vec{v}_{moy}$</span> est alors défini comme le vecteur de même direction et sens<br>que $\textstyle \color{#00AB8E}\overrightarrow{MM'}$ et de norme donnée par :</p>
+<div style="display: flex;justify-content: center;">
+<div style = "border: solid #FFD932 5px;color:#FFD932;padding: 0px 10px 0px 10px;">
+$$v_{moy} = \frac{MM'}{\Delta t}$$
+</div></div>
+<p>où $\Delta t$ est la durée pour aller de $M$ à $M'$</p>
+</section><section>
+<p>Dans le <span class="imp">Système international d&rsquo;unités (SI)</span> :</p>
+<ul style="color:#fff">
+<li> $MM'$ est mesuré en <span class="imp fragment">$\text{m}$</span></li>
+<li>$\Delta t$ est mesuré en <span class="imp fragment">$\text{s}$</span></li>
+<li>et donc $v_{moy}$ est donnée en <span class="imp fragment">$\pu{m*s-1}$</span></li>
+</ul>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/quvitinst.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+<p>Problème :</p>
+<p>Cette définition ne dit pas grand chose<br>de la vitesse au point $M$ à l&rsquo;instant $t$.</p>
+<p><br><br><br><br><br><br></p>
+<aside class="notes"><p>Comment améliorer la définition pour avoir accès à la vitesse instantanée en M ?</p>
+</aside>
+</section><section>
+<iframe scrolling="no" title="vecteur déplacement et vitesse" src="https://www.geogebra.org/material/iframe/id/wefyydbs/width/620/height/463/border/888888/sfsb/true/smb/false/stb/false/stbh/false/ai/false/asb/false/sri/true/rc/false/ld/false/sdz/false/ctl/false" width="620px" height="463px" style="border:0px;"> </iframe>
+</section><section>
+<p>Pour passer du vecteur vitesse moyenne entre $M$ et $M'$ au <span class="imp" style="color:#FFD932">vecteur vitesse en $M$ $\vec{v}$</span>, on rapproche le plus possible $M'$ de $M$ le long de la trajectoire.</p>
+</section><section>
+<p>Si la <span class="imp" style="color:#FFD932">vitesse $v$ est constante</span><br>le long de la trajectoire,<br>le mouvement est dit <span class="imp" style="color:#FFD932">uniforme</span>.</p>
+<br>
+<p class="fragment">Si le mouvement est <span class="imp">rectiligne</span>,<br>$\vec{v}$ reste colinéaire à $\vec{v}_{moy}$,<br>et s'il est en plus <span class="imp" style="color:#FFD932">uniforme</span>,<br>on a <span class="fragment" style="color:#FFD932;font-weight:bold">$\vec{v} = \vec{v}_{moy}$</span> à tout instant<br>(le vecteur vitesse est constant).</p>
 
 </section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h4 id="vitesse-et-trajectoirebrdépendent-du-référentiel">Vitesse et trajectoire<br>dépendent du référentiel</h4>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-size="contain"
+      data-background-transition="concave"
+      data-background-video="/inertietramp.mp4">
+</section><section>
+<p>Quelle est la trajectoire du &ldquo;rebondeur&rdquo;<br>dans le référentiel du tracteur ?</p>
+<p>Et dans le référentiel terrestre ?</p>
+<p class="fragment">Et que peut-on dire de la composante horizontale<br>de sa vitesse (la vitesse de son ombre sur le sol)<br>dans ces deux référentiels ?</p>
+</section><section>
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe src="https://www.youtube.com/embed/BLuI118nhzc" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video"></iframe>
+</div>
+</section><section>
+<p>Quelle est la trajectoire du boulet<br>dans le référentiel du pick-up ?</p>
+<p>Et dans le référentiel terrestre ?</p>
+<p class="fragment">Et que peut-on dire de la composante horizontale<br>de sa vitesse (la vitesse de son ombre sur le sol)<br>dans ces deux référentiels ?</p>
+
+</section>
+</section><section>
+<p><a href="https://coursphychi.github.io/2nde/mouvement/">Retour site</a></p>
 </section>
 
   
