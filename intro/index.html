@@ -907,6 +907,32 @@ Reveal.addEventListener('slidechanged', function(event) {
     }
 });
 
+
+function forceOrientationChange() {
+    if (window.orientation === 0 || window.orientation === 180) { // Portrait
+        // Force landscape
+        document.body.style.transform = "rotate(90deg)";
+        setTimeout(() => {
+            // Revert to portrait
+            document.body.style.transform = "rotate(0deg)";
+        }, 100);
+    } else { // Landscape
+        // Force portrait
+        document.body.style.transform = "rotate(-90deg)";
+        setTimeout(() => {
+            // Revert to landscape
+            document.body.style.transform = "rotate(0deg)";
+        }, 100);
+    }
+}
+
+// Call the function when the slide containing the graph is shown
+Reveal.addEventListener('slidechanged', function(event) {
+    if (event.currentSlide.getAttribute('data-noprocess') !== null) {
+        forceOrientationChange();
+    }
+});
+
 </script>
 </section>
 </section><section>
