@@ -898,18 +898,13 @@ var x = document.getElementById("tableau").rows[i].cells;
 x[1].innerHTML = degEff[i-1];
 x[2].innerHTML = degBonne[i-1];
 }
+    setTimeout(function() {
+        Plotly.newPlot("myPlot", data, layout, config);
+        resizePlot();
+    }, 100); // 100 millisecondes de délai
 }
 
-function resizePlot() {
-    Plotly.relayout('myPlot', {
-        width: document.getElementById('myPlot').clientWidth,
-        height: document.getElementById('myPlot').clientHeight
-    });
-}
 
-resizePlot();
-
-window.addEventListener('resize', resizePlot);
 
 </script>
 </section>
