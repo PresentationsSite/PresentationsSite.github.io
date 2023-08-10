@@ -857,52 +857,54 @@ function recap(element) {
   }
 }
 
-function valide() {
-	var degEff = [0,0,0,0];
-	var degBonne = [0,0,0,0];
-	var degPer = [0,0,0,0];
-	var xArray = [50,67,83,100];
-	var yArray = [0,0,0,0];
-	var yParfait = xArray;
-	for (let i = 0; i < taille; i++) {
-  degEff[arrDeg[i]] += 1;
-  if (arrRep[i] == corrArray[i]) {
-  	degBonne[arrDeg[i]] += 1;
-  	}
-	}
-  for (let i = 0; i < 4; i++) {
-  	yArray[i] = degBonne[i]/degEff[i]*100 || 0 ; // pour remplacer les NaN par 0
-		}
- var data = [{
-  x:xArray,
-  y:yArray,
-  mode:"lines+markers",
-  name:"Vous"
-},{
-  x:xArray,
-  y:yParfait,
-  mode:"lines+markers",
-  name:"Idéal"
-}];
-var layout = {
-  xaxis: {title: "Pourcentage de confiance"},
-  yaxis: {title: "Pourcentage de bonnes réponses"},  
-  title: "Calibrage",
-  hovermode: false
-};
-var config = {responsive: true};
-Plotly.newPlot("myPlot", data, layout, config);
+        function drawPlot() {
+            var xArray = [50,67,83,100];
+            var yArray = [0,0,0,0];
+            var yParfait = xArray;
+            var degEff = [0,0,0,0];
+            var degBonne = [0,0,0,0];
+            for (let i = 0; i < taille; i++) {
+                degEff[arrDeg[i]] += 1;
+                if (arrRep[i] == corrArray[i]) {
+                    degBonne[arrDeg[i]] += 1;
+                }
+            }
+            for (let i = 0; i < 4; i++) {
+                yArray[i] = degBonne[i]/degEff[i]*100 || 0;
+            }
+            var data = [{
+                x: xArray,
+                y: yArray,
+                mode: "lines+markers",
+                name: "Vous"
+            }, {
+                x: xArray,
+                y: yParfait,
+                mode: "lines+markers",
+                name: "Idéal"
+            }];
+            var layout = {
+                xaxis: {title: "Pourcentage de confiance"},
+                yaxis: {title: "Pourcentage de bonnes réponses"},
+                title: "Calibrage",
+                hovermode: false
+            };
+            var config = {responsive: true};
+            Plotly.newPlot("myPlot", data, layout, config);
+        }
 
-for (let i = 1; i < 5; i++) {
-var x = document.getElementById("tableau").rows[i].cells;
-x[1].innerHTML = degEff[i-1];
-x[2].innerHTML = degBonne[i-1];
-}
-    setTimeout(function() {
-        Plotly.newPlot("myPlot", data, layout, config);
-        resizePlot();
-    }, 100); // 100 millisecondes de délai
-}
+        function valide() {
+            for (let i = 1; i < 5; i++) {
+                var x = document.getElementById("tableau").rows[i].cells;
+                x[1].innerHTML = degEff[i-1];
+                x[2].innerHTML = degBonne[i-1];
+            }
+            drawPlot();
+        }
+
+        window.onload = function() {
+            drawPlot();
+        }
 
 
 
