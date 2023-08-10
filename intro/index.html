@@ -900,6 +900,17 @@ x[2].innerHTML = degBonne[i-1];
 }
 }
 
+function resizePlot() {
+    Plotly.relayout('myPlot', {
+        width: document.getElementById('myPlot').clientWidth,
+        height: document.getElementById('myPlot').clientHeight
+    });
+}
+
+resizePlot();
+
+window.addEventListener('resize', resizePlot);
+
 </script>
 </section>
 </section><section>
