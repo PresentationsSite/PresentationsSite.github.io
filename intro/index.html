@@ -836,20 +836,22 @@ font-size: 50px;
 <div class="tg-wrap"><table id="tableau" style="border-collapse:collapse;border-color:#000;border-spacing:0;margin:0px auto" class="tg"><thead><tr><th style="background-color:#D2418A;border-color:#000;border-style:solid;border-width:1px;color:#fff;font-family:Arial, sans-serif;font-size:14px;font-weight:bold;overflow:hidden;padding:10px 5px;text-align:center;vertical-align:top;word-break:normal">niveau de confiance</th><th style="background-color:#409cff;border-color:#000;border-style:solid;border-width:1px;color:#fff;font-family:Arial, sans-serif;font-size:14px;font-weight:bold;overflow:hidden;padding:10px 5px;text-align:center;vertical-align:top;word-break:normal">nombre de réponses</th><th style="background-color:#0199A4;border-color:#000;border-style:solid;border-width:1px;color:#fff;font-family:Arial, sans-serif;font-size:14px;font-weight:bold;overflow:hidden;padding:10px 5px;text-align:center;vertical-align:top;word-break:normal">nombre de bonnes réponses</th></tr></thead><tbody><tr><td style="background-color:#FCC5DC;border-color:inherit;border-style:solid;border-width:1px;color:#444;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;text-align:center;vertical-align:top;word-break:normal">0</td><td style="background-color:#D2E4FC;border-color:inherit;border-style:solid;border-width:1px;color:#444;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;text-align:center;vertical-align:top;word-break:normal">0</td><td style="background-color:#8DE9E8;border-color:inherit;border-style:solid;border-width:1px;color:#444;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;text-align:center;vertical-align:top;word-break:normal">0</td></tr><tr><td style="background-color:#F79EC7;border-color:inherit;border-style:solid;border-width:1px;color:#444;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;text-align:center;vertical-align:top;word-break:normal">1</td><td style="background-color:#D2E4FC;border-color:inherit;border-style:solid;border-width:1px;color:#444;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;text-align:center;vertical-align:top;word-break:normal">0</td><td style="background-color:#8DE9E8;border-color:inherit;border-style:solid;border-width:1px;color:#444;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;text-align:center;vertical-align:top;word-break:normal">0</td></tr><tr><td style="background-color:#F175B2;border-color:inherit;border-style:solid;border-width:1px;color:#444;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;text-align:center;vertical-align:top;word-break:normal">2</td><td style="background-color:#D2E4FC;border-color:inherit;border-style:solid;border-width:1px;color:#444;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;text-align:center;vertical-align:top;word-break:normal">0</td><td style="background-color:#8DE9E8;border-color:inherit;border-style:solid;border-width:1px;color:#444;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;text-align:center;vertical-align:top;word-break:normal">0</td></tr><tr><td style="background-color:#F062A9;border-color:inherit;border-style:solid;border-width:1px;color:#444;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;text-align:center;vertical-align:top;word-break:normal">3</td><td style="background-color:#D2E4FC;border-color:inherit;border-style:solid;border-width:1px;color:#444;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;text-align:center;vertical-align:top;word-break:normal">0</td><td style="background-color:#8DE9E8;border-color:inherit;border-style:solid;border-width:1px;color:#444;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;text-align:center;vertical-align:top;word-break:normal">0</td></tr></tbody></table></div>
 </section>
 <section data-noprocess>
-<div id="myPlot" style="border:solid black 5px;object-fit: cover;"></div>
+<div style="object-fit: cover;">
+    <canvas id="myPlot"></canvas>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-
 const taille = 40;
 var arrDeg = Array(taille);
 var arrRep = Array(taille); 
 var corrArray = [0,1,1,1,0,0,1,1,0,1,0,0,1,1,0,0,1,0,0,1,1,1,1,1,1,1,0,1,0,0,0,1,0,1,0,0,1,0,1,1];
+var myChart; // Variable globale pour stocker l'instance du graphique
 
-// la fonction suivante permet de peupler le tableau de degrés et le tableau de réponse
 function recap(element) {
-  var valeur = element.selectedIndex; // position du choix
+  var valeur = element.selectedIndex;
   var id = element.id;
-  var type = id.slice(0,3); // récupère les 3 premières lettres
-  var num = parseInt(id.slice(3)); // récupère le nombre qui suit et le transforme en entier
+  var type = id.slice(0,3);
+  var num = parseInt(id.slice(3));
   if (type == "deg") {
     arrDeg[num-1] = valeur-1;
   } else {
@@ -857,10 +859,55 @@ function recap(element) {
   }
 }
 
+function updateChart(yArray, yParfait) {
+    if (myChart) {
+        myChart.data.datasets[0].data = yArray;
+        myChart.data.datasets[1].data = yParfait;
+        myChart.update();
+    } else {
+        var ctx = document.getElementById('myPlot').getContext('2d');
+        myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['50', '67', '83', '100'],
+                datasets: [{
+                    label: 'Vous',
+                    data: yArray,
+                    borderColor: 'blue',
+                    fill: false
+                }, {
+                    label: 'Idéal',
+                    data: yParfait,
+                    borderColor: 'red',
+                    fill: false
+                }]
+            },
+            options: 
+                   {
+                devicePixelRatio: 3,
+                responsive: true,
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Pourcentage de confiance'
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Pourcentage de bonnes réponses'
+                        }
+                    }
+                }
+            }
+        });
+    }
+}
+
 function valide() {
     var degEff = [0,0,0,0];
     var degBonne = [0,0,0,0];
-    var degPer = [0,0,0,0];
     var xArray = [50,67,83,100];
     var yArray = [0,0,0,0];
     var yParfait = xArray;
@@ -871,27 +918,10 @@ function valide() {
         }
     }
     for (let i = 0; i < 4; i++) {
-        yArray[i] = degBonne[i]/degEff[i]*100 || 0 ; // pour remplacer les NaN par 0
+        yArray[i] = degBonne[i]/degEff[i]*100 || 0;
     }
-    var data = [{
-        x:xArray,
-        y:yArray,
-        mode:"lines+markers",
-        name:"Vous"
-    },{
-        x:xArray,
-        y:yParfait,
-        mode:"lines+markers",
-        name:"Idéal"
-    }];
-    var layout = {
-        xaxis: {title: "Pourcentage de confiance"},
-        yaxis: {title: "Pourcentage de bonnes réponses"},  
-        title: "Calibrage",
-        hovermode: false
-    };
-    var config = {responsive: true};
-    Plotly.newPlot("myPlot", data, layout, config);
+
+    updateChart(yArray, yParfait);
 
     for (let i = 1; i < 5; i++) {
         var x = document.getElementById("tableau").rows[i].cells;
@@ -899,40 +929,6 @@ function valide() {
         x[2].innerHTML = degBonne[i-1];
     }
 }
-
-// Ajoutez un écouteur d'événements pour l'événement slidechanged de Reveal.js
-Reveal.addEventListener('slidechanged', function(event) {
-    if (event.currentSlide.getAttribute('data-noprocess') !== null) {
-        valide(); // Redessinez le graphique lorsque la diapositive contenant le graphique devient visible
-    }
-});
-
-
-function forceOrientationChange() {
-    if (window.orientation === 0 || window.orientation === 180) { // Portrait
-        // Force landscape
-        document.body.style.transform = "rotate(90deg)";
-        setTimeout(() => {
-            // Revert to portrait
-            document.body.style.transform = "rotate(0deg)";
-        }, 100);
-    } else { // Landscape
-        // Force portrait
-        document.body.style.transform = "rotate(-90deg)";
-        setTimeout(() => {
-            // Revert to landscape
-            document.body.style.transform = "rotate(0deg)";
-        }, 100);
-    }
-}
-
-// Call the function when the slide containing the graph is shown
-Reveal.addEventListener('slidechanged', function(event) {
-    if (event.currentSlide.getAttribute('data-noprocess') !== null) {
-        forceOrientationChange();
-    }
-});
-
 </script>
 </section>
 </section><section>
