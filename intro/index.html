@@ -859,51 +859,64 @@ function recap(element) {
   }
 }
 
-function updateChart(yArray, yParfait) {
-    if (myChart) {
-        myChart.data.datasets[0].data = yArray;
-        myChart.data.datasets[1].data = yParfait;
-        myChart.update();
-    } else {
-        var ctx = document.getElementById('myPlot').getContext('2d');
-        myChart = new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: ['50', '67', '83', '100'],
-                datasets: [{
-                    label: 'Vous',
-                    data: yArray,
-                    borderColor: 'blue',
-                    fill: false
-                }, {
-                    label: 'Idéal',
-                    data: yParfait,
-                    borderColor: 'red',
-                    fill: false
-                }]
-            },
-            options: 
-                   {
-                devicePixelRatio: 3,
-                responsive: true,
-                scales: {
-                    x: {
-                        title: {
-                            display: true,
-                            text: 'Pourcentage de confiance'
-                        }
-                    },
-                    y: {
-                        title: {
-                            display: true,
-                            text: 'Pourcentage de bonnes réponses'
-                        }
+function updateChart(yArray, yParfait, pointSizes) {
+    var ctx = document.getElementById('myPlot').getContext('2d');
+    if (window.myChart) {
+        window.myChart.destroy();
+    }
+
+    window.myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: [50,67,83,100],
+            datasets: [{
+                label: 'Vous',
+                data: yArray,
+                borderColor: 'blue',
+                backgroundColor: 'transparent',
+                pointBackgroundColor: 'blue',
+                pointRadius: pointSizes,
+                fill: false
+            }, {
+                label: 'Idéal',
+                data: yParfait,
+                borderColor: 'red',
+                backgroundColor: 'transparent',
+                pointBackgroundColor: 'red',
+                pointRadius: 5,
+                fill: false
+            }]
+        },
+        options: {
+            responsive: true,
+            devicePixelRatio: 3,
+            scales: {
+                x: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Pourcentage de confiance'
                     }
-                }
-            }
-        });
+                },
+               y: {
+    beginAtZero: true,
+    title: {
+        display: true,
+        text: 'Pourcentage de bonnes réponses'
+    },
+    ticks: {
+        stepSize: 10,
+        max: 100,  // Définissez la valeur maximale des étiquettes de l'axe des ordonnées à 100
+        suggestedMax: 105  // Suggérez une valeur maximale de 105 pour l'axe des ordonnées
     }
 }
+
+            }
+        }
+    });
+}
+
+
 
 function valide() {
     var degEff = [0,0,0,0];
@@ -921,7 +934,10 @@ function valide() {
         yArray[i] = degBonne[i]/degEff[i]*100 || 0;
     }
 
-    updateChart(yArray, yParfait);
+    // Créez un tableau de tailles de points basé sur degEff
+    var pointSizes = degEff.map(value => Math.min(20,1 + value*2)); // Assurez-vous que la taille minimale est de 5 pour la visibilité
+
+    updateChart(yArray, yParfait, pointSizes);
 
     for (let i = 1; i < 5; i++) {
         var x = document.getElementById("tableau").rows[i].cells;
@@ -929,6 +945,8 @@ function valide() {
         x[2].innerHTML = degBonne[i-1];
     }
 }
+
+
 </script>
 </section>
 </section><section>
