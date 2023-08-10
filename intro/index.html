@@ -899,6 +899,10 @@ function recap(element) {
                 x[1].innerHTML = degEff[i-1];
                 x[2].innerHTML = degBonne[i-1];
             }
+            setTimeout(function() {
+        Plotly.newPlot("myPlot", data, layout, config);
+        resizePlot();
+    }, 500); // 500 millisecondes de délai
             drawPlot();
         }
 
