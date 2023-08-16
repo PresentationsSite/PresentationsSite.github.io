@@ -870,20 +870,21 @@ function updateChart(yArray, yParfait, pointSizes) {
         data: {
             labels: [50,67,83,100],
             datasets: [{
+                label: 'Idéal',
+                data: yParfait,
+                borderColor: 'red',
+                backgroundColor: 'transparent',
+                pointBackgroundColor: 'red',
+                pointRadius: 2,
+                fill: false
+            },
+            {
                 label: 'Vous',
                 data: yArray,
                 borderColor: 'blue',
                 backgroundColor: 'transparent',
                 pointBackgroundColor: 'blue',
                 pointRadius: pointSizes,
-                fill: false
-            }, {
-                label: 'Idéal',
-                data: yParfait,
-                borderColor: 'red',
-                backgroundColor: 'transparent',
-                pointBackgroundColor: 'red',
-                pointRadius: 5,
                 fill: false
             }]
         },
@@ -935,7 +936,7 @@ function valide() {
     }
 
     // Créez un tableau de tailles de points basé sur degEff
-    var pointSizes = degEff.map(value => Math.min(20,1 + value*2)); // Assurez-vous que la taille minimale est de 5 pour la visibilité
+    var pointSizes = degEff.map(value => Math.min(15,2 + value)); // Assurez-vous que la taille minimale est de 5 pour la visibilité
 
     updateChart(yArray, yParfait, pointSizes);
 
