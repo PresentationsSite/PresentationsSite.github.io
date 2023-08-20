@@ -134,6 +134,108 @@ Organisme qui fixe les unités</p>
 </div>
 <aside class="notes"><p>il trouve 298 000 km/s</p>
 </aside>
+</section><section>
+<p>Comme on va le voir plus loin,<br>la vitesse de la lumière dépend du milieu :</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/vereauair.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+<style>
+  .container {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: auto;
+  }
+
+  .line {
+    width: 100%;
+    height: 15px;
+    border-radius: 8px;
+    background-color: #ffff00;
+    transform: translateX(100%);
+    opacity:100%;
+  }
+
+  #vide {
+    animation: slideLeftVide 15s linear infinite;
+  }
+
+  #air {
+    animation: slideLeftAir 15s linear infinite;
+  }
+
+  #eau {
+    animation: slideLeftEau 15s linear infinite;
+  }
+
+  #verre {
+    animation: slideLeftVerre 15s linear infinite;
+  }
+
+  @keyframes slideLeftVide {
+  0% {
+    transform: translate(-100%, 0);
+  }
+  67% {
+    transform: translate(100%, 0);
+  }
+  100% {
+    transform: translate(100%, 0);
+  }
+}
+
+  @keyframes slideLeftAir {
+  0% {
+    transform: translate(-100%, 0);
+  }
+  67% {
+    transform: translate(100%, 0);
+  }
+  100% {
+    transform: translate(100%, 0);
+  }
+}
+
+  @keyframes slideLeftEau {
+  0% {
+    transform: translate(-100%, 0);
+  }
+  89% {
+    transform: translate(100%, 0);
+  }
+  100% {
+    transform: translate(100%, 0);
+  }
+}
+
+  @keyframes slideLeftVerre {
+  0% {
+    transform: translate(-100%, 0);
+  }
+  100% {
+    transform: translate(100%, 0);
+  }
+}
+</style>
+<div class="container">
+ <p style="color:white;margin-bottom: 50px;">vitesse de la lumière dans le vide : $\approx$ 299 792 km/s</p>
+<div class="line" id="vide" style="margin-bottom:50px;"></div>
+  <p style="color:white;margin-bottom: 50px;">vitesse de la lumière dans l'air  : $\approx$ 299 702 km/s</p>
+  <div class="line" id="air" style="margin-bottom:80px;"></div>
+ <p style="color:white;margin-bottom: 40px;">vitesse de la lumière dans l'eau  : $\approx$ 225 000 km/s</p>
+  <div class="line" id="eau" style="margin-bottom:60px;"></div>
+ <p style="color:white;margin-bottom: 30px;">vitesse de la lumière dans le verre  : $\approx$ 200 000 km/s</p>
+  <div class="line" id="verre"></div>
+  <br>
+</div>
+<script>
+/*
+Pour le trick des délais voir ce site :
+https://css-tricks.com/css-keyframe-animation-delay-iterations/ 
+*/
+</script>
 
 </section>
 </section><section>
@@ -320,6 +422,11 @@ $$\color{#61D836}n_1\color{white}\sin(\color{#61D836}i_1\color{white}) = \color{
 </div>
 </div>
 <p class="fragment">$\color{#61D836}n_1$ et $\color{#FFD932}n_2$ sont les <b>indices optiques</b><br>des milieu 1 et 2.</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/loirefraction.png"
+      data-background-size="contain"
+      data-background-transition="concave">
 </section><section>
 <p>L'<span class="imp">indice optique</span> est un nombre sans dimension<br>qui caractérise un milieu transparent.</p>
 <p class="fragment">La lumière se propage à la vitesse $c$ dans le vide<br>mais va moins vite dans tout autre milieu transparent. Et l'indice optique est le ratio entre ces deux vitesses&nbsp;:</p>
@@ -342,6 +449,26 @@ c_{verre} &= \frac{c}{n_{verre}} \\
 &= \pu{2,0E8 m*s-1}
 \end{aligned}
 $$
+</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/lumcas.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-size="contain"
+      data-background-transition="concave"
+      data-background-video="/caisseasavon.mp4">
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/rayonscas.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+</section><section>
+<p>Lorsqu&rsquo;un rayon de lumière passe d&rsquo;un milieu 1 à un milieu 2 d&rsquo;indice plus grand, il se <span class="imp"><span class="imp fragment">rapproche</span> de la normale</span> (son angle par rapport<br>à la normale <span class="fragment">diminue</span>).</p>
+<p class="fragment">
+Lorsqu'un rayon de lumière passe d'un milieu 1 à un milieu 2 d'indice plus grand, il <span class="imp">s'éloigne de la normale</span> (son angle par rapport à la normale augmente)
 </p>
 </section><section>
 <iframe src="https://trinket.io/embed/glowscript/b4eeb6bc11?toggleCode=true" width="100%" height="600" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
