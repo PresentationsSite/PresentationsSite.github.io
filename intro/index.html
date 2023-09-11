@@ -1,0 +1,1066 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>Intro</title>
+
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="/reveal-js/css/reset.css">
+<link rel="stylesheet" href="/reveal-js/css/reveal.css"><link rel="stylesheet" href="/reveal-js/css/theme/sky.css" id="theme">
+<link rel="stylesheet" href="/highlight-js/github-dark.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  </head>
+  <body>
+    
+    <div class="reveal">
+      <div class="slides">
+  
+
+    <section><h2 id="questionnaire-calibrage">QUESTIONNAIRE CALIBRAGE</h2>
+<p>tiré du livre &ldquo;<em>The Scout Mindset</em>&rdquo; de Julia Galef</p>
+</section><section>
+<img src="/qrcodecalibrage.png"  width="40%">
+</section><section>
+<p>Choisir sa réponse,<br>puis son degré de confiance de 0 à 3<br>(0 : hasard complet, 3 : certitude absolue).</p>
+</section><section>
+<h1 id="vraifaux">VRAI/FAUX</h1>
+</section><section>
+
+
+<section data-shortcode-section>
+<h2 id="animaux">Animaux</h2>
+</section><section>
+<ol>
+<li>L&rsquo;éléphant est le plus gros des mammifères.</li>
+</ol>
+<p><br><br>
+<select  id="rep1" style="background-color: #B51700;color:white;font-size:30px;width:180px;height:100px;text-align:center;" onchange="recap(this);">
+<option value=""> Réponse </option>
+<option value="0">Faux</option>
+<option value="1">Vrai</option>
+</select>
+   
+<select id="deg1" style="background-color: #004D80;color:white;font-size:30px;width:300px;height:100px;" onchange="recap(this);">
+<option value=""> Degré de confiance </option>
+<option value="0">0</option>
+<option value="1">1</option>
+<option value="2">2</option>
+<option value="3">3</option>
+</select></p>
+</section><section>
+<ol start="2">
+<li>Les otaries se tiennent parfois la main lorsqu&rsquo;elles dorment.</li>
+</ol>
+<p><br><br>
+<select  id="rep2" style="background-color: #B51700;color:white;font-size:30px;width:180px;height:100px" onchange="recap(this);">
+<option value=""> Réponse </option>
+<option value="0">Faux</option>
+<option value="1">Vrai</option>
+</select>
+   
+<select id="deg2" style="background-color: #004D80;color:white;font-size:30px;width:300px;height:100px" onchange="recap(this);">
+<option value=""> Degré de confiance </option>
+<option value="0">0</option>
+<option value="1">1</option>
+<option value="2">2</option>
+<option value="3">3</option>
+</select></p>
+</section><section>
+<ol start="3">
+<li>Le mille-pattes est l&rsquo;animal avec le plus de pattes.</li>
+</ol>
+<p><br><br>
+<select  id="rep3" style="background-color: #B51700;color:white;font-size:30px;width:180px;height:100px" onchange="recap(this);">
+<option value=""> Réponse </option>
+<option value="0">Faux</option>
+<option value="1">Vrai</option>
+</select>
+   
+<select id="deg3" style="background-color: #004D80;color:white;font-size:30px;width:300px;height:100px" onchange="recap(this);">
+<option value=""> Degré de confiance </option>
+<option value="0">0</option>
+<option value="1">1</option>
+<option value="2">2</option>
+<option value="3">3</option>
+</select></p>
+</section><section>
+<ol start="4">
+<li>Les mammifères et les dinosaures ont coexisté.</li>
+</ol>
+<p><br><br>
+<select  id="rep4" style="background-color: #B51700;color:white;font-size:30px;width:180px;height:100px" onchange="recap(this);">
+<option value=""> Réponse </option>
+<option value="0">Faux</option>
+<option value="1">Vrai</option>
+</select>
+   
+<select id="deg4" style="background-color: #004D80;color:white;font-size:30px;width:300px;height:100px" onchange="recap(this);">
+<option value=""> Degré de confiance </option>
+<option value="0">0</option>
+<option value="1">1</option>
+<option value="2">2</option>
+<option value="3">3</option>
+</select></p>
+</section><section>
+<ol start="5">
+<li>Les ours ne peuvent pas grimper aux arbres.</li>
+</ol>
+<p><br><br>
+<select  id="rep5" style="background-color: #B51700;color:white;font-size:30px;width:180px;height:100px" onchange="recap(this);">
+<option value=""> Réponse </option>
+<option value="0">Faux</option>
+<option value="1">Vrai</option>
+</select>
+   
+<select id="deg5" style="background-color: #004D80;color:white;font-size:30px;width:300px;height:100px" onchange="recap(this);">
+<option value=""> Degré de confiance </option>
+<option value="0">0</option>
+<option value="1">1</option>
+<option value="2">2</option>
+<option value="3">3</option>
+</select></p>
+</section><section>
+<ol start="6">
+<li>Les dromadaires stockent l&rsquo;eau dans leur bosse.</li>
+</ol>
+<p><br><br>
+<select  id="rep6" style="background-color: #B51700;color:white;font-size:30px;width:180px;height:100px" onchange="recap(this);">
+<option value=""> Réponse </option>
+<option value="0">Faux</option>
+<option value="1">Vrai</option>
+</select>
+   
+<select id="deg6" style="background-color: #004D80;color:white;font-size:30px;width:300px;height:100px" onchange="recap(this);">
+<option value=""> Degré de confiance </option>
+<option value="0">0</option>
+<option value="1">1</option>
+<option value="2">2</option>
+<option value="3">3</option>
+</select></p>
+</section><section>
+<ol start="7">
+<li>Les flamants roses sont roses car ils mangent des crevettes.</li>
+</ol>
+<p><br><br>
+<select  id="rep7" style="background-color: #B51700;color:white;font-size:30px;width:180px;height:100px" onchange="recap(this);">
+<option value=""> Réponse </option>
+<option value="0">Faux</option>
+<option value="1">Vrai</option>
+</select>
+   
+<select id="deg7" style="background-color: #004D80;color:white;font-size:30px;width:300px;height:100px" onchange="recap(this);">
+<option value=""> Degré de confiance </option>
+<option value="0">0</option>
+<option value="1">1</option>
+<option value="2">2</option>
+<option value="3">3</option>
+</select></p>
+</section><section>
+<ol start="8">
+<li>Les pandas géants mangent surtout du bambou.</li>
+</ol>
+<p><br><br>
+<select  id="rep8" style="background-color: #B51700;color:white;font-size:30px;width:180px;height:100px" onchange="recap(this);">
+<option value=""> Réponse </option>
+<option value="0">Faux</option>
+<option value="1">Vrai</option>
+</select>
+   
+<select id="deg8" style="background-color: #004D80;color:white;font-size:30px;width:300px;height:100px" onchange="recap(this);">
+<option value=""> Degré de confiance </option>
+<option value="0">0</option>
+<option value="1">1</option>
+<option value="2">2</option>
+<option value="3">3</option>
+</select></p>
+</section><section>
+<ol start="9">
+<li>L&rsquo;ornithorynque est le seul mammifère à pondre des œufs.</li>
+</ol>
+<p><br><br>
+<select  id="rep9" style="background-color: #B51700;color:white;font-size:30px;width:180px;height:100px" onchange="recap(this);">
+<option value=""> Réponse </option>
+<option value="0">Faux</option>
+<option value="1">Vrai</option>
+</select>
+   
+<select id="deg9" style="background-color: #004D80;color:white;font-size:30px;width:300px;height:100px" onchange="recap(this);">
+<option value=""> Degré de confiance </option>
+<option value="0">0</option>
+<option value="1">1</option>
+<option value="2">2</option>
+<option value="3">3</option>
+</select></p>
+</section><section>
+<ol start="10">
+<li>Une mule est le croisement entre un âne male et une jument.</li>
+</ol>
+<p><br><br>
+<select  id="rep10" style="background-color: #B51700;color:white;font-size:30px;width:180px;height:100px" onchange="recap(this);">
+<option value=""> Réponse </option>
+<option value="0">Faux</option>
+<option value="1">Vrai</option>
+</select>
+   
+<select id="deg10" style="background-color: #004D80;color:white;font-size:30px;width:300px;height:100px" onchange="recap(this);">
+<option value=""> Degré de confiance </option>
+<option value="0">0</option>
+<option value="1">1</option>
+<option value="2">2</option>
+<option value="3">3</option>
+</select></p>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h2 id="histoire">Histoire</h2>
+</section><section>
+<ol start="11">
+<li>Jules César est né avant Confucius.</li>
+</ol>
+<p><br><br>
+<select  id="rep11" style="background-color: #B51700;color:white;font-size:30px;width:180px;height:100px" onchange="recap(this);">
+<option value=""> Réponse </option>
+<option value="0">Faux</option>
+<option value="1">Vrai</option>
+</select>
+   
+<select id="deg11" style="background-color: #004D80;color:white;font-size:30px;width:300px;height:100px" onchange="recap(this);">
+<option value=""> Degré de confiance </option>
+<option value="0">0</option>
+<option value="1">1</option>
+<option value="2">2</option>
+<option value="3">3</option>
+</select></p>
+</section><section>
+<ol start="12">
+<li>Fidel Castro est né avant Gandhi.</li>
+</ol>
+<p><br><br>
+<select  id="rep12" style="background-color: #B51700;color:white;font-size:30px;width:180px;height:100px" onchange="recap(this);">
+<option value=""> Réponse </option>
+<option value="0">Faux</option>
+<option value="1">Vrai</option>
+</select>
+   
+<select id="deg12" style="background-color: #004D80;color:white;font-size:30px;width:300px;height:100px" onchange="recap(this);">
+<option value=""> Degré de confiance </option>
+<option value="0">0</option>
+<option value="1">1</option>
+<option value="2">2</option>
+<option value="3">3</option>
+</select></p>
+</section><section>
+<ol start="13">
+<li>Nelson Mandela est né avant Anne Frank.</li>
+</ol>
+<p><br><br>
+<select  id="rep13" style="background-color: #B51700;color:white;font-size:30px;width:180px;height:100px" onchange="recap(this);">
+<option value=""> Réponse </option>
+<option value="0">Faux</option>
+<option value="1">Vrai</option>
+</select>
+   
+<select id="deg13" style="background-color: #004D80;color:white;font-size:30px;width:300px;height:100px" onchange="recap(this);">
+<option value=""> Degré de confiance </option>
+<option value="0">0</option>
+<option value="1">1</option>
+<option value="2">2</option>
+<option value="3">3</option>
+</select></p>
+</section><section>
+<ol start="14">
+<li>Cléopatre est née avant Mahomet.</li>
+</ol>
+<p><br><br>
+<select  id="rep14" style="background-color: #B51700;color:white;font-size:30px;width:180px;height:100px" onchange="recap(this);">
+<option value=""> Réponse </option>
+<option value="0">Faux</option>
+<option value="1">Vrai</option>
+</select>
+   
+<select id="deg14" style="background-color: #004D80;color:white;font-size:30px;width:300px;height:100px" onchange="recap(this);">
+<option value=""> Degré de confiance </option>
+<option value="0">0</option>
+<option value="1">1</option>
+<option value="2">2</option>
+<option value="3">3</option>
+</select></p>
+</section><section>
+<ol start="15">
+<li>Willliam Shakespeare est né avant Jeanne d&rsquo;Arc.</li>
+</ol>
+<p><br><br>
+<select  id="rep15" style="background-color: #B51700;color:white;font-size:30px;width:180px;height:100px" onchange="recap(this);">
+<option value=""> Réponse </option>
+<option value="0">Faux</option>
+<option value="1">Vrai</option>
+</select>
+   
+<select id="deg15" style="background-color: #004D80;color:white;font-size:30px;width:300px;height:100px" onchange="recap(this);">
+<option value=""> Degré de confiance </option>
+<option value="0">0</option>
+<option value="1">1</option>
+<option value="2">2</option>
+<option value="3">3</option>
+</select></p>
+</section><section>
+<ol start="16">
+<li>George Washington est né avant Sun Tzu.</li>
+</ol>
+<p><br><br>
+<select  id="rep16" style="background-color: #B51700;color:white;font-size:30px;width:180px;height:100px" onchange="recap(this);">
+<option value=""> Réponse </option>
+<option value="0">Faux</option>
+<option value="1">Vrai</option>
+</select>
+   
+<select id="deg16" style="background-color: #004D80;color:white;font-size:30px;width:300px;height:100px" onchange="recap(this);">
+<option value=""> Degré de confiance </option>
+<option value="0">0</option>
+<option value="1">1</option>
+<option value="2">2</option>
+<option value="3">3</option>
+</select></p>
+</section><section>
+<ol start="17">
+<li>Genghis Khan est né avant Léonard de Vinci.</li>
+</ol>
+<p><br><br>
+<select  id="rep17" style="background-color: #B51700;color:white;font-size:30px;width:180px;height:100px" onchange="recap(this);">
+<option value=""> Réponse </option>
+<option value="0">Faux</option>
+<option value="1">Vrai</option>
+</select>
+   
+<select id="deg17" style="background-color: #004D80;color:white;font-size:30px;width:300px;height:100px" onchange="recap(this);">
+<option value=""> Degré de confiance </option>
+<option value="0">0</option>
+<option value="1">1</option>
+<option value="2">2</option>
+<option value="3">3</option>
+</select></p>
+</section><section>
+<ol start="18">
+<li>La reine Victoria est née avant Karl Marx.</li>
+</ol>
+<p><br><br>
+<select  id="rep18" style="background-color: #B51700;color:white;font-size:30px;width:180px;height:100px" onchange="recap(this);">
+<option value=""> Réponse </option>
+<option value="0">Faux</option>
+<option value="1">Vrai</option>
+</select>
+   
+<select id="deg18" style="background-color: #004D80;color:white;font-size:30px;width:300px;height:100px" onchange="recap(this);">
+<option value=""> Degré de confiance </option>
+<option value="0">0</option>
+<option value="1">1</option>
+<option value="2">2</option>
+<option value="3">3</option>
+</select></p>
+</section><section>
+<ol start="19">
+<li>Saddam Hussein est né avant Marilyn Monroe</li>
+</ol>
+<p><br><br>
+<select  id="rep19" style="background-color: #B51700;color:white;font-size:30px;width:180px;height:100px" onchange="recap(this);">
+<option value=""> Réponse </option>
+<option value="0">Faux</option>
+<option value="1">Vrai</option>
+</select>
+   
+<select id="deg19" style="background-color: #004D80;color:white;font-size:30px;width:300px;height:100px" onchange="recap(this);">
+<option value=""> Degré de confiance </option>
+<option value="0">0</option>
+<option value="1">1</option>
+<option value="2">2</option>
+<option value="3">3</option>
+</select></p>
+</section><section>
+<ol start="20">
+<li>Albert Einstein est né avant Mao.</li>
+</ol>
+<p><br><br>
+<select  id="rep20" style="background-color: #B51700;color:white;font-size:30px;width:180px;height:100px" onchange="recap(this);">
+<option value=""> Réponse </option>
+<option value="0">Faux</option>
+<option value="1">Vrai</option>
+</select>
+   
+<select id="deg20" style="background-color: #004D80;color:white;font-size:30px;width:300px;height:100px" onchange="recap(this);">
+<option value=""> Degré de confiance </option>
+<option value="0">0</option>
+<option value="1">1</option>
+<option value="2">2</option>
+<option value="3">3</option>
+</select></p>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h2 id="géographie">Géographie</h2>
+</section><section>
+<ol start="21">
+<li>L&rsquo;allemagne est plus peuplée que la France.</li>
+</ol>
+<p><br><br>
+<select  id="rep21" style="background-color: #B51700;color:white;font-size:30px;width:180px;height:100px" onchange="recap(this);">
+<option value=""> Réponse </option>
+<option value="0">Faux</option>
+<option value="1">Vrai</option>
+</select>
+   
+<select id="deg21" style="background-color: #004D80;color:white;font-size:30px;width:300px;height:100px" onchange="recap(this);">
+<option value=""> Degré de confiance </option>
+<option value="0">0</option>
+<option value="1">1</option>
+<option value="2">2</option>
+<option value="3">3</option>
+</select></p>
+</section><section>
+<ol start="22">
+<li>Le Japon est plus peuplé que la Corée du Sud.</li>
+</ol>
+<p><br><br>
+<select  id="rep22" style="background-color: #B51700;color:white;font-size:30px;width:180px;height:100px" onchange="recap(this);">
+<option value=""> Réponse </option>
+<option value="0">Faux</option>
+<option value="1">Vrai</option>
+</select>
+   
+<select id="deg22" style="background-color: #004D80;color:white;font-size:30px;width:300px;height:100px" onchange="recap(this);">
+<option value=""> Degré de confiance </option>
+<option value="0">0</option>
+<option value="1">1</option>
+<option value="2">2</option>
+<option value="3">3</option>
+</select></p>
+</section><section>
+<ol start="23">
+<li>Le Brésil est plus peuplé que l&rsquo;Argentine.</li>
+</ol>
+<p><br><br>
+<select  id="rep23" style="background-color: #B51700;color:white;font-size:30px;width:180px;height:100px" onchange="recap(this);">
+<option value=""> Réponse </option>
+<option value="0">Faux</option>
+<option value="1">Vrai</option>
+</select>
+   
+<select id="deg23" style="background-color: #004D80;color:white;font-size:30px;width:300px;height:100px" onchange="recap(this);">
+<option value=""> Degré de confiance </option>
+<option value="0">0</option>
+<option value="1">1</option>
+<option value="2">2</option>
+<option value="3">3</option>
+</select></p>
+</section><section>
+<ol start="24">
+<li>L&rsquo;Egypte est plus peuplée que le Bostwana.</li>
+</ol>
+<p><br><br>
+<select  id="rep24" style="background-color: #B51700;color:white;font-size:30px;width:180px;height:100px" onchange="recap(this);">
+<option value=""> Réponse </option>
+<option value="0">Faux</option>
+<option value="1">Vrai</option>
+</select>
+   
+<select id="deg24" style="background-color: #004D80;color:white;font-size:30px;width:300px;height:100px" onchange="recap(this);">
+<option value=""> Degré de confiance </option>
+<option value="0">0</option>
+<option value="1">1</option>
+<option value="2">2</option>
+<option value="3">3</option>
+</select></p>
+</section><section>
+<ol start="25">
+<li>Le Mexique est plus peuplé que le Guatemala.</li>
+</ol>
+<p><br><br>
+<select  id="rep25" style="background-color: #B51700;color:white;font-size:30px;width:180px;height:100px" onchange="recap(this);">
+<option value=""> Réponse </option>
+<option value="0">Faux</option>
+<option value="1">Vrai</option>
+</select>
+   
+<select id="deg25" style="background-color: #004D80;color:white;font-size:30px;width:300px;height:100px" onchange="recap(this);">
+<option value=""> Degré de confiance </option>
+<option value="0">0</option>
+<option value="1">1</option>
+<option value="2">2</option>
+<option value="3">3</option>
+</select></p>
+</section><section>
+<ol start="26">
+<li>Le Panama est plus peuplé que Bélize.</li>
+</ol>
+<p><br><br>
+<select  id="rep26" style="background-color: #B51700;color:white;font-size:30px;width:180px;height:100px" onchange="recap(this);">
+<option value=""> Réponse </option>
+<option value="0">Faux</option>
+<option value="1">Vrai</option>
+</select>
+   
+<select id="deg26" style="background-color: #004D80;color:white;font-size:30px;width:300px;height:100px" onchange="recap(this);">
+<option value=""> Degré de confiance </option>
+<option value="0">0</option>
+<option value="1">1</option>
+<option value="2">2</option>
+<option value="3">3</option>
+</select></p>
+</section><section>
+<ol start="27">
+<li>La Jamaïque est plus peuplée que Haïti.</li>
+</ol>
+<p><br><br>
+<select  id="rep27" style="background-color: #B51700;color:white;font-size:30px;width:180px;height:100px" onchange="recap(this);">
+<option value=""> Réponse </option>
+<option value="0">Faux</option>
+<option value="1">Vrai</option>
+</select>
+   
+<select id="deg27" style="background-color: #004D80;color:white;font-size:30px;width:300px;height:100px" onchange="recap(this);">
+<option value=""> Degré de confiance </option>
+<option value="0">0</option>
+<option value="1">1</option>
+<option value="2">2</option>
+<option value="3">3</option>
+</select></p>
+</section><section>
+<ol start="28">
+<li>La Grèce est plus peuplée que la Norvège.</li>
+</ol>
+<p><br><br>
+<select  id="rep28" style="background-color: #B51700;color:white;font-size:30px;width:180px;height:100px" onchange="recap(this);">
+<option value=""> Réponse </option>
+<option value="0">Faux</option>
+<option value="1">Vrai</option>
+</select>
+   
+<select id="deg28" style="background-color: #004D80;color:white;font-size:30px;width:300px;height:100px" onchange="recap(this);">
+<option value=""> Degré de confiance </option>
+<option value="0">0</option>
+<option value="1">1</option>
+<option value="2">2</option>
+<option value="3">3</option>
+</select></p>
+</section><section>
+<ol start="29">
+<li>La Chine est plus peuplée que l&rsquo;Inde.</li>
+</ol>
+<p><br><br>
+<select  id="rep29" style="background-color: #B51700;color:white;font-size:30px;width:180px;height:100px" onchange="recap(this);">
+<option value=""> Réponse </option>
+<option value="0">Faux</option>
+<option value="1">Vrai</option>
+</select>
+   
+<select id="deg29" style="background-color: #004D80;color:white;font-size:30px;width:300px;height:100px" onchange="recap(this);">
+<option value=""> Degré de confiance </option>
+<option value="0">0</option>
+<option value="1">1</option>
+<option value="2">2</option>
+<option value="3">3</option>
+</select></p>
+</section><section>
+<ol start="30">
+<li>L&rsquo;Irak est plus peuplé que l&rsquo;Iran.</li>
+</ol>
+<p><br><br>
+<select  id="rep30" style="background-color: #B51700;color:white;font-size:30px;width:180px;height:100px" onchange="recap(this);">
+<option value=""> Réponse </option>
+<option value="0">Faux</option>
+<option value="1">Vrai</option>
+</select>
+   
+<select id="deg30" style="background-color: #004D80;color:white;font-size:30px;width:300px;height:100px" onchange="recap(this);">
+<option value=""> Degré de confiance </option>
+<option value="0">0</option>
+<option value="1">1</option>
+<option value="2">2</option>
+<option value="3">3</option>
+</select></p>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h2 id="sciences">Sciences</h2>
+</section><section>
+<ol start="31">
+<li>Mars a une seule lune, comme la Terre.</li>
+</ol>
+<p><br><br>
+<select  id="rep31" style="background-color: #B51700;color:white;font-size:30px;width:180px;height:100px" onchange="recap(this);">
+<option value=""> Réponse </option>
+<option value="0">Faux</option>
+<option value="1">Vrai</option>
+</select>
+   
+<select id="deg31" style="background-color: #004D80;color:white;font-size:30px;width:300px;height:100px" onchange="recap(this);">
+<option value=""> Degré de confiance </option>
+<option value="0">0</option>
+<option value="1">1</option>
+<option value="2">2</option>
+<option value="3">3</option>
+</select></p>
+</section><section>
+<ol start="32">
+<li>Le scorbut est dû à un déficit en vitamine C.</li>
+</ol>
+<p><br><br>
+<select  id="rep32" style="background-color: #B51700;color:white;font-size:30px;width:180px;height:100px" onchange="recap(this);">
+<option value=""> Réponse </option>
+<option value="0">Faux</option>
+<option value="1">Vrai</option>
+</select>
+   
+<select id="deg32" style="background-color: #004D80;color:white;font-size:30px;width:300px;height:100px" onchange="recap(this);">
+<option value=""> Degré de confiance </option>
+<option value="0">0</option>
+<option value="1">1</option>
+<option value="2">2</option>
+<option value="3">3</option>
+</select></p>
+</section><section>
+<ol start="33">
+<li>Le bronze est un alliage de cuivre et de fer.</li>
+</ol>
+<p><br><br>
+<select  id="rep33" style="background-color: #B51700;color:white;font-size:30px;width:180px;height:100px" onchange="recap(this);">
+<option value=""> Réponse </option>
+<option value="0">Faux</option>
+<option value="1">Vrai</option>
+</select>
+   
+<select id="deg33" style="background-color: #004D80;color:white;font-size:30px;width:300px;height:100px" onchange="recap(this);">
+<option value=""> Degré de confiance </option>
+<option value="0">0</option>
+<option value="1">1</option>
+<option value="2">2</option>
+<option value="3">3</option>
+</select></p>
+</section><section>
+<ol start="34">
+<li>Une cuillère à café d&rsquo;huile contient plus de calories qu&rsquo;une cuillère à café de beurre.</li>
+</ol>
+<p><br><br>
+<select  id="rep34" style="background-color: #B51700;color:white;font-size:30px;width:180px;height:100px" onchange="recap(this);">
+<option value=""> Réponse </option>
+<option value="0">Faux</option>
+<option value="1">Vrai</option>
+</select>
+   
+<select id="deg34" style="background-color: #004D80;color:white;font-size:30px;width:300px;height:100px" onchange="recap(this);">
+<option value=""> Degré de confiance </option>
+<option value="0">0</option>
+<option value="1">1</option>
+<option value="2">2</option>
+<option value="3">3</option>
+</select></p>
+</section><section>
+<ol start="35">
+<li>L&rsquo;hélium est l&rsquo;élément le plus léger.</li>
+</ol>
+<p><br><br>
+<select  id="rep35" style="background-color: #B51700;color:white;font-size:30px;width:180px;height:100px" onchange="recap(this);">
+<option value=""> Réponse </option>
+<option value="0">Faux</option>
+<option value="1">Vrai</option>
+</select>
+   
+<select id="deg35" style="background-color: #004D80;color:white;font-size:30px;width:300px;height:100px" onchange="recap(this);">
+<option value=""> Degré de confiance </option>
+<option value="0">0</option>
+<option value="1">1</option>
+<option value="2">2</option>
+<option value="3">3</option>
+</select></p>
+</section><section>
+<ol start="36">
+<li>Le rhume est causé par une bactérie.</li>
+</ol>
+<p><br><br>
+<select  id="rep36" style="background-color: #B51700;color:white;font-size:30px;width:180px;height:100px" onchange="recap(this);">
+<option value=""> Réponse </option>
+<option value="0">Faux</option>
+<option value="1">Vrai</option>
+</select>
+   
+<select id="deg36" style="background-color: #004D80;color:white;font-size:30px;width:300px;height:100px" onchange="recap(this);">
+<option value=""> Degré de confiance </option>
+<option value="0">0</option>
+<option value="1">1</option>
+<option value="2">2</option>
+<option value="3">3</option>
+</select></p>
+</section><section>
+<ol start="37">
+<li>L&rsquo;endroit le plus profond sur Terre est dans l&rsquo;océan pacifique.</li>
+</ol>
+<p><br><br>
+<select  id="rep37" style="background-color: #B51700;color:white;font-size:30px;width:180px;height:100px" onchange="recap(this);">
+<option value=""> Réponse </option>
+<option value="0">Faux</option>
+<option value="1">Vrai</option>
+</select>
+   
+<select id="deg37" style="background-color: #004D80;color:white;font-size:30px;width:300px;height:100px" onchange="recap(this);">
+<option value=""> Degré de confiance </option>
+<option value="0">0</option>
+<option value="1">1</option>
+<option value="2">2</option>
+<option value="3">3</option>
+</select></p>
+</section><section>
+<ol start="38">
+<li>Les saisons sont causées par l&rsquo;orbite elliptique de la Terre autour du Soleil.</li>
+</ol>
+<p><br><br>
+<select  id="rep38" style="background-color: #B51700;color:white;font-size:30px;width:180px;height:100px" onchange="recap(this);">
+<option value=""> Réponse </option>
+<option value="0">Faux</option>
+<option value="1">Vrai</option>
+</select>
+   
+<select id="deg38" style="background-color: #004D80;color:white;font-size:30px;width:300px;height:100px" onchange="recap(this);">
+<option value=""> Degré de confiance </option>
+<option value="0">0</option>
+<option value="1">1</option>
+<option value="2">2</option>
+<option value="3">3</option>
+</select></p>
+</section><section>
+<ol start="39">
+<li>Jupiter est la plus grosse planète du système solaire.</li>
+</ol>
+<p><br><br>
+<select  id="rep39" style="background-color: #B51700;color:white;font-size:30px;width:180px;height:100px" onchange="recap(this);">
+<option value=""> Réponse </option>
+<option value="0">Faux</option>
+<option value="1">Vrai</option>
+</select>
+   
+<select id="deg39" style="background-color: #004D80;color:white;font-size:30px;width:300px;height:100px" onchange="recap(this);">
+<option value=""> Degré de confiance </option>
+<option value="0">0</option>
+<option value="1">1</option>
+<option value="2">2</option>
+<option value="3">3</option>
+</select></p>
+</section><section>
+<ol start="40">
+<li>Les atomes sont plus proches les uns des autres dans un solide que dans un gaz.</li>
+</ol>
+<p><br><br>
+<select  id="rep40" style="background-color: #B51700;color:white;font-size:30px;width:180px;height:100px" onchange="recap(this);">
+<option value=""> Réponse </option>
+<option value="0">Faux</option>
+<option value="1">Vrai</option>
+</select>
+   
+<select id="deg40" style="background-color: #004D80;color:white;font-size:30px;width:300px;height:100px" onchange="recap(this);">
+<option value=""> Degré de confiance </option>
+<option value="0">0</option>
+<option value="1">1</option>
+<option value="2">2</option>
+<option value="3">3</option>
+</select></p>
+
+</section>
+</section><section>
+<style>
+.bouton {
+background-color: #1DB100;
+border: none;
+color: white;
+padding: 20px 40px;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+font-size: 20px;
+margin: 0px 0px 20px 0px;
+border-radius: 20px;
+cursor: pointer;
+box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+transition-duration: 0.4s;
+}
+
+.bouton:hover {
+background-color: #EE220C;
+color: white;
+}
+
+.bouton:active {
+box-shadow: none;
+</style>
+<div>
+<button class="bouton" onclick="valide()" style="margin:auto;display:flex;justify-content:center;text-align:center;font-size:50px;width:50%;height:100px;">Validation</button>
+</div>
+</section><section>
+<style type="text/css">
+@media screen and (max-width: 767px) {
+.tg {
+    width: auto !important;
+}
+.tg col {
+    width: auto !important;
+}
+.tg-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin: auto 0px;
+}
+}
+.tg {
+width: 80% !important;
+margin-left: auto;
+margin-right: auto;
+}
+
+.tg th, .tg td {
+font-size: 50px; 
+}
+}
+</style>
+<style type="text/css">@media screen and (max-width: 767px) {.tg {width: auto !important;}.tg col {width: auto !important;}.tg-wrap {overflow-x: auto;-webkit-overflow-scrolling: touch;margin: auto 0px;}}</style><div class="tg-wrap"><table id="tableau" style="border-collapse:collapse;border-color:#000;border-spacing:0;margin:0px auto" class="tg"><thead><tr><th style="background-color:#D2418A;border-color:#000;border-style:solid;border-width:1px;color:#fff;font-family:Arial, sans-serif;font-size:14px;font-weight:bold;overflow:hidden;padding:10px 5px;text-align:center;vertical-align:top;word-break:normal">niveau de confiance</th><th style="background-color:#409cff;border-color:#000;border-style:solid;border-width:1px;color:#fff;font-family:Arial, sans-serif;font-size:14px;font-weight:bold;overflow:hidden;padding:10px 5px;text-align:center;vertical-align:top;word-break:normal">nombre de réponses</th><th style="background-color:#0199A4;border-color:#000;border-style:solid;border-width:1px;color:#fff;font-family:Arial, sans-serif;font-size:14px;font-weight:bold;overflow:hidden;padding:10px 5px;text-align:center;vertical-align:top;word-break:normal">nombre de bonnes réponses</th></tr></thead><tbody><tr><td style="background-color:#FCC5DC;border-color:inherit;border-style:solid;border-width:1px;color:#444;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;text-align:center;vertical-align:top;word-break:normal">0</td><td style="background-color:#D2E4FC;border-color:inherit;border-style:solid;border-width:1px;color:#444;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;text-align:center;vertical-align:top;word-break:normal">0</td><td style="background-color:#8DE9E8;border-color:inherit;border-style:solid;border-width:1px;color:#444;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;text-align:center;vertical-align:top;word-break:normal">0</td></tr><tr><td style="background-color:#F79EC7;border-color:inherit;border-style:solid;border-width:1px;color:#444;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;text-align:center;vertical-align:top;word-break:normal">1</td><td style="background-color:#D2E4FC;border-color:inherit;border-style:solid;border-width:1px;color:#444;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;text-align:center;vertical-align:top;word-break:normal">0</td><td style="background-color:#8DE9E8;border-color:inherit;border-style:solid;border-width:1px;color:#444;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;text-align:center;vertical-align:top;word-break:normal">0</td></tr><tr><td style="background-color:#F175B2;border-color:inherit;border-style:solid;border-width:1px;color:#444;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;text-align:center;vertical-align:top;word-break:normal">2</td><td style="background-color:#D2E4FC;border-color:inherit;border-style:solid;border-width:1px;color:#444;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;text-align:center;vertical-align:top;word-break:normal">0</td><td style="background-color:#8DE9E8;border-color:inherit;border-style:solid;border-width:1px;color:#444;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;text-align:center;vertical-align:top;word-break:normal">0</td></tr><tr><td style="background-color:#F062A9;border-color:inherit;border-style:solid;border-width:1px;color:#444;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;text-align:center;vertical-align:top;word-break:normal">3</td><td style="background-color:#D2E4FC;border-color:inherit;border-style:solid;border-width:1px;color:#444;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;text-align:center;vertical-align:top;word-break:normal">0</td><td style="background-color:#8DE9E8;border-color:inherit;border-style:solid;border-width:1px;color:#444;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;text-align:center;vertical-align:top;word-break:normal">0</td></tr></tbody></table></div>
+</section><section>
+<div style="object-fit: cover;">
+<canvas id="myPlot"></canvas>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+const taille = 40;
+var arrDeg = Array(taille);
+var arrRep = Array(taille); 
+var corrArray = [0,1,1,1,0,0,1,1,0,1,0,0,1,1,0,0,1,0,0,1,1,1,1,1,1,1,0,1,0,0,0,1,0,1,0,0,1,0,1,1];
+var myChart; // Variable globale pour stocker l'instance du graphique
+
+function recap(element) {
+  var valeur = element.selectedIndex;
+  var id = element.id;
+  var type = id.slice(0,3);
+  var num = parseInt(id.slice(3));
+  if (type == "deg") {
+    arrDeg[num-1] = valeur-1;
+  } else {
+    arrRep[num-1] = valeur-1;
+  }
+}
+
+function updateChart(yArray, yParfait, pointSizes) {
+    var ctx = document.getElementById('myPlot').getContext('2d');
+    if (window.myChart) {
+        window.myChart.destroy();
+    }
+
+    window.myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: [50,67,83,100],
+            datasets: [{
+                label: 'Vous',
+                data: yArray,
+                borderColor: 'blue',
+                backgroundColor: 'transparent',
+                pointBackgroundColor: 'blue',
+                pointRadius: pointSizes,
+                fill: false
+            }, {
+                label: 'Idéal',
+                data: yParfait,
+                borderColor: 'red',
+                backgroundColor: 'transparent',
+                pointBackgroundColor: 'red',
+                pointRadius: 5,
+                fill: false
+            }]
+        },
+        options: {
+            responsive: true,
+            devicePixelRatio: 3,
+            scales: {
+                x: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Pourcentage de confiance'
+                    }
+                },
+               y: {
+    beginAtZero: true,
+    title: {
+        display: true,
+        text: 'Pourcentage de bonnes réponses'
+    },
+    ticks: {
+        stepSize: 10,
+        max: 100,  // Définissez la valeur maximale des étiquettes de l'axe des ordonnées à 100
+        suggestedMax: 105  // Suggérez une valeur maximale de 105 pour l'axe des ordonnées
+    }
+}
+
+            }
+        }
+    });
+}
+
+
+
+function valide() {
+    var degEff = [0,0,0,0];
+    var degBonne = [0,0,0,0];
+    var xArray = [50,67,83,100];
+    var yArray = [0,0,0,0];
+    var yParfait = xArray;
+    for (let i = 0; i < taille; i++) {
+        degEff[arrDeg[i]] += 1;
+        if (arrRep[i] == corrArray[i]) {
+            degBonne[arrDeg[i]] += 1;
+        }
+    }
+    for (let i = 0; i < 4; i++) {
+        yArray[i] = degBonne[i]/degEff[i]*100 || 0;
+    }
+
+    // Créez un tableau de tailles de points basé sur degEff
+    var pointSizes = degEff.map(value => Math.min(20,1 + value*2)); // Assurez-vous que la taille minimale est de 5 pour la visibilité
+    
+    updateChart(yArray, yParfait, pointSizes);
+    
+    for (let i = 1; i < 5; i++) {
+        var x = document.getElementById("tableau").rows[i].cells;
+        x[1].innerHTML = degEff[i-1];
+        x[2].innerHTML = degBonne[i-1];
+    }
+}
+
+
+</script>
+</section><section>
+<p><a href="https://coursphychi.github.io/">Retour site</a></p>
+</section>
+
+  
+
+
+</div>
+      
+
+    </div>
+<script type="text/javascript" src=/reveal-hugo/object-assign.js></script>
+
+<a href="/reveal-js/css/print/" id="print-location" style="display: none;"></a>
+<script type="text/javascript">
+  var printLocationElement = document.getElementById('print-location');
+  var link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.type = 'text/css';
+  link.href = printLocationElement.href + (window.location.search.match(/print-pdf/gi) ? 'pdf.css' : 'paper.css');
+  document.getElementsByTagName('head')[0].appendChild(link);
+</script>
+
+<script type="application/json" id="reveal-hugo-site-params">{"highlight_theme":"github-dark","line-numbers":true,"theme":"sky","transition":"concave","transition_speed":"fast"}</script>
+<script type="application/json" id="reveal-hugo-page-params">null</script>
+
+<script src="/reveal-js/js/reveal.js"></script>
+
+<script type="text/javascript">
+  
+  
+  function camelize(map) {
+    if (map) {
+      Object.keys(map).forEach(function(k) {
+        newK = k.replace(/(\_\w)/g, function(m) { return m[1].toUpperCase() });
+        if (newK != k) {
+          map[newK] = map[k];
+          delete map[k];
+        }
+      });
+    }
+    return map;
+  }
+  
+  var revealHugoDefaults = { center: true, controls: true, history: true, progress: true, transition: "slide" };
+  var revealHugoSiteParams = JSON.parse(document.getElementById('reveal-hugo-site-params').innerHTML);
+  var revealHugoPageParams = JSON.parse(document.getElementById('reveal-hugo-page-params').innerHTML);
+  
+  var options = Object.assign({},
+    camelize(revealHugoDefaults),
+    camelize(revealHugoSiteParams),
+    camelize(revealHugoPageParams));
+  Reveal.initialize(options);
+</script>
+
+
+  
+  
+  <script type="text/javascript" src="/reveal-js/plugin/markdown/marked.js"></script>
+  
+  <script type="text/javascript" src="/reveal-js/plugin/markdown/markdown.js"></script>
+  
+  <script type="text/javascript" src="/reveal-js/plugin/highlight/highlight.js"></script>
+  
+  <script type="text/javascript" src="/reveal-js/plugin/zoom-js/zoom.js"></script>
+  
+  
+  <script type="text/javascript" src="/reveal-js/plugin/notes/notes.js"></script>
+
+
+
+
+
+
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({startOnLoad: false});
+    let render = (event) => {
+      let mermaidElems = event.currentSlide.querySelectorAll('.mermaid');
+      if (!mermaidElems.length){
+          return
+      }
+      mermaidElems.forEach(mermaidElem => {
+          let processed = mermaidElem.getAttribute('data-processed');
+          if (!processed){
+              
+              mermaid.init(undefined, mermaidElem);
+          }
+      });
+    };
+    Reveal.addEventListener('slidechanged', render);
+    Reveal.addEventListener('ready', render);
+  </script>
+
+    
+
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']]
+  },
+  svg: {
+    fontCache: 'global'
+  }
+};
+</script>
+
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+</script>
+    
+  </body>
+</html>
