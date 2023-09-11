@@ -936,9 +936,9 @@ function valide() {
 
     // Créez un tableau de tailles de points basé sur degEff
     var pointSizes = degEff.map(value => Math.min(20,1 + value*2)); // Assurez-vous que la taille minimale est de 5 pour la visibilité
-
+    
     updateChart(yArray, yParfait, pointSizes);
-
+    
     for (let i = 1; i < 5; i++) {
         var x = document.getElementById("tableau").rows[i].cells;
         x[1].innerHTML = degEff[i-1];
