@@ -833,103 +833,124 @@ margin-right: auto;
 font-size: 50px; 
 }
 }
-
-
-
-
-
-
-<section data-shortcode-section>
-<pre><code>&lt;div&gt;
-    &lt;label for=&quot;inputU&quot;&gt;Valeurs de U (séparées par des virgules) :&lt;/label&gt;
-    &lt;input type=&quot;text&quot; id=&quot;inputU&quot; style=&quot;width: 100%; font-size: 1em;&quot;&gt;
-&lt;/div&gt;
-&lt;div&gt;
-    &lt;label for=&quot;inputI&quot;&gt;Valeurs de I (séparées par des virgules) :&lt;/label&gt;
-    &lt;input type=&quot;text&quot; id=&quot;inputI&quot; style=&quot;width: 100%; font-size: 1em;&quot;&gt;
-&lt;/div&gt;
-&lt;button onclick=&quot;prepareData()&quot; class=&quot;custom-button&quot;&gt;Tracer le graphique&lt;/button&gt;
-</code></pre>
+</style>
+<style type="text/css">@media screen and (max-width: 767px) {.tg {width: auto !important;}.tg col {width: auto !important;}.tg-wrap {overflow-x: auto;-webkit-overflow-scrolling: touch;margin: auto 0px;}}</style><div class="tg-wrap"><table id="tableau" style="border-collapse:collapse;border-color:#000;border-spacing:0;margin:0px auto" class="tg"><thead><tr><th style="background-color:#D2418A;border-color:#000;border-style:solid;border-width:1px;color:#fff;font-family:Arial, sans-serif;font-size:14px;font-weight:bold;overflow:hidden;padding:10px 5px;text-align:center;vertical-align:top;word-break:normal">niveau de confiance</th><th style="background-color:#409cff;border-color:#000;border-style:solid;border-width:1px;color:#fff;font-family:Arial, sans-serif;font-size:14px;font-weight:bold;overflow:hidden;padding:10px 5px;text-align:center;vertical-align:top;word-break:normal">nombre de réponses</th><th style="background-color:#0199A4;border-color:#000;border-style:solid;border-width:1px;color:#fff;font-family:Arial, sans-serif;font-size:14px;font-weight:bold;overflow:hidden;padding:10px 5px;text-align:center;vertical-align:top;word-break:normal">nombre de bonnes réponses</th></tr></thead><tbody><tr><td style="background-color:#FCC5DC;border-color:inherit;border-style:solid;border-width:1px;color:#444;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;text-align:center;vertical-align:top;word-break:normal">0</td><td style="background-color:#D2E4FC;border-color:inherit;border-style:solid;border-width:1px;color:#444;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;text-align:center;vertical-align:top;word-break:normal">0</td><td style="background-color:#8DE9E8;border-color:inherit;border-style:solid;border-width:1px;color:#444;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;text-align:center;vertical-align:top;word-break:normal">0</td></tr><tr><td style="background-color:#F79EC7;border-color:inherit;border-style:solid;border-width:1px;color:#444;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;text-align:center;vertical-align:top;word-break:normal">1</td><td style="background-color:#D2E4FC;border-color:inherit;border-style:solid;border-width:1px;color:#444;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;text-align:center;vertical-align:top;word-break:normal">0</td><td style="background-color:#8DE9E8;border-color:inherit;border-style:solid;border-width:1px;color:#444;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;text-align:center;vertical-align:top;word-break:normal">0</td></tr><tr><td style="background-color:#F175B2;border-color:inherit;border-style:solid;border-width:1px;color:#444;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;text-align:center;vertical-align:top;word-break:normal">2</td><td style="background-color:#D2E4FC;border-color:inherit;border-style:solid;border-width:1px;color:#444;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;text-align:center;vertical-align:top;word-break:normal">0</td><td style="background-color:#8DE9E8;border-color:inherit;border-style:solid;border-width:1px;color:#444;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;text-align:center;vertical-align:top;word-break:normal">0</td></tr><tr><td style="background-color:#F062A9;border-color:inherit;border-style:solid;border-width:1px;color:#444;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;text-align:center;vertical-align:top;word-break:normal">3</td><td style="background-color:#D2E4FC;border-color:inherit;border-style:solid;border-width:1px;color:#444;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;text-align:center;vertical-align:top;word-break:normal">0</td><td style="background-color:#8DE9E8;border-color:inherit;border-style:solid;border-width:1px;color:#444;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;text-align:center;vertical-align:top;word-break:normal">0</td></tr></tbody></table></div>
 </section><section>
-<pre><code>&lt;canvas id=&quot;chart&quot;&gt;&lt;/canvas&gt;
-&lt;button onclick=&quot;showRegression()&quot; id=&quot;regressionButton&quot; class=&quot;custom-button&quot; style=&quot;display: none;&quot;&gt;Afficher la régression linéaire&lt;/button&gt;
-</code></pre>
+<div style="object-fit: cover;">
+<canvas id="myPlot"></canvas>
+</div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-let U = [];
-let I = [];
-let coeff = 0;
-let chart;
+const taille = 40;
+var arrDeg = Array(taille);
+var arrRep = Array(taille); 
+var corrArray = [0,1,1,1,0,0,1,1,0,1,0,0,1,1,0,0,1,0,0,1,1,1,1,1,1,1,0,1,0,0,0,1,0,1,0,0,1,0,1,1];
+var myChart; // Variable globale pour stocker l'instance du graphique
 
-function prepareData() {
-    U = document.getElementById('inputU').value.split(',').map(Number);
-    I = document.getElementById('inputI').value.split(',').map(Number);
+function recap(element) {
+  var valeur = element.selectedIndex;
+  var id = element.id;
+  var type = id.slice(0,3);
+  var num = parseInt(id.slice(3));
+  if (type == "deg") {
+    arrDeg[num-1] = valeur-1;
+  } else {
+    arrRep[num-1] = valeur-1;
+  }
+}
 
-    // Calcul du coefficient de la courbe de tendance
-    let sumUI = 0;
-    let sumI2 = 0;
-    for (let i = 0; i < U.length; i++) {
-        sumUI += U[i] * I[i];
-        sumI2 += I[i] * I[i];
+function updateChart(yArray, yParfait, pointSizes) {
+    var ctx = document.getElementById('myPlot').getContext('2d');
+    if (window.myChart) {
+        window.myChart.destroy();
     }
-    coeff = sumUI / sumI2;
 
-    // Configuration initiale du graphique
-    let config = {
-        type: 'scatter',
+    window.myChart = new Chart(ctx, {
+        type: 'line',
         data: {
+            labels: [50,67,83,100],
             datasets: [{
-                label: 'Points U vs I',
-                data: I.map((value, index) => ({ x: value, y: U[index] })),
-                backgroundColor: 'red'
+                label: 'Vous',
+                data: yArray,
+                borderColor: 'blue',
+                backgroundColor: 'transparent',
+                pointBackgroundColor: 'blue',
+                pointRadius: pointSizes,
+                fill: false
+            }, {
+                label: 'Idéal',
+                data: yParfait,
+                borderColor: 'red',
+                backgroundColor: 'transparent',
+                pointBackgroundColor: 'red',
+                pointRadius: 5,
+                fill: false
             }]
         },
         options: {
+            responsive: true,
+            devicePixelRatio: 3,
             scales: {
                 x: {
+                    beginAtZero: true,
                     title: {
                         display: true,
-                        text: 'I (A)'
+                        text: 'Pourcentage de confiance'
                     }
                 },
-                y: {
-                    title: {
-                        display: true,
-                        text: 'U (V)'
-                    }
-                }
-            }
-        }
-    };
-
-    // Création du graphique
-    let ctx = document.getElementById('chart').getContext('2d');
-    chart = new Chart(ctx, config);
-
-    document.getElementById('regressionButton').style.display = 'block';
+               y: {
+    beginAtZero: true,
+    title: {
+        display: true,
+        text: 'Pourcentage de bonnes réponses'
+    },
+    ticks: {
+        stepSize: 10,
+        max: 100,  // Définissez la valeur maximale des étiquettes de l'axe des ordonnées à 100
+        suggestedMax: 105  // Suggérez une valeur maximale de 105 pour l'axe des ordonnées
+    }
 }
 
-function showRegression() {
-    let regressionData = I.map(i => ({ x: i, y: coeff * i }));
-
-    chart.data.datasets.push({
-        label: `Régression linéaire (y = ${coeff.toFixed(2)}x)`,
-        data: regressionData,
-        type: 'line',
-        borderColor: 'blue',
-        fill: false
+            }
+        }
     });
+}
 
-    chart.update();
-    document.getElementById
+
+
+function valide() {
+    var degEff = [0,0,0,0];
+    var degBonne = [0,0,0,0];
+    var xArray = [50,67,83,100];
+    var yArray = [0,0,0,0];
+    var yParfait = xArray;
+    for (let i = 0; i < taille; i++) {
+        degEff[arrDeg[i]] += 1;
+        if (arrRep[i] == corrArray[i]) {
+            degBonne[arrDeg[i]] += 1;
+        }
+    }
+    for (let i = 0; i < 4; i++) {
+        yArray[i] = degBonne[i]/degEff[i]*100 || 0;
+    }
+
+    // Créez un tableau de tailles de points basé sur degEff
+    var pointSizes = degEff.map(value => Math.min(20,1 + value*2)); // Assurez-vous que la taille minimale est de 5 pour la visibilité
+
+    updateChart(yArray, yParfait, pointSizes);
+
+    for (let i = 1; i < 5; i++) {
+        var x = document.getElementById("tableau").rows[i].cells;
+        x[1].innerHTML = degEff[i-1];
+        x[2].innerHTML = degBonne[i-1];
+    }
+}
+
+
 </script>
-
+</section><section>
+<p><a href="https://coursphychi.github.io/">Retour site</a></p>
 </section>
-
----
-
-
-[Retour site](https://coursphychi.github.io/)</section>
 
   
 
