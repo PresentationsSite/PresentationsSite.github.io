@@ -906,8 +906,8 @@ function updateChart(yArray, yParfait, pointSizes) {
     },
     ticks: {
         stepSize: 10,
-        max: 100,  // Définissez la valeur maximale des étiquettes de l'axe des ordonnées à 100
-        suggestedMax: 105  // Suggérez une valeur maximale de 105 pour l'axe des ordonnées
+        max: 100,  // valeur maximale des étiquettes de l'axe des ordonnées
+        suggestedMax: 105  // valeur maximale suggérée
     }
 }
 
@@ -934,8 +934,8 @@ function valide() {
         yArray[i] = degBonne[i]/degEff[i]*100 || 0;
     }
 
-    // Créez un tableau de tailles de points basé sur degEff
-    var pointSizes = degEff.map(value => Math.min(20,1 + value*2)); // Assurez-vous que la taille minimale est de 5 pour la visibilité
+    // tableau de tailles de points basé sur degEff
+    var pointSizes = degEff.map(value => Math.min(20,1 + value*2)); // taille minimale de 5 pour la visibilité
     
     updateChart(yArray, yParfait, pointSizes);
     
