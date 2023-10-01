@@ -409,7 +409,7 @@ identité : John Doe, activité : sans
     p = 1
     for i in range(n):
         p *= L[i]
-    return [p//i for i in range(n)]
+    return [p//L[i] for i in range(n)]
 </code></pre>
 </section><section>
 <p>Mais si on vous demande de garder<br>une complexité linéaire tout en vous<br>interdisant les divisions ?</p>
