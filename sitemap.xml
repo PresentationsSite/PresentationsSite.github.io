@@ -1,313 +1,159 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  
   <url>
     <loc>http://PresentationsSite.github.io/2nde/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://PresentationsSite.github.io/tsti/acide/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://PresentationsSite.github.io/2nde/atome/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://PresentationsSite.github.io/1es/avion/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://PresentationsSite.github.io/info/bases/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://PresentationsSite.github.io/calculette/calc/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://PresentationsSite.github.io/tsti/calculette/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://PresentationsSite.github.io/categories/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://PresentationsSite.github.io/2nde/chgt/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://PresentationsSite.github.io/tsti/chgt/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://PresentationsSite.github.io/tsti/combustion/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://PresentationsSite.github.io/tsti/conduction/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://PresentationsSite.github.io/tsti/correc-chgt/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://PresentationsSite.github.io/tsti/correc-chgt2/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://PresentationsSite.github.io/tsti/correc-chutelibre/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://PresentationsSite.github.io/tsti/correc-lumiere/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://PresentationsSite.github.io/tsti/correc-pile/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://PresentationsSite.github.io/2nde/lewis/</loc>
-  </url>
-  
-  <url>
-    <loc>http://PresentationsSite.github.io/info/dico/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://PresentationsSite.github.io/tes/climat/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://PresentationsSite.github.io/tes/debats/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://PresentationsSite.github.io/info/defis/</loc>
-  </url>
-  
-  <url>
+  </url><url>
+    <loc>http://PresentationsSite.github.io/info/dico/</loc>
+  </url><url>
+    <loc>http://PresentationsSite.github.io/2nde/elec/</loc>
+  </url><url>
+    <loc>http://PresentationsSite.github.io/tsti/egie/</loc>
+  </url><url>
     <loc>http://PresentationsSite.github.io/1es/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://PresentationsSite.github.io/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://PresentationsSite.github.io/calculette/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://PresentationsSite.github.io/essai/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://PresentationsSite.github.io/info/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://PresentationsSite.github.io/tes/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://PresentationsSite.github.io/tsti/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://PresentationsSite.github.io/info/euler/</loc>
-  </url>
-  
-  <url>
-    <loc>http://PresentationsSite.github.io/tes/expos/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://PresentationsSite.github.io/tsti/expradioact/</loc>
-  </url>
-  
-  <url>
+  </url><url>
+    <loc>http://PresentationsSite.github.io/tes/expos/</loc>
+  </url><url>
     <loc>http://PresentationsSite.github.io/tsti/tdfrotte/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://PresentationsSite.github.io/info/gauss/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://PresentationsSite.github.io/info/ia/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://PresentationsSite.github.io/tsti/incertitudes/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://PresentationsSite.github.io/2nde/inertie/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://PresentationsSite.github.io/info/lagrange/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://PresentationsSite.github.io/intro/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://PresentationsSite.github.io/info/last/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://PresentationsSite.github.io/1es/abondance/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://PresentationsSite.github.io/2nde/lumiere/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://PresentationsSite.github.io/tsti/lumiere/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://PresentationsSite.github.io/1es/lune/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://PresentationsSite.github.io/2nde/maths/</loc>
-  </url>
-  
-  <url>
-    <loc>http://PresentationsSite.github.io/2nde/mole/</loc>
-  </url>
-  
-  <url>
-    <loc>http://PresentationsSite.github.io/2nde/mouvement/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://PresentationsSite.github.io/tsti/mecanique-rot/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://PresentationsSite.github.io/tsti/mecanique/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://PresentationsSite.github.io/tsti/mecarot/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://PresentationsSite.github.io/2nde/melanges/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://PresentationsSite.github.io/2nde/testschimiques/</loc>
-  </url>
-  
-  <url>
+  </url><url>
+    <loc>http://PresentationsSite.github.io/2nde/mole/</loc>
+  </url><url>
+    <loc>http://PresentationsSite.github.io/2nde/mouvement/</loc>
+  </url><url>
     <loc>http://PresentationsSite.github.io/info/nim/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://PresentationsSite.github.io/info/oracle/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://PresentationsSite.github.io/tsti/tdpfd/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://PresentationsSite.github.io/tsti/piles/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://PresentationsSite.github.io/tsti/pression/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://PresentationsSite.github.io/tsti/puisselec/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://PresentationsSite.github.io/1es/radioact/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://PresentationsSite.github.io/tsti/radioact/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://PresentationsSite.github.io/2nde/reaction/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://PresentationsSite.github.io/tsti/signaux/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://PresentationsSite.github.io/1es/soleil/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://PresentationsSite.github.io/2nde/solutions/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://PresentationsSite.github.io/tsti/solutions/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://PresentationsSite.github.io/1es/son/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://PresentationsSite.github.io/2nde/son/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://PresentationsSite.github.io/tsti/son/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://PresentationsSite.github.io/tags/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://PresentationsSite.github.io/tes/cours1/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://PresentationsSite.github.io/tes/cours2/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://PresentationsSite.github.io/2nde/tpelec1/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://PresentationsSite.github.io/2nde/tpelec2/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://PresentationsSite.github.io/2nde/tpinertie/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>http://PresentationsSite.github.io/tsti/transport/</loc>
   </url>
-  
-  <url>
-    <loc>http://PresentationsSite.github.io/2nde/elec/</loc>
-  </url>
-  
-  <url>
-    <loc>http://PresentationsSite.github.io/tsti/egie/</loc>
-  </url>
-  
 </urlset>

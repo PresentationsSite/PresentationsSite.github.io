@@ -34,7 +34,7 @@
 <p>$
 \left\{
 \begin{aligned}
-&amp;y'(t) = f(t,y(t)) \\
+&amp;y&rsquo;(t) = f(t,y(t)) \\
 &amp;y(t_0) = y_0
 \end{aligned}
 \right.
@@ -106,7 +106,7 @@ $y_{i+1}=y_i+h\times f(t_{i+1},y_{i+1})$
 <p>Dans notre exemple :</p>
 <p>$$
 \begin{aligned}
-y_{i+1} &amp;= y_i + h\times f(t_{i+1},y_{i+1})\\<br>
+y_{i+1} &amp;= y_i + h\times f(t_{i+1},y_{i+1})\\
 &amp;= y_i + h\times \frac{y_\infty-y_{i+1}}{\tau}
 \end{aligned}
 $$
@@ -156,7 +156,7 @@ $$</p>
 <p>De $(t_0,y_0)$ à $(t_1,y_1)$ avec $t_1 = t_0+h$,<br>la solution numérique donne :</p>
 <p>$y_1 = y_0 + hf(t_0,y_0)$</p>
 <p>Et la solution exacte (développement de Taylor) :</p>
-<p>$y(t_1) = y(t_0) + hy'(t_0) + \frac{1}{2}h^2 y''(t_0)+O(h^3)$</p>
+<p>$y(t_1) = y(t_0) + hy&rsquo;(t_0) + \frac{1}{2}h^2 y&rsquo;&rsquo;(t_0)+O(h^3)$</p>
 <p>D&rsquo;où une erreur $|y_1-y(t_1)|$ en $\color{red}O(h^2)$.</p>
 
 </section>
@@ -166,9 +166,9 @@ $$</p>
 <section data-shortcode-section>
 <h3 id="erreur-de-troncature-globale">Erreur de troncature globale</h3>
 </section><section>
-<p>C&rsquo;est l'<strong>accumulation des erreurs locales</strong> de $t_0$ à $t$.</p>
+<p>C&rsquo;est l&rsquo;<strong>accumulation des erreurs locales</strong> de $t_0$ à $t$.</p>
 <p>Nombre d&rsquo;étapes : $\lfloor \frac{t-t_0}{h}\rfloor$ $\Rightarrow$ en $O(1/h)$.<br>D&rsquo;où une erreur de troncature globale en $O(h)$.</p>
-<p>C&rsquo;est pour cette erreur linéaire en $h$<br>que la méthode d&rsquo;Euler (explicite ou implicite)<br>est dite d'<strong>ordre 1</strong>.</p>
+<p>C&rsquo;est pour cette erreur linéaire en $h$<br>que la méthode d&rsquo;Euler (explicite ou implicite)<br>est dite d&rsquo;<strong>ordre 1</strong>.</p>
 
 </section>
 </section><section>
@@ -189,7 +189,7 @@ print(p)
 </code></pre>
 <p><span class='fragment ' ><span style="font-weight:normal">Le code ci-dessous trouve la première puissance de 2, $x$, pour laquelle $x+1$ est arrondi à $x$ (<strong>absorption</strong>), provoquant une erreur relative<br>(la plus grande possible) de $1/x$.</span></span></p>
 </section><section>
-<p><strong>l&rsquo;epsilon machine</strong> ou <strong>précision machine</strong><br>est la limite supérieure de l'<strong>erreur relative</strong> d&rsquo;approximation causée par l&rsquo;arrondi.</p>
+<p><strong>l&rsquo;epsilon machine</strong> ou <strong>précision machine</strong><br>est la limite supérieure de l&rsquo;<strong>erreur relative</strong> d&rsquo;approximation causée par l&rsquo;arrondi.</p>
 <br>
 <p>En python, comme la mantisse d&rsquo;un flottant correspond à 53 bits, l&rsquo;errreur relative se fait sur le dernier bit et vaut donc $2^{-53}$ ($\varepsilon=2^{-52}$  au pire entre deux arrondis consécutifs).</p>
 </section><section>
@@ -207,13 +207,13 @@ print(p)
 <section data-shortcode-section>
 <h3 id="stabilité-numérique">Stabilité numérique</h3>
 </section><section>
-<p>Partons de l&rsquo;équation différentielle linéaire $y'=ky$ La méthode explicite donne alors :</p>
+<p>Partons de l&rsquo;équation différentielle linéaire $y&rsquo;=ky$ La méthode explicite donne alors :</p>
 <p>$y_{n+1}= y_n(1+hk)$</p>
 <p>$\Rightarrow y_n = y_0(1+hk)^n$</p>
 <p>la solution numérique ne sera stable que si<br>
 $|1+z| ≤ 1$ avec $z \equiv hk \in\mathbb{C}$</p>
 </section><section>
-<p>En généralisant à un système différentiel linéaire de la forme : $y'(t)=My(t)$<br>
+<p>En généralisant à un système différentiel linéaire de la forme : $y&rsquo;(t)=My(t)$<br>
 (où $M$ est une matrice carrée)</p>
 <p>il faudra, pour obtenir une solution stable,<br>que chaque valeur propre de $M$<br>soit dans le disque précédent.</p>
 </section><section>
@@ -257,7 +257,7 @@ $$\lambda_{\genfrac{}{}{0pt}{}{1}{2}} = \omega_0\left(\frac{1}{2Q} \pm i\sqrt{\l
 <p>et le nouveau ${z_1}_{i+1}$ pour obtenir ${z_2}_{i+1}$ :</p>
 <p>${z_2}_{i+1} = {z_2}_i + hf({z_1}_{i+1},{z_2}_i,t_i)$</p>
 </section><section>
-<p>Son implémentation est souvent très simple (plus simple même que l&rsquo;explicite) puisqu&rsquo;on n' a même plus besoin des variables <code>z1_old</code> et <code>z2_old</code> :</p>
+<p>Son implémentation est souvent très simple (plus simple même que l&rsquo;explicite) puisqu&rsquo;on n&rsquo; a même plus besoin des variables <code>z1_old</code> et <code>z2_old</code> :</p>
 <br>
 <pre><code class="language-python">z1 += h*z2
 z2 += h*alpha/m*z2 + h*k/m*(z1-l0)

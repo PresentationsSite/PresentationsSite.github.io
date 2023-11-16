@@ -91,10 +91,10 @@ color: white;
 .bouton:active {
 box-shadow: none;
 </style>
-<p><textarea id="source" name="source" style="font-size:16pt;padding:20px" cols="30" rows="5" placeholder="Texte à encoder ou décoder"></textarea><br>
-<button class="bouton" onclick="rot13()" >Encode / Décode</button>
-<br>
-<textarea id="final" name="final" style="font-size:16pt;padding:20px" cols="30" rows="5" placeholder="Résultat"></textarea></p>
+<textarea id="source" name="source" style="font-size:16pt;padding:20px" cols="30" rows="5" placeholder="Texte à encoder ou décoder"></textarea><br>
+<p><button class="bouton" onclick="rot13()" >Encode / Décode</button>
+<br></p>
+<textarea id="final" name="final" style="font-size:16pt;padding:20px" cols="30" rows="5" placeholder="Résultat"></textarea>
 <script>
 function rot13() {
     var src = document.getElementById("source"),

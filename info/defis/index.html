@@ -329,8 +329,8 @@ identité : Alan Turing, activité : génie
 identité : John Doe, activité : sans
 </code></pre>
 </section><section>
-<p>Comme il n' y a pas de 4<sup>e</sup> argument dans le test, <br>et que modifier le test pourrait passer pour de la triche, les arguments nommés semblent<br>être une bonne solution.</p>
-<p>Mais on se confronte alors à l'<a href="https://florimond.dev/en/posts/2018/08/python-mutable-defaults-are-the-source-of-all-evil/">un des plus vicieux problèmes</a> que peuvent poser les objets mutables<br>en python, à chaque fois que l&rsquo;argument par défaut est appelé, le même objet est utilisé !</p>
+<p>Comme il n&rsquo; y a pas de 4<sup>e</sup> argument dans le test, <br>et que modifier le test pourrait passer pour de la triche, les arguments nommés semblent<br>être une bonne solution.</p>
+<p>Mais on se confronte alors à l&rsquo;<a href="https://florimond.dev/en/posts/2018/08/python-mutable-defaults-are-the-source-of-all-evil/">un des plus vicieux problèmes</a> que peuvent poser les objets mutables<br>en python, à chaque fois que l&rsquo;argument par défaut est appelé, le même objet est utilisé !</p>
 </section><section>
 <p>Exemple :</p>
 <pre><code class="language-python">def vicieux(L=[]):

@@ -5,6 +5,7 @@
     <link>http://PresentationsSite.github.io/2nde/</link>
     <description>Recent content in 2ndes on Présentations</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>fr</language><atom:link href="http://PresentationsSite.github.io/2nde/index.xml" rel="self" type="application/rss+xml" />
+    <language>fr</language>
+    <atom:link href="http://PresentationsSite.github.io/2nde/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>
