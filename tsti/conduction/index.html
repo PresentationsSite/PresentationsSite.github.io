@@ -23,21 +23,52 @@
       <div class="slides">
   
 
-    <section>
+    <section><style>
+ul {
+margin-left: auto;
+margin-right: auto;
+text-align: left;
+width: fit-content;
+list-style-position: inside;
+}
+
+ul li {
+text-indent: -1em;
+padding-left: 1em;
+}
+</style>
+<h1 id="conduction-thermique">Conduction thermique</h1>
+</section><section>
+
+
+<section data-shortcode-section>
+<p><img src="/infrarimm.png" alt=""></p>
+<p>Que nous apprend cette image ?</p>
+</section><section>
+<p>L&rsquo;immeuble au premier plan est beaucoup mieux <strong>isolé</strong> que celui en arrière plan !</p>
+<p class="fragment">Cela se traduit par un plus faible flux thermique à travers sa paroi et ainsi un plus fort écart de température entre l'extérieur et l'intérieur.</p>
+
+</section>
+</section><section>
+
 
 <section data-shortcode-section>
 <h2 id="flux-thermique">Flux thermique</h2>
 </section><section>
-<p><img src="/infrarimm.png" alt=""></p>
-<p>Que nous apprend cette image ?</p>
-</section><section>
-<p>Le flux thermique à travers une paroi est l&rsquo;énergie qui traverse cette paroi par unité de temps.<br></p>
-<p>Le flux est toujours orienté du chaud vers le froid.</p>
+<p>Le <strong>flux thermique</strong> à travers une paroi est l&rsquo;<b>énergie qui traverse cette paroi<br>par unité de temps</b>.<br></p>
+<p class="fragment">Le flux est toujours orienté <b>du chaud vers le froid</b>.</p>
 </section>
 <section data-noprocess data-shortcode-slide
       data-background-image="/fluxther.png"
       data-background-size="50%"
       data-background-transition="concave">
+</section><section>
+<p>Le flux thermique $\Phi$ à travers une paroi dépend</p>
+<ul>
+<li class="fragment">de la surface $S$ de la paroi,</li> 
+<li class="fragment">de l'écart de température $\Delta \theta$<br>de part et d'autre de la paroi,</li> 
+ <li class="fragment">et de la résistance thermique $R_{th}$ de la paroi.</li> 
+ </ul>
 </section><section>
 <p>Flus thermique $\Phi$ à travers la paroi (en W) :</p>
 <br>
@@ -48,9 +79,9 @@ $\displaystyle \Phi = \frac{S \Delta \theta}{R_{th}}=\frac{S\left(\theta_{\text{
 </div>
 <br>
 <ul class="moyen">
-<li>$S$ : surface de la paroi (en $\pu{m2}$)</li>
-<li>$\theta_{\text{chaud}}$ et $\theta_{\text{froid}}$ : températures de part<br>et d'autre de la paroi (en °C ou K)</li>
-<li>$R_{th}$ : est la résistance thermique<br>de la paroi (en $\pu{K.m^2.W-1}$)</li>
+<li>$S$ en $\pu{m2}$</li>
+<li>$\theta_{\text{chaud}}$ et $\theta_{\text{froid}}$ en °C ou K</li>
+<li>$R_{th}$ en $\pu{K.m^2.W-1}$</li>
 </ul>
 </section>
 <section data-noprocess data-shortcode-slide
@@ -115,8 +146,11 @@ $\displaystyle R_{th} = \frac{e}{\lambda}$
 </div>
 </div>
 <br>
-<p>unité de $R_{th}$ :</p>
-<p><span class='fragment ' >$\pu{m2 * K * W-1}$</span></p>
+<ul>
+<li> $R_{th}$  en $\pu{m2 * K * W-1}$</li>
+<li> $e$ en $\pu{m}$.</li>
+<li> $\lambda$ en $\pu{W*K-1*m-1}$ 
+</ul>
 </section>
 <section data-noprocess data-shortcode-slide
       data-background-image="/superprth.png"
