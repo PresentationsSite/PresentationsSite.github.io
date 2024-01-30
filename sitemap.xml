@@ -2,6 +2,8 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>http://PresentationsSite.github.io/1spe/</loc>
+  </url><url>
     <loc>http://PresentationsSite.github.io/2nde/</loc>
   </url><url>
     <loc>http://PresentationsSite.github.io/tsti/acide/</loc>
@@ -41,6 +43,8 @@
     <loc>http://PresentationsSite.github.io/tes/climat/</loc>
   </url><url>
     <loc>http://PresentationsSite.github.io/tes/debats/</loc>
+  </url><url>
+    <loc>http://PresentationsSite.github.io/tes/ia/</loc>
   </url><url>
     <loc>http://PresentationsSite.github.io/info/defis/</loc>
   </url><url>
@@ -111,6 +115,8 @@
     <loc>http://PresentationsSite.github.io/2nde/mouvement/</loc>
   </url><url>
     <loc>http://PresentationsSite.github.io/info/nim/</loc>
+  </url><url>
+    <loc>http://PresentationsSite.github.io/1spe/ondes/</loc>
   </url><url>
     <loc>http://PresentationsSite.github.io/info/oracle/</loc>
   </url><url>
