@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>Deep Learning</title>
+<title>Machine Learning</title>
 
 
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -10,7 +10,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link rel="stylesheet" href="/reveal-js/css/reset.css">
 <link rel="stylesheet" href="/reveal-js/css/reveal.css"><link rel="stylesheet" href="/reveal-js/css/theme/sky.css" id="theme">
-<link rel="stylesheet" href="/highlight-js/github-dark.min.css">
+<link rel="stylesheet" href="/highlight-js/atom-one-dark-reasonable.min.css">
     <link rel="stylesheet" href="/css/styles.css">
 
 <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
@@ -23,7 +23,7 @@
       <div class="slides">
   
 
-    <section><title>Reconnaissance de Chiffres avec un réseau de neurones</title>
+    <section><title>Reconnaissance de Chiffres avec un KNN</title>
 <style>
 .drawing-container {
         display: flex;
@@ -31,67 +31,121 @@
         align-items: center;
         justify-content: center;
     }
-    .grid-container {
-        display: grid;
-        grid-template-columns: repeat(8, 20px);
-        grid-gap: 0px;
-        margin-bottom: 20px;
-    }
-    .grid-item {
-        width: 20px;
-        height: 20px;
-        background-color: #fff;
-        border: 1px solid #000;
-    }
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(8, 40px); /* Augmentez la taille des cellules */
+    grid-gap: 2px; /* Ajustez l'espacement si nécessaire */
+    margin-bottom: 20px;
+}
+.grid-item {
+    width: 40px; /* Taille plus grande pour chaque cellule */
+    height: 40px; /* Taille plus grande pour chaque cellule */
+    background-color: #fff;
+    border: 1px solid #ccc; /* Bordures plus fines et grises */
+}
     .grid-item.checked {
         background-color: #000;
     }
+    #prediction {
+        margin-bottom: 0; /* Pour réduire l'espace avec le chiffre prédit */
+        font-size: 20pt; /* Rendre le texte un peu plus petit */
+    }
+    #predictedLabel {
+        color: red; /* Déjà défini dans le HTML, mais peut être ajusté ici pour la cohérence */
+    }
+    button {
+    background-color: #4CAF50; /* Couleur verte */
+    color: white; /* Texte blanc */
+    padding: 15px 32px; /* Plus grand padding pour un bouton plus grand */
+    font-size: 16px; /* Taille de la police plus grande */
+    border: none; /* Pas de bordure */
+    border-radius: 5px; /* Bords arrondis */
+    cursor: pointer; /* Change le curseur en pointeur */
+    margin: 10px; /* Ajoute de l'espace autour des boutons */
+}
+button:hover {
+    background-color: #45a049; /* Un peu plus foncé lorsque survolé */
+}
+.reset-btn {
+    background-color: #007bff; /* Bleu Bootstrap */
+    color: white;
+    padding: 15px 32px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 10px;
+}
+.reset-btn:hover {
+    background-color: #0056b3; /* Bleu plus foncé au survol */
+}
 </style>
-</head>
-<body>
+<p>Code Python du programme :</p>
+<pre><code class="language-python">def dist(x,Pts):
+    n = len(x)
+    L = []
+    for pt in Pts:
+        d = 0
+        for i in range(n):
+            d += (pt[i]-x[i])**2
+        d = d**0.5
+        L.append(d)
+    return L
+    
+import statistics as stat
+def KNN(X,k,Appr,Etiq):
+    L = dist(X,Appr)
+    LplusEtiq = []
+    for i in range(len(L)):
+        LplusEtiq.append((L[i],Etiq[i]))
+    LplusEtiq.sort()
+    EtiqFin = []
+    for e in LplusEtiq[:k]:
+        EtiqFin.append(e[1])
+    return stat.mode(EtiqFin)
+</code></pre>
+</section><section>
 <div class="drawing-container">
 <div id="grid" class="grid-container"></div>
 </div>
 <button id="predictBtn">Prédire</button>
-<p id="prediction">Prédiction: None</p>
-<label for="correction">Correction:</label>
-<select id="correction">
-    <option value="0">0</option>
-    <option value="1">1</option>
-    <option value="2">2</option>
-    <option value="3">3</option>
-    <option value="4">4</option>
-    <option value="5">5</option>
-    <option value="6">6</option>
-    <option value="7">7</option>
-    <option value="8">8</option>
-    <option value="9">9</option>
-</select>
-<button id="correctBtn">Soumettre Correction</button>
-<button id="resetBtn">Réinitialiser la Grille</button>
-<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest"></script>
+<p id="prediction">Prédiction:&nbsp;<span id="predictedLabel" style="color: red;"></span></p>
+<p><button id="resetBtn" class="reset-btn">Réinitialiser la Grille</button></p>
 <script >
-let model;
+let trainData = [];
+let trainLabels = [];
+
+async function loadDataset() {
+    const response = await fetch('/pourprojetia/digits_dataset.json');
+    const dataset = await response.json();
+    trainData = dataset.data; // Les données d'entraînement sont déjà des vecteurs de dimension 64
+    trainLabels = dataset.labels; // Les étiquettes correspondantes
+}
+
+function euclideanDistance(a, b) {
+    return a.reduce((sum, current, index) => sum + Math.pow(current - b[index], 2), 0) ** 0.5;
+}
+
+function knn(data, labels, query, k) {
+    const distances = data.map((item, index) => ({
+        distance: euclideanDistance(item, query),
+        label: labels[index]
+    }));
+    distances.sort((a, b) => a.distance - b.distance);
+    const nearestNeighbors = distances.slice(0, k);
+    const counts = nearestNeighbors.reduce((acc, neighbor) => {
+        acc[neighbor.label] = (acc[neighbor.label] || 0) + 1;
+        return acc;
+    }, {});
+    return parseInt(Object.keys(counts).sort((a, b) => counts[b] - counts[a])[0]);
+}
+
 
 document.addEventListener('DOMContentLoaded', async () => {
-    model = createModel();
     initGrid();
     document.getElementById('predictBtn').addEventListener('click', onPredictClick);
-    document.getElementById('correctBtn').addEventListener('click', onCorrectionSubmit);
 });
 
-function createModel() {
-    const model = tf.sequential();
-    model.add(tf.layers.flatten({inputShape: [8, 8, 1]}));
-    model.add(tf.layers.dense({units: 32, activation: 'relu'}));
-    model.add(tf.layers.dense({units: 10, activation: 'softmax'}));
-    model.compile({
-        optimizer: 'adam',
-        loss: 'categoricalCrossentropy',
-        metrics: ['accuracy']
-    });
-    return model;
-}
 
 let isDrawing = false; // Un indicateur pour suivre si l'utilisateur est en train de dessiner
 
@@ -125,29 +179,16 @@ function initGrid() {
 
 function getGridData() {
     const cells = document.querySelectorAll('.grid-item');
-    const inputData = Array.from(cells).map(cell => cell.classList.contains('checked') ? 1 : 0);
-    return tf.tensor4d(inputData, [1, 8, 8, 1], 'float32');
+    const inputData = Array.from(cells).map(cell => cell.classList.contains('checked') ? 255 : 0);
+    return inputData; // Ce tableau représente l'image dessinée, aplatie en un vecteur de dimension 64
 }
 
 async function onPredictClick() {
-    const inputData = getGridData();
-    const prediction = model.predict(inputData);
-    const predictedLabel = prediction.argMax(1).dataSync()[0];
-    document.getElementById('prediction').textContent = `Prédiction: ${predictedLabel}`;
-}
-
-async function onCorrectionSubmit() {
-    const correctLabel = parseInt(document.getElementById('correction').value, 10);
-    const inputData = getGridData();
-    const correctLabelTensor = tf.oneHot(tf.tensor1d([correctLabel]).toInt(), 10);
-    
-    await model.fit(inputData, correctLabelTensor, {
-        batchSize: 1,
-        epochs: 1
-    });
-    
-    alert('Modèle mis à jour avec la correction.');
-    resetGrid(); // Réinitialise la grille après la mise à jour du modèle
+    await loadDataset(); // Assurez-vous que les données sont chargées
+    const gridData = getGridData(); // Convertit la grille en un vecteur de dimension 64
+    const k = 3; // Choisissez une valeur de k appropriée
+    const predictedLabel = knn(trainData, trainLabels, gridData, k);
+    document.getElementById('predictedLabel').textContent = predictedLabel;
 }
 
 
@@ -186,7 +227,7 @@ document.getElementById('resetBtn').addEventListener('click', resetGrid);
 </script>
 
 <script type="application/json" id="reveal-hugo-site-params">{"highlight_theme":"github-dark","line-numbers":true,"theme":"sky","transition":"concave","transition_speed":"fast"}</script>
-<script type="application/json" id="reveal-hugo-page-params">null</script>
+<script type="application/json" id="reveal-hugo-page-params">{"highlight_theme":"atom-one-dark-reasonable"}</script>
 
 <script src="/reveal-js/js/reveal.js"></script>
 
