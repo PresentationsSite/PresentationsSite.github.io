@@ -33,13 +33,13 @@
     }
 .grid-container {
     display: grid;
-    grid-template-columns: repeat(8, 40px); /* Augmentez la taille des cellules */
+    grid-template-columns: repeat(8, 30px); /* Augmentez la taille des cellules */
     grid-gap: 2px; /* Ajustez l'espacement si nécessaire */
     margin-bottom: 20px;
 }
 .grid-item {
-    width: 40px; /* Taille plus grande pour chaque cellule */
-    height: 40px; /* Taille plus grande pour chaque cellule */
+    width: 30px; /* Taille plus grande pour chaque cellule */
+    height: 30px; /* Taille plus grande pour chaque cellule */
     background-color: #fff;
     border: 1px solid #ccc; /* Bordures plus fines et grises */
 }
@@ -79,7 +79,22 @@ button:hover {
 .reset-btn:hover {
     background-color: #0056b3; /* Bleu plus foncé au survol */
 }
-</style>
+#nearest-neighbors-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.neighbor {
+    display: grid;
+    grid-template-columns: repeat(8, 5px); /* Adaptez la taille des "pixels" */
+    margin: 5px;
+}
+.neighbor div {
+    width: 5px; /* Taille du "pixel" */
+    height: 5px;
+    border: 0.5px solid #ccc; /* Bordure fine pour chaque "pixel" */
+}
+<p></style></p>
 <h1 id="exemple-dutilisation-de-knn">Exemple d&rsquo;utilisation de KNN</h1>
 </section><section>
 <p>Code Python du programme :</p>
@@ -115,9 +130,9 @@ def KNN(X,k,Appr,Etiq):
 <div class="drawing-container">
 <div id="grid" class="grid-container"></div>
 </div>
-<button id="predictBtn">Prédire</button>
+<button id="predictBtn">Prédire</button><button id="resetBtn" class="reset-btn">RAZ</button>
 <p id="prediction">Prédiction:&nbsp;<span id="predictedLabel" style="color: red;"></span></p>
-<p><button id="resetBtn" class="reset-btn">Réinitialiser la Grille</button></p>
+<div id="nearest-neighbors-container"></div>
 <script >
 let trainData = [];
 let trainLabels = [];
@@ -136,16 +151,21 @@ function euclideanDistance(a, b) {
 function knn(data, labels, query, k) {
     const distances = data.map((item, index) => ({
         distance: euclideanDistance(item, query),
-        label: labels[index]
+        label: labels[index],
+        index: index // Ajoutez l'indice de l'élément
     }));
     distances.sort((a, b) => a.distance - b.distance);
     const nearestNeighbors = distances.slice(0, k);
+    // Calcul de l'étiquette la plus fréquente parmi les k plus proches voisins
     const counts = nearestNeighbors.reduce((acc, neighbor) => {
         acc[neighbor.label] = (acc[neighbor.label] || 0) + 1;
         return acc;
     }, {});
-    return parseInt(Object.keys(counts).sort((a, b) => counts[b] - counts[a])[0]);
+    const predictedLabel = parseInt(Object.keys(counts).sort((a, b) => counts[b] - counts[a])[0]);
+    // Retourne également les indices des k plus proches voisins
+    return { predictedLabel, nearestNeighbors: nearestNeighbors.map(n => n.index) };
 }
+
 
 
 document.addEventListener('DOMContentLoaded', async () => {
@@ -191,11 +211,30 @@ function getGridData() {
 }
 
 async function onPredictClick() {
-    await loadDataset(); // Assurez-vous que les données sont chargées
-    const gridData = getGridData(); // Convertit la grille en un vecteur de dimension 64
-    const k = 3; // Choisissez une valeur de k appropriée
-    const predictedLabel = knn(trainData, trainLabels, gridData, k);
-    document.getElementById('predictedLabel').textContent = predictedLabel;
+    await loadDataset();
+    const gridData = getGridData();
+    const k = 3;
+    const result = knn(trainData, trainLabels, gridData, k);
+    document.getElementById('prediction').textContent = `Prédiction: ${result.predictedLabel}`;
+    displayNearestNeighbors(result.nearestNeighbors);
+}
+
+function displayNearestNeighbors(neighborsIndices) {
+    const container = document.getElementById('nearest-neighbors-container');
+    container.innerHTML = ''; // Efface les voisins précédents
+    neighborsIndices.forEach(index => {
+        const neighborData = trainData[index];
+        const neighborElement = document.createElement('div');
+        neighborElement.className = 'neighbor';
+        // Générez la grille 8x8 pour l'image
+        neighborData.forEach(pixel => {
+            const pixelElement = document.createElement('div');
+            // Utilisez une échelle de gris pour la couleur des pixels : plus foncée pour des valeurs plus élevées
+            pixelElement.style.backgroundColor = `rgba(0, 0, 0, ${pixel / 16})`; // Ajustez selon le format de vos données
+            neighborElement.appendChild(pixelElement);
+        });
+        container.appendChild(neighborElement);
+    });
 }
 
 
@@ -211,7 +250,7 @@ document.getElementById('resetBtn').addEventListener('click', resetGrid);
 
 </script> 
 </section><section>
-<p><a href="https://coursphychi.github.io/tes/vivant/ia/">Retour site</a></p>
+<p><a href="https://coursphychi.github.io/tes/vivant/ia/#algorithme-des-k-moyennes----exemple-dapprentissage-non-supervis%C3%A9">Retour site</a></p>
 </section>
 
   
