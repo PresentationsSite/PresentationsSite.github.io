@@ -80,6 +80,8 @@ button:hover {
     background-color: #0056b3; /* Bleu plus foncé au survol */
 }
 </style>
+<h1 id="exemple-dutilisation-de-knn">Exemple d&rsquo;utilisation de KNN</h1>
+</section><section>
 <p>Code Python du programme :</p>
 <pre><code class="language-python">def dist(x,Pts):
     n = len(x)
@@ -104,6 +106,11 @@ def KNN(X,k,Appr,Etiq):
         EtiqFin.append(e[1])
     return stat.mode(EtiqFin)
 </code></pre>
+</section><section>
+<p>Données d&rsquo;apprentissage :</p>
+<p>1797 images de 8 par 8 pixels (en fait une liste de 64 nombres entre 0 et 255) extraits de la base de données MNIST et leurs étiquettes (le chiffre écrit).</p>
+</section><section>
+<p><img src="https://info-tsi-vieljeux.github.io/exempleschiffres.png" alt=""></p>
 </section><section>
 <div class="drawing-container">
 <div id="grid" class="grid-container"></div>
