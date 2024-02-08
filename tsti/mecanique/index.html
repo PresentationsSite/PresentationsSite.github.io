@@ -336,11 +336,73 @@ La variation d'énergie cinétique d'un système<br>entre un point de départ et
       data-background-size="contain"
       data-background-transition="concave">
 </section><section>
-<h4 id="freinage-dun-camion">Freinage d&rsquo;un camion</h4>
-<p>Un camion de 20 tonnes dévale une pente à 8%<br>à  la vitesse de 72 km/h avant d’actionner ses freins.<br>
-Il met 500 m pour s’arrêter.</p>
+<p><span style="color:#ffff66;font-weight:bold">Exercice : freinage d&rsquo;un camion</span></p>
+<p>Un camion de 20 tonnes dévale une pente à 8%<br>à  la vitesse de 72 km/h avant d’actionner ses freins.</p>
+<p>Il met 500 m pour s’arrêter.</p>
 <p>Que vaut la force de freinage (supposée constante) ?<br></p>
 <p>On négligera les frottements autres que ceux des freins et on prendra $g=\pu{10 m*s-2}$</p>
+</section><section>
+<p style="color:green">
+Énergie cinétique initiale :
+$$
+\begin{aligned}
+E_{c\,initiale} & = \frac{1}{2}mv^2_{initiale}\\\\
+& = \frac{1}{2}\times 20\times 10^3 \times \left(\frac{72}{3,6}\right)^2\\\\
+& = \pu{4E6 J}
+\end{aligned}
+$$
+</p>
+</section><section>
+<p style="color:green">
+Énergie cinétique finale : 
+<br>
+0 J (le camion s'arrête)
+</p>
+</section><section>
+<p style="color:green">
+Bilan des forces :
+</p>
+<ul style="color:green">
+<li>poids $\vec{P}$ </li>
+<li>force de freinage $\vec{F}$</li>
+<li>réaction normale de la route $\vec{N}$</li>
+</ul>
+</section><section>
+<p style="color:green">
+Calcul du travail de chacune de ces forces<br>sur le déplacement AB de 500 m :
+</p>
+<br>
+<ul style="color:green">
+<li>la réaction normale ne travaille pas puisqu'elle est perpendiculaire au déplacement : $W_{\!\vec{R}} = \pu{0 J}$</li>
+</ul>
+</section><section>
+<ul style="color:green">
+<li>le travail du poids dépend de la différence d'altitude entre le point de départ A et le point d'arrivée B : $W_{\!\vec{P}} = -mg(z_B-z_A)$<br>
+Ici, le dénivelé est de $\pu{500 m}\times 8\% = \pu{40 m}$, d'où $W_{\!\vec{P}} = -20\times 10^3\times 10 \times (-40) = \pu{8E6 J}$<br>
+Le travail du poids est positif $\Rightarrow$ il est moteur (normal : le poids aide à descendre).</li>
+</ul>
+</section><section>
+<ul style="color:green">
+<li>travail de la force de freinage : $W_{\!\vec{F}} = F\times AB\times \cos(180^\circ) = -500\times F$<br>
+le travail de la force de freinage est négatif<br>$\Rightarrow$ il est résistant (c'est son rôle !)
+</li>
+</ul>
+</section><section>
+<p style="color:green">
+Plus qu'à appliquer le TEC pour relier<br>tout ce petit monde en une équation :
+$$
+\Delta E_c = W_{\!\vec{R}} + W_{\!\vec{P}} + W_{\!\vec{F}}
+$$
+</p>
+<p style="color:green" class="fragment">
+D'où
+$$
+-\pu{4E6} = 0 + \pu{8E6} - 500\times F
+$$
+$$
+\Rightarrow F = \frac{\pu{-12E6}}{-500} = \pu{24 kN}
+$$
+</p>
 
 </section>
 </section><section>
