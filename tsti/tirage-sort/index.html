@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>Expérience radioactivité</title>
+<title>Tirage au sort</title>
 
 
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -23,21 +23,7 @@
       <div class="slides">
   
 
-    <section>
-
-<section data-shortcode-section>
-<h1 id="désintégration-radioactivebrde-la-classe">Désintégration radioactive<br>de la classe</h1>
-</section><section>
-<h3 id="expérience">Expérience</h3>
-<p>Tout le monde commence debout<br>et à chaque tour, on a 1 chance sur 4 de s&rsquo;assoir.<br></p>
-<p>Quelle sera l&rsquo;allure de la courbe donnant<br>l&rsquo;évolution du nombre d&rsquo;élèves debouts<br>en fonction du nombre de tours ?</p>
-</section>
-<section data-noprocess data-shortcode-slide
-      data-background-image="/pileface.png"
-      data-background-size="30%"
-      data-background-transition="concave">
-</section><section>
-<style>
+    <section><style>
 .bouton {
 background-color: #56C1FF;
 border: none;
@@ -78,44 +64,6 @@ function pileface() {
     setTimeout(() => {res.textContent = "";res.style.backgroundColor = "gray"; }, 1000); 
     }
 </script>
-</section><section>
-<iframe src="https://www.desmos.com/calculator/titas84izy?embed" width="500" height="500" style="border: 5px solid #ccc" frameborder=0></iframe>
-</section><section>
-<p>Si on répète l&rsquo;expérience<br>avec toutes les terminales,<br>puis avec tout La Rochelle,<br>combien faudra-t-il de tours<br>pour diviser la population par 2 ?</p>
-</section><section>
-<iframe src="https://trinket.io/embed/python/d91a436656?toggleCode=true" width="100%" height="600" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
-</section><section>
-<pre><code class="language-python" data-line-numbers="3-6|8|9|10|11|12|">from random import random
-
-# initialisation des variables
-N0 = 2000
-N = N0
-t = 0
-
-while N != 0 :            # Tant qu'il y a des survivants
-    for i in range(N) :   # pour chaque survivant
-        if random() &lt; 0.5 and random() &lt; 0.5 :
-            N = N - 1     # le survivant meurt
-    t = t + 1             # on ajoute un tour
-</code></pre>
-</section><section>
-<p>Que peut-on conclure des 3 graphes ?</p>
-<iframe src="https://www.desmos.com/calculator/2uaww5ek4k?embed" width="500" height="500" style="border: 5px solid #ccc" frameborder=0></iframe>
-</section><section>
-<div style="display: flex;justify-content: center;">
-<div style="background-color:rgb(0,0,255,0.2);border:solid blue 20px;padding:20px 50px 30px 50px;width:contain">
-L'évolution de la population<br>ne dépend pas de la<br>population de départ.
-</div>
-</section><section>
-<p>Et que peut-on conclure de ce graphe ?</p>
-<iframe src="https://www.desmos.com/calculator/f425jmrshz?embed" width="500" height="500" style="border: 5px solid #ccc" frameborder=0></iframe>
-</section><section>
-<div style="display: flex;justify-content: center;">
-<div style="background-color:rgb(0,0,255,0.2);border:solid blue 20px;padding:20px 50px 30px 50px;width:contain">
-L'écart en tours (= en temps)<br>entre chaque division<br>par 2 de la population<br>est le même.
-</div></div>
-
-</section>
 </section><section>
 <p><a href="https://coursphychi.github.io/tsti2d/radioact/">Retour site</a></p>
 </section>
