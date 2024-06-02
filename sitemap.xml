@@ -2,6 +2,12 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>http://PresentationsSite.github.io/tsti/tdfrotte/plot1/</loc>
+  </url><url>
+    <loc>http://PresentationsSite.github.io/tsti/tdfrotte/plot2/</loc>
+  </url><url>
+    <loc>http://PresentationsSite.github.io/tsti/tdpfd/plotacc/</loc>
+  </url><url>
     <loc>http://PresentationsSite.github.io/1spe/</loc>
   </url><url>
     <loc>http://PresentationsSite.github.io/2nde/</loc>
@@ -41,6 +47,8 @@
     <loc>http://PresentationsSite.github.io/tsti/correc-pile/</loc>
   </url><url>
     <loc>http://PresentationsSite.github.io/2nde/lewis/</loc>
+  </url><url>
+    <loc>http://PresentationsSite.github.io/1spe/couleurs/</loc>
   </url><url>
     <loc>http://PresentationsSite.github.io/tes/climat/</loc>
   </url><url>
