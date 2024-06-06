@@ -89,6 +89,124 @@ In the presence of chromatic noise, the color blind are more capable of seeing a
 </section><section>
 <p>On peut modéliser la perception de toute couleur comme une combinaison de trois seulement :<br>
 <b style="color:#f00">le rouge</b>, <b style="color:#0f0">le vert</b>, et <b style="color:#00f">le bleu</b></p>
+</section><section>
+<style>
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.color-disk {
+    width: 400px;
+    height: 400px;
+    border-radius: 50%;
+    background-color: rgb(0, 0, 0);
+    margin-bottom: 20px;
+}
+
+.sliders {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.slider-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px 0;
+}
+
+input[type=range] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 200px;
+    height: 15px;
+    border-radius: 5px;
+    background: #ddd;
+    outline: none;
+    opacity: 1;
+    transition: opacity .15s ease-in-out;
+}
+
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: black;
+    border: 2px solid currentColor;
+    cursor: pointer;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+}
+
+input[type=range]::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: black;
+    border: 2px solid currentColor;
+    cursor: pointer;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+}
+
+input[type=range]::-ms-thumb {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: black;
+    border: 2px solid currentColor;
+    cursor: pointer;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+}
+
+input[type=range].red {
+    background: linear-gradient(to right, #000, red);
+}
+
+input[type=range].green {
+    background: linear-gradient(to right, #000, green);
+}
+
+input[type=range].blue {
+    background: linear-gradient(to right, #000, blue);
+}
+</style>
+<div class="container">
+    <div class="color-disk" id="colorDisk"></div>
+    <div class="sliders">
+        <div class="slider-container">
+            <input type="range" id="redSlider" min="0" max="255" value="0" class="red">
+        </div>
+        <div class="slider-container">
+            <input type="range" id="greenSlider" min="0" max="255" value="0" class="green">
+        </div>
+        <div class="slider-container">
+            <input type="range" id="blueSlider" min="0" max="255" value="0" class="blue">
+        </div>
+    </div>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const redSlider = document.getElementById('redSlider');
+    const greenSlider = document.getElementById('greenSlider');
+    const blueSlider = document.getElementById('blueSlider');
+    const colorDisk = document.getElementById('colorDisk');
+
+    function updateColor() {
+        const red = redSlider.value;
+        const green = greenSlider.value;
+        const blue = blueSlider.value;
+        colorDisk.style.backgroundColor = `rgb(${red}, ${green}, ${blue})`;
+    }
+
+    redSlider.addEventListener('input', updateColor);
+    greenSlider.addEventListener('input', updateColor);
+    blueSlider.addEventListener('input', updateColor);
+});
+</script>
 </section>
 <section data-noprocess data-shortcode-slide
       data-background-image="/synthadd.png"
@@ -231,6 +349,14 @@ synthèse soustractive des couleurs</span>
 <h2 id="applet-geogebrahttpswwwgeogebraorgmfxhhdwjc"><a href="https://www.geogebra.org/m/fXHhDwjC">Applet Geogebra</a></h2>
 </section><section>
 <h2 id="un-autre-applet-geogebrahttpswwwgeogebraorgmkrtzysn3"><a href="https://www.geogebra.org/m/KRtZYSn3">Un autre applet Geogebra</a></h2>
+</section><section>
+<h3 id="application-">Application :</h3>
+<p>Principe de l&rsquo;imprimerie couleur (CMJN ou CMYK).</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/cmyk.png"
+      data-background-size="contain"
+      data-background-transition="concave">
 </section><section>
 <p>Si l&rsquo;objet est transparent, alors la lumière <b class="imp">transmise</b> joue le rôle de la lumière diffusée d&rsquo;un objet opaque.</p>
 <p class="fragment">Superposer des filtres colorés va absorber et donc soustraire de plus en plus de lumières colorées.</p>
