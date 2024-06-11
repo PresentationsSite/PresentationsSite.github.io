@@ -56,7 +56,7 @@
 }
 
 
-#lettreA {
+#lettreG {
 		background-color: #FF8DC6;
 	border-radius: 90px;
 	display: flex;
@@ -68,7 +68,7 @@
 	color: #CB297B;
 }
 
-#lettreZ {
+#lettreH {
     background-color: #56C1FF;
     border-radius: 90px;
     display: flex;
@@ -98,12 +98,12 @@
     justify-content: center;
 }
 
-#lettreA:hover {
+#lettreG:hover {
   background-color: #EF5FA7;
   color: white;
 }
 
-#lettreZ:hover {
+#lettreH:hover {
   background-color: #00A2FF;
   color: white;
 }
@@ -120,10 +120,10 @@ L'oracle va tenter de prédire votre prochaine lettre.<br>
 Il faut au moins 6 lettres pour le réveiller.
 </p>
 <div class="align-stretch-grid">
-   <div id="lettreA" style="grid-row:span 2;">a</div>
+   <div id="lettreG" style="grid-row:span 2;">g</div>
    <div style="grid-column:2;" class="int2">Tapé :</div>
    <div style="grid-column:3;" class="int2">Prédit :</div>
-   <div id="lettreZ" style="grid-row:span 2;">z</div>
+   <div id="lettreH" style="grid-row:span 2;">h</div>
    <div class="tape" id="tap" style="grid-column:2;">
       <div class="int" id=res1></div>
    </div>
@@ -146,7 +146,7 @@ function tradMot(mot) {
 	//console.log("mot :",mot)
 	var nb = 0;
   for (let i = 0; i < 5; i++) {
-  if (mot[i] == "z"){
+  if (mot[i] == 'h'){
   	nb += 2**(4-i)
   }
 }
@@ -163,17 +163,17 @@ var pourcent = 0;
 var test = true;
 
 function principale(name,e1,e2,e3,e4,e5){
-	if (name === 'a') {
-    Ltap.push("a");
+	if (name === 'g') {
+    Ltap.push("g");
   }
-  else if (name === 'z'){
-  	Ltap.push("z");
+  else if (name === 'h'){
+  	Ltap.push("h");
   }
-  if (name == "a" || name == "z"){
+  if (name == "g" || name == "h"){
   	e3.innerHTML = name;
     if (Ltap.length >= 7){
       dernb = tradMot(Ltap.slice(-7,-2));
-      if (Ltap[Ltap.length-2] === 'z'){
+      if (Ltap[Ltap.length-2] === 'h'){
         Dico[dernb][1] += 1;
       }
       else {
@@ -181,10 +181,10 @@ function principale(name,e1,e2,e3,e4,e5){
       }
       var nvnb = tradMot(Ltap.slice(-6,-1));
       if (Dico[nvnb][0] >= Dico[nvnb][1]){
-        predit = "a";
+        predit = "g";
       }
       else {
-        predit = "z";
+        predit = "h";
       }
       var reel = name;
       if (reel == predit){
@@ -226,27 +226,27 @@ const boitepredit = document.getElementById("pred");
 const el1 = document.getElementById("res1");
 const el2 = document.getElementById("res2");
 const el3 = document.getElementById("res3");
-const elA = document.getElementById('lettreA');
-const elZ = document.getElementById('lettreZ');
+const elG = document.getElementById('lettreG');
+const elH = document.getElementById('lettreH');
 
 
 document.addEventListener('keyup', (event) => {
   var name = event.key;
   principale(name,boitetape,boitepredit,el1,el2,el3);} , false);
 
-elA.addEventListener("click", (event) => {
-  principale("a",boitetape,boitepredit,el1,el2,el3);});
+elG.addEventListener("click", (event) => {
+  principale("g",boitetape,boitepredit,el1,el2,el3);});
 
-elA.addEventListener("touchend", (event) => {
+elG.addEventListener("touchend", (event) => {
 	event.preventDefault();
-  principale("a",boitetape,boitepredit,el1,el2,el3);});
+  principale("g",boitetape,boitepredit,el1,el2,el3);});
 
-elZ.addEventListener("click", (event) => {
-  principale("z",boitetape,boitepredit,el1,el2,el3);});
+elH.addEventListener("click", (event) => {
+  principale("h",boitetape,boitepredit,el1,el2,el3);});
 
-elZ.addEventListener("touchend", (event) => {
+elH.addEventListener("touchend", (event) => {
 	event.preventDefault();
-  principale("z",boitetape,boitepredit,el1,el2,el3);});
+  principale("h",boitetape,boitepredit,el1,el2,el3);});
 </script>
 <br>
 
