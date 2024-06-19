@@ -1,0 +1,463 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>Avancement</title>
+
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="/reveal-js/css/reset.css">
+<link rel="stylesheet" href="/reveal-js/css/reveal.css"><link rel="stylesheet" href="/reveal-js/css/theme/moon.css" id="theme">
+<link rel="stylesheet" href="/highlight-js/atom-one-dark-reasonable.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  </head>
+  <body>
+    
+    <div class="reveal">
+      <div class="slides">
+  
+
+    <section><style>
+img {border: none !important}
+
+.imp {font-weight:bold;color:#FF968D;}
+
+span {font-weight:normal;color:white;}
+
+ul {
+margin-left: auto;
+margin-right: auto;
+text-align: left;
+width: fit-content;
+list-style-position: inside;
+color:
+}
+
+ul li {
+text-indent: -1em;
+padding-left: 1em;
+}
+
+</style>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<h1 id="avancement">Avancement</h1>
+</section><section>
+
+
+<section data-shortcode-section>
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowfullscreen="allowfullscreen"
+    loading="eager"
+    referrerpolicy="strict-origin-when-cross-origin"
+    src="https://www.youtube.com/embed/29yBuelFTyo?autoplay=0&controls=1&end=0&loop=0&mute=0&start=0"
+    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;"
+    title="YouTube video"
+  ></iframe>
+</div>
+</section><section>
+<style>
+select, input {
+  font-size: 1em;
+  padding: 5px;
+  margin: 0 5px;
+  vertical-align: middle;
+}
+.equation {
+  font-weight: bold;
+}
+.quantities {
+  font-size: 0.8em;
+  margin-top: 20px;
+}
+</style>
+<div class="equation">
+  <select id="coefA" onchange="updateEquation()">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+  </select> A + 
+  <select id="coefB" onchange="updateEquation()">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+  </select> B $\rightarrow$
+  <select id="coefC" onchange="updateEquation()">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+  </select> C + 
+  <select id="coefD" onchange="updateEquation()">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+  </select> D
+</div>
+<div class="quantities">
+  Quantités initiales (en mol) :
+  <br>
+  A: <input type="text" id="qtyA" style="width:10%;margin:10px;" value="0" onchange="updateQuantities()"> mol
+  <br>
+  B: <input type="text" id="qtyB" style="width:10%;margin:10px;" value="0" onchange="updateQuantities()"> mol
+  <br>
+  C: <input type="text" id="qtyC" style="width:10%;margin:10px;" value="0" onchange="updateQuantities()"> mol
+  <br>
+  D: <input type="text" id="qtyD" style="width:10%;margin:10px;" value="0" onchange="updateQuantities()"> mol
+</div>
+<script>
+function updateEquation() {
+  var coefA = document.getElementById('coefA').value;
+  var coefB = document.getElementById('coefB').value;
+  var coefC = document.getElementById('coefC').value;
+  var coefD = document.getElementById('coefD').value;
+
+  var equation = coefA + " A + " + coefB + " B -> " + coefC + " C + " + coefD + " D";
+  console.log(equation); // Pour afficher l'équation dans la console
+}
+
+function updateQuantities() {
+  var qtyA = document.getElementById('qtyA').value;
+  var qtyB = document.getElementById('qtyB').value;
+  var qtyC = document.getElementById('qtyC').value;
+  var qtyD = document.getElementById('qtyD').value;
+
+  console.log("Quantités initiales: A = " + qtyA + " mol, B = " + qtyB + " mol, C = " + qtyC + " mol, D = " + qtyD + " mol");
+}
+
+// Initial call to display the default equation and quantities in console
+updateEquation();
+updateQuantities();
+</script>
+</section><section>
+<div style="position:relative;margin:auto;">
+  <canvas id="reactionChart"></canvas>
+</div>
+<script>
+var reactionChart;
+
+function calculateQuantities() {
+  var coefA = parseFloat(document.getElementById('coefA').value);
+  var coefB = parseFloat(document.getElementById('coefB').value);
+  var coefC = parseFloat(document.getElementById('coefC').value);
+  var coefD = parseFloat(document.getElementById('coefD').value);
+  var qtyA = parseFloat(document.getElementById('qtyA').value);
+  var qtyB = parseFloat(document.getElementById('qtyB').value);
+  var qtyC = parseFloat(document.getElementById('qtyC').value);
+  var qtyD = parseFloat(document.getElementById('qtyD').value);
+
+  var limitingReagent = Math.min(qtyA / coefA, qtyB / coefB);
+  var steps = 5;  // Number of steps for the avancement
+  var avancementStep = limitingReagent / steps;
+
+  var quantities = {
+    A: [],
+    B: [],
+    C: [],
+    D: [],
+    steps: []
+  };
+
+  for (var i = 0; i <= steps; i++) {
+    var avancement = i * avancementStep;
+    quantities.steps.push(avancement.toPrecision(3));
+    quantities.A.push((qtyA - avancement * coefA).toPrecision(3));
+    quantities.B.push((qtyB - avancement * coefB).toPrecision(3));
+    quantities.C.push((qtyC + avancement * coefC).toPrecision(3));
+    quantities.D.push((qtyD + avancement * coefD).toPrecision(3));
+  }
+
+  return quantities;
+}
+
+function renderChart() {
+  var quantities = calculateQuantities();
+  var ctx = document.getElementById('reactionChart').getContext('2d');
+
+  if (reactionChart) {
+    reactionChart.destroy();
+  }
+
+  reactionChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: quantities.steps,
+      datasets: [{
+        label: 'A',
+        data: quantities.A,
+        borderColor: 'red',
+        fill: false
+      },
+      {
+        label: 'B',
+        data: quantities.B,
+        borderColor: 'blue',
+        fill: false
+      },
+      {
+        label: 'C',
+        data: quantities.C,
+        borderColor: 'green',
+        fill: false
+      },
+      {
+        label: 'D',
+        data: quantities.D,
+        borderColor: 'orange',
+        fill: false
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true,
+          title: {
+            display: true,
+            text: 'Quantité (mol)',
+            color: 'white'
+          },
+          ticks: {
+            color: 'white'
+          },
+          grid: {
+            color: 'rgba(255, 255, 255, 0.2)'
+          }
+        },
+        x: {
+          title: {
+            display: true,
+            text: 'Avancement (mol)',
+            color: 'white'
+          },
+          ticks: {
+            color: 'white'
+          },
+          grid: {
+            color: 'rgba(255, 255, 255, 0.2)'
+          }
+        }
+      }
+    }
+  });
+}
+
+// Call the function to render the chart on page load
+renderChart();
+
+// Re-render the chart when quantities change
+document.getElementById('qtyA').addEventListener('change', renderChart);
+document.getElementById('qtyB').addEventListener('change', renderChart);
+document.getElementById('qtyC').addEventListener('change', renderChart);
+document.getElementById('qtyD').addEventListener('change', renderChart);
+document.getElementById('coefA').addEventListener('change', renderChart);
+document.getElementById('coefB').addEventListener('change', renderChart);
+document.getElementById('coefC').addEventListener('change', renderChart);
+document.getElementById('coefD').addEventListener('change', renderChart);
+</script>
+</section><section>
+<style>
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    font-size: 0.7em;
+  }
+  th, td {
+    border: 1px solid white;
+    padding: 10px;
+    text-align: center;
+    color: white;
+  }
+  th {
+    background-color: #006C65;
+  }
+  .equation-cell {
+    text-align: center;
+  }
+  .equation-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+  .equation-part {
+    flex: 1;
+    text-align: center;
+  }
+</style>
+<p>Tableau d&rsquo;avancement de la réaction :<br><br></p>
+<div id="avancementTable"></div>
+<script>
+  function renderTable() {
+    var quantities = calculateQuantities();
+    var coefA = parseFloat(document.getElementById('coefA').value);
+    var coefB = parseFloat(document.getElementById('coefB').value);
+    var coefC = parseFloat(document.getElementById('coefC').value);
+    var coefD = parseFloat(document.getElementById('coefD').value);
+
+    var equation = "<div class='equation-container'>" +
+                   "<span class='equation-part'>" + coefA + " A" + "</span>" +
+                   "<span class='equation-part'> + </span>" +
+                   "<span class='equation-part'>" + coefB + " B" + "</span>" +
+                   "<span class='equation-part'> → </span>" +
+                   "<span class='equation-part'>" + coefC + " C" + "</span>" +
+                   "<span class='equation-part'> + </span>" +
+                   "<span class='equation-part'>" + coefD + " D" + "</span>" +
+                   "</div>";
+
+    var table = "<table><thead><tr><th>Avancement (mol)</th><th colspan='4' class='equation-cell'>" + equation + "</th></tr></thead><tbody>";
+    
+    table += "<tr><td>0</td><td>" + quantities.A[0] + "</td><td>" + quantities.B[0] + "</td><td>" + quantities.C[0] + "</td><td>" + quantities.D[0] + "</td></tr>";
+    table += "<tr><td>x</td><td>" + quantities.A[0] + " - " + coefA + "x</td><td>" + quantities.B[0] + " - " + coefB + "x</td><td>" + quantities.C[0] + " + " + coefC + "x</td><td>" + quantities.D[0] + " + " + coefD + "x</td></tr>";
+    table += "<tr><td>x<sub>max</sub></td><td>" + quantities.A[quantities.A.length - 1] + "</td><td>" + quantities.B[quantities.B.length - 1] + "</td><td>" + quantities.C[quantities.C.length - 1] + "</td><td>" + quantities.D[quantities.D.length - 1] + "</td><tr>";
+
+    table += "</tbody></table>";
+    document.getElementById('avancementTable').innerHTML = table;
+  }
+
+  // Render the table on page load
+  renderTable();
+
+  // Re-render the table when quantities change
+  document.getElementById('qtyA').addEventListener('change', renderTable);
+  document.getElementById('qtyB').addEventListener('change', renderTable);
+  document.getElementById('qtyC').addEventListener('change', renderTable);
+  document.getElementById('qtyD').addEventListener('change', renderTable);
+  document.getElementById('coefA').addEventListener('change', renderTable);
+  document.getElementById('coefB').addEventListener('change', renderTable);
+  document.getElementById('coefC').addEventListener('change', renderTable);
+  document.getElementById('coefD').addEventListener('change', renderTable);
+</script>
+
+</section>
+</section><section>
+<p><a href="https://coursphychi.github.io/1spe/avancement/">Retour site</a></p>
+</section>
+
+  
+
+
+</div>
+      
+
+    </div>
+<script type="text/javascript" src=/reveal-hugo/object-assign.js></script>
+
+<a href="/reveal-js/css/print/" id="print-location" style="display: none;"></a>
+<script type="text/javascript">
+  var printLocationElement = document.getElementById('print-location');
+  var link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.type = 'text/css';
+  link.href = printLocationElement.href + (window.location.search.match(/print-pdf/gi) ? 'pdf.css' : 'paper.css');
+  document.getElementsByTagName('head')[0].appendChild(link);
+</script>
+
+<script type="application/json" id="reveal-hugo-site-params">{"highlight_theme":"github-dark","line-numbers":true,"theme":"sky","transition":"concave","transition_speed":"fast"}</script>
+<script type="application/json" id="reveal-hugo-page-params">{"highlight_theme":"atom-one-dark-reasonable","theme":"moon"}</script>
+
+<script src="/reveal-js/js/reveal.js"></script>
+
+<script type="text/javascript">
+  
+  
+  function camelize(map) {
+    if (map) {
+      Object.keys(map).forEach(function(k) {
+        newK = k.replace(/(\_\w)/g, function(m) { return m[1].toUpperCase() });
+        if (newK != k) {
+          map[newK] = map[k];
+          delete map[k];
+        }
+      });
+    }
+    return map;
+  }
+  
+  var revealHugoDefaults = { center: true, controls: true, history: true, progress: true, transition: "slide" };
+  var revealHugoSiteParams = JSON.parse(document.getElementById('reveal-hugo-site-params').innerHTML);
+  var revealHugoPageParams = JSON.parse(document.getElementById('reveal-hugo-page-params').innerHTML);
+  
+  var options = Object.assign({},
+    camelize(revealHugoDefaults),
+    camelize(revealHugoSiteParams),
+    camelize(revealHugoPageParams));
+  Reveal.initialize(options);
+</script>
+
+
+  
+  
+  <script type="text/javascript" src="/reveal-js/plugin/markdown/marked.js"></script>
+  
+  <script type="text/javascript" src="/reveal-js/plugin/markdown/markdown.js"></script>
+  
+  <script type="text/javascript" src="/reveal-js/plugin/highlight/highlight.js"></script>
+  
+  <script type="text/javascript" src="/reveal-js/plugin/zoom-js/zoom.js"></script>
+  
+  
+  <script type="text/javascript" src="/reveal-js/plugin/notes/notes.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({startOnLoad: false});
+    let render = (event) => {
+      let mermaidElems = event.currentSlide.querySelectorAll('.mermaid');
+      if (!mermaidElems.length){
+          return
+      }
+      mermaidElems.forEach(mermaidElem => {
+          let processed = mermaidElem.getAttribute('data-processed');
+          if (!processed){
+              
+              mermaid.init(undefined, mermaidElem);
+          }
+      });
+    };
+    Reveal.addEventListener('slidechanged', render);
+    Reveal.addEventListener('ready', render);
+  </script>
+
+    
+
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']]
+  },
+  svg: {
+    fontCache: 'global'
+  }
+};
+</script>
+
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+</script>
+    
+  </body>
+</html>
