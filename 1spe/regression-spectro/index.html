@@ -83,13 +83,14 @@ font-size: 0.8em;
 Les valeurs entrées doivent utiliser le point comme séparateur décimal<br>et doivent être séparées par des virgules (ex : 0,0.25,0.5).
 </p>
 <div>
-<label for="inputU">Valeurs de C (en $\pu{mol*L-1}$) :</label>
-<input type="text" id="inputU" style="width: 100%; font-size: 1em;">
+<label for="inputC" style="color:white;">Valeurs de C (en $\pu{mmol*L-1}$) :<br></label>
+<input type="text" id="inputC" style="width: 100%; font-size: 1em;">
 </div>
 <br>
 <div>
-<label for="inputI">Valeurs de A :</label>
-<input type="text" id="inputI" style="width: 100%; font-size: 1em;">
+<label for="inputA" style="color:white;">Valeurs de A :</label>
+<br>
+<input type="text" id="inputA" style="width: 100%; font-size: 1em;">
 </div>
 <br>
 <p><button onclick="prepareData()" class="custom-button">Tracer le graphique</button>
@@ -99,7 +100,7 @@ Les valeurs entrées doivent utiliser le point comme séparateur décimal<br>et 
 <p id="validationMessage" style="color: white;">Il faut valider les valeurs<br>(bouton vert sur la diapo précédente)<br>pour afficher le graphique.</p>
 <canvas id="chart"></canvas>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script src="/js/tpelec1.js"></script>
+<script src="/js/spectro-regression.js"></script>
 
 </section>
 </section>
