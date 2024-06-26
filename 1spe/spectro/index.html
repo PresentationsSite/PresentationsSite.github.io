@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>dosage spectrophotométrique</title>
+
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="/reveal-js/css/reset.css">
+<link rel="stylesheet" href="/reveal-js/css/reveal.css"><link rel="stylesheet" href="/reveal-js/css/theme/moon.css" id="theme">
+<link rel="stylesheet" href="/highlight-js/atom-one-dark-reasonable.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  </head>
+  <body>
+    
+    <div class="reveal">
+      <div class="slides">
+  
+
+    <section><style>
+img {border: none !important}
+
+.imp {font-weight:bold;color:#FF968D;}
+
+span {font-weight:normal;color:#93a1a1;}
+
+ul {
+margin-left: auto;
+margin-right: auto;
+text-align: left;
+width: fit-content;
+list-style-position: inside;
+color:#93a1a1;
+}
+
+ul li {
+text-indent: -1em;
+padding-left: 1em;
+}
+
+</style>
+
+
+<section data-shortcode-section>
+<h2 id="dosage-spectrophotométrique">Dosage spectrophotométrique</h2>
+</section><section>
+<p>On peut déterminée la concentration d&rsquo;une <span class="imp">solution colorée</span> à partir de la mesure de son <span class="imp">absorbance $A_\lambda$</span><br>
+à une certaine longueur d&rsquo;onde $\lambda$<br>(donc pour une radiation donnée du spectre).</p>
+<p class="fragment">
+On utilise pour cela un <span class="imp">spectrophotomètre</span> et la technique est appelée <span class="imp">spectrophotométrie UV-visible</span> (ultraviolet-visible).
+</p>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h2 id="spectre-dabsorption">Spectre d&rsquo;absorption</h2>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/cuvespectro.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+<p><br><br><br><br></p>
+<p>L&rsquo;<span class="imp">absorbance $A_\lambda$</span> d&rsquo;une solution quantifie la proportion d&rsquo;un rayonnement incident $I_0$ monochromatique absorbée en mesurant l&rsquo;intensité<br>du rayonnement transmis $I$.</p>
+<p class="fragment">
+En faisant varier $\lambda$, on obtient une courbe appelée <span class="imp">spectre d'absorption</span>.
+</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/spectreabsorption.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+</section><section>
+<p>Comment peut-on relier un spectre d&rsquo;absorption<br>à la couleur perçue de la solution ?</p>
+<br>
+<p class="fragment">La solution agit comme un filtre. La couleur absorbée est donc complémentaire de la couleur perçue.</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/disque_chromatique.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+<aside class="notes"><p>Attention, A peut être supérieur à 1.</p>
+</aside>
+</section><section>
+<iframe width="900" height="600" frameborder="0" scrolling="no" src="//plotly.com/~Chinasky/24.embed"></iframe>
+<aside class="notes"><p>Je n&rsquo;ai pas montré de colorant vert sur le graphe car ils ont l&rsquo;air d&rsquo;avoir surtout un pic très haut dans le rouge (plus haut que les autres) et un petit pic dans le bleu à peine apparent. Cela prête à confusion. Par contre , la chlorophylle, c&rsquo;est nickel.</p>
+</aside>
+</section><section>
+<p>Quel devrait être le spectre d&rsquo;un colorant vert ?</p>
+<br>
+<p class="fragment">Il doit absorber le magenta<br>donc à la fois le rouge et le bleu.</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/spectrechlorophylle.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+</section><section>
+<p>Le spectre nous permet de déterminer <span class="imp">$\lambda_{max}$,<br>la longueur d&rsquo;onde où l&rsquo;absorbance est maximum</span>.</p>
+<br>
+<p>C&rsquo;est en réglant le spectrophotomètre sur cette longueur d&rsquo;onde $\lambda_{max}$ que l&rsquo;on va pouvoir déterminer une concentration en utilisant la loi de Beer-Lambert.</p>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h3 id="loi-de-beer-lambert">Loi de Beer-Lambert</h3>
+<div class="fragment" style="display: flex; justify-content: center; align-items: center; height: 100%;border: solid 5px #00AB8E; border-radius: 20px;">
+<div style="padding:10px 30px 20px 30px;width:fit-content;">
+Pour une longueur d'onde $\lambda$ donnée et une largeur de cuve fixée, <span class="imp">l'absorbance $A_\lambda$</span> d'une espèce chimique en solution diluée <span class="imp">est proportionnelle à la concentration $C$ en quantité de matière</span><br>de cette espèce chimique.
+</div>
+</div>
+</section><section>
+<p>Remarques :</p>
+<br>
+<ul>
+<li class="fragment">Se placer à $\lambda_{max}$ permet d'optimiser la sensibilité et la précision des mesures ainsi que de se prémunir des interférences éventuelles dues à d'autres espèces colorées.</il>
+<br><br>
+<li class="fragment"><a href="https://hal.science/hal-03885627/document">Le domaine de validité de la loi de Beer-Lambert</a> suppose que l'absorbance et donc la concentration reste modérée.</li>
+</ul>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/validitebeer.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+</section><section>
+<a href="https://phet.colorado.edu/sims/html/beers-law-lab/latest/beers-law-lab_fr.html">
+<div style="display: flex; justify-content: center; align-items: center; height: 100%;">
+<div style="background-color:#0076BA;padding:20px 10px 30px 10px;width:50%;color:white; font-size:1em;">
+Simulation
+</div>
+</div>
+</a>
+<br>
+<p>Traçons l&rsquo;évolution de l&rsquo;absorbance en fonction de la concentration pour une solution de sulfate de cuivre avec des concentrations allant de $0$ à $\pu{200 mmol*L-1}$.</p>
+<aside class="notes"><p>mol/L peut parfois être abréger M</p>
+</aside>
+</section><section>
+<p>Un dosage spectrophotométrique permet de déterminer la concentration en quantité de matière d&rsquo;une solution colorée.</p>
+<p>Ce dosage repose sur la réalisation d&rsquo;une courbe d&rsquo;étalonnage</p>
+</section><section>
+<p>Protocole d&rsquo;un dosage spectrophotométrique</p>
+<ul>
+<li>on réalise le spectre d&rsquo;absorption de la solution</li>
+</ul>
+
+</section>
+</section><section>
+<p><a href="https://coursphychi.github.io/1spe/moles/">Retour site</a></p>
+</section>
+
+  
+
+
+</div>
+      
+
+    </div>
+<script type="text/javascript" src=/reveal-hugo/object-assign.js></script>
+
+<a href="/reveal-js/css/print/" id="print-location" style="display: none;"></a>
+<script type="text/javascript">
+  var printLocationElement = document.getElementById('print-location');
+  var link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.type = 'text/css';
+  link.href = printLocationElement.href + (window.location.search.match(/print-pdf/gi) ? 'pdf.css' : 'paper.css');
+  document.getElementsByTagName('head')[0].appendChild(link);
+</script>
+
+<script type="application/json" id="reveal-hugo-site-params">{"highlight_theme":"github-dark","line-numbers":true,"theme":"sky","transition":"concave","transition_speed":"fast"}</script>
+<script type="application/json" id="reveal-hugo-page-params">{"highlight_theme":"atom-one-dark-reasonable","theme":"moon"}</script>
+
+<script src="/reveal-js/js/reveal.js"></script>
+
+<script type="text/javascript">
+  
+  
+  function camelize(map) {
+    if (map) {
+      Object.keys(map).forEach(function(k) {
+        newK = k.replace(/(\_\w)/g, function(m) { return m[1].toUpperCase() });
+        if (newK != k) {
+          map[newK] = map[k];
+          delete map[k];
+        }
+      });
+    }
+    return map;
+  }
+  
+  var revealHugoDefaults = { center: true, controls: true, history: true, progress: true, transition: "slide" };
+  var revealHugoSiteParams = JSON.parse(document.getElementById('reveal-hugo-site-params').innerHTML);
+  var revealHugoPageParams = JSON.parse(document.getElementById('reveal-hugo-page-params').innerHTML);
+  
+  var options = Object.assign({},
+    camelize(revealHugoDefaults),
+    camelize(revealHugoSiteParams),
+    camelize(revealHugoPageParams));
+  Reveal.initialize(options);
+</script>
+
+
+  
+  
+  <script type="text/javascript" src="/reveal-js/plugin/markdown/marked.js"></script>
+  
+  <script type="text/javascript" src="/reveal-js/plugin/markdown/markdown.js"></script>
+  
+  <script type="text/javascript" src="/reveal-js/plugin/highlight/highlight.js"></script>
+  
+  <script type="text/javascript" src="/reveal-js/plugin/zoom-js/zoom.js"></script>
+  
+  
+  <script type="text/javascript" src="/reveal-js/plugin/notes/notes.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({startOnLoad: false});
+    let render = (event) => {
+      let mermaidElems = event.currentSlide.querySelectorAll('.mermaid');
+      if (!mermaidElems.length){
+          return
+      }
+      mermaidElems.forEach(mermaidElem => {
+          let processed = mermaidElem.getAttribute('data-processed');
+          if (!processed){
+              
+              mermaid.init(undefined, mermaidElem);
+          }
+      });
+    };
+    Reveal.addEventListener('slidechanged', render);
+    Reveal.addEventListener('ready', render);
+  </script>
+
+    
+
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']]
+  },
+  svg: {
+    fontCache: 'global'
+  }
+};
+</script>
+
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+</script>
+    
+  </body>
+</html>
