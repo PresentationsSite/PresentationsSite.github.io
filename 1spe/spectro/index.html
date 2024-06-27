@@ -48,12 +48,13 @@ padding-left: 1em;
 
 
 <section data-shortcode-section>
-<h2 id="dosage-spectrophotométrique">Dosage spectrophotométrique</h2>
+<h1 id="spectrophotométrie">spectrophotométrie</h1>
 </section><section>
-<p>On peut déterminée la concentration d&rsquo;une <span class="imp">solution colorée</span> à partir de la mesure de son <span class="imp">absorbance $A_\lambda$</span><br>
+<p>On peut déterminer la concentration<br>d&rsquo;une <span class="imp">solution colorée</span> à partir<br>de la mesure de son <span class="imp">absorbance $A_\lambda$</span><br>
 à une certaine longueur d&rsquo;onde $\lambda$<br>(donc pour une radiation donnée du spectre).</p>
-<p class="fragment">
-On utilise pour cela un <span class="imp">spectrophotomètre</span> et la technique est appelée <span class="imp">spectrophotométrie UV-visible</span> (ultraviolet-visible).
+</section><section>
+<p>
+On utilise pour cela un <span class="imp">spectrophotomètre</span><br>et la technique est appelée<br><span class="imp">spectrophotométrie UV-visible</span><br>(ultraviolet-visible).
 </p>
 
 </section>
@@ -69,9 +70,11 @@ On utilise pour cela un <span class="imp">spectrophotomètre</span> et la techni
       data-background-transition="concave">
 <p><br><br><br><br></p>
 <p>L&rsquo;<span class="imp">absorbance $A_\lambda$</span> d&rsquo;une solution quantifie la proportion d&rsquo;un rayonnement incident $I_0$ monochromatique absorbée en mesurant l&rsquo;intensité<br>du rayonnement transmis $I$.</p>
-<p class="fragment">
-En faisant varier $\lambda$, on obtient une courbe appelée <span class="imp">spectre d'absorption</span>.
-</p>
+<p class="fragment">Comment varie l'absorbance si $\ell$ augmente ?</p>
+</section><section>
+<p>Pour faire une mesure au spectrophotomètre, on place la solution colorée dans une cuve de dimensions fixes.</p>
+<br>
+<p class="fragment">En faisant varier $\lambda$, on obtient une courbe<br>appelée <span class="imp">spectre d'absorption</span>.</p>
 </section>
 <section data-noprocess data-shortcode-slide
       data-background-image="/spectreabsorption.png"
@@ -80,7 +83,7 @@ En faisant varier $\lambda$, on obtient une courbe appelée <span class="imp">sp
 </section><section>
 <p>Comment peut-on relier un spectre d&rsquo;absorption<br>à la couleur perçue de la solution ?</p>
 <br>
-<p class="fragment">La solution agit comme un filtre. La couleur absorbée est donc complémentaire de la couleur perçue.</p>
+<p class="fragment">La solution agit comme un <span class="imp">filtre</span>. La couleur absorbée est donc <span class="imp">complémentaire</span> de la couleur perçue.</p>
 </section>
 <section data-noprocess data-shortcode-slide
       data-background-image="/disque_chromatique.png"
@@ -104,15 +107,18 @@ En faisant varier $\lambda$, on obtient une courbe appelée <span class="imp">sp
 </section><section>
 <p>Le spectre nous permet de déterminer <span class="imp">$\lambda_{max}$,<br>la longueur d&rsquo;onde où l&rsquo;absorbance est maximum</span>.</p>
 <br>
-<p>C&rsquo;est en réglant le spectrophotomètre sur cette longueur d&rsquo;onde $\lambda_{max}$ que l&rsquo;on va pouvoir déterminer une concentration en utilisant la loi de Beer-Lambert.</p>
+<p class="fragment">
+C'est en réglant le spectrophotomètre sur cette longueur d'onde $\lambda_{max}$ que l'on va pouvoir déterminer une concentration en utilisant la loi de Beer-Lambert.
+</p>
 
 </section>
 </section><section>
 
 
 <section data-shortcode-section>
-<h3 id="loi-de-beer-lambert">Loi de Beer-Lambert</h3>
-<div class="fragment" style="display: flex; justify-content: center; align-items: center; height: 100%;border: solid 5px #00AB8E; border-radius: 20px;">
+<h2 id="loi-de-beer-lambert">Loi de Beer-Lambert</h2>
+</section><section>
+<div style="display: flex; justify-content: center; align-items: center; height: 100%;border: solid 5px #00AB8E; border-radius: 20px;">
 <div style="padding:10px 30px 20px 30px;width:fit-content;">
 Pour une longueur d'onde $\lambda$ donnée et une largeur de cuve fixée, <span class="imp">l'absorbance $A_\lambda$</span> d'une espèce chimique en solution diluée <span class="imp">est proportionnelle à la concentration $C$ en quantité de matière</span><br>de cette espèce chimique.
 </div>
@@ -132,23 +138,58 @@ Pour une longueur d'onde $\lambda$ donnée et une largeur de cuve fixée, <span 
       data-background-transition="concave">
 </section><section>
 <a href="https://phet.colorado.edu/sims/html/beers-law-lab/latest/beers-law-lab_fr.html">
-<div style="display: flex; justify-content: center; align-items: center; height: 100%;">
-<div style="background-color:#0076BA;padding:20px 10px 30px 10px;width:50%;color:white; font-size:1em;">
+<div style="position: relative; margin:auto; width:fit-content; color:white; border-radius: 20px; background-color:#0076BA;">
+<div style="padding:20px 30px 30px 30px;width:fit-content;">
 Simulation
 </div>
 </div>
 </a>
 <br>
-<p>Traçons l&rsquo;évolution de l&rsquo;absorbance en fonction de la concentration pour une solution de sulfate de cuivre avec des concentrations allant de $0$ à $\pu{200 mmol*L-1}$.</p>
-<aside class="notes"><p>mol/L peut parfois être abréger M</p>
+<p>Vérifions que l&rsquo;absorbance<br>est proportionnelle à la concentration.</p>
+<aside class="notes"><p>mol/L peut parfois être abréger M<br>
+On peut aussi vérifier que l&rsquo;absorbance diminue avec la longueur de la cuve.</p>
 </aside>
 </section><section>
-<p>Un dosage spectrophotométrique permet de déterminer la concentration en quantité de matière d&rsquo;une solution colorée.</p>
-<p>Ce dosage repose sur la réalisation d&rsquo;une courbe d&rsquo;étalonnage</p>
+<p>Un <span class="imp">dosage spectrophotométrique</span><br>permet de déterminer la concentration<br>en quantité de matière d&rsquo;une solution colorée.</p>
+<p class="fragment">
+Ce dosage repose sur la réalisation<br>d'une <span class="imp">courbe d'étalonnage</span>.
+</p>
+
+</section>
 </section><section>
-<p>Protocole d&rsquo;un dosage spectrophotométrique</p>
+
+
+<section data-shortcode-section>
+<h2 id="protocole-dun-dosage-spectrophotométrique">Protocole d&rsquo;un dosage spectrophotométrique</h2>
+</section><section>
 <ul>
-<li>on réalise le spectre d&rsquo;absorption de la solution</li>
+<li>
+<p>on réalise le spectre d&rsquo;absorption de la solution<br>et on détermine $\lambda_{max}$.</p>
+</li>
+<li>
+<p>on réalise une gamme étalon de solutions par dilution d&rsquo;une solution mère de concentration connue contenant la même espèce colorée que la solution de concentration inconnue.</p>
+</li>
+</ul>
+</section><section>
+<ul>
+<li>
+<p>on règle le spectrophotomètre<br>sur la longueur d&rsquo;onde $\lambda_{max}$.</p>
+</li>
+<li>
+<p>on mesure l&rsquo;absorbance $A$ de chacune des solutions de concentration $C$ connue de la gamme.</p>
+</li>
+<li>
+<p>on trace la courbe $A=f(C)$.</p>
+</li>
+</ul>
+</section><section>
+<ul>
+<li>
+<p>on mesure l&rsquo;absorbance de la solution de concentration inconnue (si l&rsquo;absorbance est supérieure à la plus grande de la gamme,<br>on dilue la solution).</p>
+</li>
+<li>
+<p>on en déduit la concentration mystère<br>par lecture graphique ou par calcul en utilisant<br>la proportionnalité si la loi de Beer-Lambert<br>est bien vérifiée.</p>
+</li>
 </ul>
 
 </section>
