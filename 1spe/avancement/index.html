@@ -46,11 +46,156 @@ padding-left: 1em;
 
 </style>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+.shape {
+    display: inline-block;
+    margin: 5px;
+    margin-bottom: -1px;
+}
+.circle {
+    width: 30px;
+    height: 30px;
+    background-color: #FF644E;
+    border-radius: 50%;
+}
+.square {
+    width: 30px;
+    height: 30px;
+    background-color: #0076BA;
+}
+.triangle {
+    width: 0;
+    height: 0;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-bottom: 30px solid #FFD932;
+}
+.circlevert {
+    width: 30px;
+    height: 30px;
+    background-color: #1DB100;
+    border-radius: 50%;
+}
+
+</style>
 <h1 id="avancement">Avancement</h1>
 </section><section>
 
 
 <section data-shortcode-section>
+<p>Supposons qu&rsquo;une transformation chimique est modélisée par la réaction suivante :</p>
+<div>2<div class="shape circle"></div> + 3 <div class="shape square"></div> $\longrightarrow$ 1<div class="shape triangle"></div> + 2<div class="shape circlevert"></div></div>
+</section><section>
+<p>Et supposons que les quantités initiales soient :</p>
+<div class="shape circle"></div><div class="shape circle"></div><div class="shape circle"></div><div class="shape circle"></div><div class="shape circle"></div><div class="shape circle"></div><div class="shape circle"></div><div class="shape circle"></div><div class="shape circle"></div>
+<br>
+<div class="shape square"></div><div class="shape square"></div><div class="shape square"></div><div class="shape square"></div><div class="shape square"></div><div class="shape square"></div><div class="shape square"></div><div class="shape square"></div><div class="shape square"></div>
+<br>
+<div class="shape triangle"></div><div class="shape triangle"></div>
+<br>
+<div class="shape circlevert"></div>
+<aside class="notes"><p>Un élève dessine tout ça au tableau</p>
+</aside>
+</section><section>
+<p>Que deviennent ces quantités<br>si la réaction a lieu une fois ?</p>
+</section><section>
+<div class="shape circle"></div><div class="shape circle"></div><div class="shape circle"></div><div class="shape circle"></div><div class="shape circle"></div><div class="shape circle"></div><div class="shape circle"></div>
+<br>
+<div class="shape square"></div><div class="shape square"></div><div class="shape square"></div><div class="shape square"></div><div class="shape square"></div><div class="shape square"></div>
+<br>
+<div class="shape triangle"></div><div class="shape triangle"></div><div class="shape triangle"></div>
+<br>
+<div class="shape circlevert"></div><div class="shape circlevert"></div><div class="shape circlevert"></div>
+</section><section>
+<p>Si elle a lieu une deuxième fois ?</p>
+</section><section>
+<div class="shape circle"></div><div class="shape circle"></div><div class="shape circle"></div><div class="shape circle"></div><div class="shape circle"></div>
+<br>
+<div class="shape square"></div><div class="shape square"></div><div class="shape square"></div>
+<br>
+<div class="shape triangle"></div><div class="shape triangle"></div><div class="shape triangle"></div><div class="shape triangle"></div>
+<br>
+<div class="shape circlevert"></div><div class="shape circlevert"></div><div class="shape circlevert"></div><div class="shape circlevert"></div><div class="shape circlevert"></div>
+</section><section>
+<p>Et une troisième fois ?</p>
+</section><section>
+<div class="shape circle"></div><div class="shape circle"></div><div class="shape circle"></div>
+<br>
+<br>
+<div class="shape triangle"></div><div class="shape triangle"></div><div class="shape triangle"></div><div class="shape triangle"></div><div class="shape triangle"></div>
+<br>
+<div class="shape circlevert"></div><div class="shape circlevert"></div><div class="shape circlevert"></div><div class="shape circlevert"></div><div class="shape circlevert"></div><div class="shape circlevert"></div><div class="shape circlevert"></div>
+</section><section>
+<p>La réaction peut-elle continuer ?</p>
+<p class="imp fragment">Non</p>
+<br>
+<div class="fragment"> Comment qualifie-t-on l'espèce chimique <div class="shape square"></div> ?</div>
+<p class="imp fragment">C'est un réactif limitant</p>
+</section><section>
+<p>Que se serait-il passé si les quantités initiales avaient été :</p>
+<div class="shape circle"></div><div class="shape circle"></div><div class="shape circle"></div><div class="shape circle"></div><div class="shape circle"></div><div class="shape circle"></div>
+<br>
+<div class="shape square"></div><div class="shape square"></div><div class="shape square"></div><div class="shape square"></div><div class="shape square"></div><div class="shape square"></div><div class="shape square"></div><div class="shape square"></div><div class="shape square"></div>
+</section><section>
+<p>Que dit-on alors du mélange ?</p>
+<p class="fragment">Le mélange est<br><span class="imp">en proportion stœchiométrique</span>.<br>
+Ou plus simplement :<br>
+<span class="imp">le mélange est stœchiométrique</span>.</p>
+</section><section>
+<p>Si la réaction est $\ce{a A + b B -&gt; &hellip;}$, quelle relation doit lier les quantités de matière initiales $n_{A}$ et $n_B$ pour que les réactifs soient en proportions stœchiométriques ?</p>
+<p class="fragment imp">$\displaystyle \frac{n_A}{a}=\frac{n_B}{b}$</p>
+</section><section>
+<p>Retournons à notre réaction</p>
+<div>2<div class="shape circle"></div> + 3 <div class="shape square"></div> $\longrightarrow$ 1<div class="shape triangle"></div> + 2<div class="shape circlevert"></div></div>
+<p>Mais maginons maintenant que les quantités initiales soient beaucoup, beaucoup plus grandes. Il faut trouver un moyen plus pratique de <span class="imp">tenir les comptes</span>.</p>
+<p class="fragment">Désignons par $x$<br>le nombre de fois que la réaction a lieu.<br>
+On appelle <span class="imp">$x$ l'avancement de réaction</span>.</p>
+</section><section>
+<p>Comment évolue les quantités de matière<br>
+des réactifs et des produits en fonction de $x$ ?</p>
+<p>Comment se représenter<br>cette évolution graphiquement ?</p>
+</section><section>
+<div>Pour <div class="shape circle"></div> :
+<br>
+<div class="fragment">$n$<sub><div class="shape circle"></div></sub> $=n$<sub><div class="shape circle"></div>,initial</sub> $-2x$</div>
+<br>
+<div class="fragment">Pour <div class="shape square"></div> :
+<br>
+<div class="fragment">$n$<sub><div class="shape square"></div></sub> $=n$<sub><div class="shape square"></div>,initial</sub> $-3x$</div>
+<br>
+<div class="fragment">Pour <div class="shape triangle"></div> :
+<br>
+<div class="fragment">$n$<sub><div class="shape triangle"></div></sub> $=n$<sub><div class="shape triangle"></div>,initial</sub> $+x$</div>
+<br>
+<div class="fragment">Pour <div class="shape circlevert"></div> :
+<br>
+<div class="fragment">$n$<sub><div class="shape circlevert"></div></sub> $=n$<sub><div class="shape circlevert"></div>,initial</sub> $+2x$</div>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/grapheintroavancement.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+</section><section>
+<p>Pour faire les comptes, on classe ces infos<br>dans un tableau : le <span class="imp">tableau d&rsquo;avancement</span>.</p>
+<p><img src="/tabavancementintro.png" alt=""></p>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h2 id="déterminationbrde-la-composition-finale">Détermination<br>de la composition finale</h2>
+</section><section>
+<p>Si la transformation est <span class="imp">totale</span> (hypothèse faite implicitement jusqu&rsquo;ici), alors on peut déterminer<br>les quantités de matière finale du système.</p>
+</section><section>
+<div style="position:relative; margin: auto; width: fit-content; border: solid 5px #FF644E; border-radius: 15px; padding: 20px 20px 30px 20px;">
+<div>
+Une transformation est <span class="imp">totale</span> si le système cesse d'évoluer à cause de la consommation totale<br>d'un réactif (le <span class="imp">réactif limitant</span>).
+</div>
+</div>
+
+</section>
+</section><section>
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
   <iframe
     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -62,6 +207,11 @@ padding-left: 1em;
     title="YouTube video"
   ></iframe>
 </div>
+</section><section>
+
+
+<section data-shortcode-section>
+<h2 id="outil-informatique">Outil informatique</h2>
 </section><section>
 <style>
 select, input {
@@ -195,25 +345,25 @@ function renderChart() {
       datasets: [{
         label: 'A',
         data: quantities.A,
-        borderColor: 'red',
+        borderColor: '#FF644E',
         fill: false
       },
       {
         label: 'B',
         data: quantities.B,
-        borderColor: 'blue',
+        borderColor: '#00A2FF',
         fill: false
       },
       {
         label: 'C',
         data: quantities.C,
-        borderColor: 'green',
+        borderColor: '#FFD932',
         fill: false
       },
       {
         label: 'D',
         data: quantities.D,
-        borderColor: 'orange',
+        borderColor: '#1DB100',
         fill: false
       }]
     },
@@ -305,13 +455,13 @@ document.getElementById('coefD').addEventListener('change', renderChart);
     var coefD = parseFloat(document.getElementById('coefD').value);
 
     var equation = "<div class='equation-container'>" +
-                   "<span class='equation-part'>" + coefA + " A" + "</span>" +
-                   "<span class='equation-part'> + </span>" +
+                   "<span class='equation-part'>&nbsp;&nbsp;&nbsp;&nbsp;" + coefA + " A" + "</span>" +
+                   "<span class='equation-part'> &nbsp;&nbsp;&nbsp;&nbsp;+ </span>" +
                    "<span class='equation-part'>" + coefB + " B" + "</span>" +
-                   "<span class='equation-part'> → </span>" +
-                   "<span class='equation-part'>" + coefC + " C" + "</span>" +
-                   "<span class='equation-part'> + </span>" +
-                   "<span class='equation-part'>" + coefD + " D" + "</span>" +
+                   "<span class='equation-part'> → &nbsp;&nbsp;</span>" +
+                   "<span class='equation-part'>" + coefC + " C&nbsp;&nbsp;&nbsp;" + "</span>" +
+                   "<span class='equation-part'> +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>" +
+                   "<span class='equation-part'>" + coefD + " D&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + "</span>" +
                    "</div>";
 
     var table = "<table><thead><tr><th>Avancement (mol)</th><th colspan='4' class='equation-cell'>" + equation + "</th></tr></thead><tbody>";
@@ -337,6 +487,59 @@ document.getElementById('coefD').addEventListener('change', renderChart);
   document.getElementById('coefC').addEventListener('change', renderTable);
   document.getElementById('coefD').addEventListener('change', renderTable);
 </script>
+</section><section>
+<p>Petit programme Python réalisant la même chose :</p>
+</section><section>
+<p>Initialisation des variables</p>
+<pre><code class="language-python">import matplotlib.pyplot as plt
+
+# coefficients stœchiométrique
+# aA A + aB B -&gt; aC C + aD D
+aA = 2
+aB = 3
+aC = 1
+aD = 2
+# quantités initiales
+nA = 0.02
+nB = 0.04
+nC = 0.01
+nD = 0
+x = 0           # Initialisation de l'avancement
+dx = 0.001      # Incrément d'avancement
+X = [x]         # Liste stockant les valeurs successives d'avancement
+NA = [nA]       # Liste stockant les quantités des matières du réactif A
+NB = [nB]       # Idem pour le réactif B
+NC = [nC]       # Idem pour le produit C
+ND = [nD]       # Idem pour le produit D
+</code></pre>
+</section><section>
+<p>cœur du programme :</p>
+<pre><code class="language-python">while NA[-1] &gt; 0 and NB[-1] &gt; 0:
+    x = x + dx
+    X.append(x)
+    NA.append(nA - aA * x)
+    NB.append(nB - aB * x)
+    NC.append(nC + aC * x)
+    ND.append(nD + aD * x)
+</code></pre>
+</section><section>
+<p>tracés</p>
+<pre><code class="language-python">plt.figure(figsize=(15,10),dpi=150)
+plt.plot(X, NA, 'r-', lw=1, label='nA')
+plt.plot(X, NB, 'g-', lw=1, label='nB')
+plt.plot(X, NC, 'b-', lw=1, label='nC')
+plt.plot(X, ND, 'y-', lw=1, label='nD')
+plt.grid(True)
+plt.xlabel('x (mol)')
+plt.ylabel('n (mol)')
+plt.legend()
+plt.show()
+</code></pre>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/pythonavancement.png"
+      data-background-size="contain"
+      data-background-transition="concave">
 
 </section>
 </section><section>
