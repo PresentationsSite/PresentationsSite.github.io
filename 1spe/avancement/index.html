@@ -28,7 +28,7 @@ img {border: none !important}
 
 .imp {font-weight:bold;color:#FF968D;}
 
-span {font-weight:normal;color:white;}
+span {font-weight:normal;color:#93a1a1;}
 
 ul {
 margin-left: auto;
@@ -36,7 +36,7 @@ margin-right: auto;
 text-align: left;
 width: fit-content;
 list-style-position: inside;
-color:
+color:#93a1a1;
 }
 
 ul li {
@@ -177,7 +177,11 @@ des réactifs et des produits en fonction de $x$ ?</p>
       data-background-transition="concave">
 </section><section>
 <p>Pour faire les comptes, on classe ces infos<br>dans un tableau : le <span class="imp">tableau d&rsquo;avancement</span>.</p>
-<p><img src="/tabavancementintro.png" alt=""></p>
+<div style="position:relative;margin:auto;">
+<div>
+<img src="/tabavancementintro.png" style="background:none; box-shadow: none;">
+</div>
+</div>
 
 </section>
 </section><section>
@@ -186,27 +190,317 @@ des réactifs et des produits en fonction de $x$ ?</p>
 <section data-shortcode-section>
 <h2 id="déterminationbrde-la-composition-finale">Détermination<br>de la composition finale</h2>
 </section><section>
-<p>Si la transformation est <span class="imp">totale</span> (hypothèse faite implicitement jusqu&rsquo;ici), alors on peut déterminer<br>les quantités de matière finale du système.</p>
+<p>L&rsquo;avancement en fin de réaction<br>est appelé <span class="imp">avancement final $x_f$</span>.</p>
 </section><section>
-<div style="position:relative; margin: auto; width: fit-content; border: solid 5px #FF644E; border-radius: 15px; padding: 20px 20px 30px 20px;">
+<p>L&rsquo;<span class="imp">avancement maximal $x_{max}$</span> est lui l&rsquo;avancement correspondant à la disparition totale d&rsquo;un réactif.<br>
+Ce réactif est le <span class="imp">réactif limitant</span>.</p>
+</section><section>
+<p>Comme la disparition totale d&rsquo;un réactif<br>n&rsquo;est pas systématique, on a :</p>
+<div style="position:relative; margin: auto; width: fit-content; border: solid 5px #FF968D; border-radius: 15px; padding: 20px 20px 30px 20px;">
 <div>
-Une transformation est <span class="imp">totale</span> si le système cesse d'évoluer à cause de la consommation totale<br>d'un réactif (le <span class="imp">réactif limitant</span>).
+$x_f ≤ x_{max}$
 </div>
 </div>
+</section><section>
+<p>S&rsquo;il y a effectivement disparition totale d&rsquo;un réactif alors la <span class="imp">transformation</span> est dite <span class="imp">totale</span>. Et on a :</p>
+<div style="position:relative; margin: auto; width: fit-content; border: solid 5px #FF968D; border-radius: 15px; padding: 20px 20px 30px 20px;">
+<div>
+$x_f = x_{max}$
+</div>
+</div>
+</section><section>
+<p>Si la transformation est <span class="imp">totale</span> (hypothèse faite implicitement jusqu&rsquo;ici), alors on peut déterminer<br>$x_{max}$ en supposant tour à tour chacun des réactifs comme limitant et en en déduisant l&rsquo;avancement maximal $x_{max}$ correspondant.</p>
+<p>L&rsquo;avancement maximal réel est alors<br><span class="imp">le plus petit des $x_{max}$ trouvés</span>.</p>
+</section><section>
+<p>Exemple :</p>
+<div style="position:relative;margin:auto;">
+<div>
+<img src="/tabavancementintro.png" style="background:none; box-shadow: none;">
+</div>
+</div>
+</section><section>
+<ul>
+<li>Si <div class="shape circle"></div> est limitant, alors on a :
+<div class="fragment">$$9-2\, x_{max\color{#FF644E}\Large\bullet} = 0$$</div>
+<div class="fragment">
+$$
+\begin{aligned}
+\Rightarrow x_{max\color{#FF644E}\Large\bullet} &= \frac{\pu{9 mol}}{2}\\
+&= \pu{4,5 mol}
+\end{aligned}
+$$
+</div>
+</li>
+</ul>
+</section><section>
+<ul>
+<li>Si <div class="shape square"></div> est limitant, alors on a :
+<div class="fragment">$$12-3\, x_{max\color{#00A2FF}\small\blacksquare} = 0$$</div>
+<div class="fragment">
+$$
+\begin{aligned}
+\Rightarrow  x_{max\color{#00A2FF}\small\blacksquare} &= \frac{\pu{12 mol}}{3}\\
+&= \pu{4 mol}
+\end{aligned}
+$$
+</div>
+</li>
+</ul>
+</section><section>
+<p>$
+\begin{aligned}
+x_{max} &amp;= \min(x_{max\color{#FF644E}\Large\bullet},x_{max\color{#00A2FF}\small\blacksquare})\\
+&amp;= \pu{4 mol}
+\end{aligned}
+$</p>
+<div class="fragment">Et par conséquent, c'est <div class="shape circle"></div> le réactif limitant.</div>
+</section><section>
+<p>L&rsquo;état final peut maintenant être ajouté<br>au tableau d&rsquo;avancement :</p>
+<div style="position:relative;margin:auto;">
+<div>
+<img src="/tabancementetatf.png" style="background:none; box-shadow: none;">
+</div>
+</div>
+</section><section>
+<p>On retrouve bien ce qu&rsquo;on pouvait déduire<br>de la représentation graphique.</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/graphavancementfinal.png"
+      data-background-size="contain"
+      data-background-transition="concave">
 
 </section>
 </section><section>
-<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-  <iframe
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-    allowfullscreen="allowfullscreen"
-    loading="eager"
-    referrerpolicy="strict-origin-when-cross-origin"
-    src="https://www.youtube.com/embed/29yBuelFTyo?autoplay=0&controls=1&end=0&loop=0&mute=0&start=0"
-    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;"
-    title="YouTube video"
-  ></iframe>
+
+
+<section data-shortcode-section>
+<h2 id="autre-exemple">Autre exemple</h2>
+<p>Transformation entre le diiode et les ions thiosulfate</p>
+</section><section>
+<p>Réaction modélisant la transformation étudiée :</p>
+<p>$$\ce{I2 (aq) + 2 S2O3^2- (aq) -&gt; 2 I- (aq) + S4O6^2- (aq)}$$</p>
+<p>Quantités initiales :</p>
+<ul>
+<li>$n_{\ce{I2}\text{,initial}} = n_1 =  \pu{4,0E-3 mol}  = \pu{4,0 mmol}$</li>
+<li>$n_{\ce{S2O3^2-}\text{,initial}} = n_2 =  \pu{5,0E-3 mol}  = \pu{5,0 mmol}$</li>
+<li>$n_{\ce{I-}\text{,initial}} = n_3 = \pu{0 mol}$</li>
+<li>$n_{\ce{S4O6^2-}\text{,initial}} = n_4 = \pu{0 mol}$</li>
+</ul>
+</section><section>
+<p style="color:#00AB8E">
+Dresser un tableau d'avancement.
+</p>
+</section><section>
+<div style="position:relative;margin:auto;">
+<div>
+<img src="/tabavex1.png" style="background:none; box-shadow: none;">
 </div>
+</div>
+</section><section>
+<p>On supposera la transformation totale.</p>
+<p style="color:#00AB8E">
+Déterminer le réactif limitant et l'avancement final.
+</p>
+</section><section>
+<ul>
+<li>Si $\ce{I2}$ est limitant :<br>
+<span class="fragment">$n_1- x_{max1} = 0$</span>
+<div class="fragment">
+$$
+\Rightarrow  x_{max1} = n_1 = \pu{4,0 mmol}\\
+$$
+</div>
+</li>
+<li class="fragment">Si $\ce{S2O3^2-}$ est limitant :<br>
+<span class="fragment">$n_2-2\, x_{max2} = 0$</span>
+<div class="fragment">
+$$
+\begin{aligned}
+\Rightarrow  x_{max2} &= \frac{n_2}{2}\\
+&= \pu{2,5 mmol}
+\end{aligned}
+$$
+</div>
+</li>
+</ul>
+</section><section>
+<p>Comme $x_{max2}&lt;x_{max1}$, $\ce{S2O3^2-}$ est le réactif limitant</p>
+<p>et $x_f = x_{max} = \pu{2,5 mmol}$.</p>
+</section><section>
+<p style="color:#00AB8E">
+Déterminer l'état final.
+</p>
+</section><section>
+<div style="position:relative;margin:auto;">
+<div>
+<img src="/tabavex1f.png" style="background:none; box-shadow: none;">
+</div>
+</div>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/avancement1.gif"
+      data-background-size="contain"
+      data-background-transition="concave">
+</section><section>
+<h3 id="deuxième-situtation">Deuxième situtation</h3>
+<br>
+<p>Quantités initiales :</p>
+<ul>
+<li>$n_{\ce{I2}\text{,initial}} = n_1= \pu{2,0 mmol}$</li>
+<li>$n_{\ce{S2O3^2-}\text{,initial}} = n_2 =  \pu{5,0 mmol}$</li>
+<li>$n_{\ce{I-}\text{,initial}} = n_3 = \pu{0 mol}$</li>
+<li>$n_{\ce{S4O6^2-}\text{,initial}} = n_4 = \pu{0 mol}$</li>
+</ul>
+</section><section>
+<p style="color:#00AB8E">
+Dresser un tableau d'avancement.
+</p>
+</section><section>
+<div style="position:relative;margin:auto;">
+<div>
+<img src="/tabavex2.png" style="background:none; box-shadow: none;">
+</div>
+</div>
+</section><section>
+<p>On supposera la transformation totale.</p>
+<p style="color:#00AB8E">
+Déterminer le réactif limitant et l'avancement final.
+</p>
+</section><section>
+<ul>
+<li>Si $\ce{I2}$ est limitant :<br>
+<span class="fragment">$n_1- x_{max1} = 0$</span>
+<div class="fragment">
+$$
+\Rightarrow  x_{max1} = n_1 = \pu{2,0 mmol}\\
+$$
+</div>
+</li>
+<li class="fragment">Si $\ce{S2O3^2-}$ est limitant :<br>
+<span class="fragment">$n_2-2\, x_{max2} = 0$</span>
+<div class="fragment">
+$$
+\begin{aligned}
+\Rightarrow  x_{max2} &= \frac{n_2}{2}\\
+&= \pu{2,5 mmol}
+\end{aligned}
+$$
+</div>
+</li>
+</ul>
+</section><section>
+<p>Comme $x_{max1}&lt;x_{max2}$, $\ce{I2}$ est le réactif limitant</p>
+<p>et $x_f = x_{max} = \pu{2,0 mmol}$.</p>
+</section><section>
+<p style="color:#00AB8E">
+Déterminer l'état final.
+</p>
+</section><section>
+<div style="position:relative;margin:auto;">
+<div>
+<img src="/tabavex2f.png" style="background:none; box-shadow: none;">
+</div>
+</div>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/avancement2.gif"
+      data-background-size="contain"
+      data-background-transition="concave">
+</section><section>
+<h3 id="troisième-situtation">Troisième situtation</h3>
+<br>
+<p>Quantités initiales :</p>
+<ul>
+<li>$n_{\ce{I2}\text{,initial}} = n_1= \pu{2,5 mmol}$</li>
+<li>$n_{\ce{S2O3^2-}\text{,initial}} = n_2 =  \pu{5,0 mmol}$</li>
+<li>$n_{\ce{I-}\text{,initial}} = n_3 = \pu{0 mol}$</li>
+<li>$n_{\ce{S4O6^2-}\text{,initial}} = n_4 = \pu{0 mol}$</li>
+</ul>
+</section><section>
+<p style="color:#00AB8E">
+Dresser un tableau d'avancement.
+</p>
+</section><section>
+<div style="position:relative;margin:auto;">
+<div>
+<img src="/tabavex3.png" style="background:none; box-shadow: none;">
+</div>
+</div>
+</section><section>
+<p>On supposera la transformation totale.</p>
+<p style="color:#00AB8E">
+Déterminer le réactif limitant et l'avancement final.
+</p>
+</section><section>
+<ul>
+<li>Si $\ce{I2}$ est limitant :<br>
+<span class="fragment">$n_1- x_{max1} = 0$</span>
+<div class="fragment">
+$$
+\Rightarrow  x_{max1} = n_1 = \pu{2,5 mmol}\\
+$$
+</div>
+</li>
+<li class="fragment">Si $\ce{S2O3^2-}$ est limitant :<br>
+<span class="fragment">$n_2-2\, x_{max2} = 0$</span>
+<div class="fragment">
+$$
+\begin{aligned}
+\Rightarrow  x_{max2} &= \frac{n_2}{2}\\
+&= \pu{2,5 mmol}
+\end{aligned}
+$$
+</div>
+</li>
+</ul>
+</section><section>
+<p>Comme $x_{max1}=x_{max2}$,<br>
+les deux réactifs sont limitants en même temps.</p>
+<p>Le mélange est stœchiométrique.</p>
+<p>Et $x_f = x_{max} = \pu{2,5 mmol}$.</p>
+</section><section>
+<p style="color:#00AB8E">
+Déterminer l'état final.
+</p>
+</section><section>
+<div style="position:relative;margin:auto;">
+<div>
+<img src="/tabavex3f.png" style="background:none; box-shadow: none;">
+</div>
+</div>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/avancement3.gif"
+      data-background-size="contain"
+      data-background-transition="concave">
+</section><section>
+<h3 id="quatrième-situtation">Quatrième situtation</h3>
+<br>
+<p>Quantités initiales :</p>
+<ul>
+<li>$n_{\ce{I2}\text{,initial}} = n_1= \pu{2,5 mmol}$</li>
+<li>$n_{\ce{S2O3^2-}\text{,initial}} = n_2 =  \pu{5,0 mmol}$</li>
+<li>$n_{\ce{I-}\text{,initial}} = n_3 = \pu{0 mol}$</li>
+<li>$n_{\ce{S4O6^2-}\text{,initial}} = n_4 = \pu{0 mol}$</li>
+</ul>
+</section><section>
+<p style="color:#00AB8E">
+Qu'est-ce qui change ?<br>
+Quel est le nouvel état final ?
+</p>
+</section><section>
+<div style="position:relative;margin:auto;">
+<div>
+<img src="/tabavex4f.png" style="background:none; box-shadow: none;">
+</div>
+</div>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/avancemen4.gif"
+      data-background-size="contain"
+      data-background-transition="concave">
+
+</section>
 </section><section>
 
 
