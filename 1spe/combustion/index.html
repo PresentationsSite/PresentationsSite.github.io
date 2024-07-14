@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>Combustions</title>
+
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="/reveal-js/css/reset.css">
+<link rel="stylesheet" href="/reveal-js/css/reveal.css"><link rel="stylesheet" href="/reveal-js/css/theme/moon.css" id="theme">
+<link rel="stylesheet" href="/highlight-js/atom-one-dark-reasonable.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  </head>
+  <body>
+    
+    <div class="reveal">
+      <div class="slides">
+  
+
+    <section><style>
+img {border: none !important}
+
+.imp {font-weight:bold;color:#FF968D;}
+
+span {font-weight:normal;color:#93a1a1;}
+
+ul {
+margin-left: auto;
+margin-right: auto;
+text-align: left;
+width: fit-content;
+list-style-position: inside;
+color:#93a1a1;
+}
+
+ul li {
+text-indent: -1em;
+padding-left: 1em;
+}
+
+.video-container {
+position: relative;
+width: 90%;
+max-width: 100%;
+margin: auto;
+padding-bottom: 50.7%; 
+height: 0;
+}
+.video-container iframe {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+}
+
+</style>
+
+
+<section data-shortcode-section>
+<h1 id="combustions">Combustions</h1>
+</section><section>
+<div style="position:relative;margin:auto;width:fit-content;padding:10px 30px 20px 30px;border: 5px solid #FF968D; border-radius: 15px;">
+<p>
+Une combustion est une réaction<br><span class="imp">exothermique </span>d'<span class="imp">oxydoréduction</span>.<br>
+L'oydant est appelé <span class="imp">comburant</span> et est<br>le plus souvent du dioxygène $\ce{O2 (g)}$.<br>
+Le réducteur est le <span class="imp">combustible</span>,<br>une espèce organique.
+</p>
+</div>
+</section><section>
+<p>Une combustion convertit l’énergie stockée<br>dans la matière organique.</p>
+</section><section>
+<p>Lors de la <span class="imp">combustion complète</span> d&rsquo;un alcane<br>ou d&rsquo;un alcool, les deux uniques <span class="imp">produits</span> sont :</p>
+<ul>
+<li class="imp fragment">le dioxyde de carbone ($\ce{CO2 (g)}$)</li>
+<li class="imp fragment">la vapeur d'eau ($\ce{H2O (g)}$)</li>
+</section><section>
+<p>Exemple de la combustion complète<br>du méthane ($\ce{CH4 (g)}$).</p>
+<p>Les deux couples oxydant-réducteur sont $(\ce{O2 (g)/H2O (g)})$ et $(\ce{CO2 (g)/CH4 (g)})$.</p>
+</section><section>
+<ul>
+<li>Demi-équation d'oxydation du méthane :<br>
+<span class="fragment">$\ce{CH4 (g) +2 H2O (g) =  CO2 (g) + 8 H+ + 8 e-}$</span>
+</li>
+<br>
+<li class="fragment">Demi-équation de réduction du dioxygène :<br>
+<span class="fragment">$\ce{O2 (g) +4 H+ + 4 e- = 2 H2O (g)}$</span>
+</li>
+</ul>
+</section><section>
+<p>Équation bilan de la réaction :</p>
+<div class="fragment">
+$$\ce{CH4 (g) + 2 O2 (g) -> CO2(g) + 2 H2O (g)}$$
+</div>
+</section><section>
+<div style="position:relative;margin:auto;width:fit-content;padding:10px 30px 20px 30px;border: 5px solid #FF968D; border-radius: 15px;">
+<p>
+Le pouvoir calorifique massique PC d'un combustible est l'énergie thermique libérée lors de la combustion d'1 kg de combustible.
+</p>
+</div>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/palmacombu.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+</section><section>
+<p>On peut retrouver théoriquement l&rsquo;énergie libérée<br>par une combustion où le combustible<br>est en phase gazeuse grâce aux données<br>des différentes énergie de liaison entre éléments.</p>
+</section><section>
+<p>En effet, dans une combustion comme dans toute transformation chimique, les éléments se réorganisent.</p>
+<p class="fragment">Pour cela, des liaisons entre atomes sont rompues<br>et des nouvelles sont formées.</p>
+</section><section>
+<p>Par convention, on compte positivement les transferts de l&rsquo;environnement vers le système et négativement les transferts du système vers l&rsquo;environnement.</p>
+</section><section>
+<p>Par conséquent,</p>
+<ul>
+<li>rompre des liaisons correspond à un transfert d'énergie <span class="fragment"><span class="imp">positive</span> (le système nécessite de l'énergie de l'extérieur)</span></li>
+<br>
+<li class="fragment">former des nouvelles liaisons correspond à un transfert d'énergie <span class="fragment"><span class="imp">négative</span> (le système libère de l'énergie qu'il fournit à son environnement).</span></li>
+</ul>
+</section><section>
+<p>L&rsquo;énergie de réaction fait le bilan entre l&rsquo;énergie entrante utilisée pour rompre les liaisons et l&rsquo;énergie sortante libérée par la formation des nouvelles liaisons.</p>
+<p class="fragment">
+Si le bilan est <span class="imp">négatif</span> (cas des combustions),<br>la transformation est <span class="imp">exothermique</span> puisque<br>le transfert thermique final est vers l'extérieur.</p>
+</section><section>
+<div style="position:relative;margin:auto;width:fit-content;padding:10px 30px 20px 30px;border: 5px solid #FF968D; border-radius: 15px;">
+<p>
+L'<span class="imp">énergie molaire de réaction</span> est le ransfert thermique échangée entre le système et le milieu extérieur par mole
+d'avancement.
+</p>
+</div>
+</section><section>
+<p>Reprenons l&rsquo;exemple de la combustion du butane.</p>
+<p>Pour une mole d&rsquo;avancement, on consomme</p>
+<ul>
+<li class="fragment">une mole de méthane</li> 
+<li class="fragment">deux moles de dioxygène</li>
+</ul>
+<p class="fragment">Et on produit</p>
+<ul>
+<li class="fragment">une mole de dioxyde de carbone</li> 
+<li class="fragment">deux moles d'eau</li>
+</section><section>
+<p>Plus qu&rsquo;à regarder les énergies de liaison :</p>
+<table border="1">
+    <thead>
+        <tr>
+            <th>Liaisons</th>
+            <th>Énergie de liaison</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>C-H</td>
+            <td>412 kJ·mol<sup>-1</sup></td>
+        </tr>
+        <tr>
+            <td>O-H</td>
+            <td>464 kJ·mol<sup>-1</sup></td>
+        </tr>
+        <tr>
+            <td>O=O</td>
+            <td>502 kJ·mol<sup>-1</sup></td>
+        </tr>
+         <tr>
+            <td>C=O</td>
+            <td>795 kJ·mol<sup>-1</sup></td>
+        </tr>
+    </tbody>
+</table>
+</section><section>
+<div style="position:relative;margin:auto;width:fit-content;padding:10px 30px 20px 30px;border: 5px solid #FF968D; border-radius: 15px;">
+<p>
+L'<span class="imp">énergie de liaison</span> est l'énergie minimale à fournir pour dissocier, à l’état gazeux, une mole de liaisons A-B.
+</p>
+</div>
+</section><section>
+<p>Énergie de dissociation des réactifs :</p>
+<ul>
+<li>En consommant 1 mol de $\ce{CH4}$, on dissocie<br>4 liaisons C-H, soit $4\times 412 = \pu{1,65E3 kJ}$.</li>
+<li>En consommant 2 mol de $\ce{O2}$, on dissocie<br>2 liaisons O=O, soit $4\times 464 = \pu{1,00E3 kJ}$.</li>
+</ul>
+<p>Cela nécessite en tout $1,65 +1,00 = \pu{2,65 MJ}$.</p>
+</section><section>
+<p>Énergie de formation des produits :</p>
+<ul>
+<li>En produisant 1 mol de $\ce{CO2}$, on forme<br>2 liaisons C=O, soit $2\times (-795) = \pu{-1,59E3 kJ}$</li>
+<li>En produisant 2 mol de $\ce{H2O}$, on forme<br>4 liaisons O-H, soit $4\times (-464) = \pu{-1,86E3 kJ}$</li>
+</ul>
+<p>Cela donne $-1,59 + (-1,86) = -\pu{3,45 MJ}$.</p>
+</section><section>
+<p>L&rsquo;énergie molaire de la combustion vaut donc $2,65-3,45=\pu{-0,80 MJ*mol-1}$</p>
+<p>La combustion d&rsquo;une mole de méthane libère<br>$\pu{0,80 MJ}$ dans l&rsquo;environnement.</p>
+</section><section>
+<p>Peut-on retrouver le PC du méthane à partir<br>de son énergie molaire de réaction ?</p>
+<br>
+<p class="fragment">Bien sûr !</p>
+</section><section>
+<p>Masse d&rsquo;une mole de méthane : $1\times M(\ce{CH4}) = M(\ce{C}) + 4\times M({H}) = \pu{16 g}$</p>
+<p>Donc la combustion de $\pu{16 g}$ de méthane libère $\pu{0,80 MJ}$ et on cherche l&rsquo;énergie libérée par la combustion d&rsquo;un kilogramme de méthane&hellip;</p>
+</section><section>
+<p>$\displaystyle PC = \frac{\pu{1,0E3}}{16}\times 0,80 = \pu{50 MJ*kg-1}$</p>
+<p>La combustion d&rsquo;$\pu{1 kg}$ de méthane libère<br>donc $\pu{50 MJ}$ d&rsquo;énergie thermique.</p>
+</section><section>
+<p>Comment détermine-t-on<br>le contenu énergétique des aliments ?</p>
+<img src="/etiquettenoix.png" style="width:40%;border-radius:15px;">
+</section><section>
+<div style="position:relative;margin:auto;width:fit-content;">
+<iframe width="305" height="542" src="https://www.youtube.com/embed/gx1J3FyaT7Y" title="Determining calories in food by burning it" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+
+</section>
+</section><section>
+<p><a href="https://coursphychi.github.io/1spe/orga/">Retour site</a></p>
+</section>
+
+  
+
+
+</div>
+      
+
+    </div>
+<script type="text/javascript" src=/reveal-hugo/object-assign.js></script>
+
+<a href="/reveal-js/css/print/" id="print-location" style="display: none;"></a>
+<script type="text/javascript">
+  var printLocationElement = document.getElementById('print-location');
+  var link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.type = 'text/css';
+  link.href = printLocationElement.href + (window.location.search.match(/print-pdf/gi) ? 'pdf.css' : 'paper.css');
+  document.getElementsByTagName('head')[0].appendChild(link);
+</script>
+
+<script type="application/json" id="reveal-hugo-site-params">{"highlight_theme":"github-dark","line-numbers":true,"theme":"sky","transition":"concave","transition_speed":"fast"}</script>
+<script type="application/json" id="reveal-hugo-page-params">{"highlight_theme":"atom-one-dark-reasonable","theme":"moon"}</script>
+
+<script src="/reveal-js/js/reveal.js"></script>
+
+<script type="text/javascript">
+  
+  
+  function camelize(map) {
+    if (map) {
+      Object.keys(map).forEach(function(k) {
+        newK = k.replace(/(\_\w)/g, function(m) { return m[1].toUpperCase() });
+        if (newK != k) {
+          map[newK] = map[k];
+          delete map[k];
+        }
+      });
+    }
+    return map;
+  }
+  
+  var revealHugoDefaults = { center: true, controls: true, history: true, progress: true, transition: "slide" };
+  var revealHugoSiteParams = JSON.parse(document.getElementById('reveal-hugo-site-params').innerHTML);
+  var revealHugoPageParams = JSON.parse(document.getElementById('reveal-hugo-page-params').innerHTML);
+  
+  var options = Object.assign({},
+    camelize(revealHugoDefaults),
+    camelize(revealHugoSiteParams),
+    camelize(revealHugoPageParams));
+  Reveal.initialize(options);
+</script>
+
+
+  
+  
+  <script type="text/javascript" src="/reveal-js/plugin/markdown/marked.js"></script>
+  
+  <script type="text/javascript" src="/reveal-js/plugin/markdown/markdown.js"></script>
+  
+  <script type="text/javascript" src="/reveal-js/plugin/highlight/highlight.js"></script>
+  
+  <script type="text/javascript" src="/reveal-js/plugin/zoom-js/zoom.js"></script>
+  
+  
+  <script type="text/javascript" src="/reveal-js/plugin/notes/notes.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({startOnLoad: false});
+    let render = (event) => {
+      let mermaidElems = event.currentSlide.querySelectorAll('.mermaid');
+      if (!mermaidElems.length){
+          return
+      }
+      mermaidElems.forEach(mermaidElem => {
+          let processed = mermaidElem.getAttribute('data-processed');
+          if (!processed){
+              
+              mermaid.init(undefined, mermaidElem);
+          }
+      });
+    };
+    Reveal.addEventListener('slidechanged', render);
+    Reveal.addEventListener('ready', render);
+  </script>
+
+    
+
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']]
+  },
+  svg: {
+    fontCache: 'global'
+  }
+};
+</script>
+
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+</script>
+    
+  </body>
+</html>
