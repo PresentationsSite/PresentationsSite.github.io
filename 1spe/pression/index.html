@@ -1,0 +1,417 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>Pression</title>
+
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="/reveal-js/css/reset.css">
+<link rel="stylesheet" href="/reveal-js/css/reveal.css"><link rel="stylesheet" href="/reveal-js/css/theme/moon.css" id="theme">
+<link rel="stylesheet" href="/highlight-js/atom-one-dark-reasonable.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  </head>
+  <body>
+    
+    <div class="reveal">
+      <div class="slides">
+  
+
+    <section><style>
+img {border: none !important}
+
+.imp {font-weight:bold;color:#FF968D;}
+
+span {font-weight:normal;color:#93a1a1;}
+
+ul {
+margin-left: auto;
+margin-right: auto;
+text-align: left;
+width: fit-content;
+list-style-position: inside;
+color:#93a1a1;
+}
+
+ul li {
+text-indent: -1em;
+padding-left: 1em;
+}
+
+.video-container {
+position: relative;
+width: 90%;
+max-width: 100%;
+margin: auto;
+padding-bottom: 50.7%; 
+height: 0;
+}
+.video-container iframe {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+}
+
+</style>
+
+
+<section data-shortcode-section>
+<h2 id="description-dun-fluide">Description d&rsquo;un fluide</h2>
+<br>
+<p class="imp" style="font-size:1.5em;">
+Fluides = <span class="fragment imp">{liquides,gaz}</span>
+</p>
+</section><section>
+<h3 id="échelle-microscopique">Échelle microscopique</h3>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/pressionmicro.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+</section><section>
+<h3 id="échelle-macroscopique">Échelle macroscopique</h3>
+</section><section>
+<p>3 grandeurs permettent de décrire un fluide :</p>
+<ul>
+<li class="fragment">la <b style="color:#FEAE00">masse volumique</b></li>
+<li class="fragment">la <b style="color:#FF968D">température</b></li>
+<li class="fragment">la <b style="color:#61D836">pression</b></li>
+</section><section>
+<h3 style="color:#FEAE00">masse volumique</h3>
+<p>Elle traduit à quel point les entités qui constituent<br>le fluide sont rapprochées et lourdes.</p>
+<p class="fragment">ODG qu'il est bon d'avoir en tête :<br>
+Combien de fois approximativement la densité d'un liquide est-elle plus grande que celle d'un gaz ?
+</p>
+</section><section>
+<h3 style="color:#FF968D">température</h3>
+<p>Elle traduit l&rsquo;agitation thermique des entités.</p>
+<p class="fragment">Les molécules de diazote de l'air ont une vitesse moyenne d'environ $\pu{470 m*s-1}$ à 20°C<br>
+et presque $\pu{980 m*s-1}$ à 1000°C.</p>
+</section><section>
+<h3 style="color:#61D836">pression</h3>
+<p>Elle traduit les chocs des entités sur une paroi.</p>
+<p class="fragment">Sur $\pu{1 cm2}$ de vitre, chaque seconde c'est environ $\pu{2E23}$ molécules d'air qui viennent taper !</p>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h2 id="pression-et-force-pressante">Pression et Force pressante</h2>
+</section><section>
+<div style="position:relative;margin:auto;padding:10px 30px 20px 30px;border:solid 5px #FF968D;border-radius:15px; width:fit-content;">
+Un fluide exerce sur une surface une action modélisée par une <span class="imp">force pressante $\textstyle \overrightarrow{F_P}$</span>
+<br><br>
+<ul>
+<li>dirigée perpendiculairement à la surface,</li> 
+<li>orientée du fluide vers la surface,</li>
+<li>et de valeur proportionnelle à la surface.</li> 
+</ul>
+</div>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/fpressballon.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/troustuyau.jpg"
+      data-background-size="contain"
+      data-background-transition="concave">
+</section><section>
+<p>Le coefficient de proportionnalité entre la valeur de<br>la force pressante et la surface est appelée <span class="imp">pression</span>.<br>
+La pression est donc une force par unité de surface.</p>
+<p class="fragment">
+Unité : <span class="fragment imp">$\pu{N*m-2}$</span>
+</p>
+<p class="fragment"><span class="imp">$\pu{1 Pa}$</span> $\;= \pu{1 N*m-2}$<br>
+<span class="fragment">$\pu{1 bar} = \pu{1E5 Pa}$</span><br>
+<span class="fragment">$\pu{1 atm} = \pu{1013 hPa} = $</span><span class="fragment">$\pu{1,013E5 Pa}=\pu{1,013 bar}$</span>
+</p> 
+</section><section>
+<div style="position:relative;margin:auto;padding:20px 30px 30px 30px;border:solid 5px #FF968D;border-radius:15px; width:fit-content;">
+<span class="imp" style="font-size:1.5em;">$F_P = P\times S $</span>
+</div>
+<br>
+<ul>
+<li class="fragment">$F$ en N</li>
+<li class="fragment">$P$ en Pa</li>
+<li class="fragment">$S$ en $\pu{m^2}$</li>
+</ul>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h2 id="loi-de-mariotte">Loi de Mariotte</h2>
+<aside class="notes"><p>Boyle&rsquo;s law en anglais</p>
+</aside>
+</section><section>
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowfullscreen="allowfullscreen"
+    loading="eager"
+    referrerpolicy="strict-origin-when-cross-origin"
+    src="https://www.youtube.com/embed/EkDhlzA-lwI?autoplay=0&controls=1&end=0&loop=0&mute=0&start=0"
+    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;"
+    title="YouTube video"
+  ></iframe>
+</div>
+<aside class="notes"><p>Quelle est l&rsquo;erreur à 3'23&rsquo;&rsquo; ?</p>
+</aside>
+</section><section>
+<p><span class="imp">À température constante</span>,<br>dans une enceinte <span class="imp">fermée</span><br>contenant un gaz,</p>
+<div style="position:relative;margin:auto;padding:20px 30px 30px 30px;border:solid 5px #FF968D;border-radius:15px; width:fit-content;">
+le produit de la pression<br>par le volume reste constant
+</div>
+</section><section>
+<div style="position:relative;margin:auto;padding:20px 30px 30px 30px;border:solid 5px #FF968D;border-radius:15px; width:fit-content;">
+$$P\times V = cte$$
+</div>
+<p>$$\Leftrightarrow$$</p>
+<div style="position:relative;margin:auto;padding:20px 30px 30px 30px;border:solid 5px #FF968D;border-radius:15px; width:fit-content;">
+$$P_1 V_1 = P_2 V_2$$
+</div>
+</section><section>
+<p>Unités :</p>
+<ul>
+<li>P en <span class="imp fragment">$\pu{Pa}$</span></li>
+<li class="fragment">V en <span class="imp fragment">$\pu{m^3}$</span></li>
+</ul>
+</section><section>
+<div id="player"></div>
+<script src="https://www.youtube.com/iframe_api"></script>
+<script>
+  var player;
+  var hasSeeked = false; // Variable pour suivre si nous avons déjà sauté au début spécifié
+
+  // Cette fonction est appelée automatiquement par l'API de YouTube lorsqu'elle est prête
+  function onYouTubeIframeAPIReady() {
+    // Créez une nouvelle instance du lecteur
+    player = new YT.Player('player', {
+      height: '360',
+      width: '640',
+      videoId: 'LhDi9r6mmKk', // Remplacez par l'ID de votre vidéo
+      events: {
+        'onReady': onPlayerReady,
+        'onStateChange': onPlayerStateChange
+      }
+    });
+  }
+
+  // Cette fonction est appelée lorsque le lecteur est prêt
+  function onPlayerReady(event) {
+    // Réglez la vitesse de lecture à x2
+    player.setPlaybackRate(2);
+  }
+
+  // Cette fonction est appelée lorsqu'il y a un changement d'état du lecteur
+  function onPlayerStateChange(event) {
+    var startTime = 58; // Temps de début en secondes
+    if (event.data == YT.PlayerState.PLAYING && !hasSeeked) {
+      // Définissez le temps de début si la vidéo commence à jouer
+      player.seekTo(startTime, true);
+      hasSeeked = true; // Marquez que nous avons effectué le saut
+    }
+  }
+</script>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h2 id="loi-fondamentale-debrla-statique-des-fluides">Loi fondamentale de<br>la statique des fluides</h2>
+</section><section>
+<p>Dans un fluide, du fait de la gravité,<br>plus on s&rsquo;élève, plus la pression est faible.</p>
+<p class="fragment">Et si le fluide est <u>incompressible</u>,<br>on a <span class="imp">proportionnalité<br>entre variation d'altitude<br>et variation de pression</span>.</p>
+<aside class="notes"><p>Pourquoi ne pas dire liquide plutôt que fluide incompressible ? Car sur une petite variation de hauteur, l&rsquo;air aussi peut être considéré comme incompressible (sa densité varie suffisamment peu).</p>
+</aside>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/loifondfluide.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+</section><section>
+<p>C&rsquo;est la loi fondamentale de la statique des fluides :</p>
+<div style="position:relative;margin:auto;padding:20px 30px 30px 30px;border:solid 5px #FF968D;border-radius:15px; width:fit-content;">
+$$P_2 - P_1 = \rho g (z_1 - z_2)$$
+</div>
+<p class="fragment">
+⚠️ Attention à l'ordre inversé<br>entre la pression et l'altitude
+</p>
+</section><section>
+<p>Constantes</p>
+<ul>
+<li class="fragment">$g$ est la pesanteur terrestre</li>
+<li class="fragment">$\rho$ est la masse volumique du fluide<br>(fluide incompressible $\Leftrightarrow$ $\rho=cste$)</li>
+</ul>
+<p class="fragment">
+Variables :
+</p>
+<ul>
+<li class="fragment">Pression $P$ en <span class="imp fragment">$\pu{Pa}$</span></li>
+<li class="fragment">Altitude $z$ en <span class="imp fragment">$\pu{m}$</span></li>
+</ul>
+</section><section>
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowfullscreen="allowfullscreen"
+    loading="eager"
+    referrerpolicy="strict-origin-when-cross-origin"
+    src="https://www.youtube.com/embed/K5g6P8-GmBg?autoplay=0&controls=1&end=0&loop=0&mute=0&start=0"
+    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;"
+    title="YouTube video"
+  ></iframe>
+</div>
+</section><section>
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowfullscreen="allowfullscreen"
+    loading="eager"
+    referrerpolicy="strict-origin-when-cross-origin"
+    src="https://www.youtube.com/embed/-Zq_fmPz9IU?autoplay=0&controls=1&end=0&loop=0&mute=0&start=0"
+    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;"
+    title="YouTube video"
+  ></iframe>
+</div>
+</section><section>
+<video width="350" controls style="display:block;max-width:100%;position:relative;margin-left:auto;margin-right: auto; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+  <source src="https://coursphychi.github.io/faucet.mp4" type="video/mp4">
+</video>
+
+</section>
+</section><section>
+<p><a href="https://coursphychi.github.io/1spe/pression/">Retour site</a></p>
+</section>
+
+  
+
+
+</div>
+      
+
+    </div>
+<script type="text/javascript" src=/reveal-hugo/object-assign.js></script>
+
+<a href="/reveal-js/css/print/" id="print-location" style="display: none;"></a>
+<script type="text/javascript">
+  var printLocationElement = document.getElementById('print-location');
+  var link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.type = 'text/css';
+  link.href = printLocationElement.href + (window.location.search.match(/print-pdf/gi) ? 'pdf.css' : 'paper.css');
+  document.getElementsByTagName('head')[0].appendChild(link);
+</script>
+
+<script type="application/json" id="reveal-hugo-site-params">{"highlight_theme":"github-dark","line-numbers":true,"theme":"sky","transition":"concave","transition_speed":"fast"}</script>
+<script type="application/json" id="reveal-hugo-page-params">{"highlight_theme":"atom-one-dark-reasonable","theme":"moon"}</script>
+
+<script src="/reveal-js/js/reveal.js"></script>
+
+<script type="text/javascript">
+  
+  
+  function camelize(map) {
+    if (map) {
+      Object.keys(map).forEach(function(k) {
+        newK = k.replace(/(\_\w)/g, function(m) { return m[1].toUpperCase() });
+        if (newK != k) {
+          map[newK] = map[k];
+          delete map[k];
+        }
+      });
+    }
+    return map;
+  }
+  
+  var revealHugoDefaults = { center: true, controls: true, history: true, progress: true, transition: "slide" };
+  var revealHugoSiteParams = JSON.parse(document.getElementById('reveal-hugo-site-params').innerHTML);
+  var revealHugoPageParams = JSON.parse(document.getElementById('reveal-hugo-page-params').innerHTML);
+  
+  var options = Object.assign({},
+    camelize(revealHugoDefaults),
+    camelize(revealHugoSiteParams),
+    camelize(revealHugoPageParams));
+  Reveal.initialize(options);
+</script>
+
+
+  
+  
+  <script type="text/javascript" src="/reveal-js/plugin/markdown/marked.js"></script>
+  
+  <script type="text/javascript" src="/reveal-js/plugin/markdown/markdown.js"></script>
+  
+  <script type="text/javascript" src="/reveal-js/plugin/highlight/highlight.js"></script>
+  
+  <script type="text/javascript" src="/reveal-js/plugin/zoom-js/zoom.js"></script>
+  
+  
+  <script type="text/javascript" src="/reveal-js/plugin/notes/notes.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({startOnLoad: false});
+    let render = (event) => {
+      let mermaidElems = event.currentSlide.querySelectorAll('.mermaid');
+      if (!mermaidElems.length){
+          return
+      }
+      mermaidElems.forEach(mermaidElem => {
+          let processed = mermaidElem.getAttribute('data-processed');
+          if (!processed){
+              
+              mermaid.init(undefined, mermaidElem);
+          }
+      });
+    };
+    Reveal.addEventListener('slidechanged', render);
+    Reveal.addEventListener('ready', render);
+  </script>
+
+    
+
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']]
+  },
+  svg: {
+    fontCache: 'global'
+  }
+};
+</script>
+
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+</script>
+    
+  </body>
+</html>
