@@ -70,6 +70,12 @@ height: 100%;
 <p>corps ou ensemble de corps<br>dont on étudie le mouvement.</p>
 <p class="fragment">On le modélisera par un <span class="imp">point matériel</span><br>(généralement situé au niveau<br>de son centre de gravité).</p>
 </section><section>
+<p><span class="imp">Réfrentiel</span> :</p>
+<p>Repère spatial + horloge<br>C&rsquo;est le cadre dans lequel on décrit le mouvement.</p>
+<p class="fragment">Exemples :</p>
+<p class="fragment">référentiel terrestre, géocentrique,<br>héliocentrique, référentiel du train,...
+</p>
+</section><section>
 <p>Un autre système peut interagir avec le système étudié par l&rsquo;intermédiaire d&rsquo;<span class="imp">actions<span> modélisées par des <span class="imp">forces</span> repréprésentées par des vecteurs.</p>
 </section><section>
 <p>La <span class="imp">résultante des forces $\vec{F}_{res}$</span> est la somme des forces extérieures qui s&rsquo;appliquent sur le système.</p>
@@ -108,195 +114,55 @@ $$\overrightarrow{F_{res}} = \sum{\overrightarrow{{F}_{ext}}}$$
 <section data-shortcode-section>
 <h2 id="lien-entre-force-et-mouvement">Lien entre force et mouvement</h2>
 </section><section>
-<p>La <pan class="imp">1<sup>re</sup> loi de Newton</span>, aussi appelée <pan class="imp">principe d&rsquo;inertie</span> nous assurre que :</p>
+<p>La <span class="imp">1<sup>re</sup> loi de Newton</span>, aussi appelée<br><span class="imp">principe d&rsquo;inertie</span> nous assure que :</p>
 <div style="position:relative;margin:auto;padding:10px 30px 20px 30px;border:solid 5px #FF968D;border-radius:15px; width:fit-content;">
-Un fluide exerce sur une surface une action modélisée par une <span class="imp">force pressante $\textstyle \overrightarrow{F_P}$</span>
-<br><br>
-<ul>
-<li>dirigée perpendiculairement à la surface,</li> 
-<li>orientée du fluide vers la surface,</li>
-<li>et de valeur proportionnelle à la surface.</li> 
-</ul>
+Si la force résultante des forces sur un système est nulle, alors son mouvement est rectiligne uniforme.<br>
+Et à l'inverse, si son mouvement est rectiligne uniforme, alors la résultante des forces est nulle. 
 </div>
-</section>
-<section data-noprocess data-shortcode-slide
-      data-background-image="/fpressballon.png"
-      data-background-size="contain"
-      data-background-transition="concave">
-</section>
-<section data-noprocess data-shortcode-slide
-      data-background-image="/troustuyau.jpg"
-      data-background-size="contain"
-      data-background-transition="concave">
 </section><section>
-<p>Le coefficient de proportionnalité entre la valeur de<br>la force pressante et la surface est appelée <span class="imp">pression</span>.<br>
-La pression est donc une force par unité de surface.</p>
+<p>En résumé :</p>
+<div style="position:relative;margin:auto;padding:10px 30px 20px 30px;border:solid 5px #FF968D;border-radius:15px; width:fit-content;">
+<span class="imp">MRU</span> $\Leftrightarrow$ $\sum{\vec{F}}$<span class="imp">$\;=\;$</span>$\vec{0}$
+</div>
+</section><section>
+<p>Et la contraposée nous donne :</p>
+<div class="fragment" style="position:relative;margin:auto;padding:10px 30px 20px 30px;border:solid 5px #FF968D;border-radius:15px; width:fit-content;">
+$\sum{\vec{F}}$<span class="imp">$\;≠\;$</span>$\vec{0}$ $\Leftrightarrow$ <span class="imp"><s>MRU</s></span>
+</div>
+</section><section>
+<p>Peut-on réexprimer cet énoncé<br>avec le vecteur variation de vitesse ?</p>
+<p class="fragment">Oui puisque<br>
+<span class="imp"><s>MRU</s></span>$\;\Leftrightarrow\;$<span class="imp">$\vec{\Delta v}≠\vec{0}$</p>
+</section><section>
+<p>On a alors :</p>
+<div class="fragment" style="position:relative;margin:auto;padding:10px 30px 20px 30px;border:solid 5px #FF968D;border-radius:15px; width:fit-content;">
+$\sum{\vec{F}}$<span class="imp">$\;≠\;$</span>$\vec{0}$  $\;\Leftrightarrow\;$ </span>$\vec{\Delta v}$<span class="imp">$\;≠\;$</span>$\vec{0}$
+</div>
+</section><section>
+<p>On peut aller quantitativement un peu plus loin<br>avec la relation approximative suivante :</p>
+<div class="fragment imp" style="position:relative;margin:auto;padding:10px 30px 20px 30px;border:solid 5px #FF968D;border-radius:15px; width:fit-content;">
+$\sum{\overrightarrow{F}}\times \Delta t \approx m \times \overrightarrow{\Delta v}$
+</div>
 <p class="fragment">
-Unité : <span class="fragment imp">$\pu{N*m-2}$</span>
+L'accord est d'autant meilleur que $\Delta t$ est petit.
 </p>
-<p class="fragment"><span class="imp">$\pu{1 Pa}$</span> $\;= \pu{1 N*m-2}$<br>
-<span class="fragment">$\pu{1 bar} = \pu{1E5 Pa}$</span><br>
-<span class="fragment">$\pu{1 atm} = \pu{1013 hPa} = $</span><span class="fragment">$\pu{1,013E5 Pa}=\pu{1,013 bar}$</span>
-</p> 
-</section><section>
-<div style="position:relative;margin:auto;padding:20px 30px 30px 30px;border:solid 5px #FF968D;border-radius:15px; width:fit-content;">
-<span class="imp" style="font-size:1.5em;">$F_P = P\times S $</span>
-</div>
-<br>
-<ul>
-<li class="fragment">$F$ en N</li>
-<li class="fragment">$P$ en Pa</li>
-<li class="fragment">$S$ en $\pu{m^2}$</li>
-</ul>
-
-</section>
-</section><section>
-
-
-<section data-shortcode-section>
-<h2 id="loi-de-mariotte">Loi de Mariotte</h2>
-<aside class="notes"><p>Boyle&rsquo;s law en anglais</p>
-</aside>
-</section><section>
-<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-  <iframe
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-    allowfullscreen="allowfullscreen"
-    loading="eager"
-    referrerpolicy="strict-origin-when-cross-origin"
-    src="https://www.youtube.com/embed/EkDhlzA-lwI?autoplay=0&controls=1&end=0&loop=0&mute=0&start=0"
-    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;"
-    title="YouTube video"
-  ></iframe>
-</div>
-<aside class="notes"><p>Quelle est l&rsquo;erreur à 3'23&rsquo;&rsquo; ?</p>
-</aside>
-</section><section>
-<p><span class="imp">À température constante</span>,<br>dans une enceinte <span class="imp">fermée</span><br>contenant un gaz,</p>
-<div style="position:relative;margin:auto;padding:20px 30px 30px 30px;border:solid 5px #FF968D;border-radius:15px; width:fit-content;">
-le produit de la pression<br>par le volume reste constant
-</div>
-</section><section>
-<div style="position:relative;margin:auto;padding:20px 30px 30px 30px;border:solid 5px #FF968D;border-radius:15px; width:fit-content;">
-$$P\times V = cte$$
-</div>
-<p>$$\Leftrightarrow$$</p>
-<div style="position:relative;margin:auto;padding:20px 30px 30px 30px;border:solid 5px #FF968D;border-radius:15px; width:fit-content;">
-$$P_1 V_1 = P_2 V_2$$
-</div>
 </section><section>
 <p>Unités :</p>
 <ul>
-<li>P en <span class="imp fragment">$\pu{Pa}$</span></li>
-<li class="fragment">V en <span class="imp fragment">$\pu{m^3}$</span></li>
+<li>$F$ en <span class="fragment imp">$\pu{N}$</span></li>
+<li>$\Delta t$ en <span class="fragment imp">$\pu{s}$</span></li>
+<li>$m$ en <span class="fragment imp">$\pu{kg}$</span></li>
+<li>$\Delta v$ en <span class="fragment imp">$\pu{m*s-1}$</span></li>
 </ul>
 </section><section>
-<div id="player"></div>
-<script src="https://www.youtube.com/iframe_api"></script>
-<script>
-  var player;
-  var hasSeeked = false; // Variable pour suivre si nous avons déjà sauté au début spécifié
-
-  // Cette fonction est appelée automatiquement par l'API de YouTube lorsqu'elle est prête
-  function onYouTubeIframeAPIReady() {
-    // Créez une nouvelle instance du lecteur
-    player = new YT.Player('player', {
-      height: '360',
-      width: '640',
-      videoId: 'LhDi9r6mmKk', // Remplacez par l'ID de votre vidéo
-      events: {
-        'onReady': onPlayerReady,
-        'onStateChange': onPlayerStateChange
-      }
-    });
-  }
-
-  // Cette fonction est appelée lorsque le lecteur est prêt
-  function onPlayerReady(event) {
-    // Réglez la vitesse de lecture à x2
-    player.setPlaybackRate(2);
-  }
-
-  // Cette fonction est appelée lorsqu'il y a un changement d'état du lecteur
-  function onPlayerStateChange(event) {
-    var startTime = 58; // Temps de début en secondes
-    if (event.data == YT.PlayerState.PLAYING && !hasSeeked) {
-      // Définissez le temps de début si la vidéo commence à jouer
-      player.seekTo(startTime, true);
-      hasSeeked = true; // Marquez que nous avons effectué le saut
-    }
-  }
-</script>
-
-</section>
-</section><section>
-
-
-<section data-shortcode-section>
-<h2 id="loi-fondamentale-debrla-statique-des-fluides">Loi fondamentale de<br>la statique des fluides</h2>
-</section><section>
-<p>Dans un fluide, du fait de la gravité,<br>plus on s&rsquo;élève, plus la pression est faible.</p>
-<p class="fragment">Et si le fluide est <u>incompressible</u>,<br>on a <span class="imp">proportionnalité<br>entre variation d'altitude<br>et variation de pression</span>.</p>
-<aside class="notes"><p>Pourquoi ne pas dire liquide plutôt que fluide incompressible ? Car sur une petite variation de hauteur, l&rsquo;air aussi peut être considéré comme incompressible (sa densité varie suffisamment peu).</p>
-</aside>
-</section>
-<section data-noprocess data-shortcode-slide
-      data-background-image="/loifondfluide.png"
-      data-background-size="contain"
-      data-background-transition="concave">
-</section><section>
-<p>C&rsquo;est la loi fondamentale de la statique des fluides :</p>
-<div style="position:relative;margin:auto;padding:20px 30px 30px 30px;border:solid 5px #FF968D;border-radius:15px; width:fit-content;">
-$$P_2 - P_1 = \rho g (z_1 - z_2)$$
-</div>
-<p class="fragment">
-⚠️ Attention à l'ordre inversé<br>entre la pression et l'altitude
+<p>Pour une même résultante des forces et un même<br>laps de temps $\Delta t$, que peut-on dire<br>de l&rsquo;influence de la masse ?</p>
+<p class="fragment imp">
+Plus la masse est grande,<br><span class="fragment imp">plus la variation de vitesse est faible !</span>
 </p>
-</section><section>
-<p>Constantes</p>
-<ul>
-<li class="fragment">$g$ est la pesanteur terrestre</li>
-<li class="fragment">$\rho$ est la masse volumique du fluide<br>(fluide incompressible $\Leftrightarrow$ $\rho=cste$)</li>
-</ul>
-<p class="fragment">
-Variables :
-</p>
-<ul>
-<li class="fragment">Pression $P$ en <span class="imp fragment">$\pu{Pa}$</span></li>
-<li class="fragment">Altitude $z$ en <span class="imp fragment">$\pu{m}$</span></li>
-</ul>
-</section><section>
-<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-  <iframe
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-    allowfullscreen="allowfullscreen"
-    loading="eager"
-    referrerpolicy="strict-origin-when-cross-origin"
-    src="https://www.youtube.com/embed/K5g6P8-GmBg?autoplay=0&controls=1&end=0&loop=0&mute=0&start=0"
-    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;"
-    title="YouTube video"
-  ></iframe>
-</div>
-</section><section>
-<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-  <iframe
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-    allowfullscreen="allowfullscreen"
-    loading="eager"
-    referrerpolicy="strict-origin-when-cross-origin"
-    src="https://www.youtube.com/embed/-Zq_fmPz9IU?autoplay=0&controls=1&end=0&loop=0&mute=0&start=0"
-    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;"
-    title="YouTube video"
-  ></iframe>
-</div>
-</section><section>
-<video width="350" controls style="display:block;max-width:100%;position:relative;margin-left:auto;margin-right: auto; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
-  <source src="https://coursphychi.github.io/faucet.mp4" type="video/mp4">
-</video>
 
 </section>
 </section><section>
-<p><a href="https://coursphychi.github.io/1spe/pression/">Retour site</a></p>
+<p><a href="https://coursphychi.github.io/1spe/variationvitesse/">Retour site</a></p>
 </section>
 
   

@@ -1,0 +1,508 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>Énergie électrique</title>
+
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="/reveal-js/css/reset.css">
+<link rel="stylesheet" href="/reveal-js/css/reveal.css"><link rel="stylesheet" href="/reveal-js/css/theme/moon.css" id="theme">
+<link rel="stylesheet" href="/highlight-js/atom-one-dark-reasonable.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  </head>
+  <body>
+    
+    <div class="reveal">
+      <div class="slides">
+  
+
+    <section><style>
+img {border: none !important}
+
+.imp {font-weight:bold;color:#FF968D;}
+
+span {font-weight:normal;color:#93a1a1;}
+
+ul {
+margin-left: auto;
+margin-right: auto;
+text-align: left;
+width: fit-content;
+list-style-position: inside;
+color:#93a1a1;
+}
+
+ul li {
+text-indent: -1em;
+padding-left: 1em;
+}
+
+.video-container {
+position: relative;
+width: 90%;
+max-width: 100%;
+margin: auto;
+padding-bottom: 50.7%; 
+height: 0;
+}
+.video-container iframe {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+}
+
+</style>
+<h1 id="énergie-électrique">Énergie électrique</h1>
+</section><section>
+
+
+<section data-shortcode-section>
+<h2 id="porteurs-de-charges">Porteurs de charges</h2>
+</section><section>
+<p>Un courant électrique est lié à un<br>mouvement de <span class="imp">porteurs de charge électrique</span>.</p>
+<p class="fragment">
+Dans un matériau conducteur, il s'agit d'électrons, chargés négativement ($q=-e=\pu{-1,6E-19 C}$).
+</p>
+<p class="fragment">
+Mais il peut aussi s'agir d'ions dans les solutions.
+</p>
+</section><section>
+<p>L&rsquo;intensité $I$ d&rsquo;un courant électrique continu mesure<br>le <span class="imp">débit de charges</span> (variation du nombre<br>de charges par unité de temps).</p>
+<div style="position:relative;margin:auto;padding:10px 30px 20px 30px;border:solid 5px #FF968D;border-radius:15px;width:fit-content;">
+$$I = \frac{\Delta q}{\Delta t}$$
+</div>
+</section><section>
+<p>Unités :</p>
+<ul>
+<li>$I$ en <span class="imp fragment">ampères (A)</span></li>
+<li>$\Delta q$ en <span class="imp fragment">coulombs (C)</span></li>
+<li>$\Delta t$ en <span class="imp fragment">s</span></li>
+</ul>
+</section><section>
+<p>Combien d&rsquo;électrons défilent par seconde à travers<br>la section d&rsquo;un fil de cuivre pendant $\pu{1 s}$<br>si le courant qui y circule a une intensité de $\pu{1 A}$ ?</p>
+</section><section>
+<p>Pendant $\Delta t= \pu{1 s}$, il circule une charge $\Delta q=I\times \Delta t = \pu{1 C}$.<br></p>
+<p class="fragment">
+Comme les porteurs de charges dans un conducteur sont des électrons, le nombre d'électrons<br>qui circulent vaut :
+</p>
+<p class="fragment">
+$\displaystyle \frac{\Delta q}{e}=\frac{\pu{1 C}}{\pu{1,6E-19 C}} = \pu{6,3E18}$
+</p>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h2 id="générateurs">Générateurs</h2>
+</section><section>
+<p>Le courant continu dans un circuit est produit par<br>un <span class="imp">générateur</span> (ou source) <span class="imp">de tension continue</span><br>(comme une pile).</p>
+<aside class="notes"><p>Les générateurs &ldquo;branchés&rdquo; au labo sont des alimentations, comme les chargeurs de téléphone ou les blocs d&rsquo;un ordinateur. Leur rôle est de modifié le courant du secteur pour convenir aux appareils en aval.</p>
+</aside>
+</section><section>
+<p>À quoi devrait ressembler la caractéristique $U=f(I)$ d&rsquo;un gérateur de tension continue ?</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/genid.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+</section><section>
+<p>$E$ est la <span class="imp">tension à vide</span> du générateur ($U(I=0)$).<br>
+Dans un générateur de tension idéal, elle ne varie pas<br>(elle est indépendante de l&rsquo;intensité).</p>
+</section><section>
+<p>Schéma du circuit électrique permettant de tracer expérimentalement la caractéristique d&rsquo;un générateur réel de tension continue (une pile) ?</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/circar1spe.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+</section><section>
+<p>Réalisons l&rsquo;expérience et <a href="../caract/">traçons la caractéristique</a>.</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/genreel.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+</section><section>
+<p>Quel est l&rsquo;équation de la courbe ?</p>
+<p class="fragment">$U=E-{\color{#FF968D}r}\times I$, avec $r>0$.<br>
+</p>
+<p class="fragment">
+Dimension de <span class="imp">$r$</span> ?
+</p>
+<p class="fragment">
+$[r]\times[I]=[U]$<br>
+$\displaystyle \Rightarrow [r]=\frac{[U]}{[I]}$
+</p>
+<p class="fragment">
+<span class="imp">$r$</span> a la dimension d'une résistance.
+</p>
+</section><section>
+<p>Par quelle association de dipôles<br>pourrait-on modéliser le générateur réel ?</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/genidreel.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+</section><section>
+<p>$r$ est la <span class="imp">résistance interne</span> du générateur.</p>
+</section><section>
+<p>Conséquences de $r$ ?</p>
+<ul>
+<li class="fragment">La tension fournie par le générateur est plus faible lorsque l'intensité fournie grandit.</li>
+<li class="fragment">La résistance interne dissipe de l'énergie<br>(par effet joule).</li>
+<li class="fragment">Le générateur s'échauffe lorsque l'intensité augmente (toujours dû à la dissipation d'énergie).</li>
+</ul>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h2 id="lien-énergie-puissance">Lien énergie-puissance</h2>
+</section><section>
+<p>Qu&rsquo;est-ce que l&rsquo;énergie ?</p>
+<p class="fragment">
+<span class="imp">L’énergie mesure la capacité à changer</span>
+<br>la température ou 
+le mouvement d’un corps.
+</section><section>
+<p>L&rsquo;énergie est une sorte de monnaie d&rsquo;échange qui passe d&rsquo;une forme à une autre sans jamais disparaître (<span class="imp">l&rsquo;énergie se conserve</span> !).</p>
+</section><section>
+<p>Et la puissance ?</p>
+<p class="fragment">La puissance mesure<br>le <span class="imp">taux de variation de l'énergie</span><br>(sa vitesse de variation).
+</section><section>
+<p>Formule liant les deux ?</p>
+<div class="fragment" style="position:relative;margin:auto;padding:10px 30px 20px 30px;border:solid 5px #FF968D;border-radius:15px;width:fit-content;">
+$E = P\times \Delta t$
+</div>
+</section><section>
+<p>Unités :</p>
+<ul>
+<li>$E$ en <span class="imp fragment">joules (J)</span></li>
+<li>$P$ en <span class="imp fragment">watts (W)</span></li>
+<li>$\Delta t$ en <span class="imp fragment">s</span></li>
+</ul>
+<p class="fragment">
+Donc <span class="imp">$\pu{1 J} = \pu{1 W}\times \pu{1 s}$</span>
+</section><section>
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowfullscreen="allowfullscreen"
+    loading="eager"
+    referrerpolicy="strict-origin-when-cross-origin"
+    src="https://www.youtube.com/embed/BKfufXnupMA?autoplay=0&controls=1&end=0&loop=0&mute=0&start=0"
+    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;"
+    title="YouTube video"
+  ></iframe>
+</div>
+</section><section>
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowfullscreen="allowfullscreen"
+    loading="eager"
+    referrerpolicy="strict-origin-when-cross-origin"
+    src="https://www.youtube.com/embed/S4O5voOCqAQ?autoplay=0&controls=1&end=0&loop=0&mute=0&start=0"
+    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;"
+    title="YouTube video"
+  ></iframe>
+</div>
+</section><section>
+<p>En électricité, l&rsquo;unité usuelle de l&rsquo;énergie convertie est le <span class="imp">killowatt-heure</span> ($\text{kW}\cdot\text{h}$ souvent écrit <span class="imp">$\pu{kWh}$</span>).</p>
+<p class="fragment">Convertir $\pu{1 kWh}$ en $\pu{J}$.
+<span class="fragment">$$
+\begin{aligned}
+\text{1 kWh} &= \text{1 kW} \times \text{1 h} \\
+&= 10^3 \text{ W} \times 3600 \text{ s} \\
+&= 3,6 \times 10^6 {\color{#FF968D}\text{ W}\cdot\text{s}} \\
+&= 3,6 \times 10^6 {\color{#FF968D}\text{ J}}
+\end{aligned}
+$$
+</span>
+</p>
+<p class="fragment">Et donc <span class="imp">$\pu{1 kWh} = \pu{3,6 MJ}$</span>.</p>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h2 id="rendement-dun-convertisseur">Rendement d&rsquo;un convertisseur</h2>
+</section><section>
+<p><span class="imp">La quantité totale d&rsquo;énergie se conserve</span><br>mais grâce à un <span class="imp">convertisseur</span>,<br>elle peut passer d&rsquo;une forme à une autre.</p>
+<p><a href="https://phet.colorado.edu/sims/html/energy-forms-and-changes/latest/energy-forms-and-changes_fr.html">Une animation pour l&rsquo;illustrer.</a></p>
+</section><section>
+<p><span class="imp">Chaîne énergétique</span> d&rsquo;un convertisseur :</p>
+<img src="/rendementconv.png" style="background:none;box-shadow:none;width:700px;">
+</section><section>
+<ul>
+<li style="color:#88FA4E;">L'<b>énergie fournie</b> peut être de différentes formes :<br>
+lumineuse, mécanique, électrique, thermique, chimique</li>
+<li class="fragment" style="color:#56C1FF;">L'<b>énergie utile</b> résulte de la conversion de l'énergie fournie. Suivant le convertisseur, elle peut aussi être de différentes formes :<br>
+lumineuse, mécanique, électrique, thermique,chimique</li>
+<li class="fragment" style="color:#FF968D;">L'<b>énergie dissipée</b> correspond à l'énergie "perdue" dans la conversion (non convertie en énergie utile).<br>
+Elle est toujours sous forme thermique !</li>
+</ul>
+</section><section>
+<p>Par conservation de l&rsquo;énergie :</p>
+<p class="fragment">
+<b style="color:#88FA4E;">énergie fournie</b> = <b style="color:#56C1FF;">énergie utile</b>  + <b style="color:#FF968D;">énergie dissipée</b> 
+</p>
+</section><section>
+<p>Le <span class="imp">rendement $\eta$ d&rsquo;un convertisseur</span> est donné par :</p>
+<div class="fragment" style="position:relative;margin:auto;padding:10px 30px 20px 30px;border:solid 5px #FF968D;border-radius:15px;width:fit-content;">
+$\displaystyle \eta = \frac{\color{#56C1FF}P_\text{utile}}{\color{#88FA4E}P_\text{fournie}}$
+</div>
+</section><section>
+<p>Lorsque plusieurs conversions s&rsquo;enchaînent,<br>les rendements <span class="imp fragment">se multiplient</span>.</p>
+<p class="fragment">
+$\eta_\text{total} = \eta_\text{convertisseur 1}\times \eta_\text{convertisseur 2}\times\ldots$
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h2 id="puissance-électrique">Puissance électrique</h2>
+</section><section>
+<p>Un dipôle électrique est soumis à une tension $U$ entre ses bornes et parcouru par un courant d&rsquo;intensité $I$.</p>
+<p>La puissance convertie par le dipôle s&rsquo;écrit :</p>
+<div class="fragment" style="position:relative;margin:auto;padding:10px 30px 20px 30px;border:solid 5px #FF968D;border-radius:15px;width:fit-content;">
+$P = U\times I$
+</div>
+</section><section>
+<p>Unités :</p>
+<ul>
+<li>$P$ en <span class="imp fragment">watts (W)</span></li>
+<li>$U$ en <span class="imp fragment">volts (V)</span></li>
+<li>$I$ en <span class="imp fragment">ampères (A)</span></li>
+</ul>
+</section><section>
+<p>Ordres de grandeur :</p>
+<table border="1">
+  <tr>
+    <th style="background-color: #00AB8E;color:white">Appareil</th>
+    <th>Puissance</th>
+  </tr>
+  <tr>
+    <td style="background-color: #006C65;">Veilleuse d’appareil</td>
+    <td>1 W</td>
+  </tr>
+    <tr>
+    <td style="background-color: #006C65;">Chargeur</td>
+    <td>20 W</td>
+  </tr>
+  <tr>
+    <td style="background-color: #006C65;">Lampe</td>
+    <td>30 W</td>
+  </tr>
+  <tr>
+    <td style="background-color: #006C65;">Ordinateur</td>
+    <td>200 W</td>
+  </tr>
+  <tr>
+    <td style="background-color: #006C65;">Téléviseur</td>
+    <td>150 W</td>
+  </tr>
+</table>
+</section><section>
+<table border="1">
+  <tr>
+    <th style="background-color: #00AB8E;color:white;">Appareil</th>
+    <th>Puissance</th>
+  </tr>
+  <tr>
+    <td style="background-color: #006C65;">Fer à repasser</td>
+    <td>1200 W</td>
+  </tr>
+  <tr>
+    <td style="background-color: #006C65;">Lave-linge</td>
+    <td>2500 W</td>
+  </tr>
+  <tr>
+    <td style="background-color: #006C65;">Four</td>
+    <td>3000 W</td>
+  </tr>
+  <tr>
+    <td style="background-color: #006C65;">Plaque de cuisson</td>
+    <td>6000 W</td>
+  </tr>
+</table>
+</section><section>
+<p>Qu&rsquo;ont en commun les appareils du 2<sup>e</sup> tableau ?</p>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h2 id="effet-joule">Effet joule</h2>
+</section><section>
+<p>Les dipôles électriques dissipent de la puissance thermique du fait de leu résistance. C&rsquo;est l&rsquo;<span class="imp">effet Joule</span>.</p>
+</section><section>
+<p>Un dipôle ohmique est justement caractérisé par sa résistance $R$. Il convertit l&rsquo;intégralité de la puissance électrique reçue en puissance thermique.</p>
+<img src="/dipohm.png" style="background:none;box-shadow:none;width:600px;">
+</section><section>
+<p>La puissance dissipée par effet Joule est donnée par :</p>
+<br>
+<div class="fragment" style="position:relative;margin:auto;padding:10px 30px 20px 30px;border:solid 5px #FF968D;border-radius:15px;width:fit-content;">
+$\displaystyle P_J = U_{\!R} \times I = R I^2 = \frac{{U_{\!R}}^2}{R}$
+</div>
+<br>
+<p class="fragment">
+On passe dune formule à l'autre<br>en appliquant la loi d'Ohm.
+</p>
+</section><section>
+<p>Et l&rsquo;énergie dissipée par effet Joule vaut donc :</p>
+<br>
+<div class="fragment" style="position:relative;margin:auto;padding:10px 30px 20px 30px;border:solid 5px #FF968D;border-radius:15px;width:fit-content;">
+$\displaystyle E_J = P_J\Delta t =  R I^2 \Delta t$
+</div>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h2 id="bilan-de-puissance-dans-un-circuit">Bilan de puissance dans un circuit</h2>
+</section><section>
+<p>La puissance électrique fournie par un générateur vaut <span class="imp">la somme</span> des puissances électriques consommées<br>par chaque dipôle récepteur du circuit.</p>
+</section><section>
+<p>Exemple :</p>
+<img src="/bilanpuiss.png" style="background:none;box-shadow:none;width:600px;">
+<p>$P_G = P_M +P_L + P_{R_1} + P_{R_2}$</p>
+
+</section>
+</section><section>
+<p><a href="https://coursphychi.github.io/1spe/elec/">Retour site</a></p>
+</section>
+
+  
+
+
+</div>
+      
+
+    </div>
+<script type="text/javascript" src=/reveal-hugo/object-assign.js></script>
+
+<a href="/reveal-js/css/print/" id="print-location" style="display: none;"></a>
+<script type="text/javascript">
+  var printLocationElement = document.getElementById('print-location');
+  var link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.type = 'text/css';
+  link.href = printLocationElement.href + (window.location.search.match(/print-pdf/gi) ? 'pdf.css' : 'paper.css');
+  document.getElementsByTagName('head')[0].appendChild(link);
+</script>
+
+<script type="application/json" id="reveal-hugo-site-params">{"highlight_theme":"github-dark","line-numbers":true,"theme":"sky","transition":"concave","transition_speed":"fast"}</script>
+<script type="application/json" id="reveal-hugo-page-params">{"highlight_theme":"atom-one-dark-reasonable","theme":"moon"}</script>
+
+<script src="/reveal-js/js/reveal.js"></script>
+
+<script type="text/javascript">
+  
+  
+  function camelize(map) {
+    if (map) {
+      Object.keys(map).forEach(function(k) {
+        newK = k.replace(/(\_\w)/g, function(m) { return m[1].toUpperCase() });
+        if (newK != k) {
+          map[newK] = map[k];
+          delete map[k];
+        }
+      });
+    }
+    return map;
+  }
+  
+  var revealHugoDefaults = { center: true, controls: true, history: true, progress: true, transition: "slide" };
+  var revealHugoSiteParams = JSON.parse(document.getElementById('reveal-hugo-site-params').innerHTML);
+  var revealHugoPageParams = JSON.parse(document.getElementById('reveal-hugo-page-params').innerHTML);
+  
+  var options = Object.assign({},
+    camelize(revealHugoDefaults),
+    camelize(revealHugoSiteParams),
+    camelize(revealHugoPageParams));
+  Reveal.initialize(options);
+</script>
+
+
+  
+  
+  <script type="text/javascript" src="/reveal-js/plugin/markdown/marked.js"></script>
+  
+  <script type="text/javascript" src="/reveal-js/plugin/markdown/markdown.js"></script>
+  
+  <script type="text/javascript" src="/reveal-js/plugin/highlight/highlight.js"></script>
+  
+  <script type="text/javascript" src="/reveal-js/plugin/zoom-js/zoom.js"></script>
+  
+  
+  <script type="text/javascript" src="/reveal-js/plugin/notes/notes.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({startOnLoad: false});
+    let render = (event) => {
+      let mermaidElems = event.currentSlide.querySelectorAll('.mermaid');
+      if (!mermaidElems.length){
+          return
+      }
+      mermaidElems.forEach(mermaidElem => {
+          let processed = mermaidElem.getAttribute('data-processed');
+          if (!processed){
+              
+              mermaid.init(undefined, mermaidElem);
+          }
+      });
+    };
+    Reveal.addEventListener('slidechanged', render);
+    Reveal.addEventListener('ready', render);
+  </script>
+
+    
+
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']]
+  },
+  svg: {
+    fontCache: 'global'
+  }
+};
+</script>
+
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+</script>
+    
+  </body>
+</html>
