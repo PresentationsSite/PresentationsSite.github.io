@@ -63,7 +63,7 @@ color: white;
 box-shadow: none;
 </style>
 <div>
-<div id="resultat" name="resultat" style="border-radius:50%;font-size:80px;background-color:gray;width:200px;height:200px;margin:auto;display:flex;justify-content:center;align-items:center;"></div><br><button class="bouton" onclick="pileface()" style="margin:auto;display:flex;justify-content:center;">Jouer son sort</button>
+<div id="resultat" name="resultat" style="border-radius:50%;font-size:5em;background-color:gray;width:400px;height:400px;margin:auto;display:flex;justify-content:center;align-items:center;"></div><br><button class="bouton" onclick="pileface()" style="margin:auto;display:flex;justify-content:center;font-size:1.3em;">Jouer son sort</button>
 </div>
 <script>
 function pileface() {
@@ -72,8 +72,8 @@ function pileface() {
     res.textContent = "💀";
     res.style.backgroundColor = "red";}
     else{
-    res.textContent = "😃";
-    res.style.backgroundColor = "green";
+    res.textContent = "😅";
+    res.style.backgroundColor = "#1AB635";
     }
     setTimeout(() => {res.textContent = "";res.style.backgroundColor = "gray"; }, 1000); 
     }
