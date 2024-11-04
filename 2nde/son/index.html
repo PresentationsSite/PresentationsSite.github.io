@@ -120,7 +120,7 @@ animation: pulse 0.75s infinite;
 </div>
 </section><section>
 <style type="text/css">@media screen and (max-width: 767px) {.tg {width: auto !important;}.tg col {width: auto !important;}.tg-wrap {overflow-x: auto;-webkit-overflow-scrolling: touch;margin: auto 0px;}}</style><div class="tg-wrap"><table style="border-collapse:collapse;border-spacing:0;margin:0px auto" class="tg"><tbody><tr><td style="background-color:#1e1bb2;border-color:#c0c0c0;border-style:solid;border-width:1px;color:#ffffff;font-family:Arial, sans-serif;font-size:32px;overflow:hidden;padding:10px 20px;text-align:center;vertical-align:top;word-break:normal">milieu</td><td style="border-color:#c0c0c0;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:32px;overflow:hidden;padding:10px 20px;text-align:center;vertical-align:top;word-break:normal">air</td><td style="border-color:#c0c0c0;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:32px;overflow:hidden;padding:10px 20px;text-align:center;vertical-align:top;word-break:normal">eau</td><td style="border-color:#c0c0c0;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:32px;overflow:hidden;padding:10px 20px;text-align:left;vertical-align:top;word-break:normal">acier</td></tr><tr><td style="background-color:#11575a;border-color:#c0c0c0;border-style:solid;border-width:1px;color:#ffffff;font-family:Arial, sans-serif;font-size:32px;overflow:hidden;padding:10px 20px;text-align:center;vertical-align:top;word-break:normal">vitesse du son (m/s)</td><td style="border-color:#c0c0c0;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:32px;overflow:hidden;padding:10px 20px;text-align:center;vertical-align:top;word-break:normal">340</td><td style="border-color:#c0c0c0;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:32px;overflow:hidden;padding:10px 20px;text-align:center;vertical-align:top;word-break:normal">1500</td><td style="border-color:#c0c0c0;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:32px;overflow:hidden;padding:10px 20px;text-align:left;vertical-align:top;word-break:normal">5800</td></tr></tbody></table></div>
-<p class="fragment">Comment convertir ces vitesses en km/h</p>
+<p class="fragment">Comment convertir ces vitesses en km/h ?</p>
 </section><section>
 <p>Commençons par convertir des km/h en m/s<br>en prenant l&rsquo;exemple de $\pu{72 km/h}$ :</p>
 <p><span class="fragment">$\pu{72 km/h}$ </span><span class="fragment">$\displaystyle =\frac{\pu{72 km}}{\pu{1 h}}$</span>  <span class="fragment">$\displaystyle= \frac{\pu{72E3 m}}{\pu{3600 s}}$</span> <span class="fragment">$\displaystyle=\frac{\pu{72E3 m}}{\pu{3,6E3 s}}$</span></p>
@@ -134,7 +134,7 @@ animation: pulse 0.75s infinite;
 <p>En appelant $d$ la distance parcourue (en m)<br>et $\Delta t$ la durée écoulée (en s),<br>la vitesse $v$ d&rsquo;un signal est<br>donnée par la relation :</p>
 <br>
 <div class="fragment" style="display: flex; justify-content: center; align-items: center; height: 100%;">
-<div style="background-color:#FF644E;padding:0px 0px 0px 0px;width:40%;color:white">
+<div style="background-color:#FF644E;padding:0px 50px 0px 50px;width:fit-content;color:white;border-radius:10px;">
 $$v = \frac{d}{\Delta t}$$
 </div>
 </div>
@@ -145,13 +145,13 @@ $$v = \frac{d}{\Delta t}$$
 </section><section>
 <p>Si on connaît la vitesse et la durée,<br>comment obtient-on la distance ?</p>
 <div class="fragment" style="display: flex; justify-content: center; align-items: center; height: 100%;">
-<div style="background-color:#0076BA;padding:0px 0px 0px 0px;width:30%;color:white">
+<div style="background-color:#0076BA;padding:0px 50px 0px 50px;width:fit-content;color:white;border-radius:10px;">
 $$d=v\times \Delta t$$
 </div>
 </div>
 <p class="fragment">Et si on connaît la distance et la vitesse,<br>comment obtient-on la durée ?</p>
 <div class="fragment" style="display: flex; justify-content: center; align-items: center; height: 100%;">
-<div style="background-color:#1DB100;padding:0px 0px 0px 0px;width:30%;color:white">
+<div style="background-color:#1DB100;padding:0px 50px 0px 50px;width:fit-content;color:white;border-radius:10px;">
 $$\Delta t = \frac{d}{v}$$
 </div>
 </div>
@@ -256,7 +256,7 @@ document.getElementById('jouerSon').addEventListener('click', function() {
 </section><section>
 <p>Pour des sons musicaux, la période est souvent très petite, de l&rsquo;ordre de la cs ou ms. On lui préfère alors<br>le <span class="imp" style="color:#FFD932">nombre de répétitions (de motifs) par seconde</span><br>qui est l&rsquo;inverse de la période et qu&rsquo;on appelle<br>la <span class="imp">fréquence $f$</span>.</p>
 <div class="fragment" style="display: flex; justify-content: center; align-items: center; height: 100%;">
-<div style="background-color:#ED220D;padding:0px 0px 0px 0px;width:30%;color:white">
+<div style="background-color:#ED220D;padding:0px 50px 0px 50px;width:fit-content;color:white;border-radius:15px;">
 $$f = \frac{1}{T}$$
 </div>
 </div>
