@@ -1,0 +1,562 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>Méthodes physiques d&#39;analyse</title>
+
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="/reveal-js/css/reset.css">
+<link rel="stylesheet" href="/reveal-js/css/reveal.css"><link rel="stylesheet" href="/reveal-js/css/theme/league.css" id="theme">
+<link rel="stylesheet" href="/highlight-js/atom-one-dark-reasonable.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  </head>
+  <body>
+    
+    <div class="reveal">
+      <div class="slides">
+  
+
+    <section><style>
+img {
+border: none !important;
+}
+
+.imp {
+font-weight:bold;color:#FF968D;
+}
+
+li {
+color: #fff;
+}
+
+ul {
+margin-left: auto;
+margin-right: auto;
+text-align: left;
+width: fit-content;
+list-style-position: outside;
+color:#fff;
+}
+
+span {
+font-weight:normal;
+}
+
+</style>
+<h2 id="analyser-un-système-chimique-par-des-méthodes-physiques">Analyser un système chimique par des méthodes physiques</h2>
+</section><section>
+<h2 id="spectroscopie">Spectroscopie</h2>
+</section><section>
+
+
+<section data-shortcode-section>
+<h3 id="spectroscopie-uv-visible">Spectroscopie UV-Visible</h3>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/cuvespectro.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+<p><br><br><br></p>
+<p>L&rsquo;<span class="imp">absorbance $A_\lambda$</span> d&rsquo;une solution quantifie la proportion d&rsquo;un rayonnement incident $I_0$ monochromatique absorbée en mesurant l&rsquo;intensité<br>du rayonnement transmis $I$.</p>
+</section><section>
+<p>Le spectre ultraviolet-visible d&rsquo;une solution est la courbe représentant l&rsquo;<span class="imp">absorbance $A_\lambda$</span> (sans unité)<br>en fonction de la <span class="imp">longueur d&rsquo;onde $\lambda$</span>,<br>
+pour $\lambda$ pouvant aller d&rsquo;environ 100 à 800 nm.</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/exuvvis.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+</section><section>
+<p>Lorsque la solution absorbe dans le visible, comment peut-on relier un spectre d&rsquo;absorption<br>à la couleur perçue ?</p>
+<br>
+<p class="fragment">La solution agit comme un <span class="imp">filtre</span>.<br>La couleur absorbée est donc<br><span class="imp">complémentaire</span> de la couleur perçue.</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background="#000414"
+      data-background-image="/disque_chromatique.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background="#fff"
+      data-background-image="/spectreabsorption.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+<aside class="notes"><p>A peut être supérieur à 1 (ce n&rsquo;est pas un pourcentage)</p>
+</aside>
+</section><section>
+<iframe width="900" height="600" frameborder="0" scrolling="no" src="//plotly.com/~Chinasky/24.embed"></iframe>
+<aside class="notes"><p>Je n&rsquo;ai pas montré de colorant vert sur le graphe car ils ont l&rsquo;air d&rsquo;avoir surtout un pic très haut dans le rouge (plus haut que les autres) et un petit pic dans le bleu à peine apparent. Cela prête à confusion. Par contre , la chlorophylle, c&rsquo;est nickel.</p>
+</aside>
+</section><section>
+<p>Quel devrait être le spectre d&rsquo;un colorant vert ?</p>
+<br>
+<p class="fragment">Il doit absorber le magenta<br>donc à la fois le rouge et le bleu.</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background="#002400"
+      data-background-image="/spectrechlorophylle.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h3 id="spectroscopie-infrarouge">Spectroscopie infrarouge</h3>
+</section><section>
+<p>La spectroscopie IR consiste à établir<br>le spectre de <span class="imp">transmittance</span> d&rsquo;un échantillon.</p>
+</section><section>
+<p>On trace la <span class="imp">transmittance</span> (en %) <br>en fonction du <span class="imp">nombre d&rsquo;onde</span> (en $\pu{cm^-1})$,<br>une grandeur proportionnelle à la fréquence.</p>
+</section><section>
+<ul>
+<li>Plus la transmittance est faible<br>et plus l'absorbance est grande.</li>
+<br>
+<li class="fragment">Le nombre d'onde est l'inverse<br>de la longueur d'onde.</li>
+</ul>
+</section><section>
+<p>La spectroscopie infrarouge exploite le fait que les molécules possèdent des fréquences spécifiques pour lesquelles elles vibrent en correspondance avec des niveaux d&rsquo;énergie discrets<br>(modes vibratoires).</p>
+</section><section>
+<p>Ces fréquences de résonance dépendent de<br>la nature de la liaison entre les atomes.</p>
+<p class="fragment">
+Et pour chaque résonance, on obtient un creux dans le spectre de transmittance (correspondant à une forte absorbance du rayonnement IR).
+</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background="#fff"
+      data-background-size="contain"
+      data-background-transition="concave"
+      data-background-video="/co2vib4.mp4"
+      data-background-video-loop="true">
+<p style="color:#000;">Les 4 modes de vibration de la molécule de $\ce{CO2}$<br>
++ <a href="https://ir.cheminfo.org">Application</a> pour simuler le spectre<br>et visualiser les vibrations<p>
+</section><section>
+<p><a href="http://chimie.ostralo.net/spectreIR/">Exemples de spectres interactifs</a></p>
+</section><section>
+<iframe width="640" height="500" src="https://www.youtube.com/embed/qFsmnTmS2sg?si=9tXm4fZgbhK2kECD&amp;start=67" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<aside class="notes"><p>Juste pour les curieux.
+Lien vers la vidéo : <a href="https://archive.org/details/vibration_of_molecules">https://archive.org/details/vibration_of_molecules</a></p>
+</aside>
+</section><section>
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowfullscreen="allowfullscreen"
+    loading="eager"
+    referrerpolicy="strict-origin-when-cross-origin"
+    src="https://www.youtube.com/embed/DDTIJgIh86E?autoplay=0&controls=1&end=0&loop=0&mute=0&start=0"
+    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;"
+    title="YouTube video"
+  ></iframe>
+</div>
+</section><section>
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowfullscreen="allowfullscreen"
+    loading="eager"
+    referrerpolicy="strict-origin-when-cross-origin"
+    src="https://www.youtube.com/embed/U0Hu3-J0igE?autoplay=0&controls=1&end=0&loop=0&mute=0&start=0"
+    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;"
+    title="YouTube video"
+  ></iframe>
+</div>
+</section><section>
+<p>⚠️Petite bizarrerie⚠️</p>
+<p>L&rsquo;axe des abscisses<br>
+(le nombre d&rsquo;onde en $\pu{cm^-1}$)<br>est orienté vers la gauche !</p>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h2 id="dosage-par-étalonnage">Dosage par étalonnage</h2>
+</section><section>
+<p>Type de dosage <span class="imp">non destructif</span> consistant à :</p>
+<br>
+<ul>
+<li class="fragment">mesurer une <span class="imp">propriété physique</span> sur une <span class="imp">gamme étalon</span> de solutions de concentrations connues (obtenues par dilution d'une solution mère),</li>
+</ul>
+</section><section>
+<ul>
+<li>tracer la <span class="imp">courbe d'étalonnage</span>,</li>
+<br>
+<li class="fragment">mesurer la propriété physique sur la solution mystère et utiliser la courbe d'étalonnage (ou la proportionnalité si possible) pour déterminer sa concentration.</li>
+</ul>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h3 id="spectrophotométrique">Spectrophotométrique</h3>
+</section><section>
+<p>Dans le cas d&rsquo;un dosage par étalonnage spectrophotométrique, la propriété physique<br>mesurée est <span class="fragment">l&rsquo;<span class="imp">absorbance</span></span> de la solution<br>à une longueur d&rsquo;onde donnée.</p>
+</section><section>
+<p>⚠️ Conditions d&rsquo;application ⚠️ :</p>
+<br>
+<ul>
+<li class="fragment">la solution doit absorber la lumière uv-visible<br>(la solution est généralement colorée),</li>
+<br>
+<li class="fragment">à la longueur d'onde choisie, la solution<br>doit être <span class="imp">la seule</span> à absorber le rayonnement.</li>
+</ul>
+</section><section>
+<p>⚠️<br>
+Pour une sensibilité maximale et se prémunir au mieux de l&rsquo;absorbance d&rsquo;autres espèces, on choisit pour longueur d&rsquo;onde de travail la longueur d&rsquo;onde <span class="imp">$\lambda_{max}$</span> correspondant au <span class="imp">maximum d&rsquo;absorbance</span><br>du spectre de l&rsquo;espèce étudiée.</p>
+</section><section>
+<p>Les mesures se font au spectrophotomètre :</p>
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowfullscreen="allowfullscreen"
+    loading="eager"
+    referrerpolicy="strict-origin-when-cross-origin"
+    src="https://www.youtube.com/embed/aTcJy2S1eCs?autoplay=0&controls=1&end=0&loop=0&mute=0&start=0"
+    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;"
+    title="YouTube video"
+  ></iframe>
+</div>
+</section><section>
+<p><span class="imp">Loi de Beer-Lambert</span> :</p>
+<br>
+<div style="display: flex; justify-content: center; align-items: center; height: 100%;border: solid 5px #FF968D; border-radius: 20px;">
+<div style="padding:10px 30px 20px 30px;width:fit-content;">
+Pour une longueur d'onde $\lambda$ donnée et une largeur de cuve fixée, <span class="imp">l'absorbance $A_\lambda$</span> d'une espèce chimique en solution diluée <span class="imp">est proportionnelle à la concentration $C$ en quantité de matière</span><br>de cette espèce chimique.
+</div>
+</div>
+</section><section>
+<p>Version simple :</p>
+<br>
+<div style="display: flex; border: solid 5px #FF968D; border-radius: 20px; width:fit-content;margin-right:auto;margin-left:auto;">
+<div style="padding:10px 30px 20px 30px;width:fit-content;">
+$$A_\lambda=k\times C$$
+</div>
+</div>
+<br>
+<ul>
+<li class="fragment">$A_\lambda$ sans unité</li>
+<li class="fragment">$C$ en $\color{#FFF056}\pu{mol*L-1}$</li>
+<li class="fragment">$k$ en <span class="fragment">$\color{#FFF056}\pu{L*mol-1}$</span></li>
+</ul>
+</section><section>
+<p>Version complète :</p>
+<br>
+<div style="display: flex; border: solid 5px #FF968D; border-radius: 20px; width:fit-content;margin-right:auto;margin-left:auto;">
+<div style="padding:10px 30px 20px 30px;width:fit-content;">
+$$A_\lambda=\varepsilon_\lambda \times \ell \times C$$
+</div>
+</div>
+<br>
+<ul>
+<li class="fragment">$\ell$ (en $\color{#FFF056}\pu{cm}$)<br>épaisseur de la cuve</li>
+<li class="fragment">$\varepsilon_\lambda$ (en <span class="fragment">$\color{#FFF056}\pu{L*mol-1*cm-1}$</span>)<br>coefficient d'absorption molaire</li>
+</ul>
+</section><section>
+<p>Le domaine de validité de la loi de Beer-Lambert</a> suppose que l&rsquo;absorbance et donc<br>la <span class="imp">concentration reste modérée</span>.</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/validitebeer.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+</section><section>
+<p><b style="color:#56C1FF;">Protocole du dosage</b> :</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/protspectro.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h3 id="conductimétrique">Conductimétrique</h3>
+</section><section>
+<p>Une autre propriété physique utilisable<br>est la <span class="imp">conductivité $\sigma$</span> de la solution.</p>
+<p class="fragment">
+La présence d’ions dans une solution lui confère<br>des propriétés de conduction électrique que mesure<br>la conductivité (mieux la solution conduit<br>et plus sa conductivité est grande).
+</p>
+</section><section>
+<p>La conductivité $\sigma_i$ de chaque ions i en solution contribue à la conductivité totale $\sigma$ :</p>
+<p>$$\sigma=\sum_i \sigma_i$$</p>
+</section><section>
+<p><span class="imp">Loi de Kohlrausch</span> :</p>
+<br>
+<div style="display: flex; border: solid 5px #FF968D; border-radius: 20px; width:fit-content;margin-right:auto;margin-left:auto;">
+<div style="padding:10px 30px 20px 30px;width:fit-content;">
+Pour une concentration suffisamment faible,<br>
+la conductivité d'un ion est proportionnelle<br>à sa concentration.
+</div>
+</div>
+</section><section>
+<div style="display: flex; border: solid 5px #FF968D; border-radius: 20px; width:fit-content;margin-right:auto;margin-left:auto;">
+<div style="padding:10px 30px 20px 30px;width:fit-content;">
+$$\sigma_i = \lambda_i\times C_i$$
+</div>
+</div>
+<br>
+<ul>
+<li>$\sigma_i$ : conductivité de l'ion i<br>en $\color{#FFF056}\pu{S*m-1}$ (siemens par mètre)</li>
+<li>$C_i$ : concentration de l'ion i<br>en $\color{#FFF056}\pu{mol*L-1}$</li>
+<li>$\lambda_i$ : conductivité molaire ionique de l'ion i<br>en $\color{#FFF056}\pu{S*m^2*mol-1}$</li>
+</ul>
+</section><section>
+<p>La formule de la conductivité de la solution<br>devient alors :</p>
+<br>
+<div style="display: flex; border: solid 5px #FF968D; border-radius: 20px; width:fit-content;margin-right:auto;margin-left:auto;">
+<div style="padding:20px 30px 20px 30px;width:fit-content;">
+$$\sigma = \sum_i\lambda_i\times C_i$$
+</div>
+</div>
+</section><section>
+<p>Pour obtenir la conductivité d&rsquo;une solution, on utilise un <span class="imp">conductimètre</span> qui mesure sa <span class="imp">conductance G</span>.</p>
+<div style="position:relative;margin-left:auto;margin-right:auto;width:70%;max-width:100%;margin-bottom:-40px;margin-top:-40px;">
+<img src="/conductimetre.png" style="box-shadow:none;background:none;">
+</div>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/principeconductimetre.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+</section><section>
+<p>La conductance est l&rsquo;inverse<br>de la résistance électrique :</p>
+<p>$$G=\frac{1}{R}$$</p>
+<p class="fragment">Elle se mesure en <span class="fragment">siemens $\color{#FFF056}\pu{S}\color{#eee}=\color{#FFF056}\pu{\Omega}^{-1}$.</span>
+</section><section>
+<p>On passe de la conductance à la conductivité<br>à partir de la géométrie des électrodes :</p>
+<br>
+<div style="display: flex; border: solid 5px #FFF; border-radius: 20px; width:fit-content;margin-right:auto;margin-left:auto;">
+<div style="padding:0px 30px 0px 30px;width:fit-content;">
+$$\sigma=G\times k =G\times\frac{\ell}{S}$$
+</div>
+</div>
+<br>
+<ul>
+<li>$\sigma$ : conductivité (en $\color{#FFF056}\pu{S*m-1}$)</li>
+<li>$G$ : conductance (en $\color{#FFF056}\pu{S}$)</li>
+<li>$k$ : "constante de cellule" (en $\color{#FFF056}\pu{m-1}$)</li>
+<li>$S$ : surface d'une plaque (en $\color{#FFF056}\pu{m2}$)</li>
+<li>$\ell$ : distance entre les plaques (en $\color{#FFF056}\pu{m}$)</li>
+</ul>
+</section><section>
+<p>Un conductimètre peut mesurer directement la conductivité mais il faut pour cela l&rsquo;étalonner<br>(la constante de cellule dépend de la température et évolue en fonction de la détérioration des plaques).</p>
+</section><section>
+<p>Condition pour réaliser un dosage par étalonnage :</p>
+<p class="fragment">
+Il faut qu'<span class="imp">un seul soluté ionique</span> soit dissous<br>dans la solution à doser (apportant un seul cation<br>et un seul anion).
+</p>
+</section><section>
+<p>Exemple d&rsquo;une solution de chlorure de fer III $\ce{(Fe3+ + 3C\ell-)}$</p>
+<p>La concentration apportée<br>en $\ce{FeC\ell3 (s)}$ vaut $C$.</p>
+</section><section>
+<p>Les concentrations des ions en solution sont alors :</p>
+<p>$\ce{[Fe3+]}=$<span class="fragment">$\;C$</span>
+<br>
+$\ce{[C\ell-]}=$<span class="fragment">$\;3C$</span></p>
+<div class="fragment">
+Et d'après la loi de Kohlrausch :<br>
+<div class="fragment">
+<p>$
+\begin{aligned}
+\sigma&amp;=\lambda_\ce{Fe3+}\ce{[Fe3+]}+\lambda_\ce{C\ell-}\ce{[C\ell-]}\\
+&amp;=\left(\lambda_\ce{Fe3+}+3\lambda_\ce{C\ell-}\right)\times C
+\end{aligned}
+$</p>
+</div>
+</div>
+<p class="fragment">
+Si la loi s'applique, on doit obtenir une conductivité proportionnelle à la concentration apportée.
+</p>
+</section><section>
+<p>Le protocole du dosage est toujours le même :</p>
+<ul>
+<li class="fragment">on réalise une gamme étalon en diluant une solution contenant le composé ionique présent dans la solution à doser.</li>
+<li class="fragment">on mesure les conductivités des solutions étalons<br>et on trace la courbe d'étalonnage.</li>
+<li class="fragment">on mesure la conductivité de la solution à doser<br>et on détermine sa concentration grâce à la courbe.</li>
+</ul>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h2 id="loi-des-gaz-parfaits">Loi des gaz parfaits</h2>
+</section><section>
+<p>Loi de Mariotte :</p>
+<p class="fragment">Le produit de la pression d'un gaz par son volume<br><span class="imp">à température fixée</span> est une constante.</p>
+<div class="fragment">
+$$PV = C(T)$$
+</div>
+<p class="fragment">On va maintenant généraliser cette loi en explicitant cette constante dépendant de la température.</p>
+</section><section>
+<p><strong><a href="https://phet.colorado.edu/sims/html/gases-intro/latest/gases-intro_all.html?locale=fr">Animation</a></strong></p>
+</section><section>
+<p>Un gaz est dit <span class="imp">parfait</span> si la taille des entités est négligeable devant la distance qui les sépare et si les interactions entre elles sont négligeables.</p>
+</section><section>
+<p><span class="imp">Loi des gaz parfaits</span> :</p>
+<br>
+<div style="display: flex; border: solid 5px #FF968D; border-radius: 20px; width:fit-content;margin-right:auto;margin-left:auto;">
+<div style="padding:10px 30px 20px 30px;width:fit-content;">
+$$PV = nRT$$
+</div>
+</div>
+<br>
+<ul>
+<li class="fragment">$P$ : pression (en <span class="fragment">$\color{#FFF056}\pu{Pa}$</span>)</li>
+<li class="fragment">$V$ : volume  (en <span class="fragment">$\color{#FFF056}\pu{m3}$</span>)</li>
+<li class="fragment">$n$ : quantité de matière  (en <span class="fragment">$\color{#FFF056}\pu{mol}$</span>)</li>
+<li class="fragment">$T$ : température  (en <span class="fragment">$\color{#FFF056}\pu{K}$</span>)</li>
+<li class="fragment">$R$ : constante des gaz parfaits<br>
+$R= 8,314$ <span class="fragment">$\color{#FFF056}\pu{Pa*m3*K-1*mol-1}$</span></li>
+</ul>
+</section><section>
+<p>La loi des gaz parfaits permet donc de déterminer<br>la quantité de matière d&rsquo;un gaz si on connaît<br>sa presssion, son volume et sa température :</p>
+<p class="fragment">
+$\displaystyle n=\;$<span class="fragment">$\displaystyle\frac{PV}{RT}$</span>
+</p>
+</section><section>
+<p>À température et pression fixée, une même quantité de gaz parfait occupe le même volume quel que soit le gaz.</p>
+<p class="fragment">Le volume molaire $V_m$ d’un gaz parfait est le volume occupé par une mole de ce gaz :</p>
+<p class="fragment">
+$\displaystyle V_m=\frac{V}{n}=\;$<span class="fragment">$\displaystyle\frac{RT}{P}$</span>
+</p>
+<ul>
+<li class="fragment">À 0 °C (<span class="fragment">$\color{#FFF056}\pu{273,15 K}$</span>) et pression atmosphérique<br>(<span class="fragment">$\color{#FFF056}\pu{1 atm}=\pu{1,013 bar}=\pu{1,013E5 Pa}$</span>),<br>$V_m=\,$<span class="fragment">$\pu{22,4e-3m^3}=\color{#FFF056}\pu{22,4 L}$</span></li>
+<li class="fragment">Et à 20 °C et sous $\pu{1 atm}$,<br>
+$V_m=\;$<span class="fragment">$\color{#FFF056}\pu{24 L}$</span>
+</li>
+</ul>
+
+</section>
+</section><section>
+<p><a href="https://coursphychi.github.io/tsti2d/metphys/">Retour site</a></p>
+</section>
+
+  
+
+
+</div>
+      
+
+    </div>
+<script type="text/javascript" src=/reveal-hugo/object-assign.js></script>
+
+<a href="/reveal-js/css/print/" id="print-location" style="display: none;"></a>
+<script type="text/javascript">
+  var printLocationElement = document.getElementById('print-location');
+  var link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.type = 'text/css';
+  link.href = printLocationElement.href + (window.location.search.match(/print-pdf/gi) ? 'pdf.css' : 'paper.css');
+  document.getElementsByTagName('head')[0].appendChild(link);
+</script>
+
+<script type="application/json" id="reveal-hugo-site-params">{"highlight_theme":"github-dark","line-numbers":true,"theme":"sky","transition":"concave","transition_speed":"fast"}</script>
+<script type="application/json" id="reveal-hugo-page-params">{"highlight_theme":"atom-one-dark-reasonable","theme":"league"}</script>
+
+<script src="/reveal-js/js/reveal.js"></script>
+
+<script type="text/javascript">
+  
+  
+  function camelize(map) {
+    if (map) {
+      Object.keys(map).forEach(function(k) {
+        newK = k.replace(/(\_\w)/g, function(m) { return m[1].toUpperCase() });
+        if (newK != k) {
+          map[newK] = map[k];
+          delete map[k];
+        }
+      });
+    }
+    return map;
+  }
+  
+  var revealHugoDefaults = { center: true, controls: true, history: true, progress: true, transition: "slide" };
+  var revealHugoSiteParams = JSON.parse(document.getElementById('reveal-hugo-site-params').innerHTML);
+  var revealHugoPageParams = JSON.parse(document.getElementById('reveal-hugo-page-params').innerHTML);
+  
+  var options = Object.assign({},
+    camelize(revealHugoDefaults),
+    camelize(revealHugoSiteParams),
+    camelize(revealHugoPageParams));
+  Reveal.initialize(options);
+</script>
+
+
+  
+  
+  <script type="text/javascript" src="/reveal-js/plugin/markdown/marked.js"></script>
+  
+  <script type="text/javascript" src="/reveal-js/plugin/markdown/markdown.js"></script>
+  
+  <script type="text/javascript" src="/reveal-js/plugin/highlight/highlight.js"></script>
+  
+  <script type="text/javascript" src="/reveal-js/plugin/zoom-js/zoom.js"></script>
+  
+  
+  <script type="text/javascript" src="/reveal-js/plugin/notes/notes.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({startOnLoad: false});
+    let render = (event) => {
+      let mermaidElems = event.currentSlide.querySelectorAll('.mermaid');
+      if (!mermaidElems.length){
+          return
+      }
+      mermaidElems.forEach(mermaidElem => {
+          let processed = mermaidElem.getAttribute('data-processed');
+          if (!processed){
+              
+              mermaid.init(undefined, mermaidElem);
+          }
+      });
+    };
+    Reveal.addEventListener('slidechanged', render);
+    Reveal.addEventListener('ready', render);
+  </script>
+
+    
+
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']]
+  },
+  svg: {
+    fontCache: 'global'
+  }
+};
+</script>
+
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+</script>
+    
+  </body>
+</html>
