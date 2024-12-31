@@ -1,0 +1,954 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>Cinétique chimique</title>
+
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="/reveal-js/css/reset.css">
+<link rel="stylesheet" href="/reveal-js/css/reveal.css"><link rel="stylesheet" href="/reveal-js/css/theme/league.css" id="theme">
+<link rel="stylesheet" href="/highlight-js/atom-one-dark-reasonable.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  </head>
+  <body>
+    
+    <div class="reveal">
+      <div class="slides">
+  
+
+    <section><style>
+img {
+border: none !important;
+}
+
+.imp {
+font-weight:bold;color:#FF968D;
+}
+
+li {
+color: #fff;
+}
+
+ul {
+margin-left: auto;
+margin-right: auto;
+text-align: left;
+width: fit-content;
+list-style-position: outside;
+color:#fff;
+}
+
+span {
+font-weight:normal;
+}
+
+</style>
+
+
+<section data-shortcode-section>
+<h1 id="cinétique-dune-transformation-chimique">Cinétique d&rsquo;une transformation chimique</h1>
+</section><section>
+<p>Une transformation chimique<br>peut se dérouler plus ou moins vite.</p>
+</section><section>
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowfullscreen="allowfullscreen"
+    loading="eager"
+    referrerpolicy="strict-origin-when-cross-origin"
+    src="https://www.youtube.com/embed/-OqPbuo1S_s?autoplay=0&controls=1&end=0&loop=0&mute=0&start=0"
+    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;"
+    title="YouTube video"
+  ></iframe>
+</div>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h2 id="transformation-lente-ou-rapide">Transformation lente ou rapide</h2>
+</section><section>
+<p>Pour étudier la cinétique d&rsquo;une transformation,<br>on utilise un capteur de suivi temporel<br>de l’évolution
+d’un système.</p>
+<p class="fragment"><u>Rq</u> :  ce capteur peut être simplement l'œil.</p>
+</section><section>
+<p>Si le temps de réponse du capteur est trop grand<br>ou si les manipulations à réaliser avant le début<br>des mesures empêchent la mise en œuvre du suivi cinétique, la transformation est dite <span class="imp">rapide</span>.<br>Sinon, elle est dite <b style="color:#56C1FF;">lente</b>.</p>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h2 id="vitesse-volumique-de-formation">Vitesse volumique de formation</h2>
+</section><section>
+<p>Dans un réacteur de volume constant, la <span class="imp">vitesse volumique de formation</span> d’une espèce <span style="color:#FFF056;">à une date $t$</span><br>est égale à la valeur de la <span class="imp">dérivée temporelle de sa concentration</span> en quantité de matière <span style="color:#FFF056;">à cette date</span>.</p>
+<br>
+<p class="fragment">
+<u>Exemple</u> :
+La vitesse de formation du diiode s’écrit :<br><br>
+$\displaystyle v_{f,\ce{I2}}{\color{#FFF056}(t)}=\frac{\mathrm{d}\left[\ce{I_2}{\color{#FFF056}(t)}\right]}{\mathrm{d}t}$ 
+</p>
+</section><section>
+<p>Si l’espèce est <span class="imp">produite</span> au cours de la transformation, sa <span class="imp">concentration augmente</span> et donc<br>sa<span class="imp">vitesse de formation est <span class="imp">positive</span>.</p>
+<p class="fragment">
+Si l’espèce est <b style="color:#56C1FF">consommée (réactif)</b>,<br>sa <b style="color:#56C1FF">vitesse de formation est négative</b>.
+</p>
+</section><section>
+<p>Graphiquement, la valeur de la vitesse de formation<br><span style="color:#FFF056;">à un instant $t$</span> est donnée par la valeur de la <span class="imp">pente de<br>la tangente</span> à la courbe représentant l&rsquo;évolution<br>de la concentration <span style="color:#FFF056;">à cette date</span>.</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/cinetch1.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+</section><section>
+<p>Que vaut la vitesse de formation à $t=2$ min ?</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/cinetch1.png"
+      data-background-size="contain"
+      data-background-transition="concave-in fade-out">
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/cinetch2.png"
+      data-background-size="contain"
+      data-background-transition="fade-in fade-out">
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/cinetch3.png"
+      data-background-size="contain"
+      data-background-transition="fade-in concave-out">
+</section><section>
+<p>Et à $t=3$ min ?</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/cinetch1.png"
+      data-background-size="contain"
+      data-background-transition="concave-in fade-out">
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/cinetch4.png"
+      data-background-size="contain"
+      data-background-transition="fade-in concave-out">
+</section><section>
+<p>Et la vitesse initiale ($t=0$ s) ?</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/cinetch1.png"
+      data-background-size="contain"
+      data-background-transition="concave-in fade-out">
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/cinetch5.png"
+      data-background-size="contain"
+      data-background-transition="fade-in concave-out">
+</section><section>
+<h2 id="vitesse-volumique-de-disparition">Vitesse volumique de disparition</h2>
+</section><section>
+<p>Dans un réacteur de volume constant,<br>la <span class="imp">vitesse volumique de <b style="color:#56C1FF">disparition</b></span> d’une espèce<br><span style="color:#FFF056;">à une date $t$ </span>est égale à <span class="fragment">l&rsquo;<b style="color:#56C1FF">opposé</b></span><span class="imp"> de la dérivée temporelle de sa concentration</span><br>en quantité de matière <span style="color:#FFF056;">à cette date</span>.</p>
+<br>
+<p class="fragment">
+<u>Exemple</u> :
+La vitesse de disparition<br>du peroxyde d’hydrogène s’écrit :<br><br>
+$\displaystyle v_{{\color{#56C1FF}d},\ce{H2O2}}{\color{#FFF056}(t)}={\color{#56C1FF}-}\frac{\mathrm{d}\left[\ce{H2O2}{\color{#FFF056}(t)}\right]}{\mathrm{d}t}$ 
+</p>
+</section><section>
+<p>Et graphiquement ?</p>
+<p>Que vaut la vitesse de disparition du réactif à $t=30$ s ?</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/cinetch6.png"
+      data-background-size="contain"
+      data-background-transition="concave-in fade-out">
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/cinetch7.png"
+      data-background-size="contain"
+      data-background-transition="fade-in concave-out">
+</section><section>
+<p><u>Rq</u>:</p>
+<p>Les vitesses volumiques présentent l’avantage<br>de ne pas dépendre du volume du système.</p>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h2 id="loi-de-vitesse-et-facteurs-cinétiques">Loi de vitesse et facteurs cinétiques</h2>
+</section><section>
+<p>Une <span class="imp">loi de vitesse</span> est l&rsquo;expression de la vitesse volumique de formation ou de disparition d’une espèce en fonction des différents paramètres qui la modifient.</p>
+</section><section>
+<div style="position:relative;margin:auto;border: solid 5px #FF968D;border-radius:10px;padding:20px 20px 10px 20px;width:fit-content;">
+Les <span class="imp">facteurs cinétiques</span> sont les grandeurs<br>qui apparaissent dans la loi de vitesse<br>(température, concentration).
+<p>Ce sont sont donc les paramètres<br>qui influent sur la durée d&rsquo;une transformation.</p>
+</div>
+</section><section>
+<p><u>Exemple</u> :</p>
+<p>La loi de vitesse de disparition de l’éthanoate d’éthyle par hydrolyse basique est de la forme :</p>
+<p>$$v=k(T)\ce{[ester][HO-]}$$</p>
+<p>où $k(T)$, appelée <span class="imp">constante de vitesse</span>, rend compte<br>de l’influence de la température sur cette réaction.</p>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h3 id="loi-de-vitesse-dordre-1">Loi de vitesse d&rsquo;ordre 1</h3>
+</section><section>
+<p>Une réaction est dite d’ordre 1 si sa loi de vitesse<br>de formation ou de disparition d’une espèce<br>se met sous la forme</p>
+<div style="position:relative;margin:auto;border: solid 5px #FF968D;border-radius:10px; padding:10px 50px 10px 50px;width:fit-content;">
+$$v=k(T)\ce{[A]}$$
+</div>
+<p>où $\ce{A}$ représente un réactif de la réaction.</p>
+</section><section>
+<p>Comme $v=-\frac{\mathrm{d}\ce{[A]}}{\mathrm{d} t}$, on obtient :</p>
+<p>$$-\frac{\mathrm{d}\ce{[A]}}{\mathrm{d} t} = k\ce{[A]}$$</p>
+<p>$$\frac{\mathrm{d}\ce{[A]}}{\mathrm{d} t} + k\ce{[A]} = 0$$</p>
+<p>On obtient donc une <span class="imp">équation différentielle<br>du premier ordre</span> (à coefficients constants).</p>
+<aside class="notes"><p>Une équation différentielle est une équation où les inconnues sont des fonctions et qui lie une fonction et ses dérivées.
+Une équation différentielle du premier ordre fait un intervenir une fonction et sa dérivée première.</p>
+</aside>
+</section><section>
+<p>La solution d&rsquo;une telle équation différentielle<br>est de la forme :</p>
+<p>$$\ce{[A]}(t)= C\times\mathrm{e}^{-kt}$$</p>
+<p>où $C$ est une constante.</p>
+</section><section>
+<p>$\mathrm{e}^x = \exp(x)$ est la fonction exponentielle.</p>
+<p>Sa fonction réciproque est le logarithme népérien (logarithme de base $\mathrm{e}$) $\ln(x)$ :</p>
+<p>$\ln\left(\mathrm{e}^x\right)=x$</p>
+</section><section>
+<p>On détermine $C$ grâce aux conditions initiales :</p>
+<p>$\ce{[A]}(t=0)=C\times\mathrm{e}^{-k\times 0} = C = \ce{[A]}_0$</p>
+<p>D&rsquo;où</p>
+<p>$$\ce{[A]}(t)= \ce{[A]}_0\times\mathrm{e}^{-kt}$$</p>
+</section><section>
+<p>La loi de vitesse dépend donc de la<br>concentration initiale $[\mathrm{A_0}]$ et de la température<br>(via la constante de vitesse $k(T)$).</p>
+<p>La <span class="imp">température</span> et la <span class="imp">concentration</span> du réactif<br>sont donc les deux <b style="color:#FFF056;">facteurs cinétiques</b><br>d&rsquo;une loi de vitesse d&rsquo;ordre 1.</p>
+</section><section>
+<p>En prenant le logarithme de la loi de vitesse, on obtient une méthode permettant de vérifier que cette loi est d&rsquo;ordre 1 :</p>
+<p>$\ln\left(\ce{[A]}(t)\right) = \ln(\ce{[A]}_0) -k\times t$</p>
+<p>On obtient une fonction affine décroissante du temps.</p>
+<p>Donc si $\ln\left(\ce{[A]}(t)\right)$ est modélisable par une fonction affine, la loi de vitesse est d&rsquo;ordre 1 !</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/loidordre1.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h2 id="catalyse-et-catalyseur">Catalyse et catalyseur</h2>
+</section><section>
+<div style="position:relative;margin:auto;border: solid 5px #FF968D;border-radius:10px; padding:10px 0px 20px 0px;width:fit-content;">
+Un <span class="imp">catalyseur</span> est une espèce qui augmente la vitesse d’une réaction sans en modifier le bilan ou<br>les caractéristiques thermodynamiques. 
+</div>
+</section><section>
+<p>Étant à la fois réactif et produit,<br><span class="imp">il n’apparaît pas dans l’équation de la réaction</span><br>qui modélise la transformation.</p>
+</section><section>
+<p>Selon les états physiques du catalyseur et du milieu réactionnel, la catalyse est qualifiée<br>d’homogène ou d’hétérogène.</p>
+</section><section>
+<p><u>Exemples</u> :</p>
+<p class="fragment">Le platine catalyse la dismutation du peroxyde d’hydrogène (catalyse hétérogène).</p>
+<p class="fragment">Les enzymes sont des catalyseurs biologiques particulièrement efficaces (catalyse homogène).</p>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h2 id="temps-de-demi-réaction">Temps de demi-réaction</h2>
+</section><section>
+<div style="position:relative;margin:auto;border: solid 5px #FF968D;border-radius:10px; padding:10px 20px 20px 20px;width:fit-content;">
+Durée au bout de laquelle l’avancement<br>a atteint la moitié de sa valeur finale.
+</div>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/tdemi1.png"
+      data-background-size="contain"
+      data-background-transition="concave-in fade-out">
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/tdemi2.png"
+      data-background-size="contain"
+      data-background-transition="fade-in concave-out">
+</section><section>
+<p>Si $\ce{R}$ est le réactif limitant d&rsquo;une transformation :</p>
+<br>
+<div style="position:relative;margin-left:auto;margin-right:auto;width:90%;max-width:100%;margin-bottom:-40px;margin-top:-40px;">
+<img src="/tdemi3.png" style="box-shadow:none;background:none;">
+</div>
+<p>($x_f=x_{max}\propto \ce{[R]_0}$)</p>
+</section><section>
+<p>Pour un produit,</p>
+<br>
+<div style="position:relative;margin-left:auto;margin-right:auto;width:90%;max-width:100%;margin-bottom:-40px;margin-top:-40px;">
+<img src="/tdemi4.png" style="box-shadow:none;background:none;">
+</div>
+<p>($x_f \propto \ce{[P]_f}$ si $\ce{[P]_0}=0$)</p>
+</section><section>
+<p><u>Rq</u> :</p>
+<br>
+<ul>
+<li class="fragment">⚠️ Le temps de demi-réaction ne correspond pas<br>à la moitié de la durée de réaction !</li>
+<br>
+<li class="fragment">Le temps de demi-réaction permet d'évaluer la durée de la transformation chimique (quelques $t_{1/2}$)<br>et donc de comparer entre elles la rapidité<br>des transformations.</li>
+</ul>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h2 id="modélisation-microscopique">Modélisation microscopique</h2>
+</section><section>
+<p>On modélise une transformation chimique <b style="color:#FFF056">à l’échelle microscopique</b> par un <span class="imp">mécanisme
+réactionnel</span> qui propose un ensemble d’<b style="color:#88FA4E">actes élémentaires</b> a priori réalisés lors de la conversion des entités des réactifs en entités des produits, passant éventuellement par une ou plusieurs entités d’<b style="color:#56C1FF">intermédiaires réactionnels</b>.</p>
+</section><section>
+<p>Le mécanisme doit être cohérent avec la stœchiométrie de la réaction, la loi de vitesse et toute autre donnée
+expérimentale obtenue à l’échelle macroscopique.</p>
+</section><section>
+<p>L’<b style="color:#88FA4E">acte élémentaire</b> (ou étape élémentaire) correspond à un modèle, au niveau moléculaire, de conversion d’entités se déroulant en <span class="imp">une seule étape</span>.</p>
+</section><section>
+<p>Un <b style="color:#56C1FF">intermédiaire réactionnel</b> est une entité intervenant dans un mécanisme réactionnel, formée directement ou indirectement à partir des réactifs,<br>et convertie directement ou indirectement<br>en produits de la réaction.</p>
+<p class="fragment">
+En d'autres mots, il est formé, puis il est utilisé.
+</p>
+</section><section>
+<p><u>Exemple</u> :</p>
+<p>Le <span class="imp">mécanisme réactionnel</span> de la réaction<br>
+$\ce{(H_3C)3C-Cℓ + HO- -&gt; (H_3C)3C-OH + Cℓ^-}$<br>
+se décompose en deux <b style="color:#88FA4E">actes élémentaires</b>.</p>
+<br>
+<style>
+  #liste-verte li::marker {
+    color: #88FA4E; 
+  }
+</style>
+<ul id="liste-verte">
+<li class="fragment">$\ce{(H_3C)3C-Cℓ \leftrightarrows {\color{#56C1FF}(H_3C)_3C^+} + Cℓ^-}$</li>
+<br>
+<li class="fragment">$\ce{ {\color{#56C1FF}(H_3C)_3C^+} + HO- \leftrightarrows (H_3C)3C-OH}$<br><br></li>
+</ul>
+<br>
+<p class="fragment">$\ce{\color{#56C1FF}(H_3C)_3C^+}$ est ici un <b style="color:#56C1FF">intermédiaire réactionnel</b>.
+</section><section>
+<p>On représente les modifications des structures électroniques des entités au cours d&rsquo;un acte élémentaire à l&rsquo;aide du <b style="color:#FF95CA">formalisme de la flèche courbe</b>.</p>
+<p class="fragment">
+Une flèche courbe symbolise le mouvement<br>d’un doublet d’électrons d’un
+site donneur<br>vers un site accepteur.
+</p>
+</section><section>
+<p>Pour représenter ces mouvements de doublet,<br>il faut partir des schémas de Lewis des entités.</p>
+</section><section>
+<p>Sur l&rsquo;exemple précédent :</p>
+<br>
+<div class="fragment" style="position:relative;margin-left:auto;margin-right:auto;width:90%;max-width:100%;margin-bottom:-40px;margin-top:-40px;">
+<img src="/actelem1.png" style="box-shadow:none;background:none;">
+</div>
+<div  class="fragment"style="position:relative;margin-left:auto;margin-right:auto;width:90%;max-width:100%;margin-bottom:-40px;margin-top:-40px;">
+<img src="/actelem2.png" style="box-shadow:none;background:none;">
+</div>
+</section><section>
+<p>Un <b style="color:#FFF056">catalyseur</b> modifie le mécanisme réactionnel.</p>
+<br>
+<div class="fragment">
+<u>Exemple</u> :
+<p>La transformation modélisée par la réaction<br>
+$\ce{H2C-Cℓ + HO- -&gt; H3C-OH + Cℓ^-}$<br>
+se déroule en un seul acte élémentaire.</p>
+</div>
+</section><section>
+<p>Mais en présence d&rsquo;ions iodures ${\color{#FFF056}\ce{I-}}$,<br>le mécanisme est modifié :</p>
+<br>
+<ul id="liste-verte">
+<li class="fragment">$\ce{ {\color{#73FDEA}\ce{H_3C-Cℓ}} + {\color{#FFF056}\ce{I-}}\leftrightarrows {\color{#56C1FF}\ce{H_3C-I}} + {\color{#FF95CA}\ce{Cℓ^-}}}$</li>
+<br>
+<li class="fragment">$\ce{ {\color{#56C1FF}\ce{H_3C-I}} + {\color{#73FDEA}\ce{HO-}} \leftrightarrows {\color{#FF95CA}\ce{H_3C-OH}} + {\color{#FFF056}\ce{I-}}}$<br><br></li>
+</ul>
+<br>
+<p class="fragment">
+Le ${\color{#FFF056}\ce{I-}}$ est momentanément utilisé puis finit par être reformé et donc n'apparaît pas dans l'équation bilan. C'est bien un <b style="color:#FFF056">catalyseur</b>.</p>
+<aside class="notes"><p>Retrouver le code couleur (un peu chargé) du mécanisme réactionnel.
+(Dire qu&rsquo;on simplifie comme avec les deux demi-équations électroniques si ça peur aider).
+Bien faire la différence entre intermédiaire réactionnel et catalyseur.</p>
+</aside>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h2 id="interprétation-microscopiquebrdes-facteurs-cinétiques">Interprétation microscopique<br>des facteurs cinétiques</h2>
+</section><section>
+<p>Pour qu&rsquo;un acte élémentaire ait lieu,<br>il faut un <span class="imp">choc entre les entités</span>.</p>
+<p class="fragment">Or plus la <b style="color:#FF95CA">concentration</b> est grande,<br>plus la probabilité de chocs est grande.</p>
+<p class="fragment">Et plus la <b style="color:#FFF056">température</b> est grande,<br>plus les entités vont vite et donc <br>plus la fréquence des chocs<br>et leur énergie sont élevées.</p>
+</section><section>
+<p>Cela explique pourquoi la <b style="color:#FF95CA">concentration</b> et la <b style="color:#FFF056">température</b> sont des <span class="imp">facteurs cinétiques</span>.</p>
+</section><section>
+<p><a href="https://phet.colorado.edu/en/simulations/reactions-and-rates">Animation du Colorado</a></p>
+</section><section>
+<style>
+  /* Container principal */
+  .simulation-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 600px; /* Ajustez selon vos besoins */
+    width: 100%;
+  }
+
+  /* Style des sliders bleu et rouge */
+  .slider-input {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 800px; /* Largeur du canvas */
+    height: 15px; /* Épaisseur de la piste du slider */
+    background: #ddd; /* Couleur par défaut de la piste */
+    outline: none;
+    margin: 10px 0;
+    border-radius: 4px;
+    position: relative;
+  }
+
+  /* Style des thumbs des sliders pour WebKit (Chrome, Safari) */
+  .slider-input::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    border-radius: 50%;
+    border: none;
+    margin-top: -2px; /* Centrage vertical du thumb */
+    background: #4CAF50; /* Couleur par défaut, remplacée */
+  }
+
+  /* Style des thumbs des sliders pour Firefox */
+  .slider-input::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    border-radius: 50%;
+    border: none;
+    background: #4CAF50; /* Couleur par défaut, remplacée */
+  }
+
+  /* Styles spécifiques pour chaque slider */
+  /* Concentration Bleue */
+  #blueCount {
+    background: #56C1FF;
+  }
+
+  #blueCount::-webkit-slider-runnable-track {
+    background: #56C1FF;
+    height: 15px;
+    border-radius: 4px;
+  }
+
+  #blueCount::-moz-range-track {
+    background: #56C1FF;
+    height: 15px;
+    border-radius: 4px;
+  }
+
+  #blueCount::-webkit-slider-thumb {
+    background: #00A2FF;
+    width: 20px;
+    height: 20px;
+    margin-top: -2px; /* Ajustement pour thumb plus grand */
+  }
+
+  #blueCount::-moz-range-thumb {
+    background: #00A2FF;
+    width: 20px;
+    height: 20px;
+  }
+
+  /* Concentration Rouge */
+  #redCount {
+    background: #FF968D;
+  }
+
+  #redCount::-webkit-slider-runnable-track {
+    background: #FF968D;
+    height: 15px;
+    border-radius: 4px;
+  }
+
+  #redCount::-moz-range-track {
+    background: #FF968D;
+    height: 15px;
+    border-radius: 4px;
+  }
+
+  #redCount::-webkit-slider-thumb {
+    background: #FF644E;
+    width: 20px;
+    height: 20px;
+    margin-top: -2px; /* Ajustement pour thumb plus grand */
+  }
+
+  #redCount::-moz-range-thumb {
+    background: #FF644E;
+    width: 20px;
+    height: 20px;
+  }
+
+/* Slider Température */
+.temperature-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 800px; /* Largeur du canvas */
+  height: 15px; /* Épaisseur de la piste du slider */
+  background: #FFF056;
+  outline: none;
+  margin: 10px 0;
+  border-radius: 4px;
+}
+
+/* Piste du slider Température pour WebKit (Chrome, Safari) */
+.temperature-slider::-webkit-slider-runnable-track {
+  background: #FFF056;
+  height: 15px;
+  border-radius: 4px;
+}
+
+/* Piste du slider Température pour Firefox */
+.temperature-slider::-moz-range-track {
+  background: #FFF056;
+  height: 15px;
+  border-radius: 4px;
+}
+
+/* Thumb du slider Température pour WebKit (Chrome, Safari) */
+.temperature-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  background: #FFD932;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  cursor: pointer;
+  margin-top: -2.5px; /* (hauteur du thumb - hauteur de la piste) / 2 = (20px - 15px) / 2 */
+  border: none;
+}
+
+/* Thumb du slider Température pour Firefox */
+.temperature-slider::-moz-range-thumb {
+  background: #FFD932;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: none;
+}
+
+/* Hover Effect pour le Thumb Température */
+.temperature-slider:hover::-webkit-slider-thumb {
+  background: #FFD932;
+}
+
+.temperature-slider:hover::-moz-range-thumb {
+  background: #FFD932;
+}
+
+  /* Boîte d'animation */
+  #simulationCanvas {
+    border: 5px solid #888;
+    background-color: #200A14;
+  }
+</style>
+<div class="simulation-container">
+  <!-- Curseur de Concentration Bleue (Au-dessus) -->
+  <input type="range" id="blueCount" min="0" max="150" value="10" class="slider-input">
+<!-- Curseur de Concentration Rouge-->
+  <input type="range" id="redCount" min="0" max="150" value="10" class="slider-input">
+  <!-- Boîte d'Animation -->
+<p><canvas id="simulationCanvas" width="800" height="600"></canvas></p>
+  <!-- Curseur de Température (Sous le canvas) -->
+  <input type="range" id="temperature" min="1" max="10" value="2" class="temperature-slider">
+</div>
+<script>
+  // Récupération des éléments
+  const canvas = document.getElementById('simulationCanvas');
+  const ctx = canvas.getContext('2d');
+
+  const blueCountInput = document.getElementById('blueCount');
+  const redCountInput = document.getElementById('redCount');
+  const temperatureInput = document.getElementById('temperature');
+
+  // Paramètres de simulation
+  let blueCount = parseInt(blueCountInput.value);
+  let redCount = parseInt(redCountInput.value);
+  let temperature = parseInt(temperatureInput.value);
+
+  // Liste des particules
+  let particles = [];
+
+  // Types de particules
+  const PARTICLE_TYPES = {
+      BLUE: 'blue',
+      RED: 'red',
+      GREEN: 'green'
+  };
+
+  // Classe Particule
+  class Particle {
+      constructor(x, y, radius, type, vx, vy) {
+          this.x = x;
+          this.y = y;
+          this.radius = radius;
+          this.type = type;
+          this.vx = vx;
+          this.vy = vy;
+      }
+
+      draw() {
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+          if (this.type === PARTICLE_TYPES.BLUE) {
+              ctx.fillStyle = '#00A2FF';
+          } else if (this.type === PARTICLE_TYPES.RED) {
+              ctx.fillStyle = '#FF644E';
+          } else if (this.type === PARTICLE_TYPES.GREEN) {
+              ctx.fillStyle = '#00FF00'; // Vert
+          }
+          ctx.fill();
+          ctx.closePath();
+      }
+
+      update() {
+          this.x += this.vx;
+          this.y += this.vy;
+
+          // Collision avec les murs
+          if (this.x + this.radius > canvas.width || this.x - this.radius < 0) {
+              this.vx = -this.vx;
+              this.x = Math.max(this.radius, Math.min(this.x, canvas.width - this.radius));
+          }
+          if (this.y + this.radius > canvas.height || this.y - this.radius < 0) {
+              this.vy = -this.vy;
+              this.y = Math.max(this.radius, Math.min(this.y, canvas.height - this.radius));
+          }
+      }
+  }
+
+  // Fonction pour générer une particule
+  function createParticle(type) {
+      const radius = 5;
+      let x, y, overlapping;
+      do {
+          overlapping = false;
+          x = Math.random() * (canvas.width - 2 * radius) + radius;
+          y = Math.random() * (canvas.height - 2 * radius) + radius;
+          // Vérifier qu'elle ne chevauche pas une autre particule
+          for (let p of particles) {
+              const dx = p.x - x;
+              const dy = p.y - y;
+              const distance = Math.sqrt(dx * dx + dy * dy);
+              if (distance < p.radius + radius) {
+                  overlapping = true;
+                  break;
+              }
+          }
+      } while (overlapping);
+
+      const speed = temperature;
+      const angle = Math.random() * 2 * Math.PI;
+      const vx = speed * Math.cos(angle);
+      const vy = speed * Math.sin(angle);
+      return new Particle(x, y, radius, type, vx, vy);
+  }
+
+  // Initialisation des particules
+  function initParticles() {
+      particles = [];
+      for (let i = 0; i < blueCount; i++) {
+          particles.push(createParticle(PARTICLE_TYPES.BLUE));
+      }
+      for (let i = 0; i < redCount; i++) {
+          particles.push(createParticle(PARTICLE_TYPES.RED));
+      }
+  }
+
+  // Gestion des collisions entre particules
+  function handleCollisions() {
+    for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+            const p1 = particles[i];
+            const p2 = particles[j];
+            const dx = p1.x - p2.x;
+            const dy = p1.y - p2.y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+
+            if (distance < p1.radius + p2.radius) {
+                // Vérifier si l'une est bleue et l'autre rouge
+                if (
+                    (p1.type === PARTICLE_TYPES.BLUE && p2.type === PARTICLE_TYPES.RED) ||
+                    (p1.type === PARTICLE_TYPES.RED && p2.type === PARTICLE_TYPES.BLUE)
+                ) {
+                    // Calculer l'énergie cinétique (approximativement)
+                    const energy1 = Math.sqrt(p1.vx ** 2 + p1.vy ** 2);
+                    const energy2 = Math.sqrt(p2.vx ** 2 + p2.vy ** 2);
+                    const energy = energy1 + energy2;
+                    const energyThreshold = 10; // Seuil d'énergie pour la transformation
+
+                    if (energy > energyThreshold) {
+                        // Créer une particule verte avec conservation de la quantité de mouvement
+                        const totalVx = p1.vx + p2.vx;
+                        const totalVy = p1.vy + p2.vy;
+                        const greenParticle = new Particle(
+                            (p1.x + p2.x) / 2,
+                            (p1.y + p2.y) / 2,
+                            7,
+                            PARTICLE_TYPES.GREEN,
+                            totalVx / 2,
+                            totalVy / 2
+                        );
+                        particles.push(greenParticle);
+
+                        // Supprimer les particules bleue et rouge
+                        particles.splice(j, 1);
+                        particles.splice(i, 1);
+                        i--;
+                        break;
+                    }
+                }
+
+                // Simple réflexion élastique
+                const angle = Math.atan2(dy, dx);
+                const sin = Math.sin(angle);
+                const cos = Math.cos(angle);
+
+                // Rotation des vitesses vers le cadre de collision
+                const v1 = rotate(p1.vx, p1.vy, sin, cos, true);
+                const v2 = rotate(p2.vx, p2.vy, sin, cos, true);
+
+                // Échange des vitesses en X
+                const v1Final = { vx: v2.vx, vy: v1.vy };
+                const v2Final = { vx: v1.vx, vy: v2.vy };
+
+                // Rotation inverse pour revenir au cadre original
+                const v1FinalRotated = rotate(v1Final.vx, v1Final.vy, sin, cos, false);
+                const v2FinalRotated = rotate(v2Final.vx, v2Final.vy, sin, cos, false);
+
+                p1.vx = v1FinalRotated.vx;
+                p1.vy = v1FinalRotated.vy;
+                p2.vx = v2FinalRotated.vx;
+                p2.vy = v2FinalRotated.vy;
+
+                // Séparation des particules pour éviter le chevauchement
+                const overlap = p1.radius + p2.radius - distance;
+                const nx = dx / distance;
+                const ny = dy / distance;
+
+                // Déplacer chaque particule de moitié du chevauchement
+                p1.x += nx * (overlap / 2);
+                p1.y += ny * (overlap / 2);
+                p2.x -= nx * (overlap / 2);
+                p2.y -= ny * (overlap / 2);
+            }
+        }
+    }
+}
+  // Fonction de rotation pour la collision élastique
+  function rotate(vx, vy, sin, cos, reverse) {
+      if (reverse) {
+          return {
+              vx: vx * cos + vy * sin,
+              vy: vy * cos - vx * sin
+          };
+      } else {
+          return {
+              vx: vx * cos - vy * sin,
+              vy: vy * cos + vx * sin
+          };
+      }
+  }
+
+  // Animation principale
+  function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      particles.forEach(particle => {
+          particle.update();
+          particle.draw();
+      });
+
+      handleCollisions();
+
+      requestAnimationFrame(animate);
+  }
+
+  // Gestion des contrôles
+  blueCountInput.addEventListener('input', function () {
+      blueCount = parseInt(this.value);
+      initParticles();
+  });
+
+  redCountInput.addEventListener('input', function () {
+      redCount = parseInt(this.value);
+      initParticles();
+  });
+
+  temperatureInput.addEventListener('input', function () {
+      temperature = parseInt(this.value);
+      // Mettre à jour la vitesse des particules
+      particles.forEach(particle => {
+          const angle = Math.atan2(particle.vy, particle.vx);
+          particle.vx = temperature * Math.cos(angle);
+          particle.vy = temperature * Math.sin(angle);
+      });
+  });
+
+  // Fonction de démarrage/rechargement de la simulation
+  function startSimulation() {
+      blueCount = parseInt(blueCountInput.value);
+      redCount = parseInt(redCountInput.value);
+      temperature = parseInt(temperatureInput.value);
+
+      initParticles();
+  }
+
+  // Initialisation initiale et démarrage de l'animation
+  startSimulation();
+  animate();
+</script>
+<aside class="notes"><p>Permet aussi d&rsquo;expliquer la technique expérimentale des trempes.</p>
+</aside>
+
+</section>
+</section><section>
+<p><a href="https://coursphychi.github.io/tspe/cinetique/">Retour site</a></p>
+</section>
+
+  
+
+
+</div>
+      
+
+    </div>
+<script type="text/javascript" src=/reveal-hugo/object-assign.js></script>
+
+<a href="/reveal-js/css/print/" id="print-location" style="display: none;"></a>
+<script type="text/javascript">
+  var printLocationElement = document.getElementById('print-location');
+  var link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.type = 'text/css';
+  link.href = printLocationElement.href + (window.location.search.match(/print-pdf/gi) ? 'pdf.css' : 'paper.css');
+  document.getElementsByTagName('head')[0].appendChild(link);
+</script>
+
+<script type="application/json" id="reveal-hugo-site-params">{"highlight_theme":"github-dark","line-numbers":true,"theme":"sky","transition":"concave","transition_speed":"fast"}</script>
+<script type="application/json" id="reveal-hugo-page-params">{"highlight_theme":"atom-one-dark-reasonable","theme":"league"}</script>
+
+<script src="/reveal-js/js/reveal.js"></script>
+
+<script type="text/javascript">
+  
+  
+  function camelize(map) {
+    if (map) {
+      Object.keys(map).forEach(function(k) {
+        newK = k.replace(/(\_\w)/g, function(m) { return m[1].toUpperCase() });
+        if (newK != k) {
+          map[newK] = map[k];
+          delete map[k];
+        }
+      });
+    }
+    return map;
+  }
+  
+  var revealHugoDefaults = { center: true, controls: true, history: true, progress: true, transition: "slide" };
+  var revealHugoSiteParams = JSON.parse(document.getElementById('reveal-hugo-site-params').innerHTML);
+  var revealHugoPageParams = JSON.parse(document.getElementById('reveal-hugo-page-params').innerHTML);
+  
+  var options = Object.assign({},
+    camelize(revealHugoDefaults),
+    camelize(revealHugoSiteParams),
+    camelize(revealHugoPageParams));
+  Reveal.initialize(options);
+</script>
+
+
+  
+  
+  <script type="text/javascript" src="/reveal-js/plugin/markdown/marked.js"></script>
+  
+  <script type="text/javascript" src="/reveal-js/plugin/markdown/markdown.js"></script>
+  
+  <script type="text/javascript" src="/reveal-js/plugin/highlight/highlight.js"></script>
+  
+  <script type="text/javascript" src="/reveal-js/plugin/zoom-js/zoom.js"></script>
+  
+  
+  <script type="text/javascript" src="/reveal-js/plugin/notes/notes.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({startOnLoad: false});
+    let render = (event) => {
+      let mermaidElems = event.currentSlide.querySelectorAll('.mermaid');
+      if (!mermaidElems.length){
+          return
+      }
+      mermaidElems.forEach(mermaidElem => {
+          let processed = mermaidElem.getAttribute('data-processed');
+          if (!processed){
+              
+              mermaid.init(undefined, mermaidElem);
+          }
+      });
+    };
+    Reveal.addEventListener('slidechanged', render);
+    Reveal.addEventListener('ready', render);
+  </script>
+
+    
+
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']]
+  },
+  svg: {
+    fontCache: 'global'
+  }
+};
+</script>
+
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+</script>
+    
+  </body>
+</html>
