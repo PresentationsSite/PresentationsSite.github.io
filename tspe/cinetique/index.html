@@ -186,7 +186,7 @@ $\displaystyle v_{{\color{#56C1FF}d},\ce{H2O2}}{\color{#FFF056}(t)}={\color{#56C
 <p>Une <span class="imp">loi de vitesse</span> est l&rsquo;expression de la vitesse volumique de formation ou de disparition d’une espèce en fonction des différents paramètres qui la modifient.</p>
 </section><section>
 <div style="position:relative;margin:auto;border: solid 5px #FF968D;border-radius:10px;padding:20px 20px 10px 20px;width:fit-content;">
-Les <span class="imp">facteurs cinétiques</span> sont les grandeurs<br>qui apparaissent dans la loi de vitesse<br>(température, concentration).
+Les <span class="imp">facteurs cinétiques</span> sont les grandeurs<br>qui apparaissent dans la loi de vitesse<br>(<b style="color:#FFF056">température</b>, <b style="color:#56C1FF">concentration</b>).
 <p>Ce sont sont donc les paramètres<br>qui influent sur la durée d&rsquo;une transformation.</p>
 </div>
 </section><section>
@@ -202,13 +202,13 @@ Les <span class="imp">facteurs cinétiques</span> sont les grandeurs<br>qui appa
 <section data-shortcode-section>
 <h3 id="loi-de-vitesse-dordre-1">Loi de vitesse d&rsquo;ordre 1</h3>
 </section><section>
-<p>Une réaction est dite d’ordre 1 si sa loi de vitesse<br>de formation ou de disparition d’une espèce<br>se met sous la forme</p>
+<p>Une réaction est dite d’ordre 1 si sa loi de vitesse<br>de disparition d’une espèce se met sous la forme</p>
 <div style="position:relative;margin:auto;border: solid 5px #FF968D;border-radius:10px; padding:10px 50px 10px 50px;width:fit-content;">
 $$v=k(T)\ce{[A]}$$
 </div>
 <p>où $\ce{A}$ représente un réactif de la réaction.</p>
 </section><section>
-<p>Comme $v=-\frac{\mathrm{d}\ce{[A]}}{\mathrm{d} t}$, on obtient :</p>
+<p>Comme $v=-\frac{\mathrm{d}\ce{[A]}}{\mathrm{d} t}$, on a :</p>
 <p>$$-\frac{\mathrm{d}\ce{[A]}}{\mathrm{d} t} = k\ce{[A]}$$</p>
 <p>$$\frac{\mathrm{d}\ce{[A]}}{\mathrm{d} t} + k\ce{[A]} = 0$$</p>
 <p>On obtient donc une <span class="imp">équation différentielle<br>du premier ordre</span> (à coefficients constants).</p>
@@ -221,21 +221,25 @@ Une équation différentielle du premier ordre fait un intervenir une fonction e
 <p>où $C$ est une constante.</p>
 </section><section>
 <p>$\mathrm{e}^x = \exp(x)$ est la fonction exponentielle.</p>
-<p>Sa fonction réciproque est le logarithme népérien (logarithme de base $\mathrm{e}$) $\ln(x)$ :</p>
+<div class="fragment">
+Sa fonction réciproque est le logarithme népérien (logarithme de base $\mathrm{e}$) $\ln(x)$ :
 <p>$\ln\left(\mathrm{e}^x\right)=x$</p>
+</div>
 </section><section>
 <p>On détermine $C$ grâce aux conditions initiales :</p>
 <p>$\ce{[A]}(t=0)=C\times\mathrm{e}^{-k\times 0} = C = \ce{[A]}_0$</p>
-<p>D&rsquo;où</p>
+<div class="fragment">
+D'où 
 <p>$$\ce{[A]}(t)= \ce{[A]}_0\times\mathrm{e}^{-kt}$$</p>
+</div>
 </section><section>
 <p>La loi de vitesse dépend donc de la<br>concentration initiale $[\mathrm{A_0}]$ et de la température<br>(via la constante de vitesse $k(T)$).</p>
-<p>La <span class="imp">température</span> et la <span class="imp">concentration</span> du réactif<br>sont donc les deux <b style="color:#FFF056;">facteurs cinétiques</b><br>d&rsquo;une loi de vitesse d&rsquo;ordre 1.</p>
+<p>La <b style="color:#FFF056;">température</b> et la <b style="color:#56C1FF">concentration</b> du réactif<br>sont donc les deux <span class="imp">facteurs cinétiques</span><br>d&rsquo;une loi de vitesse d&rsquo;ordre 1.</p>
 </section><section>
-<p>En prenant le logarithme de la loi de vitesse, on obtient une méthode permettant de vérifier que cette loi est d&rsquo;ordre 1 :</p>
+<p>En prenant le logarithme de la loi de vitesse,<br>on peut vérifier que cette loi est d&rsquo;ordre 1 :</p>
 <p>$\ln\left(\ce{[A]}(t)\right) = \ln(\ce{[A]}_0) -k\times t$</p>
-<p>On obtient une fonction affine décroissante du temps.</p>
-<p>Donc si $\ln\left(\ce{[A]}(t)\right)$ est modélisable par une fonction affine, la loi de vitesse est d&rsquo;ordre 1 !</p>
+<p class="fragment">On obtient une fonction affine décroissante du temps.</p>
+<p class="fragment">Donc si $\ln\left(\ce{[A]}(t)\right)$ est modélisable par une fonction affine, la loi de vitesse est d'ordre 1 !</p>
 </section>
 <section data-noprocess data-shortcode-slide
       data-background-image="/loidordre1.png"
@@ -345,16 +349,26 @@ se décompose en deux <b style="color:#88FA4E">actes élémentaires</b>.</p>
 <p>On représente les modifications des structures électroniques des entités au cours d&rsquo;un acte élémentaire à l&rsquo;aide du <b style="color:#FF95CA">formalisme de la flèche courbe</b>.</p>
 <p class="fragment">
 Une flèche courbe symbolise le mouvement<br>d’un doublet d’électrons d’un
-site donneur<br>vers un site accepteur.
+<b style="color:#56C1FF">site donneur</b><br>vers un <b style="color:#FF968D">site accepteur</b>.
 </p>
 </section><section>
-<p>Pour représenter ces mouvements de doublet,<br>il faut partir des schémas de Lewis des entités.</p>
+<p>Un <b style="color:#56C1FF">site donneur</b> peut être :</p>
+<ul>
+<li class="fragment">un doublet non liant</li>
+<li class="fragment">un doublet liant<br>(d'une liaison multiple ou simple)</li>
+<li class="fragment">un atome portant une charge négative<br>ou fortement polarisé négativement</li>
+</ul>
 </section><section>
-<p>Sur l&rsquo;exemple précédent :</p>
+<p>Un <b style="color:#FF968D">site accepteur</b> peut être :</p>
+<ul>
+<li class="fragment">un atome possédant une lacune électronique</li>
+<li class="fragment">un atome portant une charge positive<br>ou polarisé positivement</li>
+</ul>
+</section><section>
+<p>Pour représenter ces mouvements de doublets,<br>il faut partir des schémas de Lewis des entités.</p>
+</section><section>
+<p>Prenons l&rsquo;exemple du 2<sup>e</sup> acte élémentaire<br>de l&rsquo;exemple précédent :</p>
 <br>
-<div class="fragment" style="position:relative;margin-left:auto;margin-right:auto;width:90%;max-width:100%;margin-bottom:-40px;margin-top:-40px;">
-<img src="/actelem1.png" style="box-shadow:none;background:none;">
-</div>
 <div  class="fragment"style="position:relative;margin-left:auto;margin-right:auto;width:90%;max-width:100%;margin-bottom:-40px;margin-top:-40px;">
 <img src="/actelem2.png" style="box-shadow:none;background:none;">
 </div>
@@ -391,10 +405,10 @@ Bien faire la différence entre intermédiaire réactionnel et catalyseur.</p>
 <h2 id="interprétation-microscopiquebrdes-facteurs-cinétiques">Interprétation microscopique<br>des facteurs cinétiques</h2>
 </section><section>
 <p>Pour qu&rsquo;un acte élémentaire ait lieu,<br>il faut un <span class="imp">choc entre les entités</span>.</p>
-<p class="fragment">Or plus la <b style="color:#FF95CA">concentration</b> est grande,<br>plus la probabilité de chocs est grande.</p>
+<p class="fragment">Or plus la <b style="color:#56C1FF">concentration</b> est grande,<br>plus la probabilité de chocs est grande.</p>
 <p class="fragment">Et plus la <b style="color:#FFF056">température</b> est grande,<br>plus les entités vont vite et donc <br>plus la fréquence des chocs<br>et leur énergie sont élevées.</p>
 </section><section>
-<p>Cela explique pourquoi la <b style="color:#FF95CA">concentration</b> et la <b style="color:#FFF056">température</b> sont des <span class="imp">facteurs cinétiques</span>.</p>
+<p>Cela explique pourquoi la <b style="color:#56C1FF">concentration</b> et la <b style="color:#FFF056">température</b> sont des <span class="imp">facteurs cinétiques</span>.</p>
 </section><section>
 <p><a href="https://phet.colorado.edu/en/simulations/reactions-and-rates">Animation du Colorado</a></p>
 </section><section>
@@ -576,7 +590,7 @@ Bien faire la différence entre intermédiaire réactionnel et catalyseur.</p>
 <!-- Curseur de Concentration Rouge-->
   <input type="range" id="redCount" min="0" max="150" value="10" class="slider-input">
   <!-- Boîte d'Animation -->
-<p><canvas id="simulationCanvas" width="800" height="600"></canvas></p>
+<p><canvas id="simulationCanvas" width="800" height="500"></canvas></p>
   <!-- Curseur de Température (Sous le canvas) -->
   <input type="range" id="temperature" min="1" max="10" value="2" class="temperature-slider">
 </div>
