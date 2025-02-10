@@ -71,16 +71,19 @@ height: 100%;
 <p class="fragment">On le modélisera par un <span class="imp">point matériel</span><br>(généralement situé au niveau<br>de son centre de gravité).</p>
 </section><section>
 <p><span class="imp">Référentiel</span> :</p>
-<p>Repère spatial + horloge<br>C&rsquo;est le cadre dans lequel on décrit le mouvement.</p>
+<div class="fragment">
+Repère spatial + horloge
+<p>C&rsquo;est le cadre dans lequel on décrit le mouvement.</p>
+</div>
 <p class="fragment">Exemples :</p>
 <p class="fragment">référentiel terrestre, géocentrique,<br>héliocentrique, référentiel du train,...
 </p>
 </section><section>
 <p>Un autre système peut interagir avec le système étudié par l&rsquo;intermédiaire d&rsquo;<span class="imp">actions<span> modélisées par des <span class="imp">forces</span> repréprésentées par des vecteurs.</p>
 </section><section>
-<p>La <span class="imp">résultante des forces $\vec{F}_{res}$</span> est la somme des forces extérieures qui s&rsquo;appliquent sur le système.</p>
+<p>La <span class="imp">résultante des forces $\vec{F}_\mathrm{res}$</span> est la somme des forces extérieures qui s&rsquo;appliquent sur le système.</p>
 <div class="fragment">
-$$\overrightarrow{F_{res}} = \sum{\overrightarrow{{F}_{ext}}}$$
+$$\overrightarrow{F_{\mathrm{res}}} = \sum{\overrightarrow{{F}_\mathrm{ext}}}$$
 </div>
 </section><section>
 <p>La <span class="imp">trajectoire</span> d&rsquo;un système est l&rsquo;ensemble des positions prises par les système au cours du temps.</p>
@@ -95,7 +98,7 @@ $$\overrightarrow{F_{res}} = \sum{\overrightarrow{{F}_{ext}}}$$
 <p>Le <span class="imp">vecteur déplacement $\overrightarrow{\text{MM&rsquo;}}$ du point M</span><br>est le vecteur joignant le point M<br>à une position ultérieure M'.</p>
 </section><section>
 <p>Le <span class="imp">vecteur vitesse $\vec{v}$</span> du point M est approché par<br>le vecteur vitesse moyenne entre des positions successives M et M&rsquo; séparées de $\Delta t$ :</p>
-<p>$$\vec{v} \approx \frac{\overrightarrow{\text{MM&rsquo;}}}{\Delta t}$$</p>
+<p>$$\color{#FF968D}\vec{v} \approx \frac{\overrightarrow{\text{MM&rsquo;}}}{\Delta t}$$</p>
 <p class="fragment">Plus $\Delta t$ est petit, et plus le vecteur vitesse<br>s'approche de la vitesse instantanée en $t$</p>
 </section><section>
 <iframe scrolling="no" title="Déplacement et vitesse" src="https://www.geogebra.org/material/iframe/id/rgnmnkbe/width/575/height/527/border/888888/sfsb/true/smb/false/stb/false/stbh/false/ai/false/asb/false/sri/true/rc/false/ld/false/sdz/true/ctl/false" width="575px" height="527px" style="border:0px;"> </iframe>
@@ -106,6 +109,11 @@ $$\overrightarrow{F_{res}} = \sum{\overrightarrow{{F}_{ext}}}$$
 <li><span class="imp">accéléré</span> si la valeur de la vitesse augmente</li>
 <li><span class="imp">ralenti</span> si la valeur de la vitesse diminue</li>
 </ul>
+</section><section>
+<p>Le <span class="imp">vecteur variation de vitesse $\overrightarrow{\Delta v}$</span><br>
+est la variation de vitesse entre deux instants  voisins :</p>
+<p>$\color{#FF968D}\overrightarrow{\Delta v_\mathrm{M}} = \overrightarrow{ v_{\mathrm{M&rsquo;}}} - \overrightarrow{v_\mathrm{M}}$<br>
+avec M&rsquo; proche de M.</p>
 
 </section>
 </section><section>
@@ -138,6 +146,8 @@ $\sum{\vec{F}}$<span class="imp">$\;≠\;$</span>$\vec{0}$ $\Leftrightarrow$ <sp
 <div class="fragment" style="position:relative;margin:auto;padding:10px 30px 20px 30px;border:solid 5px #FF968D;border-radius:15px; width:fit-content;">
 $\sum{\vec{F}}$<span class="imp">$\;≠\;$</span>$\vec{0}$  $\;\Leftrightarrow\;$ </span>$\vec{\Delta v}$<span class="imp">$\;≠\;$</span>$\vec{0}$
 </div>
+</section><section>
+<iframe src="https://trinket.io/embed/glowscript/3364ec8e52a8?toggleCode=true" width="100%" height="600" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
 </section><section>
 <p>On peut aller quantitativement un peu plus loin<br>avec la relation approximative suivante :</p>
 <div class="fragment imp" style="position:relative;margin:auto;padding:10px 30px 20px 30px;border:solid 5px #FF968D;border-radius:15px; width:fit-content;">
