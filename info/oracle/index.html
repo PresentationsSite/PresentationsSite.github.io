@@ -92,9 +92,10 @@ Il faut au moins 6 lettres pour le réveiller.
       justify-content: center;
       font-size: 120px;
       font-weight: bold;
-      /*border: 2px solid #333;*/
+      /* Pas de bordure par défaut */
+      border: none;
       border-radius: 0;
-      transition: background-color 0.3s ease;
+      transition: background-color 0.1s ease;
     }
     /* Zone d'affichage du pourcentage (sans fond) */
     #percentage-container {
@@ -233,6 +234,11 @@ Il faut au moins 6 lettres pour le réveiller.
       }
       document.getElementById("percentage-text").innerText = percentage + "%";
       document.getElementById("percentage-fill").style.width = percentage + "%";
+      
+      // Après 200 touches appuyées, appliquer une bordure de 10px de couleur #FEAE00
+      if (Ltap.length >= 200) {
+        document.getElementById("prediction").style.border = "10px solid #FEAE00";
+      }
     }
 
     /***** Gestion des événements *****/
