@@ -28,227 +28,242 @@
 <section data-shortcode-section>
 <h2 id="oracle-daaronson">Oracle d&rsquo;Aaronson</h2>
 </section><section>
-  <style>
-
-.align-stretch-grid {
-    display: grid;
-    grid-gap: 10px;
-    grid-template-columns: 1fr 150px 150px 1fr;
-    grid-template-rows: 60px 150px;
-    align-items: stretch;
-}
-
-.tape {
-    background-color: #888888;
-    border-radius: 75px;
-    display: flex;
-    height: 100%;
-    align-items: center;
-    justify-content: center;
-}
-.predit {
-    background-color: #ffcc00;
-    border-radius: 75px;
-    display: flex;
-    height: 100%;
-    align-items: center;
-    justify-content: center;
-}
-
-
-#lettreG {
-		background-color: #FF8DC6;
-	border-radius: 90px;
-	display: flex;
-	height: 100%;
-	align-items: center;
-	justify-content: center;
-	font-size:80px;
-	font-weight:bold;
-	color: #CB297B;
-}
-
-#lettreH {
-    background-color: #56C1FF;
-    border-radius: 90px;
-    display: flex;
-    height: 100%;
-    align-items: center;
-    justify-content: center;
-    font-size:80px;
-    font-weight:bold;
-    color: #0076BA;
-}
-
-.int {
-    border-radius: 50px;
-    display: flex;
-    height: 100%;
-    align-items: center;
-    justify-content: center;
-    color:white;
-    font-weight:bold;
-}
-
-.int2 {
-    border-radius: 50px;
-    display: flex;
-    height: 100%;
-    align-items: center;
-    justify-content: center;
-}
-
-#lettreG:hover {
-  background-color: #EF5FA7;
-  color: white;
-}
-
-#lettreH:hover {
-  background-color: #00A2FF;
-  color: white;
-}
-  
-#final {
-	font-weight: bold;
-	font-size: 80px;
-	color: #dd2200;
-}
-
-</style>
-<p style="text-align:center">Taper ou toucher <span style="font-weight:bold">a</span> ou <span style="font-weight:bold">z</span>.<br>
+<p style="text-align:center">Taper ou toucher <span style="font-weight:bold">g</span> ou <span style="font-weight:bold">h</span>.<br>
 L'oracle va tenter de prédire votre prochaine lettre.<br>
 Il faut au moins 6 lettres pour le réveiller.
 </p>
-<div class="align-stretch-grid">
-   <div id="lettreG" style="grid-row:span 2;">g</div>
-   <div style="grid-column:2;" class="int2">Tapé :</div>
-   <div style="grid-column:3;" class="int2">Prédit :</div>
-   <div id="lettreH" style="grid-row:span 2;">h</div>
-   <div class="tape" id="tap" style="grid-column:2;">
-      <div class="int" id=res1></div>
-   </div>
-   <div class="predit" id="pred" style="grid-column:3;">
-      <div class="int" id=res2></div>
-   </div>
-</div>
-<br>
-<div style="text-align:center">
-Pourcentage de bonnes prédictions :<br>
-<div id="final"><span id=res3>0</span> %</div>
-</div>
-<script>
-var Dico = {};
-for (let i = 0; i < 2**5; i++) { 
-  Dico[i]=[0,0]}
-
-
-function tradMot(mot) {
-	//console.log("mot :",mot)
-	var nb = 0;
-  for (let i = 0; i < 5; i++) {
-  if (mot[i] == 'h'){
-  	nb += 2**(4-i)
-  }
-}
-return nb
-}
-
-
-var good = [];
-var tot = 0;
-var Ltap = [];
-var Lmot = 0;
-var predit;
-var pourcent = 0;
-var test = true;
-
-function principale(name,e1,e2,e3,e4,e5){
-	if (name === 'g') {
-    Ltap.push("g");
-  }
-  else if (name === 'h'){
-  	Ltap.push("h");
-  }
-  if (name == "g" || name == "h"){
-  	e3.innerHTML = name;
-    if (Ltap.length >= 7){
-      dernb = tradMot(Ltap.slice(-7,-2));
-      if (Ltap[Ltap.length-2] === 'h'){
-        Dico[dernb][1] += 1;
-      }
-      else {
-        Dico[dernb][0] += 1 
-      }
-      var nvnb = tradMot(Ltap.slice(-6,-1));
-      if (Dico[nvnb][0] >= Dico[nvnb][1]){
-        predit = "g";
-      }
-      else {
-        predit = "h";
-      }
-      var reel = name;
-      if (reel == predit){
-        good.push(1);
-        test = true;
-      }
-      else {
-        good.push(0);
-        test = false;
-      }
-      tot += 1;
-      let sum = 0;
-      if (good.length > 100){
-        for (const nb of good.slice(-100,)) {
-          sum += nb;
-        }
-        pourcent = Math.round(sum);
-      }
-      else {
-        for (const nb of good) {
-          sum += nb;
-        }
-        pourcent = Math.round(sum/tot*100);
-      }
-      //console.log(reel,predit,pourcent,tot,good.length);
-      //console.log(Dico);
-      //console.log(Ltap);
-      e2.style.backgroundColor = "#ffcc00";
-      e1.style.backgroundColor = "#888888";
-      e4.innerHTML = "";
-      setTimeout(() => { e4.innerHTML = predit; if (test == true){e2.style.backgroundColor = "#1DB100";} else {e2.style.backgroundColor = "#FF644E";}}, 300);
-      e5.innerHTML = pourcent;
+</section><section>
+  <style>
+    /* Réinitialisation et style global */
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
     }
-  }
-}
+    /* Conteneur principal : 3 zones (g | prédiction | h) */
+    .oracle-container {
+      display: flex;
+      flex-direction: row;
+      height: 50vh; /* Hauteur ajustée pour laisser apparaître le pourcentage */
+      align-items: center;
+      justify-content: space-between;
+    }
+    /* Boutons "g" et "h" : sans bord arrondi et occupant toute la hauteur */
+    .button {
+      flex: 0 0 20%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 80px;
+      font-weight: bold;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+    #button-g {
+      background-color: #FF8DC6;
+      color: #CB297B;
+    }
+    #button-h {
+      background-color: #56C1FF;
+      color: #0076BA;
+    }
+    /* Effets hover, active et pour clavier via la classe .active */
+    #button-g:hover, #button-g:active, #button-g.active {
+      background-color: #EF5FA7;
+      color: white;
+    }
+    #button-h:hover, #button-h:active, #button-h.active {
+      background-color: #00A2FF;
+      color: white;
+    }
+    /* Zone de prédiction centrale */
+    #prediction {
+      flex: 0 0 50%;
+      height: 100%;
+      background-color: #FFF056; /* Couleur neutre par défaut */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 120px;
+      font-weight: bold;
+      /*border: 2px solid #333;*/
+      border-radius: 0;
+      transition: background-color 0.3s ease;
+    }
+    /* Zone d'affichage du pourcentage (sans fond) */
+    #percentage-container {
+      width: 100%;
+      padding: 10px 20px;
+      text-align: center;
+    }
+    #percentage-text {
+      font-size: 40px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    #percentage-bar {
+      width: 80%;
+      height: 20px;
+      background-color: #ddd;
+      margin: 0 auto;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    #percentage-fill {
+      height: 100%;
+      background-color: #1DB100;
+      width: 0%;
+      transition: width 0.3s ease;
+    }
+  </style>
+</head>
+<body>
+  <!-- Zone principale avec les 3 zones (g, prédiction, h) -->
+  <div class="oracle-container">
+    <button id="button-g" class="button">g</button>
+    <div id="prediction">?</div>
+    <button id="button-h" class="button">h</button>
+  </div>
+  <!-- Affichage du pourcentage -->
+  <div id="percentage-container">
+    <div id="percentage-text">0%</div>
+    <div id="percentage-bar">
+      <div id="percentage-fill"></div>
+    </div>
+  </div>
+  <script>
+    /***** Initialisation de l'oracle *****/
+    // Dictionnaire pour les 5-grammes (32 contextes possibles)
+    var Dico = {};
+    for (let i = 0; i < 32; i++) { 
+      Dico[i] = [0, 0]; // [nombre de g, nombre de h]
+    }
 
-const boitetape = document.getElementById("tap");
-const boitepredit = document.getElementById("pred");
-const el1 = document.getElementById("res1");
-const el2 = document.getElementById("res2");
-const el3 = document.getElementById("res3");
-const elG = document.getElementById('lettreG');
-const elH = document.getElementById('lettreH');
+    var Ltap = [];               // Historique des lettres tapées
+    var currentPrediction = "?"; // Prédiction affichée (calculée précédemment)
+    var good = [];               // 1 si la prédiction était correcte, 0 sinon
+    var tot = 0;                 // Nombre total de comparaisons
 
+    // Convertit un tableau de 5 lettres en entier (pour indexer Dico)
+    // 'h' vaut 1, 'g' vaut 0.
+    function tradMot(mot) {
+      let nb = 0;
+      for (let i = 0; i < 5; i++) {
+        if (mot[i] === 'h') {
+          nb += Math.pow(2, 4 - i);
+        }
+      }
+      return nb;
+    }
 
-document.addEventListener('keyup', (event) => {
-  var name = event.key;
-  principale(name,boitetape,boitepredit,el1,el2,el3);} , false);
+    // Change la couleur de fond de la zone de prédiction pour indiquer le feedback
+    function setPredictionColor(color) {
+      const colorMap = {
+        "green": "#1DB100",
+        "red": "#FF644E"
+      };
+      document.getElementById("prediction").style.backgroundColor = colorMap[color] || "#ffcc00";
+    }
 
-elG.addEventListener("click", (event) => {
-  principale("g",boitetape,boitepredit,el1,el2,el3);});
+    /***** Gestion des entrées et mise à jour de l'oracle *****/
+    function handleInput(letter) {
+      // Si une prédiction avait déjà été affichée (i.e. si on dispose d'au moins 5 lettres),
+      // comparer cette prédiction avec la lettre actuellement tapée.
+      if (Ltap.length >= 5) {
+        let isCorrect = (letter === currentPrediction);
+        tot++;
+        if (isCorrect) {
+          good.push(1);
+          setPredictionColor("green");
+        } else {
+          good.push(0);
+          setPredictionColor("red");
+        }
+        setTimeout(() => {
+          document.getElementById("prediction").style.backgroundColor = "#ffcc00";
+        }, 300);
+      }
 
-elG.addEventListener("touchend", (event) => {
-	event.preventDefault();
-  principale("g",boitetape,boitepredit,el1,el2,el3);});
+      // Si on dispose d'un contexte de 5 lettres (avant d'ajouter la lettre courante),
+      // mettre à jour le dictionnaire avec le mapping : contexte -> lettre tapée.
+      if (Ltap.length >= 5) {
+        let context = Ltap.slice(-5);  // dernier bloc de 5 lettres
+        let idx = tradMot(context);
+        if (letter === 'h') {
+          Dico[idx][1]++;
+        } else {
+          Dico[idx][0]++;
+        }
+      }
 
-elH.addEventListener("click", (event) => {
-  principale("h",boitetape,boitepredit,el1,el2,el3);});
+      // Ajouter la lettre tapée à l'historique.
+      Ltap.push(letter);
 
-elH.addEventListener("touchend", (event) => {
-	event.preventDefault();
-  principale("h",boitetape,boitepredit,el1,el2,el3);});
-</script>
-<br>
+      // Calculer la nouvelle prédiction si l'on a au moins 5 lettres.
+      if (Ltap.length >= 5) {
+        let context = Ltap.slice(-5);
+        let idx = tradMot(context);
+        currentPrediction = (Dico[idx][0] >= Dico[idx][1]) ? "g" : "h";
+      } else {
+        currentPrediction = "?";
+      }
+      // Mettre à jour l'affichage de la prédiction.
+      document.getElementById("prediction").innerText = currentPrediction;
+
+      // Mise à jour de l'affichage du pourcentage de bonnes prédictions.
+      let percentage;
+      if (good.length > 100) {
+        let sum = 0;
+        const last100 = good.slice(-100);
+        for (let val of last100) {
+          sum += val;
+        }
+        percentage = Math.round((sum / last100.length) * 100);
+      } else if (tot > 0) {
+        const sum = good.reduce((a, b) => a + b, 0);
+        percentage = Math.round((sum / tot) * 100);
+      } else {
+        percentage = 0;
+      }
+      document.getElementById("percentage-text").innerText = percentage + "%";
+      document.getElementById("percentage-fill").style.width = percentage + "%";
+    }
+
+    /***** Gestion des événements *****/
+    // Pour les clics et touch sur les boutons
+    document.getElementById("button-g").addEventListener("click", () => { handleInput("g"); });
+    document.getElementById("button-h").addEventListener("click", () => { handleInput("h"); });
+    document.getElementById("button-g").addEventListener("touchend", (e) => { e.preventDefault(); handleInput("g"); });
+    document.getElementById("button-h").addEventListener("touchend", (e) => { e.preventDefault(); handleInput("h"); });
+
+    // Pour la saisie au clavier : ajout/suppression de la classe "active" pour foncer le bouton
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "g" || event.key === "h") {
+        if (event.key === "g") {
+          document.getElementById("button-g").classList.add("active");
+        } else {
+          document.getElementById("button-h").classList.add("active");
+        }
+      }
+    });
+    document.addEventListener("keyup", (event) => {
+      if (event.key === "g" || event.key === "h") {
+        if (event.key === "g") {
+          document.getElementById("button-g").classList.remove("active");
+          handleInput("g");
+        } else {
+          document.getElementById("button-h").classList.remove("active");
+          handleInput("h");
+        }
+      }
+    });
+  </script>
 
 </section>
 </section><section>
