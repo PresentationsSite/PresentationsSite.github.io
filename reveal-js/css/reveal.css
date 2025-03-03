@@ -70,11 +70,37 @@ body {
     opacity: 0.5;
     visibility: inherit; }
 
+/*
+ancien strike
 .reveal .slides section .fragment.strike {
   opacity: 1;
   visibility: inherit; }
   .reveal .slides section .fragment.strike.visible {
     text-decoration: line-through; }
+*/
+
+.reveal .slides section .fragment.strike {
+  position: relative;
+  display: inline-block;
+  opacity: 1;
+  visibility: inherit;
+}
+
+.reveal .slides section .fragment.strike::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 60%;              /* Place la ligne verticalement au milieu */
+  transform: translateY(-50%);
+  height: 3px;           /* Épaisseur du trait */
+  width: 0;              /* Début de l'animation à 0 */
+  background-color: currentColor;  /* Couleur du trait identique à celle du texte */
+  transition: width 0.2s ease;      /* Animation de la largeur */
+}
+
+.reveal .slides section .fragment.strike.visible::after {
+  width: 100%;           /* La ligne s'étend sur toute la largeur du mot */
+}
 
 .reveal .slides section .fragment.fade-up {
   -webkit-transform: translate(0, 40px);

@@ -611,6 +611,32 @@ Bien faire la différence entre intermédiaire réactionnel et catalyseur.</p>
   // Liste des particules
   let particles = [];
 
+  // Tableau pour stocker les effets de réaction (halo)
+  let reactionEffects = [];
+
+  // Classe pour gérer l'effet de halo lors d'une réaction
+  class ReactionEffect {
+      constructor(x, y) {
+          this.x = x;
+          this.y = y;
+          this.radius = 0;
+          this.maxRadius = 60; // Taille maximale du halo
+          this.alpha = 1;      // Opacité initiale
+      }
+      update() {
+          this.radius += 3; // Vitesse d'expansion du halo
+          this.alpha = 1 - this.radius / this.maxRadius; // Estompe linéairement
+      }
+      draw(ctx) {
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+          ctx.strokeStyle = 'rgba(255, 255, 255, ' + this.alpha + ')';
+          ctx.lineWidth = 2;
+          ctx.stroke();
+          ctx.closePath();
+      }
+  }
+
   // Types de particules
   const PARTICLE_TYPES = {
       BLUE: 'blue',
@@ -720,12 +746,17 @@ Bien faire la différence entre intermédiaire réactionnel et catalyseur.</p>
                     const energyThreshold = 10; // Seuil d'énergie pour la transformation
 
                     if (energy > energyThreshold) {
+                        // Ajout de l'effet de halo au point de collision
+                        const midX = (p1.x + p2.x) / 2;
+                        const midY = (p1.y + p2.y) / 2;
+                        reactionEffects.push(new ReactionEffect(midX, midY));
+
                         // Créer une particule verte avec conservation de la quantité de mouvement
                         const totalVx = p1.vx + p2.vx;
                         const totalVy = p1.vy + p2.vy;
                         const greenParticle = new Particle(
-                            (p1.x + p2.x) / 2,
-                            (p1.y + p2.y) / 2,
+                            midX,
+                            midY,
                             7,
                             PARTICLE_TYPES.GREEN,
                             totalVx / 2,
@@ -776,7 +807,8 @@ Bien faire la différence entre intermédiaire réactionnel et catalyseur.</p>
             }
         }
     }
-}
+  }
+
   // Fonction de rotation pour la collision élastique
   function rotate(vx, vy, sin, cos, reverse) {
       if (reverse) {
@@ -800,6 +832,15 @@ Bien faire la différence entre intermédiaire réactionnel et catalyseur.</p>
           particle.update();
           particle.draw();
       });
+
+      // Mise à jour et dessin des effets de halo
+      for (let k = reactionEffects.length - 1; k >= 0; k--) {
+          reactionEffects[k].update();
+          reactionEffects[k].draw(ctx);
+          if (reactionEffects[k].radius > reactionEffects[k].maxRadius) {
+              reactionEffects.splice(k, 1);
+          }
+      }
 
       handleCollisions();
 

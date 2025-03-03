@@ -1,0 +1,852 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>Équilibre chimique</title>
+
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="/reveal-js/css/reset.css">
+<link rel="stylesheet" href="/reveal-js/css/reveal.css"><link rel="stylesheet" href="/reveal-js/css/theme/league.css" id="theme">
+<link rel="stylesheet" href="/highlight-js/atom-one-dark-reasonable.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  </head>
+  <body>
+    
+    <div class="reveal">
+      <div class="slides">
+  
+
+    <section><style>
+img {
+border: none !important;
+}
+
+.imp {
+font-weight:bold;color:#FF968D;
+}
+
+li {
+color: #fff;
+}
+
+ul {
+margin-left: auto;
+margin-right: auto;
+text-align: left;
+width: fit-content;
+list-style-position: outside;
+color:#fff;
+}
+
+span {
+font-weight:normal;
+}
+
+.video-container {
+  height: 60vh; /* limite la hauteur à 80% de la fenêtre */
+  width: calc(60vh * 9 / 16); /* largeur en fonction du ratio portrait */
+  margin: 0 auto;
+  position: relative;
+}
+
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  border-radius:10px;
+}
+</style>
+<h1 id="évolution-spontanée-dun-système-chimique">Évolution spontanée d&rsquo;un système chimique</h1>
+</section><section>
+
+
+<section data-shortcode-section>
+<h2 id="transformation-non-totalenbsp-léquilibre-chimique">Transformation non totale : l&rsquo;équilibre chimique</h2>
+</section><section>
+<p>Que se passe-t-il en terme d&rsquo;avancement $x$ si une transformation chimique est non totale ?</p>
+</section><section>
+<p>L&rsquo;avancement final est inférieur<br>à l&rsquo;avancement maximal.</p>
+<div style="position:relative;margin:auto;border:solid #FF968D 5px;border-radius:5px;width:fit-content;padding:20px;">
+$x_\mathrm{f} < x_\mathrm{max}$
+</div>
+</section><section>
+<p>En appelant taux d&rsquo;avancement<br>le ratio $\tau=\frac{x_\mathrm{f}}{x_\mathrm{max}}$, cela revient à :</p>
+<br>
+<div class="fragment" style="position:relative;margin:auto;border:solid #FF968D 5px;border-radius:10px;width:fit-content;padding:20px;">
+<b class="imp">transformation non totale</b><br>
+$\Leftrightarrow$<br>
+$\color{#FF968D}\tau < 1$
+</div>
+</section><section>
+<p>Que peut-on alors dire de l&rsquo;état final du système ?</p>
+<br>
+<p class="fragment imp">L’ensemble des réactifs et produits de la réaction coexistent et leurs quantités de matière<br>n’évoluent plus dans le temps.</p>
+<p class="fragment">C'est la caractéristique<br>d'un état d'<span class="imp">équilibre chimique</span>.</p>
+</section><section>
+<h3 id="exercice">Exercice</h3>
+<br>
+<p>Le fluorure d&rsquo;hydrogène $\ce{HF}$ réagit avec l&rsquo;eau<br>selon la réaction d&rsquo;équation :</p>
+<p>$$\ce{HF(aq) + H2O(ℓ) &lt;=&gt; F-(aq) + H3O+(aq)}$$</p>
+<p>Une solution d&rsquo;acide fluorhydrique est préparée en ajoutant du fluorure d&rsquo;hydrogène ($n=\pu{1,0 mmol}$) dans de l&rsquo;eau distillée pour former une solution de volume $V=\pu{1,00 L}$. Le pH de la solution vaut 2,65.</p>
+</section><section>
+<p>Calculer le taux d&rsquo;avancement final $\tau$<br>de cette transformation et en déduire<br>son caractère totale ou non totale.</p>
+</section><section>
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowfullscreen="allowfullscreen"
+    loading="eager"
+    referrerpolicy="strict-origin-when-cross-origin"
+    src="https://www.youtube.com/embed/hd3EAzJ_McA?autoplay=0&controls=1&end=0&loop=0&mute=0&start=0"
+    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;"
+    title="YouTube video"
+  ></iframe>
+</div>
+<aside class="notes"><p>La particularité de l&rsquo;acide fluorhydrique est de dissoudre les os (!) et aussi le verre (!!) mais cela serait bien plus lent et dangereux que dans la série.
+Une alternative à l&rsquo;inhumation et la crémation est ainsi la liquéfaction par hydrolyse alcaline (moins de gaz à effet de serre produit) ! Le terme utilisé, moins flippant : aquamation funéraire. On l&rsquo;utilise aussi industriellement pour disposer du bétail malade (serait plus sûr).</p>
+</aside>
+</section><section>
+<p>Comment s&rsquo;établit cet état d&rsquo;équilibre final ?</p>
+<p class="fragment">Il est dû à la compensation entre<br>la réaction dans son sens direct :<br>
+$\color{#FF968D}\ce{\text{réactifs} -> \text{produits}}$
+</p>
+<div class="fragment">
+Et la réaction dans le sens opposé (indirect) :
+$\color{#FF968D}\ce{\text{produits} -> \text{réactifs}}$
+</div>
+</section><section>
+<p>On modélise ce double sens de la réaction<br>par une double flèche à simple pointe :</p>
+<p>$\ce{\text{réactifs} \color{#FF968D}{&lt;=&gt;} \text{produits}}$</p>
+</section><section>
+<p>Que peut-on dire des vitesses de formation<br>et de disparition d&rsquo;une espèce chimique<br>intervenant dans la réaction lorsque<br>l&rsquo;équilibre chimique est atteint ?</p>
+</section><section>
+<p>La vitesse volumique de disparition d’un réactif A dans le sens direct doit être égale à sa vitesse volumique<br>de formation dans le sens indirect :</p>
+<div class="fragment">
+$$-\frac{\mathrm{d[A]}}{\mathrm{dt}}=\frac{\mathrm{d[A]}}{\mathrm{dt}}$$
+</div>
+<div class="fragment">
+D'où $\displaystyle \frac{\mathrm{d[A]}}{\mathrm{dt}}=0\Rightarrow \mathrm{[A]=cste}$
+</section><section>
+<p>C&rsquo;est pour cela qu&rsquo;on parle d&rsquo;<span class="imp">équilibre dynamique</span> :</p>
+<p class="fragment">
+Microscopiquement, les deux réactions opposées continuent à se faire mais macroscopiquement,<br>les effets se compensent.
+</p>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h2 id="description-microscopique">Description microscopique</h2>
+</section><section>
+<style>
+  /* Container principal */
+  .simulation-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+  /* Style des sliders empilés sans titres */
+  .slider-input {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 800px;
+    height: 15px;
+    background: #ddd;
+    outline: none;
+    margin: 5px 0;
+    border-radius: 4px;
+  }
+  .slider-input::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    border-radius: 50%;
+    border: none;
+    margin-top: -2px;
+    background: #4CAF50;
+  }
+  .slider-input::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    border-radius: 50%;
+    border: none;
+    background: #4CAF50;
+  }
+  /* Couleurs spécifiques aux sliders */
+  #blueCount { background: #56C1FF; }
+  #blueCount::-webkit-slider-runnable-track { background: #56C1FF; height: 15px; border-radius: 4px; }
+  #blueCount::-moz-range-track { background: #56C1FF; height: 15px; border-radius: 4px; }
+  #blueCount::-webkit-slider-thumb { background: #00A2FF; }
+  #blueCount::-moz-range-thumb { background: #00A2FF; }
+  
+  #redCount { background: #FF968D; }
+  #redCount::-webkit-slider-runnable-track { background: #FF968D; height: 15px; border-radius: 4px; }
+  #redCount::-moz-range-track { background: #FF968D; height: 15px; border-radius: 4px; }
+  #redCount::-webkit-slider-thumb { background: #FF644E; }
+  #redCount::-moz-range-thumb { background: #FF644E; }
+  
+  #cCount { background: #A8E6A3; }
+  #cCount::-webkit-slider-runnable-track { background: #A8E6A3; height: 15px; border-radius: 4px; }
+  #cCount::-moz-range-track { background: #A8E6A3; height: 15px; border-radius: 4px; }
+  #cCount::-webkit-slider-thumb { background: #00FF00; }
+  #cCount::-moz-range-thumb { background: #00FF00; }
+  
+  #dCount { background: #FFE699; }
+  #dCount::-webkit-slider-runnable-track { background: #FFE699; height: 15px; border-radius: 4px; }
+  #dCount::-moz-range-track { background: #FFE699; height: 15px; border-radius: 4px; }
+  #dCount::-webkit-slider-thumb { background: #FFFF00; }
+  #dCount::-moz-range-thumb { background: #FFFF00; }
+  
+  /* Le curseur K est placé sous le canvas */
+  #kValue { background: #D3D3D3; }
+  #kValue::-webkit-slider-runnable-track { background: #D3D3D3; height: 15px; border-radius: 4px; }
+  #kValue::-moz-range-track { background: #D3D3D3; height: 15px; border-radius: 4px; }
+  #kValue::-webkit-slider-thumb { background: #888888; }
+  #kValue::-moz-range-thumb { background: #888888; }
+  
+  /* Canvas */
+  #simulationCanvas {
+    border: 5px solid #888;
+    background-color: #200A14;
+    margin: 10px 0;
+  }
+</style>
+<div class="simulation-container">
+  <!-- Sliders pour A, B, C et D (en haut) -->
+  <input type="range" id="blueCount" min="0" max="300" value="200" class="slider-input">
+  <input type="range" id="redCount" min="0" max="300" value="50" class="slider-input">
+  <input type="range" id="cCount" min="0" max="300" value="0" class="slider-input">
+  <input type="range" id="dCount" min="0" max="300" value="0" class="slider-input">
+  <!-- Canvas de hauteur 500 -->
+<p><canvas id="simulationCanvas" width="800" height="500"></canvas></p>
+  <!-- Curseur pour K placé sous le canvas -->
+  <input type="range" id="kValue" min="0.2" max="5" value="1" step="0.1" class="slider-input">
+</div>
+ <script>
+    const canvas = document.getElementById('simulationCanvas');
+    const ctx = canvas.getContext('2d');
+
+    const blueCountInput = document.getElementById('blueCount');
+    const redCountInput  = document.getElementById('redCount');
+    const cCountInput    = document.getElementById('cCount');
+    const dCountInput    = document.getElementById('dCount');
+    const kValueInput    = document.getElementById('kValue');
+
+    let blueCount = parseInt(blueCountInput.value);
+    let redCount  = parseInt(redCountInput.value);
+    let cCount    = parseInt(cCountInput.value);
+    let dCount    = parseInt(dCountInput.value);
+    let equilibriumConstant = parseFloat(kValueInput.value);
+
+    // Stockage des quantités initiales
+    let initA, initB, initC, initD;
+
+    // Paramètres physiques
+    const SPEED = 2;              // Approximation de E_avg
+    const energyThreshold = 5;    // E₀, seuil de base
+    let particles = [];
+
+    const PARTICLE_TYPES = {
+      BLUE: 'blue',   // A
+      RED: 'red',     // B
+      C: 'c',         // C
+      D: 'd'          // D
+    };
+
+    // Paramètre pour moduler la "douceur" de la transition dans la sigmoïde
+    const a = 1.7;
+
+    // Définir f(K) pour ajuster le seuil.
+    // f(K) - 1/f(K) = (E_avg/E₀) * ln(K)
+    function fK(K) {
+      const lnK = Math.log(K);
+      return (0.5 * lnK + Math.sqrt((0.5 * lnK) ** 2 + 4)) / 2;
+    }
+
+    // Génération d'une vitesse aléatoire autour de SPEED
+    function randomSpeed() {
+      return SPEED + (Math.random() - 0.5) * SPEED;
+    }
+
+    class Particle {
+      constructor(x, y, type, vx, vy) {
+        this.x = x;
+        this.y = y;
+        this.radius = 3;
+        this.type = type;
+        this.vx = vx;
+        this.vy = vy;
+        this.removed = false;
+        this.cooldown = 0;
+      }
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        if (this.type === PARTICLE_TYPES.BLUE) ctx.fillStyle = '#00A2FF';
+        else if (this.type === PARTICLE_TYPES.RED) ctx.fillStyle = '#FF644E';
+        else if (this.type === PARTICLE_TYPES.C) ctx.fillStyle = '#00FF00';
+        else if (this.type === PARTICLE_TYPES.D) ctx.fillStyle = '#FFFF00';
+        ctx.fill();
+        ctx.closePath();
+      }
+      update() {
+        this.x += this.vx;
+        this.y += this.vy;
+        if (this.x + this.radius > canvas.width || this.x - this.radius < 0) {
+          this.vx = -this.vx;
+          this.x = Math.max(this.radius, Math.min(this.x, canvas.width - this.radius));
+        }
+        if (this.y + this.radius > canvas.height || this.y - this.radius < 0) {
+          this.vy = -this.vy;
+          this.y = Math.max(this.radius, Math.min(this.y, canvas.height - this.radius));
+        }
+      }
+    }
+
+    function createParticle(type) {
+      const radius = 3;
+      let x, y, overlapping;
+      do {
+        overlapping = false;
+        x = Math.random() * (canvas.width - 2 * radius) + radius;
+        y = Math.random() * (canvas.height - 2 * radius) + radius;
+        for (let p of particles) {
+          const dx = p.x - x, dy = p.y - y;
+          if (Math.sqrt(dx * dx + dy * dy) < p.radius + radius) {
+            overlapping = true;
+            break;
+          }
+        }
+      } while (overlapping);
+      const angle = Math.random() * 2 * Math.PI;
+      const speed = randomSpeed();
+      const vx = speed * Math.cos(angle);
+      const vy = speed * Math.sin(angle);
+      return new Particle(x, y, type, vx, vy);
+    }
+
+    function initParticles() {
+      particles = [];
+      for (let i = 0; i < blueCount; i++) particles.push(createParticle(PARTICLE_TYPES.BLUE));
+      for (let i = 0; i < redCount; i++) particles.push(createParticle(PARTICLE_TYPES.RED));
+      for (let i = 0; i < cCount; i++) particles.push(createParticle(PARTICLE_TYPES.C));
+      for (let i = 0; i < dCount; i++) particles.push(createParticle(PARTICLE_TYPES.D));
+    }
+
+    function getCounts() {
+      return {
+        countA: particles.filter(p => p.type === PARTICLE_TYPES.BLUE).length,
+        countB: particles.filter(p => p.type === PARTICLE_TYPES.RED).length,
+        countC: particles.filter(p => p.type === PARTICLE_TYPES.C).length,
+        countD: particles.filter(p => p.type === PARTICLE_TYPES.D).length
+      };
+    }
+
+    function computeGlobalQ() {
+      const counts = getCounts();
+      if (counts.countA > 0 && counts.countB > 0)
+        return (counts.countC * counts.countD) / (counts.countA * counts.countB);
+      else
+        return "indéfini";
+    }
+
+    // Tableau pour stocker les effets de réaction (halo)
+    let reactionEffects = [];
+
+    // Classe ReactionEffect modifiée pour inclure la couleur
+    // Le paramètre "color" doit être une chaîne sous la forme "r,g,b" (par exemple "255,0,255" pour magenta)
+    class ReactionEffect {
+      constructor(x, y, color) {
+        this.x = x;
+        this.y = y;
+        this.radius = 0;
+        this.maxRadius = 50;
+        this.alpha = 1;
+        this.color = color;
+      }
+      update() {
+        this.radius += 3;
+        this.alpha = 1 - this.radius / this.maxRadius;
+      }
+      draw(ctx) {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.strokeStyle = 'rgba(' + this.color + ', ' + this.alpha + ')';
+        ctx.lineWidth = 2;
+        ctx.stroke();
+        ctx.closePath();
+      }
+    }
+
+    // Fonction de création des produits de réaction avec effet de halo et couleur personnalisée
+    // effectColor : "255,0,255" pour magenta (réaction directe) ou "255,255,0" pour jaune (réaction inverse)
+    function createReactionProducts(p1, p2, type1, type2, effectColor) {
+      const midX = (p1.x + p2.x) / 2;
+      const midY = (p1.y + p2.y) / 2;
+      
+      // Ajout de l'effet de halo avec la couleur indiquée
+      reactionEffects.push(new ReactionEffect(midX, midY, effectColor));
+      
+      const angle = Math.atan2(p2.y - p1.y, p2.x - p1.x);
+      const delta = 0.2;
+      const offset = 4;
+      const prod1_x = midX + offset * Math.cos(angle + Math.PI/2);
+      const prod1_y = midY + offset * Math.sin(angle + Math.PI/2);
+      const prod2_x = midX + offset * Math.cos(angle - Math.PI/2);
+      const prod2_y = midY + offset * Math.sin(angle - Math.PI/2);
+      const prod1_vx = SPEED * Math.cos(angle + Math.PI/2 + delta);
+      const prod1_vy = SPEED * Math.sin(angle + Math.PI/2 + delta);
+      const prod2_vx = SPEED * Math.cos(angle - Math.PI/2 - delta);
+      const prod2_vy = SPEED * Math.sin(angle - Math.PI/2 - delta);
+      const prod1 = new Particle(prod1_x, prod1_y, type1, prod1_vx, prod1_vy);
+      const prod2 = new Particle(prod2_x, prod2_y, type2, prod2_vx, prod2_vy);
+      prod1.cooldown = 0;
+      prod2.cooldown = 0;
+      particles.push(prod1);
+      particles.push(prod2);
+    }
+
+    // Fonction de collision élastique classique
+    function performElasticCollision(p1, p2) {
+      const dx = p1.x - p2.x;
+      const dy = p1.y - p2.y;
+      const distance = Math.sqrt(dx * dx + dy * dy);
+      const nx = dx / distance;
+      const ny = dy / distance;
+      const v1n = p1.vx * nx + p1.vy * ny;
+      const v2n = p2.vx * nx + p2.vy * ny;
+      const diff = v1n - v2n;
+      p1.vx -= diff * nx;
+      p1.vy -= diff * ny;
+      p2.vx += diff * nx;
+      p2.vy += diff * ny;
+      const overlap = p1.radius + p2.radius - distance;
+      p1.x += nx * (overlap / 2);
+      p1.y += ny * (overlap / 2);
+      p2.x -= nx * (overlap / 2);
+      p2.y -= ny * (overlap / 2);
+    }
+
+    function handleCollisions() {
+      const current_fK = fK(equilibriumConstant);
+      const forwardThreshold = energyThreshold / current_fK;
+      const reverseThreshold = energyThreshold * current_fK;
+      
+      for (let i = 0; i < particles.length; i++) {
+        let p1 = particles[i];
+        if (p1.removed) continue;
+        for (let j = i + 1; j < particles.length; j++) {
+          let p2 = particles[j];
+          if (p2.removed) continue;
+          const dx = p1.x - p2.x, dy = p1.y - p2.y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+          if (distance < p1.radius + p2.radius) {
+            const energy1 = Math.sqrt(p1.vx ** 2 + p1.vy ** 2);
+            const energy2 = Math.sqrt(p2.vx ** 2 + p2.vy ** 2);
+            const totalEnergy = energy1 + energy2;
+            
+            // Collision A+B -> C+D (réaction directe)
+            if ((p1.type === PARTICLE_TYPES.BLUE && p2.type === PARTICLE_TYPES.RED) ||
+                (p1.type === PARTICLE_TYPES.RED && p2.type === PARTICLE_TYPES.BLUE)) {
+              const probForward = 1 / (1 + Math.exp(-(totalEnergy - forwardThreshold) / a));
+              if (Math.random() < probForward) {
+                // Halo magenta pour la réaction directe : "255,0,255"
+                createReactionProducts(p1, p2, PARTICLE_TYPES.C, PARTICLE_TYPES.D, '255,0,255');
+                p1.removed = true;
+                p2.removed = true;
+                break;
+              } else {
+                performElasticCollision(p1, p2);
+              }
+            }
+            // Collision C+D -> A+B (réaction inverse)
+            else if ((p1.type === PARTICLE_TYPES.C && p2.type === PARTICLE_TYPES.D) ||
+                     (p1.type === PARTICLE_TYPES.D && p2.type === PARTICLE_TYPES.C)) {
+              const probReverse = 1 / (1 + Math.exp(-(totalEnergy - reverseThreshold) / a));
+              if (Math.random() < probReverse) {
+                // Halo jaune pour la réaction inverse : "255,255,0"
+                createReactionProducts(p1, p2, PARTICLE_TYPES.BLUE, PARTICLE_TYPES.RED, '255,255,0');
+                p1.removed = true;
+                p2.removed = true;
+                break;
+              } else {
+                performElasticCollision(p1, p2);
+              }
+            }
+            else {
+              performElasticCollision(p1, p2);
+            }
+          }
+        }
+      }
+      particles = particles.filter(p => !p.removed);
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach(p => { p.update(); p.draw(); });
+      
+      // Mise à jour et dessin des halos de réaction
+      for (let i = reactionEffects.length - 1; i >= 0; i--) {
+        let effect = reactionEffects[i];
+        effect.update();
+        effect.draw(ctx);
+        if (effect.radius > effect.maxRadius) {
+          reactionEffects.splice(i, 1);
+        }
+      }
+      
+      handleCollisions();
+      
+      const counts = getCounts();
+      let Q_current;
+      if (counts.countA === 0 || counts.countB === 0)
+        Q_current = "indéfini";
+      else
+        Q_current = (counts.countC * counts.countD) / (counts.countA * counts.countB);
+      
+      const x_max = Math.min(initA, initB);
+      const x = (initA <= initB) ? (initA - counts.countA) : (initB - counts.countB);
+      const tau = x_max > 0 ? x / x_max : 0;
+      
+      ctx.fillStyle = "#FFFFFF";
+      ctx.font = "16px Arial";
+      ctx.fillText("τ : " + tau.toFixed(2), 10, 20);
+      ctx.fillText("Q : " + (typeof Q_current === "number" ? Q_current.toFixed(2) : Q_current), 10, 40);
+      ctx.fillText("K : " + equilibriumConstant.toFixed(2), 10, 60);
+      
+      const offsetX = canvas.width - 60;
+      ctx.fillText("A : " + counts.countA, offsetX, 20);
+      ctx.fillText("B : " + counts.countB, offsetX, 40);
+      ctx.fillText("C : " + counts.countC, offsetX, 60);
+      ctx.fillText("D : " + counts.countD, offsetX, 80);
+      
+      const offsetY = canvas.height - 67;
+      ctx.fillText("Ai : " + initA, offsetX, offsetY);
+      ctx.fillText("Bi : " + initB, offsetX, offsetY + 20);
+      ctx.fillText("Ci : " + initC, offsetX, offsetY + 40);
+      ctx.fillText("Di : " + initD, offsetX, offsetY + 60);
+      
+      requestAnimationFrame(animate);
+    }
+
+    blueCountInput.addEventListener('input', function() {
+      blueCount = parseInt(this.value);
+      initA = blueCount;
+      initParticles();
+    });
+    redCountInput.addEventListener('input', function() {
+      redCount = parseInt(this.value);
+      initB = redCount;
+      initParticles();
+    });
+    cCountInput.addEventListener('input', function() {
+      cCount = parseInt(this.value);
+      initC = cCount;
+      initParticles();
+    });
+    dCountInput.addEventListener('input', function() {
+      dCount = parseInt(this.value);
+      initD = dCount;
+      initParticles();
+    });
+    kValueInput.addEventListener('input', function() {
+      equilibriumConstant = parseFloat(this.value);
+      startSimulation();
+    });
+    
+    function startSimulation() {
+      blueCount = parseInt(blueCountInput.value);
+      redCount  = parseInt(redCountInput.value);
+      cCount    = parseInt(cCountInput.value);
+      dCount    = parseInt(dCountInput.value);
+      equilibriumConstant = parseFloat(kValueInput.value);
+      initA = blueCount;
+      initB = redCount;
+      initC = cCount;
+      initD = dCount;
+      initParticles();
+    }
+    
+    startSimulation();
+    animate();
+  </script>
+</section><section>
+<style>
+  /* Appliquez ces styles à votre fragment personnalisé */
+  .fragment.barre {
+    position: relative;
+    display: inline-block;
+  }
+  /* Le pseudo-élément qui représente la barre */
+  .fragment.barre::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 2px;
+    background-color: black; /* Vous pouvez adapter la couleur */
+    transition: width 0.5s ease; /* Ajustez la durée et le timing */
+  }
+  /* Lorsque le fragment est visible, la barre s'étend sur toute la largeur */
+  .fragment.strike.visible::after {
+    width: 100%;
+  }
+</style>
+<p>Lors d&rsquo;un choc, si l&rsquo;énergie cinétique dépasse<br> un seuil d&rsquo;activation, la réaction se fait.</p>
+<p>Sinon, il y a collision élastique.</p>
+<p class="fragment">Pour $K>1$, l'énergie d'activation dans le sens direct est plus <span class="fragment strike">grande</span>/petite que dans le sens indirect. 
+<p class="fragment">Et plus $K$ est grand, plus elle est <span class="fragment strike">grande</span>/faible.</p>
+<p class="fragment">Pour $K<1$, c'est l'inverse.</p>
+</section><section>
+<p>Par conséquent, lors d&rsquo;un choc, la réaction dans le sens direct devient plus/<span class="fragment strike">moins</span> probable lorsque $K&gt;1$.</p>
+<p class="fragment">
+Mais à l'inverse, la fréquence des chocs devient<br><span class="fragment strike">plus</span>/moins grande puisque les réactifs<br><span class="fragment strike">apparaissent</span>/disparaissent.
+</p>
+</section><section>
+<p>Le quotient de réaction mesure le ratio entre<br>la probabilité de rencontre des produits sur<br>la probabilité de rencontre des réactifs.</p>
+<p class="fragment">
+Pour un $Q_r>1$, les chocs les plus fréquents sont entre les <span class="fragment strike">réactifs</span>/produits et pour $Q_r<1$, les chocs les plus fréquents sont entre les réactifs/<span class="fragment strike">produits</span>.
+</br> 
+</p>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h2 id="quotient-de-réaction">Quotient de réaction</h2>
+</section><section>
+<p>Soit une transformation modélisée par la réaction :</p>
+<p>$$\ce{\nu_A A + \nu_B B &lt;=&gt; \nu_C C + \nu_D D}$$</p>
+<p class="fragment">
+Le <span class="imp">quotient de réaction $\mathrm{Q_r}$</span> est une grandeur<br>sans dimension définie par&nbsp;:</p>
+<div class="fragment" style="position:relative;margin:auto;border:solid #FF968D 5px;border-radius:10px;width:fit-content;padding:20px;">
+$\displaystyle Q_r = \frac{a_\mathrm{C}^{\nu_\mathrm{C}}\times a_\mathrm{D}^{\nu_\mathrm{D}}}{a_\mathrm{A}^{\nu_\mathrm{A}}\times a_\mathrm{B}^{\nu_\mathrm{B}}}$
+</div>
+</section><section>
+<p>La grandeur $a_\mathrm{X}$ est l&rsquo;<span class="imp">activité</span> de l&rsquo;espèce $\ce{X}$.</p>
+<p>C&rsquo;est une grandeur sans dimension telle que :</p>
+<div class="fragment" style="position:relative;margin:auto;border:solid #FF968D 5px;border-radius:10px;width:fit-content;padding:20px;">
+<ul>
+<li>$\displaystyle a_\mathrm{X}=\frac{\ce{[X]}}{C°}$ si $\ce{X}$ est un soluté<br>où $C°$ est la concentration standard<br>
+$C°= \pu{1 mol*L-1}$</li>
+<li>$a_\mathrm{X}=1$ pour un solvant</li>
+<li>$a_\mathrm{X}=1$ pour un solide</li>
+</ul>
+</div>
+</section><section>
+<h3 id="petit-exercice">Petit exercice</h3>
+<br>
+<p>Dans $V=\pu{100 mL}$ d&rsquo;eau distillée, on dissout totalement $m_1=\pu{0,30 g}$ de iodure de potassium $\ce{KI}$<br>et $m_2=\pu{0,30 g}$ de nitrate de plomb $\ce{Pb(NO3)_2}$.</p>
+</section><section>
+<p>Les ions iodures et les ions plomb peuvent<br>précipiter selon la réaction d&rsquo;équation :</p>
+<p>$$\ce{Pb^2+(aq) + 2 I-(aq) &lt;=&gt; PbI2(s)}$$</p>
+<p class="fragment">
+Exprimer et calculer<br>le quotient de réaction initial $Q_{r\text{i}}$.
+</p>
+<div class="fragment">
+Données :<br>
+$M(\ce{KI})=\pu{166 g*mol-1}$<br>
+$M(\ce{Pb(NO3)_2})=\pu{331 g*mol-1}$
+</div>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h2 id="évolution-spontanée">Évolution spontanée</h2>
+</section><section>
+<p>Lorsqu&rsquo;un système atteint l&rsquo;équilibre chimique,<br>son quotient de réaction prend une valeur indépendante de la composition initiale<br>appelée <span class="imp">constante d&rsquo;équilibre $K(T)$</span>.</p>
+<p class="fragment">$K(T)$ est sans unité et ne dépend<br>que de la température</p>
+</section><section>
+<p>À l&rsquo;équilibre :</p>
+<br>
+<div class="fragment grow" style="position:relative;margin:auto;border:solid #FF968D 5px;border-radius:10px;width:fit-content;padding:20px;">
+$\displaystyle Q_{r\text{,eq}}=K(T)$
+</div>
+</section><section>
+<p><span class="imp">Un système chimique hors équilibre évolue spontanément de manière à rapprocher<br>le quotient de réaction de la constante d&rsquo;équilibre. </span></p>
+</section><section>
+<p>Dans quel sens évoluera la réaction si $Q_r&lt;K(T)$ ?</p>
+<p class="fragment">(aide : on veut que $Q_r \nearrow$)</p>
+</section><section>
+<div style="position:relative;margin-left:auto;margin-right:auto;width:500px;max-width:100%;margin-bottom:-40px;margin-top:-40px;">
+<img src="/doublefleche1.png" style="box-shadow:none;background:none;">
+</div>
+<br>
+<div style="position:relative;margin-left:auto;margin-right:auto;width:300px;max-width:100%;margin-bottom:-40px;margin-top:-40px;">
+<img src="/doublefleche2.png" style="box-shadow:none;background:none;">
+</div>
+<br>
+<ul>
+<li>Si <b style="color:#FF968D">$Q_r &lt; K(T)$</b>, la réaction évolue spontanément dans le <b style="color:#FF968D">sens direct</b> (consommation des réactifs et formation des produits)</li>
+</ul>
+</section><section>
+<div style="position:relative;margin-left:auto;margin-right:auto;width:300px;max-width:100%;margin-bottom:-40px;margin-top:-40px;">
+<img src="/doublefleche1.png" style="box-shadow:none;background:none;">
+</div>
+<br>
+<div  style="position:relative;margin-left:auto;margin-right:auto;width:500px;max-width:100%;margin-bottom:-40px;margin-top:-40px;">
+<img src="/doublefleche2.png" style="box-shadow:none;background:none;">
+</div>
+<br>
+<ul>
+<li>Si <b style="color:#56C1FF">$Q_r &gt; K(T)$</b>, la réaction évolue spontanément dans le <b style="color:#56C1FF">sens indirect</b> (consommation des produits et formations des réactifs)</li>
+</ul>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/equchim.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+</section><section>
+<div class="video-container">
+  <iframe src="https://www.youtube.com/embed/nyoOhWLwN_g"
+          title="YouTube Short"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen>
+  </iframe>
+</div>
+
+</section>
+</section><section>
+<p><a href="https://coursphychi.github.io/tspe/equilibre/">Retour site</a></p>
+</section>
+
+  
+
+
+</div>
+      
+
+    </div>
+<script type="text/javascript" src=/reveal-hugo/object-assign.js></script>
+
+<a href="/reveal-js/css/print/" id="print-location" style="display: none;"></a>
+<script type="text/javascript">
+  var printLocationElement = document.getElementById('print-location');
+  var link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.type = 'text/css';
+  link.href = printLocationElement.href + (window.location.search.match(/print-pdf/gi) ? 'pdf.css' : 'paper.css');
+  document.getElementsByTagName('head')[0].appendChild(link);
+</script>
+
+<script type="application/json" id="reveal-hugo-site-params">{"highlight_theme":"github-dark","line-numbers":true,"theme":"sky","transition":"concave","transition_speed":"fast"}</script>
+<script type="application/json" id="reveal-hugo-page-params">{"highlight_theme":"atom-one-dark-reasonable","theme":"league"}</script>
+
+<script src="/reveal-js/js/reveal.js"></script>
+
+<script type="text/javascript">
+  
+  
+  function camelize(map) {
+    if (map) {
+      Object.keys(map).forEach(function(k) {
+        newK = k.replace(/(\_\w)/g, function(m) { return m[1].toUpperCase() });
+        if (newK != k) {
+          map[newK] = map[k];
+          delete map[k];
+        }
+      });
+    }
+    return map;
+  }
+  
+  var revealHugoDefaults = { center: true, controls: true, history: true, progress: true, transition: "slide" };
+  var revealHugoSiteParams = JSON.parse(document.getElementById('reveal-hugo-site-params').innerHTML);
+  var revealHugoPageParams = JSON.parse(document.getElementById('reveal-hugo-page-params').innerHTML);
+  
+  var options = Object.assign({},
+    camelize(revealHugoDefaults),
+    camelize(revealHugoSiteParams),
+    camelize(revealHugoPageParams));
+  Reveal.initialize(options);
+</script>
+
+
+  
+  
+  <script type="text/javascript" src="/reveal-js/plugin/markdown/marked.js"></script>
+  
+  <script type="text/javascript" src="/reveal-js/plugin/markdown/markdown.js"></script>
+  
+  <script type="text/javascript" src="/reveal-js/plugin/highlight/highlight.js"></script>
+  
+  <script type="text/javascript" src="/reveal-js/plugin/zoom-js/zoom.js"></script>
+  
+  
+  <script type="text/javascript" src="/reveal-js/plugin/notes/notes.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({startOnLoad: false});
+    let render = (event) => {
+      let mermaidElems = event.currentSlide.querySelectorAll('.mermaid');
+      if (!mermaidElems.length){
+          return
+      }
+      mermaidElems.forEach(mermaidElem => {
+          let processed = mermaidElem.getAttribute('data-processed');
+          if (!processed){
+              
+              mermaid.init(undefined, mermaidElem);
+          }
+      });
+    };
+    Reveal.addEventListener('slidechanged', render);
+    Reveal.addEventListener('ready', render);
+  </script>
+
+    
+
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']]
+  },
+  svg: {
+    fontCache: 'global'
+  }
+};
+</script>
+
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+</script>
+    
+  </body>
+</html>
