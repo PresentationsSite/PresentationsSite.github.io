@@ -544,11 +544,14 @@ oninput="document.getElementById('dCountValue').textContent=this.value">
   // Pour les quantités de particules, on dessine des bâtons avec un outline fixe de largeur 150.
   // Le nombre est affiché à gauche du bâton.
   function drawHorizontalBar(value, maxValue, x, y, barMaxWidth, barHeight, fillColor) {
+  	ctx.save();
+    ctx.globalAlpha = 0.8; // 20% transparence
     ctx.fillStyle = "#444";
     ctx.fillRect(x, y, barMaxWidth, barHeight);
     let barWidth = (value / maxValue) * barMaxWidth;
     ctx.fillStyle = fillColor;
     ctx.fillRect(x, y, barWidth, barHeight);
+    ctx.restore(); // rétablit l'opacité normale pour le texte
     ctx.fillStyle = "#FFFFFF";
     ctx.font = "14px Arial";
     ctx.fillText(value, x - 30, y + barHeight - 2);
@@ -582,8 +585,11 @@ oninput="document.getElementById('dCountValue').textContent=this.value">
     gradient.addColorStop(1, "#B51700");
     
     // Dessin de l'axe épais avec le gradient
+    ctx.save();
+    ctx.globalAlpha = 0.8;
     ctx.fillStyle = gradient;
     ctx.fillRect(x, y, width, height);
+    ctx.restore();
     
     // Flèche pour K (au-dessus de l'axe)
     let arrowX_K = x + mapLogarithmic(Kvalue) * width;
