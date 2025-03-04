@@ -157,7 +157,6 @@ Microscopiquement, les deux réactions opposées continuent à se faire mais mac
       align-items: center;
       justify-content: center;
       width: 100%;
-      margin-top: -2em;
     }
     
     /* Container pour le curseur et sa zone de valeur */
@@ -276,7 +275,7 @@ Microscopiquement, les deux réactions opposées continuent à se faire mais mac
       margin: 10px 0;
     }
 </style>
-<div class="simulation-container">
+<div class="simulation-container" style="margin-top:-0.5em;">
   <!-- Sliders pour A, B, C et D -->
   <div class="slider-container">
     <input type="range" id="blueCount" min="0" max="300" value="200" class="slider-input"
@@ -299,9 +298,9 @@ Microscopiquement, les deux réactions opposées continuent à se faire mais mac
     <span class="slider-value" id="dCountValue">0</span>
   </div>
   <!-- Canvas de la simulation -->
-<p><canvas id="simulationCanvas" width="800" height="500"></canvas></p>
+<p><canvas id="simulationCanvas" width="800" height="500" style="margin-top:-0.2em;"></canvas></p>
   <!-- Curseur pour K et bouton de contrôle du son -->
-<div class="slider-container">
+<div class="slider-container" style="margin-top:-0.8em;">
   <span style="font-size:0.5em;">K&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;</span>
   <input type="range" id="kValue" min="0.2" max="5" value="1" step="0.1" class="slider-input" style="width: calc(100% - 100px);">
   <button id="soundToggle" class="sound-toggle">
