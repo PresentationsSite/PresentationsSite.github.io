@@ -216,7 +216,7 @@ Microscopiquement, les deux réactions opposées continuent à se faire mais mac
     #cCountValue    { color: #00FF00; }
     #dCountValue    { color: #FFFF00; }
     
-    /* Pour le slider K, on souhaite qu'il prenne toute la largeur (pas de zone de valeur) */
+    /* Pour le slider K, on souhaite qu'il ne prenne pas 100% de la largeur pour laisser place au bouton */
     .slider-container.full-width {
       justify-content: center;
     }
@@ -253,48 +253,70 @@ Microscopiquement, les deux réactions opposées continuent à se faire mais mac
     #kValue::-webkit-slider-thumb { background: #888888; }
     #kValue::-moz-range-thumb { background: #888888; }
     
+    /* Bouton de contrôle du son */
+    .sound-toggle {
+      width: 40px;
+      height: 40px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      margin-left: 10px;
+    }
+    .sound-toggle span {
+      font-size: 24px;
+      color: white;
+      /* Pas de text-decoration par défaut */
+      text-decoration: none;
+    }
+    
     /* Canvas */
     #simulationCanvas {
       border: 5px solid #888;
       background-color: #200A14;
       margin: 10px 0;
     }
-  </style>
+</style>
 <div class="simulation-container">
-<!-- Sliders pour A, B, C et D -->
-<div class="slider-container">
-<input type="range" id="blueCount" min="0" max="300" value="200" class="slider-input"
-oninput="document.getElementById('blueCountValue').textContent=this.value">
-<span class="slider-value" id="blueCountValue">200</span>
-</div>
-<div class="slider-container">
-<input type="range" id="redCount" min="0" max="300" value="50" class="slider-input"
-oninput="document.getElementById('redCountValue').textContent=this.value">
-<span class="slider-value" id="redCountValue">50</span>
-</div>
-<div class="slider-container">
-<input type="range" id="cCount" min="0" max="300" value="0" class="slider-input"
-oninput="document.getElementById('cCountValue').textContent=this.value">
-<span class="slider-value" id="cCountValue">0</span>
-</div>
-<div class="slider-container">
-<input type="range" id="dCount" min="0" max="300" value="0" class="slider-input"
-oninput="document.getElementById('dCountValue').textContent=this.value">
-<span class="slider-value" id="dCountValue">0</span>
-</div>
-<!-- Canvas de la simulation -->
+  <!-- Sliders pour A, B, C et D -->
+  <div class="slider-container">
+    <input type="range" id="blueCount" min="0" max="300" value="200" class="slider-input"
+      oninput="document.getElementById('blueCountValue').textContent=this.value">
+    <span class="slider-value" id="blueCountValue">200</span>
+  </div>
+  <div class="slider-container">
+    <input type="range" id="redCount" min="0" max="300" value="50" class="slider-input"
+      oninput="document.getElementById('redCountValue').textContent=this.value">
+    <span class="slider-value" id="redCountValue">50</span>
+  </div>
+  <div class="slider-container">
+    <input type="range" id="cCount" min="0" max="300" value="0" class="slider-input"
+      oninput="document.getElementById('cCountValue').textContent=this.value">
+    <span class="slider-value" id="cCountValue">0</span>
+  </div>
+  <div class="slider-container">
+    <input type="range" id="dCount" min="0" max="300" value="0" class="slider-input"
+      oninput="document.getElementById('dCountValue').textContent=this.value">
+    <span class="slider-value" id="dCountValue">0</span>
+  </div>
+  <!-- Canvas de la simulation -->
 <p><canvas id="simulationCanvas" width="800" height="500"></canvas></p>
-<!-- Curseur pour K sur toute la largeur (pas de valeur affichée) -->
-<div class="slider-container full-width">
-<input type="range" id="kValue" min="0.2" max="5" value="1" step="0.1" class="slider-input">
-</div>
+  <!-- Curseur pour K et bouton de contrôle du son -->
+  <div class="slider-container">
+    <!-- Le slider occupe 100% moins 50px pour laisser la place au bouton -->
+    <input type="range" id="kValue" min="0.2" max="5" value="1" step="0.1" class="slider-input" style="width: calc(100% - 50px);">
+    <button id="soundToggle" class="sound-toggle">
+      <span id="soundIcon">♫</span>
+    </button>
+  </div>
 </div>
 <script>
-  // Création du contexte audio
-  const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  // --- Contrôle du son ---
+  let soundEnabled = true;
+  let audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 
   // Fonction pour jouer un son sinusoïdal avec enveloppe
   function playCollisionSound(frequency) {
+    if (!soundEnabled) return;
     if (audioCtx.state === 'suspended') {
       audioCtx.resume();
     }
@@ -303,9 +325,9 @@ oninput="document.getElementById('dCountValue').textContent=this.value">
     oscillator.type = 'sine';
     oscillator.frequency.value = frequency;
     
-    // Démarrer avec gain 0, attaquer rapidement jusqu'à 0.5 puis décroître exponentiellement
-    gainNode.gain.setValueAtTime(0.0001, audioCtx.currentTime); // éviter 0 pour l'expo
-    gainNode.gain.linearRampToValueAtTime(0.5, audioCtx.currentTime + 0.01);
+    // Enveloppe sonore : attaque rapide jusqu'à 0.3, puis décroissance exponentielle jusqu'à 0.01 en 0.2 s
+    gainNode.gain.setValueAtTime(0.0001, audioCtx.currentTime);
+    gainNode.gain.linearRampToValueAtTime(0.3, audioCtx.currentTime + 0.01);
     gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.2);
     
     oscillator.connect(gainNode);
@@ -314,6 +336,20 @@ oninput="document.getElementById('dCountValue').textContent=this.value">
     oscillator.stop(audioCtx.currentTime + 0.22);
   }
 
+  // Bouton de contrôle du son
+  document.getElementById('soundToggle').addEventListener('click', function() {
+    soundEnabled = !soundEnabled;
+    const icon = document.getElementById('soundIcon');
+    if (soundEnabled) {
+      icon.style.color = "white";
+      icon.style.textDecoration = "none";
+    } else {
+      icon.style.color = "red";
+      icon.style.textDecoration = "line-through";
+    }
+  });
+
+  // --- Simulation et animation ---
   const canvas = document.getElementById('simulationCanvas');
   const ctx = canvas.getContext('2d');
 
@@ -333,15 +369,15 @@ oninput="document.getElementById('dCountValue').textContent=this.value">
   let initA, initB, initC, initD;
 
   // Paramètres physiques
-  const SPEED = 2;              
-  const energyThreshold = 5;    
+  const SPEED = 2;
+  const energyThreshold = 5;
   let particles = [];
 
   const PARTICLE_TYPES = {
-    BLUE: 'blue',   
-    RED: 'red',     
-    C: 'c',         
-    D: 'd'          
+    BLUE: 'blue',
+    RED: 'red',
+    C: 'c',
+    D: 'd'
   };
 
   // Paramètre pour la sigmoïde.
@@ -534,7 +570,7 @@ oninput="document.getElementById('dCountValue').textContent=this.value">
             const probForward = 1 / (1 + Math.exp(-(totalEnergy - forwardThreshold) / a));
             if (Math.random() < probForward) {
               createReactionProducts(p1, p2, PARTICLE_TYPES.C, PARTICLE_TYPES.D, '255,0,255');
-              playCollisionSound(660); // son pour collision directe
+              playCollisionSound(660); // 660 Hz pour collision directe
               p1.removed = true;
               p2.removed = true;
               break;
@@ -548,7 +584,7 @@ oninput="document.getElementById('dCountValue').textContent=this.value">
             const probReverse = 1 / (1 + Math.exp(-(totalEnergy - reverseThreshold) / a));
             if (Math.random() < probReverse) {
               createReactionProducts(p1, p2, PARTICLE_TYPES.BLUE, PARTICLE_TYPES.RED, '255,255,0');
-              playCollisionSound(990); // son pour collision inverse
+              playCollisionSound(990); // 990 Hz pour collision inverse
               p1.removed = true;
               p2.removed = true;
               break;
@@ -566,11 +602,10 @@ oninput="document.getElementById('dCountValue').textContent=this.value">
   }
 
   // --- Fonctions d'affichage graphiques ---
-
   // Dessine le bâton (outline gris et partie colorée) avec 25% de transparence (globalAlpha = 0.75).
   function drawHorizontalBar(value, maxValue, x, y, barMaxWidth, barHeight, fillColor) {
     ctx.save();
-    ctx.globalAlpha = 0.75; // 25% transparent (75% opaque)
+    ctx.globalAlpha = 0.75; // 75% opaque => 25% transparent
     ctx.fillStyle = "#444";
     ctx.fillRect(x, y, barMaxWidth, barHeight);
     let barWidth = (value / maxValue) * barMaxWidth;
@@ -602,7 +637,7 @@ oninput="document.getElementById('dCountValue').textContent=this.value">
     gradient.addColorStop(1, "#B51700");
     
     ctx.save();
-    ctx.globalAlpha = 0.75; // 25% transparent pour l'axe
+    ctx.globalAlpha = 0.75; // 75% opaque => 25% transparent pour l'axe
     ctx.fillStyle = gradient;
     ctx.fillRect(x, y, width, height);
     ctx.restore();
@@ -628,7 +663,12 @@ oninput="document.getElementById('dCountValue').textContent=this.value">
     ctx.fillText("Q : " + Qvalue.toFixed(2), arrowX_Q + 10, y + height + 20);
   }
 
+  // Variable pour contrôler l'animation
+  let running = true;
+  let animationFrameId = null;
+
   function animate() {
+    if (!running) return;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     
     particles.forEach(p => { p.update(); p.draw(); });
@@ -669,7 +709,7 @@ oninput="document.getElementById('dCountValue').textContent=this.value">
     const indicatorHeight = 20;
     drawIndicatorCommon(indicatorX, indicatorY, indicatorWidth, indicatorHeight, equilibriumConstant, Q_current);
     
-    requestAnimationFrame(animate);
+    animationFrameId = requestAnimationFrame(animate);
   }
 
   blueCountInput.addEventListener('input', function() {
@@ -712,6 +752,9 @@ oninput="document.getElementById('dCountValue').textContent=this.value">
   
   startSimulation();
   animate();
+
+  // Pour ce script, nous ne gérons plus la fermeture automatique lors d'un changement de slide.
+  // Le bouton de son permet désormais de couper ou rétablir le son.
 </script>
 </section><section>
 <style>
