@@ -320,6 +320,13 @@ Microscopiquement, les deux réactions opposées continuent à se faire mais mac
   
   let soundEnabled = false;
   
+    // Débloquer le contexte audio dès le premier clic (très utile sur Safari en ligne)
+  document.addEventListener('click', function() {
+    if (audioCtx.state === 'suspended') {
+      audioCtx.resume();
+    }
+  });
+  
   // Fonction pour jouer un son sinusoïdal avec enveloppe et panning stéréo
   function playCollisionSound(frequency) {
     if (!soundEnabled) return;
