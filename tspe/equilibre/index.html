@@ -310,21 +310,19 @@ Microscopiquement, les deux réactions opposées continuent à se faire mais mac
   </div>
 </div>
 <script>
-  // Création du contexte audio et du compresseur
+  // Création du contexte audio et du compresseur (les paramètres restent inchangés)
   let audioCtx = new (window.AudioContext || window.webkitAudioContext)();
   const compressor = audioCtx.createDynamicsCompressor();
-  // Paramètres du compresseur (à ajuster si besoin)
   compressor.threshold.value = -24; // en dB
-  compressor.knee.value = 10;
+  compressor.knee.value = 24;
   compressor.ratio.value = 24;
   compressor.attack.value = 0.003;
   compressor.release.value = 0.25;
   compressor.connect(audioCtx.destination);
-
-  let soundEnabled = true; // Contrôle global du son
-
-  // Fonction pour jouer un son sinusoïdal avec enveloppe et panning stéréo,
-  // en passant par le compresseur pour limiter la saturation sonore.
+  
+  let soundEnabled = true;
+  
+  // Fonction pour jouer un son sinusoïdal avec enveloppe et panning stéréo
   function playCollisionSound(frequency) {
     if (!soundEnabled) return;
     if (audioCtx.state === 'suspended') {
@@ -337,8 +335,7 @@ Microscopiquement, les deux réactions opposées continuent à se faire mais mac
     oscillator.type = 'sine';
     oscillator.frequency.value = frequency;
     
-    // Affectation du panning stéréo selon la fréquence :
-    // 660 Hz vers la gauche, 990 Hz vers la droite.
+    // Dirige le son vers la gauche pour 660 Hz, vers la droite pour 990 Hz.
     if (frequency === 660) {
       panner.pan.value = -1;
     } else if (frequency === 990) {
@@ -347,13 +344,12 @@ Microscopiquement, les deux réactions opposées continuent à se faire mais mac
       panner.pan.value = 0;
     }
     
-    // Enveloppe sonore : démarrage très faible, montée linéaire jusqu'à 0.5 en 0.01 s,
-    // puis décroissance exponentielle jusqu'à 0.01 en 0.2 s.
+    // Enveloppe sonore : attaque rapide jusqu'à 0.3, puis décroissance exponentielle jusqu'à 0.01 en 0.2 s.
     gainNode.gain.setValueAtTime(0.0001, audioCtx.currentTime);
     gainNode.gain.linearRampToValueAtTime(0.3, audioCtx.currentTime + 0.005);
     gainNode.gain.exponentialRampToValueAtTime(0.005, audioCtx.currentTime + 0.2);
     
-    // Chaînage : oscillator -> gainNode -> panner -> compressor -> destination
+    // Chaînage : oscillator -> gain -> panner -> compressor -> destination
     oscillator.connect(gainNode);
     gainNode.connect(panner);
     panner.connect(compressor);
@@ -361,49 +357,47 @@ Microscopiquement, les deux réactions opposées continuent à se faire mais mac
     oscillator.start();
     oscillator.stop(audioCtx.currentTime + 0.22);
   }
-
-  // --- Partie simulation et animation ---
-
+  
   const canvas = document.getElementById('simulationCanvas');
   const ctx = canvas.getContext('2d');
-
+  
   const blueCountInput = document.getElementById('blueCount');
   const redCountInput  = document.getElementById('redCount');
   const cCountInput    = document.getElementById('cCount');
   const dCountInput    = document.getElementById('dCount');
   const kValueInput    = document.getElementById('kValue');
-
+  
   let blueCount = parseInt(blueCountInput.value);
   let redCount  = parseInt(redCountInput.value);
   let cCount    = parseInt(cCountInput.value);
   let dCount    = parseInt(dCountInput.value);
   let equilibriumConstant = parseFloat(kValueInput.value);
-
+  
   // Variables d'initialisation
   let initA, initB, initC, initD;
-
+  
   const SPEED = 2;
   const energyThreshold = 5;
   let particles = [];
-
+  
   const PARTICLE_TYPES = {
     BLUE: 'blue',
     RED: 'red',
     C: 'c',
     D: 'd'
   };
-
+  
   const a = 1.7;
-
+  
   function fK(K) {
     const lnK = Math.log(K);
     return (0.5 * lnK + Math.sqrt((0.5 * lnK) ** 2 + 4)) / 2;
   }
-
+  
   function randomSpeed() {
     return SPEED + (Math.random() - 0.5) * SPEED;
   }
-
+  
   class Particle {
     constructor(x, y, type, vx, vy) {
       this.x = x;
@@ -438,7 +432,7 @@ Microscopiquement, les deux réactions opposées continuent à se faire mais mac
       }
     }
   }
-
+  
   function createParticle(type) {
     const radius = 3;
     let x, y, overlapping;
@@ -460,7 +454,7 @@ Microscopiquement, les deux réactions opposées continuent à se faire mais mac
     const vy = speed * Math.sin(angle);
     return new Particle(x, y, type, vx, vy);
   }
-
+  
   function initParticles() {
     particles = [];
     for (let i = 0; i < blueCount; i++) particles.push(createParticle(PARTICLE_TYPES.BLUE));
@@ -468,7 +462,7 @@ Microscopiquement, les deux réactions opposées continuent à se faire mais mac
     for (let i = 0; i < cCount; i++) particles.push(createParticle(PARTICLE_TYPES.C));
     for (let i = 0; i < dCount; i++) particles.push(createParticle(PARTICLE_TYPES.D));
   }
-
+  
   function getCounts() {
     return {
       countA: particles.filter(p => p.type === PARTICLE_TYPES.BLUE).length,
@@ -477,18 +471,18 @@ Microscopiquement, les deux réactions opposées continuent à se faire mais mac
       countD: particles.filter(p => p.type === PARTICLE_TYPES.D).length
     };
   }
-
+  
   function computeGlobalQ() {
     const counts = getCounts();
     if (counts.countA > 0 && counts.countB > 0)
       return (counts.countC * counts.countD) / (counts.countA * counts.countB);
     else
-      return "indéfini";
+      return Infinity;
   }
-
+  
   // Gestion des effets de réaction (halo)
   let reactionEffects = [];
-
+  
   class ReactionEffect {
     constructor(x, y, color) {
       this.x = x;
@@ -511,7 +505,7 @@ Microscopiquement, les deux réactions opposées continuent à se faire mais mac
       ctx.closePath();
     }
   }
-
+  
   function createReactionProducts(p1, p2, type1, type2, effectColor) {
     const midX = (p1.x + p2.x) / 2;
     const midY = (p1.y + p2.y) / 2;
@@ -536,7 +530,7 @@ Microscopiquement, les deux réactions opposées continuent à se faire mais mac
     particles.push(prod1);
     particles.push(prod2);
   }
-
+  
   function performElasticCollision(p1, p2) {
     const dx = p1.x - p2.x;
     const dy = p1.y - p2.y;
@@ -556,7 +550,7 @@ Microscopiquement, les deux réactions opposées continuent à se faire mais mac
     p2.x -= nx * (overlap / 2);
     p2.y -= ny * (overlap / 2);
   }
-
+  
   function handleCollisions() {
     const current_fK = fK(equilibriumConstant);
     const forwardThreshold = energyThreshold / current_fK;
@@ -581,7 +575,7 @@ Microscopiquement, les deux réactions opposées continuent à se faire mais mac
             const probForward = 1 / (1 + Math.exp(-(totalEnergy - forwardThreshold) / a));
             if (Math.random() < probForward) {
               createReactionProducts(p1, p2, PARTICLE_TYPES.C, PARTICLE_TYPES.D, '255,0,255');
-              playCollisionSound(660); // 660 Hz pour collision directe (pan vers la gauche)
+              playCollisionSound(660); // 660 Hz pour collision directe (gauche)
               p1.removed = true;
               p2.removed = true;
               break;
@@ -595,7 +589,7 @@ Microscopiquement, les deux réactions opposées continuent à se faire mais mac
             const probReverse = 1 / (1 + Math.exp(-(totalEnergy - reverseThreshold) / a));
             if (Math.random() < probReverse) {
               createReactionProducts(p1, p2, PARTICLE_TYPES.BLUE, PARTICLE_TYPES.RED, '255,255,0');
-              playCollisionSound(990); // 990 Hz pour collision inverse (pan vers la droite)
+              playCollisionSound(990); // 990 Hz pour collision inverse (droite)
               p1.removed = true;
               p2.removed = true;
               break;
@@ -611,12 +605,12 @@ Microscopiquement, les deux réactions opposées continuent à se faire mais mac
     }
     particles = particles.filter(p => !p.removed);
   }
-
+  
   // --- Fonctions d'affichage graphiques ---
   // Dessine le bâton (outline gris et partie colorée) avec 25% de transparence (globalAlpha = 0.75).
   function drawHorizontalBar(value, maxValue, x, y, barMaxWidth, barHeight, fillColor) {
     ctx.save();
-    ctx.globalAlpha = 0.75; // 75% opaque (25% transparent)
+    ctx.globalAlpha = 0.75; // 75% opaque (soit 25% transparent)
     ctx.fillStyle = "#444";
     ctx.fillRect(x, y, barMaxWidth, barHeight);
     let barWidth = (value / maxValue) * barMaxWidth;
@@ -627,7 +621,7 @@ Microscopiquement, les deux réactions opposées continuent à se faire mais mac
     ctx.font = "14px Arial";
     ctx.fillText(value, x - 30, y + barHeight - 2);
   }
-
+  
   // Mapping logarithmique pour l'échelle de 0 à 10.
   function mapLogarithmic(v) {
     if (v < 0) v = 0;
@@ -638,7 +632,7 @@ Microscopiquement, les deux réactions opposées continuent à se faire mais mac
       return 0.5 * Math.log10(v) + 0.5; // pour v >= 1
     }
   }
-
+  
   // Dessine l'axe commun pour K et Q avec 25% de transparence, puis dessine les flèches et le texte en opacité normale.
   function drawIndicatorCommon(x, y, width, height, Kvalue, Qvalue) {
     let ratioK = mapLogarithmic(Kvalue);
@@ -648,7 +642,7 @@ Microscopiquement, les deux réactions opposées continuent à se faire mais mac
     gradient.addColorStop(1, "#B51700");
     
     ctx.save();
-    ctx.globalAlpha = 0.75; // 75% opaque (25% transparent) pour l'axe
+    ctx.globalAlpha = 0.75; // 75% opaque (soit 25% transparent) pour l'axe
     ctx.fillStyle = gradient;
     ctx.fillRect(x, y, width, height);
     ctx.restore();
@@ -663,7 +657,14 @@ Microscopiquement, les deux réactions opposées continuent à se faire mais mac
     ctx.fill();
     ctx.fillText("K : " + Kvalue.toFixed(2), arrowX_K + 10, y - 10);
     
-    let arrowX_Q = x + mapLogarithmic(Qvalue) * width;
+    let arrowX_Q;
+    if (!isFinite(Qvalue)) {
+      arrowX_Q = x + width; // Collé à droite
+      ctx.fillText("Q : ∞", arrowX_Q + 10, y + height + 20);
+    } else {
+      arrowX_Q = x + mapLogarithmic(Qvalue) * width;
+      ctx.fillText("Q : " + Qvalue.toFixed(2), arrowX_Q + 10, y + height + 20);
+    }
     ctx.fillStyle = "#FFFFFF";
     ctx.beginPath();
     ctx.moveTo(arrowX_Q, y + height);
@@ -671,12 +672,11 @@ Microscopiquement, les deux réactions opposées continuent à se faire mais mac
     ctx.lineTo(arrowX_Q + 5, y + height + 10);
     ctx.closePath();
     ctx.fill();
-    ctx.fillText("Q : " + Qvalue.toFixed(2), arrowX_Q + 10, y + height + 20);
   }
-
+  
   let running = true;
   let animationFrameId = null;
-
+  
   function animate() {
     if (!running) return;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -696,8 +696,9 @@ Microscopiquement, les deux réactions opposées continuent à se faire mais mac
     
     const counts = getCounts();
     let Q_current;
+    // Si l'un des réactifs A ou B est à 0, on considère Q comme infini.
     if (counts.countA === 0 || counts.countB === 0)
-      Q_current = 0;
+      Q_current = Infinity;
     else
       Q_current = (counts.countC * counts.countD) / (counts.countA * counts.countB);
     
@@ -721,7 +722,7 @@ Microscopiquement, les deux réactions opposées continuent à se faire mais mac
     
     animationFrameId = requestAnimationFrame(animate);
   }
-
+  
   blueCountInput.addEventListener('input', function() {
     blueCount = parseInt(this.value);
     initA = blueCount;
@@ -762,7 +763,7 @@ Microscopiquement, les deux réactions opposées continuent à se faire mais mac
   
   startSimulation();
   animate();
-
+  
   // Bouton de contrôle du son
   document.getElementById('soundToggle').addEventListener('click', function() {
     soundEnabled = !soundEnabled;
