@@ -310,11 +310,21 @@ Microscopiquement, les deux réactions opposées continuent à se faire mais mac
   </div>
 </div>
 <script>
-  // --- Contrôle du son ---
-  let soundEnabled = true;
+  // Création du contexte audio et du compresseur
   let audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  const compressor = audioCtx.createDynamicsCompressor();
+  // Paramètres du compresseur (à ajuster si besoin)
+  compressor.threshold.value = -24; // en dB
+  compressor.knee.value = 10;
+  compressor.ratio.value = 24;
+  compressor.attack.value = 0.003;
+  compressor.release.value = 0.25;
+  compressor.connect(audioCtx.destination);
 
-  // Fonction pour jouer un son sinusoïdal avec enveloppe
+  let soundEnabled = true; // Contrôle global du son
+
+  // Fonction pour jouer un son sinusoïdal avec enveloppe et panning stéréo,
+  // en passant par le compresseur pour limiter la saturation sonore.
   function playCollisionSound(frequency) {
     if (!soundEnabled) return;
     if (audioCtx.state === 'suspended') {
@@ -322,34 +332,38 @@ Microscopiquement, les deux réactions opposées continuent à se faire mais mac
     }
     const oscillator = audioCtx.createOscillator();
     const gainNode = audioCtx.createGain();
+    const panner = audioCtx.createStereoPanner();
+    
     oscillator.type = 'sine';
     oscillator.frequency.value = frequency;
     
-    // Enveloppe sonore : attaque rapide jusqu'à 0.3, puis décroissance exponentielle jusqu'à 0.01 en 0.2 s
-    gainNode.gain.setValueAtTime(0.0001, audioCtx.currentTime);
-    gainNode.gain.linearRampToValueAtTime(0.3, audioCtx.currentTime + 0.01);
-    gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.2);
+    // Affectation du panning stéréo selon la fréquence :
+    // 660 Hz vers la gauche, 990 Hz vers la droite.
+    if (frequency === 660) {
+      panner.pan.value = -1;
+    } else if (frequency === 990) {
+      panner.pan.value = 1;
+    } else {
+      panner.pan.value = 0;
+    }
     
+    // Enveloppe sonore : démarrage très faible, montée linéaire jusqu'à 0.5 en 0.01 s,
+    // puis décroissance exponentielle jusqu'à 0.01 en 0.2 s.
+    gainNode.gain.setValueAtTime(0.0001, audioCtx.currentTime);
+    gainNode.gain.linearRampToValueAtTime(0.3, audioCtx.currentTime + 0.005);
+    gainNode.gain.exponentialRampToValueAtTime(0.005, audioCtx.currentTime + 0.2);
+    
+    // Chaînage : oscillator -> gainNode -> panner -> compressor -> destination
     oscillator.connect(gainNode);
-    gainNode.connect(audioCtx.destination);
+    gainNode.connect(panner);
+    panner.connect(compressor);
+    
     oscillator.start();
     oscillator.stop(audioCtx.currentTime + 0.22);
   }
 
-  // Bouton de contrôle du son
-  document.getElementById('soundToggle').addEventListener('click', function() {
-    soundEnabled = !soundEnabled;
-    const icon = document.getElementById('soundIcon');
-    if (soundEnabled) {
-      icon.style.color = "white";
-      icon.style.textDecoration = "none";
-    } else {
-      icon.style.color = "red";
-      icon.style.textDecoration = "line-through";
-    }
-  });
+  // --- Partie simulation et animation ---
 
-  // --- Simulation et animation ---
   const canvas = document.getElementById('simulationCanvas');
   const ctx = canvas.getContext('2d');
 
@@ -365,10 +379,9 @@ Microscopiquement, les deux réactions opposées continuent à se faire mais mac
   let dCount    = parseInt(dCountInput.value);
   let equilibriumConstant = parseFloat(kValueInput.value);
 
-  // Variables pour initialiser la simulation.
+  // Variables d'initialisation
   let initA, initB, initC, initD;
 
-  // Paramètres physiques
   const SPEED = 2;
   const energyThreshold = 5;
   let particles = [];
@@ -380,10 +393,8 @@ Microscopiquement, les deux réactions opposées continuent à se faire mais mac
     D: 'd'
   };
 
-  // Paramètre pour la sigmoïde.
   const a = 1.7;
 
-  // f(K) pour ajuster le seuil.
   function fK(K) {
     const lnK = Math.log(K);
     return (0.5 * lnK + Math.sqrt((0.5 * lnK) ** 2 + 4)) / 2;
@@ -570,7 +581,7 @@ Microscopiquement, les deux réactions opposées continuent à se faire mais mac
             const probForward = 1 / (1 + Math.exp(-(totalEnergy - forwardThreshold) / a));
             if (Math.random() < probForward) {
               createReactionProducts(p1, p2, PARTICLE_TYPES.C, PARTICLE_TYPES.D, '255,0,255');
-              playCollisionSound(660); // 660 Hz pour collision directe
+              playCollisionSound(660); // 660 Hz pour collision directe (pan vers la gauche)
               p1.removed = true;
               p2.removed = true;
               break;
@@ -584,7 +595,7 @@ Microscopiquement, les deux réactions opposées continuent à se faire mais mac
             const probReverse = 1 / (1 + Math.exp(-(totalEnergy - reverseThreshold) / a));
             if (Math.random() < probReverse) {
               createReactionProducts(p1, p2, PARTICLE_TYPES.BLUE, PARTICLE_TYPES.RED, '255,255,0');
-              playCollisionSound(990); // 990 Hz pour collision inverse
+              playCollisionSound(990); // 990 Hz pour collision inverse (pan vers la droite)
               p1.removed = true;
               p2.removed = true;
               break;
@@ -605,7 +616,7 @@ Microscopiquement, les deux réactions opposées continuent à se faire mais mac
   // Dessine le bâton (outline gris et partie colorée) avec 25% de transparence (globalAlpha = 0.75).
   function drawHorizontalBar(value, maxValue, x, y, barMaxWidth, barHeight, fillColor) {
     ctx.save();
-    ctx.globalAlpha = 0.75; // 75% opaque => 25% transparent
+    ctx.globalAlpha = 0.75; // 75% opaque (25% transparent)
     ctx.fillStyle = "#444";
     ctx.fillRect(x, y, barMaxWidth, barHeight);
     let barWidth = (value / maxValue) * barMaxWidth;
@@ -637,7 +648,7 @@ Microscopiquement, les deux réactions opposées continuent à se faire mais mac
     gradient.addColorStop(1, "#B51700");
     
     ctx.save();
-    ctx.globalAlpha = 0.75; // 75% opaque => 25% transparent pour l'axe
+    ctx.globalAlpha = 0.75; // 75% opaque (25% transparent) pour l'axe
     ctx.fillStyle = gradient;
     ctx.fillRect(x, y, width, height);
     ctx.restore();
@@ -663,7 +674,6 @@ Microscopiquement, les deux réactions opposées continuent à se faire mais mac
     ctx.fillText("Q : " + Qvalue.toFixed(2), arrowX_Q + 10, y + height + 20);
   }
 
-  // Variable pour contrôler l'animation
   let running = true;
   let animationFrameId = null;
 
@@ -753,8 +763,18 @@ Microscopiquement, les deux réactions opposées continuent à se faire mais mac
   startSimulation();
   animate();
 
-  // Pour ce script, nous ne gérons plus la fermeture automatique lors d'un changement de slide.
-  // Le bouton de son permet désormais de couper ou rétablir le son.
+  // Bouton de contrôle du son
+  document.getElementById('soundToggle').addEventListener('click', function() {
+    soundEnabled = !soundEnabled;
+    const icon = document.getElementById('soundIcon');
+    if (soundEnabled) {
+      icon.style.color = "white";
+      icon.style.textDecoration = "none";
+    } else {
+      icon.style.color = "#FF644E";
+      icon.style.textDecoration = "line-through";
+    }
+  });
 </script>
 </section><section>
 <style>
