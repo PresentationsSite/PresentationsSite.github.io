@@ -149,444 +149,553 @@ Microscopiquement, les deux réactions opposées continuent à se faire mais mac
 <section data-shortcode-section>
 <h2 id="description-microscopique">Description microscopique</h2>
 </section><section>
-<style>
-  /* Container principal */
-  .simulation-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-  }
-  /* Style des sliders empilés sans titres */
-  .slider-input {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 800px;
-    height: 15px;
-    background: #ddd;
-    outline: none;
-    margin: 5px 0;
-    border-radius: 4px;
-  }
-  .slider-input::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 20px;
-    height: 20px;
-    cursor: pointer;
-    border-radius: 50%;
-    border: none;
-    margin-top: -2px;
-    background: #4CAF50;
-  }
-  .slider-input::-moz-range-thumb {
-    width: 20px;
-    height: 20px;
-    cursor: pointer;
-    border-radius: 50%;
-    border: none;
-    background: #4CAF50;
-  }
-  /* Couleurs spécifiques aux sliders */
-  #blueCount { background: #56C1FF; }
-  #blueCount::-webkit-slider-runnable-track { background: #56C1FF; height: 15px; border-radius: 4px; }
-  #blueCount::-moz-range-track { background: #56C1FF; height: 15px; border-radius: 4px; }
-  #blueCount::-webkit-slider-thumb { background: #00A2FF; }
-  #blueCount::-moz-range-thumb { background: #00A2FF; }
-  
-  #redCount { background: #FF968D; }
-  #redCount::-webkit-slider-runnable-track { background: #FF968D; height: 15px; border-radius: 4px; }
-  #redCount::-moz-range-track { background: #FF968D; height: 15px; border-radius: 4px; }
-  #redCount::-webkit-slider-thumb { background: #FF644E; }
-  #redCount::-moz-range-thumb { background: #FF644E; }
-  
-  #cCount { background: #A8E6A3; }
-  #cCount::-webkit-slider-runnable-track { background: #A8E6A3; height: 15px; border-radius: 4px; }
-  #cCount::-moz-range-track { background: #A8E6A3; height: 15px; border-radius: 4px; }
-  #cCount::-webkit-slider-thumb { background: #00FF00; }
-  #cCount::-moz-range-thumb { background: #00FF00; }
-  
-  #dCount { background: #FFE699; }
-  #dCount::-webkit-slider-runnable-track { background: #FFE699; height: 15px; border-radius: 4px; }
-  #dCount::-moz-range-track { background: #FFE699; height: 15px; border-radius: 4px; }
-  #dCount::-webkit-slider-thumb { background: #FFFF00; }
-  #dCount::-moz-range-thumb { background: #FFFF00; }
-  
-  /* Le curseur K est placé sous le canvas */
-  #kValue { background: #D3D3D3; }
-  #kValue::-webkit-slider-runnable-track { background: #D3D3D3; height: 15px; border-radius: 4px; }
-  #kValue::-moz-range-track { background: #D3D3D3; height: 15px; border-radius: 4px; }
-  #kValue::-webkit-slider-thumb { background: #888888; }
-  #kValue::-moz-range-thumb { background: #888888; }
-  
-  /* Canvas */
-  #simulationCanvas {
-    border: 5px solid #888;
-    background-color: #200A14;
-    margin: 10px 0;
-  }
-</style>
+  <style>
+    /* Container principal */
+    .simulation-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      margin-top: -2em;
+    }
+    
+    /* Container pour le curseur et sa zone de valeur */
+    .slider-container {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      max-width: 800px;
+      margin: 5px 0;
+    }
+    
+    /* Le curseur occupe tout l'espace restant */
+    .slider-input {
+      -webkit-appearance: none;
+      appearance: none;
+      flex: 1;
+      height: 15px;
+      background: #ddd;
+      outline: none;
+      border-radius: 4px;
+    }
+    
+    .slider-input::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+      border-radius: 50%;
+      border: none;
+      margin-top: -2px;
+      background: #4CAF50;
+    }
+    
+    .slider-input::-moz-range-thumb {
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+      border-radius: 50%;
+      border: none;
+      background: #4CAF50;
+    }
+    
+    /* Zone d'affichage de la valeur initiale */
+    .slider-value {
+      display: inline-block;
+      width: 50px;
+      margin-left: 10px;
+      text-align: center;
+      font-size: 14px;
+    }
+    
+    /* Couleurs pour la zone de valeur correspondant à chaque slider */
+    #blueCountValue { color: #00A2FF; }
+    #redCountValue  { color: #FF644E; }
+    #cCountValue    { color: #00FF00; }
+    #dCountValue    { color: #FFFF00; }
+    
+    /* Pour le slider K, on souhaite qu'il prenne toute la largeur (pas de zone de valeur) */
+    .slider-container.full-width {
+      justify-content: center;
+    }
+    
+    /* Couleurs spécifiques aux sliders */
+    #blueCount { background: #56C1FF; }
+    #blueCount::-webkit-slider-runnable-track { background: #56C1FF; height: 15px; border-radius: 4px; }
+    #blueCount::-moz-range-track { background: #56C1FF; height: 15px; border-radius: 4px; }
+    #blueCount::-webkit-slider-thumb { background: #00A2FF; }
+    #blueCount::-moz-range-thumb { background: #00A2FF; }
+    
+    #redCount { background: #FF968D; }
+    #redCount::-webkit-slider-runnable-track { background: #FF968D; height: 15px; border-radius: 4px; }
+    #redCount::-moz-range-track { background: #FF968D; height: 15px; border-radius: 4px; }
+    #redCount::-webkit-slider-thumb { background: #FF644E; }
+    #redCount::-moz-range-thumb { background: #FF644E; }
+    
+    #cCount { background: #A8E6A3; }
+    #cCount::-webkit-slider-runnable-track { background: #A8E6A3; height: 15px; border-radius: 4px; }
+    #cCount::-moz-range-track { background: #A8E6A3; height: 15px; border-radius: 4px; }
+    #cCount::-webkit-slider-thumb { background: #00FF00; }
+    #cCount::-moz-range-thumb { background: #00FF00; }
+    
+    #dCount { background: #FFE699; }
+    #dCount::-webkit-slider-runnable-track { background: #FFE699; height: 15px; border-radius: 4px; }
+    #dCount::-moz-range-track { background: #FFE699; height: 15px; border-radius: 4px; }
+    #dCount::-webkit-slider-thumb { background: #FFFF00; }
+    #dCount::-moz-range-thumb { background: #FFFF00; }
+    
+    /* Style du slider K */
+    #kValue { background: #D3D3D3; }
+    #kValue::-webkit-slider-runnable-track { background: #D3D3D3; height: 15px; border-radius: 4px; }
+    #kValue::-moz-range-track { background: #D3D3D3; height: 15px; border-radius: 4px; }
+    #kValue::-webkit-slider-thumb { background: #888888; }
+    #kValue::-moz-range-thumb { background: #888888; }
+    
+    /* Canvas */
+    #simulationCanvas {
+      border: 5px solid #888;
+      background-color: #200A14;
+      margin: 10px 0;
+    }
+  </style>
 <div class="simulation-container">
-  <!-- Sliders pour A, B, C et D (en haut) -->
-  <input type="range" id="blueCount" min="0" max="300" value="200" class="slider-input">
-  <input type="range" id="redCount" min="0" max="300" value="50" class="slider-input">
-  <input type="range" id="cCount" min="0" max="300" value="0" class="slider-input">
-  <input type="range" id="dCount" min="0" max="300" value="0" class="slider-input">
-  <!-- Canvas de hauteur 500 -->
-<p><canvas id="simulationCanvas" width="800" height="500"></canvas></p>
-  <!-- Curseur pour K placé sous le canvas -->
-  <input type="range" id="kValue" min="0.2" max="5" value="1" step="0.1" class="slider-input">
+<!-- Sliders pour A, B, C et D -->
+<div class="slider-container">
+<input type="range" id="blueCount" min="0" max="300" value="200" class="slider-input"
+oninput="document.getElementById('blueCountValue').textContent=this.value">
+<span class="slider-value" id="blueCountValue">200</span>
 </div>
- <script>
-    const canvas = document.getElementById('simulationCanvas');
-    const ctx = canvas.getContext('2d');
+<div class="slider-container">
+<input type="range" id="redCount" min="0" max="300" value="50" class="slider-input"
+oninput="document.getElementById('redCountValue').textContent=this.value">
+<span class="slider-value" id="redCountValue">50</span>
+</div>
+<div class="slider-container">
+<input type="range" id="cCount" min="0" max="300" value="0" class="slider-input"
+oninput="document.getElementById('cCountValue').textContent=this.value">
+<span class="slider-value" id="cCountValue">0</span>
+</div>
+<div class="slider-container">
+<input type="range" id="dCount" min="0" max="300" value="0" class="slider-input"
+oninput="document.getElementById('dCountValue').textContent=this.value">
+<span class="slider-value" id="dCountValue">0</span>
+</div>
+<!-- Canvas de la simulation -->
+<p><canvas id="simulationCanvas" width="800" height="500"></canvas></p>
+<!-- Curseur pour K sur toute la largeur (pas de valeur affichée) -->
+<div class="slider-container full-width">
+<input type="range" id="kValue" min="0.2" max="5" value="1" step="0.1" class="slider-input">
+</div>
+</div>
+<script>
+  const canvas = document.getElementById('simulationCanvas');
+  const ctx = canvas.getContext('2d');
 
-    const blueCountInput = document.getElementById('blueCount');
-    const redCountInput  = document.getElementById('redCount');
-    const cCountInput    = document.getElementById('cCount');
-    const dCountInput    = document.getElementById('dCount');
-    const kValueInput    = document.getElementById('kValue');
+  const blueCountInput = document.getElementById('blueCount');
+  const redCountInput  = document.getElementById('redCount');
+  const cCountInput    = document.getElementById('cCount');
+  const dCountInput    = document.getElementById('dCount');
+  const kValueInput    = document.getElementById('kValue');
 
-    let blueCount = parseInt(blueCountInput.value);
-    let redCount  = parseInt(redCountInput.value);
-    let cCount    = parseInt(cCountInput.value);
-    let dCount    = parseInt(dCountInput.value);
-    let equilibriumConstant = parseFloat(kValueInput.value);
+  let blueCount = parseInt(blueCountInput.value);
+  let redCount  = parseInt(redCountInput.value);
+  let cCount    = parseInt(cCountInput.value);
+  let dCount    = parseInt(dCountInput.value);
+  let equilibriumConstant = parseFloat(kValueInput.value);
 
-    // Stockage des quantités initiales
-    let initA, initB, initC, initD;
+  // Ces variables sont toujours utilisées pour initialiser la simulation.
+  let initA, initB, initC, initD;
 
-    // Paramètres physiques
-    const SPEED = 2;              // Approximation de E_avg
-    const energyThreshold = 5;    // E₀, seuil de base
-    let particles = [];
+  // Paramètres physiques
+  const SPEED = 2;              
+  const energyThreshold = 5;    
+  let particles = [];
 
-    const PARTICLE_TYPES = {
-      BLUE: 'blue',   // A
-      RED: 'red',     // B
-      C: 'c',         // C
-      D: 'd'          // D
+  const PARTICLE_TYPES = {
+    BLUE: 'blue',   
+    RED: 'red',     
+    C: 'c',         
+    D: 'd'          
+  };
+
+  // Paramètre pour la sigmoïde
+  const a = 1.7;
+
+  // f(K) pour ajuster le seuil (non modifié)
+  function fK(K) {
+    const lnK = Math.log(K);
+    return (0.5 * lnK + Math.sqrt((0.5 * lnK) ** 2 + 4)) / 2;
+  }
+
+  function randomSpeed() {
+    return SPEED + (Math.random() - 0.5) * SPEED;
+  }
+
+  class Particle {
+    constructor(x, y, type, vx, vy) {
+      this.x = x;
+      this.y = y;
+      this.radius = 3;
+      this.type = type;
+      this.vx = vx;
+      this.vy = vy;
+      this.removed = false;
+      this.cooldown = 0;
+    }
+    draw() {
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+      if (this.type === PARTICLE_TYPES.BLUE) ctx.fillStyle = '#00A2FF';
+      else if (this.type === PARTICLE_TYPES.RED) ctx.fillStyle = '#FF644E';
+      else if (this.type === PARTICLE_TYPES.C) ctx.fillStyle = '#00FF00';
+      else if (this.type === PARTICLE_TYPES.D) ctx.fillStyle = '#FFFF00';
+      ctx.fill();
+      ctx.closePath();
+    }
+    update() {
+      this.x += this.vx;
+      this.y += this.vy;
+      if (this.x + this.radius > canvas.width || this.x - this.radius < 0) {
+        this.vx = -this.vx;
+        this.x = Math.max(this.radius, Math.min(this.x, canvas.width - this.radius));
+      }
+      if (this.y + this.radius > canvas.height || this.y - this.radius < 0) {
+        this.vy = -this.vy;
+        this.y = Math.max(this.radius, Math.min(this.y, canvas.height - this.radius));
+      }
+    }
+  }
+
+  function createParticle(type) {
+    const radius = 3;
+    let x, y, overlapping;
+    do {
+      overlapping = false;
+      x = Math.random() * (canvas.width - 2 * radius) + radius;
+      y = Math.random() * (canvas.height - 2 * radius) + radius;
+      for (let p of particles) {
+        const dx = p.x - x, dy = p.y - y;
+        if (Math.sqrt(dx * dx + dy * dy) < p.radius + radius) {
+          overlapping = true;
+          break;
+        }
+      }
+    } while (overlapping);
+    const angle = Math.random() * 2 * Math.PI;
+    const speed = randomSpeed();
+    const vx = speed * Math.cos(angle);
+    const vy = speed * Math.sin(angle);
+    return new Particle(x, y, type, vx, vy);
+  }
+
+  function initParticles() {
+    particles = [];
+    for (let i = 0; i < blueCount; i++) particles.push(createParticle(PARTICLE_TYPES.BLUE));
+    for (let i = 0; i < redCount; i++) particles.push(createParticle(PARTICLE_TYPES.RED));
+    for (let i = 0; i < cCount; i++) particles.push(createParticle(PARTICLE_TYPES.C));
+    for (let i = 0; i < dCount; i++) particles.push(createParticle(PARTICLE_TYPES.D));
+  }
+
+  function getCounts() {
+    return {
+      countA: particles.filter(p => p.type === PARTICLE_TYPES.BLUE).length,
+      countB: particles.filter(p => p.type === PARTICLE_TYPES.RED).length,
+      countC: particles.filter(p => p.type === PARTICLE_TYPES.C).length,
+      countD: particles.filter(p => p.type === PARTICLE_TYPES.D).length
     };
+  }
 
-    // Paramètre pour moduler la "douceur" de la transition dans la sigmoïde
-    const a = 1.7;
+  function computeGlobalQ() {
+    const counts = getCounts();
+    if (counts.countA > 0 && counts.countB > 0)
+      return (counts.countC * counts.countD) / (counts.countA * counts.countB);
+    else
+      return "indéfini";
+  }
 
-    // Définir f(K) pour ajuster le seuil.
-    // f(K) - 1/f(K) = (E_avg/E₀) * ln(K)
-    function fK(K) {
-      const lnK = Math.log(K);
-      return (0.5 * lnK + Math.sqrt((0.5 * lnK) ** 2 + 4)) / 2;
+  // Gestion des effets de réaction (halo)
+  let reactionEffects = [];
+
+  class ReactionEffect {
+    constructor(x, y, color) {
+      this.x = x;
+      this.y = y;
+      this.radius = 0;
+      this.maxRadius = 50;
+      this.alpha = 1;
+      this.color = color;
     }
-
-    // Génération d'une vitesse aléatoire autour de SPEED
-    function randomSpeed() {
-      return SPEED + (Math.random() - 0.5) * SPEED;
+    update() {
+      this.radius += 3;
+      this.alpha = 1 - this.radius / this.maxRadius;
     }
-
-    class Particle {
-      constructor(x, y, type, vx, vy) {
-        this.x = x;
-        this.y = y;
-        this.radius = 3;
-        this.type = type;
-        this.vx = vx;
-        this.vy = vy;
-        this.removed = false;
-        this.cooldown = 0;
-      }
-      draw() {
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        if (this.type === PARTICLE_TYPES.BLUE) ctx.fillStyle = '#00A2FF';
-        else if (this.type === PARTICLE_TYPES.RED) ctx.fillStyle = '#FF644E';
-        else if (this.type === PARTICLE_TYPES.C) ctx.fillStyle = '#00FF00';
-        else if (this.type === PARTICLE_TYPES.D) ctx.fillStyle = '#FFFF00';
-        ctx.fill();
-        ctx.closePath();
-      }
-      update() {
-        this.x += this.vx;
-        this.y += this.vy;
-        if (this.x + this.radius > canvas.width || this.x - this.radius < 0) {
-          this.vx = -this.vx;
-          this.x = Math.max(this.radius, Math.min(this.x, canvas.width - this.radius));
-        }
-        if (this.y + this.radius > canvas.height || this.y - this.radius < 0) {
-          this.vy = -this.vy;
-          this.y = Math.max(this.radius, Math.min(this.y, canvas.height - this.radius));
-        }
-      }
+    draw(ctx) {
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+      ctx.strokeStyle = 'rgba(' + this.color + ', ' + this.alpha + ')';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+      ctx.closePath();
     }
+  }
 
-    function createParticle(type) {
-      const radius = 3;
-      let x, y, overlapping;
-      do {
-        overlapping = false;
-        x = Math.random() * (canvas.width - 2 * radius) + radius;
-        y = Math.random() * (canvas.height - 2 * radius) + radius;
-        for (let p of particles) {
-          const dx = p.x - x, dy = p.y - y;
-          if (Math.sqrt(dx * dx + dy * dy) < p.radius + radius) {
-            overlapping = true;
-            break;
-          }
-        }
-      } while (overlapping);
-      const angle = Math.random() * 2 * Math.PI;
-      const speed = randomSpeed();
-      const vx = speed * Math.cos(angle);
-      const vy = speed * Math.sin(angle);
-      return new Particle(x, y, type, vx, vy);
-    }
+  function createReactionProducts(p1, p2, type1, type2, effectColor) {
+    const midX = (p1.x + p2.x) / 2;
+    const midY = (p1.y + p2.y) / 2;
+    
+    reactionEffects.push(new ReactionEffect(midX, midY, effectColor));
+    
+    const angle = Math.atan2(p2.y - p1.y, p2.x - p1.x);
+    const delta = 0.2;
+    const offset = 4;
+    const prod1_x = midX + offset * Math.cos(angle + Math.PI/2);
+    const prod1_y = midY + offset * Math.sin(angle + Math.PI/2);
+    const prod2_x = midX + offset * Math.cos(angle - Math.PI/2);
+    const prod2_y = midY + offset * Math.sin(angle - Math.PI/2);
+    const prod1_vx = SPEED * Math.cos(angle + Math.PI/2 + delta);
+    const prod1_vy = SPEED * Math.sin(angle + Math.PI/2 + delta);
+    const prod2_vx = SPEED * Math.cos(angle - Math.PI/2 - delta);
+    const prod2_vy = SPEED * Math.sin(angle - Math.PI/2 - delta);
+    const prod1 = new Particle(prod1_x, prod1_y, type1, prod1_vx, prod1_vy);
+    const prod2 = new Particle(prod2_x, prod2_y, type2, prod2_vx, prod2_vy);
+    prod1.cooldown = 0;
+    prod2.cooldown = 0;
+    particles.push(prod1);
+    particles.push(prod2);
+  }
 
-    function initParticles() {
-      particles = [];
-      for (let i = 0; i < blueCount; i++) particles.push(createParticle(PARTICLE_TYPES.BLUE));
-      for (let i = 0; i < redCount; i++) particles.push(createParticle(PARTICLE_TYPES.RED));
-      for (let i = 0; i < cCount; i++) particles.push(createParticle(PARTICLE_TYPES.C));
-      for (let i = 0; i < dCount; i++) particles.push(createParticle(PARTICLE_TYPES.D));
-    }
+  function performElasticCollision(p1, p2) {
+    const dx = p1.x - p2.x;
+    const dy = p1.y - p2.y;
+    const distance = Math.sqrt(dx * dx + dy * dy);
+    const nx = dx / distance;
+    const ny = dy / distance;
+    const v1n = p1.vx * nx + p1.vy * ny;
+    const v2n = p2.vx * nx + p2.vy * ny;
+    const diff = v1n - v2n;
+    p1.vx -= diff * nx;
+    p1.vy -= diff * ny;
+    p2.vx += diff * nx;
+    p2.vy += diff * ny;
+    const overlap = p1.radius + p2.radius - distance;
+    p1.x += nx * (overlap / 2);
+    p1.y += ny * (overlap / 2);
+    p2.x -= nx * (overlap / 2);
+    p2.y -= ny * (overlap / 2);
+  }
 
-    function getCounts() {
-      return {
-        countA: particles.filter(p => p.type === PARTICLE_TYPES.BLUE).length,
-        countB: particles.filter(p => p.type === PARTICLE_TYPES.RED).length,
-        countC: particles.filter(p => p.type === PARTICLE_TYPES.C).length,
-        countD: particles.filter(p => p.type === PARTICLE_TYPES.D).length
-      };
-    }
-
-    function computeGlobalQ() {
-      const counts = getCounts();
-      if (counts.countA > 0 && counts.countB > 0)
-        return (counts.countC * counts.countD) / (counts.countA * counts.countB);
-      else
-        return "indéfini";
-    }
-
-    // Tableau pour stocker les effets de réaction (halo)
-    let reactionEffects = [];
-
-    // Classe ReactionEffect modifiée pour inclure la couleur
-    // Le paramètre "color" doit être une chaîne sous la forme "r,g,b" (par exemple "255,0,255" pour magenta)
-    class ReactionEffect {
-      constructor(x, y, color) {
-        this.x = x;
-        this.y = y;
-        this.radius = 0;
-        this.maxRadius = 50;
-        this.alpha = 1;
-        this.color = color;
-      }
-      update() {
-        this.radius += 3;
-        this.alpha = 1 - this.radius / this.maxRadius;
-      }
-      draw(ctx) {
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        ctx.strokeStyle = 'rgba(' + this.color + ', ' + this.alpha + ')';
-        ctx.lineWidth = 2;
-        ctx.stroke();
-        ctx.closePath();
-      }
-    }
-
-    // Fonction de création des produits de réaction avec effet de halo et couleur personnalisée
-    // effectColor : "255,0,255" pour magenta (réaction directe) ou "255,255,0" pour jaune (réaction inverse)
-    function createReactionProducts(p1, p2, type1, type2, effectColor) {
-      const midX = (p1.x + p2.x) / 2;
-      const midY = (p1.y + p2.y) / 2;
-      
-      // Ajout de l'effet de halo avec la couleur indiquée
-      reactionEffects.push(new ReactionEffect(midX, midY, effectColor));
-      
-      const angle = Math.atan2(p2.y - p1.y, p2.x - p1.x);
-      const delta = 0.2;
-      const offset = 4;
-      const prod1_x = midX + offset * Math.cos(angle + Math.PI/2);
-      const prod1_y = midY + offset * Math.sin(angle + Math.PI/2);
-      const prod2_x = midX + offset * Math.cos(angle - Math.PI/2);
-      const prod2_y = midY + offset * Math.sin(angle - Math.PI/2);
-      const prod1_vx = SPEED * Math.cos(angle + Math.PI/2 + delta);
-      const prod1_vy = SPEED * Math.sin(angle + Math.PI/2 + delta);
-      const prod2_vx = SPEED * Math.cos(angle - Math.PI/2 - delta);
-      const prod2_vy = SPEED * Math.sin(angle - Math.PI/2 - delta);
-      const prod1 = new Particle(prod1_x, prod1_y, type1, prod1_vx, prod1_vy);
-      const prod2 = new Particle(prod2_x, prod2_y, type2, prod2_vx, prod2_vy);
-      prod1.cooldown = 0;
-      prod2.cooldown = 0;
-      particles.push(prod1);
-      particles.push(prod2);
-    }
-
-    // Fonction de collision élastique classique
-    function performElasticCollision(p1, p2) {
-      const dx = p1.x - p2.x;
-      const dy = p1.y - p2.y;
-      const distance = Math.sqrt(dx * dx + dy * dy);
-      const nx = dx / distance;
-      const ny = dy / distance;
-      const v1n = p1.vx * nx + p1.vy * ny;
-      const v2n = p2.vx * nx + p2.vy * ny;
-      const diff = v1n - v2n;
-      p1.vx -= diff * nx;
-      p1.vy -= diff * ny;
-      p2.vx += diff * nx;
-      p2.vy += diff * ny;
-      const overlap = p1.radius + p2.radius - distance;
-      p1.x += nx * (overlap / 2);
-      p1.y += ny * (overlap / 2);
-      p2.x -= nx * (overlap / 2);
-      p2.y -= ny * (overlap / 2);
-    }
-
-    function handleCollisions() {
-      const current_fK = fK(equilibriumConstant);
-      const forwardThreshold = energyThreshold / current_fK;
-      const reverseThreshold = energyThreshold * current_fK;
-      
-      for (let i = 0; i < particles.length; i++) {
-        let p1 = particles[i];
-        if (p1.removed) continue;
-        for (let j = i + 1; j < particles.length; j++) {
-          let p2 = particles[j];
-          if (p2.removed) continue;
-          const dx = p1.x - p2.x, dy = p1.y - p2.y;
-          const distance = Math.sqrt(dx * dx + dy * dy);
-          if (distance < p1.radius + p2.radius) {
-            const energy1 = Math.sqrt(p1.vx ** 2 + p1.vy ** 2);
-            const energy2 = Math.sqrt(p2.vx ** 2 + p2.vy ** 2);
-            const totalEnergy = energy1 + energy2;
-            
-            // Collision A+B -> C+D (réaction directe)
-            if ((p1.type === PARTICLE_TYPES.BLUE && p2.type === PARTICLE_TYPES.RED) ||
-                (p1.type === PARTICLE_TYPES.RED && p2.type === PARTICLE_TYPES.BLUE)) {
-              const probForward = 1 / (1 + Math.exp(-(totalEnergy - forwardThreshold) / a));
-              if (Math.random() < probForward) {
-                // Halo magenta pour la réaction directe : "255,0,255"
-                createReactionProducts(p1, p2, PARTICLE_TYPES.C, PARTICLE_TYPES.D, '255,0,255');
-                p1.removed = true;
-                p2.removed = true;
-                break;
-              } else {
-                performElasticCollision(p1, p2);
-              }
-            }
-            // Collision C+D -> A+B (réaction inverse)
-            else if ((p1.type === PARTICLE_TYPES.C && p2.type === PARTICLE_TYPES.D) ||
-                     (p1.type === PARTICLE_TYPES.D && p2.type === PARTICLE_TYPES.C)) {
-              const probReverse = 1 / (1 + Math.exp(-(totalEnergy - reverseThreshold) / a));
-              if (Math.random() < probReverse) {
-                // Halo jaune pour la réaction inverse : "255,255,0"
-                createReactionProducts(p1, p2, PARTICLE_TYPES.BLUE, PARTICLE_TYPES.RED, '255,255,0');
-                p1.removed = true;
-                p2.removed = true;
-                break;
-              } else {
-                performElasticCollision(p1, p2);
-              }
-            }
-            else {
+  function handleCollisions() {
+    const current_fK = fK(equilibriumConstant);
+    const forwardThreshold = energyThreshold / current_fK;
+    const reverseThreshold = energyThreshold * current_fK;
+    
+    for (let i = 0; i < particles.length; i++) {
+      let p1 = particles[i];
+      if (p1.removed) continue;
+      for (let j = i + 1; j < particles.length; j++) {
+        let p2 = particles[j];
+        if (p2.removed) continue;
+        const dx = p1.x - p2.x, dy = p1.y - p2.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+        if (distance < p1.radius + p2.radius) {
+          const energy1 = Math.sqrt(p1.vx ** 2 + p1.vy ** 2);
+          const energy2 = Math.sqrt(p2.vx ** 2 + p2.vy ** 2);
+          const totalEnergy = energy1 + energy2;
+          
+          // Réaction directe : A+B -> C+D
+          if ((p1.type === PARTICLE_TYPES.BLUE && p2.type === PARTICLE_TYPES.RED) ||
+              (p1.type === PARTICLE_TYPES.RED && p2.type === PARTICLE_TYPES.BLUE)) {
+            const probForward = 1 / (1 + Math.exp(-(totalEnergy - forwardThreshold) / a));
+            if (Math.random() < probForward) {
+              createReactionProducts(p1, p2, PARTICLE_TYPES.C, PARTICLE_TYPES.D, '255,0,255');
+              p1.removed = true;
+              p2.removed = true;
+              break;
+            } else {
               performElasticCollision(p1, p2);
             }
           }
+          // Réaction inverse : C+D -> A+B
+          else if ((p1.type === PARTICLE_TYPES.C && p2.type === PARTICLE_TYPES.D) ||
+                   (p1.type === PARTICLE_TYPES.D && p2.type === PARTICLE_TYPES.C)) {
+            const probReverse = 1 / (1 + Math.exp(-(totalEnergy - reverseThreshold) / a));
+            if (Math.random() < probReverse) {
+              createReactionProducts(p1, p2, PARTICLE_TYPES.BLUE, PARTICLE_TYPES.RED, '255,255,0');
+              p1.removed = true;
+              p2.removed = true;
+              break;
+            } else {
+              performElasticCollision(p1, p2);
+            }
+          }
+          else {
+            performElasticCollision(p1, p2);
+          }
         }
       }
-      particles = particles.filter(p => !p.removed);
     }
+    particles = particles.filter(p => !p.removed);
+  }
 
-    function animate() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      particles.forEach(p => { p.update(); p.draw(); });
-      
-      // Mise à jour et dessin des halos de réaction
-      for (let i = reactionEffects.length - 1; i >= 0; i--) {
-        let effect = reactionEffects[i];
-        effect.update();
-        effect.draw(ctx);
-        if (effect.radius > effect.maxRadius) {
-          reactionEffects.splice(i, 1);
-        }
+  // --- Fonctions d'affichage graphiques ---
+
+  // Pour les quantités de particules, on dessine des bâtons avec un outline fixe de largeur 150.
+  // Le nombre est affiché à gauche du bâton.
+  function drawHorizontalBar(value, maxValue, x, y, barMaxWidth, barHeight, fillColor) {
+    ctx.fillStyle = "#444";
+    ctx.fillRect(x, y, barMaxWidth, barHeight);
+    let barWidth = (value / maxValue) * barMaxWidth;
+    ctx.fillStyle = fillColor;
+    ctx.fillRect(x, y, barWidth, barHeight);
+    ctx.fillStyle = "#FFFFFF";
+    ctx.font = "14px Arial";
+    ctx.fillText(value, x - 30, y + barHeight - 2);
+  }
+
+  // Fonction de mapping pour une échelle logarithmique adaptée :
+  // - l'axe couvre de 0 (à gauche) à 10 (à droite)
+  // - on veut que l'espace entre 0 et 1 soit le même que celui entre 1 et 10.
+  // Pour v < 1, on utilise une interpolation linéaire.
+  // Pour v ≥ 1, on utilise f(v) = 0.5 * log10(v) + 0.5.
+  function mapLogarithmic(v) {
+    if (v < 0) v = 0;
+    if (v > 10) v = 10;
+    if (v < 1) {
+      return 0.5 * v; // 0 -> 0, 1 -> 0.5
+    } else {
+      return 0.5 * Math.log10(v) + 0.5; // 1 -> 0.5, 10 -> 1
+    }
+  }
+
+  // Affiche un axe horizontal commun, avec une épaisseur accrue et un gradient.
+  // L'axe est tracé de x (valeur 0) à x+width (valeur 10) sur une échelle logarithmique.
+  // La couleur du gradient passe du rouge (#B51700) aux extrémités à du bleu (#004D80) à la position de K.
+  // Les flèches de K (au-dessus) et Q (en dessous) sont dessinées sur cet axe.
+  function drawIndicatorCommon(x, y, width, height, Kvalue, Qvalue) {
+    let ratioK = mapLogarithmic(Kvalue); // position normalisée pour K
+    // Création d'un gradient linéaire horizontal sur l'axe
+    let gradient = ctx.createLinearGradient(x, 0, x + width, 0);
+    gradient.addColorStop(0, "#B51700");
+    gradient.addColorStop(ratioK, "#004D80");
+    gradient.addColorStop(1, "#B51700");
+    
+    // Dessin de l'axe épais avec le gradient
+    ctx.fillStyle = gradient;
+    ctx.fillRect(x, y, width, height);
+    
+    // Flèche pour K (au-dessus de l'axe)
+    let arrowX_K = x + mapLogarithmic(Kvalue) * width;
+    ctx.fillStyle = "#FFFFFF";
+    ctx.beginPath();
+    ctx.moveTo(arrowX_K, y);
+    ctx.lineTo(arrowX_K - 5, y - 10);
+    ctx.lineTo(arrowX_K + 5, y - 10);
+    ctx.closePath();
+    ctx.fill();
+    ctx.fillText("K : " + Kvalue.toFixed(2), arrowX_K + 10, y - 10);
+    
+    // Flèche pour Q (en dessous de l'axe)
+    let arrowX_Q = x + mapLogarithmic(Qvalue) * width;
+    ctx.fillStyle = "#FFFFFF";
+    ctx.beginPath();
+    ctx.moveTo(arrowX_Q, y + height);
+    ctx.lineTo(arrowX_Q - 5, y + height + 10);
+    ctx.lineTo(arrowX_Q + 5, y + height + 10);
+    ctx.closePath();
+    ctx.fill();
+    ctx.fillText("Q : " + Qvalue.toFixed(2), arrowX_Q + 10, y + height + 20);
+  }
+
+  function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
+    particles.forEach(p => { p.update(); p.draw(); });
+    
+    for (let i = reactionEffects.length - 1; i >= 0; i--) {
+      let effect = reactionEffects[i];
+      effect.update();
+      effect.draw(ctx);
+      if (effect.radius > effect.maxRadius) {
+        reactionEffects.splice(i, 1);
       }
-      
-      handleCollisions();
-      
-      const counts = getCounts();
-      let Q_current;
-      if (counts.countA === 0 || counts.countB === 0)
-        Q_current = "indéfini";
-      else
-        Q_current = (counts.countC * counts.countD) / (counts.countA * counts.countB);
-      
-      const x_max = Math.min(initA, initB);
-      const x = (initA <= initB) ? (initA - counts.countA) : (initB - counts.countB);
-      const tau = x_max > 0 ? x / x_max : 0;
-      
-      ctx.fillStyle = "#FFFFFF";
-      ctx.font = "16px Arial";
-      ctx.fillText("τ : " + tau.toFixed(2), 10, 20);
-      ctx.fillText("Q : " + (typeof Q_current === "number" ? Q_current.toFixed(2) : Q_current), 10, 40);
-      ctx.fillText("K : " + equilibriumConstant.toFixed(2), 10, 60);
-      
-      const offsetX = canvas.width - 60;
-      ctx.fillText("A : " + counts.countA, offsetX, 20);
-      ctx.fillText("B : " + counts.countB, offsetX, 40);
-      ctx.fillText("C : " + counts.countC, offsetX, 60);
-      ctx.fillText("D : " + counts.countD, offsetX, 80);
-      
-      const offsetY = canvas.height - 67;
-      ctx.fillText("Ai : " + initA, offsetX, offsetY);
-      ctx.fillText("Bi : " + initB, offsetX, offsetY + 20);
-      ctx.fillText("Ci : " + initC, offsetX, offsetY + 40);
-      ctx.fillText("Di : " + initD, offsetX, offsetY + 60);
-      
-      requestAnimationFrame(animate);
     }
+    
+    handleCollisions();
+    
+    const counts = getCounts();
+    let Q_current;
+    if (counts.countA === 0 || counts.countB === 0)
+      Q_current = 0;
+    else
+      Q_current = (counts.countC * counts.countD) / (counts.countA * counts.countB);
+    
+    // Affichage des bâtons pour les particules (A, B, C, D)
+    const barMaxWidth = 250; // bâtons deux fois moins longs qu'avant
+    const barHeight = 15;
+    const marginRight = 10;
+    const barStartX = canvas.width - marginRight - barMaxWidth;
+    const barStartY = 10;
+    const barSpacing = 25;
+    
+    drawHorizontalBar(counts.countA, 500, barStartX, barStartY, barMaxWidth, barHeight, "#00A2FF");
+    drawHorizontalBar(counts.countB, 500, barStartX, barStartY + barSpacing, barMaxWidth, barHeight, "#FF644E");
+    drawHorizontalBar(counts.countC, 500, barStartX, barStartY + 2 * barSpacing, barMaxWidth, barHeight, "#00FF00");
+    drawHorizontalBar(counts.countD, 500, barStartX, barStartY + 3 * barSpacing, barMaxWidth, barHeight, "#FFFF00");
+    
+    // Affichage de l'axe commun pour K et Q
+    const indicatorX = 10;
+    const indicatorY = 40; // descendu pour éviter que la flèche de K déborde en haut
+    const indicatorWidth = 200;
+    const indicatorHeight = 20; // axe plus épais
+    // L'échelle est fixe de 0 (à gauche) à 10 (à droite) avec mapping logarithmique
+    drawIndicatorCommon(indicatorX, indicatorY, indicatorWidth, indicatorHeight, equilibriumConstant, Q_current);
+    
+    requestAnimationFrame(animate);
+  }
 
-    blueCountInput.addEventListener('input', function() {
-      blueCount = parseInt(this.value);
-      initA = blueCount;
-      initParticles();
-    });
-    redCountInput.addEventListener('input', function() {
-      redCount = parseInt(this.value);
-      initB = redCount;
-      initParticles();
-    });
-    cCountInput.addEventListener('input', function() {
-      cCount = parseInt(this.value);
-      initC = cCount;
-      initParticles();
-    });
-    dCountInput.addEventListener('input', function() {
-      dCount = parseInt(this.value);
-      initD = dCount;
-      initParticles();
-    });
-    kValueInput.addEventListener('input', function() {
-      equilibriumConstant = parseFloat(this.value);
-      startSimulation();
-    });
-    
-    function startSimulation() {
-      blueCount = parseInt(blueCountInput.value);
-      redCount  = parseInt(redCountInput.value);
-      cCount    = parseInt(cCountInput.value);
-      dCount    = parseInt(dCountInput.value);
-      equilibriumConstant = parseFloat(kValueInput.value);
-      initA = blueCount;
-      initB = redCount;
-      initC = cCount;
-      initD = dCount;
-      initParticles();
-    }
-    
+  blueCountInput.addEventListener('input', function() {
+    blueCount = parseInt(this.value);
+    initA = blueCount;
+    initParticles();
+  });
+  redCountInput.addEventListener('input', function() {
+    redCount = parseInt(this.value);
+    initB = redCount;
+    initParticles();
+  });
+  cCountInput.addEventListener('input', function() {
+    cCount = parseInt(this.value);
+    initC = cCount;
+    initParticles();
+  });
+  dCountInput.addEventListener('input', function() {
+    dCount = parseInt(this.value);
+    initD = dCount;
+    initParticles();
+  });
+  kValueInput.addEventListener('input', function() {
+    equilibriumConstant = parseFloat(this.value);
     startSimulation();
-    animate();
-  </script>
+  });
+  
+  function startSimulation() {
+    blueCount = parseInt(blueCountInput.value);
+    redCount  = parseInt(redCountInput.value);
+    cCount    = parseInt(cCountInput.value);
+    dCount    = parseInt(dCountInput.value);
+    equilibriumConstant = parseFloat(kValueInput.value);
+    initA = blueCount;
+    initB = redCount;
+    initC = cCount;
+    initD = dCount;
+    initParticles();
+  }
+  
+  startSimulation();
+  animate();
+</script>
 </section><section>
 <style>
   /* Appliquez ces styles à votre fragment personnalisé */
