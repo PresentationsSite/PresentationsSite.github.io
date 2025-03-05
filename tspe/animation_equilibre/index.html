@@ -221,7 +221,7 @@ font-weight:normal;
   <span style="font-size:0.5em;">K&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;</span>
   <input type="range" id="kValue" min="0.2" max="5" value="1" step="0.1" class="slider-input" style="width: calc(100% - 100px);">
   <button id="soundToggle" class="sound-toggle">
-    <span id="soundIcon" style="font-size: 24px; color: #FF644E; text-decoration: line-through;">♫</span>
+    <span id="soundIcon" style="font-size: 24px; color: #fff;">♫</span>
   </button>
 </div>
 <script>
@@ -235,7 +235,7 @@ font-weight:normal;
   compressor.release.value = 0.25;
   compressor.connect(audioCtx.destination);
   
-  let soundEnabled = false;
+  let soundEnabled = true;
   
     // Débloquer le contexte audio dès le premier clic (très utile sur Safari en ligne)
   document.addEventListener('click', function() {
