@@ -49,14 +49,192 @@ span {
 font-weight:normal;
 }
 
+.video-container {
+  height: 60vh; /* limite la hauteur à 80% de la fenêtre */
+  width: calc(60vh * 9 / 16); /* largeur en fonction du ratio portrait */
+  margin: 0 auto;
+  position: relative;
+}
+
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  border-radius:10px;
+}
+
+
 </style>
 <h1 id="piles">Piles</h1>
 </section><section>
 
 
 <section data-shortcode-section>
+<h2 id="rappels-oxydoréduction">Rappels oxydoréduction</h2>
+</section><section>
+<div style="display: relative; margin: auto; height: 100%;border: solid 5px #FF968D; border-radius: 20px; width: fit-content;">
+<div style="padding: 10px 30px 20px 30px;">
+Une <span class="imp">réaction d'oxydo-réduction</span> modélise<br>une transformation mettant en jeu<br><span class="fragment imp">un transfert d'électrons</span> entre<br>deux couples oxydant-réducteur.
+</div>
+</div>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/deuxcouples2.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+<p>L&rsquo;oxydant d&rsquo;un premier couple oxyde<br>le réducteur d&rsquo;un deuxième couple.</p>
+<p><br><br><br><br><br><br></p>
+</section><section>
+<p>On peut décomposer cette réaction<br>en deux <span class="imp"><b>demi-équations électroniques</b> :</p>
+<br>
+<ul>
+<li class="fragment"> la réduction de l'oxydant 1.</li>
+<li class="fragment"> l'oxydation du réducteur 2.</li>
+</ul>
+</section><section>
+<ul>
+<li>Lors d'une réduction, un oxydant est réduit :<br>il capte des électrons et devient son réducteur conjugué.</li>
+$$\ce{Ox_1 + m e- = Red_1}$$
+<br>
+<li class="fragment">Lors d'une oxydation, un réducteur est oxydé :<br>il cède des électrons et devient son oxydant conjugué.
+$$\ce{Red_2 = Ox_2 + n e-}$$
+</li>
+</ul>
+</section><section>
+<p>Pour obtenir l&rsquo;équation bilan il faut équilibrer<br>le nombre d&rsquo;électrons dans chaque demi-équation<br>afin qu&rsquo;ils puissent disparaître du bilan.</p>
+<p class="fragment">
+Il y a en effet forcément autant d'électrons perdus<br>par les uns que d'électrons gagnés par les autres.
+</p>
+</section><section>
+<p>$$\quad\qquad\ce{Ox_1} + \color{#FFF056}\ce{m e-}\color{#93a1a1}=\ce{Red_1}\qquad\qquad \color{#56C1FF}(\times n)\qquad$$</p>
+<p>$$\qquad\qquad\ce{Red_2 = Ox_2} + \color{#56C1FF} \ce{n e-}\quad \color{#FFF056} (\times m)$$</p>
+<hr style = "width: 35ch;margin: 0 auto;border: none;border-top: 2px solid #93a1a1;">
+<p>$$\ce{n Ox_1 + m Red_2 -&gt; n Red_1 + m Ox_2}$$</p>
+</section><section>
+<h3 id="établir-une-équation-doxydoréduction">Établir une équation d&rsquo;oxydoréduction</h3>
+</section><section>
+<p><span style="font-size:2em;">🐣</span><br>
+Réaction d&rsquo;oxydoréduction<br>entre l&rsquo;ion fer II et l&rsquo;ion cuivre II</p>
+<p>Les couples sont :</p>
+<p>$\left(\ce{Fe^3+(aq) / Fe^2+(aq)}\right)$ <br>
+et $\left(\ce{Cu^2+(aq) / Cu (s)}\right)$</p>
+</section><section>
+<p><span style="font-size:2em;">🐥</span><br>
+Réaction d&rsquo;oxydoréduction<br>entre l&rsquo;aluminium et le diiode</p>
+<p>Les couples sont :</p>
+<p>$\left(\ce{Al^3+(aq) / Al (s)}\right)$ <br>
+et $\left(\ce{I2(aq) / I-(aq)}\right)$</p>
+</section><section>
+<p><span style="font-size:2em;">🐥</span><br>
+Réaction d&rsquo;oxydoréduction<br>entre le dioxygène et le zinc</p>
+<p>Les couples sont :</p>
+<p>$\left(\ce{O2(aq) / H2O (\ell)}\right)$ <br>
+et $\left(\ce{Zn^2+(aq) / Zn (s)}\right)$</p>
+</section><section>
+<p><span style="font-size:2em;">🐓</span><br>
+Réaction d&rsquo;oxydoréduction entre<br>le dioxyde de soufre et l&rsquo;ion permanganate</p>
+<p>Les couples sont :</p>
+<p>$\left(\ce{SO4^2-(aq) / SO2 (aq)}\right)$ <br>
+et $\left(\ce{MnO4-(aq) / Mn^2+(aq)}\right)$</p>
+<p>Pensez à simplifier à la fin.</p>
+<aside class="notes"><p>2 MnO4- + 5 SO2 + 2 H2O -&gt; 2 Mn2+ + 5 SO42- +4 H+</p>
+</aside>
+</section><section>
+<p><span style="font-size:3em;">🦚</span><br>
+Réaction d&rsquo;oxydoréduction entre<br>l&rsquo;éthanol et les ions dichromates.</p>
+<p>Les couples sont :</p>
+<p>$\left(\ce{Cr2O7^2- (aq)/ Cr^3+ (aq)}\right)$ <br>
+et $\left(\ce{CH3COOH (\ell)/ CH3CH2OH (\ell)}\right)$</p>
+<aside class="notes"><p>Cr2O72- + 14 H+ + 6e- = 2 Cr3+ + 7 H2O (*2)
+CH3CH2OH + H2O = CH3COOH + 4 H+ + 4 e- (*3)
+2 Cr2O72-  + 3 CH3CH2OH + 16H+ = 4 Cr3+ + 3 CH3COOH + 11 H2O</p>
+</aside>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h2 id="oxydants-et-réducteurs-usuels">oxydants et réducteurs usuels</h2>
+</section><section>
+<p>Parmi les oxydants, on peut citer :</p>
+<br>
+<ul>
+<li class="fragment">le dioxygène $\ce{O2 (g)}$ utilisé dans <span class="fragment">la respiration</span> et <span class="fragment">les piles à combustible.</span></li>
+</ul>
+</section><section>
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowfullscreen="allowfullscreen"
+    loading="eager"
+    referrerpolicy="strict-origin-when-cross-origin"
+    src="https://www.youtube.com/embed/AFZZoMc8PjU?autoplay=0&controls=1&end=0&loop=0&mute=0&start=0"
+    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;"
+    title="YouTube video"
+  ></iframe>
+</div>
+</section><section>
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowfullscreen="allowfullscreen"
+    loading="eager"
+    referrerpolicy="strict-origin-when-cross-origin"
+    src="https://www.youtube.com/embed/-OspFfT3GrY?autoplay=0&controls=1&end=0&loop=0&mute=0&start=0"
+    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;"
+    title="YouTube video"
+  ></iframe>
+</div>
+</section><section>
+<p>le dioxygène dissous $\ce{O2(aq)}$ est, lui,<br>responsable de <span class="fragment">la corrosion</span>.</p>
+<br>
+<div style="position:relative;margin-left:auto;margin-right:auto;width:700px;max-width:100%;margin-bottom:-40px;margin-top:-40px;">
+<img src="https://www.marineinsight.com/wp-content/uploads/2020/05/image001.jpg" style="box-shadow:none;background:none;border-radius:15px;">
+</div>
+</section><section>
+<div style="position:relative;margin-left:auto;margin-right:auto;width:900px;max-width:100%;margin-bottom:-40px;margin-top:-40px;">
+<img src="/corrosiontspe.png" style="box-shadow:none;background:none;">
+</div>
+</section><section>
+<ul>
+<li>l'ion hypochlorite $\ce{CℓO^-}$ utilisé dans <span class="fragment">l'eau de Javel.</span></li>
+<li class="fragment">dichlore $\ce{Cℓ2}$ utilisé dans <span class="fragment">la production d'acide chlorhydrique.</span></li>
+<li class="fragment">dichlore $\ce{Cℓ2}$ utilisé dans <span class="fragment">la production d'acide chlorhydrique.</span></li>
+</ul>
+</section><section>
+<p>Parmi les réducteurs, on peut citer :</p>
+<ul>
+<li class="fragment">le dihydrogène $\ce{H2 (g)}$ utilisé dans <span class="fragment">les piles à hydrogène</span> ou encore <span class="fragment">la production d'acide chlorhydrique ;</span></li>
+<li class="fragment">le glucose, réducteur dans la réaction <span class="fragment"> de la respiration aérobie ;</span></li>
+<li class="fragment">l'acide ascorbique (vitamine C), antioxydant dans l'alimentation.</li>
+</ul>
+</section><section>
+<p>La présence d&rsquo;un seul ou deux électrons de valence pour les <span class="imp">métaux du bloc $\mathrm{s}$</span> du tableau périodique (lithium, sodium, magnésium, etc.) leur un caractère fortement réducteur (ils veulent &rsquo;en débarrasser).</p>
+<p class="fragment">C'est pour ça qu'ils se retrouvent au cœur de nombreuses piles (pile alcaline, pile lithium-ion,<br>pile magnésium-soufre, etc.).</p>
+<p class="fragment">La famille des alcalins est même capable<br>de réduire l'eau, ce qui peut provoquer<br>leur enflammement à son contact !</p>
+</section><section>
+<div class="video-container">
+  <iframe src="https://www.youtube.com/embed/yGDkiUAwxRs?si=pls_cHsG20qzRN7W"
+          title="YouTube Short"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen>
+  </iframe>
+</div>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h2 id="principe-de-fonctionnement">Principe de fonctionnement</h2>
+</section><section>
 <p>Lorsqu&rsquo;un oxydant est en contact d&rsquo;un réducteur,<br>une transformation spontanée peut avoir lieu.</p>
-<p class="fragment">Cette <span class="imp">réaction d'oxydo-réduction</span> correspond à<br>un <span class="imp">transfert <b class="fragment" style="color:#FF968D">d'électrons</b></span> du <span class="fragment">reducteur</span> vers <span class="fragment">l'oxydant</span>.
+<p class="fragment">Cette <span class="imp">réaction d'oxydo-réduction</span> correspond à<br>un <span class="imp">transfert d'électrons</span> <span class="fragment">du reducteur</span> vers <span class="fragment">l'oxydant</span>.
 </section><section>
 <p>Séparer les réactifs et les relier par un conducteur permet d&rsquo;externaliser le transfert d&rsquo;électrons.</p>
 <p class="fragment">C'est le principe d'une <span class="imp">pile</span>.</p>
@@ -69,27 +247,247 @@ et $\mathrm{(Ox_2/Red_2)}$ dans la demi-pile 2.
 </p>
 <p class="fragment">Et dans chaque demi-pile a lieu une des deux demi-équations électroniques.</p>
 </section><section>
-<p>Supposons que la réaction spontanée<br>ait lieu entre $\mathrm{Ox_1}$ et $\mathrm{Red_2}$.</p>
-<br>
-<ul>
-<li class="fragment">La demi-pile 2 est alors le siège de <span class="imp fragment">l'oxydation</span><br>et va <span class="imp fragment">fournir</span> les électrons.</li>
-<br>
-<li class="fragment">La demi-pile 1 est, elle, le siège de <span class="imp fragment">la réduction</span><br>et va donc <span class="imp">capter</span> les électrons.</li>
-</ul>
-</section><section>
 <p>Chaque demi-pile a besoin de<br>deux ingrédients supplémentaires :</p>
 <br>
 <ul>
-<li class="fragment">une <span class="imp">électrode</span> faite d'un matériau conducteur solide qui va servir d'interface avec le circuit extérieur.</li>
+<li class="fragment">une <span class="imp">électrode</span> faite d'un matériau<br>conducteur solide qui va servir<br>d'interface avec le circuit extérieur.</li>
 <br>
 <li class="fragment">un <span class="imp">électrolyte</span> (milieu conducteur<br>par <span class="imp">déplacement d'ions</span>).</li>
 </ul>
-<p><br><br></p>
-<p class="fragment"><u>Rq</u> : l'électrode peut être directement l'oxydant ou le réducteur s'il est métallique ou un conducteur inerte comme du graphite ou du platine.</p>
+<br>
+<p class="fragment" style="margin-top:1em"><u>Rq</u> : l'électrode peut être directement l'oxydant ou le réducteur s'il est métallique ou un conducteur inerte comme du graphite ou du platine.</p>
+</section><section>
+<p>Supposons que la réaction spontanée<br>ait lieu entre $\mathrm{Ox_1}$ et $\mathrm{Red_2}$.</p>
+<br>
+<ul>
+<li class="fragment">La demi-pile 2 est alors le siège de <b class="fragment" style="color:#56C1FF;">l'<u>o</u>xydation</b><br>et va donc <b class="fragment" style="color:#56C1FF;">fournir</b> les électrons. Son électrode, appelée <b class="fragment" style="color:#56C1FF;"><u>a</u>node</b> est ainsi le pole <b class="fragment" style="color:#56C1FF;">négatif</b> de la pile.</li>
+<br>
+<li class="fragment">La demi-pile 1 est, elle, le siège de <b class="fragment" style="color:#FF968D;">la <u>r</u>éduction</b><br>et va donc <b class="fragment" style="color:#FF968D;">capter</b> les électrons. Son électrode, appelée <b class="fragment" style="color:#FF968D;"><u>c</u>athode</b> est ainsi le pole <b class="fragment" style="color:#FF968D;">positif</b> de la pile.</li>
+</ul>
+</section><section>
+<p>⚠️</p>
+<p>Les noms anodes et cathodes ne sont pas liés à la polarité (on verra que pour l&rsquo;électrolyseur,  les polarités sont inversées : l&rsquo;anode est le pole $\oplus$ alors que<br>la cathode est le pole $\ominus$).</p>
+<p class="fragment">Mais les noms sont liés à la réaction :</p>
+<ul>
+<li class="fragment"> la <b  style="color:#56C1FF;"><u>c</u>athode</b> est toujours le siège de la <b style="color:#56C1FF;"><u>r</u>éduction</b>.</li>
+<li class="fragment"> L'<b style="color:#FF968D;"><u>a</u>node</u></b> est toujours le siège de l'<b  style="color:#FF968D;"><u>o</u>xydation</b>.</li>
+</ul>
 </section><section>
 <p>Plus qu&rsquo;à connecter les deux électrodes au circuit électrique qu&rsquo;on cherche à alimenter.</p>
-<p class="fragment">Mais pour que du courant circule il faut aussi relier<br>les deux demi-piles par une <span class="imp">jonction électrolytique</span><br>(<span class="imp">pont salin</span>, membrane, vase poreux, etc.).</p>
-<p class="fragment">Que se passerait-il sans le pont salin ?</p>
+<p class="fragment">Mais pour que du courant circule il faut assurer<br>un contact électrique entre les deux demi-piles<br>grâce à une <span class="imp">jonction électrolytique</span><br>(<span class="imp">pont salin</span>, membrane, vase poreux, etc.).</p>
+</section><section>
+<p>Rôle du pont salin :</p>
+<p><span class="imp">Maintien de la neutralité électrique<br>en fermant le circuit</span></p>
+<p class="fragment">Lorsque la réaction redox se produit, des électrons circulent dans le circuit externe, ce qui crée un déséquilibre de charges dans les solutions<br>des deux demi-piles.</p>
+ <p class="fragment">Le pont salin permet alors le déplacement d’ions (anions vers l’anode et cations vers la cathode) <br>pour compenser ce déséquilibre.</p>
+</section><section>
+<p>Que se passerait-il sans le pont salin ?</p>
+<p class="fragment">
+Le déséquilibre de charge créerait un champ électrique qui finirait par stopper le flux d’électrons, phénomène que l’on appelle la polarisation des demi-piles.
+</p>
+<aside class="notes"><p>C&rsquo;est finalement ce qui se passe pour tout circuit ouvert connecté à un générateur.</p>
+</aside>
+</section><section>
+<p>L&rsquo;intérêt du pont salin est d&rsquo;assurer cette jonction électrolytique <u>sans</u> mélanger les deux solutions !</p>
+<p class="fragment">Sinon, on irait à l'encontre même du principe de la pile qui était de séparer l'oxydation et la réduction pour externaliser le transfert d'électrons. </p>
+</section><section>
+<p>Et pourtant&hellip;</p>
+<p>Voici le schéma d&rsquo;une pile très utilisée à la fin du 19<sup>e</sup> siècle (elle alimentait la plupart des télégraphes).
+<br><br></p>
+<div style="position:relative;margin-left:auto;margin-right:auto;width:400px;max-width:100%;margin-bottom:-40px;margin-top:-40px;">
+<img src="/gravity_cell.gif" style="box-shadow:none;background:none;border-radius:15px;">
+</div>
+<aside class="notes"><p><a href="https://picassciences.com/wp-content/uploads/2013/02/les-piles-c3a9lectro.pdf">https://picassciences.com/wp-content/uploads/2013/02/les-piles-c3a9lectro.pdf</a>
+Pile CALLAUD (et sa variante la pile de HILL)
+Comme la pile Daniell, elle contient deux électrolytes : une solution de sulfate de cuivre et une d&rsquo;eau acidulée (H2SO4).
+Le vase poreux est supprimé et les 2 solutions sont séparées par simple différence de densité.
+Afin d&rsquo;éviter un mélange des deux solutions, la pile doit rester immobile et doit débiter de façon quasi continue d&rsquo;où un emploi bien adapté en téléphonie.
+Ces piles ont été utilisées,par le Service des Téléphones et les compagnies de Chemin de Fer pendant de nombreuses décennies à partir des années 1860.
+Elles ont été produites en France à des milliers d&rsquo;exemplaire.
+Il est encore possible de trouver des bocaux en verre, mais les structures internes souvent corrodées sont de nos jours quasi introuvables.
+Des variantes de cette pile au sulfate de cuivre (blue Vitriol) ont été produites et très employées aux Etats-Unis.
+Du fait de son principe de fonctionnement, cette pile est connue dans ce pays sous le nom de Gravity Battery ou Gravity Cell.
+Un des problèmes de cette pile est l&rsquo;appauvrissement progressif de
+l&rsquo;électrolyte en sulfate de cuivre.
+Pour assurer un service régulier et de longue durée à cette pile, il estnécessaire de rajouter périodiquement des cristaux de sulfate à la solution.</p>
+</aside>
+</section><section>
+<p>Comment ça marche ?</p>
+<br>
+<div class="fragment" style="position:relative;margin-left:auto;margin-right:auto;width:800px;max-width:100%;margin-bottom:-40px;margin-top:-40px;">
+<img src="/gravity_cell_col.jpg" style="box-shadow:none;background:none;border-radius:15px;">
+</div>
+</section><section>
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowfullscreen="allowfullscreen"
+    loading="eager"
+    referrerpolicy="strict-origin-when-cross-origin"
+    src="https://www.youtube.com/embed/TQ1BN93FoDs?autoplay=0&controls=1&end=0&loop=0&mute=0&start=0"
+    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;"
+    title="YouTube video"
+  ></iframe>
+</div>
+</section><section>
+<p>Donc il peut malgré tout y avoir un léger mélange des solutions (c&rsquo;est aussi le cas avec un pont salin) mais du moment que les concentrations d&rsquo;un même électrolyte restent très différents dans les deux compartiments,<br>la réaction est maintenue.</p>
+
+</section>
+</section><section>
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+  <iframe
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowfullscreen="allowfullscreen"
+    loading="eager"
+    referrerpolicy="strict-origin-when-cross-origin"
+    src="https://www.youtube.com/embed/GT4yJjJ9OKE?autoplay=0&controls=1&end=0&loop=0&mute=0&start=0"
+    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;"
+    title="YouTube video"
+  ></iframe>
+</div>
+</section><section>
+
+
+<section data-shortcode-section>
+<h2 id="déplacement-des-charges">Déplacement des charges</h2>
+</section><section>
+<p>Sur le schéma d&rsquo;une pile, il faut savoir indiquer :</p>
+<ul>
+<li class="fragment">les <span class="imp">polarités des électrodes</span> ;</li>
+<li class="fragment">le <span class="imp">déplacement des électrons</span><br>dans le circuit électrique ;</li>
+<li class="fragment">le <span class="imp">sens conventionnel du courant</span><br>dans le circuit électrique ;</li>
+<li class="fragment">les <span class="imp">déplacement des électrolytes</span><br>dans le pont salin.</li>
+</ul>
+</section><section>
+<p>Le schéma suivant indique ces déplacements<br>dans le cas de la pile Daniell.</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/schemapilecomplet.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h2 id="étude-quantitative">Étude quantitative</h2>
+</section><section>
+<h3 id="tension-à-vide">Tension à vide</h3>
+<br>
+<p>La <span class="imp">tension à vide</span> d&rsquo;une pile est la valeur absolue<br>de la tension mesurée entre ses électrodes<br>en circuit ouvert, c&rsquo;est-à-dire quand aucun<br>courant électrique ne la traverse.</p>
+<p class="fragment">
+Cette tension à vide est mesurée en branchant<br>les électrodes aux bornes d'un <span class="imp">voltmètre</span>.
+</p>
+<p class="fragment">
+<u>Rq</u> : la tension à vide est aussi appelée force électromotrice (f.e.m.) de la pile.
+</p>
+</section><section>
+<h3 id="capacité-électrique">Capacité électrique</h3>
+<br>
+<p>La <span class="imp">capacité électrique $Q$</span> d&rsquo;une pile est la charge électrique maximale que la pile est susceptible<br>de faire circuler dans un circuit extérieur.</p>
+</section><section>
+<div style="display: relative; margin: auto; height: 100%;border: solid 5px #FF968D; border-radius: 20px; width: fit-content;">
+<div style="padding: 10px 30px 20px 30px;font-size:1.2em;">
+$
+\begin{aligned}
+Q &=n(\text{é})_\mathrm{max}\times N_A\times e\\
+&= n_\text{é}\times \mathcal{F}
+\end{aligned}
+$
+</div>
+</div>
+</section><section>
+<ul>
+<li>$n(\text{é})_\mathrm{max}$ est la quantité maximale<br>d'électrons échangés<br><b style="color:#FFF056"><span class="fragment">(en <span class="fragment">$\pu{mol}$</span>)</span></b></li>
+<li class="fragment">$N_A$ est le <b class="fragment" style="color:#FFF056">nombre d'Avogadro</b><br>($N_A=\pu{6,02E23 mol-1}$)</li>
+<li class="fragment">$e$ est la <b class="fragment" style="color:#FFF056">charge élémentaire</b><br><span class="fragment">($e=$<span class="fragment">$\pu{1,60E-19 C}$</span>)</span></li>
+<li class="fragment">$\mathcal{F}$ est la <b style="color:#FFF056">constante de Faraday</b><br><span class="fragment">$\mathcal{F}=$<span class="fragment">$\color{#FFF056}{e\times N_A}$</span><br>$\phantom{\mathcal{F}}=\pu{96,5E3 C*mol-1}$</span></li>
+</ul>
+</section><section>
+<p>Comment trouve-t-on $n(\text{é})_\mathrm{max}$ ?</p>
+<ul>
+<li class="fragment">On détermine le nombre $\nu_\text{é}$ d'électrons<br>échangés dans l'équation globale de<br>la réaction de fonctionnement de la pile.</li>
+<li class="fragment">Puis on détermine l'avancement maximal<br>$x_\mathrm{max}$ de la réaction.</li>
+</ul>
+<br>
+<p class="fragment">On a alors :</p>
+<div class="fragment" style="display: relative; margin: auto; height: 100%;border: solid 5px #fff; border-radius: 20px; width: fit-content;">
+<div style="padding: 10px 30px 0px 30px;">
+$n_\text{é} = \nu_\text{é}\times x_\mathrm{max}$</p>
+</div>
+</div>
+</section><section>
+<style>
+ul.custom-pencil li {
+  list-style: none;
+  position: relative;
+  padding-left: 1.5em;
+  color:#8ABE5E;
+}
+
+ul.custom-pencil li::before {
+  content: "✏︎";
+  position: absolute;
+  left: 0;
+}
+</style>
+<p>Exemple :</p>
+<p>Une pile cuivre-aluminium repose sur<br>les deux couples oxydant/réducteur suivant :<br>
+$\ce{(Aℓ^3+(aq)/Aℓ(s))}$ et $\ce{(Cu^2+(aq)/Cu(s))}$</p>
+<p>La transformation spontanée a lieu entre<bR>les ions cuivre et l&rsquo;aluminium.</p>
+<ul class="custom-pencil">
+<li>Écrire l'équation de la réaction<br>de fonctionnement de la pile<br>à partir des demi-équations.</li>
+<li>Combien d'électrons sont échangés<br>dans cette réaction ?</li>
+</ul>
+<aside class="notes"><p>6 électrons sont échangés</p>
+</aside>
+</section><section>
+<p>Composition de la pile :</p>
+<ul>
+<li>demi-pile 1 : électrode de 35 g d&rsquo;aluminium<br>dans 200 mL d&rsquo;une solution de sulfate d&rsquo;aluminium <br> $\pu{0,50 mol*L-1}$ ;</li>
+<li>demi-pile 2 : électrode de 50 g de cuivre dans 200 mL d&rsquo;une solution de sulfate de cuivre à $\pu{0,50 mol*L-1}$ ;</li>
+</ul>
+<ul class="custom-pencil" style="margin-top:1em;">
+<li>Calculer l'avancement maximale<br>de la réaction supposée totale.</li>
+<li>En déduire la capacité électrique<br>de la pile.</li>
+<aside class="notes"><p>Les 2 réactifs sont Al et Cu2+
+ni(Al) = m(Al)/M(Al) = 35/27 = 1,3 mol
+ni(Cu2+) = 200E-3 * 0,50 = 1,0E-1 mol
+hyp 1 : ni(Al)-2xmax = 0 =&gt; xmax = ni(Al)/2 = 0,65 mol
+hyp 2 : ni(Cu2+)-3xmax = 0 =&gt; xmax = ni(Cu2+)/3 = 3,3E-2 mol Validée
+Q = 6<em>xmax</em>F = 6<em>3,3E-2</em>96500 = 1,9E4 C
+Soit 5,3 Ah</p>
+<p>On aurait pu directement demander la capacité de la pile sans question intermédiaire !</p>
+</aside>
+</section><section>
+<h3 id="durée-de-fonctionnement">Durée de fonctionnement</h3>
+<br> 
+<p>L&rsquo;intensité $I$ délivrée (supposée constante), la capacité électrique $Q$ et la <span class="imp">durée de vie $\Delta t_\mathrm{max}$</span> de la pile<br>sont reliées par la relation :</p>
+<br>
+<div class="fragment" style="display: relative; margin: auto; height: 100%;border: solid 5px #FF968D; border-radius: 20px; width: fit-content;">
+<div style="padding: 10px 30px 20px 30px;font-size:1.2em;">
+$
+\begin{aligned}
+Q = I\times\Delta t_\mathrm{max}
+\end{aligned}
+$
+</div>
+</div>
+<br>
+<ul>
+<li class="fragment">$Q$ en <b class="fragment" style="color:#FFF056">C</b></li>
+<li class="fragment">$I$ en <b class="fragment" style="color:#FFF056">A</b></li>
+<li class="fragment">$\Delta t_\mathrm{max}$ en <b class="fragment" style="color:#FFF056">s</b></li>
+</ul>
+</section><section>
+<p><u>Rq 1</u> :</p>
+<p class="fragment">Cette relation permet aussi de trouver la capacité électrique $Q$ si on nous donne l'intensité $I$ et la durée maximale de fonctionnement $\Delta t_\mathrm{max}$ !</p>
+<br>
+<p class="fragment"><u>Rq 2</u> :</p>
+<p class="fragment">Industriellement, la capacité est<br>le plus souvent donnée en <span class="fragment"><b  style="color:#FFF056">$\pu{Ah}$</b> ou <b style="color:#FFF056">$\pu{mAh}$</b>.</span><br>
+<span class="fragment">Conversion : 1 mAh $=$ <b class="fragment" style="color:#FFF056">3,6 </b>C</span> 
+</p>
 
 </section>
 </section><section>

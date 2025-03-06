@@ -320,7 +320,7 @@ Microscopiquement, les deux réactions opposées continuent à se faire mais mac
   
   let soundEnabled = false;
   
-    // Débloquer le contexte audio dès le premier clic (très utile sur Safari en ligne)
+  // Débloquer le contexte audio dès le premier clic (très utile sur Safari en ligne)
   document.addEventListener('click', function() {
     if (audioCtx.state === 'suspended') {
       audioCtx.resume();
@@ -378,7 +378,7 @@ Microscopiquement, les deux réactions opposées continuent à se faire mais mac
   let dCount    = parseInt(dCountInput.value);
   let equilibriumConstant = parseFloat(kValueInput.value);
   
-  // Variables d'initialisation
+  // Variables d'initialisation (utilisées lors du premier démarrage)
   let initA, initB, initC, initD;
   
   const SPEED = 2;
@@ -460,6 +460,7 @@ Microscopiquement, les deux réactions opposées continuent à se faire mais mac
     return new Particle(x, y, type, vx, vy);
   }
   
+  // Initialisation des particules (au démarrage seulement)
   function initParticles() {
     particles = [];
     for (let i = 0; i < blueCount; i++) particles.push(createParticle(PARTICLE_TYPES.BLUE));
@@ -612,10 +613,10 @@ Microscopiquement, les deux réactions opposées continuent à se faire mais mac
   }
   
   // --- Fonctions d'affichage graphiques ---
-  // Dessine le bâton (outline gris et partie colorée) avec 25% de transparence (globalAlpha = 0.75).
+  // Dessine le bâton (outline gris et partie colorée) avec 25% de transparence.
   function drawHorizontalBar(value, maxValue, x, y, barMaxWidth, barHeight, fillColor) {
     ctx.save();
-    ctx.globalAlpha = 0.75; // 75% opaque (soit 25% transparent)
+    ctx.globalAlpha = 0.75;
     ctx.fillStyle = "#444";
     ctx.fillRect(x, y, barMaxWidth, barHeight);
     let barWidth = (value / maxValue) * barMaxWidth;
@@ -632,13 +633,13 @@ Microscopiquement, les deux réactions opposées continuent à se faire mais mac
     if (v < 0) v = 0;
     if (v > 10) v = 10;
     if (v < 1) {
-      return 0.5 * v; // linéaire pour v < 1
+      return 0.5 * v;
     } else {
-      return 0.5 * Math.log10(v) + 0.5; // pour v >= 1
+      return 0.5 * Math.log10(v) + 0.5;
     }
   }
   
-  // Dessine l'axe commun pour K et Q avec 25% de transparence, puis dessine les flèches et le texte en opacité normale.
+  // Dessine l'axe commun pour K et Q avec 25% de transparence, puis affiche les flèches et le texte.
   function drawIndicatorCommon(x, y, width, height, Kvalue, Qvalue) {
     let ratioK = mapLogarithmic(Kvalue);
     let gradient = ctx.createLinearGradient(x, 0, x + width, 0);
@@ -647,7 +648,7 @@ Microscopiquement, les deux réactions opposées continuent à se faire mais mac
     gradient.addColorStop(1, "#B51700");
     
     ctx.save();
-    ctx.globalAlpha = 0.75; // 75% opaque (soit 25% transparent) pour l'axe
+    ctx.globalAlpha = 0.75;
     ctx.fillStyle = gradient;
     ctx.fillRect(x, y, width, height);
     ctx.restore();
@@ -664,7 +665,7 @@ Microscopiquement, les deux réactions opposées continuent à se faire mais mac
     
     let arrowX_Q;
     if (!isFinite(Qvalue)) {
-      arrowX_Q = x + width; // Collé à droite
+      arrowX_Q = x + width;
       ctx.fillText("Q : ∞", arrowX_Q + 10, y + height + 20);
     } else {
       arrowX_Q = x + mapLogarithmic(Qvalue) * width;
@@ -701,7 +702,6 @@ Microscopiquement, les deux réactions opposées continuent à se faire mais mac
     
     const counts = getCounts();
     let Q_current;
-    // Si l'un des réactifs A ou B est à 0, on considère Q comme infini.
     if (counts.countA === 0 || counts.countB === 0)
       Q_current = Infinity;
     else
@@ -728,45 +728,64 @@ Microscopiquement, les deux réactions opposées continuent à se faire mais mac
     animationFrameId = requestAnimationFrame(animate);
   }
   
-  blueCountInput.addEventListener('input', function() {
-    blueCount = parseInt(this.value);
-    initA = blueCount;
-    initParticles();
-  });
-  redCountInput.addEventListener('input', function() {
-    redCount = parseInt(this.value);
-    initB = redCount;
-    initParticles();
-  });
-  cCountInput.addEventListener('input', function() {
-    cCount = parseInt(this.value);
-    initC = cCount;
-    initParticles();
-  });
-  dCountInput.addEventListener('input', function() {
-    dCount = parseInt(this.value);
-    initD = dCount;
-    initParticles();
-  });
-  kValueInput.addEventListener('input', function() {
-    equilibriumConstant = parseFloat(this.value);
-    startSimulation();
-  });
-  
-  function startSimulation() {
-    blueCount = parseInt(blueCountInput.value);
-    redCount  = parseInt(redCountInput.value);
-    cCount    = parseInt(cCountInput.value);
-    dCount    = parseInt(dCountInput.value);
-    equilibriumConstant = parseFloat(kValueInput.value);
-    initA = blueCount;
-    initB = redCount;
-    initC = cCount;
-    initD = dCount;
-    initParticles();
+  // Met à jour le nombre de particules d'un type donné sans relancer la simulation
+  function updateParticleCount(type, newCount) {
+    const currentParticles = particles.filter(p => p.type === type);
+    const currentCount = currentParticles.length;
+    const diff = newCount - currentCount;
+    
+    if (diff > 0) {
+      for (let i = 0; i < diff; i++) {
+        particles.push(createParticle(type));
+      }
+    } else if (diff < 0) {
+      let countToRemove = -diff;
+      for (let i = particles.length - 1; i >= 0 && countToRemove > 0; i--) {
+        if (particles[i].type === type) {
+          particles.splice(i, 1);
+          countToRemove--;
+        }
+      }
+    }
   }
   
-  startSimulation();
+  // Écouteurs d'événements pour les curseurs
+  blueCountInput.addEventListener('input', function() {
+    const newBlueCount = parseInt(this.value);
+    updateParticleCount(PARTICLE_TYPES.BLUE, newBlueCount);
+  });
+  
+  redCountInput.addEventListener('input', function() {
+    const newRedCount = parseInt(this.value);
+    updateParticleCount(PARTICLE_TYPES.RED, newRedCount);
+  });
+  
+  cCountInput.addEventListener('input', function() {
+    const newCCount = parseInt(this.value);
+    updateParticleCount(PARTICLE_TYPES.C, newCCount);
+  });
+  
+  dCountInput.addEventListener('input', function() {
+    const newDCount = parseInt(this.value);
+    updateParticleCount(PARTICLE_TYPES.D, newDCount);
+  });
+  
+  // Modification de la constante d'équilibre sans réinitialiser la simulation
+  kValueInput.addEventListener('input', function() {
+    equilibriumConstant = parseFloat(this.value);
+  });
+  
+  // Initialisation au démarrage
+  blueCount = parseInt(blueCountInput.value);
+  redCount  = parseInt(redCountInput.value);
+  cCount    = parseInt(cCountInput.value);
+  dCount    = parseInt(dCountInput.value);
+  equilibriumConstant = parseFloat(kValueInput.value);
+  initA = blueCount;
+  initB = redCount;
+  initC = cCount;
+  initD = dCount;
+  initParticles();
   animate();
   
   // Bouton de contrôle du son
