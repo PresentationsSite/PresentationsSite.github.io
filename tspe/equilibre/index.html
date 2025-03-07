@@ -802,6 +802,7 @@ Microscopiquement, les deux réactions opposées continuent à se faire mais mac
   });
 </script>
 </section><section>
+<!---
 <style>
   /* Appliquez ces styles à votre fragment personnalisé */
   .fragment.barre {
@@ -824,22 +825,38 @@ Microscopiquement, les deux réactions opposées continuent à se faire mais mac
     width: 100%;
   }
 </style>
+Inutile ici car placé dans le CSS global
+--->
 <p>Lors d&rsquo;un choc, si l&rsquo;énergie cinétique dépasse<br> un seuil d&rsquo;activation, la réaction se fait.</p>
 <p>Sinon, il y a collision élastique.</p>
-<p class="fragment">Pour $K>1$, l'énergie d'activation dans le sens direct est plus <span class="fragment strike">grande</span>/petite que dans le sens indirect. 
-<p class="fragment">Et plus $K$ est grand, plus elle est <span class="fragment strike">grande</span>/faible.</p>
-<p class="fragment">Pour $K<1$, c'est l'inverse.</p>
+<p class="fragment">$K$ mesure combien de fois la réaction est plus probable dans le sens direct que dans le sens indirect.</p>
+<p class="fragment">Pour $K=3$ par exemple, un choc entre deux réactifs à 3 fois plus/<span class="fragment strike">moins</span> de chance de donner lieu à une réaction qu'un choc entre deux produits.</p>
 </section><section>
-<p>Par conséquent, lors d&rsquo;un choc, la réaction dans le sens direct devient plus/<span class="fragment strike">moins</span> probable lorsque $K&gt;1$.</p>
-<p class="fragment">
-Mais à l'inverse, la fréquence des chocs devient<br><span class="fragment strike">plus</span>/moins grande puisque les réactifs<br><span class="fragment strike">apparaissent</span>/disparaissent.
-</p>
+<p>Le quotient de réaction mesure, lui, combien de fois<br>il est plus probable pour les produits de se rencontrer que pour les réactifs.</p>
+<p class="fragment">Pour $Q_r=3$ par exemple, deux réactifs ont 3 fois <span class="fragment strike">plus</span>/moins de chance de s'entrechoquer que deux produits.</p>
 </section><section>
-<p>Le quotient de réaction mesure le ratio entre<br>la probabilité de rencontre des produits sur<br>la probabilité de rencontre des réactifs.</p>
+<p>À l&rsquo;équilibre, la réaction direct et la réaction inverse doivent se faire au même rythme.</p>
+<div class="fragment">
+Donc :
+<p>$(\text{proba que deux réactifs se rencontrent}) $<br>
+$\times$<br>
+$(\text{proba que les réactifs réagissent})$<br>
+$=$<br>
+$(\text{proba que deux produits se rencontrent})$<br>
+$\times$<br>
+$(\text{proba que les produits réagissent})$</p>
+</div>
+</section><section>
+<p>Ce qui peut se réécrire :</p>
 <p class="fragment">
-Pour un $Q_r>1$, les chocs les plus fréquents sont entre les <span class="fragment strike">réactifs</span>/produits et pour $Q_r<1$, les chocs les plus fréquents sont entre les réactifs/<span class="fragment strike">produits</span>.
-</br> 
+$\frac{\text{proba que deux produits se rencontrent}}{\text{proba que deux réactifs se rencontrent}}$<br>
+$=$<br>
+$\frac{\text{proba que les réactifs réagissent}}{\text{proba que les produits réagissent}}$
 </p>
+<div class="fragment">
+On a retrouvé 
+<p>$Q_r = K$</p>
+</div>
 
 </section>
 </section><section>
