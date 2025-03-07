@@ -692,6 +692,23 @@ font-weight:normal;
     equilibriumConstant = parseFloat(this.value);
   });
   
+  // Gestion du pause/reprise de l'animation via un clic ou un toucher sur le canvas
+  function toggleAnimation() {
+    if (running) {
+      running = false;
+      if (animationFrameId) cancelAnimationFrame(animationFrameId);
+    } else {
+      running = true;
+      animate();
+    }
+  }
+  
+  canvas.addEventListener('click', toggleAnimation);
+  canvas.addEventListener('touchstart', function(e) {
+    e.preventDefault(); // empêche le déclenchement d'autres événements tactiles
+    toggleAnimation();
+  });
+  
   // Initialisation au démarrage
   blueCount = parseInt(blueCountInput.value);
   redCount  = parseInt(redCountInput.value);
