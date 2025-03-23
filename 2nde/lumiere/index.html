@@ -48,6 +48,24 @@ ul li {
 text-indent: -1em;
 padding-left: 1em;
 }
+
+.short {
+  height: 60vh; /* limite la hauteur à 80% de la fenêtre */
+  width: calc(60vh * 9 / 16); /* largeur en fonction du ratio portrait */
+  margin: 0 auto;
+  position: relative;
+}
+
+.short iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  border-radius:10px;
+}
+
 </style>
 <h1 id="lumière">Lumière</h1>
 </section><section>
@@ -84,7 +102,7 @@ padding-left: 1em;
       data-background-transition="concave">
 </section><section>
 <div  style="display: flex; justify-content: center; align-items: center; height: 100%;">
-<div style="background-color:#00AB8E;padding:15px 30px 20px 30px; width:content; color:white">
+<div style="background-color:#00AB8E;padding:15px 30px 20px 30px; width:content; color:white; border-radius:15px;">
 La lumière se déplace en ligne droite<br>dans un milieu transparent homogène.
 </div>
 </div>
@@ -103,7 +121,7 @@ On voit la poussière ou les goutelettes d'eau éclairées.</p>
 </section><section>
 <p>La vitesse (ou célérité) $c$ de la lumière<br>dans le vide ou l&rsquo;air vaut :</p>
 <div class="fragment" style="display: flex; justify-content: center; align-items: center; height: 100%;">
-<div style="background-color:#00AB8E;padding:15px 50px 20px 50px; width:content; color:white">
+<div style="background-color:#00AB8E;padding:15px 50px 20px 50px; width:content; color:white; border-radius:15px;">
 $$c = \pu{3,0E8 m*s-1}$$
 </div>
 </div>
@@ -311,7 +329,7 @@ On obtient alors le <span class="imp">spectre de la lumière blanche</span>.</p>
       data-background-transition="concave">
 </section><section>
 <p>Explication de la dispersion :</p>
-<p class="fragment">Le prisme ou la goutte d'eau <span class="imp">réfracte</span> la lumière lui faisant changer de direction. Or cette réfraction dépend de la longueur d'onde et donc de la couleur.</p>
+<p class="fragment">Le prisme ou la goutte d'eau <span class="imp">réfracte</span> la lumière lui faisant changer de direction. Or cette <span class="imp">réfraction dépend de la longueur d'onde</span> et donc de la couleur.</p>
 <aside class="notes"><p>La réfraction qu&rsquo;on verra plus loin est une déviation de la lumière lorsqu&rsquo;elle change de milieu.</p>
 </aside>
 <br>
@@ -319,6 +337,9 @@ On obtient alors le <span class="imp">spectre de la lumière blanche</span>.</p>
 <p>chaque couleur suit un chemin différent<br>après son passage dans le prisme.</p></div>
 </section><section>
 <p>Est-ce que toutes les couleurs<br>qu&rsquo;on est capable de percevoir sont présentes<br>dans le spectre de la lumière blanche ?</p>
+<div style="position:relative;margin-left:auto;margin-right:auto;width:700px;max-width:100%;margin-bottom:-40px;margin-top:50px;">
+<img src="/spectreblanche.png" style="box-shadow:none;background:none;">
+</div>
 </section>
 <section data-noprocess data-shortcode-slide
       data-background="#FF00FF">
@@ -341,7 +362,7 @@ On obtient alors le <span class="imp">spectre de la lumière blanche</span>.</p>
       data-background-video="/spectroscope.mp4">
 </section><section>
 <p>Il y a 3 types de spectres :</p>
-<ul style="color:white">
+<ul>
 <li class="fragment"><span class="imp">spectre continu</span>, émis par un corps chaud ;</li>
 <li class="fragment"><span class="imp">spectre de raies d'émission</span>, constitué de quelques radiations émises par un gaz dans lequel on fait passer une décharge électrique ;</li>
 <li class="fragment"><span class="imp">spectre de raies d'absorption</span>, obtenu en faisant traverser la lumière émise par un corps chaud à travers un gaz. Le résultat est un spectre continu dont il manque quelques radiations.</li>
@@ -389,37 +410,16 @@ On obtient alors le <span class="imp">spectre de la lumière blanche</span>.</p>
   ></iframe>
 </div>
 </section><section>
-<p>Pourquoi retrouve-t-on souvent ce spectre dans<br>les flammes (surtout près de la mer) ?</p>
-</section>
-<section data-noprocess data-shortcode-slide
-      data-background-image="/spectresodium.png"
-      data-background-size="contain"
-      data-background-transition="concave">
-</section><section>
-<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-  <iframe
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-    allowfullscreen="allowfullscreen"
-    loading="eager"
-    referrerpolicy="strict-origin-when-cross-origin"
-    src="https://www.youtube.com/embed/0ijsRfsilQ4?autoplay=0&controls=1&end=0&loop=0&mute=0&start=0"
-    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;"
-    title="YouTube video"
-  ></iframe>
+<div class="short">
+  <iframe src="https://www.youtube.com/embed/uUGzrS5tpLc?si=bCgnMbYAtIOeSrnp"
+          title="YouTube Short"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen>
+  </iframe>
 </div>
-<aside class="notes"><p>Insister qu&rsquo;il ne faut surtout pas reproduire cette expérience. Très dangereux.
-Pourquoi les deux vis à l&rsquo;intérieur du cornichon ne doivent pas se toucher ?
-Recette de certains cornichons : concombre + saumure.
-Devient une lampe à vapeur de sodium (comme une partie de l&rsquo;éclairage publique).
-Au final, on a dans le cornichon un 4e état de la matière : le plasma.</p>
-</aside>
 </section><section>
-<p>Pourquoi à votre avis le cornichon<br>présente le spectre du sodium ?</p>
-</section>
-<section data-noprocess data-shortcode-slide
-      data-background-image="https://wp.optics.arizona.edu/oscoutreach/wp-content/uploads/sites/75/2018/04/Pickle.gif"
-      data-background-size="contain"
-      data-background-transition="concave">
+<p>Pourquoi retrouve-t-on souvent le spectre du sodium dans les flammes (surtout près de la mer) ?</p>
 
 </section>
 </section><section>
@@ -428,7 +428,7 @@ Au final, on a dans le cornichon un 4e état de la matière : le plasma.</p>
 <section data-shortcode-section>
 <h2 id="réflexionbret-réfractionbrde-la-lumière">Réflexion<br>et réfraction<br>de la lumière</h2>
 </section><section>
-<p>Que fait la lumière lorsqu&rsquo;elle arrive à l&rsquo;interface entre deux milieus transparents différents<br>(comme l&rsquo;air et l&rsquo;eau) ?</p>
+<p>Que fait la lumière lorsqu&rsquo;elle arrive à l&rsquo;interface entre deux milieux transparents différents<br>(comme l&rsquo;air et l&rsquo;eau) ?</p>
 </section>
 <section data-noprocess data-shortcode-slide
       data-background-image="https://www.groundedlifetravel.com/wp-content/uploads/2020/11/37990984-O-Edit-scaled.jpg"
@@ -518,7 +518,7 @@ Au final, on a dans le cornichon un 4e état de la matière : le plasma.</p>
 <p>La lumière se propage à la vitesse $c$ dans le vide<br>mais va moins vite dans tout autre milieu transparent.</p>
 <p class="fragment">L'indice optique est le ratio entre ces deux vitesses&nbsp;:</p>
 <div class ="fragment" style="display: flex; justify-content: center; align-items: center; height: 100%;">
-<div style="border:solid 5px #00AB8E;padding:15px 20px 20px 20px; width:content; color:white">
+<div style="border:solid 5px #00AB8E;padding:15px 20px 20px 20px; width:content; color:white; border-radius:15px;">
 $\displaystyle n=\frac{c}{c_{milieu}}$ avec $n≥1$
 </div>
 </div>
@@ -615,18 +615,18 @@ Lorsqu'un rayon de lumière passe d'un milieu 1 à un milieu 2 d'<b style="color
 <p>Comment l&rsquo;expliquer ?</p>
 </section>
 <section data-noprocess data-shortcode-slide
+      data-background-image="/tailleexpl.png"
+      data-background-size="contain"
+      data-background-transition="concave-in fade-out"
+      data-background-video-muted="true">
+</section>
+<section data-noprocess data-shortcode-slide
       data-background-size="contain"
       data-background-transition="concave"
       data-background-video="/casse.mp4"
       data-background-video-muted="true">
 </section><section>
 <p>Pourquoi le baton apparaît cassé ?</p>
-</section>
-<section data-noprocess data-shortcode-slide
-      data-background-image="/tailleexpl.png"
-      data-background-size="contain"
-      data-background-transition="concave-in fade-out"
-      data-background-video-muted="true">
 </section>
 <section data-noprocess data-shortcode-slide
       data-background-image="/casseexpl.png"
