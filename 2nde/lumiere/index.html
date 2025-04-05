@@ -493,11 +493,15 @@ On obtient alors le <span class="imp">spectre de la lumière blanche</span>.</p>
 <h3 id="lois-de-la-réflexionbrde-snell-descartes">Lois de la réflexion<br>de Snell-Descartes</h3>
 </section><section>
 <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
-<div style="border:solid 5px #00A2FF;padding:15px 50px 20px 50px; width:content; color:white">
+  <div style="position: relative; padding: 30px;">
 <ul>
-<li class="fragment"> Le <b style="color:#61D836">rayon incident</b>, le <b style="color:#FF42A1">rayon réfléchi</b><br>et la <b style="color:#fff">normale</b> sont dans un même plan. 
+<li style="margin-bottom:1em;"> Le <b style="color:#61D836;">rayon incident</b>, le <b style="color:#FF42A1">rayon réfléchi</b><br>et la <b style="color:#fff">normale</b> sont dans un même plan. 
 <li class="fragment"> L'<b style="color:#FF42A1">angle réfléchi</b> est égal à l'<b style="color:#61D836">angle incident</b>.
 </li>
+    <div class="fragment" 
+         style="position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+                border:solid 5px #00A2FF; border-radius: 20px;">
+    </div>
 </div>
 </div>
 </section>
@@ -554,14 +558,25 @@ $$
 <h3 id="lois-de-la-réfractionbrde-snell-descartes">Lois de la réfraction<br>de Snell-Descartes</h3>
 </section><section>
 <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
-<div style="border:solid 5px #00AB8E;padding:30px 30px 0px 0px; width:content; color:white">
-<ul >
-<li class="fragment"> Le <b style="color:#61D836">rayon incident</b>, le <b style="color:#FFD932">rayon réfracté</b><br>et la <b style="color:#fff">normale</b> sont dans un même plan.
-<br><br>
-<li class="fragment"> L'<b style="color:#FFD932">angle réfracté $i_2$</b> est lié à l'<b style="color:#61D836">angle incident $i_1$</b><br>par la relation :<br>
-$$\color{#61D836}n_1\color{white}\sin(\color{#61D836}i_1\color{white}) = \color{#FFD932}n_2\color{white}\sin(\color{#FFD932}i_2\color{white})$$
-</li>
-</div>
+  <div style="position: relative; padding: 30px;">
+    <!-- Le contenu qui apparaît d'abord -->
+    <ul>
+      <li style="margin-bottom:1em;">
+        Le <b style="color:#61D836">rayon incident</b>, le <b style="color:#FFD932">rayon réfracté</b><br>
+        et la <b style="color:#fff">normale</b> sont dans un même plan.
+      </li>
+      <li class="fragment">
+        L'<b style="color:#FFD932">angle réfracté $i_2$</b> est lié à l'<b style="color:#61D836">angle incident $i_1$</b><br>
+        par la relation :<br>
+        $$\color{#61D836}n_1\times \sin(i_1)=\color{#FFD932}n_2\times \sin(i_2)$$
+      </li>
+    </ul>
+    <!-- L'élément pour l'encadrement qui apparaît après -->
+    <div class="fragment" 
+         style="position: absolute; top: 0; left: 0; right: 0; bottom: 30px;
+                border: solid 5px #00AB8E; border-radius: 20px;">
+    </div>
+  </div>
 </div>
 <p class="fragment">$\color{#61D836}n_1$ et $\color{#FFD932}n_2$ sont les <span class="imp">indices optiques</span><br>des milieu 1 et 2.</p>
 </section>
@@ -703,18 +718,23 @@ Avec un masque de plongée, on aurait le même effet, pour la même raison.</p>
 </section><section>
 <p>$$
 \begin{aligned}
-n_1\sin i_1 &amp;= n_2 \sin i_2\\
-i_1 &amp;= \sin^{-1}\left(\frac{n_2}{n_1} \sin i_2\right)\\
-\Rightarrow i_c &amp;= \sin^{-1}\left(\frac{n_2}{n_1} \sin 90°\right) \\
+n_1\times\sin( i_1) &amp;= n_2 \times\sin( i_2)\\
+\sin (i_1) &amp;= \frac{n_2\times \sin(i_2)}{n_1}\\
+i_1 &amp;= \sin^{-1}\left(\frac{n_2}{n_1} \times \sin (i_2)\right)\\
+\Rightarrow \color{#FFD932}{i_c} &amp;= \sin^{-1}\left(\frac{n_2}{n_1} \times \sin ({\color{#FFD932 }90°})\right) \\
 i_c &amp;= \sin^{-1}\left(\frac{n_2}{n_1}\right) \\
 \end{aligned}
 $$</p>
 </section><section>
-<p>Déterminer l&rsquo;angle critique pour une interface eau-air.</p>
-<p>Et pour une interface verre air.</p>
+<p>Déterminer l&rsquo;angle critique pour une interface eau-air et pour une interface verre air.</p>
+<br> 
+<ul style="color:#61D836">
+<li class="fragment">eau$\leftrightarrow$air : $i_c=\sin^{-1}\left(\frac{1,0}{1,33}\right)=49°$</li>
+<li class="fragment">eau$\leftrightarrow$verre : $i_c=\sin^{-1}\left(\frac{1,0}{1,5}\right)=42°$</li>
+</ul>
 </section><section>
 <p>Que voit-on en regardant au-dessus<br>de notre tête, dans l&rsquo;eau ?</p>
-<p>La fenêtre de Snell !</p>
+<p class="fragment" style="color:#61D836">Seuls les rayons faisant entre nos yeux et la normale un angle inférieur à $i_c=42°$ proviennent de l'extérieur. Au-delà, les rayons ont été réfléchis. Cela restreint l'ensemble de la lumière venant de l'extérieur dans un cône au-dessus de note tête&nbsp;: la fenêtre de Snell.</p>
 </section>
 <section data-noprocess data-shortcode-slide
       data-background-image="/snellswindow.jpg"
@@ -722,6 +742,16 @@ $$</p>
       data-background-transition="concave">
 </section><section>
 <p>Applications de la réflexion totale interne :</p>
+<br>
+<ul class="fragment"><li>Elle fait briller les pierres précieuses ! </li></ul>
+<p class="fragment">On taille ces cailloux transparents pour que la lumière qui pénètre dans la pierre ressorte majoritairement vers l'avant après des réflexions totales internes<br>sur les facettes arrières.</p> 
+<p class="fragment">Plus l'indice optique est élevée, plus $i_c$ est <span class="fragment strike" style="color:#93a1a1;">grand</span>/petit<br>
+et donc plus la lumière est réfléchie.</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/totintdiam.png"
+      data-background-size="contain"
+      data-background-transition="concave">
 </section><section>
 <div class="short">
   <iframe src="https://www.youtube.com/embed/Ws8d07vnA-I"
@@ -733,22 +763,28 @@ $$</p>
 </div>
 </section><section>
 <p>Que peut-on prédire quant à l&rsquo;indice<br>de réfraction de la moissonite ?</p>
+<p class="fragment" style="color:#61D836">Il doit être du même ordre que celui du diamant !</p>
 </section>
 <section data-noprocess data-shortcode-slide
       data-background-image="/moissanite.png"
       data-background-size="contain"
       data-background-transition="concave">
 </section><section>
+<ul>
+<li>Autre application : les catadioptres</li>
+</ul>
 <p>Comment ces bouts de plastique transparent<br>réfléchissent-ils la lumière ?</p>
 <img src="/catadioptre.png" style="width:300px;border-radius:20px">
+<p class="fragment" style="color:#61D836">Comme les diamants.</p>
 </section>
 <section data-noprocess data-shortcode-slide
       data-background-image="/cataexpl.png"
       data-background-size="contain"
       data-background-transition="concave">
 </section><section>
-<p>Quelle est l&rsquo;application industrielle principale<br>de la réflexion totale interne ?</p>
-<p class="fragment">Les fibres optiques !</p>
+<p>Mais on a toujours pas vu l&rsquo;application industrielle principale de la réflexion totale interne !<br>
+Quelle est-elle ?</p>
+<p class="fragment" style="color:#61D836">Les fibres optiques !</p>
 <aside class="notes"><p>Insister sur le fait que quasiment toutes nos communications passent par elles.
 Et quel est le chemin suivi par les signaux lors d&rsquo;un appel téléphonique ?
 onde radio jusqu&rsquo;à l&rsquo;antenne du relais le plus proche -&gt; fibre optique jusqu&rsquo;à l&rsquo;antenne de l&rsquo;interlocuteur -&gt; onde radio jusqu&rsquo;au téléphone</p>
@@ -839,11 +875,18 @@ onde radio jusqu&rsquo;à l&rsquo;antenne du relais le plus proche -&gt; fibre o
 <h2 id="dispersion">Dispersion</h2>
 </section><section>
 <p>On peut maintenant expliquer pourquoi le passage dans un prisme permet la <span class="imp">dispersion</span> la lumière :</p>
-<p cass="fragment">l'indice optique dépend de la longueur d'onde !</p>
+<p cass="fragment"><span class="imp">L'indice optique $n$ dépend de la longueur d'onde $\lambda$ !</p>
 </section><section>
 <p>Conséquence ?</p>
 </section><section>
-<p>L&rsquo;angle de réfraction dépend de $n$<br>et comme $n$ dépend de $\lambda$,<br>l&rsquo;angle dépend de $\lambda$<br>et donc de la couleur.</p>
+<div style="display: flex; justify-content: center; align-items: center; height: 100%;">
+  <div style="position: relative; padding: 30px;">
+L'<span class="imp">angle de réfraction dépend de <span class="fragment" style="color:#FF968D;">$n$</span></span><br>et comme <span class="imp"><span class="fragment" style="color:#FF968D;">$n$</span> dépend de <span class="fragment" style="color:#FF968D;">$\lambda$</span></span>,<br><span class="imp" style="color:#FF968D;">l'angle dépend de <span class="fragment" style="color:#FF968D;">$\lambda$</span></span><br>et donc de la <span class="fragment" style="color:#FF968D;">couleur</span>.
+    <div class="fragment" 
+         style="position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+                border: solid 5px #00AB8E; border-radius: 20px;">
+    </div>
+    </div></div>
 </section><section>
 <p>La double réfraction dans le prisme entraîne des angles suffisamment différents entre les couleurs<br>pour que le spectre apparaisse.</p>
 </section>
