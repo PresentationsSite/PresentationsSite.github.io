@@ -94,141 +94,121 @@ Il faut valider les valeurs<br>(bouton vert sur la diapo précédente)<br>pour a
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-/* eslint-env es6 */
 /* eslint-env browser */
-/* exported prepareData, updateGraph, showRegression */
-/* global Chart */ 
+/* global Chart */
 
-// Déclarations de variables
+// Variables globales
 let U = [];
 let I = [];
-let chart;
+let chart = null;
 
-// Configuration pour le graphique
-let config = {
-type: 'scatter',
-data: {
-datasets: [{
-//label: 'Caractéristique',
-data: I.map((value, index) => ({ x: value, y: U[index] })),
-backgroundColor: '#599DFF',
-showLine: false
-}, {
-//label: 'Ligne de liaison',
-data: I.map((value, index) => ({ x: value, y: U[index] })),
-borderColor: '#FF644E',
-backgroundColor: 'transparent',
-showLine: true,
-fill: false,
-pointRadius: 0,
-borderWidth: 2,
-borderDash: [5, 5]
-}]
-},
-options: {
-responsive: true,
-devicePixelRatio: 5,
-scales: {
-x: {
-title: {
-display: true,
-text: 'I (A)',
-color: 'white'
-},
-grid: {
-color: 'rgba(255, 255, 255, 0.3)'
-},
-ticks: {
-color: 'white'
-}
-},
-y: {
-title: {
-display: true,
-text: 'U (V)',
-color: 'white'
-},
-grid: {
-color: 'rgba(255, 255, 255, 0.1)'
-},
-ticks: {
-color: 'white'
-}
-}
-},
-plugins: {
-title: {
-display: true,
-text: "Tracé de la caractéristique",
-font: {
-size: 16
-},
-color: 'white'
-},
-legend: {
-display: false
-}
-}
-}
+// Configuration initiale du graphique
+const config = {
+  type: 'scatter',
+  data: {
+    datasets: [
+      { // Points
+        data: [],
+        backgroundColor: '#599DFF',
+        showLine: false
+      },
+      { // Ligne de liaison (triée par I croissant)
+        data: [],
+        borderColor: '#FF644E',
+        backgroundColor: 'transparent',
+        showLine: true,
+        fill: false,
+        pointRadius: 0,
+        borderWidth: 2,
+        borderDash: [5, 5]
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    devicePixelRatio: 2,
+    scales: {
+      x: {
+        title: { display: true, text: 'I (A)', color: 'white' },
+        grid:  { color: 'rgba(255,255,255,0.3)' },
+        ticks: { color: 'white' }
+      },
+      y: {
+        min: 0,                                  // démarre toujours à 0 V
+        title: { display: true, text: 'U (V)', color: 'white' },
+        grid:  { color: 'rgba(255,255,255,0.1)' },
+        ticks: { color: 'white' }
+      }
+    },
+    plugins: {
+      title: {
+        display: true,
+        text: 'Tracé de la caractéristique',
+        font: { size: 16 },
+        color: 'white'
+      },
+      legend: { display: false }
+    }
+  }
 };
 
-// Fonction pour préparer les données
+// Prépare les données et crée le graphique
 function prepareData() {
-U = document.getElementById('inputU').value.split(',').map(Number);
-I = document.getElementById('inputI').value.split(',').map(Number);
+  U = document.getElementById('inputU').value.split(',').map(Number);
+  I = document.getElementById('inputI').value.split(',').map(Number);
 
-if (U.length !== I.length) {
-document.getElementById('validationMessage').innerHTML = "Il faut autant de valeurs<br>dans chaque champ !";
-return;
+  if (U.length !== I.length || U.some(isNaN) || I.some(isNaN)) {
+    document.getElementById('validationMessage').innerHTML =
+      'Il faut autant de valeurs <br>numériques dans chaque champ&nbsp;!';
+    return;
+  }
+
+  document.getElementById('validationMessage').style.display = 'none';
+  document.querySelector('.update-button').style.display = 'inline-block';
+  document.querySelector('.custom-button').style.display = 'none';
+
+  // Points dans l’ordre d’entrée
+  const points = I.map((x, k) => ({ x, y: U[k] }));
+  // Copie triée par abscisse pour la ligne
+  const sorted = points.slice().sort((a, b) => a.x - b.x);
+
+  if (!chart) {
+    const ctx = document.getElementById('chart').getContext('2d');
+
+    config.data.datasets[0].data = points;   // nuage non trié
+    config.data.datasets[1].data = sorted;   // ligne triée
+    config.options.scales.y.max = calcYmax(U);
+
+    chart = new Chart(ctx, config);
+  }
 }
 
-// Masquer le message et afficher le bouton de mise à jour
-document.getElementById('validationMessage').style.display = 'none';
-document.querySelector('.update-button').style.display = 'block';
-
-// Masquer le bouton de traçage du graphique
-document.querySelector('.custom-button').style.display = 'none';
-
-const newData = I.map((value, index) => ({ x: value, y: U[index] }));
-
-// Si le graphique n'a pas été créé
-if (!chart) {
-let ctx = document.getElementById('chart').getContext('2d');
-
-// Mettre à jour le dataset avant de créer le graphique
-config.data.datasets[0].data = newData;
-config.data.datasets[1].data = newData;
-
-chart = new Chart(ctx, config);
-} else {
-updateGraph();
-}
-}
-
-// Fonction pour mettre à jour le graphique
+// Met à jour le graphique avec de nouvelles données
 function updateGraph() {
-U = document.getElementById('inputU').value.split(',').map(Number);
-I = document.getElementById('inputI').value.split(',').map(Number);
+  U = document.getElementById('inputU').value.split(',').map(Number);
+  I = document.getElementById('inputI').value.split(',').map(Number);
 
-if (U.length !== I.length) {
-document.getElementById('validationMessage').innerHTML = "Il faut autant de valeurs<br>dans chaque champ !";
-document.getElementById('validationMessage').style.display = 'block';
-return;
+  if (U.length !== I.length || U.some(isNaN) || I.some(isNaN)) {
+    document.getElementById('validationMessage').innerHTML =
+      'Il faut autant de valeurs <br>numériques dans chaque champ&nbsp;!';
+    document.getElementById('validationMessage').style.display = 'block';
+    return;
+  }
+
+  const points = I.map((x, k) => ({ x, y: U[k] }));
+  const sorted = points.slice().sort((a, b) => a.x - b.x);
+
+  chart.data.datasets[0].data = points;   // nuage
+  chart.data.datasets[1].data = sorted;   // ligne triée
+  chart.options.scales.y.max = calcYmax(U);
+  chart.update();
 }
 
-const newData = I.map((value, index) => ({ x: value, y: U[index] }));
-
-// Mise à jour du dataset des points
-chart.data.datasets[0].data = newData;
-
-// Mise à jour du dataset de la courbe de liaison
-chart.data.datasets[1].data = newData;
-
-// Force une mise à jour de l'échelle
-chart.options.scales.y.min = Math.min(...I) - 50; // Pour donner une petite marge
-chart.options.scales.y.max = Math.max(...I) + 50; // Pour donner une petite marge
-
-chart.update();
+// Calcule la borne supérieure de Y avec une marge (5 %)
+function calcYmax(arr) {
+  const maxU = Math.max(...arr);
+  const margin = (maxU || 1) * 0.05;
+  return maxU + margin;
 }
 </script>
 
