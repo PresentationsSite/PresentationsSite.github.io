@@ -1,0 +1,569 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>Constante d&#39;acidité</title>
+
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="/reveal-js/css/reset.css">
+<link rel="stylesheet" href="/reveal-js/css/reveal.css"><link rel="stylesheet" href="/reveal-js/css/theme/league.css" id="theme">
+<link rel="stylesheet" href="/highlight-js/atom-one-dark-reasonable.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  </head>
+  <body>
+    
+    <div class="reveal">
+      <div class="slides">
+  
+
+    <section><style>
+img {
+border: none !important;
+}
+
+.imp {
+font-weight:bold;color:#FF968D;
+}
+
+li {
+color: #fff;
+}
+
+ul {
+margin-left: auto;
+margin-right: auto;
+text-align: left;
+width: fit-content;
+list-style-position: outside;
+color:#fff;
+}
+
+span {
+font-weight:normal;
+}
+
+.video-container {
+  height: 60vh; /* limite la hauteur à 80% de la fenêtre */
+  width: calc(60vh * 9 / 16); /* largeur en fonction du ratio portrait */
+  margin: 0 auto;
+  position: relative;
+}
+
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  border-radius:10px;
+}
+
+
+</style>
+<h1 id="force-des-acidesbret-des-bases">Force des acides<br>et des bases</h1>
+</section><section>
+
+
+<section data-shortcode-section>
+<h2 id="autoprotolyse-de-leau">Autoprotolyse de l&rsquo;eau</h2>
+</section><section>
+<p>L&rsquo;eau est un <b style="color:#88FA4E">ampholyte</b>.</p>
+<p class="fragment">Les deux couples acide-base<br>auxquels l'eau appartient sont&nbsp;:</p>
+<p class="fragment">$$({\color{#88FA4E}\ce{H2O}}/{\color{#56C1FF}\ce{HO^-}})$$</p>
+<p class="fragment">$$({\color{#FF968D}\ce{H3O+}}/{\color{#88FA4E}\ce{H2O}})$$</p>
+</section><section>
+<p>L&rsquo;eau peut donc réagir sur elle-même !<br>C&rsquo;est la réaction d&rsquo;<span class="imp">autoprotolyse de l&rsquo;eau</span>.</p>
+<p class="fragment">Équation de la réaction&nbsp;:</p>
+<p><span class="fragment">$$\ce{{\color{#88FA4E}\ce{H2O}}(ℓ) + {\color{#88FA4E}\ce{H2O}}(ℓ) -&gt; {\color{#FF968D}\ce{H3O+}}(aq) + {\color{#56C1FF}\ce{HO^-}}(aq)}$$</span></p>
+</section><section>
+<p>La constante d&rsquo;équilibre de cette réaction, aussi appelée <b style="color:#FFF056">produit ionique de l&rsquo;eau</b> s&rsquo;écrit :</p>
+<br>
+<div class="fragment" style="display: relative; margin: auto; height: 100%;border: solid 5px #FF968D; border-radius: 20px; width: fit-content;padding: 0 20px 0 20px;">
+$${\color{#FFF056}K_\mathrm{e}} = \frac{\ce{[{\color{#FF968D}\ce{H3O+}}]}\times\ce{[{\color{#56C1FF}\ce{HO^-}}]}}{{C^\mathrm{o}}^2}$$
+</div>
+<br>
+<p class="fragment">
+À 25°C, <b style="color:#FFF056">$K_\mathrm{e}=\pu{1,0e-14}$</b>,<br>
+d'où <b style="color:#FFF056">$\mathrm{p}K_\mathrm{e} =$</b> <b class="fragment" style="color:#FFF056">$-\log\left(K_\mathrm{e}\right)=$</b> <b class="fragment" style="color:#FFF056">$14$</b>.
+</p>
+</section><section>
+<p>Si on connaît <b style="color:#FFF056">$K_\mathrm{e}$</b>, la concentration en <b style="color:#FF968D">ions oxonium</b> permet de déterminer celle en <b style="color:#56C1FF">ions hydroxyde</b><br>et inversement.</p>
+</section><section>
+<p>Exemple :</p>
+<p>Le pH d&rsquo;une solution à 25°C est mesurée à 2,3.</p>
+<p>Déterminer la concentration en ions oxonium<br>et en ions hydroxyde.</p>
+</section><section>
+<div style="color:#FF968D">
+$\begin{aligned}
+\ce{[H3O+]}&=10^{- \mathrm{pH}}\\
+&= 10^{-2,3}\\
+&= \pu{5,0e-3 mol*L-1}
+\end{aligned}$
+</div>
+<br>
+<div class="fragment" style="color:#56C1FF">
+$\begin{aligned}
+\ce{[HO^-]}&=\frac{K_\mathrm{e} \times{C^\mathrm{o}}^2}{\ce{[H3O+]}}\\
+&= \frac{\pu{1,0e-14\times 1,0}}{\pu{5,0e-3}}\\
+&= \pu{2,0e-12 mol*L-1}
+\end{aligned}$
+</div>
+</section><section>
+<p>On peut déduire de <b style="color:#FFF056">$K_\mathrm{e}$</b> le pH<br>d&rsquo;une solution <b style="color:#FF968D">acide</b>, <b style="color:#88FA4E">neutre</b> ou <b style="color:#56C1FF">basique</b>.</p>
+</section><section>
+<ul>
+<li>Si la solution est <b style="color:#88FA4E">neutre</b></li>
+</ul>
+<p>On a par définition :<br><span class="fragment">$\ce{[{\color{#FF968D}\ce{H3O+}}]=[{\color{#56C1FF}\ce{HO^-}}]}$</span></p>
+<br>
+<p class="fragment">
+Et comme
+$\displaystyle\frac{\ce{[{\color{#FF968D}\ce{H3O+}}}]\times[{\color{#56C1FF}\ce{HO^-}}]}{{C^\mathrm{o}}^2}={\color{#FFF056}K_\mathrm{e}}$
+</p>
+<br>
+<p class="fragment">
+on obtient
+$\ce{[{\color{#FF968D}\ce{H3O+}}]}^2 = {\color{#FFF056}K_\mathrm{e}} \times {C^\mathrm{o}}^2
+$
+</p>
+</section><section>
+<p>Finalement :</p>
+<p>$\begin{aligned}
+\ce{[{\color{#FF968D}\ce{H3O+}}]} &amp;= \sqrt{{\color{#FFF056}K_\mathrm{e}} \times {C^\mathrm{o}}^2}\\
+&amp;= \sqrt{{\color{#FFF056}K_\mathrm{e}}}\times  {C^\mathrm{o}} \\
+&amp;= \pu{1,0e-7 mol*L-1}
+\end{aligned}
+$</p>
+<div class="fragment">
+Ou encore :<br>
+<span style="color:#88FA4E;">
+$
+\displaystyle\mathrm{pH} = \frac{1}{2}\mathrm{p}K_\mathrm{e} = 7,0
+$</span>
+</div>
+</section><section>
+<ul>
+<li>Si la solution est <b style="color:#FF968D">acide</b></li>
+</ul>
+<p class="fragment">
+$\ce{[{\color{#FF968D}\ce{H3O+}}]>[{\color{#56C1FF}\ce{HO^-}}]}$
+</p>
+<p class="fragment">
+Et donc $\displaystyle\ce{[{\color{#FF968D}\ce{H3O+}}]}>\frac{{\color{#FFF056}K_\mathrm{e}}\times {C^\mathrm{o}}^2}{\ce{[{\color{#FF968D}\ce{H3O+}}]}}$
+</p>
+<p class="fragment">
+$\displaystyle \Rightarrow\ce{[{\color{#FF968D}\ce{H3O+}}]}^2>{\color{#FFF056}K_\mathrm{e}}\times {C^\mathrm{o}}^2$
+</p>
+<p class="fragment">
+$\displaystyle \Rightarrow\ce{[{\color{#FF968D}\ce{H3O+}}]}> \sqrt{{\color{#FFF056}K_\mathrm{e}}}\times {C^\mathrm{o}}$
+</p>
+<p class="fragment">
+d'où
+$\displaystyle \ce{[{\color{#FF968D}\ce{H3O+}}]}> \pu{1,0e-7 mol*L-1}$
+</p>
+<p class="fragment">
+Ou encore
+$\displaystyle \mathrm{pH}<\frac{1}{2}{\color{#FFF056}\mathrm{p}K_\mathrm{e}}$<br>
+Soit <span style="color:#FF968D">$\displaystyle \mathrm{pH}<7,0$</span>
+</p>
+</section><section>
+<ul>
+<li>Si la solution est <b style="color:#56C1FF">basique</b></li>
+</ul>
+<p class="fragment">
+$\ce{[{\color{#FF968D}\ce{H3O+}}]<[{\color{#56C1FF}\ce{HO^-}}]}$
+</p>
+<p class="fragment">
+$\displaystyle \Rightarrow \ce{[{\color{#FF968D}\ce{H3O+}}]}< \pu{1,0e-7 mol*L-1}$
+</p>
+<p class="fragment">
+Soit
+<span style="color:#56C1FF">$\displaystyle \mathrm{pH}>7,0$</span>
+</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/solacide.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h2 id="acides-forts-et-bases-fortes">Acides forts et bases fortes</h2>
+</section><section>
+<div style="display: relative; margin: auto; height: 100%;border: solid 5px #FF968D; border-radius: 20px; width: fit-content;">
+<div style="padding: 10px 30px 20px 30px;">
+Un <span class="imp">acide fort</span> ou une <b style="color:#56C1FF">base forte</b> réagissent<br>de manière quasi-totale avec l'eau.
+</div>
+</div>
+</section><section>
+<div style="position:relative;margin-left:auto;margin-right:auto;width:700px;max-width:100%;margin-bottom:-1em;margin-top:-1em;">
+<img src="/tabavacfort.png" style="box-shadow:none;background:none;">
+</div>
+</section><section>
+<p>$\ce{{\color{#FF968D}AH} + H2O -&gt;}$ <span class="fragment">$\ce{A- + H3O^+}$</span>
+<br><br></p>
+<p class="fragment">
+Si <b style="color:#FF968D">$\ce{AH}$</b> est un <b style="color:#FF968D">acide fort</b>
+</p>
+<br>
+<div class="fragment">
+<div style = "position:relative;margin:auto;width:fit-content;border:solid #FF968D 5px; border-radius:10px;padding:20px;">
+<b style="color:#FF968D">$\tau=$ <span class="fragment">$1$</span></b>
+</div>
+<br>
+(où $\tau$ est le taux d'avancement de la réaction)
+</div>
+</section><section>
+<p>D&rsquo;où ${\color{#FF968D}\ce{[H3O^+]}} = \ce{[AH]_0} = {\color{#FF968D}C}$</p>
+<p class="fragment">La concentration en ions oxonium en solution est<br>égale à la concentration apportée $C$ en acide.</p>
+ <p class="fragment"><span class="imp">$\Rightarrow\mathrm{pH}=$ <span class="fragment">$\displaystyle -\log\left(\frac{C}{C^\mathrm{o}}\right)$</span></span></p>
+</section><section>
+<p>${\color{#56C1FF}\ce{A^-}} \ce{+ H2O -&gt;}$ <span class="fragment">$\ce{AH + HO^-}$</span></p>
+<p class="fragment">
+Si <b style="color:#56C1FF">$\ce{A-}$</b> est une <b style="color:#56C1FF">base forte</b>, <b style="color:#56C1FF">$\tau= 1$</b></p>
+<p class="fragment">
+D'où ${\color{#56C1FF}\ce{[HO^-]}} \ce{= [A^-]_0} = {\color{#56C1FF}C}$<br>
+ la concentration en ions hydroxyde est égale<br>à la concentration apportée $C$ en base.
+</p>
+ <p class="fragment"><b style="color:#56C1FF">$\Rightarrow\mathrm{pH}=$ <b class="fragment" style="color:#56C1FF">$\displaystyle 14 -\log\left(\frac{C}{C^\mathrm{o}}\right)$</b></b></p>
+</section><section>
+<p>Exemples d&rsquo;acides forts :</p>
+<br>
+<ul>
+<li class="fragment">l'<b style="color:#FF968D">acide chlorhydrique $\ce{HC (g)}$</b><br>
+<pan style="font-size:0.9em;">$\ce{HCℓ(g) + H2O(ℓ) -> H3O^+(aq) + Cℓ^-(aq)}$</span>
+</li>
+<br>
+<li class="fragment">l'<b style="color:#FF968D">acide nitrique $\ce{HNO3(ℓ)}$</b><br>
+<pan style="font-size:0.9em;">$\ce{HNO3(g) + H2O(ℓ) -> H3O^+(aq) + NO3^-(aq)}$</span>
+</li>
+</ul>
+</section><section>
+<p>Exemple de base forte :</p>
+<br>
+<ul>
+<li class="fragment">l'<b style="color:#56C1FF">hydroxyde de sodium ou soude $\ce{NaOH(s)}$</b><br>
+<pan style="font-size:0.9em;">$\ce{NaOH(s) + H2O(ℓ) -> HO^-(aq) + Na^+(aq)}$</span>
+</li>
+</ul>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h2 id="acides-faibles-et-bases-faibles">Acides faibles et bases faibles</h2>
+</section><section>
+<p>La transformation chimique entre un <b style="color:#FF968D">acide faible</b><br>ou une <b style="color:#56C1FF">base faible</b> et l&rsquo;eau n&rsquo;est pas totale.</p>
+</section><section>
+<p>$\ce{{\color{#FF968D}AH} + H2O -&gt; A- + H3O^+}$
+<br><br></p>
+<p class="fragment">
+Si <b style="color:#FF968D">$\ce{AH}$</b> est un <b style="color:#FF968D">acide faible</b>
+</p>
+<br>
+<div class="fragment">
+<div style = "position:relative;margin:auto;width:fit-content;border:solid #FF968D 5px; border-radius:10px;padding:20px;">
+<b style="color:#FF968D">$\tau$ <span class="fragment">$<1$</span></b>
+</div>
+</section><section>
+<div style="position:relative;margin-left:auto;margin-right:auto;width:700px;max-width:100%;margin-bottom:-1em;margin-top:-1em;">
+<img src="/tabavacfaible.png" style="box-shadow:none;background:none;">
+</div>
+</section><section>
+<p>$$
+\begin{aligned}
+x_f &lt; n &amp;\Rightarrow \ce{[H3O+] &lt; C}\\
+&amp; \Rightarrow {\color{#FF968D} \mathrm{pH} &gt; -\log\left(\frac{C}{C^\mathrm{o}}\right) }
+\end{aligned}
+$$</p>
+<p class="fragment">
+Le pH d'un acide faible dans l'eau est plus grand que celui d'un acide fort de même concentration apportée.
+</p>
+</section><section>
+<p>${\color{#56C1FF}\ce{A^-}}\ce{ + H2O -&gt; AH + HO^-}$</p>
+<p class="fragment">
+Si <b style="color:#56C1FF">$\ce{A-}$</b> est une <b style="color:#56C1FF">base faible</b>, <b style="color:#56C1FF">$\tau < 1$</b></p>
+<p class="fragment">
+Le pH d'une base faible dans l'eau est<br>plus faible que celui d'une base forte<br>de même concentration apportée.
+</p>
+</section><section>
+<p>Exemple d&rsquo;un acide faible :</p>
+<br>
+<ul>
+<li class="fragment">l'<b style="color:#FF968D">acide éthanoïque $\ce{CH3COOH(ℓ)}$</b>ou acide acétique<br>
+<span style="font-size:0.9em;">(sa forme dissoute est simplement $\ce{CH3COOH(aq)}$)</span><br>
+<span style="font-size:0.8em;">$\ce{CH3COOH(ℓ) + H2O(ℓ) -> H3O^+(aq) + CH3COO^-(aq)}$</span><br>
+Sa base conjuguée est l'ion éthanoate.
+</li>
+</ul>
+</section><section>
+<p>Exemple d&rsquo;une base faible :</p>
+<br>
+<ul>
+<li class="fragment">l'<b style="color:#56C1FF">ammoniac $\ce{NH3(g)}$</b><br>
+<span style="font-size:1em;">(sa forme dissoute est simplement $\ce{NH3(aq)}$)</span><br>
+<span style="font-size:0.9em;">$\ce{NH3(g) + H2O(ℓ) -> HO^-(aq) + NH4^+(aq)}$</span><br>
+Son acide conjugué est l'ion ammonium.
+</li>
+</ul>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h2 id="force-dun-acide-faiblebrou-dune-base-faible">Force d&rsquo;un acide faible<br>ou d&rsquo;une base faible</h2>
+</section><section>
+<p>$$\ce{{\color{#FF968D}AH} + H2O -&gt; A- + H3O^+}$$</p>
+<p>La constante d&rsquo;équilibre de la réaction d&rsquo;un <b style="color:#FF968D">acide faible</b> dans l&rsquo;eau s&rsquo;appelle <b style="color:#FF968D">constante d&rsquo;acidité</b> notée <b style="color:#FF968D">$K_\mathrm{a}$</b>.</p>
+<p class="fragment"><b style="color:#FF968D">$K_\mathrm{a}$</b> caractérise un couple acide-base $({\color{#FF968D}\ce{AH}}/{\color{#56C1FF}\ce{A-}})$.</p>
+</section><section>
+<p>Par définition,</p>
+<br>
+<p>${\color{#FF968D}K_\mathrm{a}}=$ <span class="fragment">$\displaystyle\frac{\ce{[A-]\times[H3O+]}}{[{\color{#FF968D}\ce{AH}}]\times C^\mathrm{o}}$</span></p>
+</section><section>
+<p>Pour comparer la force des acides faibles, ou la force des bases faibles, on compare leurs <b style="color:#FF968D">$K_\mathrm{a}$</b> ou plutôt leurs <b style="color:#FF968D">$\mathrm{p}K_\mathrm{a}$</b> qui permettent de manipuler des valeurs plus pratiques (généralement entre 0 et 14).</p>
+<br>
+<div class="fragment" style = "position:relative;margin:auto;width:fit-content;border:solid #FF968D 5px; border-radius:10px;padding:20px;">
+<b style="color:#FF968D">$\displaystyle\mathrm{p}K_\mathrm{a}=-\log\left(K_\mathrm{a}\right)$ </b>
+</div>
+</section><section>
+<p>Plus la réaction d&rsquo;un <b style="color:#FF968D">acide faible</b> sur l&rsquo;eau est avancée,</p>
+<br>
+<ul style="margin-top:-0.5em; margin-bottom:-0.5em;">
+<li class="fragment">plus $\tau$ est proche de <b class="fragment" style="color:#FF968D">1</b></li>
+<br>
+<li class="fragment">plus <b style="color:#FF968D">$K_\mathrm{a}$</b> est <b class="fragment" style="color:#FF968D">grand</b></li>
+<br>
+<li class="fragment">plus <b style="color:#FF968D">$\mathrm{p}K_\mathrm{a}$</b> est <b class="fragment" style="color:#FF968D">faible</b></li>
+</ul>
+</section><section>
+<p>${\color{#56C1FF}\ce{A^-}}\ce{ + H2O -&gt; AH + HO^-}$</p>
+<p>Pour une <b style="color:#56C1FF">base faible</b>, la constante d&rsquo;équilibre<br>de sa réaction avec l&rsquo;eau s&rsquo;écrit :</p>
+<p>$$
+\begin{aligned}
+K&amp;=\frac{\ce{[AH]\times[HO-]}}{[{\color{#56C1FF}\ce{A^-}}]\times C^\mathrm{o}}\\
+&amp;=\frac{\ce{[AH]}\times {\color{#FFF056}K_\mathrm{e}\times {C^\mathrm{o}}^2}}{[{\color{#56C1FF}\ce{A^-}}]\times C^\mathrm{o}\times {\color{#FFF056}\ce{[H3O+]}}}\\
+&amp;= \frac{\color{#FFF056}K_\mathrm{e}}{\color{#FF968D}K_\mathrm{a}}
+\end{aligned}
+$$</p>
+</section><section>
+<p>Plus la réaction d&rsquo;une <b style="color:#56C1FF">base faible</b> sur l&rsquo;eau est avancée,</p>
+<br>
+<ul style="margin-top:-0.5em; margin-bottom:-0.5em;">
+<li class="fragment">plus $\tau$ est proche de <b class="fragment" style="color:#56C1FF">1</b></li>
+<br>
+<li class="fragment">plus <b style="color:#56C1FF">$K$</b> est <b class="fragment" style="color:#56C1FF">grand</b></li>
+<br>
+<li class="fragment">plus <b style="color:#FF968D">$K_\mathrm{a}$</b> est <b class="fragment" style="color:#FF968D">petit</b></li>
+<br>
+<li class="fragment">plus <b style="color:#FF968D">$\mathrm{p}K_\mathrm{a}$</b> est <b class="fragment" style="color:#FF968D">grand</b></li>
+</ul>
+</section><section>
+<p>Donc plus un <b style="color:#FF968D">acide faible</b> est fort<br>
+(plus il réagit avec l&rsquo;eau),<br>
+plus son <b style="color:#FF968D">$\mathrm{p}K_\mathrm{a}$</b> est faible.</p>
+<br>
+<p class="fragment">
+À l'inverse,<br>
+plus une <b style="color:#56C1FF">base faible</b> est forte<br> 
+(plus elle réagit avec l'eau),<br>
+plus son <b style="color:#FF968D">$\mathrm{p}K_\mathrm{a}$</b> est grand.
+</p>
+</section><section>
+<p>Pour le couple $({\color{#FF968D}\ce{H3O+}}/{\color{}\ce{H2O}})$, que vaut <b style="color:#FF968D">$K_\mathrm{a}$</b> ?</p>
+<div class="fragment" style="color:#FF968D">
+$${K_\mathrm{a}} = 1$$
+</div>
+<p class="fragment">Et <b style="color:#FF968D">$\mathrm{p}K_\mathrm{a}$</b> ?</p>
+<div class="fragment" style="color:#FF968D">
+$$\mathrm{p}K_\mathrm{a} = 0$$
+</div>
+</section><section>
+<p>Pour le couple $({\color{}\ce{H2O}}/{\color{#56C1FF}\ce{HO-}})$, que vaut <b style="color:#FF968D">$K_\mathrm{a}$</b> ?</p>
+<div class="fragment" style="color:#56C1FF">
+$${K} = 1$$
+</div>
+<div class="fragment" style="color:#FF968D">
+$$\Rightarrow {K_\mathrm{a}} = \frac{\color{#FFF056}K_\mathrm{e}}{\color{#56C1FF}K}=10^{-14}$$
+</div>
+<p class="fragment">Et <b style="color:#FF968D">$\mathrm{p}K_\mathrm{a}$</b> ?</p>
+<div class="fragment" style="color:#FF968D">
+$$\mathrm{p}K_\mathrm{a} = 14$$
+</div>
+</section><section>
+<p>On classe les acides et les bases<br>sur une <span class="imp">échelle de pKa</span>.</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/echellepka.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+</section><section>
+<p><b style="color:#FF968D">$\ce{NH4+}$</b> est un acide plus faible / <span class="fragment strike">fort</span>  que <b style="color:#FF968D">$\ce{CH3COOH}$</b></p>
+<br>
+<p class="fragment">
+<b style="color:#56C1FF">$\ce{NH3}$</b> est une base plus <span class="fragment strike">faible</span> / forte que <b style="color:#56C1FF">$\ce{CH3COO-}$</b>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h2 id="diagramme-de-prédominance">Diagramme de prédominance</h2>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h2 id="diagramme-de-distribution">Diagramme de distribution</h2>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h2 id="indicateur-coloré">Indicateur coloré</h2>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h2 id="acide-alpha-aminé">Acide $\alpha$-aminé</h2>
+
+</section>
+</section><section>
+<p><a href="https://coursphychi.github.io/tspe/piles/">Retour site</a></p>
+</section>
+
+  
+
+
+</div>
+      
+
+    </div>
+<script type="text/javascript" src=/reveal-hugo/object-assign.js></script>
+
+<a href="/reveal-js/css/print/" id="print-location" style="display: none;"></a>
+<script type="text/javascript">
+  var printLocationElement = document.getElementById('print-location');
+  var link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.type = 'text/css';
+  link.href = printLocationElement.href + (window.location.search.match(/print-pdf/gi) ? 'pdf.css' : 'paper.css');
+  document.getElementsByTagName('head')[0].appendChild(link);
+</script>
+
+<script type="application/json" id="reveal-hugo-site-params">{"highlight_theme":"github-dark","line-numbers":true,"theme":"sky","transition":"concave","transition_speed":"fast"}</script>
+<script type="application/json" id="reveal-hugo-page-params">{"highlight_theme":"atom-one-dark-reasonable","theme":"league"}</script>
+
+<script src="/reveal-js/js/reveal.js"></script>
+
+<script type="text/javascript">
+  
+  
+  function camelize(map) {
+    if (map) {
+      Object.keys(map).forEach(function(k) {
+        newK = k.replace(/(\_\w)/g, function(m) { return m[1].toUpperCase() });
+        if (newK != k) {
+          map[newK] = map[k];
+          delete map[k];
+        }
+      });
+    }
+    return map;
+  }
+  
+  var revealHugoDefaults = { center: true, controls: true, history: true, progress: true, transition: "slide" };
+  var revealHugoSiteParams = JSON.parse(document.getElementById('reveal-hugo-site-params').innerHTML);
+  var revealHugoPageParams = JSON.parse(document.getElementById('reveal-hugo-page-params').innerHTML);
+  
+  var options = Object.assign({},
+    camelize(revealHugoDefaults),
+    camelize(revealHugoSiteParams),
+    camelize(revealHugoPageParams));
+  Reveal.initialize(options);
+</script>
+
+
+  
+  
+  <script type="text/javascript" src="/reveal-js/plugin/markdown/marked.js"></script>
+  
+  <script type="text/javascript" src="/reveal-js/plugin/markdown/markdown.js"></script>
+  
+  <script type="text/javascript" src="/reveal-js/plugin/highlight/highlight.js"></script>
+  
+  <script type="text/javascript" src="/reveal-js/plugin/zoom-js/zoom.js"></script>
+  
+  
+  <script type="text/javascript" src="/reveal-js/plugin/notes/notes.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({startOnLoad: false});
+    let render = (event) => {
+      let mermaidElems = event.currentSlide.querySelectorAll('.mermaid');
+      if (!mermaidElems.length){
+          return
+      }
+      mermaidElems.forEach(mermaidElem => {
+          let processed = mermaidElem.getAttribute('data-processed');
+          if (!processed){
+              
+              mermaid.init(undefined, mermaidElem);
+          }
+      });
+    };
+    Reveal.addEventListener('slidechanged', render);
+    Reveal.addEventListener('ready', render);
+  </script>
+
+    
+
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']]
+  },
+  svg: {
+    fontCache: 'global'
+  }
+};
+</script>
+
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+</script>
+    
+  </body>
+</html>
