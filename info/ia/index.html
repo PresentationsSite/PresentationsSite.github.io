@@ -56,7 +56,7 @@
 
 <section data-shortcode-section>
 <h4 id="exemple-dapprentissage-supervisé-">Exemple d&rsquo;apprentissage supervisé :</h4>
-<h2 id="algorithme-des-kbrplus-proches-voisins">Algorithme des K<br>plus proches voisins</h2>
+<h2 id="algorithme-des-kplus-proches-voisins">Algorithme des K<br>plus proches voisins</h2>
 </section><section>
 <p>KNN est un algorithme d’<strong>apprentissage supervisé</strong> cela signifie que l’algorithme nécessite<br>des données classifiées en amont qui vont lui servir à trouver la bonne étiquette pour<br>d’autres données non encore classifiées.</p>
 </section><section>
@@ -134,7 +134,7 @@
 
 <section data-shortcode-section>
 <h4 id="exemple-dapprentissage-non-supervisé-">Exemple d&rsquo;apprentissage non-supervisé :</h4>
-<h2 id="algorithme-desbrk-moyennes">Algorithme des<br>K-moyennes</h2>
+<h2 id="algorithme-desk-moyennes">Algorithme des<br>K-moyennes</h2>
 </section><section>
 <p>L&rsquo;algorithme des k-moyennes regroupe<br>en catégories des données<br><em>dont on ne connaît rien a priori</em>.</p>
 <br>
@@ -202,7 +202,7 @@ où $\mu_i$ est le barycentre des points dans $S_i$.</p>
 
 
 <section data-shortcode-section>
-<h2 id="jeux-daccessibilitébrsur-un-graphe">Jeux d&rsquo;accessibilité<br>sur un graphe</h2>
+<h2 id="jeux-daccessibilitésur-un-graphe">Jeux d&rsquo;accessibilité<br>sur un graphe</h2>
 <p>On quitte l&rsquo;apprentissage automatique<br>mais on reste dans le champ de l&rsquo;IA.</p>
 </section><section>
 <p><u>Vocabulaire</u></p>
@@ -522,37 +522,37 @@ Une heuristique est donc un compromis entre d’un côté l’optimalité (trouv
 </section><section>
 <p>Supposons que l&rsquo;on cherche à placer les objets suivants dans un sac de capacité 900.</p>
 <table>
-<thead>
-<tr>
-<th>objets</th>
-<th style="text-align:center">🥏</th>
-<th style="text-align:center">🎺</th>
-<th style="text-align:center">🥊</th>
-<th style="text-align:center">🧸</th>
-<th style="text-align:center">🪠</th>
-<th style="text-align:center">⏰</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>valeurs $v$</td>
-<td style="text-align:center">5</td>
-<td style="text-align:center">50</td>
-<td style="text-align:center">65</td>
-<td style="text-align:center">20</td>
-<td style="text-align:center">10</td>
-<td style="text-align:center">12</td>
-</tr>
-<tr>
-<td>poids $p$</td>
-<td style="text-align:center">320</td>
-<td style="text-align:center">700</td>
-<td style="text-align:center">845</td>
-<td style="text-align:center">180</td>
-<td style="text-align:center">70</td>
-<td style="text-align:center">420</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>objets</th>
+          <th style="text-align: center">🥏</th>
+          <th style="text-align: center">🎺</th>
+          <th style="text-align: center">🥊</th>
+          <th style="text-align: center">🧸</th>
+          <th style="text-align: center">🪠</th>
+          <th style="text-align: center">⏰</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>valeurs $v$</td>
+          <td style="text-align: center">5</td>
+          <td style="text-align: center">50</td>
+          <td style="text-align: center">65</td>
+          <td style="text-align: center">20</td>
+          <td style="text-align: center">10</td>
+          <td style="text-align: center">12</td>
+      </tr>
+      <tr>
+          <td>poids $p$</td>
+          <td style="text-align: center">320</td>
+          <td style="text-align: center">700</td>
+          <td style="text-align: center">845</td>
+          <td style="text-align: center">180</td>
+          <td style="text-align: center">70</td>
+          <td style="text-align: center">420</td>
+      </tr>
+  </tbody>
 </table>
 </section>
 <section data-noprocess data-shortcode-slide
@@ -584,28 +584,28 @@ Une heuristique est donc un compromis entre d’un côté l’optimalité (trouv
 </section><section>
 <p>Le ratio valeur/poids de chaque objet<br>semble un bon critère.</p>
 <table>
-<thead>
-<tr>
-<th>objets</th>
-<th style="text-align:center">🥏</th>
-<th style="text-align:center">🎺</th>
-<th style="text-align:center">🥊</th>
-<th style="text-align:center">🧸</th>
-<th style="text-align:center">🪠</th>
-<th style="text-align:center">⏰</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>ratio $v/p$</td>
-<td style="text-align:center">1/64</td>
-<td style="text-align:center">1/14</td>
-<td style="text-align:center">1/13</td>
-<td style="text-align:center">1/9</td>
-<td style="text-align:center">1/7</td>
-<td style="text-align:center">1/35</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th>objets</th>
+          <th style="text-align: center">🥏</th>
+          <th style="text-align: center">🎺</th>
+          <th style="text-align: center">🥊</th>
+          <th style="text-align: center">🧸</th>
+          <th style="text-align: center">🪠</th>
+          <th style="text-align: center">⏰</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>ratio $v/p$</td>
+          <td style="text-align: center">1/64</td>
+          <td style="text-align: center">1/14</td>
+          <td style="text-align: center">1/13</td>
+          <td style="text-align: center">1/9</td>
+          <td style="text-align: center">1/7</td>
+          <td style="text-align: center">1/35</td>
+      </tr>
+  </tbody>
 </table>
 </section><section>
 <p>Problème : ça ne marche pas forcément&hellip;</p>

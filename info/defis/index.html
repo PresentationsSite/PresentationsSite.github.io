@@ -517,8 +517,7 @@ en effet, à chaque permutation de deux éléments<br>de la liste, on retourne d
 </ul>
 <blockquote>
 <p><code>L[L[j]-1]</code>$=$<code>L[j]</code> si <code>L[j]</code>$≤$<code>n</code><br>pour tout $j≤i$<br>$\equiv$<br>
-<strong>Chaque élément <code>L[j]</code>$≤$ <code>n</code> <br> a été placé à la position correspondant à sa valeur</strong></p>
-</blockquote>
+<strong>Chaque élément <code>L[j]</code>$≤$ <code>n</code> <br> a été placé à la position correspondant à sa valeur</strong></p></blockquote>
 </section><section>
 <div style="text-align:left;color:gray">
 Et si l'invariant est supposé vrai au rang <code>i</code>, le code de la boucle <code>while</code> nous le maintient vrai au rang <code>i+1</code> (car si ce n'est pas le cas en début d'itération, la permutation dans le <code>if</code> nous assure que ça le sera<br>en fin d'itération).<br>
