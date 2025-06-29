@@ -75,339 +75,250 @@ font-weight:normal;
 
 </section>
 </section><section>
-  <style>
+<style>
+/* ----------------------
+ FEUILLE DE STYLE
+ ---------------------- */
 /* Conteneur des contrôles : occupe toute la largeur, fond transparent et espacement vertical réduit */
 #controls {
-  width: 100% !important;
-  background: rgba(255, 255, 255, 0.3) !important;
-  padding: 10px;
-  border-radius: 5px;
-  z-index: 10;
-  position: absolute;
-  top: 0;
-  left: 0;
-  box-sizing: border-box;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 5px;
+width: 100% !important;
+background: rgba(255, 255, 255, 0.3) !important;
+padding: 10px;
+border-radius: 5px;
+z-index: 10;
+position: absolute;
+top: 0;
+left: 0;
+box-sizing: border-box;
+text-align: center;
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 5px;
 }
 
-/* Personnalisation du slider : plus épais, plus transparent et centré */
+/* Personnalisation du slider */
 #speedSlider {
-  -webkit-appearance: none !important;
-  width: 60% !important;
-  height: 25px !important;
-  background: rgba(0, 0, 0, 0.1) !important;
-  border-radius: 10px;
-  outline: none;
-  margin: 5px 0;
+-webkit-appearance: none !important;
+width: 60% !important;
+height: 25px !important;
+background: rgba(0, 0, 0, 0.1) !important;
+border-radius: 10px;
+outline: none;
+margin: 5px 0;
 }
 
-/* Piste du slider pour Chrome/Safari */
 #speedSlider::-webkit-slider-runnable-track {
-  width: 100%;
-  height: 20px;
-  cursor: pointer;
-  background: rgba(0, 123, 255, 0.7) !important;
-  border-radius: 10px;
-  border: none;
+width: 100%;
+height: 20px;
+cursor: pointer;
+background: rgba(0, 123, 255, 0.7) !important;
+border-radius: 10px;
+border: none;
 }
-
-/* Curseur du slider pour Chrome/Safari */
 #speedSlider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  border: none;
-  height: 28px;
-  width: 28px;
-  border-radius: 50%;
-  background: rgba(86, 193, 255, 0.7);
-  margin-top: -4px;
-  cursor: pointer;
-  box-shadow: 0 0 2px rgba(0,0,0,0.5);
+-webkit-appearance: none;
+border: none;
+height: 28px;
+width: 28px;
+border-radius: 50%;
+background: rgba(86, 193, 255, 0.7);
+margin-top: -4px;
+cursor: pointer;
+box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
 }
-
-/* Piste et curseur pour Firefox */
 #speedSlider::-moz-range-track {
-  width: 100%;
-  height: 20px;
-  cursor: pointer;
-  background: rgba(0, 123, 255, 0.7);
-  border-radius: 10px;
-  border: none;
+width: 100%;
+height: 20px;
+cursor: pointer;
+background: rgba(0, 123, 255, 0.7);
+border-radius: 10px;
+border: none;
 }
-
 #speedSlider::-moz-range-thumb {
-  border: none;
-  height: 28px;
-  width: 28px;
-  border-radius: 50%;
-  background: #FFF;
-  cursor: pointer;
-  box-shadow: 0 0 2px rgba(0,0,0,0.5);
+border: none;
+height: 28px;
+width: 28px;
+border-radius: 50%;
+background: #fff;
+cursor: pointer;
+box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
 }
 
-/* Conteneur pour les boutons son et pause, alignés horizontalement */
+/* Conteneur pour les boutons son et pause */
 #buttonContainer {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  gap: 10px;
+width: 100%;
+display: flex;
+justify-content: center;
+gap: 10px;
 }
 
-/* Boutons son et pause : gros, ronds, centrés et légèrement transparents */
+/* Boutons ronds */
 #toggleSound,
 #togglePause {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  border: none;
-  background-color: rgba(40, 167, 69, 0.8);
-  color: #fff;
-  font-size: 32px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  outline: none;
-  transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out;
-  position: relative;
+width: 60px;
+height: 60px;
+border-radius: 50%;
+border: none;
+background-color: rgba(40, 167, 69, 0.8);
+color: #fff;
+font-size: 32px;
+display: flex;
+align-items: center;
+justify-content: center;
+cursor: pointer;
+outline: none;
+transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out;
+position: relative;
 }
-
-/* Icône pour le bouton son : affiche une note musicale */
 #toggleSound::before {
-  content: "\266A";
-  font-size: 32px;
-  line-height: 60px;
-  display: block;
+content: "\266A";
+font-size: 32px;
+line-height: 60px;
+display: block;
 }
-
-/* En état muet, affiche une barre sur la note */
 #toggleSound.muted::after {
-  content: "";
-  position: absolute;
-  width: 70%;
-  height: 3px;
-  background: #fff;
-  top: 50%;
-  left: 15%;
-  transform: rotate(45deg);
+content: "";
+position: absolute;
+width: 70%;
+height: 3px;
+background: #fff;
+top: 50%;
+left: 15%;
+transform: rotate(45deg);
 }
-
-/* Bouton pause : affiche le symbole pause par défaut */
 #togglePause::before {
-  content: "\23F8";
-  font-size: 32px;
-  line-height: 60px;
-  display: block;
+content: "\25B6"; /* ▶ au démarrage */
+font-size: 32px;
+line-height: 60px;
+display: block;
 }
-
-/* En état "lecture", le bouton affiche le symbole pause */
-#togglePause.paused::before {
-  content: "\25B6";
+#togglePause.running::before {
+content: "\23F8"; /* ⏸ quand ça tourne */
 }
-
-/* Animation lors de l'appui pour les boutons */
 #toggleSound:active,
 #togglePause:active {
-  transform: scale(0.9);
+transform: scale(0.9);
 }
 
-/* Style du canvas */
+/* Canvas plein écran horizontal */
 canvas {
-top:0;
-left:0;
-position:absolute;
-width:100%;
-border-radius:10px;
+top: 0;
+left: 0;
+position: absolute;
+width: 100%;
+border-radius: 10px;
 }
 </style>
+</head>
+<body>
 <div id="controls">
-  <label for="speedSlider">Vitesse de l'émetteur : <span id="speedValue">0</span> m/s</label>
-  <input type="range" id="speedSlider" min="-120" max="120" value="0" step="1">
-  <div id="buttonContainer">
-    <button id="toggleSound"></button>
-    &nbsp;&nbsp;&nbsp;
-    <button id="togglePause"></button>
-  </div>
+<label for="speedSlider">Vitesse de l'émetteur :
+<span id="speedValue">0</span> m/s</label>
+<input type="range" id="speedSlider" min="-50" max="500" value="0" step="1" />
+<div id="buttonContainer">
+<button id="toggleSound"></button>
+&nbsp;&nbsp;&nbsp;
+<button id="togglePause"></button>
+</div>
 </div>
 <canvas id="canvas"></canvas>
   <script>
- // Configuration du canvas
-const canvas = document.getElementById('canvas');
-const ctx = canvas.getContext('2d');
-function resizeCanvas() {
-  canvas.width = window.innerWidth;
-  canvas.height = 600;
-}
-resizeCanvas();
-window.addEventListener('resize', resizeCanvas);
+  /* ==================== CANVAS & DPR ==================== */
+  const DPR = window.devicePixelRatio || 1;
+  const canvas = document.getElementById('canvas');
+  const ctx    = canvas.getContext('2d');
+  const wavesC = document.createElement('canvas');
+  const wCtx   = wavesC.getContext('2d');
 
-// Définition de l'émetteur et du récepteur
-let emitter = { x: canvas.width/4, y: canvas.height / 2 };
-const receiver = { x: canvas.width - canvas.width/4, y: canvas.height / 2 };
-
-// Paramètres physiques et d'ondes
-const c = 100; // vitesse du son en m/s (dans cette simulation)
-const waveSpeed = c; // 1 px = 1 m ici
-const emissionInterval = 0.5; // en secondes
-let timeSinceLastEmission = 0;
-let waveFronts = []; // tableau des ondes émises
-
-// Variables de temps pour la simulation
-let animTime = 0; // temps de simulation (n'avance que si l'animation n'est pas en pause)
-let lastTime = performance.now() / 1000;
-
-// Contrôle de la vitesse de l'émetteur (en m/s)
-const speedSlider = document.getElementById('speedSlider');
-const speedValueLabel = document.getElementById('speedValue');
-let emitterSpeed = parseFloat(speedSlider.value);
-speedSlider.addEventListener('input', function() {
-  emitterSpeed = parseFloat(this.value);
-  speedValueLabel.textContent = Math.round(emitterSpeed * 3.43);
-});
-
-// Gestion du son via Web Audio API avec enveloppe
-let soundEnabled = true;
-const AudioContext = window.AudioContext || window.webkitAudioContext;
-const audioCtx = new AudioContext();
-function beep() {
-  if (!soundEnabled) return;
-  const oscillator = audioCtx.createOscillator();
-  const gainNode = audioCtx.createGain();
-  oscillator.type = 'sine';
-  oscillator.frequency.value = 880; // La5 (880 Hz)
-  oscillator.connect(gainNode);
-  gainNode.connect(audioCtx.destination);
-  
-  const now = audioCtx.currentTime;
-  gainNode.gain.setValueAtTime(0, now);
-  gainNode.gain.linearRampToValueAtTime(1, now + 0.01); // attaque rapide
-  gainNode.gain.exponentialRampToValueAtTime(0.001, now + 0.1); // décroissance
-  oscillator.start(now);
-  oscillator.stop(now + 0.1);
-}
-
-// Gestion du bouton son
-document.getElementById('toggleSound').addEventListener('click', function(){
-  soundEnabled = !soundEnabled;
-  if (soundEnabled) {
-    this.classList.remove('muted');
-  } else {
-    this.classList.add('muted');
+  function resize(){
+    const wCSS = window.innerWidth;
+    const hCSS = 600;
+    canvas.style.width=wCSS+'px';
+    canvas.style.height=hCSS+'px';
+    canvas.width = wCSS*DPR;
+    canvas.height= hCSS*DPR;
+    wavesC.width = canvas.width;
+    wavesC.height= canvas.height;
+    ctx.setTransform(DPR,0,0,DPR,0,0);
   }
-});
+  resize();
+  window.addEventListener('resize',resize);
 
-// Gestion du bouton pause
-let paused = true;
-document.getElementById('togglePause').classList.add('paused'); // affiche lecture par défaut
-document.getElementById('togglePause').addEventListener('click', function(){
-  paused = !paused;
-  if (paused) {
-    this.classList.add('paused');
-  } else {
-    this.classList.remove('paused');
-    lastTime = performance.now() / 1000; // Réinitialise lastTime pour éviter un grand dt
-    animate();
-  }
-});
+  /* ============= PHYSIQUE & ÉCHELLE VISUELLE ============= */
+  const SCALE = 0.5;         // px / m — ondes 2× moins rapides visuellement
+  const C_M   = 340;         // m/s vitesse réelle du son
+  const C = C_M * SCALE;     // px/s utilisé pour le dessin
+  const PERIOD = 0.5;        // s intervalle des fronts
+  const DT = 1/120;          // pas fixe
 
+  /* ============= OBJETS ============= */
+  const recv = { get x(){ return canvas.width/DPR - (canvas.width/DPR)/4; }, get y(){ return canvas.height/DPR/2; } };
+  let emit = { x: canvas.width/DPR/4, y: canvas.height/DPR/2 };
 
-function animate() {
-  if (paused) return;
-  
-  const now = performance.now() / 1000;
-  const dt = now - lastTime;
-  lastTime = now;
-  animTime += dt;
-  
-  // Mise à jour de la position de l'émetteur
-  emitter.x += emitterSpeed * dt;
-  
-  // Si l'émetteur sort de la fenêtre, réinitialise sa position et efface les ondes
-  if (emitter.x > canvas.width + 50) {
-    emitter.x = -50;
-    waveFronts = [];
-  }
-  if (emitter.x < -50) {
-    emitter.x = canvas.width + 50;
-    waveFronts = [];
-  }
-  
-  // Émission d'une nouvelle onde à intervalle régulier (utilise animTime)
-  timeSinceLastEmission += dt;
-  if (timeSinceLastEmission >= emissionInterval) {
-    timeSinceLastEmission -= emissionInterval;
-    waveFronts.push({
-      x: emitter.x,
-      y: emitter.y,
-      time: animTime,
-      detected: false // pour s'assurer de ne beep qu'une fois par front
-    });
-  }
-  
-  // Effacement du canvas
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  
-  // Dessin du récepteur
-  ctx.fillStyle = '#56C1FF';
-  ctx.beginPath();
-  ctx.arc(receiver.x, receiver.y, 10, 0, 2 * Math.PI);
-  ctx.fill();
-  ctx.font = "16px Arial";
-  ctx.fillText("Récepteur", receiver.x - 30, receiver.y - 15);
-  
-  // Dessin de l'émetteur
-  ctx.fillStyle = '#FF968D';
-  ctx.beginPath();
-  ctx.arc(emitter.x, emitter.y, 10, 0, 2 * Math.PI);
-  ctx.fill();
-  ctx.fillText("Émetteur", emitter.x - 30, emitter.y - 15);
-  
-  // Dessin des ondes émises avec effet de halo
-  for (let i = 0; i < waveFronts.length; i++) {
-    const wf = waveFronts[i];
-    const age = animTime - wf.time;
-    const radius = waveSpeed * age;
-    
-    ctx.save();
-    ctx.lineWidth = 8;
-    ctx.strokeStyle = 'rgba(255, 240, 80, 0.8)';
-    ctx.shadowBlur = 20;
-    ctx.shadowColor = 'rgba(255, 240, 80, 0.8)';
-    ctx.beginPath();
-    ctx.arc(wf.x, wf.y, radius, 0, 2 * Math.PI);
-    ctx.stroke();
-    ctx.restore();
-    
-    // Détection du passage de l'onde par le récepteur avec tolérance accrue (5 px)
-    const dx = receiver.x - wf.x;
-    const dy = receiver.y - wf.y;
-    const distance = Math.sqrt(dx * dx + dy * dy);
-    if (Math.abs(distance - radius) < 5 && !wf.detected) {
-      // Flash visuel
-      ctx.fillStyle = 'yellow';
-      ctx.beginPath();
-      ctx.arc(receiver.x, receiver.y, 15, 0, 2 * Math.PI);
-      ctx.fill();
-      // Signal sonore
-      beep();
-      wf.detected = true;
-    }
-  }
-  
-  // Suppression des ondes trop vieilles
-  waveFronts = waveFronts.filter(wf => {
-    const age = animTime - wf.time;
-    const radius = waveSpeed * age;
-    return radius < Math.max(canvas.width, canvas.height);
+  /* ============= ÉTAT ============= */
+  let speedM = 0;     // m/s (valeur slider visible)
+  let speedPx = 0;    // px/s (simulation)
+  let simT = 0, nextT = 0;
+  const fronts = [];
+  let lastReal = performance.now()/1000, acc = 0;
+  let paused = true;
+
+  /* ============= CONTROLS ============= */
+  const slider = document.getElementById('speedSlider');
+  const speedLabel = document.getElementById('speedValue');
+  slider.addEventListener('input', e=>{
+    speedM = +e.target.value;
+    speedPx = speedM * SCALE;
+    speedLabel.textContent = speedM.toFixed(0);
   });
-  
-  requestAnimationFrame(animate);
-}
-animate();
-</script>
+
+  let soundOn=true;
+  const AudioCtx=window.AudioContext||window.webkitAudioContext; const aCtx=new AudioCtx();
+  function beep(){ if(!soundOn) return; if(aCtx.state==='suspended') aCtx.resume(); const o=aCtx.createOscillator(),g=aCtx.createGain(); o.frequency.value=880; o.connect(g); g.connect(aCtx.destination); const t=aCtx.currentTime; g.gain.setValueAtTime(0,t); g.gain.linearRampToValueAtTime(1,t+.01); g.gain.exponentialRampToValueAtTime(.001,t+.1); o.start(t); o.stop(t+.1);}  
+  document.getElementById('toggleSound').addEventListener('click',function(){soundOn=!soundOn;this.classList.toggle('muted',!soundOn);});
+
+  const pauseBtn=document.getElementById('togglePause'); pauseBtn.addEventListener('click',()=>{paused=!paused;pauseBtn.classList.toggle('running',!paused);if(!paused){lastReal=performance.now()/1000;requestAnimationFrame(loop);} });
+
+  /* ============= PHYSIQUE ============= */
+  function step(){
+    simT += DT;
+    emit.x += speedPx * DT;
+    const wCSS = canvas.width/DPR;
+    if(emit.x>wCSS+50) emit.x=-50; if(emit.x<-50) emit.x=wCSS+50;
+    while(simT>=nextT){
+      const back = simT-nextT;
+      const ex = emit.x - speedPx*back;
+      const ey = emit.y;
+      const d0 = Math.hypot(recv.x-ex, recv.y-ey);
+      fronts.push({x:ex,y:ey,t:nextT,d0_px:d0,hit:false});
+      nextT += PERIOD;
+    }
+    const maxR = Math.max(wCSS, canvas.height/DPR)*1.5;
+    while(fronts.length && C*(simT-fronts[0].t)>maxR) fronts.shift();
+  }
+
+  /* ============= RENDU ============= */
+  function render(alpha){
+    ctx.clearRect(0,0,canvas.width/DPR,canvas.height/DPR);
+    wCtx.clearRect(0,0,wavesC.width,wavesC.height);
+    wCtx.lineWidth=4*DPR; wCtx.strokeStyle='rgba(255,240,80,.75)';
+    for(const f of fronts){
+      const age = simT - f.t + alpha*DT;
+      const r = C * age;
+      if(!f.hit && simT >= f.t + f.d0_px / C){ f.hit=true; flash(); beep(); }
+      wCtx.beginPath(); wCtx.arc(f.x*DPR, f.y*DPR, r*DPR, 0, Math.PI*2); wCtx.stroke();
+    }
+    ctx.save(); ctx.scale(1/DPR,1/DPR); ctx.drawImage(wavesC,0,0); ctx.restore();
+
+    ctx.fillStyle='#56C1FF'; ctx.beginPath(); ctx.arc(recv.x, recv.y, 10, 0, Math.PI*2); ctx.fill(); ctx.font='16px Arial'; ctx.fillText('Récepteur',recv.x-30,recv.y-15);
+    const ex = emit.x + speedPx*alpha*DT; ctx.fillStyle='#FF968D'; ctx.beginPath(); ctx.arc(ex,emit.y,10,0,Math.PI*2); ctx.fill(); ctx.fillText('Émetteur',ex-30,emit.y-15);
+  }
+  function flash(){ ctx.save(); ctx.fillStyle='yellow'; ctx.beginPath(); ctx.arc(recv.x, recv.y, 15, 0, Math.PI*2); ctx.fill(); ctx.restore(); }
+
+  /* ============= BOUCLE RAF ============= */
+  function loop(){ if(paused) return; let now=performance.now()/1000, dt=now-lastReal; lastReal=now; dt=Math.min(dt,.1); acc+=dt; while(acc>=DT){step();acc-=DT;} render(acc/DT); requestAnimationFrame(loop);}  
+  </script>
 </section><section>
 
 
