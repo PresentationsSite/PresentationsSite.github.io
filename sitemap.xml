@@ -104,8 +104,6 @@
   </url><url>
     <loc>http://PresentationsSite.github.io/tspe/equilibre/</loc>
   </url><url>
-    <loc>http://PresentationsSite.github.io/tspe/mouvement/</loc>
-  </url><url>
     <loc>http://PresentationsSite.github.io/1es/</loc>
   </url><url>
     <loc>http://PresentationsSite.github.io/</loc>
@@ -156,6 +154,8 @@
   </url><url>
     <loc>http://PresentationsSite.github.io/1spe/lewis/</loc>
   </url><url>
+    <loc>http://PresentationsSite.github.io/tspe/newton/</loc>
+  </url><url>
     <loc>http://PresentationsSite.github.io/2nde/lumiere/</loc>
   </url><url>
     <loc>http://PresentationsSite.github.io/tsti/lumiere/</loc>
@@ -185,6 +185,8 @@
     <loc>http://PresentationsSite.github.io/tspe/molecules/</loc>
   </url><url>
     <loc>http://PresentationsSite.github.io/2nde/mouvement/</loc>
+  </url><url>
+    <loc>http://PresentationsSite.github.io/tspe/mouvement/</loc>
   </url><url>
     <loc>http://PresentationsSite.github.io/info/nim/</loc>
   </url><url>
