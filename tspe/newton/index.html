@@ -66,371 +66,110 @@ font-weight:normal;
   border-radius:10px;
 }
 </style>
-
-
-<section data-shortcode-section>
 <h1 id="lois-de-newton">Lois de Newton</h1>
 </section><section>
-<p>La <span class="imp">cinématique</span> est l&rsquo;étude du mouvement.</p>
+
+
+<section data-shortcode-section>
+<h2 id="point-matériel-et-centre-de-masse">Point matériel et centre de masse</h2>
 </section><section>
-<p>Un mouvement s&rsquo;étudie dans un <span class="imp">référentiel</span>.</p>
-<br>
-<div class="fragment fade-up" style="position:relative;margin:auto;width:fit-content;border:solid 5px #FF968D;padding:20px 50px 20px 50px;border-radius:10px">
-Un référentiel est un solide (ensemble de points fixes entre eux) par rapport auquel on repère<br>la position ou le mouvement.
-</div>
+<p>On modélise un système mécanique<br>par un <span class="imp">point matériel</span>, point géométrique<br>auquel on associe la masse $m$ du système.</p>
 </section><section>
-<p>Un référentiel est composé :</p>
-<br>
-<ul>
-<li class="fragment fade-up">d'un <span class="imp">repère d'espace</span> $(0;\vec{i},\vec{j},\vec{k})$<br>permettant de définir la position,</li>
-<br>
-<li class="fragment fade-up">d'un <span class="imp">repère de temps</span> ou horloge $(t)$<br>permettant d'associer une date à chaque position.</li>
-</ul>
-</section><section>
-<p>Référentiels usuels :</p>
-<br>
-<ul>
-<li class="fragment fade-up"><span class="imp">Référentiel terrestre</span> :<br>tout solide immobile à la surface de la Terre.</li>
-<br>
-<li class="fragment fade-up">Référentiel géocentrique :<br>solide défini par le centre de la Terre et 3 étoiles lointaines considérées comme fixes</li>
-<br>
-<li class="fragment fade-up">Référentiel héliocentrique :<br>solide défini par le centre du Soleil et 3 étoiles lointaines considérées comme fixes</li>
-</ul>
-</section><section>
-<p>Un référentiel est dit <span class="imp">galiléen</span><br>si un corps isolé (soumis à aucune force) ou<br>pseudo-isolé (soumis à des forces qui se compensent)<br>est en mouvement rectiligne uniforme.</p>
-<p class="fragment fade-up">Sur des durée suffisamment courtes pour pouvoir négliger les effets de la rotation de la surface terrestre, le référentiel terrestre peut être considéré<br>comme galiléen.</p>
+<p>On situera le point matériel au <span class="imp">centre de masse</span><br>du système, position moyenne de répartition<br>des masses du système.</p>
+<p class="fragment fade-up"><u>Rq</u> : on parle aussi de centre d'inertie, ou de centre de gravité dans le cas d'un champ de pesanteur uniforme.</p>
 
 </section>
 </section><section>
 
 
 <section data-shortcode-section>
-<h2 id="vecteur-position">Vecteur position</h2>
+<h2 id="première-loi-de-newtonou-principe-dinertieet-référentiels-galiléens">Première loi de Newton<br>ou principe d&rsquo;inertie<br>et référentiels galiléens</h2>
 </section>
 <section data-noprocess data-shortcode-slide
-      data-background-image="/vecposition.png"
       data-background-size="contain"
-      data-background-transition="concave">
+      data-background-transition="concave"
+      data-background-video="/inertierepos.mp4"
+      data-background-video-loop="false">
 </section><section>
-<p>Dans un repère orthonormé $(0;\vec{i},\vec{j},\vec{k})$, la position d&rsquo;un point $\mathrm{M}$ à la date $t$ est donnée par son <b style="color:#56C1FF;">vecteur position</p>
-<p class="fragment fade-up">$\overrightarrow{\mathrm{OM}}(t)\left(\begin{aligned}x(t)\\y(t)\\z(t)\end{aligned}\right)$</p>
-<p class="fragment fade-up">$\overrightarrow{\mathrm{OM}}(t)=x(t)\vec{i}+y(t)\vec{j}+z(t)\vec{k}$</p>
-</b>
-</section><section>
-<p>On notera fréquemment :</p>
-<b style="color:#56C1FF">
-$$
-\begin{cases}
-x(t)=\ldots\\
-y(t)=\ldots\\
-z(t)=\ldots
-\end{cases}
-$$
-</b>
-<p class="fragment fade-up"><u>Rq</u> : en pratique, les mouvements seront presque toujours à 2 dimensions seulement.
-<b style="color:#56C1FF">
-$$
-\begin{cases}
-x(t)=\ldots\\
-y(t)=\ldots
-\end{cases}
-$$
-</b>
-</p>
-</section><section>
-<p>La <span class="imp">norme</span> $\mathrm{OM}$(t) du vecteur position vaut :</p>
-<p class="fragment fade-up">$\mathrm{OM}(t)=||\overrightarrow{\mathrm{OM}}(t)||=\sqrt{x(t)^2+y(t)^2+z(t)^2}$</p>
-<p class="fragment fade-up">Unité : <span class="fragment">$\pu{m}$</span></p>
-
-</section>
-</section><section>
-
-
-<section data-shortcode-section>
-<h2 id="vecteur-vitesse">Vecteur vitesse</h2>
-</section><section>
-<div style="position:relative;margin-left:auto;margin-right:auto;width:600px;max-width:100%;margin-bottom:-1em;margin-top:-1em;">
-<img src="/vecvitmoy.png" style="box-shadow:none;background:none;">
-</div>
-</section><section>
-<p>Le vecteur vitesse moyenne d&rsquo;un point $\mathrm{M}$<br>entre deux instants $t$ et $t+\Delta t$ est défini par :</p>
-<p>$
-\begin{aligned}
-\vec{v}_m(t) &amp;= \frac{\overrightarrow{\mathrm{M}(t)\mathrm{M}(t+\Delta t)}}{\Delta t}\\
-&amp;= \frac{\overrightarrow{\mathrm{OM}}(t+\Delta t)-\overrightarrow{\mathrm{OM}}(t)}{\Delta t}\\
-&amp;=\frac{\overrightarrow{\Delta\mathrm{OM}}(t)}{\mathrm{\Delta}t}
-\end{aligned}
-$</p>
-</section><section>
-<p>On obtient le vecteur vitesse $\vec{v}(t)$<br>en faisant tendre $\Delta$ vers $0$.</p>
-<p class="fragment fade-up">On obtient alors la <span class="imp">dérivée</span> du vecteur position.</p>
-</section><section>
-<p>Le <b style="color:#FFD932">vecteur vitesse $\vec{v}(t)$</b> d&rsquo;un point $\mathrm{M}$ à la date $t$ est la <b style="color:#FFD932">dérivée par rapport au temps du vecteur position</b> :</p>
-<br>
-<div class="fragment fade-up" style="position:relative;margin:auto;width:fit-content;border:solid 5px #FFD932;padding:0px 50px 20px 50px;border-radius:20px;color:#FFD932;font-size:1.2em;">
-$$\vec{v}(t)=\frac{\mathrm{d}\overrightarrow{\mathrm{OM}}}{\mathrm{d}t}$$
-</div>
-<br>
-<p class="fragment fade-up">Notation :<br>
-En physique, $\Delta$ correspond à une variation<br>et $\mathrm{d}$ à une variation infinitésimale.
-</p>
-</section><section>
-<b style="color:#FFD932">
-<p>
-$$
-\begin{array}{rcrcrcr}
-\vec{v}(t) & = & v_x(t)\, \vec{i} & + & v_y(t) \, \vec{j} & +  &v_z(t)  \, \vec{k}\\
-& = &\frac{\mathrm{d}x}{\mathrm{d}t} \,\vec{i} & +& \frac{\mathrm{d}y}{\mathrm{d}t} \, \vec{j} & +  &\frac{\mathrm{d}z}{\mathrm{d}t} \, \vec{k}
-\end{array}
-$$
-</p>
-</b>
-<br>
-<b style="color:#FFD932" >
-<p class="fragment fade-up">
-$$
-\begin{cases}
-v_x(t)=\frac{\mathrm{d}x}{\mathrm{d}t}=\ldots\\
-v_y(t)=\frac{\mathrm{d}y}{\mathrm{d}t}=\ldots\\
-v_z(t)=\frac{\mathrm{d}z}{\mathrm{d}t}=\ldots
-\end{cases}
-$$
-</p>
-</b>
-<br>
-<p class="fragment fade-up"><u>Rq</u> :
-La notation physique $\frac{\mathrm{d}x}{\mathrm{d}t}$ correspond<br>à la notation mathématique $x'(t)$.
-</p>
-</section><section>
-<div style="position:relative;margin-left:auto;margin-right:auto;width:700px;max-width:100%;">
-<img src="/vecvit.png" style="box-shadow:none;background:none;">
-</div>
-<p>Le vecteur vitesse est portée par la <span class="imp">tangente à la trajectoire</span> et orienté dans le sens du mouvement.</p>
-</section><section>
-<p>La <span class="imp">norme</span> $v$(t) du vecteur vecteur vaut :</p>
-<p class="fragment fade-up">$v(t)=||\vec{v}(t)||=\sqrt{v_x(t)^2+v_y(t)^2+v_z(t)^2}$</p>
-<p class="fragment fade-up">Unité : <span class="fragment">$\pu{m*s-1}$</span></p>
-
-</section>
-</section><section>
-
-
-<section data-shortcode-section>
-<h2 id="vecteur-accélération">Vecteur accélération</h2>
-</section><section>
-<div style="position:relative;margin-left:auto;margin-right:auto;width:100%;max-width:100%;margin-bottom:-1em;margin-top:-1em;">
-<img src="/vecaccmoy.png" style="box-shadow:none;background:none;">
-</div>
-</section><section>
-<p>Le vecteur accélération moyenne d&rsquo;un point $\mathrm{M}$<br>entre deux instants $t$ et $t+\Delta t$ est défini<br>à partir du vecteur variation de vitesse :</p>
-<p>$
-\begin{aligned}
-\vec{a}_m(t) &amp;= \frac{\vec{v}(t+\Delta t)-\vec{v}(t)}{\Delta t}\\
-&amp;= \frac{\overrightarrow{\Delta v}(t)}{\Delta t}
-\end{aligned}
-$</p>
-</section><section>
-<p>On obtient le vecteur vitesse $\vec{a}(t)$<br>en faisant tendre $\Delta$ vers $0$.</p>
-<p class="fragment fade-up">Cela donne la <span class="imp">dérivée</span> du vecteur vitesse et donc<br>la <span class="imp">dérivée seconde</span> du vecteur position.</p>
-</section><section>
-<p>Le <b style="color:#61D836">vecteur accélération $\vec{a}(t)$</b> d&rsquo;un point $\mathrm{M}$ à la date $t$ est la <b style="color:#61D836">dérivée par rapport au temps du vecteur vitesse</b> et <b style="color:#61D836">la dérivée seconde du vecteur position</b> :</p>
-<br>
-<div class="fragment fade-up" style="position:relative;margin:auto;width:fit-content;border:solid 5px #61D836;padding:0px 50px 20px 50px;border-radius:20px;color:#61D836;font-size:1.2em;">
-$$
-\begin{aligned}
-\vec{a}(t)&=\frac{\mathrm{d}\vec{v}}{\mathrm{d}t}\\
-&=\frac{\mathrm{d^2}\overrightarrow{\mathrm{OM}}}{\mathrm{d}t^2}
-\end{aligned}
-$$
-</div>
-</section><section>
-<b style="color:#61D836">
-<p>
-$$
-\begin{array}{rcrcrcr}
-\vec{a}(t) & = & a_x(t)\, \vec{i} & + & a_y(t) \, \vec{j} & +  &a_z(t)  \, \vec{k}\\
-& = &\frac{\mathrm{d}v_x}{\mathrm{d}t} \,\vec{i} & +& \frac{\mathrm{d}v_y}{\mathrm{d}t} \, \vec{j} & +  &\frac{\mathrm{d}v_z}{\mathrm{d}t} \, \vec{k}
-\end{array}
-$$
-</p>
-</b>
-<br>
-<b style="color:#61D836" >
-<p class="fragment fade-up">
-$$
-\begin{cases}
-a_x(t)=\frac{\mathrm{d}v_x}{\mathrm{d}t}=\ldots\\
-a_y(t)=\frac{\mathrm{d}v_y}{\mathrm{d}t}=\ldots\\
-a_z(t)=\frac{\mathrm{d}v_z}{\mathrm{d}t}=\ldots
-\end{cases}
-$$
-</p>
-</b>
-</section><section>
-<div style="position:relative;margin-left:auto;margin-right:auto;width:700px;max-width:100%;">
-<img src="/vecacc.png" style="box-shadow:none;background:none;">
-</div>
-<p>Le vecteur accélération est dans la direction<br>et le sens du vecteur variation de vitesse.</p>
-<p>Dans le cas d&rsquo;une trajectoire courbe,<br>il pointe vers l&rsquo;intérieur de la courbe.</p>
-</section><section>
-<p>La <span class="imp">norme</span> $a$(t) du vecteur vecteur vaut :</p>
-<p class="fragment fade-up">$a(t)=||\vec{a}(t)||=\sqrt{a_x(t)^2+a_y(t)^2+a_z(t)^2}$</p>
-<p class="fragment fade-up">Unité : <span class="fragment imp">$\pu{m*s-2}$</span></p>
+<iframe width="800" height="450" src="https://www.youtube.com/embed/wV2UTkkQ0Fg?si=fOqNGooWsHn1QwRl&amp;start=15" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:15px;"></iframe>
 </section>
 <section data-noprocess data-shortcode-slide
-      data-background-image="/normpeople.png"
       data-background-size="contain"
-      data-background-transition="concave">
-
-</section>
+      data-background-transition="concave"
+      data-background-video="/baseballcasque.mp4"
+      data-background-video-loop="true">
 </section><section>
-<iframe scrolling="no" title="Mouvement" src="https://www.geogebra.org/material/iframe/id/uk5ujj5u/width/828/height/708/border/888888/sfsb/true/smb/false/stb/false/stbh/false/ai/false/asb/false/sri/true/rc/true/ld/false/sdz/true/ctl/false" width="828px" height="708px" style="border:0px;border-radius:15px;"> </iframe>
+<p>La <span class="imp">première loi de Newton</span> permet<br>de définir les <b style="color:#56C1FF">référentiels galiléens</b>.</p>
 </section><section>
-
-
-<section data-shortcode-section>
-<h2 id="vidéos">Vidéos</h2>
-</section><section>
-<div style="position:relative;margin:auto;width:800px;max-width:100%;">
-<iframe width="800" height="450" src="https://www.youtube-nocookie.com/embed/Ooe94mPwXEY?si=vT3LiuPpVc0f8KOk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+<div style="position:relative;margin:auto;width:fit-content;border:solid 5px #FF968D;padding:20px 50px 20px 50px;border-radius:10px">
+Il existe une famille de référentiels,<br>appelés <b style="color:#56C1FF">référentiels galiléens</b>, tels que tout point matériel <span class="imp">pseudo-isolé</span> (qui est soumis à<br>des forces externes dont la somme est nulle)<br>est soit <b style="color:#FFF056">au repos</b>, soit animé d'un<br><b style="color:#FFF056">mouvement rectiligne uniforme</b><br>par rapport à l'un de ces référentiels.
 </div>
-<p>Jusqu&rsquo;à 3'22&rsquo;&rsquo; (après est introduite la méthode d&rsquo;Euler, utile pour le supérieur mais pas au programme de Tspé)</p>
+<p class="fragment fade-up"><u>Rq</u> : on parle aussi de référentiels inertiels.</p>
 </section><section>
-<div style="position:relative;margin:auto;width:800px;max-width:100%;">
-<iframe width="800" height="450" src="https://www.youtube-nocookie.com/embed/9W6zhF1cdso?si=yDmqcv_dHdqQ47FI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
-</div>
-<p>Jusqu&rsquo;à 4'51&rsquo;&rsquo; (mouvement circulaire uniforme décrit dans un repère orthonormé fixe = pas au programme)</p>
-
-</section>
+<p><u>Rq :</u></p>
+<p>Sur des <span class="imp">durée suffisamment courtes</span> pour pouvoir négliger les effets de la rotation de la surface terrestre, le <b style="color:#56C1FF">référentiel terrestre</b> peut être<br>considéré comme <b style="color:#56C1FF">galiléen</b>.</p>
 </section><section>
-
-
-<section data-shortcode-section>
-<h2 id="mouvements-rectilignes">Mouvements rectilignes</h2>
+<p>La détermination d&rsquo;un bon référentiel galiléen est expérimentale, seule la cohérence entre la théorie (première loi de Newton) et la mesure (mouvement rectiligne uniforme) valide le choix a posteriori.</p>
 </section><section>
-<p>Un mouvement est rectiligne<br>si sa trajectoire est <span class="fragment">une <span class="imp">droite</span>.</span></p>
-<div class="fragment fade-up" style="position:relative;margin-left:auto;margin-right:auto;width:400px;max-width:100%;">
-<img src="/shockmeme.png" style="box-shadow:none;background:none;border-radius:10px;">
+<p>Dans un <b style="color:#56C1FF">référentiel galiléen</b> :</p>
+<div class="fragment fade-up" style="position:relative;margin:auto;width:fit-content;border:solid 5px #FF968D;padding:0px 50px 0px 50px;border-radius:10px">
+$${\color{#FF968D}\sum \vec{F}_\mathrm{ext} = \vec{0}} \Leftrightarrow \color{#FFF056}{\vec{v}=\overrightarrow{\text{cte}}\text{ (MRU)}}$$
 </div>
-<p class="fragment fade-up">Le vecteur accélération conserve alors<br>la même direction (celle du mouvement).</p>
-</section><section>
-<p>Si le vecteur vitesse est constant,<br>le mouvement est dit <span class="imp">rectiligne <span class="fragment imp">uniforme</span></span>.</p>
-<p class="fragment fade-up">Que vaut alors le vecteur accélération ?</p>
-<p class="fragment fade-up">
-$$
-\vec{a}=\frac{\mathrm{d}\vec{v}}{\mathrm{d}t}=\vec{0}
-$$
-</p>
-<div class="imp fragment fade-up" style="position:relative;margin:auto;width:fit-content;border:solid 5px #FF968D;padding:0px 50px 20px 50px;border-radius:20px;color:#FF968D;font-size:1.2em;">
-MRU $\Leftrightarrow$ $\vec{a}=\vec{0}$
-</div>
-</section>
-<section data-noprocess data-shortcode-slide
-      data-transition="concave-in none-out">
-<p>Tracer les évolutions de la position <b style="color:#00A2FF">$x(t)$</b>, <br>de la vitesse <b style="color:#FFD932">$v(t)$</b> et de l&rsquo;accélération <b style="color:#61D836">$a(t)$</b>.</p>
-<div style="position:relative;margin-left:auto;margin-right:auto;width:600px;max-width:100%;">
-<img src="/graphexvavide.png" style="box-shadow:none;background:none;">
-</div>
-</section>
-<section data-noprocess data-shortcode-slide
-      data-transition="none-in concave-out">
-<p>Tracer les évolutions de la position <b style="color:#00A2FF">$x(t)$</b>, <br>de la vitesse <b style="color:#FFD932">$v(t)$</b> et de l&rsquo;accélération <b style="color:#61D836">$a(t)$</b>.</p>
-<div style="position:relative;margin-left:auto;margin-right:auto;width:600px;max-width:100%;">
-<img src="/graphexva.png" style="box-shadow:none;background:none;">
-</div>
-</section><section>
-<p><span class="imp">$\vec{a}(t)=\vec{cte}$</span></p>
-<p>Un mouvement rectiligne avec un vecteur accélération constant est dit <span class="imp">rectiligne uniformément accéléré</span>.</p>
-</section>
-<section data-noprocess data-shortcode-slide
-      data-transition="concave-in none-out">
-<p>Tracer les évolutions de la position <b style="color:#00A2FF">$x(t)$</b>, <br>de la vitesse <b style="color:#FFD932">$v(t)$</b> et de l&rsquo;accélération <b style="color:#61D836">$a(t)$</b>.</p>
-<div style="position:relative;margin-left:auto;margin-right:auto;width:600px;max-width:100%;">
-<img src="/graphexvavide.png" style="box-shadow:none;background:none;">
-</div>
-</section>
-<section data-noprocess data-shortcode-slide
-      data-transition="none-in concave-out">
-<p>Tracer les évolutions de la position <b style="color:#00A2FF">$x(t)$</b>, <br>de la vitesse <b style="color:#FFD932">$v(t)$</b> et de l&rsquo;accélération <b style="color:#61D836">$a(t)$</b>.</p>
-<div style="position:relative;margin-left:auto;margin-right:auto;width:600px;max-width:100%;">
-<img src="/graphexva2.png" style="box-shadow:none;background:none;">
-</div>
-</section><section>
-<iframe scrolling="no" title="xva" src="https://www.geogebra.org/material/iframe/id/dpm6zhuu/width/720/height/506/border/888888/sfsb/true/smb/false/stb/false/stbh/false/ai/false/asb/false/sri/true/rc/true/ld/false/sdz/false/ctl/false" width="720px" height="506px" style="border:0px;border-radius:10px;"> </iframe>
+<p class="fragment fade-up">où $\vec{F}_\mathrm{ext}$ est une force extérieure<br>agissant sur le système.</p>
 
 </section>
 </section><section>
 
 
 <section data-shortcode-section>
-<h2 id="mouvements-circulaires">Mouvements circulaires</h2>
+<h2 id="deuxième-loi-de-newton">Deuxième loi de Newton</h2>
 </section><section>
-<p>Un mouvement est <span class="imp">circulaire</span><br>si sa trajectoire est <span class="fragment">un <span class="imp">cercle</span> (ou un arc de cercle).</span></p>
-<p class="fragment fade-up">On parle de <span class="imp">mouvement circulaire uniforme</span> si<br>la norme du vecteur vitesse est constante.</p>
+<p>La deuxième loi de Newton lie la <b style="color:#FFF056">cinématique</b><br>à la <span class="imp">dynamique</span>, le <b style="color:#FFF056">mouvement</b> aux <span class="imp">forces</span>.</p>
 </section><section>
-<p>Pour décrire le mouvement circulaire<br>d&rsquo;un point M sur un cercle de centre O,<br>on utilise un <span class="imp">repère de Frenet</span>.</p>
+<div style="position:relative;margin:auto;width:fit-content;border:solid 5px #FF968D;padding:20px 50px 20px 50px;border-radius:10px">
+Dans un <b style="color:#56C1FF">référentiel galiléen</b>, le produit de la masse par l'<b style="color:#FFF056">accélération</b> d'un point matériel<br>est égal à la <span class="imp">résultante des forces<br>extérieures</span> qu'il subit.
+</div>
 </section><section>
-<p>C&rsquo;est un repère mobile centré au point<br>étudié M et de vecteurs unitaires :</p>
+<p>Dans un <b style="color:#56C1FF">référentiel galiléen</b> :</p>
+<div class="fragment fade-up" style="position:relative;margin:auto;width:fit-content;border:solid 5px #FF968D;padding:0px 50px 0px 50px;border-radius:10px">
+$${\color{#FF968D}\sum \vec{F}_\mathrm{ext}} =  m\color{#FFF056}{\vec{a}}$$
+</div>
+<br>
 <ul>
-<li class="fragment fade-up"><b style="color:#FFD932">$\vec{u}_T$ : vecteur tangent</b><br>$\hphantom{\vec{u_t}}$&nbsp;&nbsp;&nbsp;tangent à la trajectoire,<br>$\hphantom{\vec{u_t}}$&nbsp;&nbsp;&nbsp;orienté dans le sens du mouvement</b></li>
-<li class="fragment fade-up"><b style="color:#61D836">$\vec{u}_N$ : vecteur normal</b><br>$\hphantom{\vec{u_n}}$&nbsp;&nbsp;&nbsp;de direction (OM)<br>$\hphantom{\vec{u_n}}$&nbsp;&nbsp;&nbsp;orienté vers le centre O</li>
+<li class="fragment fade-up">$F_\mathrm{ext}$ en <span class="fragment fade-up imp">$\pu{N}$</span></li>
+<li class="fragment fade-up">$m$ en <span class="fragment fade-up imp">$\pu{kg}$</span></li>
+<li class="fragment fade-up">$a$ en <span class="fragment fade-up imp">$\pu{m*s-2}$</span></li>
 </ul>
-<p class="fragment fade-up"><u>Rq</u> : $\vec{u}_T$ est parfois noté $\vec{T}$ et $\vec{u}_N$ noté $\vec{N}$.
 </section><section>
-<iframe scrolling="no" title="Frenet" src="https://www.geogebra.org/material/iframe/id/njrcnku6/width/488/height/468/border/888888/sfsb/true/smb/false/stb/false/stbh/false/ai/false/asb/false/sri/true/rc/true/ld/false/sdz/false/ctl/false" width="488px" height="468px" style="border:0px;border-radius:10px;"> </iframe>
+<iframe width="800" height="450" src="https://www.youtube.com/embed/sPZ2bjW53c8?si=DgySGmJWjYJU8tBo&amp;start=32" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:15px;"></iframe>
 </section><section>
-<p>Dans le repère de Frenet $(\mathrm{M};\vec{u}_T,\vec{u}_N)$,<br>le <b style="color:#FFF056">vecteur vitesse</b> se décompose en :</p>
-<div class="fragment fade-up">
-$$
-\vec{v}(t)
-\begin{cases}
-v_T(t)=v(t)\\
-v_N(t)=0
-\end{cases}
-$$
-</div>
-<p class="fragment fade-up">Finalement :<br>
-$\vec{v}(t)=v(t)\,\vec{u}_T$
+<p>Qu&rsquo;obtient-on dans le cas d&rsquo;un MRU ?</p>
+<p class="fragment fade-up">$\sum \vec{F}_\mathrm{ext} = \vec{0}$</p>
+<p class="fragment fade-up">On pourrait croire alors que la 2<sup>e</sup> loi rend la 1<sup>re</sup> inutile. Mais la 1<sup>re</sup> affirme surtout l'existence de référentiels galiléens or la 2<sup>e</sup> n'est valide que dans ceux-ci !
 </p>
 </section><section>
-<p>Et le <b style="color:#61D836">vecteur accélération</b> :</p>
-<div class="fragment fade-up">
-$$
-\vec{a}(t)
-\begin{cases}
-a_T(t)=\frac{\mathrm{d}v}{\mathrm{d} t}\\
-a_N(t)=\frac{v^2}{R}
-\end{cases}
-$$
-</div>
-<p class="fragment fade-up">Finalement :<br>
-$\vec{a}(t)=\frac{\mathrm{d}v}{\mathrm{d} t}\,\vec{u}_T + \frac{v^2}{R}\,\vec{u}_N$
-</p>
-</section><section>
-<iframe scrolling="no" title="Mouvement circulaire" src="https://www.geogebra.org/material/iframe/id/rjynsa48/width/676/height/537/border/888888/sfsb/true/smb/false/stb/false/stbh/false/ai/false/asb/false/sri/true/rc/true/ld/false/sdz/false/ctl/false" width="676px" height="537px" style="border:0px;border-radius:10px;"> </iframe>
-</section><section>
-<p>Et si le mouvement est circulaire uniforme ?</p>
-<p class="fragment fade-up">On a $\frac{\mathrm{d}v}{\mathrm{d}t}=0$ puisque $v=\mathrm{cte}$</p>
-<div class="fragment fade-up">
-Et donc :
-<p>$$
-\vec{a}(t)
-\begin{cases}
-a_T(t)=0\\
-a_N(t)=\frac{v^2}{R}
-\end{cases}
-$$</p>
-</div>
-<div class="fragment fade-up" style="position:relative;margin:auto;width:fit-content;border:solid 5px #61D836;padding:10px 50px 20px 50px;border-radius:20px;font-size:1.2em;">
-$\vec{a}(t)= \frac{v^2}{R}\,\vec{u}_N$
-</div>
-<p class="fragment fade-up">
-L'accélération est <span class="imp">centripète</span> (dirrigée<br>vers le centre) et de <span class="imp">norme constante</span>.
-</p>
+<p><u>Rq</u> :</p>
+<p>On appelle aussi la 2<sup>e</sup> loi de Newton, le <span class="imp">principe fondamental de la dynamique (PFD)</span>.</p>
 
 </section>
 </section><section>
-<p><a href="https://coursphychi.github.io/tspe/mouvement/">Retour site</a></p>
+
+
+<section data-shortcode-section>
+<h2 id="troisième-loi-de-newtonou-principe-des-actions-réciproques">Troisième loi de Newton<br>ou principe des actions réciproques</h2>
+</section><section>
+<iframe width="800" height="450" src="https://www.youtube.com/embed/36keC5eDUWk?si=lc2e3qlt2ql_KEed&amp;start=80" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:15px;"></iframe>
+</section><section>
+<p>Si un système A agit sur un système B,<br>alors le système B agit sur le système A<br>avec une action <span class="imp">parfaitement opposée</span><br>à celle de A sur B.</p>
+<div class="fragment fade-up" style="position:relative;margin:auto;width:fit-content;border:solid 5px #FF968D;padding:0px 50px 0px 50px;border-radius:10px">
+$$\vec{F}_{B/A} = -\vec{F}_{A/B}$$
+</div>
+</section><section>
+<iframe width="800" height="450" src="https://www.youtube.com/embed/OnoNITE-CLc?si=0LBgaEIfp5CqrFYO&amp;start=80" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:15px;"></iframe>
+
+</section>
+</section><section>
+<p><a href="https://coursphychi.github.io/tspe/newton/">Retour site</a></p>
 </section>
 
   
@@ -497,8 +236,6 @@ L'accélération est <span class="imp">centripète</span> (dirrigée<br>vers le 
   
   
   <script type="text/javascript" src="/reveal-js/plugin/notes/notes.js"></script>
-
-
 
 
 

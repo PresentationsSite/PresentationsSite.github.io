@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>PFD</title>
+<title>Exercices pfd</title>
 
 
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -10,7 +10,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link rel="stylesheet" href="/reveal-js/css/reset.css">
 <link rel="stylesheet" href="/reveal-js/css/reveal.css"><link rel="stylesheet" href="/reveal-js/css/theme/sky.css" id="theme">
-<link rel="stylesheet" href="/highlight-js/github-dark.min.css">
+<link rel="stylesheet" href="/highlight-js/atom-one-dark-reasonable.min.css">
     <link rel="stylesheet" href="/css/styles.css">
 
 <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
@@ -23,17 +23,34 @@
       <div class="slides">
   
 
-    <section><h2 id="exercices-pfd">Exercices PFD</h2>
-</section>
+    <section><style>
+
+.video-container {
+  height: 60vh; /* limite la hauteur à 80% de la fenêtre */
+  width: calc(60vh * 9 / 16); /* largeur en fonction du ratio portrait */
+  margin: 0 auto;
+  position: relative;
+}
+
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  border-radius:10px;
+}
+</style>
+<h2 id="trois-exercices-surla-deuxième-loide-newton">Trois exercices sur<br>la deuxième loi<br>de Newton</h2>
+</section><section>
 
 
 <section data-shortcode-section>
-<section data-noprocess data-shortcode-slide
-      data-background-image="/parachutiste.png"
-      data-background-size="100%"
-      data-background-transition="concave">
-<p><br><br><br><br><br><br><br><br><br></p>
-<h3 id="parachutiste">Parachutiste</h3>
+<h2 id="parachutiste">Parachutiste</h2>
+<div style="position:relative;margin-left:auto;margin-right:auto;width:350px;max-width:100%;margin-bottom:-1em;margin-top:1em;">
+<img src="/newtonparachute.png" style="box-shadow:none;background:none;border:none;">
+</div>
 </section><section>
 <p><a href="https://trinket.io/glowscript/5223678e05?outputOnly=true">Lien vers la simulation de l&rsquo;évolution<br>de l&rsquo;altitude en fonction du temps</a></p>
 </section>
@@ -80,13 +97,13 @@
 <li>Que vaut la résultante des forces<br>au moment du saut ?<br>
 <small style="color:gray">La masse du parachutiste avec son parachute est de 80 kg.</small></li>
 </ol>
-<p><span class='fragment ' ><span style="font-weight:normal;color:green">On a au départ : $a\approx\pu{10 m*s-2}$<br>Donc d’après le PFD : <br> $F=ma\Rightarrow F \approx 80\times 10 \approx \pu{800 N}$<br><br>On retrouve qu’au départ,<br>l’unique force subie est le poids $mg$.</span></span></p>
+<p class="fragment fade-up"><span style="font-weight:normal;color:green">On a au départ : $a\approx\pu{10 m*s-2}$<br>Donc d'après le PFD : <br> $F=ma\Rightarrow F \approx 80\times 10 \approx \pu{800 N}$<br><br>On retrouve qu'au départ,<br>l'unique force subie est le poids $mg$.</span></p>
 </section><section>
 <ol start="6">
 <li>Que vaut la résultante des forces au moment de l&rsquo;ouverture du parachute ?
 <br><br></li>
 </ol>
-<p><span class='fragment ' ><span style="font-weight:normal;color:green">On a maintenant $a\approx\pu{60 m*s-2}$ (soit environ $6g$)<br> L’utilisation du PFD nous donne alors :<br>$F \approx 80\times 60 \approx \pu{5,4 kN}$</span></span></p>
+<p class="fragment fade-up"><span style="font-weight:normal;color:green">On a maintenant $a\approx\pu{60 m*s-2}$ (soit environ $6g$)<br> L'utilisation du PFD nous donne alors :<br>$F \approx 80\times 60 \approx \pu{5,4 kN}$</span></p>
 </section><section>
 <p><a href="https://trinket.io/glowscript/6c0f225b03?outputOnly=true">Lien vers simulation</a></p>
 </section>
@@ -96,21 +113,19 @@
       data-background-transition="concave">
 
 </section>
-</section>
+</section><section>
 
 
 <section data-shortcode-section>
-<section data-noprocess data-shortcode-slide
-      data-background-image="/poing.png"
-      data-background-size="100%"
-      data-background-transition="concave">
-<p><br><br><br><br><br><br><br><br><br></p>
 <h3 id="coup-de-poing">Coup de poing</h3>
+<div style="position:relative;margin-left:auto;margin-right:auto;width:400px;max-width:100%;margin-bottom:-1em;margin-top:1em;">
+<img src="/newtonpoing.png" style="box-shadow:none;background:none;border-radius:10px;border:none;">
+</div>
 </section><section>
 <p>On tient fermement son téléphone dans la main pendant qu&rsquo;on envoie un coup de poing<br>dans le vide.</p>
 </section><section>
 <p>L&rsquo;accéléromètre du smartphone<br>a enregistré le graphe suivant :</p>
-<div style="text-align:center">                           
+<div style="border-radius:15px;">                           
 <iframe src="/plotacc.html" width="100%" height="500"></iframe>                                             
 </div>
 </section><section>
@@ -127,37 +142,33 @@
 </ul>
 
 </section>
-</section>
+</section><section>
 
 
 <section data-shortcode-section>
-<section data-noprocess data-shortcode-slide
-      data-background-image="/skieur.png"
-      data-background-size="60%"
-      data-background-transition="concave">
-<h3 id="skieur">                                        Skieur</h3>
-<p><br><br><br><br></p>
+<h3 id="skieur">Skieur</h3>
+<div style="position:relative;margin-left:auto;margin-right:auto;width:400px;max-width:100%;margin-bottom:-1em;margin-top:1em;">
+<img src="/newtonski.png" style="box-shadow:none;background:none;border-radius:10px;border:none;">
+</div>
+</section><section>
+<p>Un skieur de $m=\pu{80 kg}$<br>dévale une pente de $\alpha = 30°$.</p>
 </section><section>
 <ul>
-<li>
-<p>Bilan des forces sur le skieur ?</p>
-</li>
-<li>
-<p>Valeur de ces forces ?</p>
-</li>
-<li>
-<p>Accélération du skieur ?</p>
-</li>
+<li>Faire le bilan des forces s&rsquo;exerçant<br>sur le skieur.</li>
+<li>Déterminer la valeur de ces forces.</li>
+<li>Déterminer l&rsquo;accélération du skieur.</li>
 </ul>
-</section>
-<section data-noprocess data-shortcode-slide
-      data-background-size="contain"
-      data-background-transition="concave"
-      data-background-video="/skieur.mp4">
+<aside class="notes"><p>On est dans la situation d&rsquo;un plan incliné.
+Galilée les utilisait beaucoup.
+Permet de contrôler g.
+Au final on a un mouvement uniformément accéléré d&rsquo;accélération g sin α</p>
+</aside>
+</section><section>
+<iframe width="800" height="450" src="https://www.youtube.com/embed/1svxk26qvtY?si=V8h1TzA2vYIMp1OM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
 
 </section>
 </section><section>
-<p><a href="https://coursphychi.github.io/tsti2d/mecanique/">Retour site</a></p>
+<p><a href="https://coursphychi.github.io/tspe/newton/">Retour site</a></p>
 </section>
 
   
@@ -180,7 +191,7 @@
 </script>
 
 <script type="application/json" id="reveal-hugo-site-params">{"highlight_theme":"github-dark","line-numbers":true,"theme":"sky","transition":"concave","transition_speed":"fast"}</script>
-<script type="application/json" id="reveal-hugo-page-params">null</script>
+<script type="application/json" id="reveal-hugo-page-params">{"highlight_theme":"atom-one-dark-reasonable","theme":"sky"}</script>
 
 <script src="/reveal-js/js/reveal.js"></script>
 
