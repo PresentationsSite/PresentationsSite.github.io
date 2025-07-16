@@ -1,0 +1,737 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>Champ uniforme</title>
+
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="/reveal-js/css/reset.css">
+<link rel="stylesheet" href="/reveal-js/css/reveal.css"><link rel="stylesheet" href="/reveal-js/css/theme/league.css" id="theme">
+<link rel="stylesheet" href="/highlight-js/atom-one-dark-reasonable.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  </head>
+  <body>
+    
+    <div class="reveal">
+      <div class="slides">
+  
+
+    <section><style>
+img {
+border: none !important;
+}
+
+.imp {
+font-weight:bold;color:#FF968D;
+}
+
+li {
+color: #fff;
+}
+
+ul {
+margin-left: auto;
+margin-right: auto;
+text-align: left;
+width: fit-content;
+list-style-position: outside;
+color:#fff;
+}
+
+span {
+font-weight:normal;
+}
+
+.video-container {
+  height: 60vh; /* limite la hauteur à 80% de la fenêtre */
+  width: calc(60vh * 9 / 16); /* largeur en fonction du ratio portrait */
+  margin: 0 auto;
+  position: relative;
+}
+
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  border-radius:10px;
+}
+</style>
+
+
+
+<aside class="notes"><p>Penser à recharger la page après exécution des trinkets sinon ça rame&hellip;</p>
+</aside>
+<h1 id="mouvement-dans-un-champ-uniforme">Mouvement dans un champ uniforme</h1>
+</section><section>
+
+
+<section data-shortcode-section>
+<h2 id="champ-de-pesanteur-uniforme">Champ de pesanteur uniforme</h2>
+</section><section>
+<p>Le <span class="imp">champ de pesanteur</span> est décrit par un champ vectoriel $\vec{g}$ dont la direction est indiquée<br>par un fil à plomb.</p>
+<p class="fragment fade-up">Placée dans un champ de pesanteur, toute masse $m$ subit une force <span class="imp">$\vec{P}=m\vec{g}$</span> appelée <span class="imp">poids</span>.</p>
+</section><section>
+<p>La valeur de $g$ varie en fonction<br>de la position sur Terre et de l&rsquo;altitude.</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-iframe="/visualisation_g.html"
+      data-background-interactive="true"
+      data-background-size="contain"
+      data-background-transition="concave">
+<aside class="notes"><p>Ça c&rsquo;est qu&rsquo;on obtient avec un modèle d&rsquo;ellipsoïde (sans les anomalies).</p>
+</aside>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-size="contain"
+      data-background-transition="concave"
+      data-background-video="/postdamgravitypotato.mp4"
+      data-background-video-loop="true">
+<aside class="notes"><p>Postdam gravity potato
+Distance radiale (en m) qui sépare la surface équipotentielle du géoïde de l’ellipsoïde de référence (WGS-84/GRS80). Une valeur +80 m signifie que, si la Terre était recouverte d’un océan au repos, la surface de l’eau serait 80 m au-dessus de l’ellipsoïde ; –100 m signifie 100 m en dessous.
+Les anomalies jouent sur le 3e chiffre après la virgule de g.</p>
+</aside>
+</section><section>
+<p>Au voisinage de la surface d&rsquo;une planète, sur des distances faibles par rapport à son rayon, le champ de pesanteur <span class="imp">$\vec{g}$</span> peut être considéré comme <span class="imp">uniforme</span>.</p>
+<p class="fragment fade-up"><u>Rq</u> : uniforme signifie partout identique ($\vec{g}=\vec{\text{cte}}$).
+</section><section>
+<iframe src="https://trinket.io/embed/glowscript/de2da4d3373b?outputOnly=true" width="100%" height="600" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen style="border-radius:10px;"></iframe>
+<aside class="notes"><p>Cliquer sur la Terre pour se poser dessus.</p>
+</aside>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h2 id="équations-horaires-du-mouvementet-équation-de-la-trajectoire">Équations horaires du mouvement<br>et équation de la trajectoire</h2>
+</section><section>
+<p>On étudie le lancer d&rsquo;une balle de basket.</p>
+<p class="fragment fade-up">À l'instant $t=0$, la balle quitte les mains du joueur.</p>
+<p class="fragment fade-up">On néglige les forces de frottement<br>
+$\Rightarrow$ seule force extérieure : <span class="fragment">le poids</span><br>
+$\Leftrightarrow$ situation de <span class="imp fragment">chute libre</span>.
+</section><section>
+<p>Dans le <span class="imp">référentiel terrestre</span>, supposé <span class="imp">galiléen</span>,<br>le mouvement du centre de masse $\mathrm{M}$ d&rsquo;un système de masse constante $m$ est étudié dans le repère d&rsquo;espace $(\mathrm{O};\vec{i},\vec{j},\vec{k})$.</p>
+<div style="position:relative;margin-left:auto;margin-right:auto;width:700px;max-width:100%;">
+<img src="/reperehoraire.png" style="box-shadow:none;background:none;">
+</div>
+</section><section>
+<p>Conditions initiales :</p>
+<div style="position:relative;margin-left:auto;margin-right:auto;width:700px;max-width:100%;">
+<img src="/cihoraires.png" style="box-shadow:none;background:none;">
+</div>
+</section><section>
+<p>À la date $t=0$, le point $\mathrm{M}$ est situé en $\mathrm{M_0}(0,0,h)$.<br>
+Et son vecteur vitesse initial $\vec{v}_0$ vaut :</p>
+<p>$$
+\vec{v}(t=0)=\vec{v}_0=
+\begin{cases}
+v_x(0)=v_0\cos(\alpha)\\
+v_y(0)=0\\
+v_z(0)=v_0\sin\alpha
+\end{cases}
+$$</p>
+</section><section>
+<p><b  style="color:#FF968D">Inventaire des forces extérieures</b></p>
+<br>
+<ul>
+<li class="imp fragment fade-up">le poids</li>
+</ul>
+</section><section>
+<p><b style="color:#61D836">Vecteur accélération</b></p>
+<br>
+<p class="fragment fade-up">Application de la deuxième loi de Newton :</p>
+<div class="fragment fade-up">
+$$m{\color{#61D836}\vec{a}} = \sum \color{#FF968D}\vec{F}_\mathrm{ext}$$
+</div>
+<div class="fragment fade-up">
+$$\Rightarrow m{\color{#61D836}\vec{a}}={\color{#FF968D}m\vec{g}} \Rightarrow {\color{#61D836}\vec{a}}={\color{#FF968D}\vec{g}}$$
+</div>
+<p class="fragment fade-up">Le mouvement est <b class="fragment" style="color:#61D836">uniformément accéléré vers le bas</b>.</p>
+</section><section>
+<p>Coordonnées du vecteur accélération :</p>
+<div class="fragment fade-up" style="color:#61D836;">
+$$
+\vec{a}(t)=
+\begin{cases}
+a_x(t)=0\\
+a_y(t)=0\\
+a_z(t)=-g
+\end{cases}
+$$
+</div>
+</section><section>
+<p><b style="color:#FFF056">Vecteur vitesse</b></p>
+<p>Les coordonnées du <b style="color:#FFF056">vecteur vitesse</b> sont des <span class="imp"><a href="../primitives" target="_blank" rel="noopener noreferrer">primitives</a></span> des coordonnées du <b style="color:#61D836">vecteur accélération</b>.</p>
+<p class="fragment fade-up">
+<span style="color:#61D836;">
+$
+\vec{a}(t)=
+\begin{cases}
+\frac{\mathrm{d}v_x}{\mathrm{d}t}=0\\
+\frac{\mathrm{d}v_y}{\mathrm{d}t}=0\\
+\frac{\mathrm{d}v_z}{\mathrm{d}t}=-g
+\end{cases}
+$
+</span>
+<span class="fragment">
+$\Rightarrow$
+</span>
+<span class="fragment" style="color:#FFF056">
+$
+\vec{v}(t)=
+\begin{cases}
+v_x(t)=c_1\\
+v_y(t)=c_2\\
+v_z(t)=-gt+c_3
+\end{cases}
+$
+</span>
+</p>
+<aside class="notes"></aside>
+</section><section>
+<p>Comment obtenir les constantes d&rsquo;intégration<br>$c_1$, $c_2$ et $c_3$ ?</p>
+<p class="fragment fade-up">Grâce aux <span class="imp">conditions initiales</span> :</p>
+<ul>
+<li class="fragment fade-up">$v_x(0)=c_1=v_0\cos\alpha$</li>
+<li class="fragment fade-up">$v_y(0)=c_2=0$</li>
+<li class="fragment fade-up">$v_z(0)=c_3=v_0\sin\alpha$</li>
+</ul>
+</section><section>
+<p>Coordonnées du vecteur vitesse :</p>
+<div class="fragment fade-up" style="color:#FFF056;">
+$$
+\vec{v}(t)=
+\begin{cases}
+v_x(t)=v_0\cos\alpha\\
+v_y(t)=0\\
+v_z(t)=-gt+v_0\sin\alpha
+\end{cases}
+$$
+</div>
+</section><section>
+<p><b style="color:#56C1FF">Coordonnées du vecteur position</b> :<br>
+<span class="imp">équations horaires du mouvement</span></p>
+<p class="fragment fade-up">Les coordonnées du <b style="color:#56C1FF">vecteur position</b> sont des <span class="imp">primitives</span> des coordonnées du <b style="color:#FFF056">vecteur vitesse</b>.</p>
+</section><section>
+<span style="color:#FFF056;">
+$
+\vec{v}(t)=
+\begin{cases}
+\frac{\mathrm{d}x}{\mathrm{d}t}=v_0\cos\alpha\\
+\frac{\mathrm{d}y}{\mathrm{d}t}=0\\
+\frac{\mathrm{d}z}{\mathrm{d}t}=-gt+v_0\sin\alpha
+\end{cases}
+$
+</span>
+<br><br>
+<span class="fragment">
+$\Downarrow$
+</span>
+<br><br>
+<span class="fragment" style="color:#56C1FF">
+$
+\overrightarrow{OM}(t)=
+\begin{cases}
+x(t)=(v_0\cos\alpha)t+c'_1\\
+y(t)=c'_2\\
+z(t)=-\frac12 gt^2+(v_0\sin\alpha)t+c'_3
+\end{cases}
+$
+</span>
+</section><section>
+<p>On obtient $c&rsquo;_1$, $c&rsquo;_2$ et $c&rsquo;_3$ grâce aux conditions initiales :</p>
+<ul>
+<li class="fragment fade-up">$x(0)=c'_1=0$</li>
+<li class="fragment fade-up">$y(0)=c'_2=0$</li>
+<li class="fragment fade-up">$z(0)=c'_3=h$</li>
+</ul>
+</section><section>
+<p>D&rsquo;où les <b style="color:#56C1FF">équations horaires</b></p>
+<div class="fragment fade-up" style="color:#56C1FF;">
+$$
+\overrightarrow{OM}(t)=
+\begin{cases}
+x(t)=(v_0\cos\alpha)t\\
+y(t)=0\\
+z(t)=-\frac12 gt^2 + (v_0\sin\alpha)t + h
+\end{cases}
+$$
+</div>
+</section><section>
+<div style="position:relative;margin-left:auto;margin-right:auto;width:700px;max-width:100%;margin-bottom:-1em;margin-top:-1em;">
+<img src="/equhoraires.png" style="box-shadow:none;background:none;">
+</div>
+</section><section>
+<p><span class="imp">Équation de la trajectoire</span></p>
+<p>Comment obtenir <span class="imp">$z(x)$</span> à partir de <span style="color:#56C1FF"> $\overrightarrow{OM}(t)$</span> ?</p>
+<br>
+<ul>
+<li class="fragment fade-up">On isole $t$ grâce à l'équation $x(t)$<br></li>
+<li class="fragment fade-up">On remplace dans $z(t)$.</li>
+</li>
+</section><section>
+<p>$x(t) = (v_0\cos\alpha)t$ <span class="fragment"> $\Rightarrow t=$</span><span class="fragment" style="color:#FF95CA">$\displaystyle \frac{x}{v_0\cos\alpha}$</span></p>
+<p class="fragment fade-up">
+D'où
+</p>
+<p class="fragment fade-up"> $z(x)=$<span class="fragment">$-\frac12 g \left({\color{#FF95CA}\frac{x}{v_0\cos\alpha}}\right)^2+v_0\sin\alpha\left( {\color{#FF95CA}\frac{x}{v_0\cos\alpha}}\right)+h$</span></p>
+</section><section>
+<p>En simplifiant, on obtient <span class="imp">l&rsquo;équation de la trajectoire</span> :</p>
+<div class="fragment fade-up imp">
+$$
+z(x)=-\frac{g}{2\left(v_0\cos\alpha\right)^2}x^2+\left(v_0\tan\alpha\right) x+h
+$$
+</div>
+<p class="fragment fade-up">La trajectoire est donc <span class="imp">plane</span><br> (comprise dans le plan $(\mathrm{O},\vec{i},\vec{k})$.</p>
+<p class="fragment fade-up">
+Le mouvement de chute libre est <span class="imp">parabolique</span><br>(la trajectoire est une portion de parabole).</p>
+</section><section>
+<iframe scrolling="no" title="Chute libre" src="https://www.geogebra.org/material/iframe/id/hzmu3mye/width/849/height/599/border/888888/sfsb/true/smb/false/stb/false/stbh/false/ai/false/asb/false/sri/true/rc/false/ld/false/sdz/true/ctl/false" width="849px" height="599px" style="border:0px;border-radius:10px;"> </iframe>
+</section><section>
+<iframe src="https://trinket.io/embed/glowscript/1a020d68e4?toggleCode=true" width="800" height="600" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen style="border-radius:10px;"></iframe>
+</section><section>
+<iframe width="800" height="450" src="https://www.youtube.com/embed/Un5roSKDusQ?si=Av0ShoUGce8GlrCC" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+</section><section>
+<p>Le mouvement de chute libre<br><span class="imp">ne dépend pas de la masse</span> !</p>
+<p class="fragment fade-up">En effet, la masse a disparu dès le départ<br>(2<sup>e</sup> loi de Newton).</p>
+</section><section>
+<iframe width="800" height="450" src="https://www.youtube.com/embed/E43-CfukEgs?si=3qTYV7xJrQjcooqu" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h2 id="petits-exercices-pas-facile">Petits exercices pas facile</h2>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-size="contain"
+      data-background-transition="concave"
+      data-background-video="/jetpierre.mp4">
+</section><section>
+<p>Si on néglige les frottements, à quelle hauteur<br>se trouve approximativement  la personne ?</p>
+<p class="fragment fade-up">Que peut-on supposer en réalité ?</p>
+</section><section>
+<p>À quelle vitesse minimale doit partir<br>la balle pour passer le filet ?</p>
+<div style="position:relative;margin-left:auto;margin-right:auto;width:700px;max-width:100%;">
+<img src="/servicevolley.png" style="box-shadow:none;background:none;border-radius:10px;">
+</div>
+<p>rayon de la balle : $r=\pu{10 cm}$</p>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h2 id="aspects-énergétiques">Aspects énergétiques</h2>
+</section><section>
+<p>Lors d&rsquo;une chute libre,<br>l&rsquo;<span class="imp">énergie mécanique $E_m$</span> du système est la somme<br>de son <b style="color:#FFF056">énergie cinétique $E_c=\frac12 mv^2$</b> et de son<br><b style="color:#56C1FF">énergie potentielle de pesanteur $E_{pp}=mgz$</b>.</p>
+</section><section>
+<p>Et comme la seule force agissant sur le système est conservative, le <span class="imp">théorème de l&rsquo;énergie mécanique</span>,</p>
+<p class="fragment fade-up imp">$$\Delta E_m = \sum W_\mathrm{AB}(\vec{F}_\mathrm{n.c.}) = 0$$</p>
+<p class="fragment fade-up">nous assure que l'<span class="imp">énergie mécanique<br>est conservée</span> pendant le mouvement.
+</section><section>
+<p>L&rsquo;<b style="color:#FFF056">énergie cinétique</b> est ainsi convertie en <b style="color:#56C1FF">énergie potentielle de pesanteur</b> et inversement.</p>
+</section><section>
+<iframe src="https://trinket.io/embed/glowscript/968347ad09aa?toggleCode=true" width="800" height="580" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen style="border-radius:10px;"></iframe>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h2 id="champ-électrique-créé-parun-condensateur-plan">Champ électrique créé par<br>un condensateur plan</h2>
+</section><section>
+<p>Un <span class="imp">condensateur plan</span> est constitué de deux plaques métalliques chargées, parallèles entre elles<br>et séparées par un isolant (air, huile&hellip;).</p>
+<p class="fragment fade-up">Il se crée alors un <span class="imp">champ électrique uniforme</span> dans<bR>la zone de l'espace située entre les deux plaques (suffisamment loin des bords).</p>
+</section><section>
+<iframe src="https://trinket.io/embed/glowscript/8e489ac4d762?outputOnly=true" width="800px" height="590px" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen style="border-radius:10px;"></iframe>
+</section><section>
+<p>Les <span class="imp">lignes de champ</span> sont <span class="fragment imp">perpendiculaires</span> aux plaques, <span class="imp">orientées de la plaque chargée <span class="fragment imp">positivement</span> vers la plaque chargée <span class="fragment imp">négativement</span></span>.</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/ldccondo.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+</section><section>
+<p>La norme $E$ du champ créé par le condensateur plan est donnée par la formule :</p>
+<br>
+<div class="fragment fade-up" style="position:relative;margin:auto;width:fit-content;border:solid 5px #FF968D;padding:0 50px 0 50px;border-radius:10px">
+$$E=\frac U d$$
+</div>
+<br>
+<ul>
+<li style="color:#aaa;" class="fragment fade-up">$U$ est la tension entre les plaques (en <span class="fragment">$\pu{V}$<span>)</li>
+<li style="color:#aaa;" class="fragment fade-up">$d$ est la tension entre els plaques (en $\pu{m}$)</li>
+<li style="color:#aaa;" class="fragment fade-up">$E$ (en <span class="fragment">$\pu{V*m-1}$<span>)</li>
+</ul>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h2 id="mouvement-dans-unchamp-électrique-uniforme">Mouvement dans un<br>champ électrique uniforme</h2>
+</section><section>
+<p>Prenons l&rsquo;exemple du principe de fonctionnement<br>des imprimantes à jet d’encre continu dévié, principalement utilisées pour  imprimer  les  dates  d’expiration  figurant  sur  les  produits alimentaires.</p>
+<div style="position:relative;margin-left:auto;margin-right:auto;width:600px;max-width:100%;">
+<img src="/impression.jpg" style="box-shadow:none;background:none;border-radius:15px;">
+</div>
+</section><section>
+<p>Le jet d’encre sort de la tête d’impression par une buse qui le décompose en très petites gouttes dont certaines sont chargées électriquement.</p>
+<p class="fragment fade-up">Celles-ci  passent  sous  un  déflecteur  constitué  de  deux  plaques  P<sub>1</sub> et  P<sub>2</sub> parallèles,  chargées  électriquement, assimilables à un condensateur plan. Ces plaques dévient les gouttes chargées de leur trajectoire initiale.</p>
+<p class="fragment fade-up">Les gouttes non chargées poursuivent leur mouvement rectiligne vers une gouttière de recyclage.</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/jetdencre.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/schemajetdencre.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+</section><section>
+<p>À la date $t_0=0$ s, la goutte d’encre G pénètre dans<br>la zone de champ électrique uniforme au niveau du<bR>point O avec une vitesse initiale notée $\vec{v}_0=v_0\,\vec{i}$.</p>
+</section><section>
+<p>Sachant que la goutte, chargée négativement,<br>est déviée vers le haut, quel est le signe des<br>charges portées par P<sub>1</sub> et P<sub>1</sub> ?</p>
+<p class="fragment fade-up">Que peut-on dire du champ $\vec{E}$ entre les plaques ?</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/schemajetdencrechamp.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+</section><section>
+<p>Obtenons les équations horaires du mouvement<br>de la goutte dans le déflecteur.</p>
+<p class="fragment fade-up">
+On se place dans le <span class="imp">référentiel terrestre</span> supposé <span class="imp">galiléen</span> et muni du <span class="imp">repère d'espace</span> $(O;\vec{i},\vec{j},\vec{k})$.
+</p>
+</section><section>
+<p><span class="imp">Bilan des forces extérieures s&rsquo;appliquant à la goutte :</span></p>
+<br>
+<ul>
+<li class="fragment fade-up">poids $\vec{P}=m\vec{g}$</li>
+<li class="fragment fade-up">force électrique $\vec{F}_e = $ <span class="fragment">$q\vec{E}$</span></li>
+<li class="fragment fade-up">actions de l'air sur la bille<br>(force d'Archimède, frottements)</li>
+</ul>
+<p class="fragment fade-up">Dans la suite, on négligera les autres<br>forces que la force électrique.</p>
+<aside class="notes"><p>À justifier :
+masse (2.10E-10 kg) et surface toutes petites</p>
+</aside>
+</section><section>
+<p><b style="color:#61D836">Vecteur accélération</b></p>
+<br>
+<p class="fragment fade-up">Application de la deuxième loi de Newton :</p>
+<div class="fragment fade-up">
+$$m{\color{#61D836}\vec{a}} = \sum \color{#FF968D}\vec{F}_\mathrm{ext}$$
+</div>
+<div class="fragment fade-up">
+$$\Rightarrow m{\color{#61D836}\vec{a}}={\color{#FF968D}q\vec{E}} \Rightarrow {\color{#61D836}\vec{a}}=\frac {\color{#FF968D}q} m {\color{#FF968D}\vec{E}}$$
+</div>
+<p class="fragment fade-up">Comme $q<0$, le mouvement est<br><b class="fragment" style="color:#61D836">uniformément accéléré vers le <span class="fragment" style="font-weight:bold;">haut</span></b>.</p>
+</section><section>
+<p>Coordonnées du vecteur accélération :</p>
+<div class="fragment fade-up" style="color:#61D836;">
+$$
+\vec{a}(t)=
+\begin{cases}
+a_x(t)=0\\
+a_y(t)=0\\
+a_z(t)=-\frac {qE}{m}
+\end{cases}
+$$
+</div>
+<p class="fragment fade-up">
+<u>Rq</u> : en effet, $\vec{E}=-E\,\vec{k}$
+<aside class="notes"><p>Le - est important ! C&rsquo;est E qu&rsquo;on projette et E est vers le bas !</p>
+</aside>
+</section><section>
+<p><b style="color:#FFF056">Vecteur vitesse</b></p>
+<br>
+<p class="fragment fade-up">On primitive les coordonnées de <b style="color:#61D836">$\vec{a}$</b>.</p>
+<p class="fragment fade-up">
+$\Rightarrow$
+<span class="fragment" style="color:#FFF056">
+$
+\vec{v}(t)=
+\begin{cases}
+v_x(t)=c_1\\
+v_y(t)=c_2\\
+v_z(t)=-\frac{qE}{m} t+c_3
+\end{cases}
+$
+</span>
+</p>
+</section><section>
+<p>D&rsquo;après les conditions initiales :</p>
+<ul>
+<li class="fragment fade-up">$v_x(0)=c_1=v_0$</li>
+<li class="fragment fade-up">$v_y(0)=c_2=0$</li>
+<li class="fragment fade-up">$v_z(0)=c_3=0$</li>
+</ul>
+</section><section>
+<p>D&rsquo;où</p>
+<div class="fragment fade-up" style="color:#FFF056;">
+$$
+\vec{v}(t)=
+\begin{cases}
+v_x(t)=v_0\\
+v_y(t)=0\\
+v_z(t)=-\frac{qE}{m} t
+\end{cases}
+$$
+</div>
+</section><section>
+<p><b style="color:#56C1FF">Coordonnées du vecteur position</b><br>
+= <span class="imp">équations horaires du mouvement</span></p>
+<p>On primitive les coordonnées de <b style="color:#FFF056">$\vec{v}$</b>.</p>
+<p class="fragment fade-up">
+$\Rightarrow$
+<span class="fragment" style="color:#56C1FF">
+$
+\overrightarrow{OG}(t)=
+\begin{cases}
+x_\mathrm{G}(t)=v_0 t + c'_1\\
+y_\mathrm{G}(t)=c'_2\\
+z_\mathrm{G}(t)=-\frac{qE}{2m} t^2+c'_3
+\end{cases}
+$
+</span>
+</p>
+</section><section>
+<p>D&rsquo;après les conditions initiales :</p>
+<ul>
+<li class="fragment fade-up">$x_\mathrm{G}(0)=c'_1=0$</li>
+<li class="fragment fade-up">$y_\mathrm{G}(0)=c'_2=0$</li>
+<li class="fragment fade-up">$z_\mathrm{G}(0)=c'_3=0$</li>
+</ul>
+</section><section>
+<p>D&rsquo;où</p>
+<br>
+<p class="fragment fade-up">
+<span style="color:#56C1FF">
+$
+\overrightarrow{OG}(t)=
+\begin{cases}
+x_\mathrm{G}(t)=v_0 t\\
+y_\mathrm{G}(t)=0\\
+z_\mathrm{G}(t)=-\frac{qE}{2m} t^2
+\end{cases}
+$
+</span>
+</p>
+</section><section>
+<p>Déterminer la valeur de la hauteur H’I du point d’impact I de la goutte sur le support d’impression<br>si on suppose que le mouvement de la goutte est rectiligne uniforme en sortie du déflecteur (de S à I).</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/schemajetdencrechamp.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+</section><section>
+<p>Marche à suivre possible :</p>
+<ul>
+<li class="fragment fade-up" style="color:#aaa;">Déterminer le temps $t_S$ auquel la goutte sort du déflecteur et la déviation HS.</li>
+<li class="fragment fade-up" style="color:#aaa;">Déterminer les coordonnées de $\vec{v}_S$.</li>
+<li class="fragment fade-up" style="color:#aaa;">Montrer que $\tan\alpha=-\frac{qEL}{mv_0^2}$</li>
+</ul>
+<p class="fragment fade-up"><u>Rq</u> : on va voir dans la fin du cours comment on aurait pu obtenir cette dernière relation à partir de la conservation de l'énergie mécanique de la goutte.</p>
+</section><section>
+<p>Données pour l&rsquo;application numérique :</p>
+<ul>
+<li>$m=\pu{2e-10 kg}$</li>
+<li>$q=\pu{-4e-13 C}$</li>
+<li>$L=\pu{2 cm}$</li>
+<li>$D=\pu{3 cm}$</li>
+<li>$E=\pu{9e5 V*m-1}$</li>
+<li>$v_0=\pu{20e5 m*s-1}$</li>
+</ul>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h2 id="aspect-énergétique">Aspect énergétique</h2>
+</section><section>
+<p>On retrouve une utilisation du champ électrique uniforme d&rsquo;un condensateur dans les<br><span class="imp">accélérateurs linéaires de particules chargées</span>.</p>
+<p class="fragment fade-up">Comme leur nom l'indique, leur but est d'accélérer fortement une particule chargée (électron ou ion).<p>
+<p class="fragment fade-up">Cette particule peut ensuite servir à une expérience<br>de physique des particules ou en radiothérapie. Et en l'envoyant sur une cible, on crée des rayons X utilisée en imagerie médicale ou, là encore, en radiothérapie.
+</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="https://cds.cern.ch/images/OPEN-PHO-ACCEL-2017-011-1/file?size=large"
+      data-background-size="contain"
+      data-background-transition="concave">
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="https://www.rumcsi.org/wp-content/uploads/2023/09/three-medical-providers-in-treatment-room-with-patient-next-to-linear-accelerator.jpg"
+      data-background-size="contain"
+      data-background-transition="concave">
+</section><section>
+<p>Imaginons qu&rsquo;un électron est injecté<br>sans vitesse initiale en A.</p>
+<div style="position:relative;margin-left:auto;margin-right:auto;width:550px;max-width:100%;">
+<img src="/accel1.png" style="box-shadow:none;background:none;">
+</div>
+</section><section>
+<p>Si on néglige l&rsquo;action de la gravité, le <span class="imp">théorème<br>de l&rsquo;énergie cinétique</span> nous dit que :</p>
+<div class="fragment fade-up">
+$$
+\begin{aligned}
+\Delta E_c &= \sum W_\mathrm{AB}(\vec{F}_\mathrm{ext})\\
+ &=\overrightarrow{\mathrm{AB}}\cdot \overrightarrow{F_e}\\
+ &=-qEd
+\end{aligned}
+$$
+</div>
+</section><section>
+<p>Or $E=\frac Ud$. On obtient donc :</p>
+<div class="fragment fade-up">
+$$E_{c\mathrm{B}}-E_{c\mathrm{A}}=-qU$$
+</div>
+<p class="fragment fade-up">Et comme par hypothèse, $v_A = 0$</p>
+<div class="fragment fade-up">
+$v_B=$ <span class="fragment">$\displaystyle\sqrt{\frac{2qU}{m}}$</span>
+</div>
+</section><section>
+<p>Pour une tension de $\pu{20,0 kV}$,<br>on obtient une vitesse de :</p>
+<div class="fragment fade-up" style="font-size:0.9em;">
+$$
+\begin{aligned}
+v_B &= \sqrt{\frac{2\times (\pu{1,60E-19 C})\times(\pu{20,0E3 V})}{\pu{9,11E-31 kg}}}\\
+&= \pu{8,38E7 m*s-1}
+\end{aligned}
+$$
+</div>
+
+</section>
+</section><section>
+<p><a href="https://coursphychi.github.io/tspe/champuni/">Retour site</a></p>
+</section>
+
+  
+
+
+</div>
+      
+
+    </div>
+<script type="text/javascript" src=/reveal-hugo/object-assign.js></script>
+
+<a href="/reveal-js/css/print/" id="print-location" style="display: none;"></a>
+<script type="text/javascript">
+  var printLocationElement = document.getElementById('print-location');
+  var link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.type = 'text/css';
+  link.href = printLocationElement.href + (window.location.search.match(/print-pdf/gi) ? 'pdf.css' : 'paper.css');
+  document.getElementsByTagName('head')[0].appendChild(link);
+</script>
+
+<script type="application/json" id="reveal-hugo-site-params">{"highlight_theme":"github-dark","line-numbers":true,"theme":"sky","transition":"concave","transition_speed":"fast"}</script>
+<script type="application/json" id="reveal-hugo-page-params">{"highlight_theme":"atom-one-dark-reasonable","theme":"league"}</script>
+
+<script src="/reveal-js/js/reveal.js"></script>
+
+<script type="text/javascript">
+  
+  
+  function camelize(map) {
+    if (map) {
+      Object.keys(map).forEach(function(k) {
+        newK = k.replace(/(\_\w)/g, function(m) { return m[1].toUpperCase() });
+        if (newK != k) {
+          map[newK] = map[k];
+          delete map[k];
+        }
+      });
+    }
+    return map;
+  }
+  
+  var revealHugoDefaults = { center: true, controls: true, history: true, progress: true, transition: "slide" };
+  var revealHugoSiteParams = JSON.parse(document.getElementById('reveal-hugo-site-params').innerHTML);
+  var revealHugoPageParams = JSON.parse(document.getElementById('reveal-hugo-page-params').innerHTML);
+  
+  var options = Object.assign({},
+    camelize(revealHugoDefaults),
+    camelize(revealHugoSiteParams),
+    camelize(revealHugoPageParams));
+  Reveal.initialize(options);
+</script>
+
+
+  
+  
+  <script type="text/javascript" src="/reveal-js/plugin/markdown/marked.js"></script>
+  
+  <script type="text/javascript" src="/reveal-js/plugin/markdown/markdown.js"></script>
+  
+  <script type="text/javascript" src="/reveal-js/plugin/highlight/highlight.js"></script>
+  
+  <script type="text/javascript" src="/reveal-js/plugin/zoom-js/zoom.js"></script>
+  
+  
+  <script type="text/javascript" src="/reveal-js/plugin/notes/notes.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({startOnLoad: false});
+    let render = (event) => {
+      let mermaidElems = event.currentSlide.querySelectorAll('.mermaid');
+      if (!mermaidElems.length){
+          return
+      }
+      mermaidElems.forEach(mermaidElem => {
+          let processed = mermaidElem.getAttribute('data-processed');
+          if (!processed){
+              
+              mermaid.init(undefined, mermaidElem);
+          }
+      });
+    };
+    Reveal.addEventListener('slidechanged', render);
+    Reveal.addEventListener('ready', render);
+  </script>
+
+    
+
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']]
+  },
+  svg: {
+    fontCache: 'global'
+  }
+};
+</script>
+
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+</script>
+    
+  </body>
+</html>
