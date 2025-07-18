@@ -86,7 +86,48 @@ Dans le référentiel héliocentrique,<br>les trajectoires des planètes du syst
 <img src="/loidesorbites.png" style="box-shadow:none;background:none;">
 </div>
 </section><section>
-<h3 id="première-loi--loi-des-aires">Première loi &ndash; Loi des aires</h3>
+<p>Une <span class="imp">ellipse</span> est une sorte de cercle applati.</p>
+<p class="fragment fade-up">Elle est caractérisée par son <span class="imp">excentricité $e$</span><br>(écart au cercle) comprise entre 0 et 1.</p>
+<p class="fragment fade-up">La plus grande distance entre deux points<bR>de l'ellipse est appelée <span class="imp">grand axe</span> et notée $2a$.</p>
+<p class="fragment fade-up">La plus petite distance entre deux points<br>de l'ellipse est appelée <span class="imp">petit axe</span> et notée $2b$.</p>
+</section><section>
+<ul>
+<li class="fragment fade-down" style="margin-bottom:1em;">$e=0$ $\rightarrow$ $a=b$</li>
+</ul>
+<br>
+<iframe scrolling="no" title="ellipse" src="https://www.geogebra.org/material/iframe/id/g5e9n658/width/503/height/477/border/888888/sfsb/true/smb/false/stb/false/stbh/false/ai/false/asb/false/sri/true/rc/false/ld/false/sdz/false/ctl/false" width="503px" height="477px" style="border:0px;border-radius:10px;margin-bottom:1em;"> </iframe>
+<br>
+<ul>
+<li class="fragment fade-up">$ 0 < e < 1 \rightarrow a > b $</li>
+</ul>
+</section><section>
+<p>À part mercure, les planètes du système solaire<br>ont une très faible excentricité :</p>
+<table border="1" style="font-size:0.6em;">
+  <tr>
+    <th></th>
+    <th>Mercure</th>
+    <th>Vénus</th>
+    <th>Terre</th>
+    <th>Mars</th>
+    <th>Jupiter</th>
+    <th>Saturne</th>
+    <th>Uranus</th>
+    <th>Neptune</th>
+  </tr>
+  <tr>
+    <th>$e$</th>
+    <td>0,2056</td>
+    <td>0,0068</td>
+    <td>0,0167</td>
+    <td>0,0934</td>
+    <td>0,0489</td>
+    <td>0,0565</td>
+    <td>0,0457</td>
+    <td>0,0113</td>
+  </tr>
+</table>
+</section><section>
+<h3 id="deuxième-loi--loi-des-aires">Deuxième loi &ndash; Loi des aires</h3>
 <div class="fragment fade-up" style="position:relative;margin:auto;width:fit-content;border:solid 5px #FF968D;padding:10px 50px 20px 50px;border-radius:10px">
 Le segment [SP] qui relie le centre P de la planète au centre S du Soleil balaie des <span class="imp">aires égales</span><br>sur des <span class="imp">durée égales</span>.
 </div>
@@ -96,6 +137,18 @@ Le segment [SP] qui relie le centre P de la planète au centre S du Soleil balai
 </div>
 </section><section>
 <iframe scrolling="no" title="Loi des aires" src="https://www.geogebra.org/material/iframe/id/kydwtcjk/width/966/height/602/border/888888/sfsb/true/smb/false/stb/false/stbh/false/ai/false/asb/false/sri/true/rc/false/ld/false/sdz/false/ctl/false" width="966px" height="568px" style="border:0px;border-radius:10px;"> </iframe>
+</section><section>
+<p>Conséquence sur la vitesse des planètes :</p>
+<p class="fragment fade-up">La <span class="imp">vitesse</span> de la planète évolue le long de son orbite<br>en fonction de la <span class="imp">distance</span> au Soleil :</p>
+<ul>
+<li class="fragment fade-up">elle est <span class="imp">maximale</span> au <span class="imp">périhélie</span><br>(point le plus proche du Soleil),</li>
+<li class="fragment fade-up">et <span class="imp">minimale</span> à l'<span class="imp">aphélie</span><br>(point le plus loin du Soleil).</li>
+</ul>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/2kepler.png"
+      data-background-size="contain"
+      data-background-transition="concave">
 </section><section>
 <h3 id="troisième-loi--loi-des-périodes">Troisième loi &ndash; Loi des périodes</h3>
 <div class="fragment fade-up" class="fragment fade-up" style="position:relative;margin:auto;width:fit-content;border:solid 5px #FF968D;padding:10px 50px 20px 50px;border-radius:10px">
@@ -117,8 +170,229 @@ Le quotient du carré de la période de révolution $T$ d'une planète par le cu
 
 <section data-shortcode-section>
 <h2 id="système-en-orbite-circulaire">Système en orbite circulaire</h2>
+</section><section>
+<p>D&rsquo;après la loi d&rsquo;interaction gravitationnelle, un astre<br>de masse $M_\mathrm{O}$ et de centre de masse O crée en tout point M de l&rsquo;espace un <span class="imp">champ de gravitation $\mathcal{G}$</span>.</p>
+<div style="position:relative;margin-left:auto;margin-right:auto;width:500px;max-width:100%;">
+<img src="/grav1.png" style="box-shadow:none;background:none;">
+</div>
+</section><section>
+<div style="position:relative;margin:auto;width:fit-content;border:solid 5px #FF968D;padding:20px 50px 20px 50px;border-radius:10px">
+$\displaystyle\vec{\mathcal{G}}=$&nbsp;<span>$\displaystyle G\frac{M_\mathrm{O}}{\mathrm{OM}^2}\vec{u}_N$</span>
+</div>
+<br>
+<ul>
+<li style="color:#aaa;">$M_\mathrm{O}$ en kg</li>
+<li style="color:#aaa;">$\mathrm{OM}$ en m</li>
+<li style="color:#aaa;">$\mathcal{G}=\pu{6,67E-11 N*m^2*kg^-2}$</li>
+<li style="color:#aaa;">$\vec{u}_N$ vecteur unitaire de direction (OM)<br>orienté vers O.</li>
+</ul>
+</section><section>
+<p>Si un système de masse $m$ n&rsquo;est soumis qu&rsquo;à un<br>seul astre attracteur de masse $M_\mathcal{O}&gt;m$, le champ<br>est dit <span class="imp">newtonien</span> et le système n&rsquo;est soumis qu&rsquo;à<br>la seule force de gravitation <span class="imp">$\vec{F}=m\vec{\mathcal{G}}$</span>.</p>
+</section><section>
+<p>On se place dans un <span class="imp">référentiel astrocentrique</span> :</p>
+<p>liée à l&rsquo;astre de centre de masse O<br>et 3 étoiles lointaines supposées fixes.</p>
+<p class="fragment fade-up">Le référentiel astrocentrique est supposé <span class="imp">galiléen</span>.</p> 
+<p class="fragment fade-up"><u>Rq</u> :<br>si l'astre est la Terre $\rightarrow$ référentiel <span class="imp">géocentrique</span>,<br>et pour le Soleil $\rightarrow$ référentiel <span class="imp">héliocentrique</span>.
+</section><section>
+<p>La trajectoire du système de masse $m$ et de<br>centre de masse M est appelée <span class="imp fragment">orbite</span>.</p>
+</section><section>
+<p>Étudions le mouvement de M dans le cas d&rsquo;une <span class="imp">orbite circulaire</span> en utilisant un repère de Frenet.</p>
+<p class="fragment fade-up">La <span class="imp">deuxième loi de Newton</span> nous donne :</p>
+<p class="fragment fade-up">
+$
+m{\color{#61D836}\,\vec{a}}={\color{#FF644E}m\,\vec{\mathcal{G}}}\Rightarrow
+$
+$
+{\color{#61D836}\,\vec{a}}=\color{#FF644E}\,\vec{\mathcal{G}}
+$
+</p>
+</section><section>
+<p>On décompose sur le repère de Frenet :</p>
+<div class="fragment fade-up">
+<p>$$
+\displaystyle
+\begin{cases}
+{\color{#61D836}a_T=\frac{\mathrm{d}v}{\mathrm{d}t}}=\color{#FF644E}0\\
+{\color{#61D836}a_N = \frac{v^2}{R}} = \color{#FF644E}\mathcal{G}\frac{M_\mathrm{O}}{R^2}
+\end{cases}
+$$</p>
+</div>
+<p class="fragment fade-up"><u>Rq</u> : $R$ est le rayon de l'orbite ($R=\mathrm{OM}=\mathrm{cte}$).</p>
+</section><section>
+<p>On constante que le vecteur accélération n&rsquo;a<br>pas de composante tangentielle.</p>
+<div class="fragment fade-up" style="position:relative;margin:auto;width:fit-content;border:solid 5px #FF968D;padding:0 50px 0 50px;border-radius:10px">
+$$
+\vec{a}=\mathcal{G}\frac{M_\mathrm{O}}{R^2}\vec{u}_N
+$$
+</div>
+<p class="fragment fade-up">On dit que l'accélération est <span class="imp">centripète</span>  (vers le centre).</p>
+<p class="fragment fade-up">Et la <span class="imp">norme de l'accélération</span><br>
+est <span class="imp">constante</span>.</p>
+</section><section>
+<p>De plus, à partir de</p>
+<p>$$
+\frac{\mathrm{d}v}{\mathrm{d}t} = 0,
+$$</p>
+<p class="fragment fade-up">on déduit que le mouvement est <span class="imp fragment">uniforme</span>.</p>
+</section><section>
+<p>et de</p>
+<p>$$
+\frac{v^2}{R} = \mathcal{G}\frac{M_\mathrm{O}}{R^2},
+$$</p>
+<p class="fragment fade-up">on obtient la norme de la vitesse :</p>
+<p class="fragment fade-up">
+<span class="imp">$\displaystyle v = $</span> <span class="imp fragment">$\displaystyle \sqrt{\frac{\mathcal{G}M_\mathrm{O}}{R}}$</span>
+</p>
+</section><section>
+<p>Le <b style="color:#FFD932">vecteur vitesse $\vec{v}$</b> du centre de masse M<br>d&rsquo;un système en orbite circulaire s&rsquo;écrit donc :</p>
+<div class="fragment fade-up" style="position:relative;margin:auto;width:fit-content;border:solid 5px #FFD932;padding:0 50px 0 50px;border-radius:10px;color:#FFD932;">
+$$
+\vec{v}=\sqrt{\frac{\mathcal{G}M_\mathrm{O}}{R}} \, \vec{u}_T
+$$
+</div>
+<p class="fragment fade-up">
+<u>Rq</u> :<br>
+$\vec{v}$ ne dépend pas de la masse $m$ du système.
+</p>
+</section><section>
+<p><span class="imp">Période de révolution $T$</span></p>
+<p class="fragment fade-up"> $T$ est la durée pour parcourir<br>l'orbite circulaire de rayon $R$.</p>
+<p class="fragment fade-up">On a donc :</p>
+<div class="fragment fade-up">
+$$
+v\times T = 2\pi R
+$$
+</div>
+</section><section>
+<p>Prenons le carré de chaque membre :</p>
+<div class="fragment fade-up">
+$$
+{\color{#FFD932}v^2} \times T^2 = 4\pi^2 R^2
+$$
+</div>
+<div class="fragment fade-up">
+$$
+{\color{#FFD932}\frac{\mathcal{G}M_\mathrm{O}}{R}}\times T^2 = 4\pi^2 R^2
+$$
+</div>
+<p class="fragment fade-up">Et en réarrangeant, on obtient :</p>
+<div class="fragment fade-up" style="position:relative;margin:auto;width:fit-content;border:solid 5px #FF968D;margin-top:1em;padding:10px 50px 20px 50px;border-radius:10px">
+<p>$\displaystyle \frac{T^2}{R^3} = $ <span class="fragment">$\displaystyle\frac{4\pi^2}{\mathcal{G}M_\mathrm{O}}$</span></p>
+</div>
+</section><section>
+<p>Comme $\frac{T^2}{R^3}$ ne dépend pas de la masse $m$ du système, on vient de démontrer <span class="imp fragment">la troisième loi de Kepler</span><br>dans le cas d&rsquo;une  orbite circulaire.</p>
+</section><section>
+<p>Isolons $T$ :</p>
+<div class="fragment fade-up">
+$$
+T = 2\pi \sqrt{\frac{R^3}{\mathcal{G}M_\mathrm{O}}}
+$$
+</div>
+<p class="fragment fade-up">On constate que la période de révolution est d'autant plus grande que la distance à l'astre est grande.</p> 
+</section><section>
+<p>On peut en déduire l&rsquo;altitude<br>d&rsquo;un <span class="imp">satellite géostationnaire</span>.</p>
+<p class="fragment fade-up">Un satellite géostationnaire est un satellite<br><span class="imp">immobile</span> dans le référentiel <span class="imp fragment">terrestre</span>. </p>
+<br>
+<ul>
+<li class="fragment fade-up">Son orbite est <span class="imp fragment">circulaire</span>,</li> 
+<li class="fragment fade-up">dans le <span class="imp fragment">plan équatorial</span> de la Terre,</li>
+<li class="fragment fade-up">et sa période vaut <span class="imp fragment">24 h</span>.</li> 
+</ul>
+</section><section>
+<p>Posons $R=(R_T+h)$ où $R_T$ est le rayon<br>terrestre et $h$ l&rsquo;altitude du satellite<br>puis isolons $h$ dans la formule :</p>
+<div class="fragment fade-up">
+$$
+\frac{T^2}{(R_T+h)^3} = \frac{4\pi^2}{\mathcal{G}M_\mathrm{T}}
+$$
+</div>
+<p class="fragment fade-up">$\Downarrow$</p>
+<div class="fragment fade-up">
+$$
+h = \sqrt[3]{\frac{\mathcal{G}M_\mathrm{T} T^2}{4\pi^2}}-R_T
+$$
+</div>
+</section><section>
+<p><u>Application numérique</u></p>
+<p>Données :</p>
+<ul>
+<li style="color:#aaa;">$M_\mathrm{T}=\pu{6,0E24 kg}$</li>
+<li style="color:#aaa;">$R_\mathrm{T}=\pu{6,4E6 kg}$</li>
+</ul>
+<div  class="fragment fade-up" style="font-size:0.7em;">
+$$
+\begin{aligned}
+h&=\left(\frac{(\pu{6,67E-11)\times(\pu{6,0E24})\times( 24 \times 3600)^2 }}{4\pi^2}\right)^{\!\frac 13}-\pu{6,4E6}\\
+&=\pu{3,6E7 m}
+\end{aligned}
+$$
+</div>
+<p class="fragment fade-up">Les satellites géostationnaires<br>orbitent à une altitude de 36 000 km.</p>
 
 </section>
+</section>
+
+<section data-noprocess data-shortcode-slide
+      data-background-iframe="https://satellitetracker3d.com/track?norad-id=25544"
+      data-background-interactive="true"
+      data-background-size="contain"
+      data-background-transition="concave">
+  
+
+
+
+<aside class="notes"><p>à faire :</p>
+<ul>
+<li>constater que toujours des ellipses avec Terre comme foyer (les très excentriques sont chopables loin au-dessus des poles)</li>
+<li>constater que plus on est loin, moins ça va vite (et inversement)</li>
+<li>avec le mean motion et l&rsquo;orbital périod, on peut tester la 3e loi de Kepler et trouver la masse de la Terre&hellip;</li>
+</ul>
+</aside>
+</section>
+
+<section data-noprocess data-shortcode-slide
+      data-background-iframe="https://stuffin.space"
+      data-background-interactive="true"
+      data-background-size="contain"
+      data-background-transition="concave">
+  
+
+
+
+<aside class="notes"><p>3 possibilités pour satellite type : PAYLOAD (en rouge) (le satellite est la charge utile originelle, les bouts de fusées (en bleu) sont désignés ROCKET BODY et les fragments ou éclats divers DEBRIS (en gris) .
+Exemples
+• Hubble (1990-037A) ⇒ payload
+• Étape Centaur (1990-037B) ⇒ rocket body
+• Fragment 1990-037E ⇒ debris</p>
+<p>La collision entre les satellites Iridium-33 et Kosmos-2251 a eu lieu le 10 février 2009 à 16 h 56 TU[1] à 776 kilomètres au-dessus de la péninsule de Taïmyr en Sibérie. Cette collision impliquait le satellite commercial Iridium 33 (560 kg), de l&rsquo;entreprise Iridium spécialisée dans la téléphonie par satellite, et le satellite Kosmos-2251 (900 kg), un satellite de télécommunications militaires russe de type Strela-2M retiré du service. C&rsquo;est le premier événement répertorié de ce type.
+La vitesse de collision est estimée à 11,6 km/s sur des trajectoires perpendiculaires. Un nombre important de débris spatiaux, environ 600, a été produit lors de l&rsquo;impact.</p>
+<p>Pourtant, la probabilité d&rsquo;une telle rencontre brutale est extrêmement faible d&rsquo;après les spécialistes de Thales Alenia Space, second constructeur européen de satellites.</p>
+<p>D&rsquo;habitude, le Norad prévoit ce genre d&rsquo;incident et prévient les opérateurs de satellites, Boeing en l&rsquo;occurrence pour Iridium, qui peuvent faire manœuvrer le satellite pour éviter la collision. Ainsi, cette organisation fait manœuvrer régulièrement, presque quotidiennement, la Station spatiale internationale.</p>
+<p><a href="https://fr.wikipedia.org/wiki/Collision_entre_les_satellites_Iridium-33_et_Kosmos-2251">https://fr.wikipedia.org/wiki/Collision_entre_les_satellites_Iridium-33_et_Kosmos-2251</a></p>
+<p>Grandes familles d&rsquo;orbites :</p>
+<ol>
+<li>LEO (Low Earth Orbit)</li>
+</ol>
+<p>160 – 2 000 km. Faible délai radio, lancement peu coûteux ; c’est la « zone » des constellations Internet et de la station spatiale.  ￼ ￼</p>
+<ol start="2">
+<li>MEO (Medium Earth Orbit)</li>
+</ol>
+<p>2 000 – 35 786 km. Altitude intermédiaire, idéale pour la navigation ; GPS (20 200 km) et Galileo (23 200 km) y résident.  ￼ ￼</p>
+<ol start="3">
+<li>GEO / GSO (Geostationary / Geosynchronous)</li>
+</ol>
+<p>35 786 km, période sidérale 24 h. Un satellite géostationnaire (0° inc, 0 eccentricité) reste « figé » au-dessus d’un point de l’équateur ; en GSO incliné il décrit un 8 dans le ciel.  ￼ ￼</p>
+<ol start="4">
+<li>HEO (High Earth Orbit)</li>
+</ol>
+<p>Tout ce qui est au-delà de l’anneau GEO ou dont l’apogée dépasse GEO ; on y trouve des sondes scientifiques (IBEX, TESS) ou des orbites halo/lunaires (NRHO de Gateway).  ￼</p>
+<ol start="5">
+<li>Orbites particulières
+•	SSO (Sun-synchronous) : quasi polaire, l’orbite « tourne » avec la Terre pour toujours passer à la même heure solaire locale — idéal pour l’imagerie.  ￼
+•	Polar : inclinaison 90 ° ± 10 °, couverture globale à chaque révolution.  ￼
+•	Molniya / Tundra : ellipses de 12 h ou 24 h, apogée haut sur l’hémisphère nord pour des liaisons à haute latitude.  ￼
+•	GTO : orbite de transfert (200 × 35 786 km) servant uniquement d’étape avant GEO ; elle apparaît parfois dans les catalogues mais les objets y restent peu de temps.</li>
+</ol>
+</aside>
 </section><section>
 <p><a href="https://coursphychi.github.io/tspe/champuni/">Retour site</a></p>
 </section>
