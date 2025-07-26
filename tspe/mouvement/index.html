@@ -91,10 +91,14 @@ Un référentiel est un solide (ensemble de points fixes entre eux) par rapport 
 <br>
 <ul>
 <li class="fragment fade-up"><span class="imp">Référentiel terrestre</span> :<br>tout solide immobile à la surface de la Terre.</li>
-<br>
-<li class="fragment fade-up">Référentiel géocentrique :<br>solide défini par le centre de la Terre et 3 étoiles lointaines considérées comme fixes</li>
-<br>
-<li class="fragment fade-up">Référentiel héliocentrique :<br>solide défini par le centre du Soleil et 3 étoiles lointaines considérées comme fixes</li>
+</ul>
+</section><section>
+<ul>
+<li>Référentiel <span class="imp">géocentrique</span> :<br>solide défini par le centre de la Terre et 3 étoiles lointaines considérées comme fixes.</li>
+</ul>
+</section><section>
+<ul>
+<li>Référentiel <span class="imp">héliocentrique</span> :<br>solide défini par le centre du Soleil et 3 étoiles lointaines considérées comme fixes.</li>
 </ul>
 
 </section>
@@ -151,23 +155,23 @@ $$
 </div>
 </section><section>
 <p>Le vecteur vitesse moyenne d&rsquo;un point $\mathrm{M}$<br>entre deux instants $t$ et $t+\Delta t$ est défini par :</p>
-<p>$
+<p class="fragment fade-up">
+$
 \begin{aligned}
-\vec{v}_m(t) &amp;= \frac{\overrightarrow{\mathrm{M}(t)\mathrm{M}(t+\Delta t)}}{\Delta t}\\
-&amp;= \frac{\overrightarrow{\mathrm{OM}}(t+\Delta t)-\overrightarrow{\mathrm{OM}}(t)}{\Delta t}\\
-&amp;=\frac{\overrightarrow{\Delta\mathrm{OM}}(t)}{\mathrm{\Delta}t}
+\vec{v}_m(t) &= \frac{\overrightarrow{\mathrm{M}(t)\mathrm{M}(t+\Delta t)}}{\Delta t}\\
+&= \frac{\overrightarrow{\mathrm{OM}(t+\Delta t)}-\overrightarrow{\mathrm{OM}(t)}}{\Delta t}\\
+&=\frac{\overrightarrow{\Delta\mathrm{OM}(t)}}{\mathrm{\Delta}t}
 \end{aligned}
-$</p>
+$
+</p>
 </section><section>
 <p>On obtient le vecteur vitesse $\vec{v}(t)$<br>en faisant tendre $\Delta$ vers $0$.</p>
 <p class="fragment fade-up">On obtient alors la <span class="imp">dérivée</span> du vecteur position.</p>
 </section><section>
 <p>Le <b style="color:#FFD932">vecteur vitesse $\vec{v}(t)$</b> d&rsquo;un point $\mathrm{M}$ à la date $t$ est la <b style="color:#FFD932">dérivée par rapport au temps du vecteur position</b> :</p>
-<br>
-<div class="fragment fade-up" style="position:relative;margin:auto;width:fit-content;border:solid 5px #FFD932;padding:0px 50px 20px 50px;border-radius:20px;color:#FFD932;font-size:1.2em;">
+<div class="fragment fade-up" style="position:relative;margin:auto;width:fit-content;border:solid 5px #FFD932;padding:0px 50px 20px 50px;border-radius:20px;color:#FFD932;font-size:1.em;">
 $$\vec{v}(t)=\frac{\mathrm{d}\overrightarrow{\mathrm{OM}}}{\mathrm{d}t}$$
 </div>
-<br>
 <p class="fragment fade-up">Notation :<br>
 En physique, $\Delta$ correspond à une variation<br>et $\mathrm{d}$ à une variation infinitésimale.
 </p>
@@ -182,7 +186,6 @@ $$
 $$
 </p>
 </b>
-<br>
 <b style="color:#FFD932" >
 <p class="fragment fade-up">
 $$
@@ -194,7 +197,6 @@ v_z(t)=\frac{\mathrm{d}z}{\mathrm{d}t}=\ldots
 $$
 </p>
 </b>
-<br>
 <p class="fragment fade-up"><u>Rq</u> :
 La notation physique $\frac{\mathrm{d}x}{\mathrm{d}t}$ correspond<br>à la notation mathématique $x'(t)$.
 </p>
@@ -202,7 +204,7 @@ La notation physique $\frac{\mathrm{d}x}{\mathrm{d}t}$ correspond<br>à la notat
 <div style="position:relative;margin-left:auto;margin-right:auto;width:700px;max-width:100%;">
 <img src="/vecvit.png" style="box-shadow:none;background:none;">
 </div>
-<p>Le vecteur vitesse est portée par la <span class="imp">tangente à la trajectoire</span> et orienté dans le sens du mouvement.</p>
+<p>Le vecteur vitesse est porté par la <span class="imp">tangente à la trajectoire</span> et orienté dans le sens du mouvement.</p>
 </section><section>
 <p>La <span class="imp">norme</span> $v$(t) du vecteur vecteur vaut :</p>
 <p class="fragment fade-up">$v(t)=||\vec{v}(t)||=\sqrt{v_x(t)^2+v_y(t)^2+v_z(t)^2}$</p>
@@ -232,7 +234,7 @@ $</p>
 </section><section>
 <p>Le <b style="color:#61D836">vecteur accélération $\vec{a}(t)$</b> d&rsquo;un point $\mathrm{M}$ à la date $t$ est la <b style="color:#61D836">dérivée par rapport au temps du vecteur vitesse</b> et <b style="color:#61D836">la dérivée seconde du vecteur position</b> :</p>
 <br>
-<div class="fragment fade-up" style="position:relative;margin:auto;width:fit-content;border:solid 5px #61D836;padding:0px 50px 20px 50px;border-radius:20px;color:#61D836;font-size:1.2em;">
+<div class="fragment fade-up" style="position:relative;margin:auto;width:fit-content;border:solid 5px #61D836;padding:0px 50px 20px 50px;border-radius:20px;color:#61D836;font-size:1.em;">
 $$
 \begin{aligned}
 \vec{a}(t)&=\frac{\mathrm{d}\vec{v}}{\mathrm{d}t}\\
@@ -251,7 +253,6 @@ $$
 $$
 </p>
 </b>
-<br>
 <b style="color:#61D836" >
 <p class="fragment fade-up">
 $$
@@ -268,7 +269,7 @@ $$
 <img src="/vecacc.png" style="box-shadow:none;background:none;">
 </div>
 <p>Le vecteur accélération est dans la direction<br>et le sens du vecteur variation de vitesse.</p>
-<p>Dans le cas d&rsquo;une trajectoire courbe,<br>il pointe vers l&rsquo;intérieur de la courbe.</p>
+<p class="fragment fade-up">Dans le cas d'une trajectoire courbe,<br>il pointe vers l'intérieur de la courbe.</p>
 </section><section>
 <p>La <span class="imp">norme</span> $a$(t) du vecteur vecteur vaut :</p>
 <p class="fragment fade-up">$a(t)=||\vec{a}(t)||=\sqrt{a_x(t)^2+a_y(t)^2+a_z(t)^2}$</p>
@@ -281,7 +282,7 @@ $$
 
 </section>
 </section><section>
-<iframe scrolling="no" title="Mouvement" src="https://www.geogebra.org/material/iframe/id/uk5ujj5u/width/828/height/708/border/888888/sfsb/true/smb/false/stb/false/stbh/false/ai/false/asb/false/sri/true/rc/true/ld/false/sdz/true/ctl/false" width="828px" height="708px" style="border:0px;border-radius:15px;"> </iframe>
+<iframe scrolling="no" title="Mouvement" src="https://www.geogebra.org/material/iframe/id/uk5ujj5u/width/750/height/708/border/888888/sfsb/true/smb/false/stb/false/stbh/false/ai/false/asb/false/sri/true/rc/true/ld/false/sdz/true/ctl/false" width="750px" height="708px" style="border:0px;border-radius:15px;"> </iframe>
 </section><section>
 
 
@@ -306,7 +307,7 @@ $$
 <h2 id="mouvements-rectilignes">Mouvements rectilignes</h2>
 </section><section>
 <p>Un mouvement est rectiligne<br>si sa trajectoire est <span class="fragment">une <span class="imp">droite</span>.</span></p>
-<div class="fragment fade-up" style="position:relative;margin-left:auto;margin-right:auto;width:400px;max-width:100%;">
+<div class="fragment fade-up" style="position:relative;margin-left:auto;margin-right:auto;width:350px;max-width:100%;">
 <img src="/shockmeme.png" style="box-shadow:none;background:none;border-radius:10px;">
 </div>
 <p class="fragment fade-up">Le vecteur accélération conserve alors<br>la même direction (celle du mouvement).</p>
@@ -421,9 +422,8 @@ $$</p>
 <div class="fragment fade-up" style="position:relative;margin:auto;width:fit-content;border:solid 5px #61D836;padding:10px 50px 20px 50px;border-radius:20px;font-size:1.2em;">
 $\vec{a}(t)= \frac{v^2}{R}\,\vec{u}_N$
 </div>
-<p class="fragment fade-up">
-L'accélération est <span class="imp">centripète</span> (dirrigée<br>vers le centre) et de <span class="imp">norme constante</span>.
-</p>
+</section><section>
+<p>L&rsquo;accélération est <span class="imp fragment">centripète</span> (dirrigée<br>vers le centre) et de <span class="imp">norme constante</span>.</p>
 
 </section>
 </section><section>
