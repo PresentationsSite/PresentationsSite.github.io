@@ -1,0 +1,358 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>Onde sonore</title>
+
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="/reveal-js/css/reset.css">
+<link rel="stylesheet" href="/reveal-js/css/reveal.css"><link rel="stylesheet" href="/reveal-js/css/theme/league.css" id="theme">
+<link rel="stylesheet" href="/highlight-js/atom-one-dark-reasonable.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  </head>
+  <body>
+    
+    <div class="reveal">
+      <div class="slides">
+  
+
+    <section><style>
+img {
+border: none !important;
+}
+
+.imp {
+font-weight:bold;color:#FF968D;
+}
+
+li {
+color: #fff;
+}
+
+ul {
+margin-left: auto;
+margin-right: auto;
+text-align: left;
+width: fit-content;
+list-style-position: outside;
+color:#fff;
+}
+
+span {
+font-weight:normal;
+}
+
+.video-container {
+  height: 60vh; /* limite la hauteur à 80% de la fenêtre */
+  width: calc(60vh * 9 / 16); /* largeur en fonction du ratio portrait */
+  margin: 0 auto;
+  position: relative;
+}
+
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  border-radius:10px;
+}
+</style>
+
+
+
+<aside class="notes"><p>Penser à recharger la page après exécution des trinkets sinon ça rame&hellip;</p>
+</aside>
+<h1 id="ondes-sonores">Ondes sonores</h1>
+</section><section>
+
+
+<section data-shortcode-section>
+<h2 id="rappels">Rappels</h2>
+</section><section>
+<p>Une onde est caractérisée par<br><span class="fragment"><span class="imp">un transport d&rsquo;énergie et d&rsquo;information<br>sans transport de matière</span>.</span></p>
+</section><section>
+<p>L&rsquo;onde sonore est une onde <span class="imp fragment">mécanique</span> car elle nécessite un <span class="imp fragment">milieu matériel</span> pour se propager.</p>
+</section><section>
+<p>L&rsquo;onde sonore est<br>une onde <span class="imp fragment">longitudinale</span><br>car la perturbation se fait<br><span class="imp fragment">dans la même direction</span><br>que sa propagation.</p>
+</section><section>
+<p>Un son musical est un signal<br><span class="imp fragment">périodique</span> caractérisé par :</p>
+<ul>
+<li><span class="imp fragment">sa hauteur</span> (liée à <span class="imp fragment">la fréquence</span> du signal),</li> 
+<li><span class="imp fragment">son intensité</span> (liée à <span class="imp fragment">l'amplitude</span> du signal),</li>
+<li><span class="imp fragment">son timbre</span> (lié au <span class="imp fragment">spectre</span> du signal).</li>
+</ul>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h2 id="intensité-sonore">Intensité sonore</h2>
+</section><section>
+<p>L&rsquo;<span class="imp">intensité sonore $I$</span> (ou intensité<br>acoustique) est la <span class="imp">puissance $P$</span><br>transportée par l&rsquo;onde sonore<br><span class="imp">par unité de surface</span>.</p>
+</section><section>
+<div style="position:relative;margin:auto;width:fit-content;border:solid 5px #FF968D;padding:0 50px 0 50px;border-radius:10px">
+$$I=\frac{P}{S}$$
+</div>
+<br>
+<ul>
+<li class="fragment fade-up">$P$ en <span class="imp fragment">$\pu{W}$</span></li>
+<li class="fragment fade-up">$S$ en <span class="imp fragment">$\pu{m2}$</span></li>
+<li class="fragment fade-up">$I$ en <span class="imp fragment">$\pu{W*m-2}$</span></li>
+</ul>
+<p class="fragment fade-up">La surface doit être perpendiculaire<br>à la direction de propagation.</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="https://upload.wikimedia.org/wikipedia/commons/d/d1/RIAN_archive_38689_Defending_the_Moscow_sky.jpg"
+      data-background-size="contain"
+      data-background-transition="concave">
+<aside class="notes"><p>“Defending the Moscow sky”. Soviet soldiers manning an acoustic aircraft detector near Moscow, in 1941 during World War 2, to detect German bombers. Before radar was developed in World War 2, air defense forces used acoustic horn sound detectors like this one to listen for the sound of approaching enemy planes. The sound collected by the horns was conducted by rubber tubes to &ldquo;stethoscope-like&rdquo; earphones on the technician at left. Separate horns connected to each ear allowed the technician to judge the direction of the aircraft by stereophonic hearing. The 4 horns were used in pairs; the horizontal pair to determine direction and the vertical pair to determine elevation.</p>
+</aside>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/trompettesint.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+<p>L&rsquo;intensité sonore<br>est additive :</p>
+<p class="fragment fade-up">s'il y a 2 ou 10 fois plus de sources<br>sonores (de même puissance),<br>l'intensité (à la même distance)<br>est multipliée par 2 ou 10.</p>
+</section><section>
+<p>Mais notre sensation auditive ne semble pas, elle, proportionnelle au nombre de sources.</p>
+<p class="fragment fade-up">C’est cette non proportionnalité qui permet<br>
+d’avoir une plage de sensibilité si étendue :</p>
+<ul>
+<li class="fragment fade-up">le seuil d'audibilité à $\pu{1 kHz}$, appelé <span class="imp">intensité sonore de référence $I_0$</span> vaut $\pu{1,0E-12 W*m-2}$.</li>
+<li class="fragment fade-up">Le seuil de douleur est de l'ordre de $\pu{1 W*m-2}$.</li>
+</ul>
+<p class="fragment fade-up">Notre sensibilité est <span class="imp">logarithmique</span>.</p>
+<aside class="notes"><p>On peut par exemple mesurer que l&rsquo;amplitude du son émis par quelqu&rsquo;un qui parle fort est environ 1 millions de fois plus grande que celle d&rsquo;une personne qui chuchotte à la même distance ! Pourtant, on n&rsquo;a pas la sensation d&rsquo;un son 1 millions de fois plus fort&hellip;</p>
+</aside>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h2 id="niveau-dintensité-sonore">Niveau d&rsquo;intensité sonore</h2>
+</section><section>
+<p>Le <span class="imp">niveau d&rsquo;intensité sonore $L$</span> (pour &ldquo;Level&rdquo;)<br>se mesure en <span class="imp">décibels (dB)</span> et est donné par la relation :</p>
+<div class="fragment fade-up" style="position:relative;margin:auto;width:fit-content;border:solid 5px #FF968D;padding:0 50px 0 50px;border-radius:10px">
+$$L=10\log\left(\frac{I}{I_0}\right)$$
+</div>
+<p class="fragment fade-up">$I_0=\pu{1,0E-12 W*m-2}$<br>est l'<span class="imp">intensité sonore de référence</span></p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/trompettesdb.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+<p>Doubler l’intensité acoustique revient<br>
+à <span class="imp fragment">ajouter 3 dB</span> au niveau sonore<br>
+et multiplier l’intensité par 10<br>
+<span class="imp fragment">ajoute 10 dB</span>.</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-size="contain"
+      data-background-transition="concave"
+      data-background-video="/trompettedbfort.mp4"
+      data-background-video-loop="true">
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/echelleidb.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+</section><section>
+<iframe width="550" height="440" src="https://www.edumedia.com/media/frame/fr/155/?auth=51a8d1c53ced40fce13e3b1dccd9e62d/27824" frameborder="0" style="border-radius:5px;"></iframe>
+<aside class="notes"><p>Pour les tests audiométriques qui mesurent le degré de perte auditive, on utilise le dB HL (= hearing loss). Le dB HL tient compte de la variation de sensibilité de l&rsquo;oreille humaine en fonction des fréquences (= hauteur des sons). Le 0 dB HL correspond ainsi, pour chaque fréquence testée, à l&rsquo;intensité minimale perçue par la moyenne des personnes normo-entendantes.</p>
+</aside>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h2 id="atténuation">Atténuation</h2>
+</section><section>
+<p>L&rsquo;<span class="imp">atténuation</span> (en dB) mesure la diminution<br>du niveau d&rsquo;intensité sonore.</p>
+<p class="fragment fade-up">Il y a deux types d'atténuation.</p>
+<aside class="notes"><p>Lesquelles ?</p>
+</aside>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h3 id="atténuation-géométrique">Atténuation géométrique</h3>
+</section><section>
+<p>Elle est due à l&rsquo;<span class="imp">éloignement</span><br>entre la source et l&rsquo;observateur.</p>
+<p class="fragment fade-up">En effet, <span class="imp">plus la source est éloignée</span> et <span class="imp">plus la surface</span> sur laquelle la puissance sonore se répartie <span class="fragment imp">est grande</span> et donc <span class="imp">plus l'intensité sonore</span> <span class="fragment imp">est faible</span>.</p>
+</section><section>
+<p>Si la source est omnidirectionnelle (même intensité sonore dans toutes les directions), alors la surface sur laquelle se répartit l&rsquo;intensité sonore à une distance $d$ de la source est la <span class="fragment">sphère centrée<br>sur la source et de rayon $d$.</span></p>
+<p class="fragment fade-up">On a donc :</p>
+<p class="fragment fade-up">
+$$I=\frac{P}{4\pi d^2}$$
+</p>
+</section><section>
+<p>Conclusion :</p>
+<p class="fragment fade-up">L'intensité sonore varie <span class="imp fragment">inversement proportionnellement au carré<br>de la distance à la source</span>.</p>
+</section><section>
+<p>Conséquences :</p>
+<br>
+<ul>
+<li class="fragment fade-up"><span class="imp">doubler la distance</span> divise l’intensité sonore<br>par <span class="fragment imp">4</span>, <span class="fragment">ce qui correspond à une <span class="imp">atténuation<br>de</span> <span class="imp fragment">6 dB</span> du niveau sonore.</span><br>
+<span class="fragment">$d\rightarrow 2d\Rightarrow I\rightarrow I/4 \Leftrightarrow L\rightarrow L-6$</span>
+</li>
+<br>
+<li class="fragment fade-up"><span class="imp">multiplier par 10 la distance</span> divise l’intensité<br>sonore par <span class="fragment imp">100</span>, <span class="fragment">ce qui correspond à une<br><span class="imp">atténuation de <span class="fragment imp">20 dB</span></span> du niveau sonore.</span><br>
+<span class="fragment">$d\rightarrow 10d\Rightarrow I\rightarrow I/100 \Leftrightarrow L\rightarrow L-20$
+</li>
+</ul>
+</section><section>
+<iframe scrolling="no" title="inversesquarelaw" src="https://www.geogebra.org/material/iframe/id/fbyk36y6/width/704/height/526/border/888888/sfsb/true/smb/false/stb/false/stbh/false/ai/false/asb/false/sri/true/rc/false/ld/false/sdz/true/ctl/false" width="704px" height="526px" style="border:0px;border-radius:10px;"> </iframe>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h3 id="atténuation-par-absorption">Atténuation par absorption</h3>
+</section><section>
+<p>L&rsquo;<span class="imp">atténuation</span> (en dB) mesure la diminution<br>du niveau d&rsquo;intensité sonore.</p>
+<p class="fragment fade-up">Il y a deux types d'atténuation.</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-size="contain"
+      data-background-transition="concave"
+      data-background-video="/anechoique.mp4">
+</section><section>
+<iframe width="800" height="450" src="https://www.youtube.com/embed/mVLKQWImJH8?si=gu83gD_zwQGX36Of" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" style="border-radius:10px;" allowfullscreen></iframe>
+
+</section>
+</section><section>
+<p><a href="https://coursphychi.github.io/tspe/son/">Retour site</a></p>
+</section>
+
+  
+
+
+</div>
+      
+
+    </div>
+<script type="text/javascript" src=/reveal-hugo/object-assign.js></script>
+
+<a href="/reveal-js/css/print/" id="print-location" style="display: none;"></a>
+<script type="text/javascript">
+  var printLocationElement = document.getElementById('print-location');
+  var link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.type = 'text/css';
+  link.href = printLocationElement.href + (window.location.search.match(/print-pdf/gi) ? 'pdf.css' : 'paper.css');
+  document.getElementsByTagName('head')[0].appendChild(link);
+</script>
+
+<script type="application/json" id="reveal-hugo-site-params">{"highlight_theme":"github-dark","line-numbers":true,"theme":"sky","transition":"concave","transition_speed":"fast"}</script>
+<script type="application/json" id="reveal-hugo-page-params">{"highlight_theme":"atom-one-dark-reasonable","theme":"league"}</script>
+
+<script src="/reveal-js/js/reveal.js"></script>
+
+<script type="text/javascript">
+  
+  
+  function camelize(map) {
+    if (map) {
+      Object.keys(map).forEach(function(k) {
+        newK = k.replace(/(\_\w)/g, function(m) { return m[1].toUpperCase() });
+        if (newK != k) {
+          map[newK] = map[k];
+          delete map[k];
+        }
+      });
+    }
+    return map;
+  }
+  
+  var revealHugoDefaults = { center: true, controls: true, history: true, progress: true, transition: "slide" };
+  var revealHugoSiteParams = JSON.parse(document.getElementById('reveal-hugo-site-params').innerHTML);
+  var revealHugoPageParams = JSON.parse(document.getElementById('reveal-hugo-page-params').innerHTML);
+  
+  var options = Object.assign({},
+    camelize(revealHugoDefaults),
+    camelize(revealHugoSiteParams),
+    camelize(revealHugoPageParams));
+  Reveal.initialize(options);
+</script>
+
+
+  
+  
+  <script type="text/javascript" src="/reveal-js/plugin/markdown/marked.js"></script>
+  
+  <script type="text/javascript" src="/reveal-js/plugin/markdown/markdown.js"></script>
+  
+  <script type="text/javascript" src="/reveal-js/plugin/highlight/highlight.js"></script>
+  
+  <script type="text/javascript" src="/reveal-js/plugin/zoom-js/zoom.js"></script>
+  
+  
+  <script type="text/javascript" src="/reveal-js/plugin/notes/notes.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({startOnLoad: false});
+    let render = (event) => {
+      let mermaidElems = event.currentSlide.querySelectorAll('.mermaid');
+      if (!mermaidElems.length){
+          return
+      }
+      mermaidElems.forEach(mermaidElem => {
+          let processed = mermaidElem.getAttribute('data-processed');
+          if (!processed){
+              
+              mermaid.init(undefined, mermaidElem);
+          }
+      });
+    };
+    Reveal.addEventListener('slidechanged', render);
+    Reveal.addEventListener('ready', render);
+  </script>
+
+    
+
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']]
+  },
+  svg: {
+    fontCache: 'global'
+  }
+};
+</script>
+
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+</script>
+    
+  </body>
+</html>
