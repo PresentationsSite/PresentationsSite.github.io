@@ -141,6 +141,30 @@ d’avoir une plage de sensibilité si étendue :</p>
 
 
 <section data-shortcode-section>
+<h2 id="point-mathématique">Point mathématique</h2>
+</section><section>
+<p>$\log$ est la fonction logarithme décimal (logarithme en base 10) :</p>
+<p>$$\log(x) = \frac{\ln(x)}{\ln(10)}$$</p>
+<p>On a ainsi $\log(10)=$ <span class="imp fragment">$1$</span>.</p>
+</section><section>
+<p>Les règles de calcul de $\ln$ sont conservées :</p>
+<br>
+<ul style="margin-top:-0.5em; margin-bottom:-0.5em;">
+<li class="fragment fade-up">$\log(1)=$ <span class="imp fragment">$0$</span></li>
+<li class="fragment fade-up">$\log(a{\color{#FF968D}\times} b)=$ <span class="fragment">$\log(a){\color{#FF968D}+}\log(b)$</span></li>
+<li class="fragment fade-up">$\log(a{\color{#FF968D}\,/\,}b)=$ <span class="fragment">$\log(a){\color{#FF968D}-}\log(b)$</span></li>
+<li class="fragment fade-up">$\log(a^{\color{#FF968D}n})=$ <span class="fragment">${\color{#FF968D}n}\log(a)$</span></li>
+</ul>
+</section><section>
+<p>La fonction réciproque du logarithme<br>décimal est la fonction <span class="imp fragment">$10^x$</span>.</p>
+<p class="fragment fade-up">Ainsi, si $\log(x)=b$</p>
+<p class="fragment fade-up">Alors $x=$ <span class="imp fragment">$10^b$</span></p>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
 <h2 id="niveau-dintensité-sonore">Niveau d&rsquo;intensité sonore</h2>
 </section><section>
 <p>Le <span class="imp">niveau d&rsquo;intensité sonore $L$</span> (pour &ldquo;Level&rdquo;)<br>se mesure en <span class="imp">décibels (dB)</span> et est donné par la relation :</p>
@@ -172,6 +196,11 @@ et multiplier l’intensité par 10<br>
 <iframe width="550" height="440" src="https://www.edumedia.com/media/frame/fr/155/?auth=51a8d1c53ced40fce13e3b1dccd9e62d/27824" frameborder="0" style="border-radius:5px;"></iframe>
 <aside class="notes"><p>Pour les tests audiométriques qui mesurent le degré de perte auditive, on utilise le dB HL (= hearing loss). Le dB HL tient compte de la variation de sensibilité de l&rsquo;oreille humaine en fonction des fréquences (= hauteur des sons). Le 0 dB HL correspond ainsi, pour chaque fréquence testée, à l&rsquo;intensité minimale perçue par la moyenne des personnes normo-entendantes.</p>
 </aside>
+</section><section>
+<p>Comment obtenir l&rsquo;intensité sonore $I$<br>à partir du niveau d&rsquo;intensité sonore $L$ ?</p>
+<div class="fragment fade-up imp" style="font-size:1.2em;">
+$$I=I_0\times 10^{\frac{L}{10}}$$
+</div>
 
 </section>
 </section><section>
@@ -225,8 +254,22 @@ $$I=\frac{P}{4\pi d^2}$$
 <section data-shortcode-section>
 <h3 id="atténuation-par-absorption">Atténuation par absorption</h3>
 </section><section>
-<p>L&rsquo;<span class="imp">atténuation</span> (en dB) mesure la diminution<br>du niveau d&rsquo;intensité sonore.</p>
-<p class="fragment fade-up">Il y a deux types d'atténuation.</p>
+<p>Le niveau d&rsquo;intensité sonore d&rsquo;une onde sonore rencontrant un obstacle est atténuée<br>car une partie de son <span class="imp">énergie est absorbée</span><br>par le milieu matériel composant l&rsquo;obstacle.</p>
+<p class="fragment fade-up">La proportion d'énergie absorbée dépend du <span class="imp fragment">matériau</span> composant l'obstacle et de <span class="imp fragment">l'épaisseur</span> de celui-ci.</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/abstransm.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+<aside class="notes"><p>Dans le programme et les exercices du bac, on semble faire comme si la réflexion était absente&hellip;</p>
+</aside>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/bouchons.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+</section><section>
+<p>Pourquoi les bouchons moulés sont-ils<br>plus adaptés à des musiciens ?</p>
 </section>
 <section data-noprocess data-shortcode-slide
       data-background-size="contain"
