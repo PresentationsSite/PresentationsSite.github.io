@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <title>Diffraction – FDTD 2D + écran (lissage paramétrable)</title>
+  <style>
+    html,body{margin:0;height:100%;overflow:hidden;background:#000;}
+    #ui{position:fixed;top:10px;left:10px;padding:12px 16px;background:rgba(0,0,32,0.6);border-radius:12px;color:#fff;font-family:system-ui,sans-serif;font-size:14px;user-select:none;z-index:20}
+    #ui label{display:block;margin:4px 0 12px}
+    #ui input[type=range]{width:240px}
+    #ui span{font-weight:600;margin-left:6px}
+    #screen{position:fixed;top:10px;right:10px;background:#111;border:1px solid #444;z-index:15}
+  </style>
+</head>
+<body>
+  <canvas id="sim"></canvas>
+  <canvas id="screen"></canvas>
+
+  <div id="ui">
+    <label>
+      Largeur fente (<em>a</em>) : <span id="aVal"></span> mm<br />
+      <input id="aSlider" type="range" min="10" max="300" value="80" />
+    </label>
+    <label>
+      Longueur d'onde (<em>λ</em>) : <span id="lambdaVal"></span> mm<br />
+      <input id="lambdaSlider" type="range" min="10" max="100" value="20" />
+    </label>
+  </div>
+
+<script>
+(()=>{
+  /* ====== Paramètres globaux ====== */
+  const PIXELS_PER_MM    = 1;          // échelle géométrique
+  const PML              = 40;         // épaisseur absorbante
+  const WALL_THICKNESS   = 15;         // demi‐murs (px)
+  const AMP_RANGE        = 1;          // amplitude → palette bleue
+  const STEPS_PER_FRAME  = 4;          // accélération temporelle
+  const MAX_STEPS_FACTOR = 2;        // attente avant pause
+  const REINIT_DELAY     = 200;        // ms (délai sliders)
+  const SCREEN_SMOOTH    = 0.98;       // ↖ LISSAGE écran (0.98 = ~34 frames ½‑vie)
+                                        //   ↳ augmenter pour un lissage plus fort
+
+  /* ====== DOM ====== */
+  const cvsSim = document.getElementById('sim');
+  const ctxSim = cvsSim.getContext('2d',{alpha:false});
+  const cvsScr = document.getElementById('screen');
+  const ctxScr = cvsScr.getContext('2d',{alpha:false});
+  const aSlider=document.getElementById('aSlider');
+  const lSlider=document.getElementById('lambdaSlider');
+  const aVal=document.getElementById('aVal');
+  const lVal=document.getElementById('lambdaVal');
+
+  /* ====== Variables simulation ====== */
+  let viewW,viewH,NX,NY,marginX,marginY,centerY;
+  let u,uPrev,uNext,damp;
+  let dt=0.5,dt2dx2=0.25,c=1;
+  let wallX,slitHalfPx,lambdaPx;
+  let imgData;
+  let running=true,simTime=0,stepCount=0;
+
+  /* écran */
+  let screenX,intensityBuf;
+
+  /* ====== Helpers ====== */
+  const idx=(x,y)=>x+y*NX;
+  const debounce=(fn,delay)=>{let t;return(...args)=>{clearTimeout(t);t=setTimeout(()=>fn(...args),delay);} };
+
+  /* ====== UI ====== */
+  function updateUI(){aVal.textContent=aSlider.value;lVal.textContent=lSlider.value;}
+  const scheduleReinit=debounce(initSimulation,REINIT_DELAY);
+  aSlider.addEventListener('input',()=>{updateUI();scheduleReinit();});
+  lSlider.addEventListener('input',()=>{updateUI();scheduleReinit();});
+
+  /* ====== Resize ====== */
+  function onResize(){
+    cvsSim.width=viewW=innerWidth;
+    cvsSim.height=viewH=innerHeight;
+    imgData=ctxSim.createImageData(viewW,viewH);
+    cvsScr.height=viewH-20; cvsScr.width=220;
+    cvsScr.style.height=cvsScr.height+'px';
+    cvsScr.style.width=cvsScr.width+'px';
+    initSimulation();
+  }
+  window.addEventListener('resize',onResize);
+
+  /* ====== Construction domaine ====== */
+  function buildDamping(){
+    damp.fill(0);
+    for(let y=0;y<NY;y++){
+      for(let x=0;x<NX;x++){
+        let d=0;
+        if(x<PML) d=(PML-x)/PML; else if(x>=NX-PML) d=(x-(NX-PML-1))/PML;
+        if(y<PML) d=Math.max(d,(PML-y)/PML); else if(y>=NY-PML) d=Math.max(d,(y-(NY-PML-1))/PML);
+        damp[idx(x,y)]=d*d*0.04;
+      }
+    }
+    const halfT=Math.floor(WALL_THICKNESS/2);
+    for(let y=0;y<NY;y++){
+      if(Math.abs(y-centerY)>slitHalfPx){
+        for(const w of [...Array(WALL_THICKNESS).keys()].map(k=>k-halfT)){
+          const xw=wallX+w; if(xw>=0&&xw<NX) damp[idx(xw,y)]=0.999999;
+        }
+      }
+    }
+  }
+
+  /* ====== Init ====== */
+  function initSimulation(){
+    marginX=Math.floor(viewW*0.15);
+    marginY=Math.floor(viewH*0.3);
+    NX=viewW+2*marginX;
+    NY=viewH+2*marginY;
+    centerY=Math.floor(NY/2);
+
+    u=new Float32Array(NX*NY);
+    uPrev=new Float32Array(NX*NY);
+    uNext=new Float32Array(NX*NY);
+    damp=new Float32Array(NX*NY);
+
+    slitHalfPx=Math.floor(parseFloat(aSlider.value)*PIXELS_PER_MM/2);
+    lambdaPx=parseFloat(lSlider.value)*PIXELS_PER_MM;
+
+    wallX=marginX+Math.floor(viewW*0.2);
+    screenX=marginX+Math.floor(viewW*0.8);
+
+    buildDamping();
+
+    u.fill(0);uPrev.fill(0);uNext.fill(0);
+    intensityBuf=new Float32Array(NY); intensityBuf.fill(0);
+
+    simTime=0;stepCount=0;running=true;
+    const omega=2*Math.PI*c/lambdaPx;
+    const pre=Math.max(4,Math.floor(lambdaPx));
+    for(let n=0;n<pre;n++){fdtdStep(omega);simTime+=dt;}
+  }
+
+  /* ====== FDTD Step ====== */
+  function fdtdStep(omega){
+    const srcX=PML+2,amp=1;
+    const sVal=amp*Math.sin(omega*simTime);
+    const sPrev=amp*Math.sin(omega*(simTime-dt));
+    for(let y=PML;y<NY-PML;y++){const i=idx(srcX,y);u[i]=sVal;uPrev[i]=sPrev;}
+    for(let y=1;y<NY-1;y++){
+      for(let x=1;x<NX-1;x++){
+        const i=idx(x,y);const d=damp[i];
+        if(d>0.9){uNext[i]=0;continue;}
+        const lap=u[idx(x+1,y)]+u[idx(x-1,y)]+u[idx(x,y+1)]+u[idx(x,y-1)]-4*u[i];
+        let val=2*u[i]-uPrev[i]+dt2dx2*lap; val*=(1-d);
+        uNext[i]=val;
+      }
+    }
+    [uPrev,u,uNext]=[u,uNext,uPrev];
+  }
+
+  /* ====== Rendu simulation ====== */
+  function drawSim(){
+    const data=imgData.data;let p=0;
+    const halfT=Math.floor(WALL_THICKNESS/2);
+    const slitDyn=Math.floor(parseFloat(aSlider.value)*PIXELS_PER_MM/2);
+    for(let y=0;y<viewH;y++){
+      const gY=y+marginY;const distY=Math.abs(gY-centerY);
+      for(let x=0;x<viewW;x++){
+        const gX=x+marginX;const distW=Math.abs(gX-wallX);
+        if(distW<=halfT&&distY>slitDyn){data[p++]=120;data[p++]=120;data[p++]=120;data[p++]=255;continue;}
+        const i=idx(gX,gY);const norm=Math.max(-1,Math.min(1,u[i]/AMP_RANGE));
+        const L=((0.5+0.5*norm)*255)|0;
+        data[p++]=0;data[p++]=0;data[p++]=L;data[p++]=255;
+      }
+    }
+    ctxSim.putImageData(imgData,0,0);
+  }
+
+  /* ====== Rendu écran ====== */
+  function drawScreen(){
+    const w=cvsScr.width,h=cvsScr.height;
+    ctxScr.clearRect(0,0,w,h);
+    ctxScr.fillStyle='#222';ctxScr.fillRect(0,0,w,h);
+    // EMA uniquement si running
+    if(running){
+      for(let y=0;y<NY;y++){
+        const I=u[idx(screenX,y)]**2;
+        intensityBuf[y]=SCREEN_SMOOTH*intensityBuf[y]+(1-SCREEN_SMOOTH)*I;
+      }
+    }
+    let maxI=Math.max(...intensityBuf,1e-6);
+    const scaleY=h/NY; ctxScr.fillStyle='#00f';
+    for(let y=0;y<NY;y++){
+      const I=Math.sqrt(intensityBuf[y]/maxI);
+      const barW=I*w; const yy=Math.floor(y*scaleY);
+      ctxScr.fillRect(w-barW,yy,barW,Math.max(1,scaleY));
+    }
+  }
+
+  /* ====== Animation ====== */
+  function animate(){
+    if(running){
+      const omega=2*Math.PI*c/lambdaPx;
+      for(let n=0;n<STEPS_PER_FRAME;n++){fdtdStep(omega);simTime+=dt;stepCount++;}
+      const probeX=NX-PML-2;let reached=false;
+      for(let y=PML;y<NY-PML;y++){if(Math.abs(u[idx(probeX,y)])>1e-3){reached=true;break;}}
+      if(reached&&stepCount>MAX_STEPS_FACTOR*NX) running=false;
+    }
+    drawSim(); drawScreen();
+    requestAnimationFrame(animate);
+  }
+
+  /* ====== Start ====== */
+  updateUI();
+  onResize();
+  requestAnimationFrame(animate);
+})();
+</script>
+</body>
+</html>

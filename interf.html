@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<title>Interférences – sources commutables</title>
+<style>
+  html,body{margin:0;height:100%;background:#000;overflow:hidden;font-family:system-ui,sans-serif}
+  #canvas{position:fixed;inset:0;display:block;touch-action:none}
+  #graph{position:fixed;top:1rem;right:1rem;width:360px;height:120px;background:#111;border:1px solid #333;box-shadow:0 0 8px #0ff88}
+  #controls{position:fixed;bottom:1rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;gap:.9rem;user-select:none}
+  #controls label{display:flex;align-items:center;gap:1rem;width:460px}
+  #controls span{width:120px;text-align:right;font-weight:600;text-shadow:0 0 6px currentColor}
+  #controls input[type=range]{flex:1;appearance:none;height:14px;border-radius:7px;background:currentColor;opacity:.8;outline:none;margin:0}
+  #controls input[type=range]::-webkit-slider-thumb{appearance:none;width:26px;height:26px;border-radius:50%;background:#fff;border:4px solid currentColor;box-shadow:0 0 4px #0006;cursor:pointer;margin-top:-6px}
+  #controls input[type=range]::-moz-range-thumb{width:26px;height:26px;border-radius:50%;background:#fff;border:4px solid currentColor;box-shadow:0 0 4px #0006;cursor:pointer}
+  #gapSlider{color:#f28e1c}
+  #lambdaSlider{color:#4caf50}
+  #gapVal{color:#f28e1c}
+  #lambdaVal{color:#4caf50}
+</style>
+</head>
+<body>
+  <canvas id="canvas"></canvas>
+  <canvas id="graph"></canvas>
+  <div id="controls">
+    <label><span id="gapVal">a = 200 mm</span><input id="gapSlider" type="range" min="50" max="400" value="200" /></label>
+    <label><span id="lambdaVal">λ = 50 mm</span><input id="lambdaSlider" type="range" min="8" max="128" value="50" /></label>
+  </div>
+
+<script>
+(()=>{
+  /* ---------- DOM refs ---------- */
+  const cvs = document.getElementById('canvas');
+  const ctx = cvs.getContext('2d');
+  const gcv = document.getElementById('graph');
+  const gtx = gcv.getContext('2d');
+  const gapSlider    = document.getElementById('gapSlider');
+  const lambdaSlider = document.getElementById('lambdaSlider');
+  const gapVal   = document.getElementById('gapVal');
+  const lambdaVal= document.getElementById('lambdaVal');
+
+  /* ---------- Parameters ---------- */
+  let λ = +lambdaSlider.value;  // px ≈ mm
+  let ω = 0.1;                  // rad / frame
+  let a = +gapSlider.value;     // px ≈ mm
+
+  /* ---------- Geometry ---------- */
+  const sources = [
+    {label:'S₁',x:0,y:0,active:true,onTime:-Infinity,offTime:-Infinity,color:'#ff5555'},
+    {label:'S₂',x:0,y:0,active:true,onTime:-Infinity,offTime:-Infinity,color:'#55aaff'}
+  ];
+  const M = {x:0,y:0,drag:false};
+
+  /* ---------- Buffers ---------- */
+  let dist1, dist2, width, height;
+
+  /* ---------- Graph history ---------- */
+  let histLen, h1, h2, hT;
+  let t = 0;
+
+  /* ---------- Helpers ---------- */
+  const nbsp='\u00A0';
+  const BASE_RADIUS = 8;     // px – base size of source dot
+  function updLabels(){
+    gapVal.textContent    = `a = ${a}${nbsp}mm`;
+    lambdaVal.textContent = `λ = ${λ}${nbsp}mm`;
+  }
+
+  function allocHistory(){
+    histLen = gcv.width;
+    h1 = new Float32Array(histLen);
+    h2 = new Float32Array(histLen);
+    hT = new Float32Array(histLen);
+  }
+  function populateHistory(){
+    const k = 2*Math.PI/λ;
+    for(let i=0;i<histLen;i++){
+      const tt = t - (histLen-i);
+      h1[i] = ampAt(M,sources[0],k,tt);
+      h2[i] = ampAt(M,sources[1],k,tt);
+      hT[i] = h1[i] + h2[i];
+    }
+  }
+
+  function resize(){
+    width  = cvs.width  = innerWidth;
+    height = cvs.height = innerHeight;
+    gcv.width  = 360;
+    gcv.height = 120;
+
+    const cx = width/2, cy = height/2;
+    sources[0].x = cx - a/2; sources[0].y = cy;
+    sources[1].x = cx + a/2; sources[1].y = cy;
+
+    if(!M.init){
+      M.x = cx - (Math.random()+0.2)*cx*0.4;
+      M.y = cy - (Math.random()+0.2)*cy*0.4;
+      M.init = true;
+    }
+
+    dist1 = new Float32Array(width*height);
+    dist2 = new Float32Array(width*height);
+    for(let y=0;y<height;y++){
+      for(let x=0;x<width;x++){
+        const idx = y*width + x;
+        dist1[idx] = Math.hypot(x-sources[0].x, y-sources[0].y);
+        dist2[idx] = Math.hypot(x-sources[1].x, y-sources[1].y);
+      }
+    }
+    allocHistory();
+    populateHistory();
+  }
+  window.addEventListener('resize', resize);
+  resize();
+  updLabels();
+
+  /* ---------- Sliders ---------- */
+  gapSlider.addEventListener('input', e => { a = +e.target.value; updLabels(); resize(); });
+  lambdaSlider.addEventListener('input', e => { λ = +e.target.value; updLabels(); populateHistory(); });
+
+  /* ---------- Interaction ---------- */
+  function getXY(evt){ const r = cvs.getBoundingClientRect(); return {x: evt.clientX - r.left, y: evt.clientY - r.top}; }
+
+  cvs.addEventListener('pointerdown', e => {
+    const p = getXY(e);
+    // toggle source if clicked
+    sources.forEach(s => {
+      if(Math.hypot(p.x - s.x, p.y - s.y) < BASE_RADIUS + 4){
+        if(s.active){ s.active = false; s.offTime = t; }
+        else        { s.active = true;  s.onTime  = t; }
+      }
+    });
+    // start dragging M
+    if(Math.hypot(p.x - M.x, p.y - M.y) < 30){ M.drag = true; cvs.setPointerCapture(e.pointerId); }
+  });
+  cvs.addEventListener('pointermove', e => { if(!M.drag) return; const p = getXY(e); M.x = p.x; M.y = p.y; populateHistory(); });
+  cvs.addEventListener('pointerup',   () => M.drag = false);
+  cvs.addEventListener('pointercancel', () => M.drag = false);
+
+  /* ---------- Wave amplitude ---------- */
+  function ampAt(pt, src, k, tt){
+    const r = Math.hypot(pt.x - src.x, pt.y - src.y);
+    const v = ω / k; // px/frame
+    const phase = k*r - ω*tt;
+    if(src.active){
+      const dt = tt - src.onTime;
+      return dt >= r/v ? Math.cos(phase) : 0;
+    } else {
+      const dt = tt - src.offTime;
+      return dt <= r/v ? Math.cos(phase) : 0;
+    }
+  }
+
+  function ampPix(i, srcIdx, k){
+    const src = sources[srcIdx];
+    const r = srcIdx ? dist2[i] : dist1[i];
+    const v = ω / k;
+    const phase = k*r - ω*t;
+    if(src.active){
+      const dt = t - src.onTime;
+      return dt >= r/v ? Math.cos(phase) : 0;
+    } else {
+      const dt = t - src.offTime;
+      return dt <= r/v ? Math.cos(phase) : 0;
+    }
+  }
+
+  /* ---------- Drawing helpers ---------- */
+  function labelSeg(x1,y1,x2,y2,txt,col,sign){
+    const mx=(x1+x2)/2, my=(y1+y2)/2, dx=x2-x1, dy=y2-y1, len=Math.hypot(dx,dy);
+    if(!len) return;
+    const ang=Math.atan2(dy,dx);
+    const nx=dy/len, ny=-dx/len; // perpendicular left
+    const off=18*sign;
+    ctx.save();
+    ctx.translate(mx+nx*off, my+ny*off);
+    // keep readable left→right
+    ctx.rotate((ang>Math.PI/2||ang<-Math.PI/2)?ang+Math.PI:ang);
+    ctx.fillStyle=col; ctx.textAlign='center'; ctx.textBaseline='middle';
+    ctx.shadowColor=col; ctx.shadowBlur=4;
+    ctx.fillText(txt,0,0);
+    ctx.restore();
+  }
+
+  /* ---------- Animation loop ---------- */
+  function frame(){
+    t++;
+    const k = 2*Math.PI/λ;
+    const maxAmp=4;
+
+    const img = ctx.createImageData(width,height);
+    const data = img.data;
+    for(let i=0;i<data.length/4;i++){
+      const a1 = ampPix(i,0,k);
+      const a2 = ampPix(i,1,k);
+      const amp = a1 + a2;
+      const val = (255*(amp*amp)/maxAmp)|0;
+      const o=i*4; data[o]=0; data[o+1]=val; data[o+2]=Math.min(255,val+60); data[o+3]=255;
+    }
+    ctx.putImageData(img,0,0);
+
+    /* Draw geometry */
+    ctx.save(); ctx.lineWidth=3; ctx.font='14px sans-serif';
+    const r1=Math.hypot(M.x - sources[0].x, M.y - sources[0].y);
+    const r2=Math.hypot(M.x - sources[1].x, M.y - sources[1].y);
+
+    ctx.strokeStyle=sources[0].color; ctx.beginPath(); ctx.moveTo(sources[0].x,sources[0].y); ctx.lineTo(M.x,M.y); ctx.stroke();
+    ctx.strokeStyle=sources[1].color; ctx.beginPath(); ctx.moveTo(sources[1].x,sources[1].y); ctx.lineTo(M.x,M.y); ctx.stroke();
+
+    // sources dots + labels
+    sources.forEach(s=>{
+      const rad = BASE_RADIUS + (s.active ? 2*Math.cos(ω*t) : 0);
+      ctx.fillStyle='#ffffff'; ctx.beginPath(); ctx.arc(s.x,s.y,rad,0,2*Math.PI); ctx.fill();
+      ctx.fillStyle='#ffffff'; ctx.textAlign='center'; ctx.textBaseline='top'; ctx.shadowColor='#000'; ctx.shadowBlur=6;
+      ctx.fillText(s.label, s.x, s.y + BASE_RADIUS + 6);
+    });
+
+    // point M
+    ctx.fillStyle='#ffffcc'; ctx.beginPath(); ctx.arc(M.x,M.y,6,0,2*Math.PI); ctx.fill();
+
+    // labels
+    labelSeg(sources[0].x,sources[0].y,M.x,M.y,`d₁ = ${r1.toFixed(0)} mm`,sources[0].color,+1);
+    labelSeg(sources[1].x,sources[1].y,M.x,M.y,`d₂ = ${r2.toFixed(0)} mm`,sources[1].color,-1);
+    ctx.restore();
+
+    /* Update history */
+    const a1=ampAt(M,sources[0],k,t), a2=ampAt(M,sources[1],k,t), aT=a1+a2;
+    h1.copyWithin(0,1); h1[histLen-1]=a1;
+    h2.copyWithin(0,1); h2[histLen-1]=a2;
+    hT.copyWithin(0,1); hT[histLen-1]=aT;
+
+    /* Graph */
+    gtx.clearRect(0,0,gcv.width,gcv.height);
+    const mid=gcv.height/2, sc=gcv.height/2;
+    gtx.strokeStyle='#444'; gtx.lineWidth=1; gtx.beginPath(); gtx.moveTo(0,mid); gtx.lineTo(gcv.width,mid); gtx.stroke();
+    const drawSerie=(buf,col)=>{ gtx.strokeStyle=col; gtx.lineWidth=2; gtx.beginPath(); for(let x=0;x<histLen;x++){ const y=mid-buf[x]*sc/2; x?gtx.lineTo(x,y):gtx.moveTo(x,y);} gtx.stroke(); };
+    drawSerie(h1,sources[0].color); drawSerie(h2,sources[1].color); drawSerie(hT,'#ffffcc');
+
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>
