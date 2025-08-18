@@ -74,255 +74,107 @@ font-weight:normal;
       data-background-video="/tbbtdoppler.mp4">
 
 </section>
-</section><section>
-<style>
-/* ----------------------
- FEUILLE DE STYLE
- ---------------------- */
-/* Conteneur des contrôles : occupe toute la largeur, fond transparent et espacement vertical réduit */
-#controls {
-width: 100% !important;
-background: rgba(255, 255, 255, 0.3) !important;
-padding: 10px;
-border-radius: 5px;
-z-index: 10;
-position: absolute;
-top: 0;
-left: 0;
-box-sizing: border-box;
-text-align: center;
-display: flex;
-flex-direction: column;
-align-items: center;
-gap: 5px;
-}
+</section>
 
-/* Personnalisation du slider */
-#speedSlider {
--webkit-appearance: none !important;
-width: 60% !important;
-height: 25px !important;
-background: rgba(0, 0, 0, 0.1) !important;
-border-radius: 10px;
-outline: none;
-margin: 5px 0;
-}
-
-#speedSlider::-webkit-slider-runnable-track {
-width: 100%;
-height: 20px;
-cursor: pointer;
-background: rgba(0, 123, 255, 0.7) !important;
-border-radius: 10px;
-border: none;
-}
-#speedSlider::-webkit-slider-thumb {
--webkit-appearance: none;
-border: none;
-height: 28px;
-width: 28px;
-border-radius: 50%;
-background: rgba(86, 193, 255, 0.7);
-margin-top: -4px;
-cursor: pointer;
-box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
-}
-#speedSlider::-moz-range-track {
-width: 100%;
-height: 20px;
-cursor: pointer;
-background: rgba(0, 123, 255, 0.7);
-border-radius: 10px;
-border: none;
-}
-#speedSlider::-moz-range-thumb {
-border: none;
-height: 28px;
-width: 28px;
-border-radius: 50%;
-background: #fff;
-cursor: pointer;
-box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
-}
-
-/* Conteneur pour les boutons son et pause */
-#buttonContainer {
-width: 100%;
-display: flex;
-justify-content: center;
-gap: 10px;
-}
-
-/* Boutons ronds */
-#toggleSound,
-#togglePause {
-width: 60px;
-height: 60px;
-border-radius: 50%;
-border: none;
-background-color: rgba(40, 167, 69, 0.8);
-color: #fff;
-font-size: 32px;
-display: flex;
-align-items: center;
-justify-content: center;
-cursor: pointer;
-outline: none;
-transition: transform 0.2s ease-in-out, background-color 0.2s ease-in-out;
-position: relative;
-}
-#toggleSound::before {
-content: "\266A";
-font-size: 32px;
-line-height: 60px;
-display: block;
-}
-#toggleSound.muted::after {
-content: "";
-position: absolute;
-width: 70%;
-height: 3px;
-background: #fff;
-top: 50%;
-left: 15%;
-transform: rotate(45deg);
-}
-#togglePause::before {
-content: "\25B6"; /* ▶ au démarrage */
-font-size: 32px;
-line-height: 60px;
-display: block;
-}
-#togglePause.running::before {
-content: "\23F8"; /* ⏸ quand ça tourne */
-}
-#toggleSound:active,
-#togglePause:active {
-transform: scale(0.9);
-}
-
-/* Canvas plein écran horizontal */
-canvas {
-top: 0;
-left: 0;
-position: absolute;
-width: 100%;
-border-radius: 10px;
-}
-</style>
-</head>
-<body>
-<div id="controls">
-<label for="speedSlider">Vitesse de l'émetteur :
-<span id="speedValue">0</span> m/s</label>
-<input type="range" id="speedSlider" min="-50" max="500" value="0" step="1" />
-<div id="buttonContainer">
-<button id="toggleSound"></button>
-&nbsp;&nbsp;&nbsp;
-<button id="togglePause"></button>
-</div>
-</div>
-<canvas id="canvas"></canvas>
-  <script>
-  /* ==================== CANVAS & DPR ==================== */
-  const DPR = window.devicePixelRatio || 1;
-  const canvas = document.getElementById('canvas');
-  const ctx    = canvas.getContext('2d');
-  const wavesC = document.createElement('canvas');
-  const wCtx   = wavesC.getContext('2d');
-
-  function resize(){
-    const wCSS = window.innerWidth;
-    const hCSS = 600;
-    canvas.style.width=wCSS+'px';
-    canvas.style.height=hCSS+'px';
-    canvas.width = wCSS*DPR;
-    canvas.height= hCSS*DPR;
-    wavesC.width = canvas.width;
-    wavesC.height= canvas.height;
-    ctx.setTransform(DPR,0,0,DPR,0,0);
-  }
-  resize();
-  window.addEventListener('resize',resize);
-
-  /* ============= PHYSIQUE & ÉCHELLE VISUELLE ============= */
-  const SCALE = 0.5;         // px / m — ondes 2× moins rapides visuellement
-  const C_M   = 340;         // m/s vitesse réelle du son
-  const C = C_M * SCALE;     // px/s utilisé pour le dessin
-  const PERIOD = 0.5;        // s intervalle des fronts
-  const DT = 1/120;          // pas fixe
-
-  /* ============= OBJETS ============= */
-  const recv = { get x(){ return canvas.width/DPR - (canvas.width/DPR)/4; }, get y(){ return canvas.height/DPR/2; } };
-  let emit = { x: canvas.width/DPR/4, y: canvas.height/DPR/2 };
-
-  /* ============= ÉTAT ============= */
-  let speedM = 0;     // m/s (valeur slider visible)
-  let speedPx = 0;    // px/s (simulation)
-  let simT = 0, nextT = 0;
-  const fronts = [];
-  let lastReal = performance.now()/1000, acc = 0;
-  let paused = true;
-
-  /* ============= CONTROLS ============= */
-  const slider = document.getElementById('speedSlider');
-  const speedLabel = document.getElementById('speedValue');
-  slider.addEventListener('input', e=>{
-    speedM = +e.target.value;
-    speedPx = speedM * SCALE;
-    speedLabel.textContent = speedM.toFixed(0);
-  });
-
-  let soundOn=true;
-  const AudioCtx=window.AudioContext||window.webkitAudioContext; const aCtx=new AudioCtx();
-  function beep(){ if(!soundOn) return; if(aCtx.state==='suspended') aCtx.resume(); const o=aCtx.createOscillator(),g=aCtx.createGain(); o.frequency.value=880; o.connect(g); g.connect(aCtx.destination); const t=aCtx.currentTime; g.gain.setValueAtTime(0,t); g.gain.linearRampToValueAtTime(1,t+.01); g.gain.exponentialRampToValueAtTime(.001,t+.1); o.start(t); o.stop(t+.1);}  
-  document.getElementById('toggleSound').addEventListener('click',function(){soundOn=!soundOn;this.classList.toggle('muted',!soundOn);});
-
-  const pauseBtn=document.getElementById('togglePause'); pauseBtn.addEventListener('click',()=>{paused=!paused;pauseBtn.classList.toggle('running',!paused);if(!paused){lastReal=performance.now()/1000;requestAnimationFrame(loop);} });
-
-  /* ============= PHYSIQUE ============= */
-  function step(){
-    simT += DT;
-    emit.x += speedPx * DT;
-    const wCSS = canvas.width/DPR;
-    if(emit.x>wCSS+50) emit.x=-50; if(emit.x<-50) emit.x=wCSS+50;
-    while(simT>=nextT){
-      const back = simT-nextT;
-      const ex = emit.x - speedPx*back;
-      const ey = emit.y;
-      const d0 = Math.hypot(recv.x-ex, recv.y-ey);
-      fronts.push({x:ex,y:ey,t:nextT,d0_px:d0,hit:false});
-      nextT += PERIOD;
-    }
-    const maxR = Math.max(wCSS, canvas.height/DPR)*1.5;
-    while(fronts.length && C*(simT-fronts[0].t)>maxR) fronts.shift();
-  }
-
-  /* ============= RENDU ============= */
-  function render(alpha){
-    ctx.clearRect(0,0,canvas.width/DPR,canvas.height/DPR);
-    wCtx.clearRect(0,0,wavesC.width,wavesC.height);
-    wCtx.lineWidth=4*DPR; wCtx.strokeStyle='rgba(255,240,80,.75)';
-    for(const f of fronts){
-      const age = simT - f.t + alpha*DT;
-      const r = C * age;
-      if(!f.hit && simT >= f.t + f.d0_px / C){ f.hit=true; flash(); beep(); }
-      wCtx.beginPath(); wCtx.arc(f.x*DPR, f.y*DPR, r*DPR, 0, Math.PI*2); wCtx.stroke();
-    }
-    ctx.save(); ctx.scale(1/DPR,1/DPR); ctx.drawImage(wavesC,0,0); ctx.restore();
-
-    ctx.fillStyle='#56C1FF'; ctx.beginPath(); ctx.arc(recv.x, recv.y, 10, 0, Math.PI*2); ctx.fill(); ctx.font='16px Arial'; ctx.fillText('Récepteur',recv.x-30,recv.y-15);
-    const ex = emit.x + speedPx*alpha*DT; ctx.fillStyle='#FF968D'; ctx.beginPath(); ctx.arc(ex,emit.y,10,0,Math.PI*2); ctx.fill(); ctx.fillText('Émetteur',ex-30,emit.y-15);
-  }
-  function flash(){ ctx.save(); ctx.fillStyle='yellow'; ctx.beginPath(); ctx.arc(recv.x, recv.y, 15, 0, Math.PI*2); ctx.fill(); ctx.restore(); }
-
-  /* ============= BOUCLE RAF ============= */
-  function loop(){ if(paused) return; let now=performance.now()/1000, dt=now-lastReal; lastReal=now; dt=Math.min(dt,.1); acc+=dt; while(acc>=DT){step();acc-=DT;} render(acc/DT); requestAnimationFrame(loop);}  
-  </script>
+<section data-noprocess data-shortcode-slide
+      data-background-iframe="/doppler.html"
+      data-background-interactive="true"
+      data-background-size="contain"
+      data-background-transition="concave">
+  
 </section><section>
 
 
 <section data-shortcode-section>
+<h2 id="définition-et-formule">Définition et formule</h2>
+</section><section>
+<p>L&rsquo;effet Doppler correspond au <span class="imp">décalage</span> de la fréquence de l&rsquo;onde reçue par un récepteur lorsque l&rsquo;émetteur<br><span class="imp">se rapproche ou s&rsquo;éloigne</span> du récepteur.</p>
+ <p class="fragment fade-up">Le décalage  <span class="imp">$\Delta f$</span> est lié à la vitesse relative <span class="imp">$v$</span><br>entre la source et l'émetteur.</p>
+</section><section>
+<p>En appelant $v$ la vitesse algébrique de l&rsquo;émetteur par rapport au récepteur dans la direction qui les joint (comptée positive de l&rsquo;émetteur vers le récepteur) :</p>
+<br>
+<div class="fragment fade-up" style="position:relative;margin:auto;width:fit-content;border:solid 5px #FF968D;padding:0 50px 0 50px;border-radius:10px">
+$$\Delta f = f\times\frac{v}{c-v}$$
+</div>
+<ul style="margin-top:1em;">
+<li class="fragment fade-up" style="color:#aaa;">$f$ en <span class="fragment">Hz</span></li>
+<li class="fragment fade-up" style="color:#aaa;">$c$ : célérité de l'onde<br><span class="fragment">en <span class="fragment">$\pu{m*s-1}$</span></span></li>
+<li class="fragment fade-up" style="color:#aaa;">$v$ : vitesse de l'émetteur<br>par rapport au récepteur<br><span class="fragment">en <span class="fragment">$\pu{m*s-1}$</span></span></li>
+</ul>
+</section><section>
+<p>On considèrera qu&rsquo;on a toujours $v&lt;c$.</p>
+<br>
+<ul>
+<li class="fragment fade-up">Si l'émetteur se rapproche, $v>0$ $\Rightarrow$ </span<span class="imp">$\Delta f$ <span class="imp fragment">$>$</span> 0</span>
+<br>
+<span class="fragment">Le son perçu est plus <b class="fragment" style="color:#56C1FF;">aigü</b>.</span><br><span class="fragment">La lumière perçue est plus <b class="fragment" style="color:#56C1FF;">bleue</b>.</span>
+</li>
+<li class="fragment fade-up">Si l'émetteur s'éloigne, $v<0$ $\Rightarrow$ </span<span class="imp">$\Delta f$ <span class="imp fragment">$<$</span> 0</span>
+<br>
+<span class="fragment">Le son perçu est plus <span class="imp fragment">grave</span>.</span><br><span class="fragment">La lumière perçue est plus <span class="imp fragment">rouge</span>.</span>
+</li>
+</ul>
+</section><section>
+<div style="position:relative;margin-left:auto;margin-right:auto;width:800px;max-width:100%;">
+<img src="https://www.martin-perscheid.de/image/cartoon/3575.gif" style="box-shadow:none;background:none;">
+</div>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h2 id="applications">Applications</h2>
+</section><section>
+<h3 id="radars-routiers">Radars routiers</h3>
+<div style="position:relative;margin-left:auto;margin-right:auto;width:700px;max-width:100%;">
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/A40_Radar_discriminant_poids_lourds.jpg/1920px-A40_Radar_discriminant_poids_lourds.jpg" style="box-shadow:none;background:none;border-radius:10px;">
+</div>
+</section><section>
+<h3 id="échographie-doppler">Échographie doppler</h3>
+<div style="position:relative;margin-left:auto;margin-right:auto;width:700px;max-width:100%;">
+<img src="https://upload.wikimedia.org/wikipedia/commons/e/e5/Doppler_ultrasound_of_systolic_velocity_%28Vs%29%2C_diastolic_velocity_%28Vd%29%2C_acceleration_time_%28AoAT%29%2C_systolic_acceleration_%28Ao_Accel%29_and_resistive_index_%28RI%29_of_normal_kidney.jpg?20171214074514f" style="box-shadow:none;border-radius:10px;">
+</div>
+<aside class="notes"><p>L&rsquo;échographie Doppler est utilisée dans le diagnostic des atteintes des vaisseaux et du cœur :</p>
+<p>cœur : cardiopathies congénitales, valvulopathies, péricardites ;
+artères : sténoses, thromboses (athérosclérose), anévrismes, claudication intermittente, ischémie aiguë ;
+veines : thromboses veineuses profondes, varices.
+L&rsquo;échographie Doppler est souvent un examen de première intention. En effet, il est relativement peu coûteux et il possède une grande sensibilité, en particulier pour le diagnostic des thromboses veineuses profondes.</p>
+</aside>
+</section><section>
+<h3 id="astrophysique">Astrophysique</h3>
+<br>
+<ul>
+<li class="fragment fade-up">Découverte de l'expansion de l'univers<br>(loi de Hubble-Lemaître, 1929).<br></li>
+</ul>
+<div class="fragment fade-up">
+$$v=H_0\times d$$
+</div>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Redshift.svg/1155px-Redshift.svg.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Hubble_ultra_deep_field_high_rez_edit1.jpg/1920px-Hubble_ultra_deep_field_high_rez_edit1.jpg"
+      data-background-size="contain"
+      data-background-transition="concave">
+</section><section>
+<div style="position:relative;margin-left:auto;margin-right:auto;width:600px;max-width:100%;margin-bottom:-1em;margin-top:-1em;">
+<img src="https://upload.wikimedia.org/wikipedia/commons/6/6d/Measurements_of_the_Hubble_constant_%28H0%29_by_different_astronomical_missions_and_groups_until_2021.jpg" style="box-shadow:none;background:none;border-radius:10px;">
+</div>
+<aside class="notes"><p>Une des plus grandes crises de la physique actuelle !
+The landscape of H0 measurements around 2021, with the 2018 results from CMB measurements highlighted in pink and 2020 distance ladder values highlighted in cyan.
+Différence de plus de 5 écarts-types (z&gt;5) !!
+En physique, on parle de tension&hellip;</p>
+</aside>
+</section><section>
+<ul>
+<li>Détection d'exoplanètes.</li>
+</ul>
+</section><section>
+<iframe width="800" height="450" src="https://www.youtube.com/embed/B-oZYm3L1JE?si=U2Nxo7OcSAHX0Kss" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
 
 </section>
 </section><section>

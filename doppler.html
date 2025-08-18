@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1" />
+  <meta name="color-scheme" content="light dark" />
+  <title>Onde & Doppler — plein écran</title>
+  <style>
+    /* Reset minimal */
+	html, body { height: 100%; margin: 0; }
+	body {
+	  background: #1c1e20;
+	  background: -moz-radial-gradient(center, circle cover, #555a5f 0%, #1c1e20 100%);
+	  background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, #555a5f), color-stop(100%, #1c1e20));
+	  background: -webkit-radial-gradient(center, circle cover, #555a5f 0%, #1c1e20 100%);
+	  background: -o-radial-gradient(center, circle cover, #555a5f 0%, #1c1e20 100%);
+	  background: -ms-radial-gradient(center, circle cover, #555a5f 0%, #1c1e20 100%);
+	  /* version standard actuelle : */
+	  background: radial-gradient(circle at center, #555a5f 0%, #1c1e20 100%);
+	  background-color: #2b2b2b;
+	  overflow: hidden; /* évite le scroll dans l’iframe */
+	}
+    /* Canvas plein écran derrière tout */
+    #canvas {
+      position: fixed; inset: 0;
+      width: 100vw; height: 100vh;
+      display: block; background: transparent;
+    }
+
+    /* Bandeau de contrôles en surimpression */
+    #controls {
+      position: fixed; top: 0; left: 0; right: 0;
+      display: flex; flex-direction: column; align-items: center; gap: 8px;
+      padding: 10px 12px;
+      background: color-mix(in oklab, white 20%, transparent);
+      -webkit-backdrop-filter: blur(6px);
+      backdrop-filter: blur(6px);
+      z-index: 10;
+      box-sizing: border-box;
+      text-align: center;
+    }
+    #controls label { display: flex; gap: .6rem; align-items: center; font-weight: 600; }
+    #speedValue { min-width: 3ch; display: inline-block; text-align: right; }
+
+    /* Slider custom */
+    #speedSlider {
+      -webkit-appearance: none;
+      width: min(720px, 70vw);
+      height: 22px; border-radius: 999px;
+      background: rgba(0,0,0,.15); outline: none;
+    }
+    #speedSlider::-webkit-slider-runnable-track {
+      height: 22px; border-radius: 999px; background: rgba(0,123,255,.7);
+    }
+    #speedSlider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      margin-top: -6px; height: 34px; width: 34px; border-radius: 50%;
+      background: rgba(86,193,255,.9); border: none; box-shadow: 0 0 2px rgba(0,0,0,.5);
+      cursor: pointer;
+    }
+    #speedSlider::-moz-range-track {
+      height: 22px; border-radius: 999px; background: rgba(0,123,255,.7);
+    }
+    #speedSlider::-moz-range-thumb {
+      height: 28px; width: 28px; border-radius: 50%; background: #fff; border: none; cursor: pointer;
+      box-shadow: 0 0 2px rgba(0,0,0,.5);
+    }
+
+    /* Boutons */
+    #buttonContainer { display: flex; gap: 10px; justify-content: center; width: 100%; }
+    .round {
+      width: 56px; height: 56px; border-radius: 50%; border: none; cursor: pointer;
+      display: grid; place-items: center; font-size: 30px; color: #fff;
+      background: rgba(40,167,69,.8);
+      transition: transform .15s ease, background-color .15s ease;
+    }
+    .round:active { transform: scale(.92); }
+    #toggleSound { position: relative; }
+    #toggleSound::before { content: "♪"; }
+    #toggleSound.muted { background: rgba(220,53,69,.85); }
+    #toggleSound.muted::after {
+      content: ""; position: absolute; width: 70%; height: 3px; background: #fff; transform: rotate(45deg);
+    }
+    #togglePause::before { content: "▶"; }
+    #togglePause.running::before { content: "⏸"; }
+
+  </style>
+</head>
+<body>
+  <div id="controls">
+    <label for="speedSlider">
+      Vitesse de l'émetteur : <span id="speedValue">0</span> m/s
+    </label>
+    <input id="speedSlider" type="range" min="-50" max="500" step="1" value="0" />
+    <div id="buttonContainer">
+      <button id="toggleSound" class="round" title="Activer/Désactiver le son"></button>
+      <button id="togglePause" class="round" title="Lecture/Pause"></button>
+    </div>
+  </div>
+  <canvas id="canvas"></canvas>
+
+  <script>
+  (() => {
+    'use strict';
+
+    /* ==================== CANVAS & DPR ==================== */
+    const DPR = window.devicePixelRatio || 1;
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+
+    // Offscreen pour tracer les ondes en haute résolution
+    const wavesC = document.createElement('canvas');
+    const wCtx   = wavesC.getContext('2d');
+
+    /* ============= PHYSIQUE & ÉCHELLE VISUELLE ============= */
+    const SCALE   = 0.5;   // px / m (pour "ralentir" visuellement)
+    const C_M     = 340;   // m/s
+    const C       = C_M * SCALE; // px/s
+    const PERIOD  = 0.5;   // s entre fronts
+    const DT      = 1/120; // s pas fixe
+
+    /* ============= OBJETS (coordonnées relatives [0,1]) ============= */
+    const recv = {
+      _nx: 0.75, _ny: 0.5,
+      get x(){ return (canvas.width  / DPR) * this._nx; },
+      get y(){ return (canvas.height / DPR) * this._ny; }
+    };
+    const emit = {
+      _nx: 0.25, _ny: 0.5,
+      get x(){ return (canvas.width  / DPR) * this._nx; },
+      set x(px){ this._nx = px / (canvas.width  / DPR); },
+      get y(){ return (canvas.height / DPR) * this._ny; },
+      set y(py){ this._ny = py / (canvas.height / DPR); }
+    };
+
+    /* ============= ÉTAT ============= */
+    let speedM = 0, speedPx = 0;
+    let simT = 0, nextT = 0;
+    const fronts = [];
+    let lastReal = performance.now()/1000, acc = 0;
+    let paused = true;
+
+    /* ============= CONTRÔLES DOM ============= */
+    const slider = document.getElementById('speedSlider');
+    const speedLabel = document.getElementById('speedValue');
+    const pauseBtn = document.getElementById('togglePause');
+    const soundBtn = document.getElementById('toggleSound');
+
+    function setSpeedFromSlider(){
+      speedM = +slider.value;
+      speedPx = speedM * SCALE;
+      speedLabel.textContent = speedM.toFixed(0);
+    }
+    slider.addEventListener('input', setSpeedFromSlider);
+    setSpeedFromSlider();
+
+    let soundOn = true;
+    let aCtx;
+    try {
+      const AudioCtx = window.AudioContext || window.webkitAudioContext;
+      aCtx = new AudioCtx();
+    } catch(e){ /* Audio non supporté */ }
+
+    function beep(){
+      if(!soundOn || !aCtx) return;
+      if(aCtx.state === 'suspended') aCtx.resume();
+      const o = aCtx.createOscillator(), g = aCtx.createGain();
+      o.frequency.value = 880;
+      o.connect(g); g.connect(aCtx.destination);
+      const t = aCtx.currentTime;
+      g.gain.setValueAtTime(0, t);
+      g.gain.linearRampToValueAtTime(1, t + .01);
+      g.gain.exponentialRampToValueAtTime(.001, t + .1);
+      o.start(t); o.stop(t + .1);
+    }
+
+    soundBtn.addEventListener('click', function(){
+      soundOn = !soundOn;
+      this.classList.toggle('muted', !soundOn);
+    });
+
+    pauseBtn.addEventListener('click', ()=>{
+      paused = !paused;
+      pauseBtn.classList.toggle('running', !paused);
+      if(!paused){
+        lastReal = performance.now()/1000;
+        requestAnimationFrame(loop);
+      }
+    });
+
+    /* ============= REDIMENSIONNEMENT ============= */
+    function resize(){
+      const oldW = (canvas.width  / DPR) || 1;
+      const oldH = (canvas.height / DPR) || 1;
+
+      // Plein écran viewport
+      const wCSS = window.innerWidth;
+      const hCSS = window.innerHeight;
+
+      // CSS
+      canvas.style.width  = wCSS + 'px';
+      canvas.style.height = hCSS + 'px';
+
+      // Pixels réels
+      canvas.width  = Math.max(1, Math.floor(wCSS * DPR));
+      canvas.height = Math.max(1, Math.floor(hCSS * DPR));
+      wavesC.width  = canvas.width;
+      wavesC.height = canvas.height;
+
+      // 1 unité dessin = 1 px CSS
+      ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+
+      // Recalage des fronts
+      const sx = (canvas.width / DPR)  / oldW;
+      const sy = (canvas.height / DPR) / oldH;
+      for (const f of fronts){
+        f.x *= sx; f.y *= sy;
+        f.d0_px = Math.hypot(recv.x - f.x, recv.y - f.y);
+      }
+    }
+    window.addEventListener('resize', resize, { passive: true });
+    resize();
+
+    /* ============= PHYSIQUE ============= */
+    function step(){
+      simT += DT;
+
+      // Mouvement émetteur
+      emit.x = emit.x + speedPx * DT;
+
+      // Wrap horizontal
+      const wCSS = canvas.width / DPR;
+      if (emit.x > wCSS + 50) emit.x = -50;
+      if (emit.x < -50)       emit.x =  wCSS + 50;
+
+      // Émission des fronts
+      while (simT >= nextT){
+        const back = simT - nextT;
+        const ex = emit.x - speedPx * back;
+        const ey = emit.y;
+        const d0 = Math.hypot(recv.x - ex, recv.y - ey);
+        fronts.push({ x: ex, y: ey, t: nextT, d0_px: d0, hit: false });
+        nextT += PERIOD;
+      }
+
+      // Purge des fronts trop grands
+      const maxR = Math.max(wCSS, canvas.height / DPR) * 1.5;
+      while (fronts.length && C * (simT - fronts[0].t) > maxR) fronts.shift();
+    }
+
+    /* ============= RENDU ============= */
+    function drawFrame(alpha){
+      // Efface
+      ctx.clearRect(0, 0, canvas.width / DPR, canvas.height / DPR);
+      wCtx.clearRect(0, 0, wavesC.width, wavesC.height);
+
+      // Ondes
+      wCtx.lineWidth   = 4 * DPR;
+      wCtx.strokeStyle = 'rgba(255,240,80,.75)';
+
+      for (const f of fronts){
+        const age = simT - f.t + alpha * DT;
+        const r   = C * age;
+
+        if (!f.hit && simT >= f.t + f.d0_px / C){
+          f.hit = true; flash(); beep();
+        }
+
+        wCtx.beginPath();
+        wCtx.arc(f.x * DPR, f.y * DPR, r * DPR, 0, Math.PI * 2);
+        wCtx.stroke();
+      }
+
+      // Composite HR -> écran
+      ctx.save();
+      ctx.scale(1 / DPR, 1 / DPR);
+      ctx.drawImage(wavesC, 0, 0);
+      ctx.restore();
+
+      // Récepteur
+      ctx.fillStyle = '#56C1FF';
+      ctx.beginPath();
+      ctx.arc(recv.x, recv.y, 10, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.font = '16px Arial';
+      ctx.fillText('Récepteur', recv.x - 30, recv.y - 15);
+
+      // Émetteur
+      const ex = emit.x + speedPx * alpha * DT;
+      ctx.fillStyle = '#FF968D';
+      ctx.beginPath();
+      ctx.arc(ex, emit.y, 10, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillText('Émetteur', ex - 30, emit.y - 15);
+    }
+
+    function flash(){
+      ctx.save();
+      ctx.fillStyle = 'yellow';
+      ctx.beginPath();
+      ctx.arc(recv.x, recv.y, 15, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
+    }
+
+    /* ============= BOUCLE ============= */
+    function loop(){
+      if (paused) return;
+      let now = performance.now()/1000;
+      let dt  = now - lastReal;
+      lastReal = now;
+      dt = Math.min(dt, .1);
+      acc += dt;
+
+      while (acc >= DT){ step(); acc -= DT; }
+      drawFrame(acc / DT);
+      requestAnimationFrame(loop);
+    }
+
+    // Démarrer si tu veux automatiquement dans la slide :
+    // pauseBtn.click();
+
+  })();
+  </script>
+</body>
+</html>
