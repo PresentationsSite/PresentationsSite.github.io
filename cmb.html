@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>CMB 100 GHz — texture + repères + échelle</title>
+<style>
+  html,body{margin:0;height:100%;overflow:hidden;background:#0b0d12}
+  canvas{display:block}
+  .hud{
+    position:fixed;top:10px;left:10px;z-index:20;color:#cbd5e1;
+    font:14px system-ui;background:rgba(0,0,0,.35);padding:6px 10px;border-radius:8px
+  }
+  .label{
+    position:fixed; z-index:15; transform:translate(-50%,-50%);
+    background:rgba(0,0,0,.55); color:#fff; font:13px system-ui;
+    padding:3px 6px; border-radius:6px; pointer-events:none; white-space:nowrap
+  }
+  /* Échelle colorimétrique */
+  .colorbar{
+    position:fixed; left:12px; bottom:12px; z-index:25;
+    background:rgba(0,0,0,.45); padding:8px 10px; border-radius:8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.25);
+  }
+  #cb{ display:block; width:320px; height:14px; }
+  .cb-ticks{
+    margin-top:6px; display:flex; justify-content:space-between;
+    color:#e7eef8; font:12px system-ui; opacity:.95;
+  }
+</style>
+</head>
+<body>
+<div class="hud">Glisser: tourner · Molette/pincement: zoom · Double-clic: reset · Flèches: pivoter (⇧ = +vite)</div>
+
+<!-- Légendes -->
+<div id="lbl-gal" class="label">Plan galactique</div>
+<div id="lbl-ecl" class="label">Plan de l’écliptique</div>
+<div id="lbl-gc"  class="label">Centre galactique</div>
+
+<!-- Échelle colorimétrique -->
+<div class="colorbar">
+  <canvas id="cb"></canvas>
+  <div class="cb-ticks">
+    <span id="cb-min">-3400 µK</span>
+    <span id="cb-mid">0</span>
+    <span id="cb-max">+3400 µK</span>
+  </div>
+</div>
+
+<script type="module">
+import * as THREE from 'https://unpkg.com/three@0.160.0/build/three.module.js';
+
+const TEX_URL = '/textures/cmb_100GHz_fwhm60_equirect_planck_8192.png'; // ⇦ ta texture equirectangulaire (galactique)
+
+/* ==== Bornes de l'échelle (µK) ==== */
+const CB_MIN = -3400, CB_MAX = 3400;
+
+/* ==================== RENDERER / CAMERA ==================== */
+const renderer = new THREE.WebGLRenderer({ antialias:true, alpha:true });
+renderer.setPixelRatio(Math.min(2.5, devicePixelRatio));
+renderer.setSize(innerWidth, innerHeight);
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+document.body.appendChild(renderer.domElement);
+
+const scene  = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(85, innerWidth/innerHeight, 0.01, 100);
+camera.position.set(0,0,0);
+
+/* ==================== WORLD (on tourne le monde) ==================== */
+const world = new THREE.Group();
+scene.add(world);
+
+/* ==================== TEXTURE & SPHERE ==================== */
+const tex = new THREE.TextureLoader().load(TEX_URL, t=>{
+  t.colorSpace  = THREE.SRGBColorSpace;
+  t.generateMipmaps = true;
+  t.minFilter   = THREE.LinearMipmapLinearFilter;
+  t.magFilter   = THREE.LinearFilter;
+  t.anisotropy  = renderer.capabilities.getMaxAnisotropy();
+  t.wrapS       = THREE.RepeatWrapping;
+  t.wrapT       = THREE.ClampToEdgeWrapping;
+});
+const sphere = new THREE.Mesh(
+  new THREE.SphereGeometry(1, 512, 256),
+  new THREE.MeshBasicMaterial({ map: tex, side: THREE.BackSide })
+);
+world.add(sphere);
+
+/* ==================== OUTILS GÉOMÉTRIQUES ==================== */
+const d2r = THREE.MathUtils.degToRad;
+function galLonLatToVec(lDeg, bDeg){
+  const l=d2r(lDeg), b=d2r(bDeg);
+  const cb=Math.cos(b), sb=Math.sin(b), cl=Math.cos(l), sl=Math.sin(l);
+  return new THREE.Vector3(cb*cl, sb, cb*sl).normalize();
+}
+function makeGreatCircle(normal, seg=720, r=0.999, opacity=1.0){
+  const n = normal.clone().normalize();
+  const tmp = Math.abs(n.y) < 0.9 ? new THREE.Vector3(0,1,0) : new THREE.Vector3(1,0,0);
+  const u = new THREE.Vector3().crossVectors(n, tmp).normalize();
+  const v = new THREE.Vector3().crossVectors(n, u).normalize();
+  const pts = [];
+  for(let i=0;i<=seg;i++){
+    const t = 2*Math.PI*i/seg;
+    const p = new THREE.Vector3().addScaledVector(u, Math.cos(t)).addScaledVector(v, Math.sin(t)).multiplyScalar(r);
+    pts.push(p);
+  }
+  const geo = new THREE.BufferGeometry().setFromPoints(pts);
+  const mat = new THREE.LineBasicMaterial({ color: 0xffffff, transparent:true, opacity, depthTest:false });
+  const line = new THREE.Line(geo, mat);
+  line.renderOrder = 10;
+  const t = d2r(30);
+  const anchor = new THREE.Object3D();
+  anchor.position.copy(new THREE.Vector3().addScaledVector(u, Math.cos(t)).addScaledVector(v, Math.sin(t)).multiplyScalar(r));
+  line.userData.anchor = anchor;
+  return line;
+}
+function makeMarker(dirVec, radius=0.998, size=0.03, opacity=0.65){
+  const mesh = new THREE.Mesh(
+    new THREE.SphereGeometry(size, 24, 16),
+    new THREE.MeshBasicMaterial({ color: 0xffffff, transparent:true, opacity, depthTest:false })
+  );
+  mesh.position.copy(dirVec.clone().normalize().multiplyScalar(radius));
+  mesh.renderOrder = 11;
+  return mesh;
+}
+
+/* ==================== REPÈRES ==================== */
+// Plan galactique (b=0)
+const galPlane = makeGreatCircle(new THREE.Vector3(0,1,0), 720, 0.999, 1.0);
+world.add(galPlane); world.add(galPlane.userData.anchor);
+// Plan de l’écliptique
+const eps = d2r(23.4392911);
+const R_eq2gal = new THREE.Matrix3().set(
+  -0.0548755604, -0.8734370902, -0.4838350155,
+   0.4941094279, -0.4448296300,  0.7469822445,
+  -0.8676661490, -0.1980763734,  0.4559837762
+);
+const poleEclEq = new THREE.Vector3(0, Math.sin(eps), Math.cos(eps));
+const poleEclGal = poleEclEq.clone().applyMatrix3(R_eq2gal).normalize();
+const eclPlane = makeGreatCircle(poleEclGal, 720, 0.999, 1.0);
+world.add(eclPlane); world.add(eclPlane.userData.anchor);
+// Centre galactique
+const gcDir = galLonLatToVec(0,0);
+const gcMarker = makeMarker(gcDir, 0.998, 0.03, 0.65);
+world.add(gcMarker);
+
+/* ==================== LÉGENDES ==================== */
+const lblGal = document.getElementById('lbl-gal');
+const lblEcl = document.getElementById('lbl-ecl');
+const lblGC  = document.getElementById('lbl-gc');
+
+const v3 = new THREE.Vector3();
+function placeLabel(domEl, obj){
+  obj.updateWorldMatrix(true,false);
+  obj.getWorldPosition(v3);
+  const ndc = v3.clone().project(camera);
+  const on = (ndc.z>-1 && ndc.z<1);
+  domEl.style.display = on ? 'block' : 'none';
+  if(!on) return;
+  const x = (ndc.x*0.5+0.5)*innerWidth;
+  const y = (-ndc.y*0.5+0.5)*innerHeight;
+  domEl.style.left = x+'px';
+  domEl.style.top  = y+'px';
+}
+const gcAnchor = gcMarker;
+const galAnchor = galPlane.userData.anchor;
+const eclAnchor = eclPlane.userData.anchor;
+
+/* ==================== INTERACTION ==================== */
+// souris
+let dragging=false, lastX=0, lastY=0;
+const qtmp = new THREE.Quaternion();
+addEventListener('pointerdown', e=>{ dragging=true; lastX=e.clientX; lastY=e.clientY; });
+addEventListener('pointerup',   ()=> dragging=false);
+addEventListener('pointerleave',()=> dragging=false);
+addEventListener('pointermove', e=>{
+  if(!dragging) return;
+  const dx=(e.clientX-lastX)/innerWidth, dy=(e.clientY-lastY)/innerHeight;
+  lastX=e.clientX; lastY=e.clientY;
+  qtmp.setFromEuler(new THREE.Euler(-dy*Math.PI, -dx*Math.PI, 0, 'XYZ'));
+  world.quaternion.multiplyQuaternions(qtmp, world.quaternion);
+});
+// reset
+addEventListener('dblclick', ()=>{ world.quaternion.identity(); targetFov=DEFAULT_FOV; });
+// zoom
+const DEFAULT_FOV=85; let targetFov=DEFAULT_FOV;
+function clamp(v,min,max){ return Math.max(min, Math.min(max, v)); }
+addEventListener('wheel', e=>{ e.preventDefault(); targetFov=clamp(targetFov + e.deltaY*0.06, 30, 110); }, {passive:false});
+const pointers=new Map(); let lastPinch=null;
+addEventListener('pointerdown', e=>pointers.set(e.pointerId,e));
+addEventListener('pointerup', e=>{pointers.delete(e.pointerId); lastPinch=null;});
+addEventListener('pointercancel', e=>{pointers.delete(e.pointerId); lastPinch=null;});
+addEventListener('pointermove', e=>{
+  if(!pointers.has(e.pointerId)) return;
+  pointers.set(e.pointerId,e);
+  if(pointers.size===2){
+    const [a,b]=[...pointers.values()];
+    const d=Math.hypot(a.clientX-b.clientX, a.clientY-b.clientY);
+    if(lastPinch!=null){ targetFov=clamp(targetFov - (d-lastPinch)*0.08, 30, 110); }
+    lastPinch=d;
+  }
+});
+// clavier
+addEventListener('keydown', (e)=>{
+  const fast = e.shiftKey ? 1.0 : 0.4;
+  const ang  = THREE.MathUtils.degToRad(fast);
+  if (e.key === 'ArrowLeft'){
+    qtmp.setFromEuler(new THREE.Euler(0, +ang, 0, 'XYZ'));
+    world.quaternion.multiplyQuaternions(qtmp, world.quaternion);
+  } else if (e.key === 'ArrowRight'){
+    qtmp.setFromEuler(new THREE.Euler(0, -ang, 0, 'XYZ'));
+    world.quaternion.multiplyQuaternions(qtmp, world.quaternion);
+  } else if (e.key === 'ArrowUp'){
+    qtmp.setFromEuler(new THREE.Euler(+ang, 0, 0, 'XYZ'));
+    world.quaternion.multiplyQuaternions(qtmp, world.quaternion);
+  } else if (e.key === 'ArrowDown'){
+    qtmp.setFromEuler(new THREE.Euler(-ang, 0, 0, 'XYZ'));
+    world.quaternion.multiplyQuaternions(qtmp, world.quaternion);
+  }
+});
+
+/* ==================== COLORBAR (dessinée en Canvas) ==================== */
+function drawColorbar(){
+  const c = document.getElementById('cb');
+  const dpr = Math.min(2, devicePixelRatio);
+  const w = c.clientWidth, h = c.clientHeight;
+  c.width = Math.max(1, Math.floor(w*dpr));
+  c.height= Math.max(1, Math.floor(h*dpr));
+  const g = c.getContext('2d'); g.setTransform(dpr,0,0,dpr,0,0);
+
+  // dégradé "planck-like" bleu → blanc → rouge (approx.)
+  const grad = g.createLinearGradient(0,0,w,0);
+  grad.addColorStop(0.00, '#1d3a8a'); // deep blue
+  grad.addColorStop(0.25,'#3b82f6');  // blue
+  grad.addColorStop(0.50,'#ffffff');  // white
+  grad.addColorStop(0.75,'#f97316');  // orange
+  grad.addColorStop(1.00,'#dc2626');  // red
+  g.fillStyle = grad;
+  g.fillRect(0,0,w,h);
+
+  // contour
+  g.strokeStyle = 'rgba(255,255,255,.65)';
+  g.lineWidth = 1; g.strokeRect(0.5,0.5,w-1,h-1);
+}
+drawColorbar();
+// valeurs
+document.getElementById('cb-min').textContent = `${CB_MIN} µK`;
+document.getElementById('cb-mid').textContent = `0`;
+document.getElementById('cb-max').textContent = `+${CB_MAX} µK`;
+
+/* ==================== RESIZE & LOOP ==================== */
+addEventListener('resize', ()=>{
+  camera.aspect=innerWidth/innerHeight; camera.updateProjectionMatrix();
+  renderer.setSize(innerWidth, innerHeight);
+  renderer.setPixelRatio(Math.min(2.5, devicePixelRatio));
+  drawColorbar();
+});
+renderer.setAnimationLoop(()=>{
+  if (Math.abs(camera.fov - targetFov) > 0.01){
+    camera.fov += (targetFov - camera.fov)*0.15;
+    camera.updateProjectionMatrix();
+  }
+  // placer les labels
+  placeLabel(lblGC,  gcAnchor);
+  placeLabel(lblGal, galAnchor);
+  placeLabel(lblEcl, eclAnchor);
+
+  renderer.render(scene, camera);
+});
+</script>
+</body>
+</html>
