@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>CMB 100 GHz — texture + repères + échelle</title>
+<title>CMB 100 GHz — texture + repères + échelle (km/s) + apex</title>
 <style>
   html,body{margin:0;height:100%;overflow:hidden;background:#0b0d12}
   canvas{display:block}
@@ -33,27 +33,34 @@
 <div class="hud">Glisser: tourner · Molette/pincement: zoom · Double-clic: reset · Flèches: pivoter (⇧ = +vite)</div>
 
 <!-- Légendes -->
-<div id="lbl-gal" class="label">Plan galactique</div>
-<div id="lbl-ecl" class="label">Plan de l’écliptique</div>
-<div id="lbl-gc"  class="label">Centre galactique</div>
+<div id="lbl-gal"   class="label">Plan galactique</div>
+<div id="lbl-ecl"   class="label">Plan de l’écliptique</div>
+<div id="lbl-gc"    class="label">Centre galactique</div>
+<div id="lbl-apx"   class="label">Apex (direction du mouvement)</div>
 
 <!-- Échelle colorimétrique -->
 <div class="colorbar">
   <canvas id="cb"></canvas>
   <div class="cb-ticks">
-    <span id="cb-min">-3400 µK</span>
-    <span id="cb-mid">0</span>
-    <span id="cb-max">+3400 µK</span>
+    <span id="cb-min">–</span>
+    <span id="cb-mid">0 km/s</span>
+    <span id="cb-max">–</span>
   </div>
 </div>
 
 <script type="module">
 import * as THREE from 'https://unpkg.com/three@0.160.0/build/three.module.js';
 
-const TEX_URL = '/textures/cmb_100GHz_fwhm60_equirect_planck_8192.png'; // ⇦ ta texture equirectangulaire (galactique)
+/* ========= Chemin de ta texture equirectangulaire ========= */
+const TEX_URL = '/textures/cmb_100GHz_fwhm60_equirect_planck_8192.png';
 
-/* ==== Bornes de l'échelle (µK) ==== */
-const CB_MIN = -3400, CB_MAX = 3400;
+/* ==== Bornes (µK) correspondant à la texture ==== */
+const CB_MIN_uK = -3400, CB_MAX_uK = 3400;
+
+/* ==== Conversion µK -> km/s (signe astro : approche < 0) ==== */
+const T0 = 2.72548;                 // K
+const C_KMS = 299792.458;           // km/s
+const vrad = uK => -C_KMS * (uK*1e-6) / T0; // rouge -> négatif (approche), bleu -> positif (éloignement)
 
 /* ==================== RENDERER / CAMERA ==================== */
 const renderer = new THREE.WebGLRenderer({ antialias:true, alpha:true });
@@ -66,11 +73,11 @@ const scene  = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(85, innerWidth/innerHeight, 0.01, 100);
 camera.position.set(0,0,0);
 
-/* ==================== WORLD (on tourne le monde) ==================== */
+/* ==================== WORLD ==================== */
 const world = new THREE.Group();
 scene.add(world);
 
-/* ==================== TEXTURE & SPHERE ==================== */
+/* ==================== TEXTURE & SPHÈRE ==================== */
 const tex = new THREE.TextureLoader().load(TEX_URL, t=>{
   t.colorSpace  = THREE.SRGBColorSpace;
   t.generateMipmaps = true;
@@ -86,7 +93,7 @@ const sphere = new THREE.Mesh(
 );
 world.add(sphere);
 
-/* ==================== OUTILS GÉOMÉTRIQUES ==================== */
+/* ==================== OUTILS GÉO ==================== */
 const d2r = THREE.MathUtils.degToRad;
 function galLonLatToVec(lDeg, bDeg){
   const l=d2r(lDeg), b=d2r(bDeg);
@@ -101,13 +108,14 @@ function makeGreatCircle(normal, seg=720, r=0.999, opacity=1.0){
   const pts = [];
   for(let i=0;i<=seg;i++){
     const t = 2*Math.PI*i/seg;
-    const p = new THREE.Vector3().addScaledVector(u, Math.cos(t)).addScaledVector(v, Math.sin(t)).multiplyScalar(r);
-    pts.push(p);
+    pts.push(new THREE.Vector3().addScaledVector(u, Math.cos(t)).addScaledVector(v, Math.sin(t)).multiplyScalar(r));
   }
   const geo = new THREE.BufferGeometry().setFromPoints(pts);
   const mat = new THREE.LineBasicMaterial({ color: 0xffffff, transparent:true, opacity, depthTest:false });
   const line = new THREE.Line(geo, mat);
   line.renderOrder = 10;
+
+  // Ancre pour la légende, à +30° sur le cercle
   const t = d2r(30);
   const anchor = new THREE.Object3D();
   anchor.position.copy(new THREE.Vector3().addScaledVector(u, Math.cos(t)).addScaledVector(v, Math.sin(t)).multiplyScalar(r));
@@ -128,26 +136,34 @@ function makeMarker(dirVec, radius=0.998, size=0.03, opacity=0.65){
 // Plan galactique (b=0)
 const galPlane = makeGreatCircle(new THREE.Vector3(0,1,0), 720, 0.999, 1.0);
 world.add(galPlane); world.add(galPlane.userData.anchor);
+
 // Plan de l’écliptique
-const eps = d2r(23.4392911);
+const eps = d2r(23.4392911); // obliquité J2000
 const R_eq2gal = new THREE.Matrix3().set(
   -0.0548755604, -0.8734370902, -0.4838350155,
    0.4941094279, -0.4448296300,  0.7469822445,
   -0.8676661490, -0.1980763734,  0.4559837762
 );
-const poleEclEq = new THREE.Vector3(0, Math.sin(eps), Math.cos(eps));
+const poleEclEq  = new THREE.Vector3(0, Math.sin(eps), Math.cos(eps));
 const poleEclGal = poleEclEq.clone().applyMatrix3(R_eq2gal).normalize();
-const eclPlane = makeGreatCircle(poleEclGal, 720, 0.999, 1.0);
+const eclPlane   = makeGreatCircle(poleEclGal, 720, 0.999, 1.0);
 world.add(eclPlane); world.add(eclPlane.userData.anchor);
+
 // Centre galactique
-const gcDir = galLonLatToVec(0,0);
+const gcDir    = galLonLatToVec(0,0);
 const gcMarker = makeMarker(gcDir, 0.998, 0.03, 0.65);
 world.add(gcMarker);
+
+// Apex du dipôle (direction du mouvement) ~ (l,b)=(264°,48°)
+const apexDir    = galLonLatToVec(264, 48);
+const apexMarker = makeMarker(apexDir, 0.998, 0.03, 0.55);
+world.add(apexMarker);
 
 /* ==================== LÉGENDES ==================== */
 const lblGal = document.getElementById('lbl-gal');
 const lblEcl = document.getElementById('lbl-ecl');
 const lblGC  = document.getElementById('lbl-gc');
+const lblAPX = document.getElementById('lbl-apx');
 
 const v3 = new THREE.Vector3();
 function placeLabel(domEl, obj){
@@ -157,17 +173,16 @@ function placeLabel(domEl, obj){
   const on = (ndc.z>-1 && ndc.z<1);
   domEl.style.display = on ? 'block' : 'none';
   if(!on) return;
-  const x = (ndc.x*0.5+0.5)*innerWidth;
-  const y = (-ndc.y*0.5+0.5)*innerHeight;
-  domEl.style.left = x+'px';
-  domEl.style.top  = y+'px';
+  domEl.style.left = ((ndc.x*0.5+0.5)*innerWidth)  + 'px';
+  domEl.style.top  = ((-ndc.y*0.5+0.5)*innerHeight) + 'px';
 }
-const gcAnchor = gcMarker;
-const galAnchor = galPlane.userData.anchor;
-const eclAnchor = eclPlane.userData.anchor;
+const gcAnchor   = gcMarker;
+const galAnchor  = galPlane.userData.anchor;
+const eclAnchor  = eclPlane.userData.anchor;
+const apxAnchor  = apexMarker;
 
 /* ==================== INTERACTION ==================== */
-// souris
+// rotation souris
 let dragging=false, lastX=0, lastY=0;
 const qtmp = new THREE.Quaternion();
 addEventListener('pointerdown', e=>{ dragging=true; lastX=e.clientX; lastY=e.clientY; });
@@ -182,7 +197,8 @@ addEventListener('pointermove', e=>{
 });
 // reset
 addEventListener('dblclick', ()=>{ world.quaternion.identity(); targetFov=DEFAULT_FOV; });
-// zoom
+
+// zoom (molette + pincement)
 const DEFAULT_FOV=85; let targetFov=DEFAULT_FOV;
 function clamp(v,min,max){ return Math.max(min, Math.min(max, v)); }
 addEventListener('wheel', e=>{ e.preventDefault(); targetFov=clamp(targetFov + e.deltaY*0.06, 30, 110); }, {passive:false});
@@ -200,9 +216,9 @@ addEventListener('pointermove', e=>{
     lastPinch=d;
   }
 });
-// clavier
+// clavier (flèches)
 addEventListener('keydown', (e)=>{
-  const fast = e.shiftKey ? 1.0 : 0.4;
+  const fast = e.shiftKey ? 1.0 : 0.4; // ⇧ = accélérer
   const ang  = THREE.MathUtils.degToRad(fast);
   if (e.key === 'ArrowLeft'){
     qtmp.setFromEuler(new THREE.Euler(0, +ang, 0, 'XYZ'));
@@ -219,7 +235,8 @@ addEventListener('keydown', (e)=>{
   }
 });
 
-/* ==================== COLORBAR (dessinée en Canvas) ==================== */
+/* ==================== COLORBAR (km/s, signe astro) ==================== */
+function fmtSigned(x){ return (x>=0?'+':'') + x.toFixed(0); }
 function drawColorbar(){
   const c = document.getElementById('cb');
   const dpr = Math.min(2, devicePixelRatio);
@@ -228,25 +245,26 @@ function drawColorbar(){
   c.height= Math.max(1, Math.floor(h*dpr));
   const g = c.getContext('2d'); g.setTransform(dpr,0,0,dpr,0,0);
 
-  // dégradé "planck-like" bleu → blanc → rouge (approx.)
+  // dégradé "Planck-like" : bleu → blanc → rouge (on ne l’inverse pas)
   const grad = g.createLinearGradient(0,0,w,0);
-  grad.addColorStop(0.00, '#1d3a8a'); // deep blue
-  grad.addColorStop(0.25,'#3b82f6');  // blue
-  grad.addColorStop(0.50,'#ffffff');  // white
-  grad.addColorStop(0.75,'#f97316');  // orange
-  grad.addColorStop(1.00,'#dc2626');  // red
-  g.fillStyle = grad;
-  g.fillRect(0,0,w,h);
+  grad.addColorStop(0.00, '#1d3a8a');
+  grad.addColorStop(0.25,'#3b82f6');
+  grad.addColorStop(0.50,'#ffffff');
+  grad.addColorStop(0.75,'#f97316');
+  grad.addColorStop(1.00,'#dc2626');
+  g.fillStyle = grad; g.fillRect(0,0,w,h);
 
-  // contour
   g.strokeStyle = 'rgba(255,255,255,.65)';
   g.lineWidth = 1; g.strokeRect(0.5,0.5,w-1,h-1);
+
+  // Ticks en km/s (astro: rouge = approche = négatif ; bleu = éloignement = positif)
+  const vMin = vrad(CB_MIN_uK); // côté bleu -> + km/s
+  const vMax = vrad(CB_MAX_uK); // côté rouge -> - km/s
+  document.getElementById('cb-min').textContent = `${fmtSigned(vMin)} km/s`;
+  document.getElementById('cb-mid').textContent = `0 km/s`;
+  document.getElementById('cb-max').textContent = `${fmtSigned(vMax)} km/s`;
 }
 drawColorbar();
-// valeurs
-document.getElementById('cb-min').textContent = `${CB_MIN} µK`;
-document.getElementById('cb-mid').textContent = `0`;
-document.getElementById('cb-max').textContent = `+${CB_MAX} µK`;
 
 /* ==================== RESIZE & LOOP ==================== */
 addEventListener('resize', ()=>{
@@ -255,6 +273,7 @@ addEventListener('resize', ()=>{
   renderer.setPixelRatio(Math.min(2.5, devicePixelRatio));
   drawColorbar();
 });
+
 renderer.setAnimationLoop(()=>{
   if (Math.abs(camera.fov - targetFov) > 0.01){
     camera.fov += (targetFov - camera.fov)*0.15;
@@ -264,6 +283,7 @@ renderer.setAnimationLoop(()=>{
   placeLabel(lblGC,  gcAnchor);
   placeLabel(lblGal, galAnchor);
   placeLabel(lblEcl, eclAnchor);
+  placeLabel(lblAPX, apxAnchor);
 
   renderer.render(scene, camera);
 });
