@@ -91,9 +91,9 @@ font-weight:normal;
 </section><section>
 <p>Un son musical est un signal<br><span class="imp fragment">périodique</span> caractérisé par :</p>
 <ul>
-<li><span class="imp fragment">sa hauteur</span> (liée à <span class="imp fragment">la fréquence</span> du signal),</li> 
-<li><span class="imp fragment">son intensité</span> (liée à <span class="imp fragment">l'amplitude</span> du signal),</li>
-<li><span class="imp fragment">son timbre</span> (lié au <span class="imp fragment">spectre</span> du signal).</li>
+<li class="fragment fade-up"><b style="color:#61D836">sa hauteur</b> (liée à <b class="imp fragment" style="color:#61D836">la fréquence</b> du signal),</li> 
+<li class="fragment fade-up"><b style="color:#FFD932">son intensité</b> (liée à <b class="imp fragment" style="color:#FFD932">l'amplitude</b> du signal),</li>
+<li class="fragment fade-up"><b style="color:#56C1FF">son timbre</b> (lié au <b class="imp fragment" style="color:#56C1FF">spectre</b> du signal).</li>
 </ul>
 
 </section>
@@ -138,7 +138,7 @@ d’avoir une plage de sensibilité si étendue :</p>
 <li class="fragment fade-up">Le seuil de douleur est de l'ordre de $\pu{1 W*m-2}$.</li>
 </ul>
 <p class="fragment fade-up">Notre sensibilité est <span class="imp">logarithmique</span>.</p>
-<aside class="notes"><p>On peut par exemple mesurer que l&rsquo;amplitude du son émis par quelqu&rsquo;un qui parle fort est environ 1 millions de fois plus grande que celle d&rsquo;une personne qui chuchotte à la même distance ! Pourtant, on n&rsquo;a pas la sensation d&rsquo;un son 1 millions de fois plus fort&hellip;</p>
+<aside class="notes"><p>On peut par exemple mesurer que l&rsquo;amplitude du son émis par quelqu&rsquo;un qui parle fort est environ 10 000 fois plus grande que celle d&rsquo;une personne qui chuchote à la même distance ! Pourtant, on n&rsquo;a pas la sensation d&rsquo;un son 10 000 fois plus fort&hellip; (~30 dB pour chuchotement et 70dB voix parlé fort et ~60dB pour voix normal)</p>
 </aside>
 
 </section>
@@ -148,9 +148,13 @@ d’avoir une plage de sensibilité si étendue :</p>
 <section data-shortcode-section>
 <h2 id="point-mathématique">Point mathématique</h2>
 </section><section>
-<p>$\log$ est la fonction logarithme décimal (logarithme en base 10) :</p>
-<p>$$\log(x) = \frac{\ln(x)}{\ln(10)}$$</p>
-<p>On a ainsi $\log(10)=$ <span class="imp fragment">$1$</span>.</p>
+<p>$\log$ est la fonction logarithme décimal<br>(logarithme en base 10) :</p>
+<p class="fragment fade-up">
+$$\log(x) = \frac{\ln(x)}{\ln(10)}$$
+</p>
+<p class="fragment fade-up">
+On a ainsi $\log(10)=$ <span class="imp fragment">$1$</span>.
+</p>
 </section><section>
 <p>Les règles de calcul de $\ln$ sont conservées :</p>
 <br>
@@ -229,11 +233,13 @@ $$I=I_0\times 10^{\frac{L}{10}}$$
 <p>Elle est due à l&rsquo;<span class="imp">éloignement</span><br>entre la source et l&rsquo;observateur.</p>
 <p class="fragment fade-up">En effet, <span class="imp">plus la source est éloignée</span> et <span class="imp">plus la surface</span> sur laquelle la puissance sonore se répartie <span class="fragment imp">est grande</span> et donc <span class="imp">plus l'intensité sonore</span> <span class="fragment imp">est faible</span>.</p>
 </section><section>
-<p>Si la source est omnidirectionnelle (même intensité sonore dans toutes les directions), alors la surface sur laquelle se répartit l&rsquo;intensité sonore à une distance $d$ de la source est la <span class="fragment">sphère centrée<br>sur la source et de rayon $d$.</span></p>
+<p>Si la source est omnidirectionnelle (même intensité sonore dans toutes les directions), alors l&rsquo;intensité sonore à une distance $d$ de la source se répartit sur<br><span class="fragment"><b style="color:#FFD932;">une sphère de rayon $d$</b> centrée sur la source.</span></p>
 <p class="fragment fade-up">On a donc :</p>
 <p class="fragment fade-up">
-$$I=\frac{P}{4\pi d^2}$$
+$$I=\frac{P}{\color{#FFD932}4\pi d^2}$$
 </p>
+</section><section>
+<iframe scrolling="no" title="inversesquarelaw" src="https://www.geogebra.org/material/iframe/id/fbyk36y6/width/704/height/526/border/888888/sfsb/true/smb/false/stb/false/stbh/false/ai/false/asb/false/sri/true/rc/false/ld/false/sdz/true/ctl/false" width="704px" height="526px" style="border:0px;border-radius:10px;"> </iframe>
 </section><section>
 <p>Conclusion :</p>
 <p class="fragment fade-up">L'intensité sonore varie <span class="imp fragment">inversement proportionnellement au carré<br>de la distance à la source</span>.</p>
@@ -249,8 +255,6 @@ $$I=\frac{P}{4\pi d^2}$$
 <span class="fragment">$d\rightarrow 10d\Rightarrow I\rightarrow I/100 \Leftrightarrow L\rightarrow L-20$
 </li>
 </ul>
-</section><section>
-<iframe scrolling="no" title="inversesquarelaw" src="https://www.geogebra.org/material/iframe/id/fbyk36y6/width/704/height/526/border/888888/sfsb/true/smb/false/stb/false/stbh/false/ai/false/asb/false/sri/true/rc/false/ld/false/sdz/true/ctl/false" width="704px" height="526px" style="border:0px;border-radius:10px;"> </iframe>
 
 </section>
 </section><section>
@@ -275,13 +279,26 @@ $$I=\frac{P}{4\pi d^2}$$
       data-background-transition="concave">
 </section><section>
 <p>Pourquoi les bouchons moulés sont-ils<br>plus adaptés à des musiciens ?</p>
+<aside class="notes"><p>Les bouchons en mousse modifie le timbre puisqu&rsquo;ils n&rsquo;atténuent pas toutes les fréquences de la même façon. Les harmoniques disparaissent.
+Et ils atténuent trop de toute façon.</p>
+</aside>
 </section>
 <section data-noprocess data-shortcode-slide
       data-background-size="contain"
       data-background-transition="concave"
       data-background-video="/anechoique.mp4">
+<aside class="notes"><p>Définition du temps de réverbération : temps au bout duquel le son perd 60 dB (en pratique dur à mesurer alors si on suppose la décroissance est linéaire on mesure le temps pour perdre 20 ou 30 dB et on multiplie le temps respectivement par 3 ou 2.</p>
+</aside>
 </section><section>
 <iframe width="800" height="450" src="https://www.youtube.com/embed/mVLKQWImJH8?si=gu83gD_zwQGX36Of" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" style="border-radius:10px;" allowfullscreen></iframe>
+<aside class="notes"><p>Pour passer des Pa aux W/m^2 :
+I = p_eff^2 / (rho*c)
+où p_eff est la pression acoustique efficace en Pa
+rho est la masse volumique de l&rsquo;air (1,2 kg/m^2 à 20°C) et c la célérité des ondes sonores (343 m/s à 20°C) (checker les dimensions)
+Dans un milieu donné et à température fixée, sue peut-on dire de la pression acoustique et de l&rsquo;intensité sonore ? Proportionnalité.
+Et rho*c = 415 kg/m^2/s.
+Le seuil d&rsquo;audition étant à 20 microPa = 2E-5 Pa, retrouver l&rsquo;intensité sonore de référence : -&gt; I = (2E-5)^2/415 = 1,0E-12 W/m^2</p>
+</aside>
 
 </section>
 </section><section>
