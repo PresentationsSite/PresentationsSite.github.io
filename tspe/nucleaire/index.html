@@ -103,10 +103,10 @@ $$\ce{{\color{#FFF056}N} = {\color{#56C1FF}A}-{\color{#FF968D}Z}}$$
 <p class="fragment fade-up">On désigne généralement un isotope<br>par son nom chimique suivi de son nombre $\ce{\color{#56C1FF}A}$.</p> 
 <p class="fragment fade-up">Le carbone 14 ou l'uranium 235 par exemple.</p>
 </section><section>
-<p>On peut rangé tous les isotopes connus<br>dans un <span class="imp">diagramme $\ce{(N,Z)}$</span><br>(avec $\ce{\color{#FF968D}Z}$ en abscisse et $\ce{\color{#FFF056}N}$ en ordonnée).</p>
+<p>On peut ranger tous les isotopes<br>connus dans un <span class="imp">diagramme $\ce{(N,Z)}$</span><br>(avec $\ce{\color{#FF968D}Z}$ en abscisse et $\ce{\color{#FFF056}N}$ en ordonnée).</p>
 </section>
 <section data-noprocess data-shortcode-slide
-      data-background-image="https://upload.wikimedia.org/wikipedia/commons/c/c9/ValléeDeStabilité2.JPG"
+      data-background-image="/stabilitenoyau.png"
       data-background-size="contain"
       data-background-transition="concave">
 </section>
@@ -190,13 +190,160 @@ $$\ce{1 ^\square_\square n + ^\square_\square U -> ^\square_\square Sr + ^\squar
 </section><section>
 <p>La radioactivité gamma correspond à la désexcitation d&rsquo;un noyau en émettant un <b style="color:#FFF056">photon</b> (généralement dans le domaine électromagnétique des rayons gamma).</p>
 </section><section>
+<div style="position:relative;margin-left:auto;margin-right:auto;width:500px;max-width:100%;margin-bottom:-1em;margin-top:-1em;">
+<img src="/desgamma.png" style="box-shadow:none;background:none;">
+</div>
+<p>L&rsquo;énergie est typiquement de l&rsquo;ordre du MeV<br>($\approx\pu{1E-13 J}$)</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/diffrayons.png"
+      data-background-size="80%"
+      data-background-transition="concave">
+</section><section>
+<iframe width="800" height="450" src="https://www.youtube.com/embed/i15ef618DP0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+</section><section>
+<iframe width="800" height="450" src="https://www.youtube.com/embed/1_zwLuNJ5Ck" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
 
 </section>
+</section><section>
 
 
 <section data-shortcode-section>
-<h2 id="intensité-sonore">Intensité sonore</h2>
+<h2 id="loi-de-décroissance-radioactive">Loi de décroissance radioactive</h2>
 </section><section>
+<p>Un noyau radioactif a une certaine probabilité $\lambda \mathrm{d}t$<br>de se désintégrer pendant le prochain<br>petit laps de temps $\mathrm{d} t$ (avec $\mathrm{d} t \ll 1/\lambda$).</p>
+<p class="fragment fade-up"><span class="imp">$\lambda$ (en $\pu{s^-1})$ est la constante radioactive</span>.<br>Elle est indépendante du temps !</p>
+<p class="fragment fade-up">Après 1 s ou 1000 ans, la probabilité<br>pour un noyau de se désintégrer<br>pendant les prochains $\mathrm{d} t$<br>vaut toujours $\lambda\mathrm{d} t$.</p>
+</section><section>
+<p>Tous les mêmes isotopes ont<br>la même constante radioactive $\lambda$<br>et donc la même probabilité de se désintégrer<br>pendant le prochain laps de temps infinitésimal $\mathrm{d} t$.</p>
+<p class="fragment fade-up">La désintégration d'un noyau radioactif est donc<br>un phénomène <span class="imp">aléatoire</span> et l'évolution d'une population de noyau suit une loi <span class="imp">statistique</span>.
+</section><section>
+<p>Soit $N(t)$ la population de noyaux non désintégrés<br>à un instant $t$. La variation $\mathrm{d} N$ de la population pendant le laps de temps infinitésimal $\mathrm{d} t$ vaut :</p>
+<div class="fragment fade-up">
+$$\mathrm{d}N=N(t) \lambda \mathrm{d}t$$
+</div>
+<p class="fragment fade-up">Qu'on peut réécrire :</p>
+<div class="fragment fade-up">
+$$\frac{\mathrm{d}N}{\mathrm{d}t} =\lambda N(t)$$
+</div>
+</section><section>
+<p>On reconnaît une <span class="imp">équation différentielle</span> linéaire homogène <span class="imp">du premier ordre</span> à coefficient constant.</p>
+<p class="fragment fade-up">Les solutions sont de la forme :</p>
+<div class="fragment fade-up">
+$$N(t)=C\mathrm{e}^{-\lambda t}$$
+</div>
+<aside class="notes"><p>Une équation différentielle est une équation qui lie une fonction avec ses dérivées.
+L&rsquo;équation différentielle considérée ici est dite « du premier ordre» car la seule dérivée mise en jeu est la dérivée première de la fonction. Elle se note y&rsquo;+ ay=0. Si la fonction f vérifie cette équation différentielle,
+alors f(x) = f_0 exp(-ax) avec f_0= f(0).</p>
+</aside>
+</section><section>
+<p>Or si on connaît la population à l&rsquo;instant initial :</p>
+<div class="fragment fade-up">
+$$N(t=0)=N_0$$
+</div>
+<p class="fragment fade-up">On en déduit $C$ :</p>
+<div class="fragment fade-up">
+$$N(t=0)=C\mathrm{e}^{-\lambda \times 0} = C = N_0$$
+</div>
+</section><section>
+<p>D&rsquo;où la <span class="imp">loi de décroissance radioactive</span> :</p>
+<br>
+<div class="fragment fade-up" style="position:relative;margin:auto;width:fit-content;border:solid 5px #FF968D;padding:0 50px 0 50px;border-radius:10px">
+$$N(t)=N_0\,\mathrm{e}^{-\lambda  t} $$
+</div>
+<br>
+<ul>
+<li class="fragment fade-up">$N$ sans unité</li>
+<li class="fragment fade-up">$t$ en $\pu{s}$ (ou l'inverse de l'unité de $\lambda)$</li>
+</ul>
+</section><section>
+<p><a href="https://www.geogebra.org/m/Yg8fGWdm">Appliquette geogebra</a></p>
+</section><section>
+<p><u>Rq</u> :</p>
+<p>On peut aussi écrire :</p>
+<div class="fragment fade-up">
+$$
+N(t) = N_0\mathrm{e}^{-\frac{t}{\tau}}
+$$
+</div>
+<p class="fragment fade-up">où $\tau=1/\lambda$ est le temps de vie moyen d'un noyau.</p>
+<aside class="notes"><p>La population survivante suit N(t)=N_0 e^{-\lambda t}.
+Le temps total vécu par tous les noyaux est
+\int_0^\infty N(t),dt = \int_0^\infty N_0 e^{-\lambda t},dt=\frac{N_0}{\lambda}.
+Le temps moyen par noyau est ce total divisé par N_0 :
+\tau=\frac{1}{\lambda}.</p>
+</aside>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h2 id="activité">Activité</h2>
+</section><section>
+<p>L&rsquo;<span class="imp">activité $A$</span> d&rsquo;un échantillon radioactif est l&rsquo;opposée<br>de la dérivée temporelle du nombre de noyaux :</p>
+<br>
+<div class="fragment fade-up" style="position:relative;margin:auto;width:fit-content;border:solid 5px #FF968D;padding:0 50px 0 50px;border-radius:10px">
+$$A(t)=-\frac{\mathrm{d}N}{\mathrm{d}t}$$
+</div>
+<br>
+<ul>
+<li class="fragment fade-up">$A$ en <span class="imp fragment">becquerel (Bq)</span></li>
+</ul>
+</section><section>
+<p>On déduit $A(t)$ de la loi de décroissance radioactive :</p>
+<br>
+<div class="fragment fade-up" style="position:relative;margin:auto;width:fit-content;border:solid 5px #FF968D;padding:0 50px 0px 50px;border-radius:10px">
+$$A(t)=\lambda N_0\,\mathrm{e}^{-\lambda  t} = A_0\,\mathrm{e}^{-\lambda  t} $$
+</div>
+<br>
+<p class="fragment fade-up">
+${\color{#FF968D}{A_0 = \lambda N_0}} = A(t=0)$ est l'activité initiale.
+</p>
+<aside class="notes"><p>Pour une fonction u dérivable :
+(exp(u))&rsquo; = u&rsquo; exp(u)
+et (- lambda t)&rsquo; = -lambda</p>
+</aside>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h2 id="temps-de-demi-vie">Temps de demi-vie</h2>
+</section><section>
+<div style="position:relative;margin:auto;width:fit-content;border:solid 5px #FF968D;padding:10px 50px 20px 50px;border-radius:10px">
+La demi-vie mesure la durée au bout de laquelle la population radioactive est divisée par deux.
+</div>
+</section><section>
+<p>On peut obtenir $t_{1/2}$ graphiquement<br>ou à partir de $\lambda$ (ou $\tau$) :</p>
+<div style="position:relative;margin:auto;width:fit-content;border:solid 5px #FF968D;padding:0 50px 0 50px;border-radius:10px">
+$$t_{1/2}= \frac{\ln(2)}{\lambda} = \tau\times \ln(2) $$
+</div>
+</section><section>
+<p><a href="https://www.geogebra.org/m/tscgbnpn">Appliquette geogebra</a></p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/expdiv22.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+</section><section>
+<p>Population restante au bout de <span class="imp">n</span> demi-vies ?</p>
+<div class="fragment fade-up">
+$$\frac{N_0}{2^{\color{#FF968D}n}}$$
+</div>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h2 id="applications">Applications</h2>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/pet.gif"
+      data-background-size="contain"
+      data-background-transition="concave">
 
 </section>
 </section><section>
