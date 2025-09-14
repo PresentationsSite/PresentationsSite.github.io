@@ -68,6 +68,8 @@ font-weight:normal;
 </style>
 <h1 id="transformations-nucléaires">Transformations nucléaires</h1>
 </section><section>
+<iframe width="800" height="450" src="https://www.youtube.com/embed/clRcF7emyiM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+</section><section>
 
 
 <section data-shortcode-section>
@@ -287,9 +289,8 @@ Le temps moyen par noyau est ce total divisé par N_0 :
 $$A(t)=-\frac{\mathrm{d}N}{\mathrm{d}t}$$
 </div>
 <br>
-<ul>
-<li class="fragment fade-up">$A$ en <span class="imp fragment">becquerel (Bq)</span></li>
-</ul>
+<p class="fragment fade-up">$A$ s'exprime en <span class="imp fragment">becquerel (Bq)</span></p>
+<p class="fragment fade-up">1 becquerel correspond<br>à 1 désintégration par seconde.</p>
 </section><section>
 <p>On déduit $A(t)$ de la loi de décroissance radioactive :</p>
 <br>
@@ -339,9 +340,109 @@ $$\frac{N_0}{2^{\color{#FF968D}n}}$$
 
 <section data-shortcode-section>
 <h2 id="applications">Applications</h2>
+</section><section>
+<h3 id="datation">Datation</h3>
+</section><section>
+<p>On utilise la loi de décroissance radioactive<br>pour déterminer une date.</p>
+<p class="fragment fade-up"><u>Exemples</u> : </p>
+<ul>
+<li class="fragment fade-up">Datation de matière organique au carbone 14</li>
+<li class="fragment fade-up">Datation de roche au rubidium-strontium</li>
+</ul>
+</section><section>
+<h3 id="domaine-médical">Domaine médical</h3>
+<p>La médecine nucléaire fournit à la fois<br>des techniques d&rsquo;imagerie et de traitement.</p>
+</section><section>
+<ul>
+<li><b style="color:#FFF056">Imagerie médicale</b> : contrairement à la radiographie traditionnelle où on observe l'ombre d'un rayonnement extérieur, le rayonnement est ici émis directement au niveau des organes en faisant ingérer ou en injectant au patient une substance radioactive.</li>
+<ul>
+<br>
+<li class="fragment fade-up">Scintigraphie :<br>utilisation de gamma cameras à scintillation</li>
+<li class="fragment fade-up">Tomographies à émission de positons (PET scan)</li>
+</ul>
+</ul>
+<aside class="notes"><p>PET et SPECT sont deux tomographies “fonctionnelles” mais avec des compromis très différents. On ne fait pas “uniquement du PET” parce que le SPECT reste indispensable pour des raisons de physique, de radio­pharmacie, de coût et… d’indication clinique.</p>
+<ol>
+<li>
+<p>Physique de formation d’image
+•	PET (coïncidences 511 keV) → “collimation électronique” : pas de collimateur en plomb, donc sensibilité élevée et meilleure résolution (≈ 3–5 mm aujourd’hui). Limites intrinsèques : portée du positon avant annihilation (p.ex. plus faible avec ¹⁸F, plus forte avec ⁸²Rb), non-colinéarité (~0,5° FWHM) et profondeur d’interaction.
+•	SPECT (photon unique, p.ex. 140 keV pour ⁹⁹ᵐTc) → collimation mécanique (plaque trouée) : forte perte de photons ⇒ sensibilité plus faible et résolution typique ≈ 7–12 mm (meilleure sur systèmes CZT dédiés cœur). Il y a un compromis géométrique :
+•	résolution collim. R \approx \frac{d}{L}(z+L)
+•	sensibilité S \propto \frac{d^4}{L^2}
+(trous plus fins ⇒ meilleure résolution mais sensibilité qui chute).</p>
+</li>
+<li>
+<p>Radio­pharmacie et demi-vies
+•	SPECT dispose d’un immense catalogue d’agents faciles à produire : ⁹⁹ᵐTc (générateur ⁹⁹Mo/⁹⁹ᵐTc, T½ = 6 h), ¹²³I, ¹¹¹In, ²⁰¹Tl… chimie robuste, logistique simple.
+•	PET nécessite souvent un cyclotron (¹⁸F 110 min, ¹¹C 20 min…) ou quelques générateurs (⁶⁸Ga, ⁸²Rb). Pour des cinétiques lentes (immuno-imagerie, infections), des isotopes SPECT à longue T½ (¹¹¹In, ¹²³I) restent très adaptés. Les analogues PET à longue T½ (⁸⁹Zr) existent mais avec des doses et des contraintes différentes.</p>
+</li>
+<li>
+<p>Coût, accès, logistique
+•	Caméras SPECT/CT : moins chères et très répandues → accès large, délais courts.
+•	PET/CT : plus coûteux (scanner + chimie + distribution), disponibilité encore inégale selon territoires. Beaucoup d’hôpitaux n’auraient pas l’activité/plateforme pour tout basculer en PET.</p>
+</li>
+<li>
+<p>Indications où le SPECT est (encore) la référence
+•	Os (⁹⁹ᵐTc-HDP/MDP), thyroïde (¹²³I), perfusion pulmonaire V/Q, biliaire (HIDA), reins (DMSA, MAG3), ganglion sentinelle, certaines infections/inflammations (¹¹¹In-leucocytes), cardio (perfusion SPECT très répandue).
+Le PET a des alternatives (FDG, ⁶⁸Ga, ¹³N-ammoniac, ⁸²Rb…), souvent excellentes, mais pas toujours disponibles/nécessaires.</p>
+</li>
+<li>
+<p>Quantification et dose
+•	PET est naturellement quantitatif (SUV, cinétique, TOF), atout majeur en oncologie/cardiologie.
+•	SPECT devient de plus en plus quantitatif (SPECT/CT avec correction d’atténuation, de diffusion, “resolution recovery”), suffisant pour de nombreuses décisions.
+•	Dose : variable selon traceur/protocole ; on ne peut pas dire “PET = moins de dose” ou l’inverse de façon générale.</p>
+</li>
+<li>
+<p>Theranostique et dosimétrie
+•	En thérapie interne (¹³¹I, ¹⁷⁷Lu, ²²³Ra…), le SPECT est clé pour imager et dosimétrer le même radionucléide (ou son analogue gamma) chez le patient. C’est difficile à remplacer partout par PET.</p>
+</li>
+</ol>
+<p>⸻</p>
+<p>En bref
+•	PET : meilleure résolution/sensibilité et quantification → imbattable pour beaucoup d’usages (oncologie FDG, perfusion cardiaque quantitative, neuro, infection/inflammation ciblée).
+•	SPECT : indispensable car moins coûteux, ultra-disponible, énorme palette de traceurs (dont longs T½), logistique simple, et suffisant (voire optimal) pour quantité d’indications clinique courantes—et crucial en dosimétrie thérapeutique.</p>
+</aside>
+</section><section>
+<iframe width="800" height="450" src="https://www.youtube.com/embed/QoS1H7J-86w?si=EBc2P8Av62KoMTVD" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+</section><section>
+<iframe width="800" height="450" src="https://www.youtube.com/embed/yrTy03O0gWw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+<aside class="notes"><p>La raison pour laquelle les cellules cancéreuses sont des grandes consommatrices de sucre est encore un mystère. Pour une raison inconnue, la plupart des cellules cancéreuses préfèrent la fermentation aérobie (en présence de dioxygène) à la respiration. La fermentation est bien plus rapide mais aussi bien moins efficace (6% par rapport à respiration) -&gt; beaucoup de glucose nécessaire.</p>
+</aside>
 </section>
 <section data-noprocess data-shortcode-slide
       data-background-image="/pet.gif"
+      data-background-size="contain"
+      data-background-transition="concave">
+</section><section>
+<iframe width="800" height="450" src="https://www.youtube.com/embed/TYGa4KBu5oo?start=132" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+</section><section>
+<ul>
+<li><b style="color:#FFF056">Radiothérapie</b> :</li>
+<br>
+<ul>
+<li class="fragment fade-up">Radiothérapie externe : on focalise un faisceau de particule (photons X, électrons, neutrons, protons, ions carbone) issu d'un accélérateur linéaire sur les cellules cancéreuses.</li>
+<li class="fragment fade-up">Curie thérapie : une source radioactive scellée est placée à l'intérieur ou à proximité immédiate de la zone à traiter..</li>
+</ul>
+</ul>
+<aside class="notes"><p>Technique mise au point à l&rsquo;Institut Curie.</p>
+</aside>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="https://upload.wikimedia.org/wikipedia/commons/8/81/BrachytherapybeadsNo.png?20160528132630"
+      data-background-size="contain"
+      data-background-transition="concave">
+<aside class="notes"><p><a href="https://en.wikipedia.org/wiki/Prostate_brachytherapy">https://en.wikipedia.org/wiki/Prostate_brachytherapy</a>
+Isotopes used include iodine 125 (half-life 59.4 days) palladium 103 (half-life 17 days) and cesium-131 (half life 9.7 days).</p>
+</aside>
+</section><section>
+<h3 id="radioprotection-protection-contre-les-rayonnements-ionisants">Radioprotection :<br>protection contre les rayonnements ionisants</h3>
+</section><section>
+<p><a href="https://expop.asnr.fr">Estimation de votre exposition<br>aux rayonnements ionisants</a></p>
+</section><section>
+<iframe width="800" height="600" src="https://www.youtube.com/embed/x_UtBSJtF30" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="http://imgs.xkcd.com/blag/radiation.png"
       data-background-size="contain"
       data-background-transition="concave">
 
