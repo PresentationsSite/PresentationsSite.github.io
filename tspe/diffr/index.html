@@ -358,26 +358,34 @@ $\displaystyle\Rightarrow L \approx \frac{2D\lambda}{a}$
       data-background-size="contain"
       data-background-transition="concave">
 </section><section>
-<iframe scrolling="no" title="Interférence" src="https://www.geogebra.org/material/iframe/id/p97kmweq/width/873/height/679/border/888888/sfsb/true/smb/false/stb/false/stbh/false/ai/false/asb/false/sri/true/rc/false/ld/false/sdz/false/ctl/false" width="873px" height="679px" style="border:0px;border-radius:10px"> </iframe>
-</section><section>
-<p>Imaginons que les oscillations<br>des sources S<sub>1</sub> et S<sub>2</sub> soient en phase.</p>
-<p class="fragment fade-up">La condition pour observer une interférence constructive en M est alors que le déphasage<br>induit par le chemin supplémentaire <b style="color:#61D836">$\delta$</b>, appelé <b style="color:#61D836">différence de marche</b>, soit un multiple de 2π.</p>
+<p>Supposons que les oscillations<br>des sources S<sub>1</sub> et S<sub>2</sub> soient en phase.</p>
+<p class="fragment fade-up">La condition pour observer une interférence constructive en M est alors que le chemin supplémentaire <b style="color:#61D836">$\delta$</b> parcouru, appelé <b style="color:#61D836">différence<br>de marche</b>, induise un déphasage valant<br>un multiple de 2π.</p>
 <p class="fragment fade-up">
-$\displaystyle2\pi\times \frac{\delta}{\lambda}=2\pi\times k$
+$\displaystyle2\pi\times \frac{\delta}{\lambda}= k\times 2\pi\;,\; k\in\mathbb{Z}$
 </p>
-<div  class="fragment fade-up" style="position:relative;margin:auto;width:fit-content;border:solid 5px #FF968D;padding:20px 50px 20px 50px;border-radius:10px">
-<span class="imp">
-$\Rightarrow \color{#FF968D}\delta = k\times \lambda$</span><br>
-avec <span class="imp">$k\in\mathbb{Z}$</span>
+</section><section>
+<p>On en déduit la condition pour obtenir<br>en un point une <span class="imp">interférence constructive</span> :</p>
+<br>
+<div  class="fragment fade-up" style="position:relative;margin:auto;width:fit-content;border:solid 5px #FF968D;padding:0px 50px 0px 50px;border-radius:10px">
+$$\frac{\delta}{\lambda} = k \;,\; k\in\mathbb{Z}$$
 </div>
+<br>
+<p class="fragment fade-up">Autrement dit, la distance supplémentaire parcourue sur le chemin le plus long doit être un multiple<br>de la longueur d'onde.</p>
 </section><section>
 <p>Et pour des interférences destructives, il faut :</p>
 <p class="fragment fade-up">
-$$2\pi\frac{\delta}{\lambda}=2\pi\left(k+\frac12\right) $$
+$$
+\begin{aligned}
+2\pi\frac{\delta}{\lambda}&=\pi + k\times 2\pi\\
+&=2\pi\times\left(k+\frac{1}{2}\right)
+\end{aligned}
+$$
 <p>
-<div  class="fragment fade-up imp" style="position:relative;margin:auto;width:fit-content;border:solid 5px #FF968D;padding:0px 50px 0px 50px;border-radius:10px">
-$$\Rightarrow \delta = \left(k+\frac12\right)\lambda$$
+<div  class="fragment fade-up" style="position:relative;margin:auto;width:fit-content;border:solid 5px #FF968D;padding:0px 50px 0px 50px;border-radius:10px">
+$$ \frac{\delta}{\lambda} = \left(k+\frac12\right) \;,\; k\in \mathbb{Z}$$
 </div>
+</section><section>
+<iframe scrolling="no" title="Interférence" src="https://www.geogebra.org/material/iframe/id/p97kmweq/width/873/height/679/border/888888/sfsb/true/smb/false/stb/false/stbh/false/ai/false/asb/false/sri/true/rc/false/ld/false/sdz/false/ctl/false" width="873px" height="679px" style="border:0px;border-radius:10px"> </iframe>
 </section><section>
 <p>$k$ est l&rsquo;<span class="imp">ordre d&rsquo;interférence</span>.</p>
 <div style="position:relative;margin-left:auto;margin-right:auto;width:700px;max-width:100%;">
@@ -422,7 +430,7 @@ $$
 $$
 \begin{aligned}
 i &= x_{k+1}-x_k\\
-&=\frac{(k+1)\lambda D}{na}-\frac{p\lambda D}{na}\\
+&=\frac{(k+1)\lambda D}{na}-\frac{k\lambda D}{na}\\
 &=\frac{\lambda D}{na}
 \end{aligned}
 $$
