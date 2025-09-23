@@ -358,21 +358,28 @@ $\displaystyle\Rightarrow L \approx \frac{2D\lambda}{a}$
       data-background-size="contain"
       data-background-transition="concave">
 </section><section>
-<iframe scrolling="no" title="Interférences" src="https://www.geogebra.org/material/iframe/id/wcdtegav/width/881/height/609/border/888888/sfsb/true/smb/false/stb/false/stbh/false/ai/false/asb/false/sri/true/rc/false/ld/false/sdz/false/ctl/false" width="881px" height="609px" style="border:0px;border-radius:10px;"> </iframe>
+<iframe scrolling="no" title="Interférence" src="https://www.geogebra.org/material/iframe/id/p97kmweq/width/873/height/679/border/888888/sfsb/true/smb/false/stb/false/stbh/false/ai/false/asb/false/sri/true/rc/false/ld/false/sdz/false/ctl/false" width="873px" height="679px" style="border:0px;border-radius:10px"> </iframe>
 </section><section>
 <p>Imaginons que les oscillations<br>des sources S<sub>1</sub> et S<sub>2</sub> soient en phase.</p>
 <p class="fragment fade-up">La condition pour observer une interférence constructive en M est alors que le déphasage<br>induit par le chemin supplémentaire <b style="color:#61D836">$\delta$</b>, appelé <b style="color:#61D836">différence de marche</b>, soit un multiple de 2π.</p>
 <p class="fragment fade-up">
-$\displaystyle2\pi\times \frac{\delta}{\lambda}=2\pi\times p \Rightarrow \delta = p\lambda$<br>
-avec $p\in\mathbb{Z}$
+$\displaystyle2\pi\times \frac{\delta}{\lambda}=2\pi\times k$
 </p>
+<div  class="fragment fade-up" style="position:relative;margin:auto;width:fit-content;border:solid 5px #FF968D;padding:20px 50px 20px 50px;border-radius:10px">
+<span class="imp">
+$\Rightarrow \color{#FF968D}\delta = k\times \lambda$</span><br>
+avec <span class="imp">$k\in\mathbb{Z}$</span>
+</div>
 </section><section>
 <p>Et pour des interférences destructives, il faut :</p>
 <p class="fragment fade-up">
-$$2\pi\frac{\delta}{\lambda}=2\pi\left(p+\frac12\right) \Rightarrow \delta = \left(p+\frac12\right)\lambda$$
-</p>
+$$2\pi\frac{\delta}{\lambda}=2\pi\left(k+\frac12\right) $$
+<p>
+<div  class="fragment fade-up imp" style="position:relative;margin:auto;width:fit-content;border:solid 5px #FF968D;padding:0px 50px 0px 50px;border-radius:10px">
+$$\Rightarrow \delta = \left(k+\frac12\right)\lambda$$
+</div>
 </section><section>
-<p>$p$ est appelé <span class="imp">ordre d&rsquo;interférence</span>.</p>
+<p>$k$ est l&rsquo;<span class="imp">ordre d&rsquo;interférence</span>.</p>
 <div style="position:relative;margin-left:auto;margin-right:auto;width:700px;max-width:100%;">
 <img src="/ordreinterf.png" style="box-shadow:none;background:none;">
 </div>
@@ -389,22 +396,22 @@ La prise en compte du ralentissement de la lumière dans un milieu d'indice opti
 </section><section>
 <p>Si la distance $D$ entre les trous et l&rsquo;écran est<br>telle que $D\gg a$, alors la différence de chemin optique en un point de l&rsquo;écran d&rsquo;abscisse $x$ est approximée par :</p>
 <p>$$\delta=\frac{nax}{D}$$</p>
-<p class="fragment fade-up">En déduire l'abscisse $x_p$ sur l'écran<br>où apparaît la $p$<sup>e</sup> frange brillante.</p>
+<p class="fragment fade-up">En déduire l'abscisse $x_k$ sur l'écran<br>où apparaît la $k$<sup>e</sup> frange brillante.</p>
 </section><section>
 <p style=color:#61D836;">
 $$
-\delta = p\lambda\quad \text{avec } p\in\mathbb{Z}
+\delta = k\lambda\quad \text{avec } k\in\mathbb{Z}
 $$
 </p>
 <p class="fragment fade-up" style=color:#61D836;">
 $$
-\Rightarrow x_p=\frac{p\lambda D}{na}
+\Rightarrow x_k=\frac{k\lambda D}{na}
 $$
 </p>
 <p class="fragment fade-up">Et pour les franges sombres ?</p>
 <p class="fragment fade-up" style=color:#61D836;">
 $$
-x'_p=\frac{(p+\frac12)\lambda D}{na}
+x'_k=\frac{(k+\frac12)\lambda D}{na}
 $$
 </p>
 </section><section>
@@ -414,8 +421,8 @@ $$
 <b style="color:#FFF056">
 $$
 \begin{aligned}
-i &= x_{p+1}-x_p\\
-&=\frac{(p+1)\lambda D}{na}-\frac{p\lambda D}{na}\\
+i &= x_{k+1}-x_k\\
+&=\frac{(k+1)\lambda D}{na}-\frac{p\lambda D}{na}\\
 &=\frac{\lambda D}{na}
 \end{aligned}
 $$
