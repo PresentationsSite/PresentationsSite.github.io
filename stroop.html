@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Test de Stroop (FR) — formes puis mots</title>
+  <style>
+    :root {
+      --bg: #0f172a;          /* slate-900 */
+      --panel: #111827;       /* gray-900 */
+      --panel-2: #0b1220;     /* darker */
+      --text: #e5e7eb;        /* gray-200 */
+      --muted: #9ca3af;       /* gray-400 */
+      --accent: #22d3ee;      /* cyan-400 */
+      --ok: #22c55e;          /* green-500 */
+      --bad: #ef4444;         /* red-500 */
+    }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      background: radial-gradient(1200px 800px at 70% -10%, #1f2937 0%, #0b1220 60%, #050a15 100%);
+      color: var(--text);
+      display: grid;
+      place-items: center;
+    }
+    .app {
+      width: min(900px, 95vw);
+      border-radius: 18px;
+      background: linear-gradient(180deg, var(--panel) 0%, var(--panel-2) 100%);
+      box-shadow: 0 20px 50px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.04);
+      padding: 24px 26px 28px;
+    }
+    header { display:flex; align-items:baseline; gap:12px; margin-bottom: 12px; }
+    h1 { font-size: clamp(20px, 3.4vw, 28px); margin: 0; letter-spacing:.2px; }
+    .subtitle { color: var(--muted); font-size: 14px; }
+
+    .controls { display:flex; flex-wrap:wrap; gap:14px; align-items:center; margin: 8px 0 14px; }
+    .controls .group { background:#0b1324; padding:10px 12px; border-radius:12px; border:1px solid rgba(255,255,255,.06); }
+    .controls label { color:var(--muted); font-size:12px; display:block; margin-bottom:6px; }
+    .controls input[type="range"] { width: 220px; }
+
+    .row { display:flex; gap:20px; align-items:stretch; }
+    .left { flex: 1 1 62%; display:grid; place-items:center; background:#0a1020; border-radius:16px; border:1px solid rgba(255,255,255,.06); min-height: 320px; position:relative; overflow:hidden; }
+    .right { flex: 1 1 38%; background:#0a1020; border-radius:16px; border:1px solid rgba(255,255,255,.06); padding:16px 16px; display:flex; flex-direction:column; gap:10px; }
+
+    .stimulus { font-weight: 800; letter-spacing:.5px; user-select:none; }
+    .stimulus.word { font-size: clamp(48px, 10vw, 72px); }
+    .stimulus.shape { width: 160px; height: 160px; }
+    .circle { border-radius: 999px; }
+    .square { border-radius: 18px; }
+
+    .progress { position:absolute; left:0; right:0; top:0; height:6px; background: rgba(255,255,255,.06); }
+    .bar { height:100%; width: 0%; background: linear-gradient(90deg, #22d3ee, #60a5fa); transition: width .25s ease; }
+
+    .big { font-size: 22px; font-weight: 700; }
+    .muted { color: var(--muted); }
+    .kbd { background:#111827; border:1px solid rgba(255,255,255,.08); padding:3px 7px; border-radius:8px; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
+
+    button { appearance:none; border:none; background: linear-gradient(180deg, #0ea5e9, #0284c7); color:white; padding:10px 14px; border-radius:12px; font-weight:700; cursor:pointer; box-shadow: 0 6px 16px rgba(2,132,199,.35); }
+    button.secondary { background: linear-gradient(180deg, #334155, #1f2937); box-shadow:none; }
+    button:disabled { opacity:.6; cursor:not-allowed; }
+
+    .scorebox { display:grid; grid-template-columns: 1fr 1fr; gap:12px; }
+    .card { background:#0b1324; border:1px solid rgba(255,255,255,.08); padding:12px; border-radius:12px; }
+    .card h3 { margin:4px 0 8px; font-size:14px; color:var(--muted); }
+    .card .value { font-size: 28px; font-weight: 800; }
+
+    .flash-ok { outline: 6px solid rgba(34,197,94,.6); }
+    .flash-bad { outline: 6px solid rgba(239,68,68,.6); }
+
+    footer { margin-top: 12px; color: var(--muted); font-size: 13px; }
+    .hint { margin-top: 6px; }
+      .countdown{ position:absolute; inset:0; display:none; place-items:center; font-size:clamp(56px,14vw,120px); font-weight:900; color:rgba(255,255,255,.92); background: radial-gradient(600px 400px at 50% 30%, rgba(255,255,255,.06), rgba(0,0,0,0)); letter-spacing:2px; user-select:none; }
+  </style>
+</head>
+<body>
+  <div class="app" id="app">
+    <header>
+      <h1>Test de Stroop (FR) — Phase 1 : formes · Phase 2 : mots colorés</h1>
+      <span class="subtitle">Répondre à la <strong>couleur</strong> le plus vite possible.</span>
+    </header>
+
+    <div class="controls">
+      <div class="group">
+        <label>Temps limite par essai (ms)</label>
+        <input type="range" id="limit" min="600" max="2500" step="50" value="1200" />
+        <span class="kbd" id="limitVal">1200 ms</span>
+      </div>
+      <div class="group">
+        <label>Essais par phase</label>
+        <span class="kbd">10</span>
+      </div>
+      <div class="group">
+        <label>Touches</label>
+        <span class="kbd">R</span> rouge · <span class="kbd">B</span> bleu · <span class="kbd">J</span> jaune · <span class="kbd">V</span> vert
+      </div>
+      <div style="flex:1"></div>
+      <button id="startBtn">Démarrer</button>
+      <button id="resetBtn" class="secondary">Recommencer</button>
+    </div>
+
+    <div class="row">
+      <div class="left" id="stage">
+        <div class="progress"><div class="bar" id="bar"></div></div>
+        <div id="stimulusBox"></div>
+        <div id="countdown" class="countdown" aria-hidden="true"></div>
+      </div>
+      <div class="right">
+        <div class="card">
+          <h3>Phase en cours</h3>
+          <div class="value" id="phaseLabel">—</div>
+        </div>
+        <div class="card">
+          <h3>Essai</h3>
+          <div class="value" id="trialLabel">—</div>
+        </div>
+        <div class="card">
+          <h3>Score phase 1 (formes)</h3>
+          <div class="value" id="score1">—</div>
+          <div class="muted" id="rt1">Temps de réaction moyen : —</div>
+        </div>
+        <div class="card">
+          <h3>Score phase 2 (mots)</h3>
+          <div class="value" id="score2">—</div>
+          <div class="muted" id="rt2">Temps de réaction moyen : —</div>
+        </div>
+        <div class="card">
+          <h3>Consigne</h3>
+          <div>
+            Appuie sur <span class="kbd">R/B/J/V</span> selon la <strong>couleur</strong> affichée (ignorer la <em>forme</em> ou le <em>mot</em>).<br>
+            Chaque essai est limité par un compte à rebours.
+          </div>
+          <div class="hint">Conseil : pose une main sur les 4 touches pour aller plus vite.</div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <div>Astuce : compare ensuite la précision et le RT entre Phase 1 et Phase 2 ; l’interférence de Stroop doit apparaître.</div>
+    </footer>
+  </div>
+
+<script>
+(function(){
+  const COLORS = [
+    { name: 'rouge', hex: '#e53935', key: 'r' },
+    { name: 'bleu',  hex: '#1e88e5', key: 'b' },
+    { name: 'jaune', hex: '#f6c90e', key: 'j' },
+    { name: 'vert',  hex: '#2ecc71', key: 'v' }
+  ];
+  const TRIALS_PER_PHASE = 10;
+
+  // DOM
+  const stage = document.getElementById('stage');
+  const box = document.getElementById('stimulusBox');
+  const bar = document.getElementById('bar');
+  const countdownEl = document.getElementById('countdown');
+  const phaseLabel = document.getElementById('phaseLabel');
+  const trialLabel = document.getElementById('trialLabel');
+  const score1 = document.getElementById('score1');
+  const score2 = document.getElementById('score2');
+  const rt1 = document.getElementById('rt1');
+  const rt2 = document.getElementById('rt2');
+  const startBtn = document.getElementById('startBtn');
+  const resetBtn = document.getElementById('resetBtn');
+  const limitRange = document.getElementById('limit');
+  const limitVal = document.getElementById('limitVal');
+
+  let timeLimit = parseInt(limitRange.value, 10);
+
+  const state = {
+    phase: 1,          // 1 = formes, 2 = mots
+    trial: 0,
+    running: false,
+    awaiting: false,
+    onset: 0,
+    timer: null,
+    correctKey: null,
+    currentMeta: null,
+    data: { 1: [], 2: [] },
+    countdownTimer: null
+  };
+
+  function updateUI(){
+    if (state.running){
+      phaseLabel.textContent = state.phase === 1 ? 'Phase 1 — Formes colorées' : 'Phase 2 — Mots colorés (toujours incongru — ignorer le mot)';
+      trialLabel.textContent = (state.trial + 1) + ' / ' + TRIALS_PER_PHASE;
+      bar.style.width = (state.trial / TRIALS_PER_PHASE * 100) + '%';
+    } else {
+      phaseLabel.textContent = '—';
+      trialLabel.textContent = '—';
+      bar.style.width = '0%';
+    }
+  }
+
+  function randInt(n){ return Math.floor(Math.random() * n); }
+
+  function startTimer(){
+    state.awaiting = true;
+    state.onset = performance.now();
+    clearTimeout(state.timer);
+    clearInterval(state.countdownTimer);
+    state.countdownTimer = null;
+    if (countdownEl) countdownEl.style.display = 'none';
+    state.timer = setTimeout(function(){
+      saveTrial({ ok: false, rt: null, ...state.currentMeta });
+      flash(false);
+      next();
+    }, timeLimit);
+  }
+
+  function showTrial(){
+    box.innerHTML = '';
+    stage.classList.remove('flash-ok', 'flash-bad');
+
+    const inkIdx = randInt(COLORS.length);
+    if (state.phase === 1){
+      const el = document.createElement('div');
+      el.className = 'stimulus shape ' + (Math.random() < 0.5 ? 'circle' : 'square');
+      el.style.background = COLORS[inkIdx].hex;
+      box.appendChild(el);
+      state.correctKey = COLORS[inkIdx].key;
+      state.currentMeta = { ink: COLORS[inkIdx].name, word: null, congruent: null };
+      startTimer();
+    } else {
+      let wordIdx = randInt(COLORS.length);
+      while (wordIdx === inkIdx) { wordIdx = randInt(COLORS.length); }
+      const el = document.createElement('div');
+      el.className = 'stimulus word';
+      el.textContent = COLORS[wordIdx].name.toUpperCase();
+      el.style.color = COLORS[inkIdx].hex; // couleur d'encre = réponse
+      box.appendChild(el);
+      state.correctKey = COLORS[inkIdx].key;
+      state.currentMeta = { ink: COLORS[inkIdx].name, word: COLORS[wordIdx].name, congruent: wordIdx === inkIdx };
+      startTimer();
+    }
+  }
+
+  function saveTrial(row){ state.data[state.phase].push(row); }
+
+  function flash(ok){
+    stage.classList.remove('flash-ok', 'flash-bad');
+    void stage.offsetWidth; // reflow
+    stage.classList.add(ok ? 'flash-ok' : 'flash-bad');
+  }
+
+  function computeScores(){
+    function stats(rows){
+      if (!rows.length) return { acc:null, rt:null };
+      const okc = rows.filter(function(r){ return r.ok; }).length;
+      const acc = okc / rows.length * 100;
+      const rts = rows.filter(function(r){ return r.ok && typeof r.rt === 'number'; }).map(function(r){ return r.rt; });
+      const mean = rts.length ? rts.reduce(function(a,b){ return a+b; }, 0) / rts.length : null;
+      return { acc: acc, rt: mean };
+    }
+    const s1 = stats(state.data[1]);
+    const s2 = stats(state.data[2]);
+    if (s1.acc != null){
+      score1.textContent = Math.round(s1.acc) + ' %';
+      rt1.textContent = 'Temps de réaction moyen : ' + (s1.rt ? Math.round(s1.rt) + ' ms' : '—');
+    }
+    if (s2.acc != null){
+      score2.textContent = Math.round(s2.acc) + ' %';
+      rt2.textContent = 'Temps de réaction moyen : ' + (s2.rt ? Math.round(s2.rt) + ' ms' : '—');
+    }
+  }
+
+  function next(){
+    state.awaiting = false;
+    state.trial += 1;
+    updateUI();
+    if (state.trial < TRIALS_PER_PHASE){
+      setTimeout(showTrial, 400);
+      return;
+    }
+    // fin de phase
+    computeScores();
+    if (state.phase === 1){
+      state.phase = 2;
+      state.trial = 0;
+      setTimeout(function(){ updateUI(); showTrial(); }, 900);
+    } else {
+      state.running = false;
+      startBtn.disabled = false;
+      resetBtn.disabled = false;
+      phaseLabel.textContent = 'Terminé';
+      trialLabel.textContent = '—';
+      bar.style.width = '100%';
+    }
+  }
+
+  function handleKey(e){
+    if (!state.running || !state.awaiting) return;
+    const k = (e.key || '').toLowerCase();
+    if (k !== 'r' && k !== 'b' && k !== 'j' && k !== 'v') return;
+    e.preventDefault();
+
+    clearTimeout(state.timer);
+    const rt = performance.now() - state.onset;
+    const ok = (k === state.correctKey);
+    saveTrial({ ok: ok, rt: rt, ...state.currentMeta });
+    flash(ok);
+    next();
+  }
+
+  function runCountdown(done){
+    let n = 3;
+    if (countdownEl){
+      countdownEl.style.display = 'grid';
+      countdownEl.textContent = n;
+    }
+    clearInterval(state.countdownTimer);
+    state.countdownTimer = setInterval(function(){
+      n -= 1;
+      if (n > 0){
+        if (countdownEl) countdownEl.textContent = n;
+      } else {
+        clearInterval(state.countdownTimer);
+        if (countdownEl) countdownEl.style.display = 'none';
+        if (typeof done === 'function') done();
+      }
+    }, 700);
+  }
+
+  startBtn.addEventListener('click', function(){
+    state.phase = 1;
+    state.trial = 0;
+    state.running = true;
+    state.awaiting = false;
+    state.data = { 1: [], 2: [] };
+    startBtn.disabled = true;
+    resetBtn.disabled = false;
+    computeScores();
+    updateUI();
+    runCountdown(function(){ showTrial(); });
+  });
+
+  resetBtn.addEventListener('click', function(){
+    // Stop current trial if any
+    clearTimeout(state.timer);
+    state.timer = null;
+
+    // Reset state
+    state.running = false;
+    state.awaiting = false;
+    state.phase = 0;
+    state.trial = 0;
+    state.correctKey = null;
+    state.currentMeta = null;
+    state.data = { 1: [], 2: [] };
+
+    // UI cleanup
+    box.innerHTML = '';
+    stage.classList.remove('flash-ok','flash-bad');
+    bar.style.width = '0%';
+    phaseLabel.textContent = '—';
+    trialLabel.textContent = '—';
+    score1.textContent = '—';
+    rt1.textContent = 'Temps de réaction moyen : —';
+    score2.textContent = '—';
+    rt2.textContent = 'Temps de réaction moyen : —';
+
+    // Buttons
+    startBtn.disabled = false;
+    resetBtn.disabled = false;
+  });
+
+  document.addEventListener('keydown', handleKey, { passive: false });
+
+  limitRange.addEventListener('input', function(e){
+    timeLimit = parseInt(e.target.value, 10);
+    limitVal.textContent = timeLimit + ' ms';
+  });
+
+  // init
+  limitVal.textContent = timeLimit + ' ms';
+  updateUI();
+}());
+</script>
+</body>
+</html>
