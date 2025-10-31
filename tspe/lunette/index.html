@@ -1,0 +1,477 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>Lunette astronomique</title>
+
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="/reveal-js/css/reset.css">
+<link rel="stylesheet" href="/reveal-js/css/reveal.css"><link rel="stylesheet" href="/reveal-js/css/theme/league.css" id="theme">
+<link rel="stylesheet" href="/highlight-js/atom-one-dark-reasonable.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  </head>
+  <body>
+    
+    <div class="reveal">
+      <div class="slides">
+  
+
+    <section><style>
+img {
+border: none !important;
+}
+
+.imp {
+font-weight:bold;color:#FF968D;
+}
+
+li {
+color: #fff;
+}
+
+ul {
+margin-left: auto;
+margin-right: auto;
+text-align: left;
+width: fit-content;
+list-style-position: outside;
+color:#fff;
+}
+
+span {
+font-weight:normal;
+}
+
+.video-container {
+  height: 60vh; /* limite la hauteur à 80% de la fenêtre */
+  width: calc(60vh * 9 / 16); /* largeur en fonction du ratio portrait */
+  margin: 0 auto;
+  position: relative;
+}
+
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  border-radius:10px;
+}
+</style>
+
+
+<section data-shortcode-section>
+<h1 id="lunette-astronomique">Lunette astronomique</h1>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="https://upload.wikimedia.org/wikipedia/commons/1/18/Irving_Porter_Church_Telescope.jpg"
+      data-background-size="contain"
+      data-background-transition="concave">
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h2 id="rappels-sur-les-lentilles">Rappels sur les lentilles</h2>
+</section><section>
+<p>Par quoi est caractérisée une lentille convergente ?</p>
+<div style="position:relative;margin-left:auto;margin-right:auto;width:100px;max-width:100%;">
+<img src="/lentconv.png" style="box-shadow:none;background:none;">
+</div>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/lunette1.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+<p>Par sa <span class="imp">distance focale $f&rsquo;=\overline{OF&rsquo;}$</span></p>
+<p><br><br><br><br><br><br><br><br><br></p>
+<p>F&rsquo; est le <span class="imp">foyer image</span> de la lentille<br>et O son <span class="imp">centre optique</span>.</p>
+</section><section>
+<p>Foyer objet F tel que $\overline{\mathrm{OF}}=-\overline{\mathrm{OF&rsquo;}}=-f'$</p>
+</section><section>
+<p>Quelle est la caractéristique géométrique des rayons émis par un objet (source) très éloigné ?</p>
+<p class="fragment fade-up">Ils sont <span class="imp">parallèles</span>.</p>
+</section><section>
+<p>Que deviennent ces rayons émis par une source<br>très éloignée lorsqu&rsquo;ils traversent la lentille ?</p>
+</section><section>
+<p>Ils convergent en un point du plan focal image.</p>
+<p class="fragment fade-up">Comment trouver ce point ?</p>
+<div style="position:relative;margin-left:auto;margin-right:auto;width:900px;max-width:100%;margin-bottom:-1em;margin-top:-1em;">
+<img src="/lunette2.png" style="box-shadow:none;background:none;">
+</div>
+<p class="fragment fade-up">C'est le point d'intersection entre le plan focal et le <b style="color:#FEAE00">rayon particulier passant pas O</b> (seul rayon non dévié).</p>
+</section><section>
+<p>Et si l&rsquo;objet est dans la direction de l&rsquo;axe optique ?</p>
+<p class="fragment fade-up">Les rayons convergent aux foyer image F'.</p>
+</section><section>
+<div style="position:relative;margin-left:auto;margin-right:auto;width:900px;max-width:100%;margin-bottom:-1em;margin-top:-1em;">
+<img src="/lunette3.png" style="box-shadow:none;background:none;">
+</div>
+<p class="imp fragment fade-up">
+$$-\infty \xrightarrow{(L)} \mathrm{F'}$$
+</p>
+</section><section>
+<p>Où doit être placé l&rsquo;objet pour que la lentille en fasse une image en $+\infty$ ($\Leftrightarrow$ rayons émergents parallèles) ?</p>
+</section><section>
+<p>Sur le <span class="imp">plan focal objet</span>.</p>
+<div style="position:relative;margin-left:auto;margin-right:auto;width:900px;max-width:100%;margin-bottom:-1em;margin-top:-1em;">
+<img src="/lunette4.png" style="box-shadow:none;background:none;">
+</div>
+</section><section>
+<div style="position:relative;margin-left:auto;margin-right:auto;width:900px;max-width:100%;margin-bottom:-1em;margin-top:-1em;">
+<img src="/lunette5.png" style="box-shadow:none;background:none;">
+</div>
+<p class="imp fragment fade-up">
+$$F \xrightarrow{(L)} +\infty$$
+</p>
+</section><section>
+<p>Où doit-être l&rsquo;objet pour que nos yeux<br>puissent le voir sans accommoder ?</p>
+<p class="fragment fade-up">Très loin (par rapport à la distance focale<br>de nos yeux), c'est-à-dire en $-\infty$.</p>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h2 id="la-lunette-afocale">La lunette afocale</h2>
+</section><section>
+<p>Beaucoup d&rsquo;instruments d&rsquo;optique (lunette astronomique, télescope, microscope, etc.) se terminent par une lentille appelée <span class="imp">oculaire</span>.</p>
+<p class="fragment fade-up">Le rôle de l'<span class="imp">oculaire</span> est d'envoyer<br>les rayons dans l'œil.</p>
+</section><section>
+<p>Comment doivent être ces rayons dans l&rsquo;idéal ?</p>
+<p class="fragment fade-up">Parallèles entre eux !</p>
+</section><section>
+<p>Et comme une lunette astronomique regarde des objets très loins, les rayons issus d&rsquo;un point objet arrivent eux aussi parallèles entre eux.</p>
+<div class="fragment fade-up" style="position:relative;margin-left:auto;margin-right:auto;width:700px;max-width:100%;">
+<img src="/lunette6.png" style="box-shadow:none;background:none;">
+</div>
+</section><section>
+<p>Une lunette astronomique bien réglée est alors<br>par définition <span class="imp">afocale</span> puisqu&rsquo;on a :</p>
+<p class="imp fragment fade-up">
+$$-\infty \xrightarrow{\text{(lunette astronomique)}}  + \infty$$
+</p>
+<p class="imp fragment fade-up">
+L'image d'un objet à l'infini est située à l'infini.
+</p>
+</section><section>
+<p>À quoi sert une lunette astronomique ?</p>
+<p class="fragment fade-up">Elle permet de "grossir" des objets très éloignés.</p>
+</section><section>
+<p>Mais que veut dire &ldquo;grossir&rdquo; ?</p>
+<p class="fragment fade-up">Grossir, c'est augmenter le <span class="imp">diamètre apparent</span> de l'objet, c'est-à-dire l'<span class="imp">angle</span> (⚠️) sous lequel l'objet est vu.</p>
+<aside class="notes"><p>Exemple : le diamètre apparent du Soleil et de la Lune est de 1/2° environ soit 30&rsquo; d&rsquo;angle</p>
+</aside>
+</section><section>
+<p>Supposons que l&rsquo;objet soit vu sous l&rsquo;angle $\alpha$ sans la lunette (son diamètre apparent vaut $\alpha$) : le bas de l&rsquo;objet est aligné avec l&rsquo;axe optique et le rayon issu<br>du haut de l&rsquo;objet fait un angle $\alpha$ avec l&rsquo;axe optique,</p>
+<p class="fragment fade-up">et sous l'angle $\alpha'$ à travers la lunette : le rayon issu<br>du haut de l'objet fait l'angle $\alpha'$ avec l'axe optique<br>en quittant la lunette.</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/lunette7.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+</section><section>
+<p>Le <span class="imp">grossissement $G$</span> est alors défini par :</p>
+<br>
+<div class="fragment fade-up" style="position:relative;margin:auto;width:fit-content;border:solid 5px #FF968D;padding:0 50px 0 50px;border-radius:15px">
+$$G=\frac{\alpha'}{\alpha}$$
+</div>
+</section><section>
+<p>On utilise <span class="imp">deux lentilles convergentes</span><br>pour réaliser une lentille astronomique de type Kepler.</p>
+<p class="fragment fade-up">La première est l'<span class="imp">objectif</span> et la seconde,<br>déjà évoquée, est l'<span class="imp">oculaire</span>.</p>
+</section><section>
+<p>Comment disposer les deux lentilles pour que l&rsquo;oculaire renvoie les rayons le traversant parallèlement ?</p>
+<div class="fragment fade-up" style="color:#16E7CF">
+On a :
+$$
+-\infty \xrightarrow{(\mathrm{objectif})} F'_{\mathrm{ob}}
+$$
+</div>
+<div class="fragment fade-up" style="color:#16E7CF">
+Et il faut :
+$$
+F'_{\mathrm{ob}} \xrightarrow{(\mathrm{oculaire})} +\infty
+$$
+</div>
+</section><section>
+<p style="color:#16E7CF">
+Conclusion :
+</p>
+<div class="fragment fade-up" style="position:relative;margin-left:auto;margin-right:auto;width:900px;max-width:100%;">
+<img src="/lunette8.png" style="box-shadow:none;background:none;">
+</div>
+<div class="fragment fade-up" style="color:#16E7CF">
+$$
+F'_{\mathrm{ob}} = F_{\mathrm{oc}} 
+$$
+</div>
+</section><section>
+<p class="imp">
+Le foyer image de l'objectif doit être<br>confondu avec le foyer objet de l'oculaire<br>pour obtenir une lunette afocale.
+</p>
+<br>
+<p class="fragment fade-up"><b style="color:#FFF056">Conséquence :</b></p>
+<p class="fragment fade-up">
+La distance <b style="color:#FFF056">$\mathrm{O_{ob} O_{oc}}$</b> entre les deux lentilles<br>(qui correspond approximativement à<br>la longueur de la lunette) vaut <b class="fragment" style="color:#FFF056">$f'_\mathrm{ob}+f'_\mathrm{oc}$</b>.
+</section><section>
+<p>Comment exprimer le grossissement<br>en fonction de $f&rsquo;_{ob}$ et $f&rsquo;_{oc}$ ?</p>
+<div style="position:relative;margin-left:auto;margin-right:auto;width:900px;max-width:100%;">
+<img src="/lunette9.png" style="box-shadow:none;background:none;">
+</div>
+<p><u>Rq</u> : $\color{#88FA4E}\mathrm{A_i B_i}$ est l&rsquo;image réelle renversée<br>de l&rsquo;objet lointain $\color{#FFF056}\mathrm{A_\infty B_\infty}$ par l&rsquo;objectif.</p>
+</section><section>
+<p style="color:#16E7CF">
+Sur le triangle $\mathrm{O_{ob}A_i B_i}$ :
+</p>
+<p class="fragment fade-up" style="color:#16E7CF">
+$\mathrm{A_i B_i}=f'_\mathrm{ob}\times\tan(\alpha)$
+</p>
+<p class="fragment fade-up" style="color:#16E7CF">
+Sur le triangle $\mathrm{O_{oc}A_i B_i}$ :
+</p>
+<p class="fragment fade-up" style="color:#16E7CF">
+$\mathrm{A_i B_i}=f'_\mathrm{oc}\times\tan(\alpha')$
+</p>
+</section><section>
+<p style="color:#16E7CF">
+D'où :
+</p>
+<p class="fragment fade-up" style="color:#16E7CF">
+$f'_\mathrm{ob}\times\tan(\alpha) = f'_\mathrm{oc}\times\tan(\alpha')$
+</p>
+<p class="fragment fade-up" style="color:#16E7CF">
+$\displaystyle \Leftrightarrow \frac{\tan(\alpha')}{\tan(\alpha)} = \frac{f'_\mathrm{ob}}{f'_\mathrm{oc}}$
+</p>
+<p class="fragment fade-up" style="color:#16E7CF">
+Et si on se place dans l'approximation des petits angles<br>($\alpha,\alpha'\ll \pu{1 rad}$), on a
+$\tan(\alpha)\approx \alpha$<br>et $\tan(\alpha')\approx\alpha'$ ($\alpha$ et $\alpha'$en radians)
+</p>
+</section><section>
+<p style="color:#16E7CF">
+On en déduit :
+</p>
+<div class="fragment fade-up" style="position:relative;margin:auto;width:fit-content;border:solid 5px #FF968D;padding:0 50px 0 50px;border-radius:10px;color:#16E7CF;">
+$$ 
+G =  \frac{\alpha'}{\alpha} = \frac{f'_\mathrm{ob}}{f'_\mathrm{oc}}
+$$
+</div>
+<p class="fragment fade-up">⚠️ À savoir redémontrer ⚠️</p>
+</section><section>
+<p>À quelle condition sur $f&rsquo;_\mathrm{ob}$ et $f&rsquo;_\mathrm{oc}$ a-t-on un grossissement supérieur à 1 ?</p>
+<br>
+<div style="position:relative;margin:auto;width:fit-content;border:solid 5px #FF968D;padding:0 50px 0 50px;border-radius:10px">
+$$G>1\Rightarrow f'_\mathrm{ob}> f'_\mathrm{oc}$$
+</div>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h2 id="schémas">Schémas</h2>
+</section><section>
+<p>Qu&rsquo;est-ce qui ne va pas dans ce schéma ?</p>
+<div style="position:relative;margin-left:auto;margin-right:auto;width:900px;max-width:100%;">
+<img src="/lunettefoireux.png" style="box-shadow:none;background:none;border-radius:10px">
+</div>
+</section><section>
+<p>Le rayon ne doit pas être dévié en B<sub>i</sub> !</p>
+<div class="fragment fade-up" style="position:relative;margin-left:auto;margin-right:auto;width:900px;max-width:100%;">
+<img src="/lunette9.png" style="box-shadow:none;background:none;">
+</div>
+</section><section>
+<p>Avec œil :</p>
+<div style="position:relative;margin-left:auto;margin-right:auto;width:900px;max-width:100%;">
+<img src="/lunette10.png" style="box-shadow:none;background:none;">
+</div>
+</section><section>
+<p>Faisceau issu de $\mathrm{B_\infty}$ :</p>
+<div style="position:relative;margin-left:auto;margin-right:auto;width:900px;max-width:100%;">
+<img src="/lunette11.png" style="box-shadow:none;background:none;">
+</div>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h2 id="caractéristiques-dunelunette-astronomique">Caractéristiques d&rsquo;une<br>lunette astronomique</h2>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/legendelunette.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+</section><section>
+<p>Les étoiles autres que le soleil sont trop loin pour<br>être vues autrement que comme des points<br>à travers une lunette astronomique.</p>
+<br>
+<p class="fragment fade-up">Quelle autre utilité peut avoir la lunette ?</p> 
+</section><section>
+<p>La lunette permet d&rsquo;augmenter la luminosité en concentrant la lumière passant à travers l&rsquo;objectif.</p>
+<p class="fragment fade-up">Pour cela, il faut que la lentille convergente servant d'objectif ait le plus grand diamètre possible.</p>
+</section><section>
+<p>Mais les grandes lentilles présentent<br>de nombreux problèmes :</p>
+<ul>
+<li class="fragment fade-up">Une lentille disperse<br>$\rightarrow$ problème d'aberration chromatique.</li>
+<br>
+<li class="fragment fade-up">Une grande lentille est très lourde et peut fléchir.</li>
+<br>
+<li class="fragment fade-up">L'obtention d'un verre homogène et son polissage sont difficiles et longs. Les coûts deviennent prohibitifs.</li>
+</ul>
+</section><section>
+<p>Les miroirs gomment tous ces défauts.<br>
+C'est pour cela que les grands télescopes<br>sont réflecteurs et non réfracteurs.</p>
+<p class="fragment fade-up">En pratique, on n'est pas allé au-delà de 1 m pour l'objectif d'une lunette alors qu'il existe<br>es télescope de 40 m de diamètre.</p>
+</section><section>
+<ul style="margin-top:-0.5em; margin-bottom:-0.5em;">
+<li><b style="color:#56C1FF">Rôle de l'objectif :</b><br>
+<span class="fragment">il collecte la lumière et forme l'image intermédiaire $\mathrm{A_i B_i}$ de l'objet situé à l'infini.</span>
+</li>
+<br>
+<li class="fragment fade-up"><b style="color:#FF95CA">Rôle de l'oculaire :</b></li>
+<span class="fragment">il sert de loupe en formant l'image de $\mathrm{A_i B_i}$ en l'infini.</span></li>
+</ul>
+</section><section>
+<p>Pour avoir la meilleure<br>lunette astronomique, il faut donc :</p>
+<ul>
+<li class="fragment fade-up">une lentille de grand diamètre pour l'objectif afin d'avoir le meilleur collecteur de lumière possible,</li>
+<li class="imp fragment fade-up">une distance focale de l'objectif grande par rapport<br>à celle de l'oculaire pour avoir le plus grand grossissement possible.</li>
+</ul>
+<p class="fragment fade-up">L'encombrement de la lunette est alors approximativement donné par la somme des<br>distances focales de l'oculaire et de l'objectif.</p>
+
+</section>
+</section>
+
+<section data-noprocess data-shortcode-slide
+      data-background-iframe="https://coursphychi.github.io/lunette.html"
+      data-background-interactive="true"
+      data-background-size="contain"
+      data-background-transition="concave">
+  
+</section><section>
+<p><a href="https://coursphychi.github.io/tspe/lunette/">Retour site</a></p>
+</section>
+
+  
+
+
+</div>
+      
+
+    </div>
+<script type="text/javascript" src=/reveal-hugo/object-assign.js></script>
+
+<a href="/reveal-js/css/print/" id="print-location" style="display: none;"></a>
+<script type="text/javascript">
+  var printLocationElement = document.getElementById('print-location');
+  var link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.type = 'text/css';
+  link.href = printLocationElement.href + (window.location.search.match(/print-pdf/gi) ? 'pdf.css' : 'paper.css');
+  document.getElementsByTagName('head')[0].appendChild(link);
+</script>
+
+<script type="application/json" id="reveal-hugo-site-params">{"highlight_theme":"github-dark","line-numbers":true,"theme":"sky","transition":"concave","transition_speed":"fast"}</script>
+<script type="application/json" id="reveal-hugo-page-params">{"highlight_theme":"atom-one-dark-reasonable","theme":"league"}</script>
+
+<script src="/reveal-js/js/reveal.js"></script>
+
+<script type="text/javascript">
+  
+  
+  function camelize(map) {
+    if (map) {
+      Object.keys(map).forEach(function(k) {
+        newK = k.replace(/(\_\w)/g, function(m) { return m[1].toUpperCase() });
+        if (newK != k) {
+          map[newK] = map[k];
+          delete map[k];
+        }
+      });
+    }
+    return map;
+  }
+  
+  var revealHugoDefaults = { center: true, controls: true, history: true, progress: true, transition: "slide" };
+  var revealHugoSiteParams = JSON.parse(document.getElementById('reveal-hugo-site-params').innerHTML);
+  var revealHugoPageParams = JSON.parse(document.getElementById('reveal-hugo-page-params').innerHTML);
+  
+  var options = Object.assign({},
+    camelize(revealHugoDefaults),
+    camelize(revealHugoSiteParams),
+    camelize(revealHugoPageParams));
+  Reveal.initialize(options);
+</script>
+
+
+  
+  
+  <script type="text/javascript" src="/reveal-js/plugin/markdown/marked.js"></script>
+  
+  <script type="text/javascript" src="/reveal-js/plugin/markdown/markdown.js"></script>
+  
+  <script type="text/javascript" src="/reveal-js/plugin/highlight/highlight.js"></script>
+  
+  <script type="text/javascript" src="/reveal-js/plugin/zoom-js/zoom.js"></script>
+  
+  
+  <script type="text/javascript" src="/reveal-js/plugin/notes/notes.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({startOnLoad: false});
+    let render = (event) => {
+      let mermaidElems = event.currentSlide.querySelectorAll('.mermaid');
+      if (!mermaidElems.length){
+          return
+      }
+      mermaidElems.forEach(mermaidElem => {
+          let processed = mermaidElem.getAttribute('data-processed');
+          if (!processed){
+              
+              mermaid.init(undefined, mermaidElem);
+          }
+      });
+    };
+    Reveal.addEventListener('slidechanged', render);
+    Reveal.addEventListener('ready', render);
+  </script>
+
+    
+
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']]
+  },
+  svg: {
+    fontCache: 'global'
+  }
+};
+</script>
+
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+</script>
+    
+  </body>
+</html>

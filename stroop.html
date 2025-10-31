@@ -77,8 +77,7 @@
 <body>
   <div class="app" id="app">
     <header>
-      <h1>Test de Stroop (FR) — Phase 1 : formes · Phase 2 : mots colorés</h1>
-      <span class="subtitle">Répondre à la <strong>couleur</strong> le plus vite possible.</span>
+      <h1>Test de Stroop — Donner la <strong>couleur</strong> le plus vite possible</h1>
     </header>
 
     <div class="controls">
@@ -128,7 +127,7 @@
         <div class="card">
           <h3>Consigne</h3>
           <div>
-            Appuie sur <span class="kbd">R/B/J/V</span> selon la <strong>couleur</strong> affichée (ignorer la <em>forme</em> ou le <em>mot</em>).<br>
+            Appuyer sur <span class="kbd">R/B/J/V</span> selon la <strong>couleur</strong> affichée (ignorer la <em>forme</em> ou le <em>mot</em>).<br>
             Chaque essai est limité par un compte à rebours.
           </div>
           <div class="hint">Conseil : pose une main sur les 4 touches pour aller plus vite.</div>
@@ -136,9 +135,6 @@
       </div>
     </div>
 
-    <footer>
-      <div>Astuce : compare ensuite la précision et le RT entre Phase 1 et Phase 2 ; l’interférence de Stroop doit apparaître.</div>
-    </footer>
   </div>
 
 <script>
@@ -196,6 +192,34 @@
 
   function randInt(n){ return Math.floor(Math.random() * n); }
 
+  // Crée un triangle équilatéral aux coins arrondis (SVG 160x160)
+  function createRoundedTriangle(fill){
+    const svgNS = 'http://www.w3.org/2000/svg';
+    const size = 160; const r = 20;
+    const A = { x: 80,  y: 8  };
+    const B = { x: 152, y: 152 };
+    const C = { x: 8,  y: 152 };
+    const off = (P, Q, rr) => {
+      const dx = Q.x - P.x, dy = Q.y - P.y; const len = Math.hypot(dx, dy) || 1;
+      return { x: P.x + (rr * dx / len), y: P.y + (rr * dy / len) };
+    };
+    const A1 = off(A, B, r), A2 = off(A, C, r);
+    const B1 = off(B, A, r), B2 = off(B, C, r);
+    const C1 = off(C, B, r), C2 = off(C, A, r);
+    const d = `M ${A1.x} ${A1.y} L ${B1.x} ${B1.y} Q ${B.x} ${B.y} ${B2.x} ${B2.y} L ${C1.x} ${C1.y} Q ${C.x} ${C.y} ${C2.x} ${C2.y} L ${A2.x} ${A2.y} Q ${A.x} ${A.y} ${A1.x} ${A1.y} Z`;
+    const svg = document.createElementNS(svgNS, 'svg');
+    svg.setAttribute('width', String(size));
+    svg.setAttribute('height', String(size));
+    svg.setAttribute('viewBox', '0 0 160 160');
+    svg.setAttribute('class', 'stimulus shape triangle');
+    const path = document.createElementNS(svgNS, 'path');
+    path.setAttribute('d', d);
+    path.setAttribute('fill', fill);
+    path.setAttribute('shape-rendering', 'geometricPrecision');
+    svg.appendChild(path);
+    return svg;
+  }
+
   function startTimer(){
     state.awaiting = true;
     state.onset = performance.now();
@@ -214,30 +238,93 @@
     box.innerHTML = '';
     stage.classList.remove('flash-ok', 'flash-bad');
 
-    const inkIdx = randInt(COLORS.length);
+    // choisir la couleur d'encre (réponse attendue)
+    let inkIdx = randInt(COLORS.length);
+
     if (state.phase === 1){
-      const el = document.createElement('div');
-      el.className = 'stimulus shape ' + (Math.random() < 0.5 ? 'circle' : 'square');
-      el.style.background = COLORS[inkIdx].hex;
+      // PHASE 1 — FORMES : cercle, carré ou triangle arrondi
+      const shapes = ['circle', 'square', 'triangle'];
+      let shapeType = shapes[randInt(shapes.length)];
+
+      // CONTRAINTE : pas deux essais de suite avec même couleur ET même forme
+      if (state.prevMeta && state.prevMeta.shape != null){
+        let guard = 0;
+        while (
+          state.prevMeta.ink === COLORS[inkIdx].name &&
+          state.prevMeta.shape === shapeType &&
+          guard++ < 20
+        ){
+          if (Math.random() < 0.5){
+            // changer la couleur
+            let newInk = randInt(COLORS.length);
+            while (newInk === inkIdx) newInk = randInt(COLORS.length);
+            inkIdx = newInk;
+          } else {
+            // changer la forme
+            const alts = shapes.filter(s => s !== shapeType);
+            shapeType = alts[randInt(alts.length)];
+          }
+        }
+      }
+
+      // Création de la forme
+      let el;
+      if (shapeType === 'triangle'){
+        el = createRoundedTriangle(COLORS[inkIdx].hex);
+      } else {
+        el = document.createElement('div');
+        el.className = 'stimulus shape ' + shapeType;
+        el.style.background = COLORS[inkIdx].hex;
+      }
       box.appendChild(el);
       state.correctKey = COLORS[inkIdx].key;
-      state.currentMeta = { ink: COLORS[inkIdx].name, word: null, congruent: null };
+      state.currentMeta = { ink: COLORS[inkIdx].name, word: null, shape: shapeType, congruent: null };
       startTimer();
+
     } else {
+      // PHASE 2 — MOTS : toujours incongru (le mot != couleur d'encre)
       let wordIdx = randInt(COLORS.length);
-      while (wordIdx === inkIdx) { wordIdx = randInt(COLORS.length); }
+      while (wordIdx === inkIdx) wordIdx = randInt(COLORS.length);
+
+      // CONTRAINTE : pas deux essais de suite avec même couleur ET même mot
+      if (state.prevMeta && state.prevMeta.word != null){
+        let guard = 0;
+        while (
+          state.prevMeta.ink  === COLORS[inkIdx].name &&
+          state.prevMeta.word === COLORS[wordIdx].name &&
+          guard++ < 20
+        ){
+          if (Math.random() < 0.5){
+            // changer l'encre en conservant l'incongruence
+            let newInk = randInt(COLORS.length);
+            while (newInk === inkIdx || newInk === wordIdx) newInk = randInt(COLORS.length);
+            inkIdx = newInk;
+          } else {
+            // changer le mot en conservant l'incongruence
+            let newWord = randInt(COLORS.length);
+            while (newWord === wordIdx || newWord === inkIdx) newWord = randInt(COLORS.length);
+            wordIdx = newWord;
+          }
+        }
+      }
+
       const el = document.createElement('div');
       el.className = 'stimulus word';
       el.textContent = COLORS[wordIdx].name.toUpperCase();
-      el.style.color = COLORS[inkIdx].hex; // couleur d'encre = réponse
+      el.style.color = COLORS[inkIdx].hex; // la réponse attendue est la couleur d'encre
       box.appendChild(el);
       state.correctKey = COLORS[inkIdx].key;
-      state.currentMeta = { ink: COLORS[inkIdx].name, word: COLORS[wordIdx].name, congruent: wordIdx === inkIdx };
+      state.currentMeta = { ink: COLORS[inkIdx].name, word: COLORS[wordIdx].name, shape: null, congruent: false };
       startTimer();
     }
   }
 
-  function saveTrial(row){ state.data[state.phase].push(row); }
+
+  function saveTrial(row){
+    state.data[state.phase].push(row);
+    // mémoriser le dernier stimulus pour contraindre la répétition complète au prochain essai
+    state.prevMeta = state.currentMeta ? { ...state.currentMeta } : null;
+  }
 
   function flash(ok){
     stage.classList.remove('flash-ok', 'flash-bad');
