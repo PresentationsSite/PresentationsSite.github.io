@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>Machine Learning</title>
+<title>IA</title>
 
 
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -23,8 +23,7 @@
       <div class="slides">
   
 
-    <section><title>Reconnaissance de Chiffres avec un KNN</title>
-<style>
+    <section><style>
 .drawing-container {
         display: flex;
         flex-direction: column;
@@ -94,8 +93,78 @@ button:hover {
     height: 5px;
     border: 0.5px solid #ccc; /* Bordure fine pour chaque "pixel" */
 }
-<p></style></p>
-<h1 id="exemple-dutilisation-de-knn">Exemple d&rsquo;utilisation de KNN</h1>
+</style>
+
+
+<section data-shortcode-section>
+<h1 id="ia">IA</h1>
+</section><section>
+<p>L&rsquo;intelligence artificielle repose sur l&rsquo;idée<br> que les fonctions cognitives, en particulier l&rsquo;apprentissage, le raisonnement, le calcul,<br> la perception, la mémorisation, voire la<br> découverte scientifique ou la créativité artistique,<br> peuvent être reproduites sur des ordinateurs.</p>
+</section><section>
+<p>La capacité d’apprentissage est une caractéristique fréquemment attribuée à l’intelligence et la notion s’est très vite retrouvée au centre des recherches en intelligence artificielle.</p>
+</section><section>
+<p>L’<b>apprentissage automatique</b> (Machine Learning) est un champ d’étude de l’intelligence artificielle qui vise à donner aux machines la capacité d’apprendre à partir de données,<br>via des modèles mathématiques.</p>
+</section><section>
+<p>L’apprentissage automatique est à l’intersection de l’IA et de la science des données (data science).</p>
+<div style="position:relative;margin-left:auto;margin-right:auto;width:500px;max-width:100%;">
+<img src="/vennia.png" style="box-shadow:none;background:none;border:none !important;">
+</div>
+</section><section>
+<p>Il ya 3 types d&rsquo;apprentissage automatique en fonction du type d&rsquo;interaction avec les données :</p>
+<ul>
+<li class="fragment fade-up">l'apprentissage <span class="imp">supervisé</span> : on fournit à l'algorithme des données étiquetées et il doit apprendre à étiqueter de nouvelles données.</li>
+</ul>
+</section><section>
+<ul>
+<li>l'apprentissage <span class="imp">non supervisé</span> : on fournit à l'algorithme des données sans étiquette et il doit apprendre à les ranger en catégories.</li>
+<br>
+<li class="fragment fade-up">l'apprentissage <span class="imp">par renforcement</span> : l'algorithme interagit avec son environnement qui le récompense ou le punit.</li>
+</ul>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h4 id="exemple-dapprentissage-supervisé-">Exemple d&rsquo;apprentissage supervisé :</h4>
+<h2 id="algorithme-des-kplus-proches-voisins-knn">Algorithme des K<br>plus proches voisins (kNN)</h2>
+</section><section>
+<p>Comment, à partir de données fournies,<br>un programme peut-il apprendre à prédire<br>la catégorie d&rsquo;une nouvelle donnée<br>qu&rsquo;il n&rsquo;a jamais vue ?</p>
+</section><section>
+<p>Dans l&rsquo;animation suivante, on montre comment KNN parvient à répondre à la question suivante :</p>
+<p>Quelle est la couleur du nouveau point ?</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-size="100%"
+      data-background-transition="concave"
+      data-background-video="/knnvid.mp4">
+</section><section>
+<p>Le choix de $k$ modifie le résultat obtenu.</p>
+<p class="fragment fade-up">Que se passe-t-il si $k$ est trop petit ?</p>
+</section><section>
+<p>On moyenne sur très peu de points<br>et donc la variabilité est très grande.</p>
+<p class="fragment fade-up">On parle alors de <span class="imp">surapprentissage</span> (overfitting).</p>
+</section><section>
+<p>Et si $k$ est trop grand ?</p>
+<p class="fragment fade-up">L'algorithme finit par choisir systématiquement<br>la catégorie majoritaire, quel que soit<br>le nouveau point...</p> 
+<p class="fragment fade-up">On augmente alors le <span class="imp">biais</span> (ici, le biais est<br>le préjudice en faveur du plus grand nombre)<br>et l'ajustement ne suit plus les variations.<br>On parle de <span class="imp">sous-apprentissage</span> (underfitting).</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/tabloverfit.png"
+      data-background-size="90%"
+      data-background-transition="concave">
+</section><section>
+<p>Le choix de $k$ est donc affaire de compromis.<br>Pour le rendre plus scientifique, on peut chercher<br>à mesurer la performance de l&rsquo;algorithme<br>pour différentes valeurs de $k$.</p>
+<p class="fragment fade-up">Mais comment mesurer sa performance&nbsp;?</p>
+</section><section>
+<p>Un <strong>tableau de contingence</strong> va nous permettre d&rsquo;évaluer la qualité des prédictions de l&rsquo;algorithme.</p>
+</section><section>
+<p>Utilisons KNN sur une banque d&rsquo;images<br>de chiffres écrits à la main.</p>
+</section><section>
+<p>Données d&rsquo;apprentissage :</p>
+<p>1797 images de 8 par 8 pixels (en fait une liste de 64 nombres entre 0 et 255) extraits de la base de données MNIST et leurs étiquettes (le chiffre écrit).</p>
+</section><section>
+<p><img src="https://info-tsi-vieljeux.github.io/exempleschiffres.png" alt=""></p>
 </section><section>
 <p>Code Python du programme :</p>
 <pre><code class="language-python">def dist(x,Pts):
@@ -121,11 +190,6 @@ def KNN(X,k,Appr,Etiq):
         EtiqFin.append(e[1])
     return stat.mode(EtiqFin)
 </code></pre>
-</section><section>
-<p>Données d&rsquo;apprentissage :</p>
-<p>1797 images de 8 par 8 pixels (en fait une liste de 64 nombres entre 0 et 255) extraits de la base de données MNIST et leurs étiquettes (le chiffre écrit).</p>
-</section><section>
-<p><img src="https://info-tsi-vieljeux.github.io/exempleschiffres.png" alt=""></p>
 </section><section>
 <div class="drawing-container">
 <div id="grid" class="grid-container"></div>
@@ -250,7 +314,190 @@ document.getElementById('resetBtn').addEventListener('click', resetGrid);
 
 </script> 
 </section><section>
-<p><a href="https://coursphychi.github.io/tes/vivant/ia/#algorithme-des-k-moyennes----exemple-dapprentissage-non-supervis%C3%A9">Retour site</a></p>
+<p>Concentrons-nous sur sa capacité à reconnaître des &ldquo;3&rdquo; pour dresser le <strong>tableau de contingence</strong> (aussi appelé matrice de confusion).</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/tabcontinge.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+</section><section>
+<p><b style="color:#FF644E">précision $\displaystyle =\frac{\mathrm{VP}}{\mathrm{VP+FP}}$</b></p>
+<p class="fragment fade-up">
+<b style="color:#F8BA00">sensibilité $\displaystyle =\frac{\mathrm{VP}}{\mathrm{VP+FN}}$</b>
+</p>
+<p class="fragment fade-up">
+<b style="color:#1DB100">exactitude $\displaystyle =\frac{\mathrm{VP+VN}}{\mathrm{VP+VN+FP+FN}}$</b>
+</p>
+</section><section>
+<p>Un algorithme peut très bien être <strong>très précis</strong><br>(les prédictions positives sont bien des 3),<br>mais <strong>peu sensible</strong> (parmi tous les 3,<br>peu ont été identifiés).</p>
+</section><section>
+<p>À l&rsquo;inverse, on peut avoir une <strong>bonne sensibilité</strong><br>(la plupart des vrais 3 ont été identifiés comme tel), mais <strong>peu précis</strong> (beaucoup de chiffres identifiés comme des 3 sont en fait d&rsquo;autres chiffres).</p>
+</section><section>
+<p>L&rsquo;algorithme kNN est très utilisé<br>dans l&rsquo;industrie, dans des domaines variés :<br>
+des recommandations sur les sites d&rsquo;e-commerce jusqu&rsquo;à l&rsquo;aide au diagnostique médical sur<br>des images de radio ou d&rsquo;IRM.</p>
+</section><section>
+<p><u>Rq</u> :</p>
+<p>il peut être préféré à des solutions plus modernes dans des secteurs réglementés comme la santé<br>ou la finance car il est facilement interprétable<br>(on comprend ce qu&rsquo;il fait).</p>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h4 id="exemple-dapprentissage-non-supervisé-">Exemple d&rsquo;apprentissage non-supervisé :</h4>
+<h2 id="algorithme-desk-moyennes">Algorithme des<br>K-moyennes</h2>
+</section><section>
+<p>La tâche d&rsquo;un algorithme d&rsquo;apprentissage<br>non-supervisé est de dévoiler les<br><span class="imp">structures cachées</span> des données..</p>
+</section><section>
+<p>L&rsquo;algorithme des k-moyennes regroupe<br>en catégories des données dont<br> on ne connaît rien a priori.</p>
+<br>
+<p class="fragment fade-up">C'est un algorithme<br>de partitionnement<br>des données (clustering).</p>
+</section><section>
+<p>L&rsquo;algorithme dépend d&rsquo;un seul<br>paramètre (en plus des données) :<br>le nombre de partitions <em>k</em>.</p>
+</section><section>
+<ul>
+<li>On commence par choisir $k$ points au hasard dans l'espace des données (il peut s'agir de $k$ points de données ou de $k$ autres points).<br>Ce sont les $k$ centres (ou centroïdes).</li>
+<li class="fragment fade-up">On attribue ensuite à chaque centre tous les points de données qui lui sont le plus proches, formant ainsi $k$ groupes.</li>
+<li class="fragment fade-up">Enfin, on déplace chaque centre au barycentre de son groupe.</li>
+</ul>
+</section><section>
+<p>On répète les deux dernières opérations (attribution des points les plus près<br>et déplacement des centres)<br>tant que les centres bougent<br>d&rsquo;une itération à l&rsquo;autre.</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-size="100%"
+      data-background-transition="concave"
+      data-background-video="/vidkmean.mp4">
+</section><section>
+<p>L&rsquo;algorithme vise à résoudre au final un problème d&rsquo;optimisation ; son but est en effet de trouver<br>le minimum de la distance entre les points<br>à l&rsquo;intérieur de chaque partition.</p>
+</section><section>
+<p>k-moyenne permet de compresser des images<br>en regroupant les pixels en k couleurs.</p>
+<div style="position:relative;margin-left:auto;margin-right:auto;width:700px;max-width:100%;">
+<img src="https://coursphychi.github.io/segimage.png" style="box-shadow:none;background:none;border:none !important;">
+</div>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="https://coursphychi.github.io/moswebb.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+</section><section>
+<h3 id="limites">Limites</h3>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/localglobal.png"
+      data-background-size="70%"
+      data-background-transition="concave">
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/localglobal2.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+</section><section>
+<p>L&rsquo;algorithme des k-moyennes est lui aussi<br>très utilisé dans l&rsquo;industrie :</p>
+<ul>
+<li class="fragment fade-up">regroupement des clients selon leurs comportements</li>
+<li class="fragment fade-up">optimisation logistique (position d'un dépôt )</li>
+<li class="fragment fade-up">segmentation d'images médicales ou satellites</li>
+<li class="fragment fade-up">création de playlists recommandées (clustering de morceaux)</li>
+</ul>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h2 id="apprentissage-par-renforcement">Apprentissage par renforcement</h2>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Reinforcement_learning_diagram_fr.svg/2119px-Reinforcement_learning_diagram_fr.svg.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+</section><section>
+<p>Cette méthode est très utilisée :</p>
+<ul>
+<li class="fragment fade-up">en robotique (bras articulés, voitures autonomes, etc.)</li>
+<li class="fragment fade-up">pour l'optimisation de procédés industriels (industrie chimique, raffineries, etc.)</li>
+<li class="fragment fade-up">en logistique (planification des tâches)</li>
+<li class="fragment fade-up">pour la gestion intelligente des réseaux électriques (smart grid)</li>
+</ul>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h2 id="apprentissage-profonddeep-learning">Apprentissage profond<br>(deep learning)</h2>
+</section><section>
+<p>Révolutionne le secteur de l&rsquo;IA<br>dans les années 2010.</p>
+<p class="fragment fade-up">Il consiste à entraîner un ordinateur à “apprendre” en analysant un grand nombre d’exemples à l’aide de structures mathématiques appelées <span class="imp">réseaux<br>de neurones</span>, qui s’inspirent vaguement<br>du fonctionnement du cerveau humain.</p>
+</section><section>
+<p>L’idée de “profondeur” vient du fait que les réseaux de neurones utilisés dans le deep learning<br>ont de nombreuses couches.</p>
+<p class="fragment fade-up">Chaque couche effectue une partie de l’analyse<br>et transmet ses résultats à la suivante.</p>
+<p class="fragment fade-up">C’est un peu comme si un problème complexe était résolu par une série d’étapes simples, chacune<br>se concentrant sur un détail particulier.</p>
+</section><section>
+<p><a href="https://www.3blue1brown.com/lessons/neural-networks#title"><strong>Superbes présentations des réseaux<br>de neurones par 3Blue1Brown</strong></a></p>
+<aside class="notes"><p>Montrer l&rsquo;exemple interactif au début de la page</p>
+</aside>
+</section><section>
+<p>Le principal problème du deep learning :</p>
+<div style="position:relative;margin-left:auto;margin-right:auto;width:700px;max-width:100%;">
+<img src="https://coursphychi.github.io/resumdeeplearning.png" style="box-shadow:none;background:none;">
+</div>
+</section><section>
+<p>Ça marche, mais on ne sait pas bien comment.<br>La cuisine interne du réseau de neurone dans<br>ses couches cachées est mystérieuse&hellip;</p>
+<p class="fragment fade-up">On parle de boîte noire.</p>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h2 id="grands-modèlesde-langagellm">Grands modèles<br>de langage<br>(LLM)</h2>
+</section><section>
+<iframe width="800" height="450" src="https://www.youtube.com/embed/LPZh9BOjkQs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+</section><section>
+<p>Toute la phase d&rsquo;apprentissage du langage correspond à de l&rsquo;apprentissage supervisé.</p>
+</section><section>
+<p>Puis on ajoute une couche d&rsquo;apprentissage par renforcement (supervisé par des humains ou d&rsquo;autres IA) pour rendre le modèle &ldquo;docile&rdquo;.</p>
+</section><section>
+<p>Essayer de comprendre comment les LLM &ldquo;pensent&rdquo; (interprétabilité) et à quoi ils pensent vraiment (sécurité) devient de plus en plus crucial au fur et à mesure que notre dépendance grandit.</p>
+</section><section>
+<p>Exemple d&rsquo;avancée en interprétabilité :</p>
+<p class="fragment fade-up">des chercheurs d'Anthropic ont réussi à isoler des concepts dans le "cerveau" de Claude qu'ils<br>ont pu ensuite amplifier ou inhiber.</p>
+<p class="fragment fade-up">C'est comme ça qu'on a pu interagir pendant<br>une journée avec Golden Gate Claude...</p>
+<aside class="notes"><p>La découverte des concepts peut s&rsquo;assimiler à de l&rsquo;IRM fonctionnel puisqu&rsquo;on cherche où s&rsquo;activent les neurones lors de stimulations et l&rsquo;amplification/inhibition s&rsquo;apparente à de la stimulation magnétique transcrânienne.</p>
+</aside>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="https://coursphychi.github.io/goldenclaude.jpeg"
+      data-background-size="contain"
+      data-background-transition="concave">
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h2 id="problèmes-éthiqueset-biais">Problèmes éthiques<br>et biais</h2>
+</section><section>
+<iframe title="L&#x2019;IA&#x20;va-t-elle&#x20;tuer&#x20;Internet&#x00A0;&#x3F;" allowfullscreen="true" style="transition-duration:0;transition-property:no;margin:0 auto;position:relative;display:block;background-color:#000000;" frameborder="0" scrolling="no" width="100%" height="100%" src="https://www.arte.tv/embeds/fr/122187-000-A?autoplay=true&mute=0"></iframe>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h2 id="tromperies-et-dissimulations">Tromperies et dissimulations</h2>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h2 id="problème-de-lalignement">Problème de l&rsquo;alignement</h2>
+
+</section>
+</section><section>
+<p><a href="https://coursphychi.github.io/tes/vivant/ia">Retour site</a></p>
 </section>
 
   
