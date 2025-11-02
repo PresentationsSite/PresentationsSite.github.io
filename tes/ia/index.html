@@ -477,9 +477,78 @@ des recommandations sur les sites d&rsquo;e-commerce jusqu&rsquo;à l&rsquo;aide
 
 
 <section data-shortcode-section>
-<h2 id="problèmes-éthiqueset-biais">Problèmes éthiques<br>et biais</h2>
+<h2 id="problèmesque-posent-lia">Problèmes<br>que posent l&rsquo;IA</h2>
 </section><section>
-<iframe title="L&#x2019;IA&#x20;va-t-elle&#x20;tuer&#x20;Internet&#x00A0;&#x3F;" allowfullscreen="true" style="transition-duration:0;transition-property:no;margin:0 auto;position:relative;display:block;background-color:#000000;" frameborder="0" scrolling="no" width="100%" height="100%" src="https://www.arte.tv/embeds/fr/122187-000-A?autoplay=true&mute=0"></iframe>
+<h3 id="slop">SLOP</h3>
+<p class="fragment fade-up">Envahissement d'internet et des réseaux sociaux par des contenus de basse qualité générés par IA (<b>slop</b>) qui noient les contenus humains de qualité.</p>
+<p class="fragment fade-up">Sur un million de pages générées par l'IA<br>sur un sujet, il n'est pas rare qu'une finisse propulsée en tête des recherches par<br>l'algorithme de Google...</p>
+</section><section>
+<p><a href="https://www.arte.tv/fr/videos/122187-000-A/l-ia-va-t-elle-tuer-internet/">Documentaire sur le sujet</a></p>
+</section><section>
+<h3 id="des-biais-pourrissentles-données">Des biais pourrissent<br>les données</h3>
+</section><section>
+<iframe width="800" height="450" src="https://www.youtube.com/embed/tf4-_4IbXPs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+</section><section>
+<h4 id="biais-du-survivant">Biais du survivant</h4>
+<div style="position:relative;margin-left:auto;margin-right:auto;width:700px;max-width:100%;">
+<img src="/biaissurvivant.png" style="box-shadow:none;background:none;border:none !important;">
+</div>
+</section><section>
+<p>C&rsquo;est lui qui nous fait penser<br>que tout était mieux avant.</p>
+<p class="fragment fade-up">Dans le cas d'une IA, on lui apprend à imiter ce<br>qui marche… sans comprendre ce qui échoue.</p>
+</section><section>
+<p>Le biais des survivants est un exemple<br>de <b>biais de sélection</b>.</p>
+<div style="position:relative;margin-left:auto;margin-right:auto;width:500px;max-width:100%;">
+<img src="https://coursphychi.github.io/samplingbias.jpeg" style="box-shadow:none;background:none;border:none !important;">
+</div>
+</section><section>
+<p>L’entraînement des IA, en particulier celui des IA génératives, est très sensible à ces défauts de représentation de la même façon qu’un enfant élevé dans un milieu particulier (secte par exemple) aura beaucoup de mal à se faire une représentation adaptée du reste du monde.</p>
+</section><section>
+<p>Pour les LLM, un surentraînement<br>vise à gommer ces biais.</p>
+<p class="fragment fade-up">Mais tant que les LLM n'auront pas une représentation fiable des relations de causalités, des biais pourront persister.</p>
+</section><section>
+<h3 id="corrélation--causalité">Corrélation ≠ causalité</h3>
+<p class="fragment fade-up">Confondre corrélation et causalité revient à penser que les pompiers causent les incendies puisqu'on les trouve toujours aux mêmes endroits.</p>
+<p class="fragment fade-up">Ou encore que les ventes de glaces causent les attaques de requins puisque les deux<br>sont très corrélées.</p>
+<p class="fragment fade-up">Ce <a href="https://tylervigen.com/spurious-correlations">chouette site</a> recense pleins<br>de corrélations amusantes.</p>
+<aside class="notes"><p>Dans le premier cas, il s&rsquo;agit d&rsquo;une inversion entre cause et conséquence et dans le deuxième, il y a un troisième facteur.</p>
+</aside>
+</section><section>
+<p>Les IA sont excellentes pour trouver des corrélations (ce sont avant tout des machines statistiques) mais très mauvaises pour comprendre la causalité car leur apprentissage ne suppose jusqu&rsquo;ici aucune interaction avec<br>leur environnement.</p>
+<p class="fragment fade-up">Et couplé avec le biais de sélection, les IA génératives peuvent reproduire des<br>stéréotypes sexistes ou racistes.</p> 
+</section><section>
+<p>Exemple :</p>
+<p>Si les données d’apprentissage contiennent plus d’infirmiers ou secrétaires femmes et de patrons ou ingénieurs hommes, le modèle pourra en déduire que le métier d&rsquo;ingénieur est<br>trop difficile pour une femme.</p>
+<p class="fragment fade-up">Là encore, le surapprentissage vise à gommer<br>ces représentations erronées.</p>
+</section><section>
+<p>Pour le coup, les humains<br>ne sont pas un super exemple&hellip;</p>
+<p class="fragment fade-up">Beaucoup de monde peine en effet<br>à comprendre la situation suivante :</p>
+</section><section>
+<p style="text-align:left !important;">A father and his son driving together in their car have a terrible car accident. The father dies upon impact. The son is rushed to the hospital in an ambulance and is immediately brought to the operating table. The doctor takes a quick look at him and says that a specialist is needed.<br>The specialist comes, looks at the young man on the operating table and proclaims, I cannot operate on him, he is my son.</p>
+</section><section>
+<h3 id="dilemmes-moraux">Dilemmes moraux</h3>
+<p class="fragment fade-up">Dans une situation où vous sacrifier permet de sauver plusieurs vies, la voiture autonome qui<br>vous conduit doit-elle choisir de vous tuer ?</p>
+<p class="fragment fade-up">Le MIT a mené une <a href="https://www.moralmachine.net">expérience sociologique</a><br>à grande échelle sur ces questions.</p>
+</section><section>
+<h3 id="problème-de-lalignement">Problème de l&rsquo;alignement</h3>
+<p class="fragment fade-up">On se rend compte au fur et à mesure que les LLM savent mentir, dissimuler, tromper, manipuler, tricher lorsqu'elle se sait évaluées, feindre de partager les valeurs qu'on leur a donné...</p>
+</section><section>
+<iframe width="800" height="450" src="https://www.youtube.com/embed/cw9wcNKDOtQ?start=1982" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+</section><section>
+<iframe width="800" height="450" src="https://www.youtube.com/embed/1WcpN4ds0iY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+</section><section>
+<p>Dans son livre <em>Superintelligence</em>, le philosophe<br>Nick Bostrom explique que quel que soit l’objectif initial d’une IA largement supérieure à l’intelligence humaine (une superintelligence), l’éradication<br>de l’humanité peut se présenter<br>comme un effet secondaire.</p>
+<div style="position:relative;margin-left:auto;margin-right:auto;width:200px;max-width:100%;">
+<img src="https://m.media-amazon.com/images/I/814sKOe+BcL._SL1339_.jpg" style="box-shadow:none;background:none;">
+</div>
+</section><section>
+<p>Pour illustrer cette idée, il utilise son célèbre exemple d’une IA dont le but est de maximiser<br>la <a href="https://www.decisionproblem.com/paperclips/">production de trombones</a>.</p>
+<p><a href="https://www.decisionproblem.com/paperclips/"><div style="position:relative;margin-left:auto;margin-right:auto;width:600px;max-width:100%;">
+<img src="/paperclip.png" style="box-shadow:none;background:none;border:none !important;"></p>
+</div>
+</a>
+</section><section>
+<p>Même un objectif apparemment positif comme &ldquo;faire en sorte que chaque humain soit heureux&rdquo; peut s&rsquo;avérer très problématique&hellip;</p>
 
 </section>
 </section><section>
