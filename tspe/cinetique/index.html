@@ -57,17 +57,7 @@ font-weight:normal;
 </section><section>
 <p>Une transformation chimique<br>peut se dérouler plus ou moins vite.</p>
 </section><section>
-<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-  <iframe
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-    allowfullscreen="allowfullscreen"
-    loading="eager"
-    referrerpolicy="strict-origin-when-cross-origin"
-    src="https://www.youtube.com/embed/-OqPbuo1S_s?autoplay=0&controls=1&end=0&loop=0&mute=0&start=0"
-    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;"
-    title="YouTube video"
-  ></iframe>
-</div>
+<iframe width="800" height="450" src="https://www.youtube.com/embed/-OqPbuo1S_s" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
 
 </section>
 </section><section>
@@ -94,10 +84,10 @@ d’un système.</p>
 <p class="fragment fade-up">
 <u>Exemple</u> :
 La vitesse de formation du diiode s’écrit :<br><br>
-$\displaystyle v_{f,\ce{I2}}{\color{#FFF056}(t)}=\frac{\mathrm{d}\left[\ce{I_2}{\color{#FFF056}(t)}\right]}{\mathrm{d}t}$ 
+$\displaystyle v_{{\color{#FF968D}f},\ce{I2}}{\color{#FFF056}(t)}=\frac{\mathrm{d}\left[\ce{I_2}{\color{#FFF056}(t)}\right]}{\mathrm{d}t}$ 
 </p>
 </section><section>
-<p>Si l’espèce est <span class="imp">produite</span> au cours de la transformation, sa <span class="imp">concentration augmente</span> et donc<br>sa<span class="imp">vitesse de formation est <span class="imp">positive</span>.</p>
+<p>Si l’espèce est <span class="imp">produite</span> au cours de la transformation, sa <span class="imp">concentration augmente</span> et donc<br>sa <span class="imp">vitesse de formation est <span class="imp">positive</span>.</p>
 <p class="fragment fade-up">
 Si l’espèce est <b style="color:#56C1FF">consommée (réactif)</b>,<br>sa <b style="color:#56C1FF">vitesse de formation est négative</b>.
 </p>
@@ -141,7 +131,7 @@ Si l’espèce est <b style="color:#56C1FF">consommée (réactif)</b>,<br>sa <b 
 <p>Et la vitesse initiale ($t=0$ s) ?</p>
 </section>
 <section data-noprocess data-shortcode-slide
-      data-background-image="/cinetch1.png"
+      data-background-image="/cinetch51.png"
       data-background-size="contain"
       data-background-transition="concave-in fade-out">
 </section>
@@ -152,7 +142,12 @@ Si l’espèce est <b style="color:#56C1FF">consommée (réactif)</b>,<br>sa <b 
 </section><section>
 <h2 id="vitesse-volumique-de-disparition">Vitesse volumique de disparition</h2>
 </section><section>
-<p>Dans un réacteur de volume constant,<br>la <span class="imp">vitesse volumique de <b style="color:#56C1FF">disparition</b></span> d’une espèce<br><span style="color:#FFF056;">à une date $t$ </span>est égale à <span class="fragment">l&rsquo;<b style="color:#56C1FF">opposé</b></span><span class="imp"> de la dérivée temporelle de sa concentration</span><br>en quantité de matière <span style="color:#FFF056;">à cette date</span>.</p>
+<p>La <span class="imp">vitesse volumique de <b style="color:#56C1FF">disparition</b></span> d’une espèce est l&rsquo;opposé de sa <span class="imp">vitesse volumique de formation</span> :</p>
+<p class="fragment fade-up" style="font-size:1.2em;">
+$$v_{{\color{#FF968D}f},\mathrm{X}}{\color{#FFF056}(t)} = -v_{{\color{#56C1FF}d},\mathrm{X}}{\color{#FFF056}(t)}$$
+</p>
+</section><section>
+<p>Dans un réacteur de volume constant,<br>la <span class="imp">vitesse volumique de <b style="color:#56C1FF">disparition</b></span> d’une espèce<br><span style="color:#FFF056;">à une date $t$ </span>est donc égale à <span class="fragment">l&rsquo;<b style="color:#56C1FF">opposé</b></span><span class="imp"> de la<br>dérivée temporelle de sa concentration</span><br>en quantité de matière <span style="color:#FFF056;">à cette date</span>.</p>
 <br>
 <p class="fragment fade-up">
 <u>Exemple</u> :
@@ -192,8 +187,8 @@ Les <span class="imp">facteurs cinétiques</span> sont les grandeurs<br>qui appa
 </section><section>
 <p><u>Exemple</u> :</p>
 <p>La loi de vitesse de disparition de l’éthanoate d’éthyle par hydrolyse basique est de la forme :</p>
-<p>$$v=k(T)\ce{[ester][HO-]}$$</p>
-<p>où $k(T)$, appelée <span class="imp">constante de vitesse</span>, rend compte<br>de l’influence de la température sur cette réaction.</p>
+<p class="fragment fade-up">$$v=k(T)\ce{[ester][HO-]}$$</p>
+<p class="fragment fade-up">où $k(T)$, appelée <span class="imp">constante de vitesse</span>, rend compte<br>de l’influence de la température sur cette réaction.</p>
 
 </section>
 </section><section>
@@ -203,22 +198,32 @@ Les <span class="imp">facteurs cinétiques</span> sont les grandeurs<br>qui appa
 <h3 id="loi-de-vitesse-dordre-1">Loi de vitesse d&rsquo;ordre 1</h3>
 </section><section>
 <p>Une réaction est dite d’ordre 1 si sa loi de vitesse<br>de disparition d’une espèce se met sous la forme</p>
-<div style="position:relative;margin:auto;border: solid 5px #FF968D;border-radius:10px; padding:10px 50px 10px 50px;width:fit-content;">
+<div  class="fragment fade-up"style="position:relative;margin:auto;border: solid 5px #FF968D;border-radius:10px; padding:10px 50px 10px 50px;width:fit-content;">
 $$v=k(T)\ce{[A]}$$
 </div>
-<p>où $\ce{A}$ représente un réactif de la réaction.</p>
+<p class="fragment fade-up">où $\ce{A}$ représente un réactif de la réaction.</p>
 </section><section>
 <p>Comme $v=-\frac{\mathrm{d}\ce{[A]}}{\mathrm{d} t}$, on a :</p>
-<p>$$-\frac{\mathrm{d}\ce{[A]}}{\mathrm{d} t} = k\ce{[A]}$$</p>
-<p>$$\frac{\mathrm{d}\ce{[A]}}{\mathrm{d} t} + k\ce{[A]} = 0$$</p>
-<p>On obtient donc une <span class="imp">équation différentielle<br>du premier ordre</span> (à coefficients constants).</p>
+<p class="fragment fade-up">
+$$-\frac{\mathrm{d}\ce{[A]}}{\mathrm{d} t} = k\ce{[A]}$$
+</p>
+<p class="fragment fade-up">
+$$\frac{\mathrm{d}\ce{[A]}}{\mathrm{d} t} + k\ce{[A]} = 0$$
+</p>
+<p class="fragment fade-up">
+On obtient donc une <span class="imp">équation différentielle<br>du premier ordre</span> (à coefficients constants).
+</p>
 <aside class="notes"><p>Une équation différentielle est une équation où les inconnues sont des fonctions et qui lie une fonction et ses dérivées.
 Une équation différentielle du premier ordre fait un intervenir une fonction et sa dérivée première.</p>
 </aside>
 </section><section>
 <p>La solution d&rsquo;une telle équation différentielle<br>est de la forme :</p>
-<p>$$\ce{[A]}(t)= C\times\mathrm{e}^{-kt}$$</p>
-<p>où $C$ est une constante.</p>
+<p class="fragment fade-up">
+$$\ce{[A]}(t)= C\times\mathrm{e}^{-kt}$$
+</p>
+<p class="fragment fade-up">
+où $C$ est une constante.
+</p>
 </section><section>
 <p>$\mathrm{e}^x = \exp(x)$ est la fonction exponentielle.</p>
 <div class="fragment fade-up">
@@ -227,19 +232,27 @@ Sa fonction réciproque est le logarithme népérien (logarithme de base $\mathr
 </div>
 </section><section>
 <p>On détermine $C$ grâce aux conditions initiales :</p>
-<p>$\ce{[A]}(t=0)=C\times\mathrm{e}^{-k\times 0} = C = \ce{[A]}_0$</p>
-<div class="fragment fade-up">
+<p class="fragment fade-up">
+$\ce{[A]}(t=0)=C\times\mathrm{e}^{-k\times 0} = C = \ce{[A]}_0$
+</p>
+<p class="fragment fade-up">
 D'où 
-<p>$$\ce{[A]}(t)= \ce{[A]}_0\times\mathrm{e}^{-kt}$$</p>
-</div>
+</p>
+<p class="fragment fade-up">
+$$\ce{[A]}(t)= \ce{[A]}_0\times\mathrm{e}^{-kt}$$
+</p>
 </section><section>
 <p>La loi de vitesse dépend donc de la<br>concentration initiale $[\mathrm{A_0}]$ et de la température<br>(via la constante de vitesse $k(T)$).</p>
-<p>La <b style="color:#FFF056;">température</b> et la <b style="color:#56C1FF">concentration</b> du réactif<br>sont donc les deux <span class="imp">facteurs cinétiques</span><br>d&rsquo;une loi de vitesse d&rsquo;ordre 1.</p>
+<p class="fragment fade-up">
+La <b style="color:#FFF056;">température</b> et la <b style="color:#56C1FF">concentration</b> du réactif<br>sont donc les deux <span class="imp">facteurs cinétiques</span><br>d'une loi de vitesse d'ordre 1.
+</p>
 </section><section>
 <p>En prenant le logarithme de la loi de vitesse,<br>on peut vérifier que cette loi est d&rsquo;ordre 1 :</p>
-<p>$\ln\left(\ce{[A]}(t)\right) = \ln(\ce{[A]}_0) -k\times t$</p>
+<p class="fragment fade-up">
+$\ln\left(\ce{[A]}(t)\right) = \ln(\ce{[A]}_0) -k\times t$
+</p>
 <p class="fragment fade-up">On obtient une fonction affine décroissante du temps.</p>
-<p class="fragment fade-up">Donc si $\ln\left(\ce{[A]}(t)\right)$ est modélisable par une fonction affine, la loi de vitesse est d'ordre 1 !</p>
+<p class="imp fragment fade-up">Donc si $\ln\left(\ce{[A]}(t)\right)$ est modélisable par une fonction affine, la loi de vitesse est d'ordre 1 !</p>
 </section>
 <section data-noprocess data-shortcode-slide
       data-background-image="/loidordre1.png"
