@@ -78,6 +78,23 @@ Déviation dans le traitement<br>cognitif d'une information
 
 <section data-shortcode-section>
 <h2 id="effet-de-leurre">Effet de leurre</h2>
+</section><section>
+<p>Dans une étude un peu bizarrede 2017, 102 visages ont été jugés par 2513 personnes entre 17 et 90 ans.</p>
+<p class="fragment fade-up">Parmi les 626 votants âgés de 17 à 20 ans, les deux plus hauts scores d'attractivité pour des visages masculins (3,9/7 chacun) ont été donnés à Richard et Louis.</p>
+<aside class="notes"><p>Lien vers les docs :
+<a href="https://figshare.com/articles/dataset/Face_Research_Lab_London_Set/5047666?utm_source=chatgpt.com">https://figshare.com/articles/dataset/Face_Research_Lab_London_Set/5047666?utm_source=chatgpt.com</a>
+Images are of 102 adult faces 1350x1350 pixels in full colour. Template files mark out 189 coordinates delineating face shape, for use with Psychomorph or WebMorph.org.</p>
+<p>Self-reported age, gender and ethnicity are included in the file london_faces_info.csv. Attractiveness ratings (on a 1-7 scale from &ldquo;much less attractiveness than average&rdquo; to &ldquo;much more attractive than average&rdquo;) for the neutral front faces from 2513 people (ages 17-90) are included in the file london_faces_ratings.csv.</p>
+<p>All individuals gave signed consent for their images to be &ldquo;used in lab-based and web-based studies in their original or altered forms and to illustrate research (e.g., in scientific journals, news media or presentations).&rdquo; Images were taken in London, UK, in April 2012.</p>
+</aside>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/facelab_london.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+</section><section>
+<p>Une IA a alors permis d&rsquo;ajouter Charles, une version &ldquo;moins attractive&rdquo; soit de Richard, soit de Louis.</p>
+<p class="fragment fade-up">Le faux Louis a été ajouté à la moitié des questionnaires et le faux Richard à l'autre moitié.</p>
 </section>
 <section data-noprocess data-shortcode-slide
       data-background-image="/biaisappat1.png"
@@ -89,31 +106,58 @@ Déviation dans le traitement<br>cognitif d'une information
       data-background-size="contain"
       data-background-transition="concave">
 </section><section>
-<p>Richard et Louis ont tous les deux reçus une moyenne d&rsquo;attractivité de 3,9 (sur 7) par 626 hommes et femmes entre 17 et 20 ans.</p>
-<aside class="notes"><p>Visages trouvés là :
-<a href="https://figshare.com/articles/dataset/Face_Research_Lab_London_Set/5047666?utm_source=chatgpt.com">https://figshare.com/articles/dataset/Face_Research_Lab_London_Set/5047666?utm_source=chatgpt.com</a>
-Images are of 102 adult faces 1350x1350 pixels in full colour. Template files mark out 189 coordinates delineating face shape, for use with Psychomorph or WebMorph.org.</p>
-<p>Self-reported age, gender and ethnicity are included in the file london_faces_info.csv. Attractiveness ratings (on a 1-7 scale from &ldquo;much less attractiveness than average&rdquo; to &ldquo;much more attractive than average&rdquo;) for the neutral front faces from 2513 people (ages 17-90) are included in the file london_faces_ratings.csv.</p>
-<p>All individuals gave signed consent for their images to be &ldquo;used in lab-based and web-based studies in their original or altered forms and to illustrate research (e.g., in scientific journals, news media or presentations).&rdquo; Images were taken in London, UK, in April 2012.</p>
-</aside>
-</section><section>
-<p>Charles est sensé basculer le choix<br>vers son meilleur jumeau.</p>
 <p>Résultats :</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/leurrecharles.png"
+      data-background-size="contain"
+      data-background-transition="concave">
 </section><section>
-<p>Exemple d&rsquo;utilisation dans l&rsquo;industrie :</p>
-<br>
-<div style="position:relative;margin-left:auto;margin-right:auto;width:700px;max-width:100%;margin-bottom:-1em;margin-top:-1em;">
+<p>L&rsquo;idée est que Charles est sensé basculer<br>le choix vers son meilleur jumeau.<br>
+C&rsquo;est l&rsquo;<span class="imp">effet de leurre</span>.</p>
+<p class="fragment fade-up">Sur notre expérience, deux problèmes<br>viennent entacher les résultats :</p>
+<ul>
+<li class="fragment fade-up">l'asymétrie entre l'attractivité de Richard<br>et Louis est grande sur notre échantillon,</li>
+<li class="fragment fade-up">c'est "faux Richard" et non Richard qui a<br>siphonné les voix de Louis dans la variante B.</li>
+</ul>
+</section><section>
+<p>Exemples d&rsquo;utilisation dans l&rsquo;industrie :</p>
+<p class="fragment fade-up">dans une expérience conduite par Dan Ariely,<br>on montre à des étudiants deux vraies pubs pour<br>le journal The Economist présentant différentes options d'abonnement et on leur demande<br>de choisir leur option préférée.</p>
+</section><section>
+<div style="position:relative;margin-left:auto;margin-right:auto;width:600px;max-width:100%;margin-bottom:-1em;margin-top:-1em;">
 <img src="/ecoappat1.png" style="box-shadow:none;background:none;border-radius:10px;">
 </div>
-<aside class="notes"><p>Given these choices, 16% of the students in the experiment conducted by Ariely chose the first option, 0% chose the middle option, and 84% chose the third option. Even though nobody picked the second option, when he removed that option the result was the inverse: 68% of the students picked the online-only option, and 32% chose the print and web option.
-<a href="https://en.wikipedia.org/wiki/Decoy_effect">https://en.wikipedia.org/wiki/Decoy_effect</a></p>
-</aside>
+</section><section>
+<p>Confrontés à cette première variante, 68% des étudiants sondés disent préférer l&rsquo;option en ligne<br>et 32% l&rsquo;option papier + web.</p>
 </section><section>
 <div style="position:relative;margin-left:auto;margin-right:auto;width:700px;max-width:100%;margin-bottom:-1em;margin-top:-1em;">
 <img src="/ecoappat2.png" style="box-shadow:none;background:none;border-radius:10px;">
 </div>
 </section><section>
-<p>C&rsquo;est au final un exemple d&rsquo;effet de contraste :</p>
+<p>Maintenant, les étudiants ne sont plus que 16%<br>à choisir la version en ligne, 0% à choisir la version intermédiaire et 68% pour la version web+papier !</p>
+<aside class="notes"><p>Given these choices, 16% of the students in the experiment conducted by Ariely chose the first option, 0% chose the middle option, and 84% chose the third option. Even though nobody picked the second option, when he removed that option the result was the inverse: 68% of the students picked the online-only option, and 32% chose the print and web option.
+<a href="https://en.wikipedia.org/wiki/Decoy_effect">https://en.wikipedia.org/wiki/Decoy_effect</a></p>
+</aside>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Decoy_pricing.svg/1024px-Decoy_pricing.svg.png?20240109134941"
+      data-background-size="contain"
+      data-background-transition="concave">
+</section><section>
+<p>Recette :</p>
+<p>il faut que la 3<sup>e</sup> option introduite (le leurre)<br>soit <span class="imp">asymétriquement dominée</span>, c&rsquo;est-à-dire complètement dominée par l&rsquo;une des options<br>mais qu&rsquo;en partie par l&rsquo;autre.</p>
+<p class="fragment fade-up">Le choix est alors tiré vers l'option<br>totalement dominante.</p>
+</section><section>
+<p><u>Rq</u> :</p>
+<p>Dans notre expérience, faux Richard<br>n&rsquo;est pas assez dominé par Richard.</p>
+<div style="position:relative;margin-left:auto;margin-right:auto;width:500px;max-width:100%;">
+<img src="/fauxrichard.png" style="box-shadow:none;background:none;">
+</div>
+</section><section>
+<p>L&rsquo;effet contredit l&rsquo;axiome d&rsquo;<span class="imp">indépendance des alternatives non pertinentes</span> utilisé dans les sciences sociales et dans le cadre de la théorie de la décision.</p>
+<p class="fragment fade-up">Selon l'axiome, si un individu préfère A à B, alors l'ajout d'une 3<sup>e</sup> possibilité X ne doit pas changer<br>la préférence entre A et B.</p>
+</section><section>
+<p>Ce biais fait partie de la famille des effet de contraste :</p>
 <br>
 <div style="position:relative;margin-left:auto;margin-right:auto;width:700px;max-width:100%;margin-bottom:-1em;margin-top:-1em;">
 <img src="/biaiscontraste.png" style="box-shadow:none;background:none;">
@@ -139,6 +183,8 @@ Images are of 102 adult faces 1350x1350 pixels in full colour. Template files ma
 </section><section>
 <video controls width="800"  style="max-width:100%;border-radius:10px;">
   <source src="/gorille.mp4" type="video/mp4" />
+<aside class="notes"><p>Récompense à celui qui trouve le bon nombre de passes entre membres de l&rsquo;équipe habillée en blanc.</p>
+</aside>
 </section><section>
 <p>C&rsquo;est l&rsquo;expérience du <span class="imp">gorille invisible</span>.</p>
 <p class="fragment fade-up">Elle met en évidence la <span class="imp">cécité d'inattention</span> : échouer à remarquer un stimulus pourtant parfaitement visible.</p>
@@ -156,30 +202,46 @@ Images are of 102 adult faces 1350x1350 pixels in full colour. Template files ma
       data-background-size="contain"
       data-background-transition="concave">
 </section><section>
-<p>Variante 1 : 10 %</p>
-<p>Variante 2 : 65 %</p>
-</section><section>
-<p>Résultats :</p>
+<p>Le nombre de pays africains<br>à l&rsquo;ONU est-il supérieur à</p>
+<p>Variante 1 : 10 % ?</p>
+<p>Variante 2 : 65 % ?</p>
+<p class="fragment fade-up">Quel est selon vous le pourcentage<br>de pays africains à l'ONU ?</p>
 </section>
 <section data-noprocess data-shortcode-slide
-      data-background-image="/tabchoco.png"
+      data-background-image="/ancrageonu.png"
       data-background-size="contain"
       data-background-transition="concave">
 </section><section>
-<p>Variante 1 : 2,90€</p>
-<p>Variante 2 : 8,90€</p>
-</section><section>
-<p>Résultats</p>
+<div style="position:relative;margin-left:auto;margin-right:auto;width:100px;max-width:100%;">
+<img src="/tabchoco.png" style="box-shadow:none;background:none;">
+</div>
+<p>Achèterais-tu cette tablette de chocolat pour</p>
+<p>Variante 1 : 2,90 ?</p>
+<p>Variante 2 : 8,90€ ?</p>
+<p class="fragment fade-up">Quel est le prix max que tu serais prêt(e)<br>à payer (en €) pour cette tablette ?</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/ancragechoco.png"
+      data-background-size="contain"
+      data-background-transition="concave">
 </section>
 <section data-noprocess data-shortcode-slide
       data-background-image="https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Blue_Whale_001_body_bw.jpg/1603px-Blue_Whale_001_body_bw.jpg"
       data-background-size="contain"
       data-background-transition="concave">
 </section><section>
-<p>Variante 1 : ±49 m</p>
+<p>Variante 1 :<br>
+Selon toi, une baleine bleue adulte<br>mesure-t-elle plus ou moins de 49 m ?</p>
 <p>Variante 2 : estimation directe</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/ancragebaleine.png"
+      data-background-size="contain"
+      data-background-transition="concave">
 </section><section>
-<p>Résultats</p>
+<p>L&rsquo;effet est très utilisé dans les négociations :</p>
+<p class="fragment fade-up">On commence par communiquer un premier prix<br>très élevé, présenté comme normal.</p>
+<p class="fragment fade-up">Même si l'autre partie considère ce prix bien trop grand, il sert inconsciemment de cadre de référence (d'ancre) à la négociation. Et lorsqu'un prix plus normal est proposé, il fait office de bonne affaire.</p>
 
 </section>
 </section><section>
@@ -203,7 +265,7 @@ Images are of 102 adult faces 1350x1350 pixels in full colour. Template files ma
 <section data-shortcode-section>
 <h2 id="effet-de-cadrage">Effet de cadrage</h2>
 </section><section>
-<p>600 personnes ont été contaminées par un nouveau virus. Un laboratoire met au point deux stratégies de traitement différentes.</p>
+<p>600 personnes ont été contaminées par un nouveau virus. Un laboratoire met au point deux stratégies<br>de traitement différentes.</p>
 </section><section>
 <h3 id="cadrage-positif-">Cadrage positif :</h3>
 <ul>
@@ -222,14 +284,36 @@ Images are of 102 adult faces 1350x1350 pixels in full colour. Template files ma
 <li>72% choisissent le traitement A<br>dans le cadrage positif.</li>
 <li>78% choisissent le traitement B<br>dans le cadrage négatif.</li>
 </ul>
-<aside class="notes"><p>This effect has been shown in other contexts:</p>
+</section><section>
+<p>Lorsqu&rsquo;il s&rsquo;agit de vies sauvées, on choisit massivement l&rsquo;option la moins incertaine alors que quand il s&rsquo;agit de vies perdues, on préfère nettement garder<br>une chance de tuer personne.</p>
+</section><section>
+<p>Depuis le début des années 1980, les chercheurs en psychologie cognitive ont montré que les humains sont davantage motivés par la peur d’une perte que par la perspective d’un gain, fussent-ils du même montant.</p>
+<p class="fragment fade-up">Nos comportements tendent donc à <span class="imp">réduire les pertes potentielles plutôt que de maximiser les gains</span>.</p>
+</section><section>
+<p>Les comportements humains cherchent aussi à réduire un maximum les risques, synonymes d’incertitudes. C’est ce que l’on appelle l’<span class="imp">aversion au risque</span>.</p>
+</section><section>
+<p>L’effet de cadrage articule<br>le rapport à la perte et au risque.</p>
+<p class="fragment fade-up">La majorité des personnes préfère sécuriser un gain minime que de parier sur un gain incertain, tandis que lorsqu’on présente les choses sous la forme de pertes, les sujets vont majoritairement tolérer une prise de risque supérieure afin de réduire celles-ci.</p>
+</section><section>
+<p>Dans notre échantillon, ça n&rsquo;a pas marché du tout&hellip;</p>
+<p>51% / 49% pour le cadrage positif</p>
+<p>52% / 48% pour le cadrage négatif</p>
+<p class="fragment fade-up">Pourquoi ? <span class="fragment">Mystère...</span></p>
+<p class="fragment fade-up">L'effet est pourtant robuste<br>et marche dans différents contextes.</p>
+</section><section>
+<p>Exemples :</p>
+<p class="fragment fade-up">La propension d'un accusé à accepter un "plea bargain" (reconnaître sa culpabilité contre une peine réduite) dépend fortement de s'il était en<br>détention provisoire ou non.</p>
+<p class="fragment fade-up">Dans un cas, il s'agit d'accepter d'être privé de liberté alors que dans l'autre cas, il s'agit de sortir<br>plus tôt de prison.</p>
+</section><section>
+<p>Les consommateurs sont prêts à payer 8,2 ¢ de plus par livre quand l’étiquette dit « 80 % maigre »<br>plutôt que « 20 % gras ».</p>
+<p class="fragment fade-up">Pour des produits identiques avec un surcoût carbone, la probabilité de choisir l’option plus chère passe,<br>chez les Républicains US, de 13 % si étiqueté comme "taxe carbone" à 53 % si étiqueté comme "compensation carbone".</p>
+</section><section>
+<p>Taux effectif de consentement au don d&rsquo;organes</p>
 <ul>
-<li>93% of PhD students registered early when a penalty fee for late registration was emphasized, but only 67% did so when this was presented as a discount for earlier registration.</li>
-<li>62% of people disagreed with allowing &ldquo;public condemnation of democracy&rdquo;, but only 46% of people agreed that it was right to &ldquo;forbid public condemnation of democracy&rdquo;.</li>
-<li>More people will support an economic policy if the employment rate is emphasized than when the associated unemployment rate is highlighted.</li>
-<li>It has been argued that pretrial detention may increase a defendant&rsquo;s willingness to accept a plea bargain, since imprisonment, rather than freedom, will be their baseline, and pleading guilty will be viewed as an event that will cause their earlier release rather than as an event that will put them in prison.</li>
-</ul>
-</aside>
+<li class="fragment fade-up">en Allemagne : ≈ 12 %</li>
+<li class="fragment fade-up">en Autriche : ≈ 99–100 %</li>
+</ul><br>
+<p class="fragment fade-up">A votre avis, pourquoi ?</p>
 
 </section>
 </section><section>
