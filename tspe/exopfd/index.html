@@ -97,13 +97,33 @@
 <li>Que vaut la résultante des forces<br>au moment du saut ?<br>
 <small style="color:gray">La masse du parachutiste avec son parachute est de 80 kg.</small></li>
 </ol>
-<p class="fragment fade-up"><span style="font-weight:normal;color:green">On a au départ : $a\approx\pu{10 m*s-2}$<br>Donc d'après le PFD : <br> $F=ma\Rightarrow F \approx 80\times 10 \approx \pu{800 N}$<br><br>On retrouve qu'au départ,<br>l'unique force subie est le poids $mg$.</span></p>
+<p class="fragment fade-up"><span style="font-weight:normal;color:green">On a au départ : $a_y\approx\pu{-10 m*s-2}$<br>Donc d'après la 2<sup>e</sup> loi de Newton,<br>en appelant $\vec{F}$ la résultante des forces :<br> 
+$\vec{F}=m\,\vec{a}\Rightarrow F \approx 80\times 10 \approx \pu{800 N}$
+</p>
+<p class="fragment fade-up" span style="font-weight:normal;color:green"><u>Rq</u> : on retrouve qu'au départ,<br>l'unique force subie est le poids <br>(puisque $m\times g=\pu{800 N}$).</span></p>
 </section><section>
 <ol start="6">
-<li>Que vaut la résultante des forces au moment de l&rsquo;ouverture du parachute ?
+<li>Que vaut la force de frottement $f$ au moment de l&rsquo;ouverture du parachute ?
 <br><br></li>
 </ol>
-<p class="fragment fade-up"><span style="font-weight:normal;color:green">On a maintenant $a\approx\pu{60 m*s-2}$ (soit environ $6g$)<br> L'utilisation du PFD nous donne alors :<br>$F \approx 80\times 60 \approx \pu{5,4 kN}$</span></p>
+<p class="fragment fade-up"><span style="font-weight:normal;color:green">d'après le graphique, $a_y \approx\pu{+60 m*s-2}$<br>(soit environ $6g$).</p>
+<p class="fragment fade-up" style="font-weight:normal;color:green">
+L'utilisation du PFD nous donne alors :<br>(en appelant $\vec{f}$ la force de frottement et $\vec{u}_y$<br>le vecteur unitaire vertical dirigé vers le haut) :</p>
+</section><section>
+<div span style="font-weight:normal;color:green">
+$$
+\begin{aligned}
+\vec{P}+\vec{f} &=m\,\vec{a}\\
+-m\,g\,\vec{u}_y+f\,\vec{u}_y &=m \, a_y\,\vec{u}_y\\
+f\,\vec{u}_y &= (m \,a_y + m\, g)\vec{u}_y\\
+\Rightarrow f &\approx  80\times 60  + 80\times 10\\
+f &\approx  \pu{5,6E3 N}
+\end{aligned}
+$$
+</div>
+<p class="fragment fade-up" style="font-weight:normal;color:green">
+Au moment de l'ouverture du parachute,<br>les frottements produisent une force<br>d'environ 5,6 kN vers le haut.
+</p>
 </section><section>
 <p><a href="https://trinket.io/glowscript/6c0f225b03?outputOnly=true">Lien vers simulation</a></p>
 </section>
