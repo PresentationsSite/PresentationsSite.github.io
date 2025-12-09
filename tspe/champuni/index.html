@@ -139,7 +139,7 @@ $$
 \begin{cases}
 v_x(0)=v_0\cos(\alpha)\\
 v_y(0)=0\\
-v_z(0)=v_0\sin\alpha
+v_z(0)=v_0\sin(\alpha)
 \end{cases}
 $$
 </dib>
@@ -283,7 +283,7 @@ $$
 <li class="fragment fade-up">On remplace dans $z(t)$.</li>
 </li>
 </section><section>
-<p>$x(t) = (v_0\cos\alpha)t$ <span class="fragment"> $\Rightarrow \color{#FF95CA}t=$</span><span class="fragment" style="color:#FF95CA">$\displaystyle \frac{x}{v_0\cos\alpha}$</span></p>
+<p>$x(t) = (v_0\cos\alpha)\times t$ <span class="fragment"> $\Rightarrow \color{#FF95CA}t=$</span><span class="fragment" style="color:#FF95CA">$\displaystyle \frac{x}{v_0\cos\alpha}$</span></p>
 <p class="fragment fade-up">
 D'où
 </p>
@@ -292,7 +292,7 @@ D'où
 <p>En simplifiant, on obtient <span class="imp">l&rsquo;équation de la trajectoire</span> :</p>
 <div class="fragment fade-up imp">
 $$
-z(x)=-\frac{g}{2\left(v_0\cos\alpha\right)^2}x^2+\left(v_0\tan\alpha\right) x+h
+z({\color{#56C1FF}x})=-\frac{g}{2\left(v_0\cos(\alpha)\right)^2}{\color{#56C1FF}x^2}+\tan(\alpha)\, {\color{#56C1FF}x}+h
 $$
 </div>
 <p class="fragment fade-up">La trajectoire est donc <span class="imp">plane</span><br> (comprise dans le plan $(\mathrm{O},\vec{i},\vec{k})$.</p>
@@ -330,6 +330,136 @@ Le mouvement de chute libre est <span class="imp">parabolique</span><br>(la traj
 <img src="/servicevolley.png" style="box-shadow:none;background:none;border-radius:10px;">
 </div>
 <p>rayon de la balle : $r=\pu{10 cm}$</p>
+</section><section>
+<p style="color:#61D836;">
+Ici, la vitesse initiale est purement horizontale<br>($\Rightarrow \alpha=0$)
+</p>
+<div  style="color:#61D836;">
+$$
+\vec{v}_0   = 
+\begin{cases}
+v_0\\
+0\\
+0
+\end{cases}
+$$
+</div>
+</section><section>
+<p style="color:#61D836;">
+L'équation de la trajectoire devient alors :<br>
+</p>
+<div class="fragment fade-up" style="color:#61D836;">
+$$
+z(x) = -\frac{g}{2v_0^2}x^2 + h
+$$
+</div>
+<p class="fragment fade-up" style="color:#61D836;">
+Et pour que le ballon passe au-dessus du filet, il faut :
+</p>
+<div class="fragment fade-up" style="color:#61D836;">
+$$
+z(x_\mathrm{filet})=z(L/2) > H+r
+$$
+</div>
+</section><section>
+<div  style="color:#61D836;">
+$$
+\Rightarrow -\frac{g}{2v_0^2}\left(  \frac L2\right)^{\!2} + h > H+r
+$$
+</div>
+<div  class="fragment fade-up" style="color:#61D836;">
+$$
+\Leftrightarrow -\frac{g}{2v_0^2}\left(  \frac L2\right)^{\!2} > H+r-h
+$$
+</div>
+<div  class="fragment fade-up" style="color:#61D836;">
+$$
+\Leftrightarrow \frac{g}{2v_0^2}\left(  \frac L2\right)^2 < h-(H+r)
+$$
+</div>
+</section><section>
+<div   style="color:#61D836;">
+$$
+\Leftrightarrow \frac{g}{2v_0^2} < \frac{4\times\left(h-(H+r)\right)}{L^2}
+$$
+</div>
+<div  class="fragment fade-up" style="color:#61D836;">
+$$
+\Leftrightarrow v_0^2 > \frac{g L^2}{8\times\left(h-(H+r)\right)}
+$$
+</div>
+<div  class="fragment fade-up" style="color:#61D836;">
+$$
+\Leftrightarrow v_0 > \sqrt{\frac{g L^2}{8\times\left(h-(H+r)\right)}}
+$$
+</div>
+</section><section>
+<p style="color:#61D836;">
+Application numérique :
+</p>
+<div  class="fragment fade-up" style="color:#61D836;">
+$$
+\begin{aligned}
+v_0 &> \sqrt{\frac{9,8 \times 18^2}{8\times\left(3,50-(2,40+0,10)\right)}}\\
+v_0 &> \pu{20 m*s-1}
+\end{aligned}
+$$
+</div>
+</section><section>
+<p>Question subsidiaire :<br>
+Comment s&rsquo;assurer que le service<br>atterrit bien dans les limites du terrain ?</p>
+<p class="fragment fade-up" style="color:#61D836;">
+On trouve la distance horizontale $x_\mathrm{sol}$ parcourue par<br>le ballon au moment de toucher le sol en résolvant $z(x_\mathrm{sol})=r$. Et il faut alors $x_\mathrm{sol} < L$.
+</p>
+</section><section>
+<div  style="color:#61D836;">
+$$
+\begin{aligned}
+z(x_\mathrm{sol})&=r\\
+\Leftrightarrow -\frac{g}{2v_0^2}x_\mathrm{sol}^2 + h &= r
+\end{aligned}
+$$
+</div>
+<div  class="fragment fade-up" style="color:#61D836;">
+$$
+\Rightarrow x_\mathrm{sol} = \pm v_0\sqrt{\frac{2(h-r)}{g}}
+$$
+</div>
+<p class="fragment fade-up" style="color:#61D836;">
+Seule la solution positive<br>(devant le serveur) nous intéresse...
+</p>
+</section><section>
+<p style="color:#61D836;">
+Il faut donc :
+</p>
+<div  class="fragment fade-up" style="color:#61D836;">
+$$
+v_0\sqrt{\frac{2(h-r)}{g}} < L
+$$
+</div>
+<div  class="fragment fade-up" style="color:#61D836;">
+$$
+\Rightarrow v_0 < L\sqrt{\frac{g}{2(h-r)}}
+$$
+</div>
+</section><section>
+<p style="color:#61D836;">
+A.N. :
+</p>
+<div  class="fragment fade-up" style="color:#61D836;">
+$$
+v_0 < 18\times \sqrt{\frac{9,8}{2\times (3,50-0,10)}}
+$$
+</div>
+<div  class="fragment fade-up" style="color:#61D836;">
+$$
+v_0 < \pu{22 m*s-1}
+$$
+</div>
+</section><section>
+<p style="color:#61D836;">
+La vitesse du service doit finalement être<br>comprise entre 20 et 22 m/s. Easy peasy.
+</p>
 
 </section>
 </section><section>
