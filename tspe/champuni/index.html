@@ -670,7 +670,7 @@ $
 </span>
 </p>
 </section><section>
-<p>Déterminer la valeur de la hauteur H’I du point d’impact I de la goutte sur le support d’impression<br>si on suppose que le mouvement de la goutte est rectiligne uniforme en sortie du déflecteur (de S à I).</p>
+<p>Déterminer la valeur de la hauteur <b style="color:#56C1FF">H’I</b> du point d’impact I de la goutte sur le support d’impression<br>si on suppose que le mouvement de la goutte est rectiligne uniforme en sortie du déflecteur (de S à I).</p>
 </section>
 <section data-noprocess data-shortcode-slide
       data-background-image="/schemajetdencrechamp.png"
@@ -679,9 +679,9 @@ $
 </section><section>
 <p>Marche à suivre possible :</p>
 <ul>
-<li class="fragment fade-up" style="color:#aaa;">Déterminer le temps $t_S$ auquel la goutte sort du déflecteur et la déviation HS.</li>
-<li class="fragment fade-up" style="color:#aaa;">Déterminer les coordonnées de $\vec{v}_S$.</li>
-<li class="fragment fade-up" style="color:#aaa;">Montrer que $\tan\alpha=-\frac{qEL}{mv_0^2}$</li>
+<li class="fragment fade-up" style="color:#aaa;">Déterminer le temps $t_\mathrm{S}$ où la goutte<br>sort du déflecteur grâce à $x(t_\mathrm{S})=L$<br>et la déviation HS = $z(t_\mathrm{S})$.</li>
+<li class="fragment fade-up" style="color:#aaa;">Déterminer les coordonnées de $\vec{v}_\mathrm{S}$.</li>
+<li class="fragment fade-up" style="color:#aaa;">Montrer que $\tan\alpha=-\frac{qEL}{mv_0^2}$<br>et en déduire $\mathrm{S'I}$.<br>Puis ajouter $\mathrm{H'S'} = \mathrm{HS}$.</li>
 </ul>
 </section><section>
 <p>Données pour l&rsquo;application numérique :</p>
@@ -691,8 +691,37 @@ $
 <li>$L=\pu{2 cm}$</li>
 <li>$D=\pu{3 cm}$</li>
 <li>$E=\pu{9e5 V*m-1}$</li>
-<li>$v_0=\pu{20e5 m*s-1}$</li>
+<li>$v_0=\pu{20 m*s-1}$</li>
 </ul>
+</section><section>
+<p style="color:#56C1FF;">
+On est sensé trouvé :
+</p>
+<div style="color:#56C1FF;" class="fragment fade-up">
+$$
+\mathrm{H'I}=-\frac{qEL}{mv_0^2}\left(\frac L2+D\right)
+$$
+</div>
+<p class="fragment fade-up" style="color:#56C1FF;">
+Le terme en facteur est bien sans dimension car $qEL$ a la dimension d'une énergie (charge $\times$ champ $\times$ par distance $=$ charge $\times$ tension = énergie) et $mv_0^2$ aussi . 
+</p>
+</section><section>
+<p style="color:#56C1FF;">
+A.N. :
+</p>
+<div style="color:#56C1FF;font-size:0.6em;" class="fragment fade-up">
+$$
+\mathrm{H'I}=-\frac{\pu{-4e-13 C}\times\pu{9e5 V*m-1}\times\pu{2e-2 m}}{\pu{2e-10 kg}\times (\pu{20 m*s-1})^2}\times\left(\frac{\pu{2e-2 m}}{2}+\pu{3e-2 m}\right)
+$$
+</div>
+<div style="color:#56C1FF;" class="fragment fade-up">
+$$
+\mathrm{H'I}=\pu{4e-3 m}=\pu{4 mm}
+$$
+</div>
+<p class="fragment fade-up" style="color:#56C1FF;">
+Cette déviation paraît cohérente<br>avec la photo en introduction.
+</p>
 
 </section>
 </section><section>
