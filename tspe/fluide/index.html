@@ -1,0 +1,522 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>Écoulement</title>
+
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="/reveal-js/css/reset.css">
+<link rel="stylesheet" href="/reveal-js/css/reveal.css"><link rel="stylesheet" href="/reveal-js/css/theme/league.css" id="theme">
+<link rel="stylesheet" href="/highlight-js/atom-one-dark-reasonable.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  </head>
+  <body>
+    
+    <div class="reveal">
+      <div class="slides">
+  
+
+    <section><style>
+img {
+border: none !important;
+}
+
+.imp {
+font-weight:bold;color:#FF968D;
+}
+
+li {
+color: #fff;
+}
+
+ul {
+margin-left: auto;
+margin-right: auto;
+text-align: left;
+width: fit-content;
+list-style-position: outside;
+color:#fff;
+}
+
+span {
+font-weight:normal;
+}
+
+.video-container {
+  height: 60vh; /* limite la hauteur à 80% de la fenêtre */
+  width: calc(60vh * 9 / 16); /* largeur en fonction du ratio portrait */
+  margin: 0 auto;
+  position: relative;
+}
+
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  border-radius:10px;
+}
+</style>
+
+
+
+<aside class="notes"><p>Penser à recharger la page après exécution des trinkets sinon ça rame&hellip;</p>
+</aside>
+<h1 id="modéliser-lécoulementdun-fluide">Modéliser l&rsquo;écoulement<br>d&rsquo;un fluide</h1>
+</section><section>
+
+
+<section data-shortcode-section>
+<h2 id="fluide-incompressible">Fluide incompressible</h2>
+</section><section>
+<p>Un <span class="imp">fluide</span> est un <span class="imp">liquide</span> ou un <span class="imp">gaz</span>.</p>
+<p class="fragment fade-up">
+Un <span class="imp">fluide incompressible</span> est un fluide<br>dont la <span class="imp">masse volumique</span> est <span class="imp">constante</span>.
+</p>
+<div class="imp fragment fade-up" style="position:relative;margin:auto;width:fit-content;border:solid 5px #FF968D;padding:0 50px 0 50px;border-radius:10px">
+$$\rho=\mathrm{cste}$$
+</div>
+</section><section>
+<p>Le modèle nécessite une température<br>constante et homogène dans le fluide.</p>
+<p class="fragment fade-up">Et les vitesses d'écoulement doivent être petites devant la célérité des ondes acoustiques dans le fluide<br>($v\ll c_\mathrm{son}$).</p>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h2 id="poussée-darchimède">Poussée d&rsquo;Archimède</h2>
+</section><section>
+<p>Un corps plongé dans un fluide incompressible au repos reçoit une force opposée au poids du liquide déplacée.</p>
+<p class="fragment fade-up">C'est la <span class="imp">poussée d'Archimède</span> notée <span class="imp">$\vec{\pi}_A$</span>.</p>
+</section><section>
+<p>Cette action est la résultante des forces<br>de pression du fluide sur le corps.</p>
+<p class="fragment fade-up">La résultante est non nulle du fait de la présence d'une gravité qui rend la pression plus grande en profondeur.</p>
+</section><section>
+<p>Calculons la résultante des forces de pression sur un cylindre vertical de hauteur $h$ et section $S$ immergé dans une fluide incompressible au repos<br>de masse volumique $\rho$.</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/poussarch.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+</section><section>
+<p>Les forces pressantes sur la face latérale s&rsquo;annulent deux à deux à une altitude donnée.</p>
+<p class="fragment fade-up">Il ne reste plus qu'à considérer<br>les deux faces horizontales...</p>
+<p class="fragment fade-up">Sur la face du bas : <span class="fragment">$\vec{F}_{pb} = P(z_0)\times S\times \vec{k}$</span></p>
+<p class="fragment fade-up">Sur la face du haut : <span class="fragment">$\vec{F}_{ph}=-P(z_0+h) \times S\times \vec{k}$</span></p>
+</section><section>
+<p>Or d&rsquo;après le principe fondamental de l&rsquo;hydrostatique :</p>
+<div class="fragment fade-up">
+$$P(z_0+h)=P(z_0)-\rho \, g \, h$$
+</div>
+</section><section>
+<p>D&rsquo;où :</p>
+<div class="fragment fade-up">
+$$
+\begin{aligned}
+\vec{\pi}_A &= \vec{F}_{pb}+\vec{F}_{ph}\\
+&= (P(z_0)-P(z_0+h) )\, S\, \vec{k}\\
+&= \rho \, g \, {\color{#56C1FF} h \, S}\, \vec{k}\\
+&= \rho \, g \, {\color{#56C1FF} V}\, \vec{k}\\
+&= -\rho  \,  V \, \vec{g}
+\end{aligned}
+$$
+</div>
+</section><section>
+<p>On peut généraliser à tout corps :</p>
+<br>
+<div class="imp fragment fade-up" style="position:relative;margin:auto;width:fit-content;border:solid 5px #FF968D;padding:0 50px 0 50px;border-radius:10px">
+<p>$$\vec{\pi}_A = - \rho \,  V \, \vec{g}$$</p>
+</div>
+<br>
+<ul>
+<li class="fragment fade-up">$\pi_A$ est la poussée d'Archimède (en <b class="fragment" style="color:#FFF056">$\pu{N}$</b>)</li>
+<li class="fragment fade-up">$\rho$ est la masse volumique du fluide (en <b class="fragment" style="color:#FFF056">$\pu{kg*m-3}$</b>)</li>
+<li class="fragment fade-up">$V$ est le volume immergé du corps (en <b class="fragment" style="color:#FFF056">$\pu{m3}$</b>)</li>
+<li class="fragment fade-up">$g$ est la pesanteur (en <b class="fragment" style="color:#FFF056">$\pu{m*s-2}$</b>)</li>
+</ul>
+</section><section>
+<p>⚠️</p>
+<p>Si le corps flotte, <b style="color:#56C1FF">$V$</b> désigne seulement<br>le volume de la partie immergée du corps !</p>
+</section><section>
+<p>🧊 Application : 🧊</p>
+<p>Quelle est la proportion immergée<br>du volume d&rsquo;un glaçon ou d&rsquo;un iceberg ?</p>
+<div class="fragment fade-up"><u>Données</u> :</p>
+<ul style="margin-top:-0.5em; margin-bottom:-0.5em;">
+<li>masse volumique de l'eau :<br>$\rho_\ell = \pu{1,0e3 kg*m-3}$</li>
+<li>masse volumique de la glace :<br>$\rho_g = \pu{9,2e2 kg*m-3}$</li>
+</ul>
+</div>
+</section><section>
+<p>Bilan des forces :</p>
+<ul>
+<li class="fragment fade-up">le poids de l'iceberg : $\vec{P}=m\vec{g}=\rho_g V_\mathrm{tot} \,\vec{g}$</li>
+<li class="fragment fade-up">la poussée d'Archimède : $\vec{\pi}_A = -\rho_\ell V_\mathrm{imm} \, \vec{g}$</li>
+</ul>
+</section><section>
+<p>On suppose que l&rsquo;iceberg est à l&rsquo;équilibre.</p>
+<p class="fragment fade-up">Donc dans le référentiel terrestre supposé galiléen,<br>la 1<sup>re</sup> loi de Newton nous informe que :</p>
+<div class="fragment fade-up">
+$$
+\sum \vec{F}_\mathrm{ext} = \vec{0}
+$$
+</div>
+</section><section>
+<p>
+$\Rightarrow \vec{P}+\vec{\pi}_A= \vec{0}$
+</p>
+<p class="fragment fade-up">
+$\Leftrightarrow \rho_g V_\mathrm{tot} \, \vec{g} - \rho_\ell V_\mathrm{imm} \, \vec{g} = 0$
+</p>
+<p class="fragment fade-up">
+$\displaystyle \Rightarrow \frac{V_\mathrm{imm}}{V_\mathrm{tot}} = \frac{\rho_g}{\rho_\ell}$
+</p>
+<p class="fragment fade-up">92% de l'iceberg ou du glaçon est immergé 🚢 !</p>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h2 id="exercice">Exercice</h2>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/balarchi.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+</section><section>
+<p>On tare la balance avant d&rsquo;immerger la Tour Eiffel.</p>
+<p class="fragment fade-up">Que mesure alors la balance<br>après immersion de la Tour ?</p>
+<aside class="notes"><p>Si système Tour Eiffel :
+La force de l&rsquo;eau sur la Tour s&rsquo;oppose à la force de la Tour sur l&rsquo;eau d&rsquo;après la 3e loi de Newton
+Et cette force est ensuite communiquée à la balance. Moralaité : la balance mesure la poussée d&rsquo;Archimède sur la balance. Ou plutôt rho_eau*V = 1(en kg/L)*V(en L) puisqu&rsquo;elle divise par g. -&gt; Elle donne le volume !</p>
+<p>On peut jouer sur le système aussi :
+{cristallisoir + eau + Tour + ficelle}
+BDF :</p>
+<ul>
+<li>poids cristallisoir, poids eau, poids Tour</li>
+<li>Force de soutien de la balance N</li>
+<li>Force de tension sur la ficelle T</li>
+</ul>
+<p>Comme on a taré avant la Tour, la balance indique zéro si N = -(P_eau + P_crist)
+Et pour le système {Tour + ficelle}
+T + P_Tour + πA = 0</p>
+<p>Sur gros système :
+Pcrist + Peau + P_Tour + N + T = 0
+-&gt;   N = - ( Pcrist + Peau + P_Tour + T )
+&lt;-&gt; N = - (0 + P_Tour + (-P_Tour - πA)
+&lt;-&gt; N = πA</p>
+</aside>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h2 id="conservation-du-débit-volumique">Conservation du débit volumique</h2>
+</section><section>
+<p>Le <span class="imp">débit volumique</span> est le volume de fluide qui traverse une section droite du conduit où s&rsquo;écoule le fluide<br>par unité de temps.</p>
+<div style="position:relative;margin:auto;width:fit-content;border:solid 5px #FF968D;padding:0 50px 0 50px;border-radius:10px">
+$$
+D_V = \frac{V}{\Delta t}
+$$
+</div>
+<p class="fragment fade-up">
+Unité SI : <b class="fragment" style="color:#FFF056">$\pu{m3*s-1}$</b>
+</p>
+</section><section>
+<div style="position:relative;margin-left:auto;margin-right:auto;width:700px;max-width:100%;">
+<img src="/debitvs.png" style="box-shadow:none;background:none;">
+</div>
+<p class="fragment fade-up">Si $S$ est l'aire de la section droite et $v$ la vitesse<br>de l'écoulement à cet endroit, alors :</p>
+<div class="fragment fade-up">
+$$
+{\color{#FF968D}D_V} = \frac{V}{\Delta t} = \frac{S\times v\times \Delta t}{\Delta t} = {\color{#FF968D}v\times S}
+$$
+</div>
+</section><section>
+<p><u>Rq</u> :</p>
+<p>Si la vitesse de l&rsquo;écoulement n&rsquo;est pas la même en tout point de la section (i.e. non uniforme sur une section), on peut remplacer $v$ par $\bar{v}$, la vitesse moyenne<br>sur la section.</p>
+</section><section>
+<div style="position:relative;margin:auto;width:fit-content;border:solid 5px #FF968D;padding:20px 50px 20px 50px;border-radius:10px">
+Pour un <span class="imp">fluide incompressible</span>,<br>le <span class="imp">débit se conserve</span>.
+</div>
+</section><section>
+<p>Quel lien peut-on alors faire entre l&rsquo;aire d&rsquo;une section et la vitesse de l&rsquo;écoulement si le conduit <br>où s&rsquo;écoule le fluide est de section variable ?</p>
+<div class="fragment fade-up" style="position:relative;margin-left:auto;margin-right:auto;width:700px;max-width:100%;">
+<img src="/debitvariable.png" style="box-shadow:none;background:none;">
+</div>
+</section><section>
+<p>Par conservation du débit :</p>
+<div class="fragment fade-up" style="position:relative;margin:auto;width:fit-content;border:solid 5px #FF968D;padding:0 50px 0 50px;border-radius:10px">
+$${\color{#FF968D}v_1}\times {\color{#56C1FF}S_1} = {\color{#FF968D}v_2}\times  {\color{#56C1FF}S_2}$$
+</div>
+<p class="fragment fade-up">
+La <span class="imp">vitesse d'écoulement</span> est <b style="color:#FFF056">inversement proportionnelle</b> à l'<b style="color:#56C1FF">aire de la section du conduit</b>.
+</p>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h2 id="fluide-parfait">Fluide parfait</h2>
+</section><section>
+<p>Un <span class="imp">fluide</span> est dit <span class="imp">parfait</span> si on peut décrire son écoulement <span class="imp">sans prendre en compte<br>les effets de la viscosité</span>.</p>
+</section><section>
+<p>En réalité, les seuls fluides réellement non visqueux sont l&rsquo;hélium superfluide, les condensats de Bose-Einstein ou les plasmas quarks-gluons&hellip;</p>
+<p class="fragment fade-up">Mais en pratique, si les effets de la viscosité sont suffisamment faibles par rapports aux effets inertiels (liés à la vitesse), l'approximation de fluide parfait est adaptée (et d'autant plus qu'on est loin<br>d'un obstacle ou d'une paroi).</p>
+<aside class="notes"><p>Près d&rsquo;une paroi, le fluide est toujours visqueux. On sépare alors l&rsquo;étude en deux domaines : celui de la couche limite ou le fluide est visqueux et celui où il est parfait.</p>
+</aside>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="https://upload.wikimedia.org/wikipedia/commons/f/f8/Liquid_helium_Rollin_film.jpg"
+      data-background-size="contain"
+      data-background-transition="concave">
+<aside class="notes"><p>The liquid helium is in the superfluid phase. A thin invisible film creeps up the inside wall of the cup and down on the outside. A drop forms. It will fall off into the liquid helium below. This will repeat until the cup is empty - provided the liquid remains superfluid.
+Cela montre qu&rsquo;un fluide parfait est fondamentalement bizarre.</p>
+</aside>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h2 id="écoulement-permanent">Écoulement permanent</h2>
+</section><section>
+<p>Un <span class="imp">écoulement  en régime permanent</span> (ou stationnaire) est un écoulement où la vitesse en chaque point ne varie pas au cours du temps.</p>
+</section><section>
+<p>Une <span class="imp">ligne de courant</span> d&rsquo;un écoulement est<br>un chemin tangent au champ des vitesse.</p>
+<p class="fragment fade-up">Les lignes de courant permettent de cartographier<br>le champ de vitesse du fluide.</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/lignesdechamp.jpg"
+      data-background-size="contain"
+      data-background-transition="concave">
+<aside class="notes"><p>Pas la même chose que la trajectoire dans le sens où on ne suit pas une particule dans le temps mais on regarde, à un instant donné, les vitesses d&rsquo;un ensemble de particules. Néanmoins, en régime permanent, les deux se confondent !</p>
+</aside>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h2 id="relation-de-bernoulli">Relation de Bernoulli</h2>
+</section><section>
+<p>L&rsquo;écoulement d&rsquo;un fluide <b style="color:#FF95CA">incompressible</b> <b style="color:#FFF056">parfait</b> en <b style="color:#56C1FF">régime permanent</b> suit la <span class="imp">relation de Bernoulli</span> entre deux points $\mathrm{M_1}$ et $\mathrm{M_2}$ sur une ligne de courant :</p>
+</section><section>
+<div style="position:relative;margin-left:auto;margin-right:auto;width:500px;max-width:100%;">
+<img src="/relbernoulli.png" style="box-shadow:none;background:none;">
+</div>
+<div class="fragment fade-up" style="position:relative;margin:auto;width:fit-content;border:solid 5px #FF968D;padding:0 50px 0 50px;border-radius:10px">
+$$
+{\color{#73FDEA}P_1}+{\color{#FFF056}\rho g z_1} + {\color{#FF968D}\frac12 \rho v_1^{\,2}} = {\color{#73FDEA}P_2}+{\color{#FFF056}\rho g z_2}+ {\color{#FF968D}\frac12 \rho v_2^{\,2}}
+$$
+</div>
+<aside class="notes"><p>La relation de Bernoulli sera toujours fournie.</p>
+</aside>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-iframe="/ecoulement.html"
+      data-background-interactive="true"
+      data-background-size="contain"
+      data-background-transition="concave">
+</section><section>
+<p>Cette relation exprime la conservation de l&rsquo;énergie volumique d&rsquo;une particule de fluide :</p>
+<ul>
+<li class="fragment fade-up" style="color:#FF968D">$\frac12\rho v^2$ est une densité volumique d'énergie cinétique</li>
+<li class="fragment fade-up" style="color:#FFF056">$\rho g z $ est une densité volumique d'énergie potentielle de pesanteur</li>
+<li class="fragment fade-up" style="color:#73FDEA">$P$ est une densité volumique d'énergie potentielle dont dérivent les forces de pression</li>
+</ul>
+</section><section>
+<p><u>Rq</u> :</p>
+<p>Cette conservation est valable<br>le long d&rsquo;une ligne de courant.</p>
+<p class="fragment fade-up">Mais si l'écoulement est irrotationnel<br>(nul part dans le fluide, un petit moulinet ne se mettrait à tourner), elle est valable en tout point du fluide<br>(on dit que l'écoulement est potentiel).</p>
+</section><section>
+<p>Si le fluide est au repos ($v_1=v_2=0$), on retrouve<br>la <span class="imp">loi fondamentale de la statique des fluides</span> :</p>
+<div class="fragment fade-up" style="position:relative;margin:auto;width:fit-content;border:solid 5px #FF968D;padding:0 50px 0 50px;border-radius:10px">
+$$P_1+\rho g z_1 = P_2 + \rho g z_2$$
+</div>
+</section><section>
+<p>Et pour un écoulement horizontal<br>($z_1=z_2$), on obtient :</p>
+<div class="fragment fade-up" style="position:relative;margin:auto;width:fit-content;border:solid 5px #FF968D;padding:0 50px 0 50px;border-radius:10px">
+$$P_1+\frac12\rho v_1^{\,2}=P_2+\frac12\rho v_2^{\,2}$$
+</div>
+<p class="fragment fade-up">C'est l'<span class="imp">effet Venturi</span>.</p>
+</section><section>
+<p>L&rsquo;<span class="imp">effet Venturi</span> indique donc que<br>
+si la vitesse de l&rsquo;écoulement $\color{#FF968D}\nearrow$, alors la pression <span class="fragment">$\color{#56C1FF}\searrow$</span>.</p>
+<p class="fragment fade-up">Or la conservation du débit volumique nous a appris que si l'écoulement devient plus étroit ($S$ $\color{#56C1FF}\searrow$),<br><span class="fragment">alors sa vitesse <span class="fragment">$\color{#FF968D}\nearrow$</span>.</span></p>
+</section><section>
+<p>On déduit donc que la pression <span class="fragment">$\color{#56C1FF}\searrow$</span><br>dans un étranglement.</p>
+<div  class="fragment fade-up" style="position:relative;margin-left:auto;margin-right:auto;width:700px;max-width:100%;">
+<img src="/illventuri.png" style="box-shadow:none;background:none;">
+</div>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-size="contain"
+      data-background-transition="concave"
+      data-background-video="https://upload.wikimedia.org/wikipedia/commons/5/58/Venturi_Tube_en.webm">
+</section><section>
+<p>Exemples d&rsquo;applications :</p>
+<ul>
+<li class="fragment fade-up" style="color:#D5D5D5;">Trompe à eau</li>
+<li class="fragment fade-up" style="color:#D5D5D5;">Vaporisateurs</li>
+<li class="fragment fade-up" style="color:#D5D5D5;">Tunnels Venturi des F1 (de 2022 à 2025)</li>
+</ul>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/exventuri.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-size="contain"
+      data-background-transition="concave"
+      data-background-video="https://pod.univ-lille.fr/media/videos/1d78340adebd50becc3044135b0335ff7c32030c7fffc9e84d8724d566351e73/1310/playlist.m3u8">
+</section><section>
+<iframe width="800" height="450" src="https://www.youtube.com/embed/Ye3QPgDdJNg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+</section><section>
+<iframe width="800" height="450" src="https://www.youtube.com/embed/BWvGE238DdE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+</section><section>
+<iframe width="800" height="450" src="https://www.youtube.com/embed/51_Rzpw119o" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+</section><section>
+<div class="video-container">
+  <iframe src="https://www.youtube.com/embed/XP6oqIic4lo"
+          title="YouTube Short"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen>
+  </iframe>
+</div>
+
+</section>
+</section><section>
+<p><a href="https://coursphychi.github.io/tspe/fluide/">Retour site</a></p>
+</section>
+
+  
+
+
+</div>
+      
+
+    </div>
+<script type="text/javascript" src=/reveal-hugo/object-assign.js></script>
+
+<a href="/reveal-js/css/print/" id="print-location" style="display: none;"></a>
+<script type="text/javascript">
+  var printLocationElement = document.getElementById('print-location');
+  var link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.type = 'text/css';
+  link.href = printLocationElement.href + (window.location.search.match(/print-pdf/gi) ? 'pdf.css' : 'paper.css');
+  document.getElementsByTagName('head')[0].appendChild(link);
+</script>
+
+<script type="application/json" id="reveal-hugo-site-params">{"highlight_theme":"github-dark","line-numbers":true,"theme":"sky","transition":"concave","transition_speed":"fast"}</script>
+<script type="application/json" id="reveal-hugo-page-params">{"highlight_theme":"atom-one-dark-reasonable","theme":"league"}</script>
+
+<script src="/reveal-js/js/reveal.js"></script>
+
+<script type="text/javascript">
+  
+  
+  function camelize(map) {
+    if (map) {
+      Object.keys(map).forEach(function(k) {
+        newK = k.replace(/(\_\w)/g, function(m) { return m[1].toUpperCase() });
+        if (newK != k) {
+          map[newK] = map[k];
+          delete map[k];
+        }
+      });
+    }
+    return map;
+  }
+  
+  var revealHugoDefaults = { center: true, controls: true, history: true, progress: true, transition: "slide" };
+  var revealHugoSiteParams = JSON.parse(document.getElementById('reveal-hugo-site-params').innerHTML);
+  var revealHugoPageParams = JSON.parse(document.getElementById('reveal-hugo-page-params').innerHTML);
+  
+  var options = Object.assign({},
+    camelize(revealHugoDefaults),
+    camelize(revealHugoSiteParams),
+    camelize(revealHugoPageParams));
+  Reveal.initialize(options);
+</script>
+
+
+  
+  
+  <script type="text/javascript" src="/reveal-js/plugin/markdown/marked.js"></script>
+  
+  <script type="text/javascript" src="/reveal-js/plugin/markdown/markdown.js"></script>
+  
+  <script type="text/javascript" src="/reveal-js/plugin/highlight/highlight.js"></script>
+  
+  <script type="text/javascript" src="/reveal-js/plugin/zoom-js/zoom.js"></script>
+  
+  
+  <script type="text/javascript" src="/reveal-js/plugin/notes/notes.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({startOnLoad: false});
+    let render = (event) => {
+      let mermaidElems = event.currentSlide.querySelectorAll('.mermaid');
+      if (!mermaidElems.length){
+          return
+      }
+      mermaidElems.forEach(mermaidElem => {
+          let processed = mermaidElem.getAttribute('data-processed');
+          if (!processed){
+              
+              mermaid.init(undefined, mermaidElem);
+          }
+      });
+    };
+    Reveal.addEventListener('slidechanged', render);
+    Reveal.addEventListener('ready', render);
+  </script>
+
+    
+
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']]
+  },
+  svg: {
+    fontCache: 'global'
+  }
+};
+</script>
+
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+</script>
+    
+  </body>
+</html>

@@ -230,8 +230,9 @@
 
       // Wrap horizontal
       const wCSS = canvas.width / DPR;
-      if (emit.x > wCSS + 50) emit.x = -50;
-      if (emit.x < -50)       emit.x =  wCSS + 50;
+      const margin = wCSS / 5; // 1/5 de la largeur hors fenêtre
+      if (emit.x > wCSS + margin) emit.x = -margin;
+      if (emit.x < -margin)       emit.x =  wCSS + margin;
 
       // Émission des fronts
       while (simT >= nextT){

@@ -206,7 +206,7 @@ $$v=k(T)\ce{[A]}$$
 $$-\frac{\mathrm{d}\ce{[A]}}{\mathrm{d} t} = k\ce{[A]}$$
 </p>
 <p class="fragment fade-up">
-$$\frac{\mathrm{d}\ce{[A]}}{\mathrm{d} t} + k\ce{[A]} = 0$$
+$$\color{#FF968D}\frac{\mathrm{d}\ce{[A]}}{\mathrm{d} t} + k\ce{[A]} = 0$$
 </p>
 <p class="fragment fade-up">
 On obtient donc une <span class="imp">équation différentielle<br>du premier ordre</span> (à coefficients constants).
@@ -217,7 +217,7 @@ Une équation différentielle du premier ordre fait un intervenir une fonction e
 </section><section>
 <p>La solution d&rsquo;une telle équation différentielle<br>est de la forme :</p>
 <p class="fragment fade-up">
-$$\ce{[A]}(t)= C\times\mathrm{e}^{-kt}$$
+$$\color{#FF968D}\ce{[A]}(t)= C\times\mathrm{e}^{-kt}$$
 </p>
 <p class="fragment fade-up">
 où $C$ est une constante.
@@ -229,28 +229,30 @@ Sa fonction réciproque est le logarithme népérien (logarithme de base $\mathr
 <p>$\ln\left(\mathrm{e}^x\right)=x$</p>
 </div>
 </section><section>
-<p>On détermine $C$ grâce aux conditions initiales :</p>
+<p>On détermine $C$ grâce aux <b style="color:#FFF056">conditions initiales</b> :</p>
 <p class="fragment fade-up">
-$\ce{[A]}(t=0)=C\times\mathrm{e}^{-k\times 0} = C = \ce{[A]}_0$
+$\ce{[A]}(t=0)=C\times\mathrm{e}^{-k\times 0} = \color{#FFF056}C = \ce{[A]}_0$
 </p>
 <p class="fragment fade-up">
 D'où 
 </p>
 <p class="fragment fade-up">
-$$\ce{[A]}(t)= \ce{[A]}_0\times\mathrm{e}^{-kt}$$
+$$\color{#FF968D}\ce{[A]}(t)= \ce{[A]}_0\times\mathrm{e}^{-kt}$$
 </p>
 </section><section>
-<p>La loi de vitesse dépend donc de la<br><b style="color:#56C1FF">concentration initiale $[\mathrm{A_0}]$</b> et de la <b style="color:#FFF056">température</b><br>(via la constante de vitesse $k({\color{#FFF056}T})$).</p>
+<p>L&rsquo;évolution de la concentration dépend donc de la<br><b style="color:#56C1FF">concentration initiale $[\mathrm{A_0}]$</b> et de la <b style="color:#FFF056">température</b><br>(via la constante de vitesse $k({\color{#FFF056}T})$).</p>
+<!--
 <p class="fragment fade-up">
 La <b style="color:#FFF056;">température</b> et la <b style="color:#56C1FF">concentration</b> du réactif<br>sont donc les deux <span class="imp">facteurs cinétiques</span><br>d'une loi de vitesse d'ordre 1.
 </p>
+-->
 </section><section>
-<p>En prenant le logarithme de la loi de vitesse,<br>on peut vérifier que cette loi est d&rsquo;ordre 1 :</p>
+<p>En prenant le logarithme de $ [\mathrm{A}](t) $,<br>on peut vérifier que cette loi est d&rsquo;ordre 1 :</p>
 <p class="fragment fade-up">
 $\ln\left(\ce{[A]}(t)\right) = \ln(\ce{[A]}_0) -k\times t$
 </p>
 <p class="fragment fade-up">On obtient une fonction affine décroissante du temps.</p>
-<p class="imp fragment fade-up">Donc si $\ln\left(\ce{[A]}(t)\right)$ est modélisable par une fonction affine, la loi de vitesse est d'ordre 1 !</p>
+<p class="imp fragment fade-up">Donc si $\ln\left(\ce{[A]}(t)\right)$ est modélisable par une<br>fonction affine, la loi de vitesse est d'ordre 1 !</p>
 </section>
 <section data-noprocess data-shortcode-slide
       data-background-image="/loidordre1.png"
