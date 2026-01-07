@@ -20,7 +20,7 @@ let reactionEffects = [];
 // =========================
 //        SONS + UI
 // =========================
-let soundEnabled = true; // état du son (bouton dans le canvas)
+let soundEnabled = false; // état du son (bouton dans le canvas)
 
 let audioCtx = null;
 let sfxGain = null;
