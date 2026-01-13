@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>Inférence bayésienne</title>
+
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="/reveal-js/css/reset.css">
+<link rel="stylesheet" href="/reveal-js/css/reveal.css"><link rel="stylesheet" href="/reveal-js/css/theme/sky.css" id="theme">
+<link rel="stylesheet" href="/highlight-js/atom-one-dark-reasonable.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  </head>
+  <body>
+    
+    <div class="reveal">
+      <div class="slides">
+  
+
+    <section><style>
+.drawing-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(8, 30px); /* Augmentez la taille des cellules */
+    grid-gap: 2px; /* Ajustez l'espacement si nécessaire */
+    margin-bottom: 20px;
+}
+.grid-item {
+    width: 30px; /* Taille plus grande pour chaque cellule */
+    height: 30px; /* Taille plus grande pour chaque cellule */
+    background-color: #fff;
+    border: 1px solid #ccc; /* Bordures plus fines et grises */
+}
+    .grid-item.checked {
+        background-color: #000;
+    }
+    #prediction {
+        margin-bottom: 0; /* Pour réduire l'espace avec le chiffre prédit */
+        font-size: 20pt; /* Rendre le texte un peu plus petit */
+    }
+    #predictedLabel {
+        color: red; /* Déjà défini dans le HTML, mais peut être ajusté ici pour la cohérence */
+    }
+    button {
+    background-color: #4CAF50; /* Couleur verte */
+    color: white; /* Texte blanc */
+    padding: 15px 32px; /* Plus grand padding pour un bouton plus grand */
+    font-size: 16px; /* Taille de la police plus grande */
+    border: none; /* Pas de bordure */
+    border-radius: 5px; /* Bords arrondis */
+    cursor: pointer; /* Change le curseur en pointeur */
+    margin: 10px; /* Ajoute de l'espace autour des boutons */
+}
+button:hover {
+    background-color: #45a049; /* Un peu plus foncé lorsque survolé */
+}
+.reset-btn {
+    background-color: #007bff; /* Bleu Bootstrap */
+    color: white;
+    padding: 15px 32px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 10px;
+}
+.reset-btn:hover {
+    background-color: #0056b3; /* Bleu plus foncé au survol */
+}
+#nearest-neighbors-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.neighbor {
+    display: grid;
+    grid-template-columns: repeat(8, 5px); /* Adaptez la taille des "pixels" */
+    margin: 5px;
+}
+.neighbor div {
+    width: 5px; /* Taille du "pixel" */
+    height: 5px;
+    border: 0.5px solid #ccc; /* Bordure fine pour chaque "pixel" */
+}
+</style>
+<h1 id="inférence-bayésienne">Inférence bayésienne</h1>
+</section><section>
+
+
+<section data-shortcode-section>
+<h2 id="raisonnement-déductif-et-inductif">Raisonnement déductif et inductif</h2>
+</section><section>
+<p>Un raisonnement déductif part de prémices ou axiomes et en tire logiquement des conclusions.</p>
+<p class="fragment fade-up">À partir d'énoncés vrais ou supposés vrais, on détermine de nouveaux énoncés vrais</p>
+</section><section>
+<p>Un raisonnement déductif est descendant : on fabrique des vérités plus petites à partir de vérités plus grosses dans le sens où les nouvelles vérités ne sont que des combinaisons particulières des vérités de base.</p>
+</section><section>
+<p>Exemple type :</p>
+<ol>
+<li class="fragment fade-up">Tous les hommes sont mortel.</li>
+<li class="fragment fade-up">Socrate est un homme.</li>
+<li class="fragment fade-up">Socrate est mortel.</li>
+</ol>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="https://sciencesilencieuse.github.io/preuvehartshorne.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+<p>Autre exemple :
+<br><br><br><br><br><br><br><br><br></p>
+</section><section>
+<p>Mais c&rsquo;est pourtant un autre type de raisonnement qu&rsquo;on utilise plus naturellement :<br>le raisonnement inductif.</p>
+<p class="fragment fade-up">Il est, lui, ascendant puisqu'il vise à établir<br>des grosses vérités à partir de petites.</p>
+</section><section>
+<p>Le raisonnement inductif revient à imaginer le tableau entier après en avoir vu que quelques bouts.</p>
+</section><section>
+<p>D&rsquo;un point de vue logico-mathématique, c&rsquo;est un raisonnement erroné puisqu&rsquo;à partir de $A\Rightarrow B$, il prétend que si on a $B$, alors on a $A$. Or une implication n&rsquo;implique pas sa réciproque (seulement sa contraposée). C&rsquo;est l&rsquo;erreur classique faite dans le test de</p>
+</section><section>
+
+</section>
+</section><section>
+<p><a href="https://coursphychi.github.io/tes/vivant/bayes">Retour site</a></p>
+</section>
+
+  
+
+
+</div>
+      
+
+    </div>
+<script type="text/javascript" src=/reveal-hugo/object-assign.js></script>
+
+<a href="/reveal-js/css/print/" id="print-location" style="display: none;"></a>
+<script type="text/javascript">
+  var printLocationElement = document.getElementById('print-location');
+  var link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.type = 'text/css';
+  link.href = printLocationElement.href + (window.location.search.match(/print-pdf/gi) ? 'pdf.css' : 'paper.css');
+  document.getElementsByTagName('head')[0].appendChild(link);
+</script>
+
+<script type="application/json" id="reveal-hugo-site-params">{"highlight_theme":"github-dark","line-numbers":true,"theme":"sky","transition":"concave","transition_speed":"fast"}</script>
+<script type="application/json" id="reveal-hugo-page-params">{"highlight_theme":"atom-one-dark-reasonable"}</script>
+
+<script src="/reveal-js/js/reveal.js"></script>
+
+<script type="text/javascript">
+  
+  
+  function camelize(map) {
+    if (map) {
+      Object.keys(map).forEach(function(k) {
+        newK = k.replace(/(\_\w)/g, function(m) { return m[1].toUpperCase() });
+        if (newK != k) {
+          map[newK] = map[k];
+          delete map[k];
+        }
+      });
+    }
+    return map;
+  }
+  
+  var revealHugoDefaults = { center: true, controls: true, history: true, progress: true, transition: "slide" };
+  var revealHugoSiteParams = JSON.parse(document.getElementById('reveal-hugo-site-params').innerHTML);
+  var revealHugoPageParams = JSON.parse(document.getElementById('reveal-hugo-page-params').innerHTML);
+  
+  var options = Object.assign({},
+    camelize(revealHugoDefaults),
+    camelize(revealHugoSiteParams),
+    camelize(revealHugoPageParams));
+  Reveal.initialize(options);
+</script>
+
+
+  
+  
+  <script type="text/javascript" src="/reveal-js/plugin/markdown/marked.js"></script>
+  
+  <script type="text/javascript" src="/reveal-js/plugin/markdown/markdown.js"></script>
+  
+  <script type="text/javascript" src="/reveal-js/plugin/highlight/highlight.js"></script>
+  
+  <script type="text/javascript" src="/reveal-js/plugin/zoom-js/zoom.js"></script>
+  
+  
+  <script type="text/javascript" src="/reveal-js/plugin/notes/notes.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({startOnLoad: false});
+    let render = (event) => {
+      let mermaidElems = event.currentSlide.querySelectorAll('.mermaid');
+      if (!mermaidElems.length){
+          return
+      }
+      mermaidElems.forEach(mermaidElem => {
+          let processed = mermaidElem.getAttribute('data-processed');
+          if (!processed){
+              
+              mermaid.init(undefined, mermaidElem);
+          }
+      });
+    };
+    Reveal.addEventListener('slidechanged', render);
+    Reveal.addEventListener('ready', render);
+  </script>
+
+    
+
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']]
+  },
+  svg: {
+    fontCache: 'global'
+  }
+};
+</script>
+
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+</script>
+    
+  </body>
+</html>
