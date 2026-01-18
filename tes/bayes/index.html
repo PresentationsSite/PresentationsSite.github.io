@@ -99,18 +99,22 @@ button:hover {
 
 
 <section data-shortcode-section>
-<h2 id="raisonnement-déductif-et-inductif">Raisonnement déductif et inductif</h2>
+<h2 id="raisonnementdéductif-et-inductif">Raisonnement<br>déductif et inductif</h2>
 </section><section>
-<p>Un raisonnement déductif part de prémices ou axiomes et en tire logiquement des conclusions.</p>
-<p class="fragment fade-up">À partir d'énoncés vrais ou supposés vrais, on détermine de nouveaux énoncés vrais</p>
-</section><section>
-<p>Un raisonnement déductif est descendant : on fabrique des vérités plus petites à partir de vérités plus grosses dans le sens où les nouvelles vérités ne sont que des combinaisons particulières des vérités de base.</p>
+<p>Un <span class="imp">raisonnement déductif</span> part d&rsquo;énoncés supposés vrais (les prémisses) et en tire logiquement des conclusions.</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/entonnoir.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+<p>Un raisonnement déductif est descendant :</p>
+<p class="fragment fade-up">la déduction consiste à tirer des conséquences particulières à partir de principes généraux en préservant la vérité dans le processus.<p>
 </section><section>
 <p>Exemple type :</p>
 <ol>
-<li class="fragment fade-up">Tous les hommes sont mortel.</li>
-<li class="fragment fade-up">Socrate est un homme.</li>
-<li class="fragment fade-up">Socrate est mortel.</li>
+<li class="fragment fade-up">Tous les hommes sont mortel (🕺$\Rightarrow$💀)</li>
+<li class="fragment fade-up">Socrate est un homme (🕺)</li>
+<li class="fragment fade-up">Socrate est mortel (💀)</li>
 </ol>
 </section>
 <section data-noprocess data-shortcode-slide
@@ -120,15 +124,119 @@ button:hover {
 <p>Autre exemple :
 <br><br><br><br><br><br><br><br><br></p>
 </section><section>
-<p>Mais c&rsquo;est pourtant un autre type de raisonnement qu&rsquo;on utilise plus naturellement :<br>le raisonnement inductif.</p>
-<p class="fragment fade-up">Il est, lui, ascendant puisqu'il vise à établir<br>des grosses vérités à partir de petites.</p>
+<p>Mais c&rsquo;est pourtant un autre type de raisonnement qu&rsquo;on utilise plus naturellement :</p>
+<p class="imp fragment fade-up">le <span class="imp">raisonnement inductif</span>.</p>
+<p class="fragment fade-up">Il est, lui, ascendant puisqu'il vise à établir<br>des conséquences générales à partir d'observations particulières.</p>
 </section><section>
-<p>Le raisonnement inductif revient à imaginer le tableau entier après en avoir vu que quelques bouts.</p>
+<p>Ce type de déduction n&rsquo;est pas logiquement valide : même beaucoup d’observations compatibles n’impliquent pas logiquement une loi générale.</p>
 </section><section>
-<p>D&rsquo;un point de vue logico-mathématique, c&rsquo;est un raisonnement erroné puisqu&rsquo;à partir de $A\Rightarrow B$, il prétend que si on a $B$, alors on a $A$. Or une implication n&rsquo;implique pas sa réciproque (seulement sa contraposée). C&rsquo;est l&rsquo;erreur classique faite dans le test de</p>
+<p>Elle nous amène à faire des erreurs de raisonnement appelées biais de confirmation comme dans l&rsquo;<a href="https://app.wooclap.com/events/DFJPPC/questions/68fe3cd9722b5164b8498910">exemple suivant</a>.</p>
 </section><section>
+<p>Vouloir retourner le 4 revient à croire que<br>sachant $A\Rightarrow B$, avoir $B$ implique avoir $A$ :</p>
+<p class="fragment fade-up">l'observation d'une conséquence nous amène<br>alors à prédire la présence de la cause. </p>
+<p class="fragment fade-up">Or une implication n'implique pas sa réciproque (seulement sa contraposée $\overline{B}\Rightarrow\overline{A}$).</p>
+</section><section>
+<ol>
+<li>Tous les chats sont mortels (🐈$\Rightarrow$💀)</li>
+<li class="fragment fade-up">Socrate est mortel (💀)</li>
+<li class="fragment fade-up">Donc Socrate est un chat (🐈)</li>
+</ol>
+</section><section>
+<p>Bien que logiquement erroné, l&rsquo;induction est<br>le seul raisonnement disponible pour<br>construire des théories ou modèles.</p>
+<p class="fragment fade-up">On ne peut que tenter de déduire des lois à partir d'observations fatalement incomplètes du monde.</p>
+</section><section>
+<p>Cela explique pourquoi la <span class="imp">démarche scientifique</span> semble se construire à l&rsquo;envers :</p>
+<p class="fragment fade-up">on ne cherche jamais à prouver une théorie puisque c'est logiquement impossible.</p>
+<p class="fragment fade-up">Tout ce qu'on peut faire, c'est la détruire.</p>
+</section><section>
+<p>À partir des observations, on émet une hypothèse sur la marche du monde : une <span class="imp">théorie</span>.</p>
+<p class="fragment fade-up">Le boulot de la communauté scientifique est<br>alors de tout faire pour invalider la théorie.</p>
+<p class="fragment fade-up">Tant qu'elle résiste, on la garde.</p>
+</section><section>
+<p>Recette pour détruire une théorie :</p>
+ <p class="fragment fade-up">on déterminer les conséquences vérifiables que<br>la théorie implique (par un raisonnement déductif où la théorie est placée en prémisse).</p>
+ <p class="fragment fade-up">Si une expérience montre qu'une de ces conséquences est fausse, la théorie s'effondre.</p>
+ <p class="fragment fade-up">Un seul contre exemple suffit !</p>
+</section><section>
+<p>Au mieux, on ne peut qu&rsquo;hypothétiser un modèle du monde et échouer à l&rsquo;invalider.</p>
+<p class="fragment fade-up"><u>Rq</u> : une théorie ne permettant pas son<br>invalidation (sans conséquence vérifiable)<br>n'est pas une théorie scientifique !</p>
+</section><section>
+<p>Autre exemple de raisonnement inductif :</p>
+<p class="fragment fade-up">le <span class="imp">diagnostic médical</span></p>
+<p class="fragment fade-up">En effet, on essaye bien de déterminer la cause<br>(la maladie) à partir des conséquences<br>(les symptômes).
+</section><section>
+<p>On retrouve aussi le raisonnement inductif au cœur du travail d&rsquo;un enquêteur et au tribunal.</p>
 
 </section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h2 id="théorème-de-bayes">Théorème de Bayes</h2>
+</section><section>
+<p>Le théorème de Bayes permet de rendre<br>le raisonnement inductif plus rigoureux.</p>
+</section><section>
+<p>Le théorème de Bayes ne &ldquo;démontre&rdquo; pas que l’induction est vraie au sens logique, mais il fournit un cadre propre pour l’induction comme<br>mise à jour rationnelle de croyances :</p>
+</section><section>
+<div style="position:relative;margin:auto;width:fit-content;">
+<ul>
+<li>On formalise une hypothèse $H$.</li>
+<li class="fragment fade-up">On explicite notre opinion a priori<br>sur la validité de l'hypothèse $P(H)$.</li>
+<li class="fragment fade-up">On observe des données $D$.</li>
+<li class="fragment fade-up">On met à jour la <span class="imp">plausibilité</span> de $H$ ($P(H|D)$) grâce au théorème.</li>
+</ul>
+</div>
+</section><section>
+<p>$$P(H \mid D)=\frac{P(D \mid H) P(H)}{P(D \mid H) P(H)+P(D \mid \overline H) P(\overline H)}$$</p>
+<br>
+<div style="position:relative;margin:auto;width:fit-content;">
+<ul>
+<li class="fragment fade-up">$P(D \mid H)$ : à quel point les données sont attendues si l’hypothèse est vraie (vraisemblance des données).</li>
+<li class="fragment fade-up">$P(D \mid \overline H)$ : à quel point les données sont attendues si l’hypothèse est fausse.</li>
+<li class="fragment fade-up">$P(H \mid  D)$ : ce qu’on pense après avoir vu les données (posterior).</li>
+</ul>
+</div>
+</section><section>
+<p><u>Rq</u> : $P(D \mid H) P(H)+P(D \mid \overline H) P(\overline H)=P(D)$</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/preuvebayes.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+</section><section>
+<p>Bayes formalise l’induction comme une procédure de mise à jour rationnelle de croyances sous incertitude, en rendant explicites les hypothèses.</p>
+</section><section>
+<p>Prenons un exemple :</p>
+<p class="fragment fade-up">On se demande si le CO₂ est un bon candidat<br>pour expliquer le réchauffement climatique.</p>
+<br>
+<div style="position:relative;margin:auto;width:fit-content;">
+<ul>
+<li class="fragment fade-up">$H$ : le CO₂ est un bon candidat</li>
+<li class="fragment fade-up">$\overline H$ : le CO₂ n'est pas un bon candidat</li>
+</ul>
+</div>
+</section><section>
+<p>Supposons que l&rsquo;on soit sans avis au départ.</p>
+<p class="fragment fade-up">Notre prior est alors $P(H)=P(\overline H)=50\%$</p>
+<p class="fragment fade-up">Le théorème de Bayes va permettre de mettre<br>à jour rationnellement notre avis<br>en fonction des données.</p>
+</section><section>
+<p>$$P(H \mid D)=\frac{P(D \mid H) P(H)}{P(D \mid H) P(H)+P(D \mid \overline H) P(\overline H)}$$</p>
+<ul>
+<li class="fragment fade-up">$P(D \mid H)$ : probabilité d'obtenir cette donnée si le CO₂ est responsable du réchauffement climatique.</li>
+<li class="fragment fade-up">$P(D \mid \overline H)$ : probabilité d'obtenir cette donnée si le CO₂ n'est  pas responsable du réchauffement climatique.</li>
+<li class="fragment fade-up">$P(H \mid  D)$ : opinion après observation des données.</li>
+</ul>
+</section><section>
+<p>Certes, $H\Rightarrow D$ n&rsquo;implique pas $D\Rightarrow H$.</p>
+<p class="fragment fade-up">Mais si $D$ s'explique mieux avec $H$ qu'avec $\overline H$,<br>c'est naturel que l'observation de $D$<br>rende $H$ plus probable.</p>
+</section><section>
+<p>Quelque soit le prior, il est tiré dans le sens de la plus grande vraissemblance des données.</p>
+</section><section>
+<iframe scrolling="no" title="Bayes géométriquement" src="https://www.geogebra.org/material/iframe/id/wycybhfw/width/1011/height/698/border/888888/sfsb/true/smb/false/stb/false/stbh/false/ai/false/asb/false/sri/true/rc/false/ld/false/sdz/false/ctl/false" width="850px" height="587px" style="border:0px;border-radius:10px;"> </iframe>
+
+</section>
+</section><section>
+<iframe width="800" height="450" src="https://www.youtube.com/embed/x-2uVNze56s?si=my6Y6lLlI8I66MSv" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
 </section><section>
 <p><a href="https://coursphychi.github.io/tes/vivant/bayes">Retour site</a></p>
 </section>
