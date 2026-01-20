@@ -337,9 +337,26 @@ $$t_{1/2}= \frac{\ln(2)}{\lambda} = \tau\times \ln(2) $$
       data-background-transition="concave">
 </section><section>
 <p>Population restante au bout de <span class="imp">n</span> demi-vies ?</p>
-<div class="fragment fade-up">
+<div class="fragment fade-up" style="position:relative;margin:auto;width:fit-content;border:solid 5px #FF968D;padding:0 50px 0 50px;border-radius:10px">
+<div>
 $$\frac{N_0}{2^{\color{#FF968D}n}}$$
 </div>
+</div>
+</section><section>
+<p>Et au bout d&rsquo;un temps $t$ quelconque ?</p>
+<p class="fragment fade-up">On prend le logarithme de la population :</p>
+<p class="fragment fade-up">$\ln (N(t)) = \ln\left(N_0\mathrm{e}^{-\lambda t}\right)$</p>
+<p class="fragment fade-up">$\ln (N(t)) = \ln (N_0) + \ln\left(\mathrm{e}^{-\lambda t}\right)$</p>
+<p class="fragment fade-up" style="color:#56C1FF;">car $\ln(a\times b)=\ln(a)+\ln(b)$</p>
+<p class="fragment fade-up">$ \ln (N(t)) = \ln (N_0) + -\lambda t$</p>
+</section><section>
+<p>$$ t = -\frac{ \ln (N(t)) - \ln (N_0)} {\lambda}$$</p>
+<div class="fragment fade-up" style="position:relative;margin:auto;width:fit-content;border:solid 5px #FF968D;padding:0 50px 0 50px;border-radius:10px">
+<p>
+$\displaystyle   t = \frac1\lambda \times \ln \left(\frac{N_0}{N(t)} \right)$</p>
+</div>
+<br>
+<p class="fragment fade-up" style="color:#56C1FF;">car $\ln(\frac ab)=\ln(a)-\ln(b)$</p>
 
 </section>
 </section><section>
