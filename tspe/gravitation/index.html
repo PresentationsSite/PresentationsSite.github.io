@@ -171,33 +171,35 @@ Le quotient du <span style="color:#FFF056;">carré de la période de révolution
 <section data-shortcode-section>
 <h2 id="système-en-orbite-circulaire">Système en orbite circulaire</h2>
 </section><section>
-<p>D&rsquo;après la loi d&rsquo;interaction gravitationnelle, un astre<br>de masse $M_\mathrm{O}$ et de centre de masse O crée en tout point M de l&rsquo;espace un <span class="imp">champ de gravitation $\mathcal{G}$</span>.</p>
+<p>D&rsquo;après la loi d&rsquo;interaction gravitationnelle, un astre<br>de masse $M_\mathcal{A}$ et de centre de masse O crée en tout point M de l&rsquo;espace un <span class="imp">champ de gravitation $\mathcal{G}$</span>.</p>
 <div style="position:relative;margin-left:auto;margin-right:auto;width:500px;max-width:100%;">
 <img src="/grav1.png" style="box-shadow:none;background:none;">
 </div>
 </section><section>
 <div style="position:relative;margin:auto;width:fit-content;border:solid 5px #FF968D;padding:20px 50px 20px 50px;border-radius:10px">
-$\displaystyle\vec{\mathcal{G}}=$&nbsp;<span>$\displaystyle G\frac{M_\mathrm{O}}{\mathrm{OM}^2}\vec{u}_N$</span>
+$\displaystyle\vec{\mathcal{G}}=$&nbsp;<span>$\displaystyle G\frac{M_\mathcal{A}}{\mathrm{OM}^2}\vec{u}_N$</span>
 </div>
 <br>
 <ul>
-<li style="color:#aaa;">$M_\mathrm{O}$ en kg</li>
+<li style="color:#aaa;">$M_\mathcal{A}$ en kg</li>
 <li style="color:#aaa;">$\mathrm{OM}$ en m</li>
 <li style="color:#aaa;">$G=\pu{6,67E-11 N*m^2*kg^-2}$</li>
 <li style="color:#aaa;">$\vec{u}_N$ vecteur unitaire de direction (OM)<br>orienté vers O.</li>
 </ul>
 </section><section>
-<p>Si un système de masse $m$ n&rsquo;est soumis qu&rsquo;à un<br>seul astre attracteur de masse $M_\mathcal{O}&gt;m$, le champ<br>est dit <span class="imp">newtonien</span> et le système n&rsquo;est soumis qu&rsquo;à<br>la seule force de gravitation <span class="imp">$\vec{F}=m\vec{\mathcal{G}}$</span>.</p>
+<p>Si un système de masse $m$ n&rsquo;est soumis qu&rsquo;à<br>l&rsquo;attraction d&rsquo;un seul astre de masse $M_\mathcal{A}$, le champ<br>est dit <span class="imp">newtonien</span> ; la seule force est la force d&rsquo;interaction gravitationnelle <span class="imp">$\vec{F}=m\vec{\mathcal{G}}$</span>.</p>
 </section><section>
 <p>On se place dans un <span class="imp">référentiel astrocentrique</span> :</p>
-<p>liée à l&rsquo;astre de centre de masse O<br>et 3 étoiles lointaines supposées fixes.</p>
+<p class="fragment fade-up">il est lié à l'astre de centre de masse O<br>et 3 étoiles lointaines supposées fixes.
 <p class="fragment fade-up">Le référentiel astrocentrique est supposé <span class="imp">galiléen</span>.</p> 
 <p class="fragment fade-up"><u>Rq</u> :<br>si l'astre est la Terre $\rightarrow$ référentiel <span class="imp">géocentrique</span>,<br>et pour le Soleil $\rightarrow$ référentiel <span class="imp">héliocentrique</span>.
 </section><section>
 <p>La trajectoire du système de masse $m$ et de<br>centre de masse M est appelée <span class="imp fragment">orbite</span>.</p>
 </section><section>
-<p>Étudions le mouvement de M dans le cas d&rsquo;une <span class="imp">orbite circulaire</span> en utilisant un repère de Frenet.</p>
-<p class="fragment fade-up">La <span class="imp">deuxième loi de Newton</span> nous donne :</p>
+<p>Étudions le mouvement de M<br>dans le cas d&rsquo;une <span class="imp">orbite circulaire</span>.</p>
+<p class="fragment fade-up">Si $M_\mathcal{A}\gg m$, l'orbite pourra être considérée<br>comme centrée en O, le centre de l'astre.</p> 
+</section><section>
+<p>La <span class="imp">deuxième loi de Newton</span> nous donne :</p>
 <p class="fragment fade-up">
 $
 m{\color{#61D836}\,\vec{a}}={\color{#FF644E}m\,\vec{\mathcal{G}}}\Rightarrow
@@ -217,7 +219,7 @@ $
 \displaystyle
 \begin{cases}
 {\color{#61D836}a_T=\frac{\mathrm{d}v}{\mathrm{d}t}}=\color{#FF644E}0\\
-{\color{#61D836}a_N = \frac{v^2}{R}} = \color{#FF644E}G\frac{M_\mathrm{O}}{R^2}
+{\color{#61D836}a_N = \frac{v^2}{R}} = \color{#FF644E}G\frac{M_\mathcal{A}}{R^2}
 \end{cases}
 $$</p>
 </div>
@@ -226,7 +228,7 @@ $$</p>
 <p>On constante que le vecteur accélération<br>n&rsquo;a pas de composante tangentielle.</p>
 <div class="fragment fade-up" style="position:relative;margin:auto;width:fit-content;border:solid 5px #FF968D;padding:0 50px 0 50px;border-radius:10px">
 $$
-\vec{a}=G\frac{M_\mathrm{O}}{R^2}\vec{u}_N
+\vec{a}=G\frac{M_\mathcal{A}}{R^2}\vec{u}_N
 $$
 </div>
 <p class="fragment fade-up">On dit que l'accélération est <span class="imp">centripète</span>  (vers le centre).</p>
@@ -241,17 +243,17 @@ $$</p>
 </section><section>
 <p>et de</p>
 <p>$$
-\frac{v^2}{R} = G\frac{M_\mathrm{O}}{R^2},
+\frac{v^2}{R} = G\frac{M_\mathcal{A}}{R^2},
 $$</p>
 <p class="fragment fade-up">on obtient la norme de la vitesse :</p>
 <p class="fragment fade-up">
-<span class="imp">$\displaystyle v = $</span> <span class="imp fragment">$\displaystyle \sqrt{\frac{GM_\mathrm{O}}{R}}$</span>
+<span class="imp">$\displaystyle v = $</span> <span class="imp fragment">$\displaystyle \sqrt{\frac{GM_\mathcal{A}}{R}}$</span>
 </p>
 </section><section>
 <p>Le <b style="color:#FFD932">vecteur vitesse $\vec{v}$</b> du centre de masse M<br>d&rsquo;un système en orbite circulaire s&rsquo;écrit donc :</p>
 <div class="fragment fade-up" style="position:relative;margin:auto;width:fit-content;border:solid 5px #FFD932;padding:0 50px 0 50px;border-radius:10px;color:#FFD932;">
 $$
-\vec{v}=\sqrt{\frac{G M_\mathrm{O}}{R}} \, \vec{u}_T
+\vec{v}=\sqrt{\frac{G M_\mathcal{A}}{R}} \, \vec{u}_T
 $$
 </div>
 <p class="fragment fade-up">
@@ -276,12 +278,12 @@ $$
 </div>
 <div class="fragment fade-up">
 $$
-{\color{#FFD932}\frac{G M_\mathrm{O}}{R}}\times T^2 = 4\pi^2 R^2
+{\color{#FFD932}\frac{G M_\mathcal{A}}{R}}\times T^2 = 4\pi^2 R^2
 $$
 </div>
 <p class="fragment fade-up">Et en réarrangeant, on obtient :</p>
 <div class="fragment fade-up" style="position:relative;margin:auto;width:fit-content;border:solid 5px #FF968D;margin-top:1em;padding:10px 50px 20px 50px;border-radius:10px">
-<p>$\displaystyle \frac{T^2}{R^3} = $ <span class="fragment">$\displaystyle\frac{4\pi^2}{G M_\mathrm{O}}$</span></p>
+<p>$\displaystyle \frac{T^2}{R^3} = $ <span class="fragment">$\displaystyle\frac{4\pi^2}{G M_\mathcal{A}}$</span></p>
 </div>
 </section><section>
 <p>Comme $\frac{T^2}{R^3}$ ne dépend pas de la masse $m$ du système, on vient de démontrer <span class="imp fragment">la troisième loi de Kepler</span><br>dans le cas d&rsquo;une  orbite circulaire.</p>
@@ -289,7 +291,7 @@ $$
 <p>Isolons $T$ :</p>
 <div class="fragment fade-up">
 $$
-T = 2\pi \sqrt{\frac{R^3}{G M_\mathrm{O}}}
+T = 2\pi \sqrt{\frac{R^3}{G M_\mathcal{A}}}
 $$
 </div>
 <p class="fragment fade-up">On constate que la période de révolution est d'autant plus grande que la distance à l'astre est grande.</p> 
