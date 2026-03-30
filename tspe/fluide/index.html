@@ -82,7 +82,7 @@ font-weight:normal;
 <p class="fragment fade-up">
 Un <span class="imp">fluide incompressible</span> est un fluide<br>dont la <span class="imp">masse volumique</span> est <span class="imp">constante</span>.
 </p>
-<div class="imp fragment fade-up" style="position:relative;margin:auto;width:fit-content;border:solid 5px #FF968D;padding:0 50px 0 50px;border-radius:10px">
+<div class="imp fragment fade-up" style="position:relative;margin:auto;width:fit-content;border:solid 5px #FF968D;padding:0 50px 0 50px;border-radius:10px;font-size:1.2em;">
 $$\rho=\mathrm{cste}$$
 </div>
 </section><section>
@@ -157,30 +157,35 @@ $$
 </ul>
 </div>
 </section><section>
-<p>Bilan des forces :</p>
+<p style="color:#16E7CF;">
+Bilan des forces :
+</p>
+<br>
 <ul>
-<li class="fragment fade-up">le poids du glaçon : $\vec{P}=m\vec{g}=\rho_g V_\mathrm{tot} \,\vec{g}$</li>
-<li class="fragment fade-up">la poussée d'Archimède : $\vec{\pi}_A = -\rho_\ell V_\mathrm{imm} \, \vec{g}$</li>
+<li class="fragment fade-up"  style="color:#16E7CF;">le poids du glaçon : $\vec{P}=m\vec{g}=\rho_g V_\mathrm{tot} \,\vec{g}$</li>
+<li class="fragment fade-up"  style="color:#16E7CF;">la poussée d'Archimède : $\vec{\pi}_A = -\rho_\ell V_\mathrm{imm} \, \vec{g}$</li>
 </ul>
 </section><section>
-<p>On suppose que le glaçon est à l&rsquo;équilibre.</p>
-<p class="fragment fade-up">Donc dans le référentiel terrestre supposé galiléen,<br>la 1<sup>re</sup> loi de Newton nous informe que :</p>
-<div class="fragment fade-up">
+<p style="color:#16E7CF;">
+On suppose que le glaçon est à l'équilibre. 
+</p>
+<p class="fragment fade-up"  style="color:#16E7CF;">Donc dans le référentiel terrestre supposé galiléen,<br>la 1<sup>re</sup> loi de Newton nous informe que :</p>
+<div class="fragment fade-up"  style="color:#16E7CF;">
 $$
 \sum \vec{F}_\mathrm{ext} = \vec{0}
 $$
 </div>
 </section><section>
-<p>
+<p  style="color:#16E7CF;">
 $\Rightarrow \vec{P}+\vec{\pi}_A= \vec{0}$
 </p>
-<p class="fragment fade-up">
+<p class="fragment fade-up"  style="color:#16E7CF;">
 $\Leftrightarrow \rho_g V_\mathrm{tot} \, \vec{g} - \rho_\ell V_\mathrm{imm} \, \vec{g} = 0$
 </p>
-<p class="fragment fade-up">
+<p class="fragment fade-up"  style="color:#16E7CF;">
 $\displaystyle \Rightarrow \frac{V_\mathrm{imm}}{V_\mathrm{tot}} = \frac{\rho_g}{\rho_\ell}$
 </p>
-<p class="fragment fade-up">92% du glaçon est immergé !</p>
+<p class="fragment fade-up"  style="color:#16E7CF;">92% du glaçon est immergé !</p>
 </section><section>
 <p>Question subsidiaire :</p>
 <p>Qu&rsquo;en est-il pour un iceberg dans l&rsquo;océan 🚢 ?</p>
@@ -201,26 +206,132 @@ $\displaystyle \Rightarrow \frac{V_\mathrm{imm}}{V_\mathrm{tot}} = \frac{\rho_g}
 </section><section>
 <p>On tare la balance avant d&rsquo;immerger la Tour Eiffel.</p>
 <p class="fragment fade-up">Que mesure alors la balance<br>après immersion de la Tour ?</p>
-<aside class="notes"><p>Si système Tour Eiffel :
-La force de l&rsquo;eau sur la Tour s&rsquo;oppose à la force de la Tour sur l&rsquo;eau d&rsquo;après la 3e loi de Newton
-Et cette force est ensuite communiquée à la balance. Moralaité : la balance mesure la poussée d&rsquo;Archimède sur la balance. Ou plutôt rho_eau*V = 1(en kg/L)*V(en L) puisqu&rsquo;elle divise par g. -&gt; Elle donne le volume !</p>
-<p>On peut jouer sur le système aussi :
-{cristallisoir + eau + Tour + ficelle}
-BDF :</p>
+</section><section>
+<p  style="color:#16E7CF;">
+Avant la tare : 
+</p>
+<p  style="color:#16E7CF;">
+Bilan des forces sur le système {eau + cristallisoir}
+</p>
 <ul>
-<li>poids cristallisoir, poids eau, poids Tour</li>
-<li>Force de soutien de la balance N</li>
-<li>Force de tension sur la ficelle T</li>
+<li class="fragment fade-up"  style="color:#16E7CF;">Poids du système : $(m_{eau}+m_{crist})\vec{g}$</li>
+<li class="fragment fade-up"  style="color:#16E7CF;">Réaction du support (force de la balance<br>sur le système) : $\vec{N}$</li>
 </ul>
-<p>Comme on a taré avant la Tour, la balance indique zéro si N = -(P_eau + P_crist)
-Et pour le système {Tour + ficelle}
-T + P_Tour + πA = 0</p>
-<p>Sur gros système :
-Pcrist + Peau + P_Tour + N + T = 0
--&gt;   N = - ( Pcrist + Peau + P_Tour + T )
-&lt;-&gt; N = - (0 + P_Tour + (-P_Tour - πA)
-&lt;-&gt; N = πA</p>
+</section><section>
+<p  style="color:#16E7CF;">
+On a équilibre.
+</p>
+<p  class="fragment fade-up" style="color:#16E7CF;">
+$\Rightarrow \vec{N}= -(m_{eau}+m_{crist})\vec{g}$
+</p>
+</section><section>
+<p  style="color:#16E7CF;">
+Que mesure la balance ?
+</p>
+<p  class="fragment fade-up" style="color:#16E7CF;">
+La force du système sur elle.
+</p>
+<p  class="fragment fade-up" style="color:#16E7CF;">
+Or, d'après la 3<sup>e</sup> loi de Newton :
+</p>
+<p  class="fragment fade-up" style="color:#16E7CF;">
+$\vec{F}_{syst/balance}= -\vec{F}_{balance/syst}=-\vec{N}$
+</p>
+</section><section>
+<p  style="color:#16E7CF;">
+Plus précisément, la balance affiche<br>la norme de cette force divisée par $g$.
+</p>
+<p  class="fragment fade-up" style="color:#16E7CF;">
+Donc ici :
+</p>
+<p  class="fragment fade-up" style="color:#16E7CF;">
+$\displaystyle \frac{||\vec{N}||}{g}$
+</p>
+<aside class="notes"><p>On vérifie que cela donne bien, à l&rsquo;équilibre, la masse du système.</p>
 </aside>
+</section><section>
+<p  style="color:#16E7CF;">
+Et comme on a taré, la balance indique zéro<br>lorsqu'elle mesure $\color{#FF95CA}(m_{eau}+m_{crist})$.
+</p>
+</section><section>
+<p  style="color:#16E7CF;">
+Plaçons maintenant la Tour et<br>concentrons-nous sur le système {Tour}.
+</p>
+<p  class="fragment fade-up" style="color:#16E7CF;">
+Bilan des forces :
+</p>
+<ul>
+<li class="fragment fade-up"  style="color:#16E7CF;">Poids de la Tour : $m_{Tour}\vec{g}$</li>
+<li class="fragment fade-up"  style="color:#16E7CF;">Tension de la ficelle : $\vec{T}$</li>
+<li class="fragment fade-up"  style="color:#16E7CF;">Poussée d'Archimède : $\vec{π_A}$</li>
+</ul>
+</section><section>
+<p  style="color:#16E7CF;">
+Et comme on a à nouveau équilibre :
+</p>
+<p  class="fragment fade-up" style="color:#16E7CF;">
+$\displaystyle m_{Tour}\vec{g}+\vec{T}+\vec{\pi_A}=\vec{0}$
+</p>
+<p  class="fragment fade-up" style="color:#16E7CF;">
+$\displaystyle \Rightarrow m_{Tour}\vec{g}={\color{#FFD932}-\vec{T}-\vec{\pi_A}}$
+</p>
+</section><section>
+<p  style="color:#16E7CF;">
+Occupons-nous maintenant du système {eau+cristallisoir+Tour}
+</p>
+<p  class="fragment fade-up" style="color:#16E7CF;">
+Bilan des forces :
+</p>
+<ul>
+<li class="fragment fade-up"  style="color:#16E7CF;">Poids du système : $(m_{Tour}+m_{eau}+m_{cristallisoir})\vec{g}$</li>
+<li class="fragment fade-up"  style="color:#16E7CF;">Tension de la ficelle : $\vec{T}$</li>
+<li class="fragment fade-up"  style="color:#16E7CF;">Réaction du support : $\vec{N}$</li>
+</ul>
+<p  class="fragment fade-up" style="color:#16E7CF;">
+<u>Rq</u> : la poussée d'Archimède n'apparaît pas ici<br>car c'est une force <span class="fragment">intérieure</span> (de l'eau sur la Tour).
+</p>
+</section><section>
+<p  style="color:#16E7CF;">
+Donc
+</p>
+<p  class="fragment fade-up" style="color:#16E7CF;">
+$\displaystyle 
+(m_{Tour}+m_{eau}+m_{crist})\vec{g}+\vec{T}+\vec{N}=\vec{0}$
+</p>
+<p  class="fragment fade-up" style="color:#16E7CF;">
+$\displaystyle 
+{\color{#FFD932} m_{Tour}\vec{g}}+m_{eau}\vec{g}+m_{crist}\vec{g}+\vec{T}+\vec{N}=\vec{0}$
+</p>
+<p  class="fragment fade-up" style="color:#16E7CF;">
+$\displaystyle 
+{\color{#FFD932} -\vec{T}-\vec{\pi_A}}+m_{eau}\vec{g}+m_{crist}\vec{g}+\vec{T}+\vec{N}=\vec{0}$
+</p>
+</section><section>
+<p  style="color:#16E7CF;">
+D'où
+</p>
+<p class="fragment fade-up"style="color:#16E7CF;">
+$\displaystyle 
+\vec{N}=\vec{\pi_A}-m_{eau}\vec{g}-m_{crist}\vec{g}$
+</p>
+<p class="fragment fade-up"style="color:#16E7CF;">
+$\displaystyle 
+\vec{N}=-\rho_{eau}V_{Tour}\vec{g}-m_{eau}\vec{g}-m_{crist}\vec{g}$
+</p>
+</section><section>
+<p style="color:#16E7CF;">
+Et donc
+</p>
+<p class="fragment fade-up"style="color:#16E7CF;">
+$\displaystyle 
+\frac{||\vec{N}||}{g}=$<span class="fragment">$\displaystyle \;\rho_{eau}V_{Tour} + {\color{#FF95CA}m_{eau}+m_{crist}}$</span>
+</p>
+<p class="fragment fade-up" style="color:#16E7CF;">
+En prenant la tare en compte,<br>la balance affiche $\rho_{eau}V_{Tour}$ !
+</p>
+<p  class="fragment fade-up" style="color:#16E7CF;">
+Comme $\rho_{eau}=\pu{1,00 g*mL-1}$, la balance<br>(réglée en gramme) affiche directement<br>le volume de la Tour en mL !
+</p>
 
 </section>
 </section><section>
@@ -317,7 +428,7 @@ Cela montre qu&rsquo;un fluide parfait est fondamentalement bizarre.</p>
 <aside class="notes"><p>Pas la même chose que la trajectoire dans le sens où on ne suit pas une particule dans le temps mais on regarde, à un instant donné, les vitesses d&rsquo;un ensemble de particules. Néanmoins, en régime permanent, les deux se confondent !</p>
 </aside>
 </section><section>
-<p>En régime permanent, les lignes de champ sont fixes et se confondent avec la trajectoire des particules.</p>
+<p>En régime permanent, les lignes de champ se confondent avec la trajectoire des particules.</p>
 
 </section>
 </section><section>
