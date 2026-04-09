@@ -66,19 +66,99 @@ font-weight:normal;
   border-radius:10px;
 }
 </style>
-<h1 id="circuit-rc">Circuit RC</h1>
+<h1 id="condensateurset-circuit-rc">Condensateurs<br>et circuit RC</h1>
 </section><section>
 
 
 <section data-shortcode-section>
-<h2 id="comportement-capacitif">Comportement capacitif</h2>
+<h2 id="intensité">Intensité</h2>
+</section><section>
+<p>L&rsquo;<span class="imp">intensité $i(t)$</span> d&rsquo;un courant électrique en un point d&rsquo;un circuit est donnée par le <span class="imp">débit de charges électriques</span> en ce point à l&rsquo;instant $t$.</p>
+</section><section>
+<p>En régime permanent (indépendant du temps),</p>
+<div class="fragment fade-up" style="position:relative;margin:auto;width:fit-content;border:solid 5px #FF968D;padding:0 50px 0 50px;border-radius:10px">
+$$
+i = \frac{Q}{\Delta t}
+$$
+</div>
+<p class="fragment fade-up">
+où $Q$ est la variation de charge<br>pendant le laps de temps $\Delta t$ ($Q=\Delta q$)
+</p>
+<ul>
+<li class="fragment fade-up">$i$ en <b class="fragment" style="color:#FFF056">A</b></li>
+<li class="fragment fade-up">$\Delta t$ en <b class="fragment" style="color:#FFF056">s</b></li>
+<li class="fragment fade-up">$Q$ en <b class="fragment" style="color:#FFF056">coulombs C</b></li>
+</ul>
+<aside class="notes"><p>Analogue au DV = V/Delta t du débit volumique</p>
+</aside>
+</section><section>
+<p>En régime variable (dépendant du temps),<br>l&rsquo;intensité s&rsquo;obtient en dérivant l&rsquo;évolution $q(t)$<br>de la charge par rapport au temps.</p>
+<div class="fragment fade-up" style="position:relative;margin:auto;width:fit-content;border:solid 5px #FF968D;padding:0 50px 0 50px;border-radius:10px">
+$$
+i(t)=\frac{\mathrm{d}q}{\mathrm{d}t}
+$$
+</div>
 
 </section>
 </section><section>
 
 
 <section data-shortcode-section>
-<h2 id="condensateur">Condensateur</h2>
+<h2 id="comportement-capacitif">Comportement capacitif</h2>
+</section><section>
+<p>On parle de <span class="imp">comportement capacitif</span> lorsqu&rsquo;il y a <span class="imp">accumulation de
+charges de signes opposés<br>sur des surfaces en regard</span>.</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/orage.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+<aside class="notes"><p>Le mécanisme de charge par collision (Électrification non-inductive)
+Le moteur principal est la collision entre deux types de particules d&rsquo;eau solide dans les zones du nuage où la température est comprise entre 0 °C et -40 °C :</p>
+<ul>
+<li>Le grésil (graupel) : de grosses particules de glace lourdes et poreuses.</li>
+<li>Les cristaux de glace : des particules beaucoup plus petites et légères.
+Lorsqu&rsquo;un cristal de glace et une particule de grésil entrent en collision en présence d&rsquo;eau surfondue (eau restant liquide malgré une température négative), un transfert de charge s&rsquo;opère par effet triboélectrique.</li>
+</ul>
+<p>Le grésil se charge négativement lors de la collision, tandis que les petits cristaux de glace se chargent positivement.</p>
+<p>La séparation mécanique : Gravité vs Convection
+C&rsquo;est ici que la géométrie du nuage se structure. Une fois les charges transférées par collision, les particules sont triées selon leur masse par les forces dynamiques du nuage :
+L&rsquo;ascendance (Updraft) : Les courants ascendants violents (pouvant atteindre 100 km/h) entraînent les petits cristaux de glace, très légers et chargés positivement, vers le sommet du nuage (l&rsquo;enclume).
+La sédimentation (Gravité) : Le grésil, beaucoup plus lourd et chargé négativement, résiste mieux à l&rsquo;ascendance ou finit par tomber sous l&rsquo;effet de son propre poids. Il se concentre donc dans la partie médiane et inférieure du cumulonimbus.</p>
+<p>On obtient alors une structure globalement stratifiée :
+Sommet (enclume) : Une vaste zone de charge positive (cristaux de glace).
+Base : Une zone de charge négative intense (grésil).</p>
+<p>Cette séparation crée des champs électriques colossaux (plusieurs dizaines de kV/m) qui finissent par provoquer le claquage de l&rsquo;air : l&rsquo;éclair.</p>
+</aside>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/wimshurst.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+<aside class="notes"><p>Explication machine de Wimshurst
+<a href="https://youtu.be/Zilvl9tS0Og">https://youtu.be/Zilvl9tS0Og</a>
+Avec bouteilles de Leyde connectées, on a une capacité de 50 à 100 pF.
+La charge atteinte si ça claque à 1 cm est d&rsquo;environ 2 μC.
+Déduisons-en la tension :
+Q = C*U -&gt; U = Q/C  = 2 μC / 50 pF = 40 kV</p>
+</aside>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="https://upload.wikimedia.org/wikipedia/commons/5/56/Hindenburg_disaster,_1937.jpg"
+      data-background-size="contain">
+<aside class="notes"><p>Le 6 mai 1937 à New York, un câble déchire l&rsquo;enveloppe en toile d&rsquo;un des réservoirs du ballon dirigeable LZ 129 Hindenburg, provoquant une fuite de dihydrogène qui se mélange alors à l&rsquo;air.
+Au moment où le commandant largue les deux cordes d&rsquo;ancrage au sol, elles se mouillent sous l&rsquo;effet de la pluie et deviennent conductrices.
+Instantanément, l&rsquo;armature métallique de l&rsquo;aéronef est mise à la terre, ce qui crée une accumulation de charges opposées sur les surfaces en regard constituées par l&rsquo;armature métallique et l&rsquo;enveloppe extérieure, bien moins conductrice.
+Cette différence de potentiel fait surgir une étincelle entre l&rsquo;armature et l&rsquo;enveloppe, qui enflamme instantanément le dihydrogène mélangé à l&rsquo;air.
+Wikipedia</p>
+</aside>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h2 id="quest-ce-quun-condensateur-">Qu&rsquo;est-ce qu&rsquo;un condensateur ?</h2>
 </section>
 <section data-noprocess data-shortcode-slide
       data-background-image="/condensateurs.png"
@@ -89,9 +169,374 @@ font-weight:normal;
 </section><section>
 <p>Ce sont des sortes de chateau d&rsquo;eau<br>à charges électriques.</p>
 </section><section>
-<p>Ils peuvent servir à délivrer une certaine charge électrique en un court laps de temps (défibrillateur, flashs, supercondensateurs d&rsquo;autobus).</p>
+<p>Ils peuvent servir à délivrer une certaine charge électrique en un court laps de temps (défibrillateur, flashs, supercondensateurs d&rsquo;autobus, etc.).</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/appconden.png"
+      data-background-size="contain"
+      data-background-transition="concave">
 </section><section>
 <p>Ils peuvent aussi servir d&rsquo;amortisseur pour<br>les variations de tensions afin de protéger<br>des composants ou pour filtrer des signaux.</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/compcapa.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+</section><section>
+<p>Enfin, comme leurs caractéristiques<br>électriques dépendent de leur géométrie,<br>ils peuvent servir de capteurs.</p>
+<p class="fragment fade-up">On trouve des capteurs capacitifs pour la mesure d'épaisseur, de niveau de liquide, d'humidité, comme détecteur de présence, dans les micros, etc.</p>
+</section><section>
+<iframe width=833 height=625 src="https://www.edumedia.com/media/frame/fr/793/?auth=73fa8b06d8f5b850d5f9e8c1b7eb25b4/27824" frameborder=0 style="border-radius:10px;"></iframe>
+</section><section>
+<iframe width="800" height="450" src="https://www.youtube.com/embed/KuekQ-m9xpw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h2 id="modèle-du-condensateur">Modèle du condensateur</h2>
+</section><section>
+<p>Un <span class="imp">condensateur</span> est un dipôle électrique constitué de deux surfaces conductrices en regard (les armatures), séparées par un matériau isolant (le diélectrique).</p>
+<p class="fragment fade-up">Symbole électrique :</p>
+<div class="fragment fade-up" style="position:relative;margin-left:auto;margin-right:auto;width:300px;max-width:100%;">
+<img src="/symbelc.png" style="box-shadow:none;background:none;">
+</div>
+</section><section>
+<p>Le condensateur a un <span class="imp">comportement capacitif</span> : lorsqu&rsquo;il est soumis à une tension électrique non nulle, les charges électriques ${\color{#FF968D}q_A}$ et ${\color{#56C1FF}q_B}$ portées par ses deux armatures A et B sont opposées : ${\color{#FF968D}q_A}=-{\color{#56C1FF}q_B}$.</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/condcharges.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+</section><section>
+<p>La charge $q$ portée par l&rsquo;armature A d&rsquo;un condensateur est <span class="imp">proportionnelle</span> à la tension $u_C = u_\mathrm{AB}$<br>mesurée entre ses bornes.</p>
+</section><section>
+<p>Et on nomme <span class="imp">capacité C</span> du condensateur le coefficient de proportionnalité entre la charge et la tension.</p>
+<div class="fragment fade-up" style="position:relative;margin:auto;width:fit-content;border:solid 5px #FF968D;padding:0 50px 0 50px;border-radius:10px">
+$$
+q = C\times u_C
+$$
+</div>
+<ul style="margin-top:0.5em;">
+<li class="fragment fade-up">$u_C$ en <b class="fragment" style="color:#FFF056">V</b></li>
+<li class="fragment fade-up">$q$ en <b class="fragment" style="color:#FFF056">C</b></li>
+<li class="fragment fade-up">$C$ en <b class="fragment" style="color:#FFF056">farads F</b><br><sapn class="fragment">(1 F =<span class="fragment">1 C/V</span>)</span></li>
+</ul>
+</section><section>
+<div style="position:relative;margin-left:auto;margin-right:auto;width:700px;max-width:100%;margin-bottom:-1em;margin-top:-1em;">
+<img src="/convcond.png" style="box-shadow:none;background:none;">
+</div>
+<p>Une tension $u_C$ est positive si elle pointe<br>vers l&rsquo;armature de charge $q$ positive.</p>
+</section><section>
+<p>Hormis les supercondensateurs qui peuvent avoir<br>des capacités de l&rsquo;ordre de la centaine de farads,<br>les capacités s&rsquo;étalent typiquement de la dizaine<br>de picofarads à la dizaine de millifarads.</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/echellecapacite.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h2 id="circuit-rc-série">Circuit RC série</h2>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/schemgencond.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h3 id="charge">Charge</h3>
+<p>On charge un condensateur de capacité $C$<br>initialement déchargé à travers un dipôle ohmique<br>de résistance $R$ sous une tension $E$.</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/circuitcharge.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+</section><section>
+<p>À l&rsquo;instant initial ($t=0$), on ferme l&rsquo;interrupteur K.</p>
+<p class="fragment fade-up">D'après la loi des mailles :</p>
+<div class="fragment fade-up">
+$$
+{\color{#88FA4E}E}={\color{#FFF056}u_R(t)}+{\color{#FF95CA}u_C(t)}
+$$
+</div>
+</section><section>
+<p>Appliquons la loi d&rsquo;Ohm aux bornes du dipôle ohmique :</p>
+<div class="fragment fade-up">
+$$
+{\color{#FFF056}u_R(t)}= R \times {\color{#FF968D}i(t)}
+$$
+</div> 
+</section><section>
+<p>Puis rappelons la définition de l&rsquo;intensité<br>en fonction de la charge $q(t)$ :</p>
+<div class="fragment fade-up">
+$$
+ {\color{#FF968D}i(t)}= {\color{#FF968D}\frac{\mathrm{d}q}{\mathrm{d}t}(t)}
+$$
+</div>
+</section><section>
+<p>Et le lien entre la tension aux bornes<br>du condensateur et la charge :</p>
+<div class="fragment fade-up">
+$$
+q(t)= C\times  u_C(t)
+$$
+</div>
+<p class="fragment fade-up">On en déduit que :</p>
+<div class="fragment fade-up">
+$$
+{\color{#FF968D}\frac{\mathrm{d}q}{\mathrm{d}t}}= {\color{#FF968D} C\times  \frac{\mathrm{d}u_C}{\mathrm{d}t} }
+$$
+</div>
+</section><section>
+<p>En réinjectant dans la loi des mailles, on obtient :</p>
+<div class="fragment fade-up">
+$$
+ R \times {\color{#FF968D} C\times  \frac{\mathrm{d}u_C}{\mathrm{d}t} }  + u_C = E
+$$
+</div>
+</section><section>
+<p>Après division par $RC$ :</p>
+<div style="position:relative;margin:auto;width:fit-content;border:solid 5px #FF968D;padding:0 50px 0 50px;border-radius:10px">
+$$
+  \frac{\mathrm{d}u_C}{\mathrm{d}t}  + \frac{1}{RC} u_C = \frac{E}{RC}
+$$
+</div>
+<p class="fragment fade-up">
+Équation différentielle du premier ordre  à coefficients constants et avec second membre constant.
+</p>
+</section><section>
+<p>La solution générale de cette équation s&rsquo;écrit :</p>
+<div class="fragment fade-up">
+$$
+ u_C(t) = A\mathrm{e}^{-\frac{t}{\tau}} + B
+$$
+</div>
+<p class="fragment fade-up">On a par conséquent :</p>
+<div class="fragment fade-up">
+$\displaystyle  \frac{\mathrm{d}u_C}{\mathrm{d}t} = $<span class="fragment">$\displaystyle -\frac{1}{\tau}A\mathrm{e}^{-\frac{t}{\tau}} + 0$</span>
+</div>
+</section><section>
+<p>Injectons la solution dans l&rsquo;équation différentielle :</p>
+<div class="fragment fade-up">
+$$
+-\frac{1}{\tau}A\mathrm{e}^{-\frac{t}{\tau}} + \frac{1}{RC}\left( A\mathrm{e}^{-\frac{t}{\tau}} + B\right) = \frac{E}{RC}
+$$
+</div>
+<div class="fragment fade-up">
+$$
+{\color{#FF968D}\mathrm{e}^{-\frac{t}{\tau}}}\left( {\color{#56C1FF} -\frac{A}{\tau} + \frac{A}{RC} }\right)=  \frac{1}{RC}\left( {\color{#61D836} E-B}\right)
+$$
+</div>
+</section><section>
+<p>Comme le membre de gauche dépend du temps,<br>il ne peut pas être égal pour tout instant $t≥0$<br>au membre de droite, qui lui est constant,<br>sauf si les deux sont nuls indépendamment.</p>
+<div class="fragment fade-up">
+$$
+\displaystyle
+\Rightarrow \begin{cases}
+{\color{#56C1FF} -\frac{A}{\tau} + \frac{A}{RC} } = 0\\
+{\color{#61D836} E-B} =0
+\end{cases}
+$$
+</div>
+</section><section>
+<p>La première équation implique :</p>
+<div class="fragment fade-up" class="fragment fade-up">
+$$
+{\color{#56C1FF} \tau } = {\color{#56C1FF} RC } 
+$$
+</div>
+<p class="fragment fade-up">Et la seconde :</p>
+<div class="fragment fade-up">
+$$
+{\color{#61D836} B } = {\color{#61D836} E } 
+$$
+</div>
+</section><section>
+<p>On a ainsi :</p>
+<div class="fragment fade-up">
+$$
+u_C(t) = A\,\mathrm{e}^{-\frac{t}{RC}} + E
+$$
+</div>
+<p class="fragment fade-up">
+Il ne reste plus qu'à déterminer $A$<br>grâce aux conditions initiales.
+</p>
+</section><section>
+<p>On sait que le condensateur est initialement déchargé.</p>
+<p class="fragment fade-up">
+$\Rightarrow u_C(t=0)=0$</p>
+<p class="fragment fade-up">
+D'où</p>
+<div class="fragment fade-up">
+$$
+ A\,\mathrm{e}^{-\frac{0}{RC}} + E = 0
+$$
+</div>
+<div class="fragment fade-up">
+$$
+\Rightarrow A = -E
+$$
+</div>
+</section><section>
+<p>Finalement :</p>
+<div class="fragment fade-up">
+$$
+u_C(t) =  -E \,\mathrm{e}^{-\frac{t}{RC}} + E 
+$$
+</div>
+<p class="fragment fade-up">
+Qu'on peut réécrire plus élégamment :
+</p>
+<div class="fragment fade-up" style="position:relative;margin:auto;width:fit-content;border:solid 5px #FF968D;padding:0 50px 0 50px;border-radius:10px">
+$$
+u_C(t) =  E\left(1 - \mathrm{e}^{-\frac{t}{\tau}}\right)
+$$
+</div>
+</section><section>
+<p><u>Autre méthode</u></p>
+<br>
+<p class="fragment fade-up">Repartons de :</p>
+<p class="fragment fade-up"> $ u_C(t) = A\mathrm{e}^{-\frac{t}{\tau}} + B$</p>
+</section><section>
+<p><b style="color:#FFF056">Plaçons-nous en $t\rightarrow \infty$.</b></p>
+<p class="fragment fade-up">On atteint alors le <b style="color:#FFF056">régime permanent</b>.</p>
+<p class="fragment fade-up">Que vaut l'intensité dans le circuit en $t\rightarrow \infty$ ? <span class="fragment imp">0 !</span></p>
+<p class="fragment fade-up">En effet, le condensateur est alors entièrement chargé et se comporte comme un interrupteur ouvert. </p>
+<p class="fragment fade-up">
+La loi des mailles donne alors <span class="fragment">$u_c(t\to\infty)=E$</span>.<br><span class="fragment">($u_R(t\to\infty)=R\times i(t\to\infty) = 0$)</p>
+</section><section>
+<p>Or puisque $\displaystyle \lim_{t\to\infty} \mathrm{e}^{-\frac{t}{\tau}} = 0$</p>
+<div class="fragment fade-up">
+$$
+\lim_{t\to\infty} u_C(t) = B
+$$
+</div>
+<p class="fragment fade-up">On obtient ainsi :</p>
+<div class="fragment fade-up">
+$$
+B = E
+$$
+</div>
+</section><section>
+<p>On détermine $A$ grâce aux conditions initiales :</p>
+<div class="fragment fade-up">
+$$
+u_c(0) = A\,\mathrm{e}^{-\frac{0}{\tau}} + E = 0
+$$
+</div>
+<p class="fragment fade-up">(condensateur initialement déchargé)</p>
+<div class="fragment fade-up">
+$$
+\Rightarrow A = -E
+$$
+</div>
+</section><section>
+<p>Enfin, on injecte $u_C(t) = -E\,\mathrm{e}^{-\frac{t}{\tau}} + E$<br>
+dans l&rsquo;équation différentielle :</p>
+<div class="fragment fade-up">
+$$
+\frac{E}{\tau} \mathrm{e}^{-\frac{t}{\tau}} + \frac{1}{RC}\left(-E\,\mathrm{e}^{-\frac{t}{\tau}} + E\right) = \frac{E}{RC}
+$$
+</div>
+<div class="fragment fade-up">
+$$
+\Rightarrow \mathrm{e}^{-\frac{t}{\tau}} \left( \frac{1}{\tau} - \frac{1}{RC}\right) = 0
+$$
+</div>
+</section><section>
+<p>Or un produit ne peut être nul<br>que si un de ses facteurs est nul.</p>
+<p class="fragment fade-up">Et comme $\mathrm{e}^{-\frac{t}{\tau}} > 0$, alors $\tau = RC$</p>
+</section><section>
+<p>Le plus souvent, au bac, la démarche est plus simple :</p>
+<br>
+<ul>
+<li class="fragment fade-up">On vous demande d'abord d'établir l'équation différentielle régissant l'évolution de $u_C$, souvent<br>en proposant la forme $\frac{\mathrm{d}u_C}{\mathrm{d}t}+\frac{u_C}{\tau} = \frac{E}{\tau}$ et en demandant alors d'expliciter $\tau$ en fonction de $R$ et $C$.</li>
+</ul>
+</section><section>
+<ul>
+<li>On vous demande ensuite de vérifier que $u_C(t)=E\times\left(1-\mathrm{e}^{-\frac{t}{\tau}}\right)$ est solution.<br>Il suffit d'injecter la solution dans l'équation et de vérifier que ses deux membres sont bien égaux.</li>
+</li>
+</ul>
+<p><br><br></p>
+<p class="fragment fade-up"><u>Exemple</u> de ce type d'enchainement :<br>
+<a href="https://coursphychi.github.io/act-vigneron.pdf" target="_blank">"Défibrillateur cardiaque"</a></p>
+</section><section>
+<p>Mais des démonstrations complètes<br>sont parfois demandées 💀
+<br></p>
+<p class="fragment fade-up"><u>Exemple</u> :<br>
+<a href="https://coursphychi.github.io/act-vigneron.pdf" target="_blank">"La physique au service du vigneron"</a></p>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h3 id="décharge">Décharge</h3>
+<p>On décharge un condensateur de capacité $C$ initialement chargé à la tension $E$ à travers<br>un dipôle ohmique de résistance $R$.</p>
+<p class="fragment fade-up">À $t=0$, on ferme l'interrupteur.</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/circuitdecharge.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+</section><section>
+<p>$$
+\begin{cases}
+\text{loi des mailles} : u_C(t) + u_R(t) ={\color{#FFF056}0}\\
+\text{loi d&rsquo;Ohm} : u_R = R\times i(t)\\
+i(t)=\frac{\mathrm{d}q}{\mathrm{d}t}\\
+q(t)=C\times u_C(t)
+\end{cases}
+$$</p>
+<div class="fragment fade-up">
+$$
+\Downarrow
+$$
+</div>
+<div class="fragment fade-up" style="position:relative;margin:auto;width:fit-content;border:solid 5px #FF968D;padding:0 50px 0 50px;border-radius:10px">
+$$
+\frac{\mathrm{d}u_C}{\mathrm{d}t} + \frac{1}{RC}u_C = {\color{#FFF056}0}
+$$
+</div>
+</section><section>
+<p>On obtient à nouveau une équation différentielle<br>du premier ordre à coefficient constant.</p>
+<p class="fragment fade-up">Mais celle-ci est <span class="imp">homogène</span><br>(sans seconde membre).</p>
+<p class="fragment fade-up">La solution est de la forme :</p>
+<div class="fragment fade-up">
+$$
+u_C(t) = A\,\mathrm{e}^{-\frac{t}{\tau}}
+$$
+</div>
+</section><section>
+<p>On injectant dans l&rsquo;équation différentielle,<br>on obtient $\tau = RC$.</p>
+<p class="fragment fade-up">Et en utilisant le fait que le condensateur est initialement chargé sous la tension $E$ :</p>
+<div class="fragment fade-up">
+$$
+u_C(0) = A\,\mathrm{e}^{-\frac{0}{\tau}} = A = E
+$$
+</div>
+</section><section>
+<p>D&rsquo;où finalement :</p>
+<div class="fragment fade-up" style="position:relative;margin:auto;width:fit-content;border:solid 5px #FF968D;padding:0 50px 0 50px;border-radius:10px">
+$$
+u_C(t) = E\,\mathrm{e}^{-\frac{t}{RC}}
+$$
+</div>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h2 id="simulations">Simulations</h2>
 </section>
 <section data-noprocess data-shortcode-slide
       data-background-iframe="/rc.html"
@@ -99,16 +544,38 @@ font-weight:normal;
       data-background-size="contain"
       data-background-transition="concave">
 </section><section>
-<p>Enfin, comme leurs caractéristiques<br>électriques dépendent de leur géométrie,<br>ils peuvent servir de capteurs.</p>
-<p class="fragment fade-up">On trouve des capteurs capacitifs pour la mesure d'épaisseur, de niveau de liquide, d'humidité, comme détecteur de présence, dans les micros, etc.</p>
+<iframe width=780 height=625 src="https://www.edumedia.com/media/frame/fr/763/?auth=3bc2c1a79e95711655afd1e4d45df273/27824" frameborder=0 style="border-radius:10px;"></iframe>
 
 </section>
 </section><section>
 
 
 <section data-shortcode-section>
-<h2 id="rappels-sur-les-lentilles">Rappels sur les lentilles</h2>
+<h2 id="temps-caractéristique">Temps caractéristique</h2>
 </section><section>
+<p>On peut vérifier sur l&rsquo;équation différentielle<br>que le temps caractéristique $\tau=RC$<br>a bien la dimension d&rsquo;un temps.</p>
+<div class="fragment fade-up">
+$$\frac{\color{#FF95CA}\mathrm{d}u_C}{\color{#FFF056}\mathrm{d}t}+\frac{\color{#FF95CA} u_C}{\color{#FFF056}\tau} = \frac{\color{#FF95CA} E}{\color{#FFF056}\tau}$$
+</div>
+</section><section>
+<p>$\tau$ caractérise la durée caractéristique du<br><span class="imp">régime transitoire</span> (partie de l&rsquo;évolution<br>où les variations sont grandes).</p>
+</section><section>
+<p>Pour obtenir $\tau$ graphiquement :</p>
+<ul>
+<li class="fragment fade-up">on trace la tangente à l'origine ;</li>
+<li class="fragment fade-up">$\tau$ est alors l'abscisse du point d'intersection de la tangente et de l'asymptote horizontale $u_C=E$ (pour la charge) ou $u_C = 0$ (pour la décharge).</li>
+</section><section>
+<iframe width=780 height=625 src="https://www.edumedia.com/media/frame/fr/503/?auth=48a8b9028d992a59b88095c7fec9d4e2/27824" frameborder=0 style="border-radius:10px;"></iframe>
+</section><section>
+<p>Autre méthode :</p>
+<p class="fragment fade-up">
+On regarde le temps au bout duquel $u_C(t)$<br>dépasse 63&nbsp;% de $E$ (pour la charge)<br>ou passe sous 37&nbsp;% de $E$ (pour la décharge).
+</p>
+</section><section>
+<p>On peut prouver qu&rsquo;on approche le régime permanent<br>($E$ pour la charge ou 0 pour la décharge)<br>à mieux de 99 % au bout de <span class="imp">$5\tau$</span>.</p>
+<p class="fragment fade-up">Cela donne un critère de séparation entre<br><b style="color:#FFD932">régime transitoire</b> et <b style="color:#56C1FF">régime permanent</b>.</p>
+</section><section>
+<iframe scrolling="no" title="Influence de τ" src="https://www.geogebra.org/material/iframe/id/fxxxrjcf/width/880/height/572/border/888888/sfsb/true/smb/false/stb/false/stbh/false/ai/false/asb/false/sri/true/rc/false/ld/false/sdz/true/ctl/false" width="880px" height="572px" style="border:0px;border-radius:10px;"> </iframe>
 
 </section>
 </section><section>
