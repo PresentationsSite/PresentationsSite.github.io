@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Carte des Centrales Nucléaires</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <style>
+        body { margin: 0; padding: 0; background: #191919; }
+        #map { height: 100vh; width: 100vw; }
+        .legend { 
+            background: rgba(40, 40, 40, 0.9); 
+            color: white; 
+            padding: 10px; border-radius: 5px; 
+            font-family: sans-serif; font-size: 12px;
+        }
+        .legend i { width: 12px; height: 12px; float: left; margin-right: 8px; border-radius: 50%; margin-top: 3px;}
+    </style>
+</head>
+<body>
+
+<div id="map"></div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+    const map = L.map('map', { preferCanvas: true }).setView([20, 10], 3);
+
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+        attribution: '© OpenStreetMap'
+    }).addTo(map);
+
+    function getStatusColor(id) {
+        switch(id) {
+            case 3: return '#2ecc71'; // Opérationnel
+            case 2: return '#f39c12'; // En construction
+            case 5: return '#e74c3c'; // Fermé
+            default: return '#3498db'; // Autre / Planifié
+        }
+    }
+
+    fetch('/data/reactors.json')
+        .then(res => res.json())
+        .then(data => {
+            const sites = {};
+
+            // Étape 1 : Regroupement des réacteurs par site
+            data.forEach(r => {
+                if (!r.Latitude || !r.Longitude) return;
+
+                // On extrait le nom de la centrale (ex: "Civaux-1" -> "Civaux")
+                // On sépare au tiret et on prend la première partie
+                const siteName = r.Name.split('-')[0].split('(')[0].trim();
+                
+                if (!sites[siteName]) {
+                    sites[siteName] = {
+                        name: siteName,
+                        lat: r.Latitude,
+                        lng: r.Longitude,
+                        totalCapacity: 0,
+                        unitCount: 0,
+                        statusId: r.StatusId,
+                        model: r.ReactorModel
+                    };
+                }
+
+                sites[siteName].totalCapacity += r.Capacity;
+                sites[siteName].unitCount += 1;
+                
+                // Si au moins un réacteur est opérationnel (Id 3), le site est considéré opérationnel pour la couleur
+                if (r.StatusId === 3) sites[siteName].statusId = 3;
+            });
+
+            // Étape 2 : Affichage des sites sur la carte
+            Object.values(sites).forEach(site => {
+                L.circleMarker([site.lat, site.lng], {
+                    radius: 6 + (site.unitCount * 0.5), // Le cercle est légèrement plus gros s'il y a beaucoup de réacteurs
+                    fillColor: getStatusColor(site.statusId),
+                    color: "#000",
+                    weight: 1,
+                    fillOpacity: 0.8
+                }).addTo(map)
+                  .bindPopup(`
+                    <div style="color:#333; font-family: sans-serif;">
+                        <h3 style="margin:0 0 5px 0">${site.name}</h3>
+                        <b>Nombre de réacteurs :</b> ${site.unitCount}<br>
+                        <b>Capacité totale :</b> ${site.totalCapacity.toLocaleString()} MW<br>
+                        <b>Type dominant :</b> ${site.model || 'N/A'}
+                    </div>
+                  `);
+            });
+        });
+
+    const legend = L.control({position: 'bottomright'});
+    legend.onAdd = function () {
+        const div = L.DomUtil.create('div', 'legend');
+        div.innerHTML = `
+            <i style="background: #2ecc71"></i> Opérationnel<br>
+            <i style="background: #f39c12"></i> En construction<br>
+            <i style="background: #e74c3c"></i> Arrêté / Déclassé<br>
+            <i style="background: #3498db"></i> Autre / Planifié
+        `;
+        return div;
+    };
+    legend.addTo(map);
+</script>
+</body>
+</html>
