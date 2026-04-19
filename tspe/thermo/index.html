@@ -1,0 +1,689 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>Thermodynamique</title>
+
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="/reveal-js/css/reset.css">
+<link rel="stylesheet" href="/reveal-js/css/reveal.css"><link rel="stylesheet" href="/reveal-js/css/theme/league.css" id="theme">
+<link rel="stylesheet" href="/highlight-js/atom-one-dark-reasonable.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  </head>
+  <body>
+    
+    <div class="reveal">
+      <div class="slides">
+  
+
+    <section><style>
+img {
+border: none !important;
+}
+
+.imp {
+font-weight:bold;
+color:#FF968D;
+}
+
+li {
+color: #fff;
+}
+
+ul {
+margin-left: auto;
+margin-right: auto;
+text-align: left;
+width: fit-content;
+list-style-position: outside;
+color:#fff;
+}
+
+span {
+font-weight:normal;
+}
+
+.video-container {
+  height: 60vh; /* limite la hauteur à 80% de la fenêtre */
+  width: calc(60vh * 9 / 16); /* largeur en fonction du ratio portrait */
+  margin: 0 auto;
+  position: relative;
+}
+
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  border-radius:10px;
+}
+
+th, td {
+text-align:center !important;
+vertical-align:middle !important;
+}
+
+.fragment.highlight-red.visible {
+    color: #FF968D !important;
+  }
+
+</style>
+
+
+<section data-shortcode-section>
+<h1 id="thermodynamique">Thermodynamique</h1>
+</section><section>
+<p>La thermodynamique est une branche récente de la physique, développée au 19<sup>e</sup>, siècle qui s&rsquo;intéresse aux conversions d&rsquo;énergie en lien avec la température.</p>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h2 id="gaz-parfaits">Gaz parfaits</h2>
+</section><section>
+<p><strong><a href="https://phet.colorado.edu/sims/html/gases-intro/latest/gases-intro_all.html?locale=fr">Animation du Colorado</a></strong></p>
+</section><section>
+<p>L&rsquo;état gazeux est <span class="imp fragment">dispersé</span> et <span class="imp fragment">désordonnée</span>.</p>
+</section><section>
+<p>À l&rsquo;échelle microscopique, les entités qui le composent sont éloignées les unes des autres et ont un mouvement aléatoire incessant.</p>
+<p class="fragment fade-up">Pour le décrire parfaitement, il faudrait connaître la masse, la position et la vitesse de chacune des entités...</p>
+</section><section>
+<p>À l&rsquo;échelle macroscopique, on utilise 3 grandeurs intensives (ne dépendant pas du volume) qui moyennent de manière complémentaire<br>le chaos microscopique :</p>
+<ul>
+<li class="fragment fade-up">la <span class="imp">masse volumique $\rho$</span><br>qui dit combien les entités sont serrées en moyenne</li>
+</u>
+</section><section>
+<ul>
+<li>la <span class="imp">pression $P$</span> qui renseigne sur la force moyenne par unité de surface provoquée due aux chocs incessants des entités</li>
+<br>
+<li class="fragment fade-up">la <span class="imp">température $T$</span> qui correspond à l'énergie cinétique moyenne des entités (traduisant<br>l'<span class="imp">agitation</span> des entité)</li>
+</ul>
+</section><section>
+<p>Ces trois grandeurs sont liées entre elles<br>dans la <span class="imp">loi des gaz parfaits</span>.</p>
+<div class="fragment fade-up">
+$$P=\frac R M \times \rho \times T$$
+</div>
+<p class="fragment fade-up">
+Mais généralement, on lui préfère la forme faisant intervenir la quantité de matière et le volume<br>à la place de la masse volumique.
+</p>
+</section><section>
+<p><span class="imp">Loi des gaz parfaits</span> :</p>
+<br>
+<div class="fragment fade-up" style="display: flex; border: solid 5px #FF968D; border-radius: 20px; width:fit-content;margin-right:auto;margin-left:auto;">
+<div style="padding:0px 30px 0px 30px; width:fit-content;">
+$$PV = nRT$$
+</div>
+</div>
+<br>
+<ul>
+<li class="fragment">$P$ : pression (en <span class="fragment">$\color{#FFF056}\pu{Pa}$</span>)</li>
+<li class="fragment">$V$ : volume  (en <span class="fragment">$\color{#FFF056}\pu{m3}$</span>)</li>
+<li class="fragment">$n$ : quantité de matière  (en <span class="fragment">$\color{#FFF056}\pu{mol}$</span>)</li>
+<li class="fragment">$T$ : température  (en <span class="fragment">$\color{#FFF056}\pu{K}$</span>)</li>
+<li class="fragment">$R$ : constante des gaz parfaits<br>
+$R= 8,314$ <span class="fragment">$\color{#FFF056}\pu{Pa*m3*K-1*mol-1}$</span></li>
+</ul>
+</section><section>
+<p><u>Rq</u> :</p>
+<p>La pression est aussi une énergie par unité de volume.</p>
+<p class="fragment fade-up">$\Rightarrow \pu{Pa} = $ <b class="fragment" style="color:#FFF056">$\pu{J*m-3}$</b></p>
+<p class="fragment fade-up">Et donc $R$ s'exprime en <b class="fragment" style="color:#FFF056">$\pu{J*K-1*mol-1}$</b></p>
+</section><section>
+<p>Un gaz est dit <span class="imp">parfait</span> si la taille des entités est négligeable devant la distance qui les sépare et<br>si les interactions entre elles sont négligeables.</p>
+</section><section>
+<h3 id="limites-du-modèle">Limites du modèle</h3>
+<p class="fragment fade-up">Dans le modèle GP, on néglige le volume<br>des entités et on néglige leurs interactions.</p>
+<p class="fragment fade-up">Dans quelles gammes de pression et de température ces approximations peuvent-elles s'avérer fausses ?</p>
+</section><section>
+<ul>
+<li>À haute pression, les entités deviennent si serrées que l'effet de leur volume devient non négligeable.</li>
+<br>
+<li class="fragment fade-up">À basse température, l'énergie cinétique des entités devient du même ordre de grandeurs que leur énergie de liaison.</li>
+</section><section>
+<p>Moralité, le modèle du gaz parfait marche pour une <span class="imp">pression pas trop grande</span> (<span class="imp">$P&lt;\pu{10 bar}=\pu{1 MPa}$</span>).</p>
+<p class="fragment fade-up">Et pour une <span class="imp">température très supérieure à la température d'ébullition</span> du gaz (<span class="imp">$T\gg T_{vap}$</span>).</p>
+</section><section>
+<p>Comme l&rsquo;air se liquéfie vers -190°C à pression atmosphérique ($P_{atm}\approx \pu{1 bar}$), l&rsquo;ai peut être considéré comme une GP aux conditions<br>ordinaires de température et de pression.</p>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h2 id="énergie-interne">Énergie interne</h2>
+</section><section>
+<p>L&rsquo;<span class="imp">énergie interne $U$</span> d&rsquo;un système résulte<br>des <b style="color:#FFF056">énergie cinétique</b> (liée à l&rsquo;<b style="color:#FFF056">agitation</b>)<br>et <b style="color:#56C1FF">potentielle</b> (liée aux interactions)<br>de l&rsquo;ensemble des entités qui le composent.</p>
+</section><section>
+<p>La <span class="imp">variation d&rsquo;énergie interne</span><br>d&rsquo;un <b style="color:#16E7CF">système incompressible</b> (solide ou liquide)<br>est proportionnelle à sa variation de température.</p>
+<p class="fragment fade-up">Le coefficient de proprortionnalité est<br>la <span class="imp">capacité thermique $C$</span> du système.</p>
+</section><section>
+<div style="position:relative;margin:auto;width:fit-content;border:solid 5px #FF968D;padding:0 50px 0 50px;border-radius:10px">
+$$\Delta U = C\times \Delta T$$
+</div>
+<br>
+<ul>
+<li class="fragment fade-up">$\Delta U$ en <b class="fragment" style="color:#FFF056">J</b></li>
+<li class="fragment fade-up">$\Delta T$ en <b class="fragment" style="color:#FFF056">K</b></li>
+<li class="fragment fade-up">$C$ en <b class="fragment" style="color:#FFF056">$\pu{J*K-1}$</b></li>
+</ul>
+</section><section>
+<p>Naturellement, plus le système contient d&rsquo;entités,<br>plus son énergie interne sera grande.</p>
+<p class="fragment fade-up">Pour caractériser un matériau<br>indépendamment de sa masse, on utilise <br>la <span class="imp">capacité thermique massique $c$</span>.</p>
+</section><section>
+<div style="position:relative;margin:auto;width:fit-content;border:solid 5px #FF968D;padding:0 50px 0 50px;border-radius:10px">
+$$\Delta U = m\times c \times \Delta T$$
+</div>
+<br>
+<ul>
+<li class="fragment fade-up">$\Delta U$ en <b  style="color:#FFF056">J</b></li>
+<li class="fragment fade-up">$\Delta T$ en <b style="color:#FFF056">K</b></li>
+<li class="fragment fade-up">$m$ en <b class="fragment" style="color:#FFF056">kg</b></li>
+<li class="fragment fade-up">$c$ en <b class="fragment" style="color:#FFF056">$\pu{J*K-1*kg-1}$</b></li>
+</ul>
+</section><section>
+<p>Plus la capacité thermique d&rsquo;un corps est grande,<br>plus il est <span class="fragment strike" data-fragment-index="1" >facile</span> / <span class="fragment highlight-red" data-fragment-index="1" >difficile</span> de modifier sa température.</p>
+</section><section>
+<div class="table-container">
+  <table>
+    <thead>
+      <tr>
+        <th>Matériau</th>
+        <th>Capacité thermique massique (J·kg⁻¹·K⁻¹)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Eau liquide</strong></td>
+        <td>4 185</td>
+      </tr>
+      <tr>
+        <td><strong>Glace</strong> (à 0°C)</td>
+        <td>2 100</td>
+      </tr>
+      <tr>
+        <td><strong>Huile</strong> (végétale)</td>
+        <td>2 000</td>
+      </tr>
+      <tr>
+        <td><strong>Aluminium</strong></td>
+        <td>897</td>
+      </tr>
+      <tr>
+        <td><strong>Brique</strong></td>
+        <td>840</td>
+      </tr>
+      <tr>
+        <td><strong>Acier</strong></td>
+        <td>450 – 500</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h2 id="premier-principe-de-la-thermodynamique">Premier principe de la thermodynamique</h2>
+</section><section>
+<p>L&rsquo;<span class="imp">énergie totale</span> d&rsquo;un système est la somme de son énergie mécanique et de son énergie interne :</p>
+<div class="fragment fade-up" style="position:relative;margin:auto;width:fit-content;border:solid 5px #FF968D;padding:0 50px 0 50px;border-radius:10px">
+$$E_{tot} = E_m + U$$
+</div>
+</section><section>
+<p>L&rsquo;énergie d&rsquo;un système fermé (qui n&rsquo;échange pas<br>de matière avec l&rsquo;extérieur) peut varier par<br>échange d&rsquo;énergie avec l&rsquo;extérieur.</p>
+</section><section>
+<p>Cet échange peut prendre deux formes :</p>
+<ul>
+<li class="fragment fade-up"><b style="color:#FFF056">travail $W$</b> de forces non conservatives<br>(comme le travail des forces de pression)</li>
+<li class="fragment fade-up"><span class="imp">transfert thermique $Q$</span></li>
+</ul>
+</section><section>
+<p><span class="imp">Pemier principe de la thermodynamique</span></p>
+<p class="fragment fade-up">Pour un système isolé :</p>
+<div class="fragment fade-up" style="position:relative;margin:auto;width:fit-content;border:solid 5px #FF968D;padding:0 50px 0 50px;border-radius:10px">
+$$\Delta E_{tot} = W + Q$$
+</div>
+</section><section>
+<p>Et si le système est immobile :</p>
+<div class="fragment fade-up" style="position:relative;margin:auto;width:fit-content;border:solid 5px #FF968D;padding:0 50px 0 50px;border-radius:10px">
+$$\Delta U = W + Q$$
+</div>
+</section><section>
+<p>Par convention, les transferts d&rsquo;énergie sont comptés <span class="imp">positivement</span> lorsqu&rsquo;ils <span class="imp">entrent</span> dans le système<br>et <b style="color:#56C1FF">négativement</b> quand ils en sortent.</p>
+</section><section>
+<p>Prenons l&rsquo;exemple du système<br>{résistance chauffante d&rsquo;une bouilloire électrique} :</p>
+<ul>
+<li class="fragment fade-up">Le travail électrique $W$<br>est compté <span class="imp fragment">positivement</span></li>
+<li class="fragment fade-up">Le transfert thermique $Q$ avec l'eau<br>est compté <b class="fragment"style="color:#56C1FF">négativement</b></li>
+</ul>
+</section><section>
+<p>Si on considère le système<br>{eau de la bouilloire},<br>il n&rsquo;y a plus de travail,<br>mais deux transferts thermiques :</p>
+<ul>
+<li class="fragment fade-up">Le transfert thermique $Q_r$ avec<br>la résistance
+compté <span class="imp fragment">positivement</b></li>
+<li class="fragment fade-up">Le transfert thermique $Q_e$ avec<br>l'extérieur
+compté <b class="fragment"style="color:#56C1FF">négativement</b></li>
+</ul>
+</section><section>
+<p><u>Rq</u> :</p>
+<p class="fragment fade-up">Rien n'empêche que tous les transferts<br>soient positifs ou tous négatifs.</p>
+<p class="fragment fade-up">Exemple ?</p>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h2 id="modes-de-transfert-thermique">Modes de transfert thermique</h2>
+</section><section>
+<p>Il y a trois modes de transfert thermique :</p>
+<ul>
+<li class="fragment fade-up">la <span class="imp">conduction</span></li>
+<li class="fragment fade-up">la <span class="imp">convection</span></li>
+<li class="fragment fade-up">le <span class="imp">rayonnement</span></li>
+</ul>
+</section><section>
+<iframe width="800" height="450" src="https://www.youtube.com/embed/LxJoLeeqk88" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+</section><section>
+<iframe width=750 height=600 src="https://www.edumedia.com/media/frame/fr/99/?auth=97c65277ed86063586415897215a6a81/27824" frameborder=0 style="border-radius:10px;"></iframe>
+</section><section>
+<p>Un transfert thermique par <span class="imp">conduction</span><br>a lieu de proche en proche.</p>
+<p class="fragment fade-up">Il n'y a pas déplacement macroscopique de matière.</p>
+<p class="fragment fade-up">L'agitation microscopique des entités<br>est communiquée de l'une à l'autre.</p>
+</section><section>
+<p>Aérogel de silice, polystyrène expansé, laine de roche, laine de verre, liège expansé, ouate de cellulose&hellip;</p>
+<p class="fragment fade-up">Qu'ont en commun les meilleurs isolants thermiques ?</p>
+</section><section>
+<iframe width="800" height="450" src="https://www.youtube.com/embed/AeJ9q45PfD0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+</section><section>
+<iframe width=750 height=600 src="https://www.edumedia.com/media/frame/fr/428/?auth=88e553efb2b0037fe7e0d153f50db345/27824" frameborder=0 style="border-radius:10px;"></iframe>
+</section><section>
+<p>Un transfert thermique par <span class="imp">convection</span><br> ne peut avoir lieu que dans un fluide.</p>
+<p class="fragment fade-up">Il correspond à un mouvement macroscopique de matière : le fluide est animé d'un mouvement interne.</p>
+<p class="fragment fade-up">Comment expliquer ce mouvement d'ensemble ?</p>
+<aside class="notes"><p>Le fluide chauffé se dilate et devient donc moins dense. Il s&rsquo;élève sous l&rsquo;action de la poussée d&rsquo;Archimède et il est alors remplacé par de l&rsquo;air plus froid.</p>
+</aside>
+</section><section>
+<video width="372" height="660" autoplay="true" loop="true"  preload="auto" muted style="border-radius:10px;"> 
+  <source src="http://coursphychi.github.io/convection.mp4" type="video/mp4" >
+</video>
+</section><section>
+<div style="position:relative;margin-left:auto;margin-right:auto;width:900px;max-width:100%;">
+<img src="http://coursphychi.github.io/heatsinks.png" style="box-shadow:none;background:none;">
+</div>
+<p>Qu&rsquo;est-ce que c&rsquo;est ? <br>Discuter le matériau, la forme et l&rsquo;orientation.</p>
+<aside class="notes"><p>Dissipateur thermique (ou contrintuitivement, radiateur)</p>
+</aside>
+</section><section>
+<p><u>Petite énigme</u></p>
+<p class="fragment fade-up">Pourquoi un glaçon fond-il moins vite dans<br>de l'eau salée que dans de l'eau douce ?</p>
+</section><section>
+<iframe width=800 height=509 src="https://www.edumedia.com/media/frame/fr/944/?auth=8b4fea5814c4af50a22d86df6fd9378e/27824" frameborder=0 style="border-radius:10px;"></iframe>
+</section><section>
+<p>Le transfert thermique par <span class="imp">rayonnement</span> est<br>le seul à pouvoir se faire dans le vide.</p>
+<p class="fragment fade-up">Il correspond à l'émission ou l'absorption<br>d'ondes électromagnétiques.</p>
+</section><section>
+<p>Comment marche une couverture de survie ?</p>
+<div style="position:relative;margin-left:auto;margin-right:auto;width:700px;max-width:100%;border-radius:10px;">
+<img src="https://upload.wikimedia.org/wikipedia/commons/f/f8/RescueFoil.jpg" style="box-shadow:none;background:none;border-radius:10px;">
+</div>
+<aside class="notes"><p>Space blanket en anglais. Développée par la NASA en 1964.</p>
+</aside>
+</section><section>
+<p>Comment expliquer ce qu&rsquo;on voit dans cette vidéo ?</p>
+<iframe width="560" height="420" src="https://www.youtube.com/embed/Pp9Yax8UNoM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+<aside class="notes"><p>Dans ce matériau très isolant, le flux thermique dû à la conduction thermique du centre vers les bords (en particulier les coins) n&rsquo;arrive pas à compenser le flux thermique radiatif sortant. Résultat : les coins se refroidissent rapidement ($\approx\pu{35 ^\circ C}$) malgré que le centre soit encore à plus de ($\pu{1200 ^\circ C}$) !</p>
+</aside>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h2 id="flux-thermique">Flux thermique</h2>
+</section><section>
+<p>Le flux thermique est la puissance qui traverse une surface au cours d&rsquo;un transfert thermique.</p>
+<p class="fragment fade-up">C'est donc l'énergie thermique $Q$ par unité de temps.</p>
+</section><section>
+<div style="position:relative;margin:auto;width:fit-content;border:solid 5px #FF968D;padding:0 50px 0 50px;border-radius:10px">
+$$\Phi = \frac{Q}{\Delta t}$$
+</div>
+<br>
+<ul>
+<li class="fragment fade-up">$Q$ en <b class="fragment" style="color:#FFF056">J</b></li>
+<li class="fragment fade-up">$\Delta t$ en <b class="fragment" style="color:#FFF056">s</b></li>
+<li class="fragment fade-up">$\Phi$ en <b class="fragment" style="color:#FFF056">W</b></li>
+</ul>
+</section><section>
+<p>Comme pour le transfert thermique $Q$ et le travail $W$, le flux thermique $\Phi$ est compté positivement s&rsquo;il entre dans le système et négativement s&rsquo;il en sort.</p>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h2 id="résistance-thermique">Résistance thermique</h2>
+</section><section>
+<p>Le flux thermique par conduction et/ou convection<br>à travers un milieu séparé par deux surfaces<br>aux températures $T_f$ et $T_c &gt;T_f$ s&rsquo;effectue<br><span class="imp">de la surface froide vers la surface chaude</span>.</p>
+</section><section>
+<p>Pour traduire l&rsquo;aptitude du milieu à résister<br>au passage du flux thermique, on définit<br>la <span class="imp">résistance thermique $R_{th}$</span> comme :</p>
+<div style="position:relative;margin:auto;width:fit-content;border:solid 5px #FF968D;padding:0 50px 0 50px;border-radius:10px">
+$$R_{th} = \frac{\Delta T}{\Phi}=\frac{T_c - T_f}{\Phi}$$
+</div>
+<br>
+<ul>
+<li class="fragment fade-up">$\Delta T$ en <b class="fragment" style="color:#FFF056">$\pu{K}$</b></li>
+<li class="fragment fade-up">$\Phi$ en <b class="fragment" style="color:#FFF056">$\pu{W}$</b></li>
+<li class="fragment fade-up">$R_{th}$ en <b class="fragment" style="color:#FFF056">$\pu{K*W-1}$</b></li>
+</ul>
+</section><section>
+<div style="position:relative;margin-left:auto;margin-right:auto;width:700px;max-width:100%;">
+<img src="/fluxtspe.png" style="box-shadow:none;background:none;">
+</div>
+</section><section>
+<p><u style="color: #16E7CF;">Analogie électrique</span></u> :</p>
+<ul>
+<li class="fragment fade-up"><b style="color:#FFF056">$R_{th}$</b> $\longleftrightarrow$  <b class="fragment"style="color:#16E7CF">$R$</b></li>
+<li class="fragment fade-up"><b style="color:#FFF056">$\Phi$</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$\longleftrightarrow$  <b class="fragment"style="color:#16E7CF">$I$</b></li>
+<li class="fragment fade-up"><b style="color:#FFF056">$\Delta T$</b> $\longleftrightarrow$  <b class="fragment"style="color:#16E7CF">$U$</b></li>
+</ul>
+</section><section>
+<p>Pour une même différence de température,<br>plus la résistance thermique du milieu est grande<br>et plus le flux thermique est <span class="fragment">faible.</span></p>
+</section><section>
+<p>Si les parois du matériau sont planes (mur par exemple), la résistance thermique de conduction peut s&rsquo;exprimer en fonction de la surface $S$ des parois, de l&rsquo;épaisseur $e$ entre les deux parois et de la conductivité thermique $\lambda$ caractérisant le matériau :</p>
+<div class="fragment fade-up" style="position:relative;margin:auto;width:fit-content;border:solid 5px;padding:0 50px 0 50px;border-radius:10px">
+$$R_\text{th cond}=\frac{e}{\lambda S}$$
+</div>
+<p class="fragment fade-up">$\lambda$ s'exprime en <span class="fragment">$\pu{W*m-1*K-1}$.</span></p>
+<p class="fragment fade-up"><u>Rq</u> : cette formule sera toujours donnée.</p>
+</section><section>
+<p>Dans le cas d&rsquo;un contact avec un fluide, le flux thermique est dit <span class="imp">conducto-convectif</span>.</p>
+<p class="fragment fade-up">On peut construire une résistance thermique $R_\text{th cv}$<br>à l'aide d'un coefficient de transfert thermique $h$ :</p>
+<div class="fragment fade-up" style="position:relative;margin:auto;width:fit-content;border:solid 5px;padding:0 50px 0 50px;border-radius:10px">
+<p>$$R_\text{th cv}=\frac{1}{hS}$$</p>
+</div>
+<p class="fragment fade-up">unité de $h$ : <span class="fragment">$\pu{W*m-2*K-1}$</span></p>
+<aside class="notes"><p>On va voir dans la suite qu&rsquo;utiliser R_{th cv} revient à appliquer la loi phénoménologique de Newton.</p>
+</aside>
+</section><section>
+<p>Des résistances en série s&rsquo;additionnent.</p>
+<div style="position:relative;margin-left:auto;margin-right:auto;width:700px;max-width:100%;margin-">
+<img src="/resserie.png" style="box-shadow:none;background:none;">
+</div>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h2 id="évolution-temporelle-de-la-température-dun-système">Évolution temporelle de la température d&rsquo;un système</h2>
+</section><section>
+<p>La <span class="imp">loi phénoménologique de Newton</span> (aussi appelée loi du refroidissement de Newton) <span class="imp">modélise le transfert thermique</span> entre un système et le milieu extérieur<br>par <span class="imp">convection et conduction</span>.</p>
+<p class="fragment fade-up">Elle énonce que le flux thermique antre un système et le milieu extérieur est proportionnel à la différence de température entre ce système et le milieu extérieur.</p>
+</section><section>
+<div style="position:relative;margin:auto;width:fit-content;border:solid 5px #FF968D;padding:0 50px 0 50px;border-radius:10px">
+<p>$$\Phi = h S \left(T_\mathrm{ext}-T\right)$$</p>
+</div>
+<p class="fragment fade-up">$T$ est la température du système.</p>
+<p class="fragment fade-up"><u>Rq</u> : cette formule (ou une ressemblante)<br>sera toujours fournie.</p>
+<ul>
+<li class="fragment fade-up">$S$ (surface de la paroi) en <b class="fragment" style="color:#FFF056">$\pu{m2}$</b></li>
+<li class="fragment fade-up">$h$ (coefficient d'échange conducto-convectif)<br>en<b class="fragment" style="color:#FFF056">$\pu{W*m-2*K-1}$</b></li>
+</ul>
+</section><section>
+<p>Si la température d&rsquo;un système peut être considérée comme constante (il suffit qu&rsquo;il soit suffisamment<br>gros par exemple), on parle de <span class="imp">thermostat</span>.</p>
+<p class="fragment fade-up">On considère très souvent le milieu extérieur<br>comme un <span class="imp"> thermostat</span> $\Rightarrow T_\mathrm{ext}\approx \mathrm{cte}$.</p>
+</section><section>
+<p>Modélisons l&rsquo;évolution de la température $T(t)$ d&rsquo;un système incompressible en contact avec un thermostat.</p>
+</section><section>
+<p>Pour cela, réalisons un bilan d&rsquo;énergie du système<br>entre les instants $t$ et $t+\Delta t$ :</p>
+<ul>
+ <li class="fragment fade-up">On suppose que le système est immobile.</li>
+ <li class="fragment fade-up">On suppose que le système ne reçoit aucun travail.</li>
+ <li class="fragment fade-up">Le système échange une énergie thermique $Q$ avec le thermostat (l'extérieur).</li>
+ </ul> 
+ <p class="fragment fade-up">D'après le 1<sup>er</sup> principe de la thermodynamique :</p>
+  <div class="fragment fade-up">
+  $$\Delta U = \cancel{W} + Q = Q$$
+  </div>
+</section><section>
+<p>Pendant la durée $\Delta t$, l&rsquo;énergie thermique échangée s&rsquo;exprime en fonction du flux thermique comme :</p>
+<div class="fragment fade-up">
+$$Q = \Phi \times  \Delta t$$
+</div>
+</section><section>
+<p>Et comme le système est incompressible,<br>on peut écrire :</p>
+<div class="fragment fade-up">
+$$\Delta U = mc \Delta T$$
+</div>
+<p class="fragment fade-up">$\Delta T$ est la variation de température du système<br>entre les instants $t$ et $t+\Delta t$.</p>
+</section><section>
+<p>Enfin, d&rsquo;après la loi phénoménologique de Newton :</p>
+<div class="fragment fade-up">
+$$\Phi = hS\left(T_\mathrm{ext}-T(t)\right)$$
+</div>
+</section><section>
+<p>On a donc :</p>
+<div class="fragment fade-up">
+<p>$$
+\begin{aligned}
+\Delta U = mc\Delta T &amp;= Q\\
+&amp;={\color{#FFF056}\Phi}\Delta t\\
+&amp;={\color{#FFF056}hS\left(T_\mathrm{ext}-T(t)\right)}\Delta t
+\end{aligned}
+$$</p>
+</div>
+</section><section>
+<p>On obtient :</p>
+<div class="fragment fade-up">
+$$mc{\color{#FF968D}\Delta T} = hs(T_\mathrm{ext}-T(t)){\color{#FF968D}\Delta t}$$
+</div>
+<p class="fragment fade-up">Et en réarrangeant :</p>
+<div class="fragment fade-up">
+$$mc{\color{#FF968D}\frac{\Delta T}{\Delta t}} = hsT_\mathrm{ext}-hsT(t)$$
+</div>
+</section><section>
+<p>Faisons tendre le laps de temps $\Delta t$ vers 0 :</p>
+<div class="fragment fade-up">
+$${\color{#FF968D}\frac{\Delta T}{\Delta t}} \xrightarrow[\Delta t\to 0]{} {\color{#FF968D}\frac{\mathrm{d}T}{\mathrm{d}t}}$$
+</div>
+<p class="fragment fade-up">On obtient alors :</p>
+<div class="fragment fade-up">
+$$ mc {\color{#FF968D}\frac{\mathrm{d} T}{\mathrm{d} t}} = \frac{hs}{mc} T_\mathrm{ext} - \frac{hs}{mc} T(t) $$
+</div>
+</section><section>
+<p>D&rsquo;où :</p>
+<div class="fragment fade-up">
+$$mc {\color{#FFF056}\frac{\mathrm{d} T}{\mathrm{d} t}} + hs {\color{#FFF056}T(t)} =hs T_\mathrm{ext}$$
+</div>
+<p class="fragment fade-up">Et finalement :</p>
+<div class="fragment fade-up" style="position:relative;margin:auto;width:fit-content;border:solid 5px ;padding:0 50px 0 50px;border-radius:10px">
+$${\color{#FFF056}\frac{\mathrm{d} T}{\mathrm{d} t} }+ \frac{hs}{mc} {\color{#FFF056}T(t)}= \frac{hs}{mc} T_\mathrm{ext}$$
+</div>
+</section><section>
+<p>On reconnaît une équation différentielle du 1<sup>er</sup> ordre<br>à coefficients constants avec second membre :</p>
+<div class="fragment fade-up">
+$$\frac{\mathrm{d} T}{\mathrm{d} t} + \frac{1}{\tau} T(t)= \frac{1}{\tau} T_\mathrm{ext}$$
+</div>
+<p class="fragment fade-up">Où <b style="color:#56C1FF">$ \tau = \frac{mc}{hS}$</b> est le temps caractéristique de l'évolution.</p>
+</section><section>
+<p>Solution :</p>
+<div class="fragment fade-up" style="position:relative;margin:auto;width:fit-content;border:solid 5px ;padding:0 50px 0 50px;border-radius:10px">
+$$T(t) = \left(T_0-T_\mathrm{ext}\right)\mathrm{e}^{-\frac t \tau} + T_\mathrm{ext}$$
+</div>
+<p class="fragment fade-up">où $T_0=T(0)$ est la température initiale.</p>
+</section><section>
+<iframe scrolling="no" title="Évolution de la température" src="https://www.geogebra.org/material/iframe/id/zwrwvtms/width/779/height/413/border/888888/sfsb/true/smb/false/stb/false/stbh/false/ai/false/asb/false/sri/true/rc/false/ld/false/sdz/false/ctl/false" width="779px" height="413px" style="border:0px;border-radius:10px;"> </iframe>
+</section><section>
+<p>On obtient logiquement que :</p>
+<br>
+<ul>
+<li class="fragment fade-up" data-fragment-index="1">Si <b style="color:#56C1FF">$T_0 < T_\mathrm{ext} $</b>, $T(t)$ est <b class="fragment" data-fragment-index="2" style="color:#FF968D">croissante</b>,<br>le système se <b class="fragment" data-fragment-index="2" style="color:#FF968D">réchauffe</b>.</li>
+<li class="fragment fade-up" data-fragment-index="3">Si <b style="color:#FF968D">$T_0 > T_\mathrm{ext}$</b>,  $T(t)$ est <b class="fragment" data-fragment-index="4" style="color:#56C1FF">décroissante</b>,<br>le système se <b class="fragment" data-fragment-index="4" style="color:#56C1FF">refroidit</b>.</li>
+</ul>
+</section><section>
+<p>Et dans tous les cas, lorsque $t\to\infty$<br>(en pratique pour $t&gt;5\tau$), le système est<br>à la température du thermostat $T_\mathrm{ext}$.</p>
+<p class="fragment fade-up">On appelle cela l'<b style="color:#61D836">équilibre thermique</b>.</p>
+
+</section>
+</section><section>
+
+
+<section data-shortcode-section>
+<h2 id="bilan-thermique-du-systèmeterre-atmosphère">Bilan thermique du système<br>{Terre, atmosphère}</h2>
+</section><section>
+<p class="fragment fade-up">Le système <span class="imp">reçoit</span> de l'énergie par<br><span class="imp">transfert thermique radiatif</span> du Soleil.</p>
+<p class="fragment fade-up">Le système <b style="color:#56C1FF">perd</b> de l'énergie par<br><b style="color:#56C1FF">transfert thermique radiatif</b> vers l'espace.</p>
+<div style="position:relative;margin-left:auto;margin-right:auto;width:700px;max-width:100%;">
+<img src="/bilanterre.png" style="box-shadow:none;background:none;">
+</div>
+</section><section>
+<p>Il y a donc un flux entrant (positif) <span class="imp">$\Phi_E$</span><br>et un flux sortant (négatif) <b style="color:#56C1FF">$\Phi_S$</b>.</p>
+<p class="fragment fade-up">Et plutôt que le flux total $\Phi$, on se concentre<br>sur le flux surfacique $\phi$ (flux par $\pu{m^2}$).</p>
+</section><section>
+<p>Le flux entrant est en partie</p>
+</section><section>
+<p>Le flux sortant est dû au fait qu&rsquo;un corps<br>à température $T$ émet un rayonnement électromagnétique dont le flux thermique<br>surfacique vérifie la loi de Stefan-Boltzman :</p>
+<div class="fragment fade-up" style="position:relative;margin:auto;width:fit-content;border:solid 5px #FF968D;padding:0 50px 0 50px;border-radius:10px;margin-bottom:0.5em;">
+$$\phi_E =\sigma T^4 $$
+</div>
+<ul>
+<li class="fragment fade-up">$\phi_E$ en <b class="fragment" style="color:#FFF056">$\pu{W*m-2}$</b></li>
+<li class="fragment fade-up">$T$ en <b class="fragment" style="color:#FFF056">$\pu{K}$</b></li>
+<li class="fragment fade-up">$\sigma$ est la constante<br>de Stefan-Boltzmann<br>en <b class="fragment" style="color:#FFF056">$\pu{W*m^2*K^{-4}}$</b></li>
+</ul>
+</section><section>
+
+</section>
+</section><section>
+<p><a href="https://coursphychi.github.io/tspe/thermo/">Retour site</a></p>
+</section>
+
+  
+
+
+</div>
+      
+
+    </div>
+<script type="text/javascript" src=/reveal-hugo/object-assign.js></script>
+
+<a href="/reveal-js/css/print/" id="print-location" style="display: none;"></a>
+<script type="text/javascript">
+  var printLocationElement = document.getElementById('print-location');
+  var link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.type = 'text/css';
+  link.href = printLocationElement.href + (window.location.search.match(/print-pdf/gi) ? 'pdf.css' : 'paper.css');
+  document.getElementsByTagName('head')[0].appendChild(link);
+</script>
+
+<script type="application/json" id="reveal-hugo-site-params">{"highlight_theme":"github-dark","line-numbers":true,"theme":"sky","transition":"concave","transition_speed":"fast"}</script>
+<script type="application/json" id="reveal-hugo-page-params">{"highlight_theme":"atom-one-dark-reasonable","theme":"league"}</script>
+
+<script src="/reveal-js/js/reveal.js"></script>
+
+<script type="text/javascript">
+  
+  
+  function camelize(map) {
+    if (map) {
+      Object.keys(map).forEach(function(k) {
+        newK = k.replace(/(\_\w)/g, function(m) { return m[1].toUpperCase() });
+        if (newK != k) {
+          map[newK] = map[k];
+          delete map[k];
+        }
+      });
+    }
+    return map;
+  }
+  
+  var revealHugoDefaults = { center: true, controls: true, history: true, progress: true, transition: "slide" };
+  var revealHugoSiteParams = JSON.parse(document.getElementById('reveal-hugo-site-params').innerHTML);
+  var revealHugoPageParams = JSON.parse(document.getElementById('reveal-hugo-page-params').innerHTML);
+  
+  var options = Object.assign({},
+    camelize(revealHugoDefaults),
+    camelize(revealHugoSiteParams),
+    camelize(revealHugoPageParams));
+  Reveal.initialize(options);
+</script>
+
+
+  
+  
+  <script type="text/javascript" src="/reveal-js/plugin/markdown/marked.js"></script>
+  
+  <script type="text/javascript" src="/reveal-js/plugin/markdown/markdown.js"></script>
+  
+  <script type="text/javascript" src="/reveal-js/plugin/highlight/highlight.js"></script>
+  
+  <script type="text/javascript" src="/reveal-js/plugin/zoom-js/zoom.js"></script>
+  
+  
+  <script type="text/javascript" src="/reveal-js/plugin/notes/notes.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({startOnLoad: false});
+    let render = (event) => {
+      let mermaidElems = event.currentSlide.querySelectorAll('.mermaid');
+      if (!mermaidElems.length){
+          return
+      }
+      mermaidElems.forEach(mermaidElem => {
+          let processed = mermaidElem.getAttribute('data-processed');
+          if (!processed){
+              
+              mermaid.init(undefined, mermaidElem);
+          }
+      });
+    };
+    Reveal.addEventListener('slidechanged', render);
+    Reveal.addEventListener('ready', render);
+  </script>
+
+    
+
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']]
+  },
+  svg: {
+    fontCache: 'global'
+  }
+};
+</script>
+
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+</script>
+    
+  </body>
+</html>
