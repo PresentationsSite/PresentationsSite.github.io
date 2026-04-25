@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Simulation Circuit RC</title>
     <style>
         :root {
@@ -12,32 +12,40 @@
             --bg-color: #ffffff;
         }
 
+        /* Empêche les rebonds au défilement sur mobile */
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
         html, body {
             margin: 0; padding: 0;
             height: 100%; width: 100%;
             overflow: hidden;
             font-family: -apple-system, system-ui, sans-serif;
             background-color: var(--bg-color);
+            touch-action: none; /* Évite les zooms accidentels */
         }
 
         .main-wrapper {
             display: flex;
             flex-direction: column;
             height: 100vh;
+            height: 100dvh; /* Hauteur dynamique pour mobile */
             width: 100vw;
         }
 
-        /* --- MODE PAYSAGE --- */
+        /* --- MODE PAYSAGE (PC ou Mobile tourné) --- */
         @media (orientation: landscape) {
             .main-wrapper { flex-direction: row; }
             .interaction-pane {
                 width: 320px;
                 height: 100%;
                 border-right: 2px solid #eee;
+                border-bottom: none !important;
                 display: flex;
                 flex-direction: column;
             }
-            .top-section { flex: 0 0 40%; height: auto !important; border-bottom: 1px solid #eee; }
+            .top-section { flex: 0 0 35%; height: auto !important; }
             .controls {
                 flex: 1;
                 flex-direction: column !important;
@@ -59,11 +67,11 @@
         }
 
         .top-section {
-            height: 180px;
+            height: 160px; /* Légèrement réduit pour mobile */
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 10px;
+            padding: 5px;
         }
 
         svg { height: 100%; width: auto; max-width: 100%; user-select: none; }
@@ -75,32 +83,41 @@
         .controls {
             display: flex; 
             flex-direction: column;
-            gap: 10px; 
-            padding: 15px;
+            gap: 8px; 
+            padding: 12px;
             background: #f8f9fa; 
-            font-size: 0.9rem;
+            font-size: 0.85rem;
         }
 
         @media (orientation: portrait) {
-            .controls { flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 15px; }
+            .controls { 
+                flex-direction: row; 
+                flex-wrap: wrap; 
+                justify-content: center; 
+                gap: 10px;
+                padding: 10px;
+            }
         }
 
-        .control-group { display: flex; align-items: center; gap: 8px; }
-        
+        .control-group { display: flex; align-items: center; gap: 6px; }
         .e-color, .rc-color { color: var(--pink-ui); }
         .e-color input[type=range], .rc-color input[type=range] { accent-color: var(--pink-ui); }
-        
         .rd-color { color: var(--blue-ui); }
         .rd-color input[type=range] { accent-color: var(--blue-ui); }
-
         .c-color { color: var(--green-ui); }
         .c-color input[type=range] { accent-color: var(--green-ui); }
 
-        input[type=range] { width: 90px; cursor: pointer; }
+        input[type=range] { width: 80px; cursor: pointer; }
 
-        .btn-group { display: flex; gap: 10px; margin-top: 5px; justify-content: center; }
+        .btn-group { display: flex; gap: 8px; margin-top: 5px; justify-content: center; }
 
-        .bottom-section { flex: 1; position: relative; background: #fff; min-height: 0; }
+        /* Section Graphique */
+        .bottom-section { 
+            flex: 1; 
+            position: relative; 
+            background: #fff; 
+            min-height: 0; /* Important pour flexbox */
+        }
         canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: block; }
 
         .can-drag { cursor: grab; }
@@ -108,8 +125,8 @@
 
         .btn {
             padding: 8px 12px; cursor: pointer; border-radius: 6px;
-            border: 1px solid #ccc; background: white; font-weight: 500; font-size: 0.85rem;
-            flex: 1; min-width: fit-content;
+            border: 1px solid #ccc; background: white; font-weight: 500; font-size: 0.8rem;
+            flex: 1; min-width: 80px;
         }
         .btn-pause { background-color: #e3f2fd; }
         .active-pause { background-color: #ffccbc !important; border-color: #ff5722; }
@@ -123,23 +140,19 @@
             <svg viewBox="0 0 400 250" id="circuit">
                 <rect class="click-zone left" id="btn-left" x="0" y="0" width="200" height="250" />
                 <rect class="click-zone right" id="btn-right" x="200" y="0" width="200" height="250" />
-                
                 <circle cx="50" cy="125" r="20" fill="none" stroke="var(--pink-ui)" stroke-width="2.5"/>
                 <line x1="50" y1="105" x2="50" y2="145" stroke="var(--pink-ui)" stroke-width="2.5"/>
                 <path d="M50 105 V50 H180" fill="none" stroke="var(--pink-ui)" stroke-width="2.5"/>
                 <path d="M50 145 V200 H100" fill="none" stroke="var(--pink-ui)" stroke-width="2.5"/>
                 <rect x="100" y="190" width="40" height="20" fill="white" stroke="var(--pink-ui)" stroke-width="2"/>
                 <path d="M140 200 H200" fill="none" stroke="var(--pink-ui)" stroke-width="2.5"/>
-
                 <path d="M220 50 H350 V200 H300" fill="none" stroke="var(--blue-ui)" stroke-width="2.5"/>
                 <rect x="260" y="190" width="40" height="20" fill="white" stroke="var(--blue-ui)" stroke-width="2"/>
                 <path d="M260 200 H200" fill="none" stroke="var(--blue-ui)" stroke-width="2.5"/>
-
                 <line x1="200" y1="50" x2="200" y2="115" stroke="black" stroke-width="2.5"/>
                 <line x1="175" y1="115" x2="225" y2="115" stroke="black" stroke-width="3"/>
                 <line x1="175" y1="125" x2="225" y2="125" stroke="black" stroke-width="3"/>
                 <line x1="200" y1="125" x2="200" y2="200" stroke="black" stroke-width="2.5"/>
-
                 <circle cx="200" cy="50" r="3.5" fill="black"/> 
                 <circle cx="180" cy="50" r="3.5" fill="var(--pink-ui)"/> 
                 <circle cx="220" cy="50" r="3.5" fill="var(--blue-ui)"/> 
@@ -148,22 +161,10 @@
         </div>
 
         <div class="controls">
-            <div class="control-group e-color">
-                <label>E : <span id="e-val">5.0</span> V</label>
-                <input type="range" id="e-slider" min="0" max="10" step="0.5" value="5">
-            </div>
-            <div class="control-group rc-color">
-                <label>R<sub>c</sub> : <span id="rc-val">100</span> kΩ</label>
-                <input type="range" id="rc-slider" min="10" max="500" value="100">
-            </div>
-            <div class="control-group rd-color">
-                <label>R<sub>d</sub> : <span id="rd-val">100</span> kΩ</label>
-                <input type="range" id="rd-slider" min="10" max="500" value="100">
-            </div>
-            <div class="control-group c-color">
-                <label>C : <span id="c-val">10</span> µF</label>
-                <input type="range" id="c-slider" min="1" max="100" value="10">
-            </div>
+            <div class="control-group e-color"><label>E : <span id="e-val">5.0</span> V</label><input type="range" id="e-slider" min="0" max="10" step="0.5" value="5"></div>
+            <div class="control-group rc-color"><label>R<sub>c</sub> : <span id="rc-val">100</span> kΩ</label><input type="range" id="rc-slider" min="10" max="500" value="100"></div>
+            <div class="control-group rd-color"><label>R<sub>d</sub> : <span id="rd-val">100</span> kΩ</label><input type="range" id="rd-slider" min="10" max="500" value="100"></div>
+            <div class="control-group c-color"><label>C : <span id="c-val">10</span> µF</label><input type="range" id="c-slider" min="1" max="100" value="10"></div>
             <div class="btn-group">
                 <button class="btn btn-pause" id="pause-btn">Pause</button>
                 <button class="btn" id="reset-btn">Effacer</button>
@@ -189,10 +190,11 @@
 
     function setupCanvas() {
         const dpr = window.devicePixelRatio || 1;
-        const rect = canvas.getBoundingClientRect();
+        const rect = canvas.parentElement.getBoundingClientRect();
         canvas.width = rect.width * dpr;
         canvas.height = rect.height * dpr;
         ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        draw(); // Force un redessin immédiat
     }
     window.addEventListener('resize', setupCanvas);
     setupCanvas();
@@ -206,19 +208,31 @@
         else { switchArm.setAttribute('x2', '200'); switchArm.setAttribute('y2', '25'); }
     }
 
-    canvas.addEventListener('mousedown', (e) => { if (isPaused) { isDragging = true; dragStartX = e.clientX; canvas.classList.add('is-dragging'); } });
-    window.addEventListener('mousemove', (e) => {
-        const rect = canvas.getBoundingClientRect();
-        mouseX = e.clientX - rect.left; mouseY = e.clientY - rect.top;
-        isHovering = (mouseX >= 0 && mouseX <= rect.width && mouseY >= 0 && mouseY <= rect.height);
+    // Support tactile pour le déplacement de la courbe
+    const handleStart = (x) => { if (isPaused) { isDragging = true; dragStartX = x; canvas.classList.add('is-dragging'); } };
+    const handleMove = (x, rect) => {
         if (isDragging) {
-            let dx = e.clientX - dragStartX; dragStartX = e.clientX;
+            let dx = x - dragStartX; dragStartX = x;
             timeOffset -= (dx / rect.width) * timeWindow; 
             if (timeOffset > 0) timeOffset = 0;
             if (history.length > 0 && (simTime + timeOffset < history[0].t)) timeOffset = history[0].t - simTime;
         }
+    };
+
+    canvas.addEventListener('mousedown', (e) => handleStart(e.clientX));
+    canvas.addEventListener('touchstart', (e) => handleStart(e.touches[0].clientX));
+    window.addEventListener('mousemove', (e) => {
+        const rect = canvas.getBoundingClientRect();
+        mouseX = e.clientX - rect.left; mouseY = e.clientY - rect.top;
+        isHovering = (mouseX >= 0 && mouseX <= rect.width && mouseY >= 0 && mouseY <= rect.height);
+        handleMove(e.clientX, rect);
     });
+    window.addEventListener('touchmove', (e) => {
+        const rect = canvas.getBoundingClientRect();
+        handleMove(e.touches[0].clientX, rect);
+    }, { passive: false });
     window.addEventListener('mouseup', () => { isDragging = false; canvas.classList.remove('is-dragging'); });
+    window.addEventListener('touchend', () => { isDragging = false; canvas.classList.remove('is-dragging'); });
 
     document.getElementById('e-slider').oninput = (e) => { E = parseFloat(e.target.value); document.getElementById('e-val').innerText = E.toFixed(1); };
     document.getElementById('rc-slider').oninput = (e) => { Rc = e.target.value * 1000; document.getElementById('rc-val').innerText = e.target.value; };
@@ -257,32 +271,25 @@
     function draw() {
         const dpr = window.devicePixelRatio || 1;
         const w = canvas.width / dpr, h = canvas.height / dpr;
-        const padX = 65, padY = 40;
+        if (w === 0 || h === 0) return;
+        const padX = 55, padY = 40;
         ctx.clearRect(0, 0, w, h);
         let dEnd = Math.max(timeWindow, simTime + timeOffset);
         let dStart = dEnd - timeWindow;
 
-        // --- TITRE u_C(t) ---
+        // Titre u_C(t)
         ctx.fillStyle = "#333"; ctx.textAlign = "center";
-        let titleY = 25; // Positionné tout en haut
-        ctx.font = "italic 18px serif"; 
-        let uWidth = ctx.measureText("u").width;
-        ctx.font = "bold 11px sans-serif";
-        let cWidth = ctx.measureText("C").width;
-        ctx.font = "italic 18px serif";
-        let tWidth = ctx.measureText("(t)").width;
-        let totalWidth = uWidth + cWidth + tWidth;
-        let startX = (w / 2) - totalWidth / 2;
-        
-        ctx.font = "italic 18px serif";
-        ctx.fillText("u", startX + uWidth / 2, titleY);
-        ctx.font = "bold 11px sans-serif";
-        ctx.fillText("C", startX + uWidth + cWidth / 2, titleY + 4);
-        ctx.font = "italic 18px serif";
-        ctx.fillText("(t)", startX + uWidth + cWidth + tWidth / 2, titleY);
+        ctx.font = "italic 16px serif"; 
+        let uW = ctx.measureText("u").width, tW = ctx.measureText("(t)").width;
+        ctx.font = "bold 10px sans-serif";
+        let cW = ctx.measureText("C").width;
+        let startX = (w / 2) - (uW + cW + tW) / 2;
+        ctx.font = "italic 16px serif"; ctx.fillText("u", startX + uW/2, 22);
+        ctx.font = "bold 10px sans-serif"; ctx.fillText("C", startX + uW + cW/2, 26);
+        ctx.font = "italic 16px serif"; ctx.fillText("(t)", startX + uW + cW + tW/2, 22);
 
-        // Graduations et Axes
-        ctx.lineWidth = 1; ctx.font = "11px sans-serif"; ctx.fillStyle = "#999"; ctx.textAlign = "right";
+        // Graduations
+        ctx.lineWidth = 1; ctx.font = "10px sans-serif"; ctx.fillStyle = "#999"; ctx.textAlign = "right";
         for(let i=0; i<=10; i+=2) {
             let y = (h - padY) - (i * (h - 2*padY) / 10);
             ctx.fillText(i + " V", padX - 8, y + 4);
@@ -291,19 +298,17 @@
         ctx.textAlign = "center";
         for(let s = Math.ceil(dStart); s <= Math.floor(dEnd); s++) {
             let x = padX + ((s - dStart) / timeWindow) * (w - padX - 30);
-            if (x < padX || x > w - 30) continue;
-            ctx.fillText(s + " s", x, h - padY + 18);
+            if (x >= padX && x <= w - 30) ctx.fillText(s + " s", x, h - padY + 18);
         }
 
         ctx.strokeStyle = "#444"; ctx.lineWidth = 1.5; ctx.beginPath();
         ctx.moveTo(padX, padY); ctx.lineTo(padX, h - padY); ctx.lineTo(w - 20, h - padY); ctx.stroke();
 
-        // Courbe
         if (history.length < 2) return;
         ctx.save();
         ctx.beginPath(); ctx.rect(padX, padY, w - padX - 25, h - 2*padY); ctx.clip();
-        ctx.beginPath(); ctx.strokeStyle = "#007D00"; ctx.lineWidth = 3;
-        let closest = null; let minDx = Infinity;
+        ctx.beginPath(); ctx.strokeStyle = "#007D00"; ctx.lineWidth = 2.5;
+        let closest = null, minDx = Infinity;
         history.forEach((p, i) => {
             const x = padX + ((p.t - dStart) / timeWindow) * (w - padX - 30);
             const y = (h - padY) - (p.v / 10) * (h - 2 * padY);
@@ -316,12 +321,11 @@
         ctx.stroke();
         ctx.restore();
 
-        // Tooltip
         if (isHovering && closest && minDx < 30 && !isDragging) {
             ctx.fillStyle = "#e91e63"; ctx.beginPath(); ctx.arc(closest.x, closest.y, 4, 0, Math.PI * 2); ctx.fill();
             ctx.fillStyle = "rgba(0,0,0,0.8)";
-            let boxX = closest.x + 10; if (boxX + 95 > w) boxX = closest.x - 105;
-            ctx.fillRect(boxX, closest.y - 40, 95, 35);
+            let boxX = closest.x + 10; if (boxX + 90 > w) boxX = closest.x - 100;
+            ctx.fillRect(boxX, closest.y - 40, 90, 35);
             ctx.fillStyle = "white"; ctx.textAlign = "left";
             ctx.fillText(`t : ${closest.t.toFixed(2)} s`, boxX + 8, closest.y - 25);
             ctx.fillText(`uC : ${closest.v.toFixed(2)} V`, boxX + 8, closest.y - 10);
