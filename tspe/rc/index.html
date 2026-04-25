@@ -182,13 +182,18 @@ Wikipedia</p>
       data-background-image="/compcapa.png"
       data-background-size="contain"
       data-background-transition="concave">
+<aside class="notes"><p>La résistance  est montée en parallèle avec les deux DEL pour permettre une charge et une décharge complètes du condensateur.
+•	Le problème du seuil de tension : Une DEL ne conduit le courant que si la tension à ses bornes est supérieure à sa tension de seuil  (environ 1,8 V pour une DEL rouge et 2,1 V pour une DEL verte).
+•	Sans  : Lors de la charge, dès que la tension aux bornes du condensateur atteint , l&rsquo;intensité devient trop faible pour maintenir la DEL passante. Le circuit s&rsquo;ouvre et la charge s&rsquo;arrête prématurément. Le condensateur ne parviendrait jamais à la tension finale .
+•	Avec  : Elle offre un chemin résistif permanent. Même quand la tension devient inférieure au seuil des DEL (et qu&rsquo;elles s&rsquo;éteignent), le courant continue de circuler à travers  jusqu&rsquo;à ce que l&rsquo;équilibre soit atteint (uC = E ou uC = 0).</p>
+</aside>
 </section><section>
 <p>Enfin, comme leurs caractéristiques<br>électriques dépendent de leur géométrie,<br>ils peuvent servir de capteurs.</p>
 <p class="fragment fade-up">On trouve des capteurs capacitifs pour la mesure d'épaisseur, de niveau de liquide, d'humidité, comme détecteur de présence, dans les micros, etc.</p>
 </section><section>
 <iframe width=833 height=625 src="https://www.edumedia.com/media/frame/fr/793/?auth=73fa8b06d8f5b850d5f9e8c1b7eb25b4/27824" frameborder=0 style="border-radius:10px;"></iframe>
 </section><section>
-<iframe width="800" height="450" src="https://www.youtube.com/embed/KuekQ-m9xpw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+<iframe width="800" height="450" src="https://www.youtube.com/embed/KuekQ-m9xpw?start=78" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
 
 </section>
 </section><section>
@@ -306,7 +311,7 @@ $$
 <p>Après division par $RC$ :</p>
 <div style="position:relative;margin:auto;width:fit-content;border:solid 5px #FF968D;padding:0 50px 0 50px;border-radius:10px">
 $$
-  \frac{\mathrm{d}u_C}{\mathrm{d}t}  + \frac{1}{RC} u_C = \frac{E}{RC}
+  \frac{\mathrm{d}u_C}{\mathrm{d}t}  + \frac{1}{RC} u_C(t) = \frac{E}{RC}
 $$
 </div>
 <p class="fragment fade-up">
@@ -467,7 +472,7 @@ $$
 </ul>
 <p><br><br></p>
 <p class="fragment fade-up"><u>Exemple</u> de ce type d'enchainement :<br>
-<a href="https://coursphychi.github.io/act-vigneron.pdf" target="_blank">"Défibrillateur cardiaque"</a></p>
+<a href="https://coursphychi.github.io/act-defibrillateur.pdf" target="_blank">"Défibrillateur cardiaque"</a></p>
 </section><section>
 <p>Mais des démonstrations complètes<br>sont parfois demandées 💀
 <br></p>
