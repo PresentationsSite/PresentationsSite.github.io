@@ -39,10 +39,6 @@ list-style-position: inside;
 color:#93a1a1;
 }
 
-ul li {
-text-indent: -1em;
-padding-left: 1em;
-}
 
 .video-container {
 position: relative;
@@ -77,6 +73,9 @@ height: 100%;
   border-radius:10px;
 }
 
+.fragment.highlight-red.visible {
+    color: #FF968D !important;
+  }
 </style>
 <h1 id="modèles-ondulatoire-et-particulairede-la-lumière">Modèles ondulatoire et particulaire<br>de la lumière</h1>
 </section><section>
@@ -135,27 +134,11 @@ height: 100%;
 <div style = "border:solid #FF968D 5px;padding: 20px 20px 30px 20px; font-size:1.2em;border-radius:10px;">
 $\displaystyle \lambda = \frac{c}{\nu}$
 </div></div>
-</section>
-<section data-noprocess data-shortcode-slide
-      data-transition="concave-in fade-out">
+</section><section>
 <ul>
-<li>
-<p>La fréquence dépend / ne dépend pas<br>du milieu de propagation.</p>
-</li>
-<li>
-<p>La longueur d&rsquo;onde dépend / ne dépend pas<br>du milieu de propagation.</p>
-</li>
-</ul>
-</section>
-<section data-noprocess data-shortcode-slide
-      data-transition="fade-in concave-out">
-<ul>
-<li>
-<p>La fréquence <s>dépend</s> / <span class="imp">ne dépend pas</span><br>du milieu de propagation.</p>
-</li>
-<li>
-<p>La longueur d&rsquo;onde <span class="imp">dépend</span> / <s>ne dépend pas</s><br>du milieu de propagation.</p>
-</li>
+<li>La fréquence <span class="fragment strike" data-fragment-index="1" >dépend</span> / <span class="fragment highlight-red" data-fragment-index="1" >ne dépend pas</span><br>du milieu de propagation.</li>
+<br>
+<li>La longueur d'onde <span class="fragment highlight-red" data-fragment-index="2" >dépend</span> / <span class="fragment strike" data-fragment-index="2" >ne dépend pas</span><br>du milieu de propagation.</li>
 </ul>
 </section><section>
 <p>Le <span class="imp">spectre électromagnétique</span><br>
@@ -213,9 +196,7 @@ Augmenter l&rsquo;intensité de la lumière blanche ne rend pas les photons plus
       data-background-image="/einstein2.png"
       data-background-size="contain"
       data-background-transition="concave">
-<div style="text-align:left;margin-left:-80px;">
-En 1905, Einstein explique l'effet<br> en généralisant l'idée de Planck au rayonnement<br>lui-même (et non plus seulement aux échanges).<br>La lumière serait constituée de petits paquets ;<br>les <span class="imp">photons</span>.
-</div>
+<p>En 1905, Einstein explique l&rsquo;effet<br> en généralisant l&rsquo;idée de Planck au rayonnement<br>lui-même (et non plus seulement aux échanges).<br>La lumière serait constituée de petits paquets ;<br>les <span class="imp">photons</span>.</p>
 </section><section>
 <p>Le <span class="imp">photon</span> est une particule de lumière sans masse voyageant à $c$ qui transporte une énergie :</p>
 <div class="imp fragment" style="display: flex; justify-content: center;">

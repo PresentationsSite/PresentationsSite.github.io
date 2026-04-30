@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Effet Photoélectrique - TP</title>
+    <style>
+        :root {
+            --bg-color: #e8ebef;
+            --panel-bg: #ffffff;
+            --accent: #2c3e50;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: var(--bg-color);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #333;
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+        }
+        #app-container {
+            width: 100%;
+            max-width: 1200px;
+            height: 95vh;
+            padding: 15px;
+            box-sizing: border-box;
+            display: grid;
+            grid-template-columns: 1.6fr 1fr;
+            gap: 20px;
+            min-height: 0; 
+        }
+
+        /* --- AJUSTEMENTS MODE PORTRAIT / PETITS ÉCRANS --- */
+        @media (max-width: 950px) {
+            body { 
+                height: auto; 
+                overflow-y: auto; 
+                justify-content: flex-start;
+                padding: 10px 0;
+            }
+            #app-container { 
+                grid-template-columns: 1fr; 
+                height: auto; 
+                overflow: visible;
+                display: flex;
+                flex-direction: column;
+            }
+            .canvas-container, .graph-container {
+                aspect-ratio: 16/10; /* Force une forme lisible en portrait */
+                height: auto !important;
+                flex-shrink: 0;
+            }
+            .controls {
+                height: auto !important;
+            }
+        }
+        
+        .canvas-container {
+            background: #eef2f5; 
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            width: 100%;
+            border: 1px solid #d1d8dd;
+            display: flex;
+            height: 100%; 
+            min-height: 0; 
+        }
+        
+        #simCanvas, #graphCanvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        
+        canvas { width: 100%; height: 100%; display: block; outline: none; }
+        
+        .side-panel {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 15px;
+            height: 100%; 
+            min-height: 0; 
+        }
+        .graph-container {
+            background: white; 
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            width: 100%;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            flex-grow: 1; 
+            position: relative;
+            min-height: 0; 
+        }
+        .controls {
+            background: var(--panel-bg);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .control-group { margin-bottom: 15px; }
+        label { display: block; font-weight: bold; margin-bottom: 5px; font-size: 0.9em; }
+        input[type="range"] { width: 100%; cursor: pointer; }
+        select { width: 100%; padding: 8px; border-radius: 4px; font-size: 1em; border: 1px solid #ccc;}
+        
+        #spectrum-slider {
+            height: 14px;
+            appearance: none;
+            background: linear-gradient(to right, 
+                #000000 0%, #000000 9.6%, 
+                rgb(130, 0, 200) 15%, rgb(0, 255, 255) 25%, rgb(0, 255, 255) 35%, 
+                rgb(0, 255, 0) 45%, rgb(255, 255, 0) 55%, rgb(255, 0, 0) 70%, 
+                rgb(100, 0, 0) 80.7%, #000000 80.7%, #000000 100%);
+            border-radius: 7px;
+            outline: none;
+        }
+        #spectrum-slider::-webkit-slider-thumb {
+            appearance: none; width: 18px; height: 18px; border-radius: 50%;
+            background: #fff; border: 2px solid #333; cursor: pointer;
+        }
+        
+        .btn-group { display: flex; gap: 10px; margin-top: 10px; }
+        button {
+            flex: 1; padding: 12px; color: white; border: none; 
+            border-radius: 4px; cursor: pointer; font-size: 0.9em; font-weight: bold; transition: opacity 0.2s;
+        }
+        button:hover { opacity: 0.85; }
+        .btn-primary { background: var(--accent); width: 100%; font-size: 1em; }
+        .btn-secondary { background: #7f8c8d; }
+        .btn-danger { background: #c0392b; }
+
+        .value-display {
+            color: #2980b9;
+            font-weight: 800;
+        }
+    </style>
+</head>
+<body>
+
+<div id="app-container">
+    <div class="canvas-container">
+        <canvas id="simCanvas"></canvas>
+    </div>
+
+    <div class="side-panel">
+        <div class="graph-container">
+            <canvas id="graphCanvas"></canvas>
+        </div>
+        
+        <div class="controls">
+            <div class="control-group">
+                <label>Métal de la cathode (Φ)</label>
+                <select id="metalSelect">
+                    <option value="2.14">Césium (2.14 eV) 🔴</option>
+                    <option value="2.36">Sodium (2.36 eV) 🔵</option>
+                    <option value="2.87">Calcium (2.87 eV) 🟢</option>
+                </select>
+            </div>
+
+            <div class="control-group">
+                <label>Longueur d'onde (λ)</label>
+                <input type="range" id="spectrum-slider" min="330" max="850" value="550">
+                <div style="text-align: center; font-size: 0.9em; font-weight: bold;"><span id="lambdaVal" class="value-display">550</span> nm</div>
+            </div>
+
+            <div class="control-group">
+                <label>Flux photonique (Intensité)</label>
+                <input type="range" id="flux-slider" min="0" max="100" value="40">
+            </div>
+
+            <div class="control-group">
+                <label>Tension du générateur : <span id="voltVal" class="value-display">0.00</span> V</label>
+                <input type="range" id="volt-slider" min="-1.5" max="1.5" step="0.01" value="0">
+            </div>
+            
+            <button id="recordPoint" class="btn-primary">Enregistrer ce point de mesure</button>
+            <div class="btn-group">
+                <button id="undoPoint" class="btn-secondary">Effacer dernier</button>
+                <button id="clearGraph" class="btn-danger">Tout effacer</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const simCanvas = document.getElementById('simCanvas');
+    const ctx = simCanvas.getContext('2d');
+    const graphCanvas = document.getElementById('graphCanvas');
+    const gCtx = graphCanvas.getContext('2d');
+
+    let dims = { sim: {w:0,h:0}, graph: {w:0,h:0} };
+
+    function setupHighResCanvas(canvasElement, context) {
+        const dpr = window.devicePixelRatio || 1;
+        const rect = canvasElement.parentElement.getBoundingClientRect();
+        canvasElement.width = rect.width * dpr;
+        canvasElement.height = rect.height * dpr;
+        context.scale(dpr, dpr);
+        return { w: rect.width, h: rect.height };
+    }
+
+    const h_eV = 4.135667696e-15; 
+    const c_nm = 299792458e9; 
+    
+    const metalColors = { "2.14": "#c0392b", "2.36": "#2980b9", "2.87": "#27ae60" };
+
+    let workFunction = 2.14; 
+    let lambda = 550;
+    let voltage = 0;
+    let intensity = 40;
+    let recordedPoints = []; 
+    let hoveredPoint = null;
+
+    let photons = [];
+    let electrons = [];
+    let currentHistory = new Array(30).fill(0); 
+
+    function init() {
+        document.getElementById('voltVal').innerText = voltage.toFixed(2);
+        setTimeout(() => {
+            resize();
+            window.addEventListener('resize', resize);
+            animate();
+        }, 50);
+    }
+
+    function resize() {
+        dims.sim = setupHighResCanvas(simCanvas, ctx);
+        dims.graph = setupHighResCanvas(graphCanvas, gCtx);
+    }
+
+    function drawDevice(cx, cy, width, height, title, value, min, max, unit, type) {
+        ctx.save();
+        ctx.fillStyle = "#ecf0f1";
+        ctx.strokeStyle = "#7f8c8d";
+        ctx.lineWidth = 3;
+        ctx.beginPath();
+        ctx.roundRect(cx - width/2, cy - height/2, width, height, 8);
+        ctx.fill(); ctx.stroke();
+        ctx.fillStyle = "#2c3e50";
+        ctx.font = "bold 12px sans-serif";
+        ctx.textAlign = "center";
+        ctx.fillText(title, cx, cy + height/2 + 15);
+        const dialRadius = width * 0.35;
+        const dialCy = cy + 10; 
+        ctx.fillStyle = "#fff";
+        ctx.beginPath(); ctx.arc(cx, dialCy, dialRadius, Math.PI, 2 * Math.PI); ctx.fill();
+        ctx.strokeStyle = "#444"; ctx.lineWidth = 2; ctx.stroke();
+        ctx.fillStyle = "#333";
+        ctx.font = "bold 9px sans-serif";
+        ctx.textBaseline = "middle";
+        let steps = type === 'alim' ? 6 : 10;
+        for (let i = 0; i <= steps; i++) {
+            const angle = Math.PI + (i / steps) * Math.PI;
+            ctx.beginPath(); 
+            ctx.moveTo(cx + (dialRadius - 4) * Math.cos(angle), dialCy + (dialRadius - 4) * Math.sin(angle)); 
+            ctx.lineTo(cx + dialRadius * Math.cos(angle), dialCy + dialRadius * Math.sin(angle)); 
+            ctx.stroke();
+            if (i % 2 === 0) {
+                const textVal = min + (i/steps) * (max - min);
+                ctx.fillText(textVal.toFixed(type === 'alim' ? 1 : 0), cx + (dialRadius - 12) * Math.cos(angle), dialCy + (dialRadius - 12) * Math.sin(angle));
+            }
+        }
+        ctx.font = "bold 14px sans-serif";
+        ctx.fillStyle = "#555";
+        ctx.fillText(unit, cx, dialCy - dialRadius*0.4);
+        let clampedValue = Math.max(min, Math.min(max, value));
+        const needleAngle = Math.PI + ((clampedValue - min) / (max - min)) * Math.PI;
+        ctx.strokeStyle = type === 'alim' ? "#e74c3c" : "#2980b9";
+        ctx.lineWidth = 2.5;
+        ctx.lineCap = "round";
+        ctx.beginPath();
+        ctx.moveTo(cx, dialCy);
+        ctx.lineTo(cx + (dialRadius - 8) * Math.cos(needleAngle), dialCy + (dialRadius - 8) * Math.sin(needleAngle));
+        ctx.stroke();
+        ctx.fillStyle = "#222";
+        ctx.beginPath(); ctx.arc(cx, dialCy, 4, 0, Math.PI*2); ctx.fill();
+        const termY = cy + height/2 - 12;
+        const termOffset = width * 0.35;
+        ctx.fillStyle = (type === 'alim') ? "#e74c3c" : "#222";
+        ctx.beginPath(); ctx.arc(cx - termOffset, termY, 5, 0, Math.PI*2); ctx.fill();
+        ctx.fillStyle = "#222";
+        ctx.beginPath(); ctx.arc(cx + termOffset, termY, 5, 0, Math.PI*2); ctx.fill();
+        ctx.restore();
+        return { termL: {x: cx - termOffset, y: termY}, termR: {x: cx + termOffset, y: termY} };
+    }
+
+    function wavelengthToColor(wl) {
+        if (wl < 380 || wl > 780) return "rgba(20, 20, 20, 0.7)"; 
+        let R, G, B;
+        if (wl >= 380 && wl < 440) { R = -(wl - 440) / (440 - 380); G = 0.0; B = 1.0; }
+        else if (wl >= 440 && wl < 490) { R = 0.0; G = (wl - 440) / (490 - 440); B = 1.0; }
+        else if (wl >= 490 && wl < 510) { R = 0.0; G = 1.0; B = -(wl - 510) / (510 - 490); }
+        else if (wl >= 510 && wl < 580) { R = (wl - 510) / (580 - 510); G = 1.0; B = 0.0; }
+        else if (wl >= 580 && wl < 645) { R = 1.0; G = -(wl - 645) / (645 - 580); B = 0.0; }
+        else if (wl >= 645 && wl <= 780) { R = 1.0; G = 0.0; B = 0.0; }
+        let alpha = 1.0;
+        if (wl >= 380 && wl < 420) alpha = 0.3 + 0.7 * (wl - 380) / (420 - 380);
+        else if (wl >= 700 && wl <= 780) alpha = 0.3 + 0.7 * (780 - wl) / (780 - 700);
+        return `rgba(${Math.round(R * 255)}, ${Math.round(G * 255)}, ${Math.round(B * 255)}, ${alpha})`;
+    }
+
+    function drawWavePacket(x, y, color, angle) {
+        ctx.strokeStyle = color; ctx.lineWidth = 2.5;
+        ctx.save();
+        ctx.translate(x, y);
+        ctx.rotate(angle);
+        ctx.beginPath();
+        for(let i = -12; i < 12; i++) {
+            let amplitude = Math.exp(-Math.pow(i/6, 2));
+            ctx.lineTo(i, Math.sin(i * 1.5) * 6 * amplitude);
+        }
+        ctx.stroke();
+        ctx.restore();
+    }
+
+    function drawGraph() {
+        if(dims.graph.w === 0) return;
+        const w = dims.graph.w;
+        const h_g = dims.graph.h;
+        gCtx.clearRect(0,0,w,h_g);
+        const padLeft = 55, padBottom = 45, padRight = 25, padTop = 30;
+        const plotW = w - padLeft - padRight, plotH = h_g - padBottom - padTop;
+        gCtx.font = "11px sans-serif"; gCtx.fillStyle = "#555"; gCtx.textAlign = "center"; gCtx.textBaseline = "middle";
+        for(let i=0; i<=5; i++) {
+            let val = i * 0.3; let yLine = (h_g - padBottom) - i*(plotH/5);
+            gCtx.strokeStyle = "#e5e5e5"; gCtx.lineWidth = 1;
+            gCtx.beginPath(); gCtx.moveTo(padLeft, yLine); gCtx.lineTo(w - padRight, yLine); gCtx.stroke();
+            gCtx.strokeStyle = "#333"; gCtx.beginPath(); gCtx.moveTo(padLeft - 5, yLine); gCtx.lineTo(padLeft, yLine); gCtx.stroke();
+            gCtx.textAlign = "right"; gCtx.fillText(val.toFixed(1), padLeft - 10, yLine);
+        }
+        for(let i=0; i<=6; i++) {
+            let val = 3.5 + i; let xLine = padLeft + i*(plotW/6);
+            gCtx.strokeStyle = "#e5e5e5"; gCtx.lineWidth = 1;
+            gCtx.beginPath(); gCtx.moveTo(xLine, padTop); gCtx.lineTo(xLine, h_g - padBottom); gCtx.stroke();
+            gCtx.strokeStyle = "#333"; gCtx.beginPath(); gCtx.moveTo(xLine, h_g - padBottom); gCtx.lineTo(xLine, h_g - padBottom + 5); gCtx.stroke();
+            gCtx.textAlign = "center"; gCtx.fillText(val.toFixed(1), xLine, h_g - padBottom + 15);
+        }
+        gCtx.strokeStyle = "#333"; gCtx.lineWidth = 2;
+        gCtx.beginPath(); gCtx.moveTo(padLeft, padTop); gCtx.lineTo(padLeft, h_g - padBottom); gCtx.lineTo(w - padRight, h_g - padBottom); gCtx.stroke();
+        gCtx.fillStyle = "#222"; gCtx.font = "bold 13px sans-serif";
+        gCtx.save(); gCtx.translate(15, padTop + plotH/2); gCtx.rotate(-Math.PI/2); gCtx.textAlign = "center"; gCtx.fillText("Uₛ mesuré (V)", 0, 0); gCtx.restore();
+        gCtx.textAlign = "center"; gCtx.fillText("f (10¹⁴ Hz)", padLeft + plotW/2, h_g - 10);
+        recordedPoints.forEach(p => {
+            gCtx.fillStyle = p.color; 
+            let px = padLeft + (p.f - 3.5) * plotW/6; let py = (h_g - padBottom) - (p.vs * plotH/1.5); 
+            if(py >= padTop && py <= h_g - padBottom && px >= padLeft && px <= w - padRight) {
+                gCtx.beginPath(); gCtx.arc(px, py, 4.5, 0, Math.PI*2); gCtx.fill();
+                if (hoveredPoint === p) {
+                    gCtx.strokeStyle = "#2c3e50"; gCtx.lineWidth = 2; gCtx.beginPath(); gCtx.arc(px, py, 6.5, 0, Math.PI*2); gCtx.stroke();
+                }
+            }
+        });
+        if (hoveredPoint) {
+            let px = padLeft + (hoveredPoint.f - 3.5) * plotW / 6, py = (h_g - padBottom) - (hoveredPoint.vs * plotH / 1.5);
+            gCtx.fillStyle = "rgba(44, 62, 80, 0.9)";
+            const text = `(${hoveredPoint.f.toFixed(2)} ; ${hoveredPoint.vs.toFixed(2)})`;
+            gCtx.font = "bold 12px sans-serif"; const textW = gCtx.measureText(text).width;
+            gCtx.beginPath(); gCtx.roundRect(px - textW/2 - 8, py - 35, textW + 16, 22, 6); gCtx.fill();
+            gCtx.fillStyle = "white"; gCtx.textAlign = "center"; gCtx.textBaseline = "middle"; gCtx.fillText(text, px, py - 24);
+        }
+    }
+
+    function animate() {
+        if(dims.sim.w === 0) return; 
+        const { w, h: h_c } = dims.sim;
+        const cx = w/2, cy = h_c * 0.40; 
+        const tubeScale = 0.35, cathodeX = cx - w * tubeScale, anodeX = cx + w * tubeScale, distance = anodeX - cathodeX; 
+        ctx.fillStyle = "#eef2f5"; ctx.fillRect(0,0,w,h_c);
+        const frequency = c_nm / lambda, energyPhoton_eV = h_eV * frequency, maxKE = Math.max(0, energyPhoton_eV - workFunction);
+        const base_v = w * 0.02, acceleration = voltage * (base_v * base_v) / (2 * distance);
+        if (Math.random() < intensity/100) {
+            let startX = cx, startY = 0, targetX = cathodeX + 5, targetY = cy + (Math.random() - 0.5) * h_c * 0.1;
+            let angle = Math.atan2(targetY - startY, targetX - startX), speed = w * 0.01;
+            photons.push({ x: startX, y: startY, vx: Math.cos(angle)*speed, vy: Math.sin(angle)*speed, angle: angle });
+        }
+        photons.forEach((p, index) => {
+            p.x += p.vx; p.y += p.vy;
+            if (p.x <= cathodeX + 10 && p.y > cy - h_c*0.15 && p.y < cy + h_c*0.15) {
+                if (maxKE > 0) electrons.push({ x: cathodeX + 12, y: p.y, vx: Math.sqrt(maxKE) * base_v, vy: (Math.random() - 0.5) * 0.5 });
+                photons.splice(index, 1);
+            } else if (p.y > h_c || p.x < 0) photons.splice(index, 1);
+        });
+        let instantCurrent = 0;
+        for (let i = electrons.length - 1; i >= 0; i--) {
+            let e = electrons[i]; e.vx += acceleration; e.x += e.vx; e.y += e.vy;
+            if (e.x >= anodeX) { instantCurrent++; electrons.splice(i, 1); }
+            else if (e.x <= cathodeX + 5 || e.y < 0 || e.y > h_c) electrons.splice(i, 1); 
+        }
+        currentHistory.shift(); currentHistory.push(instantCurrent * intensity * 0.8); 
+        const smoothedCurrent = currentHistory.reduce((a, b) => a + b, 0) / currentHistory.length;
+        const devW = Math.min(w * 0.28, 150), devH = 115, devY = h_c * 0.80;
+        let alimNodes = drawDevice(cx - w*0.16, devY, devW, devH, "Alimentation", voltage, -1.5, 1.5, 'V', 'alim');
+        let ampNodes = drawDevice(cx + w*0.16, devY, devW, devH, "Ampèremètre", smoothedCurrent, 0, 100, 'nA', 'amp');
+        ctx.lineWidth = 3; ctx.lineCap = "round";
+        ctx.strokeStyle = "#e74c3c"; ctx.beginPath(); ctx.moveTo(cathodeX, cy); ctx.lineTo(cathodeX, alimNodes.termL.y); ctx.lineTo(alimNodes.termL.x, alimNodes.termL.y); ctx.stroke(); 
+        ctx.strokeStyle = "#222"; ctx.beginPath(); ctx.moveTo(anodeX + 4, cy + h_c*0.15); ctx.lineTo(anodeX + 4, ampNodes.termR.y); ctx.lineTo(ampNodes.termR.x, ampNodes.termR.y); ctx.stroke(); 
+        ctx.beginPath(); ctx.moveTo(ampNodes.termL.x, ampNodes.termL.y); ctx.bezierCurveTo(ampNodes.termL.x, ampNodes.termL.y - 25, alimNodes.termR.x, alimNodes.termR.y - 25, alimNodes.termR.x, alimNodes.termR.y); ctx.stroke();
+        ctx.save(); ctx.translate(cx, cy); ctx.strokeStyle = "rgba(120, 150, 180, 0.6)"; ctx.fillStyle = "rgba(220, 235, 250, 0.4)"; ctx.lineWidth = 3; ctx.beginPath();
+        ctx.moveTo(-w*0.42, -h_c*0.1); ctx.bezierCurveTo(-w*0.48, -h_c*0.25, w*0.48, -h_c*0.25, w*0.42, -h_c*0.1); ctx.lineTo(w*0.42, h_c*0.15); ctx.bezierCurveTo(w*0.38, h_c*0.25, w*0.15, h_c*0.25, 0, h_c*0.25); ctx.bezierCurveTo(-w*0.15, h_c*0.25, -w*0.38, h_c*0.25, -w*0.42, h_c*0.15);
+        ctx.closePath(); ctx.fill(); ctx.stroke();
+        ctx.fillStyle = "#7f8c8d"; ctx.beginPath(); ctx.ellipse(-w*tubeScale, 0, 8, h_c*0.15, 0, 0, Math.PI*2); ctx.fill();
+        ctx.strokeStyle = "#95a5a6"; ctx.lineWidth = 2; 
+        for(let j=0; j<6; j++) { let yG = -h_c*0.12 + j*h_c*0.05; ctx.beginPath(); ctx.moveTo(w*tubeScale, yG); ctx.lineTo(w*tubeScale, yG); ctx.stroke(); }
+        ctx.fillStyle="#95a5a6"; ctx.fillRect(w*tubeScale, -h_c*0.15, 3, h_c*0.3); ctx.restore();
+        if (Math.abs(voltage) > 0.02) {
+            ctx.strokeStyle = `rgba(190, 40, 210, ${Math.min(Math.abs(voltage)/1.5, 0.6)})`; ctx.lineWidth = 1.5;
+            for(let i = 0; i < 7; i++) {
+                let yLine = cy - h_c*0.12 + (i * h_c*0.04); ctx.beginPath();
+                if (voltage >= 0) { ctx.moveTo(cx - w*0.25, yLine); ctx.lineTo(cx + w*0.25, yLine); }
+                else { ctx.moveTo(cx + w*0.25, yLine); ctx.lineTo(cx - w*0.25, yLine); }
+                ctx.stroke();
+            }
+        }
+        const col = wavelengthToColor(lambda); photons.forEach(p => drawWavePacket(p.x, p.y, col, p.angle));
+        ctx.fillStyle = "#2980b9"; electrons.forEach(e => { ctx.beginPath(); ctx.arc(e.x, e.y, 3, 0, Math.PI*2); ctx.fill(); });
+        drawGraph(); requestAnimationFrame(animate);
+    }
+
+    graphCanvas.addEventListener('mousemove', (e) => {
+        if(dims.graph.w === 0) return;
+        const rect = graphCanvas.getBoundingClientRect(), mouseX = e.clientX - rect.left, mouseY = e.clientY - rect.top;
+        const w = dims.graph.w, h_g = dims.graph.h, padLeft = 55, padBottom = 45, padRight = 25, padTop = 30;
+        const plotW = w - padLeft - padRight, plotH = h_g - padBottom - padTop;
+        let found = null;
+        for (let p of recordedPoints) {
+            let px = padLeft + (p.f - 3.5) * plotW / 6, py = (h_g - padBottom) - (p.vs * plotH / 1.5);
+            if (Math.hypot(px - mouseX, py - mouseY) < 10) { found = p; break; }
+        }
+        hoveredPoint = found; graphCanvas.style.cursor = found ? 'pointer' : 'default';
+    });
+
+    graphCanvas.addEventListener('mouseleave', () => { hoveredPoint = null; graphCanvas.style.cursor = 'default'; });
+    document.getElementById('spectrum-slider').addEventListener('input', (e) => { lambda = parseInt(e.target.value); document.getElementById('lambdaVal').innerText = lambda; });
+    document.getElementById('volt-slider').addEventListener('input', (e) => { voltage = parseFloat(e.target.value); document.getElementById('voltVal').innerText = voltage.toFixed(2); });
+    document.getElementById('flux-slider').addEventListener('input', (e) => { intensity = parseInt(e.target.value); });
+    document.getElementById('metalSelect').addEventListener('change', (e) => { workFunction = parseFloat(e.target.value); currentHistory.fill(0); });
+    document.getElementById('recordPoint').addEventListener('click', () => {
+        const freq = c_nm / lambda / 1e14;
+        const currentColor = metalColors[workFunction.toString()]; 
+        recordedPoints.push({f: freq, vs: Math.abs(voltage), color: currentColor});
+    });
+    document.getElementById('undoPoint').addEventListener('click', () => { recordedPoints.pop(); hoveredPoint = null; });
+    document.getElementById('clearGraph').addEventListener('click', () => { recordedPoints = []; hoveredPoint = null; });
+    init();
+</script>
+</body>
+</html>
