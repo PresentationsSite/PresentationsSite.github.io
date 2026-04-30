@@ -52,7 +52,7 @@
             }
             .canvas-container, .graph-container {
                 aspect-ratio: 16/10;
-                height: 300px !important; /* Hauteur fixe minimale pour mobile */
+                height: 300px !important;
                 flex-shrink: 0;
             }
             .controls {
@@ -405,8 +405,8 @@
         ctx.lineWidth = 3; ctx.lineCap = "round";
         ctx.strokeStyle = "#e74c3c"; ctx.beginPath(); ctx.moveTo(cathodeX, cy); ctx.lineTo(cathodeX, alimNodes.termL.y); ctx.lineTo(alimNodes.termL.x, alimNodes.termL.y); ctx.stroke(); 
         ctx.strokeStyle = "#222"; ctx.beginPath(); 
-        // Fil noir décalé de 8 pixels vers la gauche pour s'aligner exactement sous l'anode
-        ctx.moveTo(anodeX - 8, cy + h_c*0.15); ctx.lineTo(anodeX - 8, ampNodes.termR.y); ctx.lineTo(ampNodes.termR.x, ampNodes.termR.y); ctx.stroke(); 
+        // Fil noir décalé de 2 pixels vers la gauche (anodeX - 2) pour s'aligner exactement sous l'anode
+        ctx.moveTo(anodeX + 1, cy + h_c*0.15); ctx.lineTo(anodeX - 2, ampNodes.termR.y); ctx.lineTo(ampNodes.termR.x, ampNodes.termR.y); ctx.stroke(); 
         ctx.beginPath(); ctx.moveTo(ampNodes.termL.x, ampNodes.termL.y); ctx.bezierCurveTo(ampNodes.termL.x, ampNodes.termL.y - 25, alimNodes.termR.x, alimNodes.termR.y - 25, alimNodes.termR.x, alimNodes.termR.y); ctx.stroke();
         
         ctx.save(); ctx.translate(cx, cy); ctx.strokeStyle = "rgba(120, 150, 180, 0.6)"; ctx.fillStyle = "rgba(220, 235, 250, 0.4)"; ctx.lineWidth = 3; ctx.beginPath();
