@@ -9,6 +9,7 @@
             --bg-color: #e8ebef;
             --panel-bg: #ffffff;
             --accent: #2c3e50;
+            --exp-bg: #33071C; 
         }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -61,13 +62,13 @@
         }
         
         .canvas-container {
-            background: #eef2f5; 
+            background: var(--exp-bg); 
             border-radius: 8px;
             position: relative;
             overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
             width: 100%;
-            border: 1px solid #d1d8dd;
+            border: 1px solid #4a0a29;
             display: flex;
             height: 100%; 
             min-height: 0; 
@@ -115,18 +116,26 @@
         input[type="range"] { width: 100%; cursor: pointer; }
         select { width: 100%; padding: 8px; border-radius: 4px; font-size: 1em; border: 1px solid #ccc;}
         
-        #spectrum-slider {
+                #spectrum-slider {
             height: 14px;
+            -webkit-appearance: none;
             appearance: none;
             background: linear-gradient(to right, 
-                #000000 0%, #000000 9.6%, 
-                rgb(130, 0, 200) 15%, rgb(0, 255, 255) 25%, rgb(0, 255, 255) 35%, 
-                rgb(0, 255, 0) 45%, rgb(255, 255, 0) 55%, rgb(255, 0, 0) 70%, 
-                rgb(100, 0, 0) 80.7%, #000000 80.7%, #000000 100%);
+                rgb(102, 102, 102) 0%,     /* 330nm : Gris */
+                rgb(170, 0, 255) 13.4%,    /* 400nm : Violet */
+                rgb(0, 0, 255) 21.2%,      /* 440nm : Bleu */
+                rgb(0, 255, 255) 30.8%,    /* 490nm : Cyan */
+                rgb(0, 255, 0) 34.6%,      /* 510nm : Vert */
+                rgb(255, 255, 0) 48.1%,    /* 580nm : Jaune */
+                rgb(255, 0, 0) 60.6%,      /* 645nm : Rouge */
+                rgb(255, 0, 0) 80.8%,      /* 750nm : Rouge */
+                rgb(0, 0, 0) 100%);        /* 850nm : Noir */
             border-radius: 7px;
             outline: none;
         }
+        
         #spectrum-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
             appearance: none; width: 18px; height: 18px; border-radius: 50%;
             background: #fff; border: 2px solid #333; cursor: pointer;
         }
@@ -157,6 +166,7 @@
     <div class="side-panel">
         <div class="graph-container">
             <canvas id="graphCanvas"></canvas>
+            <button id="toggleTheoryBtn" style="position: absolute; top: 10px; right: 15px; padding: 6px 12px; font-size: 11px; font-weight: bold; background: white; border: 1px solid #ccc; border-radius: 4px; cursor: pointer; color: #333; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">Afficher théorie</button>
         </div>
         
         <div class="controls">
@@ -241,22 +251,26 @@
 
     function drawDevice(cx, cy, width, height, title, value, min, max, unit, type) {
         ctx.save();
-        ctx.fillStyle = "#ecf0f1";
-        ctx.strokeStyle = "#7f8c8d";
-        ctx.lineWidth = 3;
+        ctx.fillStyle = "rgba(236, 240, 241, 0.15)";
+        ctx.strokeStyle = "rgba(127, 140, 141, 0.5)";
+        ctx.lineWidth = 2;
         ctx.beginPath();
         ctx.roundRect(cx - width/2, cy - height/2, width, height, 8);
         ctx.fill(); ctx.stroke();
-        ctx.fillStyle = "#2c3e50";
+        
+        // Légendes en BLANC
+        ctx.fillStyle = "#ffffff";
         ctx.font = "bold 12px sans-serif";
         ctx.textAlign = "center";
         ctx.fillText(title, cx, cy + height/2 + 15);
+
         const dialRadius = width * 0.35;
         const dialCy = cy + 10; 
-        ctx.fillStyle = "#fff";
+        ctx.fillStyle = "#1e272e";
         ctx.beginPath(); ctx.arc(cx, dialCy, dialRadius, Math.PI, 2 * Math.PI); ctx.fill();
-        ctx.strokeStyle = "#444"; ctx.lineWidth = 2; ctx.stroke();
-        ctx.fillStyle = "#333";
+        ctx.strokeStyle = "#ffffff"; ctx.lineWidth = 1.5; ctx.stroke();
+
+        ctx.fillStyle = "#ffffff";
         ctx.font = "bold 9px sans-serif";
         ctx.textBaseline = "middle";
         let steps = type === 'alim' ? 6 : 10;
@@ -272,47 +286,69 @@
             }
         }
         ctx.font = "bold 14px sans-serif";
-        ctx.fillStyle = "#555";
+        ctx.fillStyle = "#bdc3c7";
         ctx.fillText(unit, cx, dialCy - dialRadius*0.4);
+
         let clampedValue = Math.max(min, Math.min(max, value));
         const needleAngle = Math.PI + ((clampedValue - min) / (max - min)) * Math.PI;
-        ctx.strokeStyle = type === 'alim' ? "#e74c3c" : "#2980b9";
+        ctx.strokeStyle = type === 'alim' ? "#ff7675" : "#74b9ff";
         ctx.lineWidth = 2.5;
         ctx.lineCap = "round";
         ctx.beginPath();
         ctx.moveTo(cx, dialCy);
         ctx.lineTo(cx + (dialRadius - 8) * Math.cos(needleAngle), dialCy + (dialRadius - 8) * Math.sin(needleAngle));
         ctx.stroke();
-        ctx.fillStyle = "#222";
+        
+        ctx.fillStyle = "#ffffff";
         ctx.beginPath(); ctx.arc(cx, dialCy, 4, 0, Math.PI*2); ctx.fill();
         const termY = cy + height/2 - 12;
         const termOffset = width * 0.35;
-        ctx.fillStyle = (type === 'alim') ? "#e74c3c" : "#222";
+        ctx.fillStyle = (type === 'alim') ? "#ff7675" : "#ffffff";
         ctx.beginPath(); ctx.arc(cx - termOffset, termY, 5, 0, Math.PI*2); ctx.fill();
-        ctx.fillStyle = "#222";
+        ctx.fillStyle = "#ffffff";
         ctx.beginPath(); ctx.arc(cx + termOffset, termY, 5, 0, Math.PI*2); ctx.fill();
         ctx.restore();
         return { termL: {x: cx - termOffset, y: termY}, termR: {x: cx + termOffset, y: termY} };
     }
 
-    function wavelengthToColor(wl) {
-        if (wl < 380 || wl > 780) return "rgba(20, 20, 20, 0.7)"; 
+            function wavelengthToColor(wl) {
         let R, G, B;
-        if (wl >= 380 && wl < 440) { R = -(wl - 440) / (440 - 380); G = 0.0; B = 1.0; }
+        
+        if (wl < 400) { 
+            // UV : Transition du gris (330nm) au violet (400nm)
+            let t = (wl - 330) / (400 - 330);
+            R = 0.4 + t * (0.666 - 0.4); 
+            G = 0.4 + t * (0.0 - 0.4); 
+            B = 0.4 + t * (1.0 - 0.4); 
+        }
+        else if (wl >= 400 && wl < 440) { R = -(wl - 440) / (440 - 380); G = 0.0; B = 1.0; }
         else if (wl >= 440 && wl < 490) { R = 0.0; G = (wl - 440) / (490 - 440); B = 1.0; }
         else if (wl >= 490 && wl < 510) { R = 0.0; G = 1.0; B = -(wl - 510) / (510 - 490); }
         else if (wl >= 510 && wl < 580) { R = (wl - 510) / (580 - 510); G = 1.0; B = 0.0; }
         else if (wl >= 580 && wl < 645) { R = 1.0; G = -(wl - 645) / (645 - 580); B = 0.0; }
-        else if (wl >= 645 && wl <= 780) { R = 1.0; G = 0.0; B = 0.0; }
+        else if (wl >= 645 && wl <= 750) { R = 1.0; G = 0.0; B = 0.0; }
+        else { 
+            // IR : Transition du rouge (750nm) vers le noir (850nm)
+            let t = (wl - 750) / (850 - 750);
+            R = 1.0 * (1 - t); 
+            G = 0.0; 
+            B = 0.0; 
+        }
+
+        // Transparence progressive aux extrémités
         let alpha = 1.0;
-        if (wl >= 380 && wl < 420) alpha = 0.3 + 0.7 * (wl - 380) / (420 - 380);
-        else if (wl >= 700 && wl <= 780) alpha = 0.3 + 0.7 * (780 - wl) / (780 - 700);
-        return `rgba(${Math.round(R * 255)}, ${Math.round(G * 255)}, ${Math.round(B * 255)}, ${alpha})`;
+        if (wl < 400) alpha = 0.3 + 0.7 * (wl - 330) / (400 - 330);
+        else if (wl > 750) alpha = 0.3 + 0.7 * (850 - wl) / (850 - 750);
+
+        // On s'assure que les valeurs restent entre 0 et 255
+        return `rgba(${Math.max(0, Math.min(255, Math.round(R * 255)))}, ${Math.max(0, Math.min(255, Math.round(G * 255)))}, ${Math.max(0, Math.min(255, Math.round(B * 255)))}, ${alpha})`;
     }
 
     function drawWavePacket(x, y, color, angle) {
-        ctx.strokeStyle = color; ctx.lineWidth = 2.5;
         ctx.save();
+        ctx.shadowBlur = 10;
+        ctx.shadowColor = color; 
+        ctx.strokeStyle = color; ctx.lineWidth = 2.5;
         ctx.translate(x, y);
         ctx.rotate(angle);
         ctx.beginPath();
@@ -331,24 +367,27 @@
         const padLeft = 55, padBottom = 45, padRight = 25, padTop = 30;
         const plotW = w - padLeft - padRight, plotH = h_g - padBottom - padTop;
         gCtx.font = "11px sans-serif"; gCtx.fillStyle = "#555"; gCtx.textAlign = "center"; gCtx.textBaseline = "middle";
-        for(let i=0; i<=5; i++) {
-            let val = i * 0.3; let yLine = (h_g - padBottom) - i*(plotH/5);
+        for(let i=0; i<=6; i++) {
+            let val = i * 0.40; // Pas de 0.40 pour atteindre 2.40
+            let yLine = (h_g - padBottom) - i*(plotH/6); // Division par 6
             gCtx.strokeStyle = "#e5e5e5"; gCtx.lineWidth = 1;
             gCtx.beginPath(); gCtx.moveTo(padLeft, yLine); gCtx.lineTo(w - padRight, yLine); gCtx.stroke();
             gCtx.strokeStyle = "#333"; gCtx.beginPath(); gCtx.moveTo(padLeft - 5, yLine); gCtx.lineTo(padLeft, yLine); gCtx.stroke();
-            gCtx.textAlign = "right"; gCtx.fillText(val.toFixed(1), padLeft - 10, yLine);
+            gCtx.textAlign = "right";
+            gCtx.fillText(val.toFixed(2), padLeft - 10, yLine);
         }
         for(let i=0; i<=6; i++) {
             let val = 3.5 + i; let xLine = padLeft + i*(plotW/6);
             gCtx.strokeStyle = "#e5e5e5"; gCtx.lineWidth = 1;
             gCtx.beginPath(); gCtx.moveTo(xLine, padTop); gCtx.lineTo(xLine, h_g - padBottom); gCtx.stroke();
             gCtx.strokeStyle = "#333"; gCtx.beginPath(); gCtx.moveTo(xLine, h_g - padBottom); gCtx.lineTo(xLine, h_g - padBottom + 5); gCtx.stroke();
-            gCtx.textAlign = "center"; gCtx.fillText(val.toFixed(1), xLine, h_g - padBottom + 15);
+            gCtx.textAlign = "center";
+            gCtx.fillText(val.toFixed(1), xLine, h_g - padBottom + 15);
         }
         gCtx.strokeStyle = "#333"; gCtx.lineWidth = 2;
         gCtx.beginPath(); gCtx.moveTo(padLeft, padTop); gCtx.lineTo(padLeft, h_g - padBottom); gCtx.lineTo(w - padRight, h_g - padBottom); gCtx.stroke();
         gCtx.fillStyle = "#222"; gCtx.font = "bold 13px sans-serif";
-        gCtx.save(); gCtx.translate(15, padTop + plotH/2); gCtx.rotate(-Math.PI/2); gCtx.textAlign = "center"; gCtx.fillText("Uₛ mesuré (V)", 0, 0); gCtx.restore();
+        gCtx.save(); gCtx.translate(15, padTop + plotH/2); gCtx.rotate(-Math.PI/2); gCtx.textAlign = "center"; gCtx.fillText("e·Uₛ (10⁻¹⁹ J)", 0, 0); gCtx.restore();
         gCtx.textAlign = "center"; gCtx.fillText("f (10¹⁴ Hz)", padLeft + plotW/2, h_g - 10);
         recordedPoints.forEach(p => {
             gCtx.fillStyle = p.color; 
@@ -360,10 +399,52 @@
                 }
             }
         });
+                // --- Courbes théoriques ---
+        if (showTheory) {
+            gCtx.save();
+            // On crée un masque (clip) pour que les lignes ne débordent pas du cadre du graphe
+            gCtx.beginPath();
+            gCtx.rect(padLeft, padTop, plotW, plotH);
+            gCtx.clip(); 
+
+            const metals = [
+                { phi: 2.14, color: "#e74c3c" }, // Césium (Rouge)
+                { phi: 2.36, color: "#3498db" }, // Sodium (Bleu)
+                { phi: 2.87, color: "#2ecc71" }  // Calcium (Vert)
+            ];
+
+            gCtx.lineWidth = 1.5;
+            gCtx.setLineDash([5, 5]); // Lignes en pointillés pour marquer la théorie
+
+            metals.forEach(m => {
+                gCtx.strokeStyle = m.color;
+                gCtx.beginPath();
+                
+                // Calcul de la fréquence de seuil f0 (en 10^14 Hz)
+                // Constante h en eV.s = 4.135667e-15. 
+                // Pour f en 10^14 Hz, le coefficient directeur est de 0.4135667 V / (10^14 Hz)
+                let f0 = m.phi / 0.4135667; 
+                
+                // Point de départ de la droite (f0, 0V)
+                let pxStart = padLeft + (f0 - 3.5) * plotW / 6;
+                let pyStart = (h_g - padBottom); 
+                
+                // Point de fin de la droite (au bord droit du graphe, x = 9.5 * 10^14 Hz)
+                let xEnd = 9.5;
+                let vsEnd = 0.4135667 * xEnd - m.phi;
+                let pxEnd = padLeft + (xEnd - 3.5) * plotW / 6;
+                let pyEnd = (h_g - padBottom) - (vsEnd * plotH / 1.5);
+
+                gCtx.moveTo(pxStart, pyStart);
+                gCtx.lineTo(pxEnd, pyEnd);
+                gCtx.stroke();
+            });
+            gCtx.restore();
+        }
         if (hoveredPoint) {
             let px = padLeft + (hoveredPoint.f - 3.5) * plotW / 6, py = (h_g - padBottom) - (hoveredPoint.vs * plotH / 1.5);
             gCtx.fillStyle = "rgba(44, 62, 80, 0.9)";
-            const text = `(${hoveredPoint.f.toFixed(2)} ; ${hoveredPoint.vs.toFixed(2)})`;
+            const text = `(${hoveredPoint.f.toFixed(2)} ; ${(hoveredPoint.vs * 1.6).toFixed(2)})`;
             gCtx.font = "bold 12px sans-serif"; const textW = gCtx.measureText(text).width;
             gCtx.beginPath(); gCtx.roundRect(px - textW/2 - 8, py - 35, textW + 16, 22, 6); gCtx.fill();
             gCtx.fillStyle = "white"; gCtx.textAlign = "center"; gCtx.textBaseline = "middle"; gCtx.fillText(text, px, py - 24);
@@ -375,11 +456,15 @@
         const { w, h: h_c } = dims.sim;
         const cx = w/2, cy = h_c * 0.40; 
         const tubeScale = 0.35, cathodeX = cx - w * tubeScale, anodeX = cx + w * tubeScale, distance = anodeX - cathodeX; 
-        ctx.fillStyle = "#eef2f5"; ctx.fillRect(0,0,w,h_c);
+        
+        ctx.fillStyle = "#33071C"; 
+        ctx.fillRect(0,0,w,h_c);
+
         const frequency = c_nm / lambda, energyPhoton_eV = h_eV * frequency, maxKE = Math.max(0, energyPhoton_eV - workFunction);
-        const base_v = w * 0.02, acceleration = voltage * (base_v * base_v) / (2 * distance);
+        const base_v = w * 0.02, acceleration = -voltage * (base_v * base_v) / (2 * distance);
+        
         if (Math.random() < intensity/100) {
-            let startX = cx, startY = 0, targetX = cathodeX + 5, targetY = cy + (Math.random() - 0.5) * h_c * 0.1;
+            let startX = cx + w * 0.5, startY = cy - h_c * 0.3, targetX = cathodeX + 5, targetY = cy + (Math.random() - 0.5) * h_c * 0.1;
             let angle = Math.atan2(targetY - startY, targetX - startX), speed = w * 0.01;
             photons.push({ x: startX, y: startY, vx: Math.cos(angle)*speed, vy: Math.sin(angle)*speed, angle: angle });
         }
@@ -404,35 +489,69 @@
 
         ctx.lineWidth = 3; ctx.lineCap = "round";
         ctx.strokeStyle = "#e74c3c"; ctx.beginPath(); ctx.moveTo(cathodeX, cy); ctx.lineTo(cathodeX, alimNodes.termL.y); ctx.lineTo(alimNodes.termL.x, alimNodes.termL.y); ctx.stroke(); 
-        ctx.strokeStyle = "#222"; ctx.beginPath(); 
-        // Fil noir décalé de 2 pixels vers la gauche (anodeX - 2) pour s'aligner exactement sous l'anode
-        ctx.moveTo(anodeX + 1, cy + h_c*0.15); ctx.lineTo(anodeX - 2, ampNodes.termR.y); ctx.lineTo(ampNodes.termR.x, ampNodes.termR.y); ctx.stroke(); 
+        
+        ctx.strokeStyle = "#ffffff"; ctx.beginPath(); 
+        ctx.moveTo(anodeX + 1, cy + h_c*0.15); ctx.lineTo(anodeX + 1, ampNodes.termR.y); ctx.lineTo(ampNodes.termR.x, ampNodes.termR.y); ctx.stroke(); 
         ctx.beginPath(); ctx.moveTo(ampNodes.termL.x, ampNodes.termL.y); ctx.bezierCurveTo(ampNodes.termL.x, ampNodes.termL.y - 25, alimNodes.termR.x, alimNodes.termR.y - 25, alimNodes.termR.x, alimNodes.termR.y); ctx.stroke();
         
-        ctx.save(); ctx.translate(cx, cy); ctx.strokeStyle = "rgba(120, 150, 180, 0.6)"; ctx.fillStyle = "rgba(220, 235, 250, 0.4)"; ctx.lineWidth = 3; ctx.beginPath();
+        ctx.save(); ctx.translate(cx, cy); ctx.strokeStyle = "rgba(255, 255, 255, 0.2)"; ctx.fillStyle = "rgba(255, 255, 255, 0.05)"; ctx.lineWidth = 2; ctx.beginPath();
         ctx.moveTo(-w*0.42, -h_c*0.1); ctx.bezierCurveTo(-w*0.48, -h_c*0.25, w*0.48, -h_c*0.25, w*0.42, -h_c*0.1); ctx.lineTo(w*0.42, h_c*0.15); ctx.bezierCurveTo(w*0.38, h_c*0.25, w*0.15, h_c*0.25, 0, h_c*0.25); ctx.bezierCurveTo(-w*0.15, h_c*0.25, -w*0.38, h_c*0.25, -w*0.42, h_c*0.15);
         ctx.closePath(); ctx.fill(); ctx.stroke();
-        ctx.fillStyle = "#7f8c8d"; ctx.beginPath(); ctx.ellipse(-w*tubeScale, 0, 8, h_c*0.15, 0, 0, Math.PI*2); ctx.fill();
-        ctx.strokeStyle = "#95a5a6"; ctx.lineWidth = 2; 
-        for(let j=0; j<6; j++) { let yG = -h_c*0.12 + j*h_c*0.05; ctx.beginPath(); ctx.moveTo(w*tubeScale, yG); ctx.lineTo(w*tubeScale, yG); ctx.stroke(); }
-        ctx.fillStyle="#95a5a6"; ctx.fillRect(w*tubeScale, -h_c*0.15, 3, h_c*0.3); ctx.restore();
+        ctx.fillStyle = "#bdc3c7"; ctx.beginPath(); ctx.ellipse(-w*tubeScale, 0, 8, h_c*0.15, 0, 0, Math.PI*2); ctx.fill();
+             // --- Anode ---
+        ctx.strokeStyle = "#bdc3c7"; // Couleur gris clair
+        ctx.lineWidth = 3; // Traits de la grille un peu plus épais
+        for(let j=0; j<6; j++) { 
+            let yG = -h_c*0.12 + j*h_c*0.05; 
+            ctx.beginPath(); ctx.moveTo(w*tubeScale, yG); ctx.lineTo(w*tubeScale, yG); ctx.stroke(); 
+        }
+        ctx.fillStyle = "#bdc3c7"; // Couleur gris clair pour le support
+        ctx.fillRect(w*tubeScale - 2, -h_c*0.15, 6, h_c*0.3); // Largeur passée à 6px et décalée de -2px pour rester bien centrée
+        ctx.restore();
 
+        // Lignes de champ (Violette/Fushia) avec flèches
         if (Math.abs(voltage) > 0.02) {
             ctx.save();
-            ctx.strokeStyle = `rgba(190, 40, 210, ${Math.min(Math.abs(voltage)/1.5, 0.4)})`;
-            ctx.lineWidth = 4;
-            ctx.shadowBlur = 12;
-            ctx.shadowColor = `rgba(190, 40, 210, 0.8)`;
+            ctx.strokeStyle = `rgba(255, 0, 255, ${Math.min(Math.abs(voltage)/1.5, 0.4)})`;
+            ctx.lineWidth = 3;
+            ctx.shadowBlur = 15;
+            ctx.shadowColor = `rgba(255, 0, 255, 0.9)`;
+            ctx.lineJoin = "round"; // Pour des pointes de flèches bien nettes
+
+            // Sens du champ E : vers la gauche si V > 0, vers la droite si V < 0
+            let dir = voltage >= 0 ? 1 : -1; 
+            let arrowSize = 6; // Taille de la pointe de la flèche
+
             for(let i = 0; i < 7; i++) {
-                let yLine = cy - h_c*0.12 + (i * h_c*0.04); ctx.beginPath();
-                if (voltage >= 0) { ctx.moveTo(cx - w*0.28, yLine); ctx.lineTo(cx + w*0.28, yLine); }
-                else { ctx.moveTo(cx + w*0.28, yLine); ctx.lineTo(cx - w*0.28, yLine); }
+                let yLine = cy - h_c*0.12 + (i * h_c*0.04); 
+                
+                // Ligne principale
+                ctx.beginPath();
+                ctx.moveTo(cx - w*0.28, yLine); 
+                ctx.lineTo(cx + w*0.28, yLine); 
+                ctx.stroke();
+
+                // Dessin de la pointe de flèche au centre de la ligne
+                ctx.beginPath();
+                ctx.moveTo(cx - dir * arrowSize, yLine - arrowSize);
+                ctx.lineTo(cx, yLine); // Pointe centrale
+                ctx.lineTo(cx - dir * arrowSize, yLine + arrowSize);
                 ctx.stroke();
             }
             ctx.restore();
         }
+
         const col = wavelengthToColor(lambda); photons.forEach(p => drawWavePacket(p.x, p.y, col, p.angle));
-        ctx.fillStyle = "#2980b9"; electrons.forEach(e => { ctx.beginPath(); ctx.arc(e.x, e.y, 3, 0, Math.PI*2); ctx.fill(); });
+        
+        ctx.save();
+        ctx.shadowBlur = 10;
+        ctx.shadowColor = "#00ffff";
+        ctx.fillStyle = "#81ecec"; 
+        electrons.forEach(e => {
+            ctx.beginPath(); ctx.arc(e.x, e.y, 3, 0, Math.PI*2); ctx.fill();
+        });
+        ctx.restore();
+
         drawGraph(); requestAnimationFrame(animate);
     }
 
@@ -461,6 +580,11 @@
     });
     document.getElementById('undoPoint').addEventListener('click', () => { recordedPoints.pop(); hoveredPoint = null; });
     document.getElementById('clearGraph').addEventListener('click', () => { recordedPoints = []; hoveredPoint = null; });
+        let showTheory = false;
+    document.getElementById('toggleTheoryBtn').addEventListener('click', (e) => {
+        showTheory = !showTheory;
+        e.target.innerText = showTheory ? "Masquer théorie" : "Afficher théorie";
+    });
     init();
 </script>
 </body>
