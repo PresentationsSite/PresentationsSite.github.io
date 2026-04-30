@@ -52,7 +52,7 @@
             }
             .canvas-container, .graph-container {
                 aspect-ratio: 16/10;
-                height: auto !important;
+                height: 300px !important; /* Hauteur fixe minimale pour mobile */
                 flex-shrink: 0;
             }
             .controls {
@@ -77,9 +77,11 @@
             position: absolute;
             top: 0;
             left: 0;
+            width: 100%;
+            height: 100%;
         }
         
-        canvas { width: 100%; height: 100%; display: block; outline: none; }
+        canvas { display: block; outline: none; }
         
         .side-panel {
             display: flex;
@@ -108,7 +110,7 @@
             flex-direction: column;
             justify-content: center;
         }
-        .control-group { margin-bottom: 15px; }
+        .control-group { margin-bottom: 12px; }
         label { display: block; font-weight: bold; margin-bottom: 5px; font-size: 0.9em; }
         input[type="range"] { width: 100%; cursor: pointer; }
         select { width: 100%; padding: 8px; border-radius: 4px; font-size: 1em; border: 1px solid #ccc;}
@@ -202,7 +204,7 @@
 
     function setupHighResCanvas(canvasElement, context) {
         const dpr = window.devicePixelRatio || 1;
-        const rect = canvasElement.parentElement.getBoundingClientRect();
+        const rect = canvasElement.getBoundingClientRect();
         canvasElement.width = rect.width * dpr;
         canvasElement.height = rect.height * dpr;
         context.setTransform(dpr, 0, 0, dpr, 0, 0);
@@ -227,11 +229,9 @@
 
     function init() {
         document.getElementById('voltVal').innerText = voltage.toFixed(2);
-        setTimeout(() => {
-            resize();
-            window.addEventListener('resize', resize);
-            animate();
-        }, 50);
+        resize();
+        window.addEventListener('resize', resize);
+        animate();
     }
 
     function resize() {
@@ -326,8 +326,7 @@
 
     function drawGraph() {
         if(dims.graph.w === 0) return;
-        const w = dims.graph.w;
-        const h_g = dims.graph.h;
+        const w = dims.graph.w, h_g = dims.graph.h;
         gCtx.clearRect(0,0,w,h_g);
         const padLeft = 55, padBottom = 45, padRight = 25, padTop = 30;
         const plotW = w - padLeft - padRight, plotH = h_g - padBottom - padTop;
@@ -353,7 +352,7 @@
         gCtx.textAlign = "center"; gCtx.fillText("f (10¹⁴ Hz)", padLeft + plotW/2, h_g - 10);
         recordedPoints.forEach(p => {
             gCtx.fillStyle = p.color; 
-            let px = padLeft + (p.f - 3.5) * plotW/6; let py = (h_g - padBottom) - (p.vs * plotH/1.5); 
+            let px = padLeft + (p.f - 3.5) * plotW/6, py = (h_g - padBottom) - (p.vs * plotH/1.5); 
             if(py >= padTop && py <= h_g - padBottom && px >= padLeft && px <= w - padRight) {
                 gCtx.beginPath(); gCtx.arc(px, py, 4.5, 0, Math.PI*2); gCtx.fill();
                 if (hoveredPoint === p) {
@@ -406,8 +405,8 @@
         ctx.lineWidth = 3; ctx.lineCap = "round";
         ctx.strokeStyle = "#e74c3c"; ctx.beginPath(); ctx.moveTo(cathodeX, cy); ctx.lineTo(cathodeX, alimNodes.termL.y); ctx.lineTo(alimNodes.termL.x, alimNodes.termL.y); ctx.stroke(); 
         ctx.strokeStyle = "#222"; ctx.beginPath(); 
-        // Fil noir décalé de 8 pixels vers la droite pour s'aligner exactement sous la grille d'anode
-        ctx.moveTo(anodeX + 8, cy + h_c*0.15); ctx.lineTo(anodeX + 8, ampNodes.termR.y); ctx.lineTo(ampNodes.termR.x, ampNodes.termR.y); ctx.stroke(); 
+        // Fil noir décalé de 8 pixels vers la gauche pour s'aligner exactement sous l'anode
+        ctx.moveTo(anodeX - 8, cy + h_c*0.15); ctx.lineTo(anodeX - 8, ampNodes.termR.y); ctx.lineTo(ampNodes.termR.x, ampNodes.termR.y); ctx.stroke(); 
         ctx.beginPath(); ctx.moveTo(ampNodes.termL.x, ampNodes.termL.y); ctx.bezierCurveTo(ampNodes.termL.x, ampNodes.termL.y - 25, alimNodes.termR.x, alimNodes.termR.y - 25, alimNodes.termR.x, alimNodes.termR.y); ctx.stroke();
         
         ctx.save(); ctx.translate(cx, cy); ctx.strokeStyle = "rgba(120, 150, 180, 0.6)"; ctx.fillStyle = "rgba(220, 235, 250, 0.4)"; ctx.lineWidth = 3; ctx.beginPath();
@@ -418,21 +417,16 @@
         for(let j=0; j<6; j++) { let yG = -h_c*0.12 + j*h_c*0.05; ctx.beginPath(); ctx.moveTo(w*tubeScale, yG); ctx.lineTo(w*tubeScale, yG); ctx.stroke(); }
         ctx.fillStyle="#95a5a6"; ctx.fillRect(w*tubeScale, -h_c*0.15, 3, h_c*0.3); ctx.restore();
 
-        // Lignes de champ (Violette/Fushia) - Épaissies et allongées avec Halo
         if (Math.abs(voltage) > 0.02) {
             ctx.save();
             ctx.strokeStyle = `rgba(190, 40, 210, ${Math.min(Math.abs(voltage)/1.5, 0.4)})`;
-            ctx.lineWidth = 4; // Épaississement
-            ctx.shadowBlur = 10; // Halo
+            ctx.lineWidth = 4;
+            ctx.shadowBlur = 12;
             ctx.shadowColor = `rgba(190, 40, 210, 0.8)`;
             for(let i = 0; i < 7; i++) {
                 let yLine = cy - h_c*0.12 + (i * h_c*0.04); ctx.beginPath();
-                if (voltage >= 0) { 
-                    // Allongement des lignes
-                    ctx.moveTo(cx - w*0.28, yLine); ctx.lineTo(cx + w*0.28, yLine); 
-                } else { 
-                    ctx.moveTo(cx + w*0.28, yLine); ctx.lineTo(cx - w*0.28, yLine); 
-                }
+                if (voltage >= 0) { ctx.moveTo(cx - w*0.28, yLine); ctx.lineTo(cx + w*0.28, yLine); }
+                else { ctx.moveTo(cx + w*0.28, yLine); ctx.lineTo(cx - w*0.28, yLine); }
                 ctx.stroke();
             }
             ctx.restore();
