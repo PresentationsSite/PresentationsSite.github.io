@@ -36,7 +36,6 @@
             min-height: 0; 
         }
 
-        /* --- AJUSTEMENTS MODE PORTRAIT / PETITS ÉCRANS --- */
         @media (max-width: 950px) {
             body { 
                 height: auto; 
@@ -52,7 +51,7 @@
                 flex-direction: column;
             }
             .canvas-container, .graph-container {
-                aspect-ratio: 16/10; /* Force une forme lisible en portrait */
+                aspect-ratio: 16/10;
                 height: auto !important;
                 flex-shrink: 0;
             }
@@ -170,8 +169,8 @@
 
             <div class="control-group">
                 <label>Longueur d'onde (λ)</label>
-                <input type="range" id="spectrum-slider" min="330" max="850" value="550">
-                <div style="text-align: center; font-size: 0.9em; font-weight: bold;"><span id="lambdaVal" class="value-display">550</span> nm</div>
+                <input type="range" id="spectrum-slider" min="330" max="850" value="750">
+                <div style="text-align: center; font-size: 0.9em; font-weight: bold;"><span id="lambdaVal" class="value-display">750</span> nm</div>
             </div>
 
             <div class="control-group">
@@ -206,7 +205,7 @@
         const rect = canvasElement.parentElement.getBoundingClientRect();
         canvasElement.width = rect.width * dpr;
         canvasElement.height = rect.height * dpr;
-        context.scale(dpr, dpr);
+        context.setTransform(dpr, 0, 0, dpr, 0, 0);
         return { w: rect.width, h: rect.height };
     }
 
@@ -216,7 +215,7 @@
     const metalColors = { "2.14": "#c0392b", "2.36": "#2980b9", "2.87": "#27ae60" };
 
     let workFunction = 2.14; 
-    let lambda = 550;
+    let lambda = 750;
     let voltage = 0;
     let intensity = 40;
     let recordedPoints = []; 
@@ -403,10 +402,14 @@
         const devW = Math.min(w * 0.28, 150), devH = 115, devY = h_c * 0.80;
         let alimNodes = drawDevice(cx - w*0.16, devY, devW, devH, "Alimentation", voltage, -1.5, 1.5, 'V', 'alim');
         let ampNodes = drawDevice(cx + w*0.16, devY, devW, devH, "Ampèremètre", smoothedCurrent, 0, 100, 'nA', 'amp');
+
         ctx.lineWidth = 3; ctx.lineCap = "round";
         ctx.strokeStyle = "#e74c3c"; ctx.beginPath(); ctx.moveTo(cathodeX, cy); ctx.lineTo(cathodeX, alimNodes.termL.y); ctx.lineTo(alimNodes.termL.x, alimNodes.termL.y); ctx.stroke(); 
-        ctx.strokeStyle = "#222"; ctx.beginPath(); ctx.moveTo(anodeX + 4, cy + h_c*0.15); ctx.lineTo(anodeX + 4, ampNodes.termR.y); ctx.lineTo(ampNodes.termR.x, ampNodes.termR.y); ctx.stroke(); 
+        ctx.strokeStyle = "#222"; ctx.beginPath(); 
+        // Fil noir décalé de 8 pixels vers la droite pour s'aligner exactement sous la grille d'anode
+        ctx.moveTo(anodeX + 8, cy + h_c*0.15); ctx.lineTo(anodeX + 8, ampNodes.termR.y); ctx.lineTo(ampNodes.termR.x, ampNodes.termR.y); ctx.stroke(); 
         ctx.beginPath(); ctx.moveTo(ampNodes.termL.x, ampNodes.termL.y); ctx.bezierCurveTo(ampNodes.termL.x, ampNodes.termL.y - 25, alimNodes.termR.x, alimNodes.termR.y - 25, alimNodes.termR.x, alimNodes.termR.y); ctx.stroke();
+        
         ctx.save(); ctx.translate(cx, cy); ctx.strokeStyle = "rgba(120, 150, 180, 0.6)"; ctx.fillStyle = "rgba(220, 235, 250, 0.4)"; ctx.lineWidth = 3; ctx.beginPath();
         ctx.moveTo(-w*0.42, -h_c*0.1); ctx.bezierCurveTo(-w*0.48, -h_c*0.25, w*0.48, -h_c*0.25, w*0.42, -h_c*0.1); ctx.lineTo(w*0.42, h_c*0.15); ctx.bezierCurveTo(w*0.38, h_c*0.25, w*0.15, h_c*0.25, 0, h_c*0.25); ctx.bezierCurveTo(-w*0.15, h_c*0.25, -w*0.38, h_c*0.25, -w*0.42, h_c*0.15);
         ctx.closePath(); ctx.fill(); ctx.stroke();
@@ -414,14 +417,25 @@
         ctx.strokeStyle = "#95a5a6"; ctx.lineWidth = 2; 
         for(let j=0; j<6; j++) { let yG = -h_c*0.12 + j*h_c*0.05; ctx.beginPath(); ctx.moveTo(w*tubeScale, yG); ctx.lineTo(w*tubeScale, yG); ctx.stroke(); }
         ctx.fillStyle="#95a5a6"; ctx.fillRect(w*tubeScale, -h_c*0.15, 3, h_c*0.3); ctx.restore();
+
+        // Lignes de champ (Violette/Fushia) - Épaissies et allongées avec Halo
         if (Math.abs(voltage) > 0.02) {
-            ctx.strokeStyle = `rgba(190, 40, 210, ${Math.min(Math.abs(voltage)/1.5, 0.6)})`; ctx.lineWidth = 1.5;
+            ctx.save();
+            ctx.strokeStyle = `rgba(190, 40, 210, ${Math.min(Math.abs(voltage)/1.5, 0.4)})`;
+            ctx.lineWidth = 4; // Épaississement
+            ctx.shadowBlur = 10; // Halo
+            ctx.shadowColor = `rgba(190, 40, 210, 0.8)`;
             for(let i = 0; i < 7; i++) {
                 let yLine = cy - h_c*0.12 + (i * h_c*0.04); ctx.beginPath();
-                if (voltage >= 0) { ctx.moveTo(cx - w*0.25, yLine); ctx.lineTo(cx + w*0.25, yLine); }
-                else { ctx.moveTo(cx + w*0.25, yLine); ctx.lineTo(cx - w*0.25, yLine); }
+                if (voltage >= 0) { 
+                    // Allongement des lignes
+                    ctx.moveTo(cx - w*0.28, yLine); ctx.lineTo(cx + w*0.28, yLine); 
+                } else { 
+                    ctx.moveTo(cx + w*0.28, yLine); ctx.lineTo(cx - w*0.28, yLine); 
+                }
                 ctx.stroke();
             }
+            ctx.restore();
         }
         const col = wavelengthToColor(lambda); photons.forEach(p => drawWavePacket(p.x, p.y, col, p.angle));
         ctx.fillStyle = "#2980b9"; electrons.forEach(e => { ctx.beginPath(); ctx.arc(e.x, e.y, 3, 0, Math.PI*2); ctx.fill(); });
@@ -447,7 +461,7 @@
     document.getElementById('flux-slider').addEventListener('input', (e) => { intensity = parseInt(e.target.value); });
     document.getElementById('metalSelect').addEventListener('change', (e) => { workFunction = parseFloat(e.target.value); currentHistory.fill(0); });
     document.getElementById('recordPoint').addEventListener('click', () => {
-        const freq = c_nm / lambda / 1e14; 
+        const freq = c_nm / lambda / 1e14;
         const currentColor = metalColors[workFunction.toString()]; 
         recordedPoints.push({f: freq, vs: Math.abs(voltage), color: currentColor});
     });
