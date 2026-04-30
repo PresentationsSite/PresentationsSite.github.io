@@ -447,7 +447,7 @@
     document.getElementById('flux-slider').addEventListener('input', (e) => { intensity = parseInt(e.target.value); });
     document.getElementById('metalSelect').addEventListener('change', (e) => { workFunction = parseFloat(e.target.value); currentHistory.fill(0); });
     document.getElementById('recordPoint').addEventListener('click', () => {
-        const freq = c_nm / lambda / 1e14;
+        const freq = c_nm / lambda / 1e14; 
         const currentColor = metalColors[workFunction.toString()]; 
         recordedPoints.push({f: freq, vs: Math.abs(voltage), color: currentColor});
     });
