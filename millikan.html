@@ -171,7 +171,7 @@
         
         <div class="controls">
             <div class="control-group">
-                <label>Métal de la cathode (Φ)</label>
+                <label>Métal de la cathode (W<sub>ext</sub>)</label>
                 <select id="metalSelect">
                     <option value="2.14">Césium (2.14 eV) 🔴</option>
                     <option value="2.36">Sodium (2.36 eV) 🔵</option>
@@ -348,14 +348,24 @@
         ctx.save();
         ctx.shadowBlur = 10;
         ctx.shadowColor = color; 
-        ctx.strokeStyle = color; ctx.lineWidth = 2.5;
+        ctx.strokeStyle = color; 
+        ctx.lineWidth = 1.;
         ctx.translate(x, y);
         ctx.rotate(angle);
         ctx.beginPath();
-        for(let i = -12; i < 12; i++) {
-            let amplitude = Math.exp(-Math.pow(i/6, 2));
-            ctx.lineTo(i, Math.sin(i * 1.5) * 6 * amplitude);
+        
+        // Le facteur d'échelle est directement proportionnel à la longueur d'onde
+        // (ex: lambda = 350 -> scale = 0.7 (court), lambda = 750 -> scale = 1.5 (long))
+        let scale = lambda / 400; 
+        
+        // On génère toujours la même courbe de base (-12 à 12), ce qui garantit 
+        // le même nombre d'oscillations, mais on étire l'espacement en X.
+        // On utilise un pas fin (0.2) pour que la courbe reste bien lisse quand elle est étirée.
+        for(let i = -12; i <= 12; i += 0.2) {
+            let amplitude = Math.exp(-Math.pow(i/9, 2));
+            ctx.lineTo(i * scale, Math.sin(i * 1.5) * 9 * amplitude);
         }
+        
         ctx.stroke();
         ctx.restore();
     }
@@ -387,7 +397,7 @@
         gCtx.strokeStyle = "#333"; gCtx.lineWidth = 2;
         gCtx.beginPath(); gCtx.moveTo(padLeft, padTop); gCtx.lineTo(padLeft, h_g - padBottom); gCtx.lineTo(w - padRight, h_g - padBottom); gCtx.stroke();
         gCtx.fillStyle = "#222"; gCtx.font = "bold 13px sans-serif";
-        gCtx.save(); gCtx.translate(15, padTop + plotH/2); gCtx.rotate(-Math.PI/2); gCtx.textAlign = "center"; gCtx.fillText("e·Uₛ (10⁻¹⁹ J)", 0, 0); gCtx.restore();
+        gCtx.save(); gCtx.translate(15, padTop + plotH/2); gCtx.rotate(-Math.PI/2); gCtx.textAlign = "center"; gCtx.fillText("e·Uₐ (10⁻¹⁹ J)", 0, 0); gCtx.restore();
         gCtx.textAlign = "center"; gCtx.fillText("f (10¹⁴ Hz)", padLeft + plotW/2, h_g - 10);
         recordedPoints.forEach(p => {
             gCtx.fillStyle = p.color; 
@@ -485,7 +495,7 @@
         const smoothedCurrent = currentHistory.reduce((a, b) => a + b, 0) / currentHistory.length;
         const devW = Math.min(w * 0.28, 150), devH = 115, devY = h_c * 0.80;
         let alimNodes = drawDevice(cx - w*0.16, devY, devW, devH, "Alimentation", voltage, -1.5, 1.5, 'V', 'alim');
-        let ampNodes = drawDevice(cx + w*0.16, devY, devW, devH, "Ampèremètre", smoothedCurrent, 0, 100, 'nA', 'amp');
+        let ampNodes = drawDevice(cx + w*0.16, devY, devW, devH, "Ampèremètre", smoothedCurrent, 0, 100, 'pA', 'amp');
 
         ctx.lineWidth = 3; ctx.lineCap = "round";
         ctx.strokeStyle = "#e74c3c"; ctx.beginPath(); ctx.moveTo(cathodeX, cy); ctx.lineTo(cathodeX, alimNodes.termL.y); ctx.lineTo(alimNodes.termL.x, alimNodes.termL.y); ctx.stroke(); 

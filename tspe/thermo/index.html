@@ -550,21 +550,136 @@ $$T(t) = \left(T_0-T_\mathrm{ext}\right)\mathrm{e}^{-\frac t \tau} + T_\mathrm{e
 <img src="/bilanterre.png" style="box-shadow:none;background:none;">
 </div>
 </section><section>
-<p>Il y a donc un flux entrant (positif) <span class="imp">$\Phi_E$</span><br>et un flux sortant (négatif) <b style="color:#56C1FF">$\Phi_S$</b>.</p>
-<p class="fragment fade-up">Et plutôt que le flux total $\Phi$, on se concentre<br>sur le flux surfacique $\phi$ (flux par $\pu{m^2}$).</p>
+<p>Il y a donc un flux entrant (positif) <span class="imp">$\Phi_{\mathrm{entrant}}$</span><br>et un flux sortant (négatif) <b style="color:#56C1FF">$\Phi_{\mathrm{sortant}}$</b>.</p>
+<p class="fragment fade-up">Et plutôt que le flux total $\Phi$, on se concentre<br>sur le flux surfacique $\varphi$ (flux par $\pu{m^2}$).</p>
 </section><section>
-<p>Le flux entrant est en partie</p>
+<p>Une partie du flux entrant est rediffusé directement vers l&rsquo;espace (par les nuages et le sol suivant sa nature).</p>
+<div class="fragment fade-up">
+On appelle <span class="imp fragment">albedo A</span> le rapport<br>entre le flux diffusé $\varphi_D$ et le flux entrant :
+<br><br>
+<div class="fragment fade-up" style="position:relative;margin:auto;width:fit-content;border:solid 5px #FF968D;padding:0 50px 0 50px;border-radius:10px">
+$$A = \frac{\varphi_D}{\varphi_\mathrm{entrant}}$$
+</div>
+</div>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/tablalbedo.png"
+      data-background-size="50vh"
+      data-background-transition="concave">
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/albedofeuille.jpeg"
+      data-background-size="contain"
+      data-background-transition="concave">
 </section><section>
-<p>Le flux sortant est dû au fait qu&rsquo;un corps<br>à température $T$ émet un rayonnement électromagnétique dont le flux thermique<br>surfacique vérifie la loi de Stefan-Boltzman :</p>
+<p>Grâce à sa couverture nuageuse, l&rsquo;albédo de<br>la Terre est relativement élevé ($\approx$ 30%)<br>quand celui de la Lune vaut 7% seulement&hellip;</p>
+</section><section>
+<p>La carte suivante, réalisée à partir des données du projet CERES de la NASA, montre le rayonnement solaire directement réfléchi $\varphi_D$.</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-size="contain"
+      data-background-transition="concave"
+      data-background-video="https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b9/NPP_Ceres_Shortwave_Radiation.ogv/NPP_Ceres_Shortwave_Radiation.ogv.1080p.vp9.webm"
+      data-background-video-loop="true">
+</section><section>
+<p>On a là une partie du flux sortant $\varphi_\mathrm{sortant}$.</p>
+<p class="fragment fade-up">Mais il en manque beaucoup pour équilibrer<br>le flux solaire $\varphi_\mathrm{entrant} = \pu{340,4 W*m-2}$...</p>
+<p class="fragment fade-up">D'où vient le reste ?</p>
+<p class="fragment fade-up">Du rayonnement de la Terre !</p>
+</section><section>
+<p>Tout corps à température $T$ émet un rayonnement électromagnétique dont le flux thermique<br>surfacique vérifie la loi de Stefan-Boltzman :</p>
 <div class="fragment fade-up" style="position:relative;margin:auto;width:fit-content;border:solid 5px #FF968D;padding:0 50px 0 50px;border-radius:10px;margin-bottom:0.5em;">
-$$\phi_E =\sigma T^4 $$
+$$\varphi =\sigma T^4 $$
 </div>
 <ul>
-<li class="fragment fade-up">$\phi_E$ en <b class="fragment" style="color:#FFF056">$\pu{W*m-2}$</b></li>
+<li class="fragment fade-up">$\varphi$ en <b class="fragment" style="color:#FFF056">$\pu{W*m-2}$</b></li>
 <li class="fragment fade-up">$T$ en <b class="fragment" style="color:#FFF056">$\pu{K}$</b></li>
-<li class="fragment fade-up">$\sigma$ est la constante<br>de Stefan-Boltzmann<br>en <b class="fragment" style="color:#FFF056">$\pu{W*m^2*K^{-4}}$</b></li>
+<li class="fragment fade-up">$\sigma =\pu{5,67E-8}$ <b class="fragment" style="color:#FFF056">$\pu{W*m^2*K^{-4}}$</b></li>
 </ul>
+<p class="fragment fade-up">$\sigma$ est la constante de Stefan-Boltzmann.<p>
 </section><section>
+<iframe 
+    src="/spectre_corps_noir.html" 
+    width="100%" 
+    height="600px" 
+    frameborder="0" 
+    scrolling="no"
+    style = "border-radius:10px;">
+</iframe>
+</section><section>
+<p>On voit que le Soleil rayonne dans le visible alors que<br>la Terre émet dans <span class="imp fragment">l&rsquo;infrarouge</span>, autour de 10 μm.</p>
+<p class="fragment fade-up">Or une partie des gaz atmosphériques ($\ce{CO2}$, $\ce{H2O}$, $\ce{CH4}$, etc.) absorbe les infrarouges<br>(cf. spectroscopie infrarouge).</p>
+<p class="fragment fade-up">Et ce rayonnement absorbé est diffusé dans toutes<br>les directions, donc pour moitié vers la surface.</p>
+</section><section>
+<p>Il est alors plus difficile pour la Terre<br>d&rsquo;évacuer sa chaleur, c&rsquo;est <span class="imp">l&rsquo;effet de serre</span>.</p>
+<p class="fragment fade-up">Conséquence : la surface se réchauffe jusqu'à ce que<br>le flux sortant $\varphi_\mathrm{sortant}$ redevienne suffisant<br>pour équilibrer le flux entrant.</p>
+</section><section>
+<p>L&rsquo;augmentation dans l&rsquo;atmosphère de la concentration des gaz à effet de serre déplace à nouveau l&rsquo;équilibre.</p>
+<p class="fragment fade-up">Le déséquilibre $\varphi_\mathrm{entrant} >\varphi_\mathrm{sortant}$  entraîne une  <span class="fragment imp">$\nearrow$</span><br>de la température de surface qui va à son tour<br><span class="fragment imp" >$\nearrow$</span> $\varphi_\mathrm{sortant}$ jusqu'à retour à l'équilibre.</p>
+</section><section>
+<iframe src="https://climatechangetracker.org/embedding/monthly-earths-energy-imbalance" scrolling="no" frameBorder="0" style="width:100%; height:400px;"></iframe>
+</section><section>
+<p>Le déséquilibre par rapport à l&rsquo;année de référence préindustrielle 1750 est appelé <span class="imp fragment">forçage radiatif</span><br>et vaut aujourd&rsquo;hui plus de <span class="imp fragment">$\pu{3,0 W*m-2}$</span>.</p>
+</section><section>
+<iframe src="https://climatechangetracker.org/embedding/monthly-greenhouse-gases-impact-on-energy-balance" scrolling="no" frameBorder="0" style="width:100%; height:400px;"></iframe>
+</section><section>
+<p><a href="https://climatechangetracker.org/global-warming">Tableau de bord interactif</a><br>du réchauffement climatique.</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="https://showyourstripes.info/stripes/GLOBE---1850-2025-MO.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="https://showyourstripes.info/stripes/GLOBE---1850-2025-MO-barslabel.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-size="contain"
+      data-background-transition="concave"
+      data-background-video="/ceres.mp4"
+      data-background-video-loop="true">
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-image="/bilanradiatif.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+</section><section>
+<p>On peut réaliser un bilan radiatif simplifié<br>avec un modèle monocouche de l&rsquo;atmosphère qui absorberait une proportion $\alpha$ du rayonnement infrarouge $\varphi_E$ émis par la Terre.</p>
+<p class="fragment fade-up">On appellera dans la suite $\varphi_S$ le flux solaire entrant.</p>
+</section>
+<section data-noprocess data-shortcode-slide
+      data-background-color="white"
+      data-background-image="/bilanrad.png"
+      data-background-size="contain"
+      data-background-transition="concave">
+</section><section>
+<p>D&rsquo;après le schéma :</p>
+<div class="fragment fade-up">
+$$\varphi_\mathrm{sortant} = A \varphi_S + \varphi_E(1-\alpha) + \frac{\alpha}{2}\varphi_E$$
+</div>
+<p class="fragment fade-up">Et à l'équilibre, on doit avoir :</p>
+<div class="fragment fade-up">
+$$\varphi_\mathrm{sortant} = \varphi_\mathrm{entrant} =\varphi_S$$
+</div>
+</section><section>
+<p>Cela permet d&rsquo;exprimer $\varphi_E$ en fonction de $\varphi_S$ :</p>
+<div class="fragment fade-up">
+$$\varphi_E = \frac{2\left(1-A\right)}{(2-\alpha)}\varphi_S$$
+</div>
+<p class="fragment fade-up">Et comme $\varphi_E=\sigma T^4$, on en déduit :</p>
+<div class="fragment fade-up">
+$$T_\mathrm{eq} = \left(\frac{2\left(1-A\right)}{\sigma(2-\alpha)}\varphi_S\right)^{\!1/4}$$
+</div>
+</section><section>
+<p>Influence de $\alpha$ :</p>
+<iframe scrolling="no" title="Influence de l'effet de serre" src="https://www.geogebra.org/material/iframe/id/hqqcs4jr/width/595/height/466/border/888888/sfsb/true/smb/false/stb/false/stbh/false/ai/false/asb/false/sri/true/rc/false/ld/false/sdz/true/ctl/false" width="700px" height="548px" style="border:0px;border-radius:10px;"> </iframe>
+</section><section>
+<p>Actuellement, la valeur de $\alpha$ est aux alentours de 80%.</p>
+</section><section>
+<p>Influence de $A$ :</p>
+<iframe scrolling="no" title="Influence albédo" src="https://www.geogebra.org/material/iframe/id/pxnrxj77/width/524/height/466/border/888888/sfsb/true/smb/false/stb/false/stbh/false/ai/false/asb/false/sri/true/rc/false/ld/false/sdz/false/ctl/false" width="650px" height="578px" style="border:0px;border-radius:10px;"> </iframe>
 
 </section>
 </section><section>
