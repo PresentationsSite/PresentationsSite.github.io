@@ -264,6 +264,11 @@ $$E=h\nu=h\frac{c}{\lambda}$$
 <div class="fragment fade-up" style="position:relative;margin:auto;width:fit-content;border:solid 5px #FF968D;padding:0 50px 0 50px;border-radius:10px">
 $$h\nu≥E_\mathrm{gap}$$
 </div>
+</section><section>
+<p>Pour ces matériaux, le travail d&rsquo;extraction<br>correspond donc à l&rsquo;énergie du gap :</p>
+<div class="fragment fade-up" style="position:relative;margin:auto;width:fit-content;border:solid 5px #FF968D;padding:0 50px 0 50px;border-radius:10px">
+$$W_\mathrm{ext} = E_\mathrm{gap}$$
+</div>
 </section>
 <section data-noprocess data-shortcode-slide
       data-background-image="/photint.png"
@@ -287,6 +292,8 @@ $$h\nu≥E_\mathrm{gap}$$
 <li class="fragment fade-up"><b style="color:#FFF056">Photodiodes et Phototransistors</b> :<br>
 utilisent l'effet photoélectrique interne dans une jonction . Un photon d'énergie supérieure au gap ($h\nu>E_g$) crée une paire électron-trou, générant un photocourant.</li>
 </ul>
+<aside class="notes"><p>Sortes d&rsquo;interrupteurs sensibles à la lumière</p>
+</aside>
 </section><section>
 <ul>
 <li><b style="color:#FFF056">Cellules Photovoltaïques</b> :<br>
@@ -303,6 +310,31 @@ basés sur l'effet photoélectrique externe (émission de l'électron hors de la
 <li class="fragment fade-up"><b style="color:#FFF056">Photorésistances (LDR)</b> :<br>
 exploitent l'effet photoélectrique interne pour augmenter sa conductivité.</li>
 </ul>
+<aside class="notes"><p>Bien qu&rsquo;elles aient été largement remplacées par les composants à semi-conducteurs (photodiodes, CMOS) dans l&rsquo;électronique de tous les jours, les cellules basées sur l&rsquo;effet photoélectrique externe restent irremplaçables dans des domaines de pointe où la sensibilité extrême et la rapidité sont critiques :</p>
+<ol>
+<li>
+<p>Le Tube Photomultiplicateur (PMT)
+C&rsquo;est l&rsquo;application la plus noble et la plus utilisée de l&rsquo;effet externe aujourd&rsquo;hui. Un photon frappe une photocathode (effet externe), et l&rsquo;électron émis est accéléré vers une série de dynodes qui multiplient le signal par cascade.
+•	Sensibilité extrême : Ils sont capables de détecter un photon unique. Le gain peut atteindre  ou , ce qui est bien supérieur à ce qu&rsquo;une photodiode classique peut offrir sans un bruit de fond massif.
+•	Utilisation :
+•	Physique des particules : Dans les détecteurs de neutrinos (comme Super-Kamiokande) ou les calorimètres des accélérateurs.
+•	Imagerie médicale : Les scanners PET (Positron Emission Tomography) utilisent des PMT pour détecter les rayons gamma.
+•	Astronomie : Pour mesurer des flux lumineux extrêmement faibles provenant d&rsquo;étoiles lointaines.</p>
+</li>
+<li>
+<p>L&rsquo;intensification de lumière (Vision nocturne)
+Les jumelles de vision nocturne &ldquo;analogiques&rdquo; (tubes de génération 2 et 3) reposent entièrement sur l&rsquo;effet externe.
+•	Le mécanisme : La lumière résiduelle frappe une photocathode, les électrons émis sont multipliés par une galette de microcanaux (MCP), puis projetés sur un écran phosphorescent qui recrée l&rsquo;image.
+•	Avantage : Contrairement aux capteurs numériques (caméras de surveillance), ces tubes offrent une latence nulle et une gestion de la dynamique lumineuse souvent jugée supérieure par les forces spéciales et les pilotes de chasse.</p>
+</li>
+<li>
+<p>La détection d&rsquo;Ultraviolets (UV)
+Les capteurs à semi-conducteurs (silicium) sont sensibles à tout le spectre, ce qui nécessite des filtres complexes pour isoler les UV.
+•	Sélectivité : En choisissant judicieusement le matériau de la photocathode (effet externe), on peut fabriquer des tubes qui ne réagissent qu&rsquo;aux UV (on les appelle &ldquo;solar-blind&rdquo;).
+•	Application : Détection de flammes, analyse de la couche d&rsquo;ozone ou spectroscopie de laboratoire.</p>
+</li>
+</ol>
+</aside>
 </section><section>
 <p>Exemple d&rsquo;utilisation d&rsquo;une photorésistance<br>comme capteur de luminosité :</p>
 <div style="position:relative;margin-left:auto;margin-right:auto;width:500px;max-width:100%;">
@@ -335,7 +367,7 @@ excitation électronique d'un gaz (Néon, Mercure, Sodium) suivie d'une désexci
       data-background-size="contain"
       data-background-transition="concave">
 </section><section>
-<p>Et une application qui nous est familière :</p>
+<p>Et une application familière à la chimie :</p>
 <br>
 <h3 class="fragment fade-up">Spectroscopie UV-Visible et IR</h3>
 
@@ -353,6 +385,8 @@ excitation électronique d'un gaz (Néon, Mercure, Sodium) suivie d'une désexci
 <img src="/circcaract.png" style="box-shadow:none;background:none;">
 </div>
 </section><section>
+<p>Une modélisation d&rsquo;une cellule photovoltaïque carrée de côté 6 pouces (15,6 cm) donne les <span class="imp">caractéristiques $I=f(U)$</span> suivantes pour différentes irradiances (puissances rayonnées par unité de surface) :</p>
+</section><section>
 <iframe 
     src="/caract.html" 
     width="100%" 
@@ -366,18 +400,19 @@ excitation électronique d'un gaz (Néon, Mercure, Sodium) suivie d'une désexci
 <div class="fragment fade-up" style="position:relative;margin:auto;width:fit-content;border:solid 5px #FF968D;padding:0 50px 0 50px;border-radius:10px">
 <p>$$P=U\times I$$</p>
 </div>
+<br>
+<p class="fragment fade-up">On obtient alors le graphique suivant<br>à partir du premier :</p>
 </section><section>
-<p>On obtient alors le graphique suivant :</p>
 <iframe 
     src="/puissancephoto.html" 
     width="100%" 
-    height="600px" 
+    height="600px"
     frameborder="0" 
     scrolling="no"
-    style = "border-radius:10px;">
+    >
 </iframe>
 </section><section>
-<p>Pour connaître la puissance lumineuse $P_\mathrm{lum}$ reçue par la cellule, on mesure l&rsquo;irradiance $I$ (puissance rayonnée par unité de surface) au niveau de la cellule puis<br>on multiplie par la surface $S$ de la cellule :</p>
+<p>Pour connaître la puissance lumineuse $P_\mathrm{lum}$<br>reçue par la cellule, on multiplie l&rsquo;irradiance<br>par la surface $S$ de la cellule :</p>
 <div class="fragment fade-up" style="position:relative;margin:auto;width:fit-content;border:solid 5px #FFF;padding:0 50px 0 50px;border-radius:10px">
 $$P_\mathrm{lum} = I\times S$$
 </div>
@@ -392,7 +427,9 @@ $$\eta=\frac{P_\mathrm{utile}}{P_\mathrm{reçue}}=\frac{P_\mathrm{max}}{P_\mathr
       data-background-size="contain"
       data-background-transition="concave">
 </section><section>
-<p>Les rendements typiques sont inférieurs à 25%.</p>
+<p>Dans notre modélisation,<br>on trouve $\eta=$<span class="fragment">$18,\!5\%$</span> pour $\pu{1000 W*m-2}$.</p>
+<p class="fragment fade-up"><u>Rq 1</u> : Le rendement n'est pas constant, il dépend<br>de l'éclairement et de la température.</p>
+<p class="fragment fade-up"><u>Rq 2</u> : Les rendements typiques sont inférieurs à 25%.</p>
 
 </section>
 </section><section>
