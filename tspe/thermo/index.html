@@ -379,7 +379,7 @@ $$\Phi = \frac{Q}{\Delta t}$$
 <p>Le flux thermique par conduction et/ou convection<br>à travers un milieu séparé par deux surfaces<br>aux températures $T_f$ et $T_c &gt;T_f$ s&rsquo;effectue<br><span class="imp">de la surface froide vers la surface chaude</span>.</p>
 </section><section>
 <p>Pour traduire l&rsquo;aptitude du milieu à résister<br>au passage du flux thermique, on définit<br>la <span class="imp">résistance thermique $R_{th}$</span> comme :</p>
-<div style="position:relative;margin:auto;width:fit-content;border:solid 5px #FF968D;padding:0 50px 0 50px;border-radius:10px">
+<div  class="fragment fade-up"style="position:relative;margin:auto;width:fit-content;border:solid 5px #FF968D;padding:0 50px 0 50px;border-radius:10px">
 $$R_{th} = \frac{\Delta T}{\Phi}=\frac{T_c - T_f}{\Phi}$$
 </div>
 <br>
@@ -450,14 +450,17 @@ $$R_\text{th cond}=\frac{e}{\lambda S}$$
 </section><section>
 <p>Pour cela, réalisons un bilan d&rsquo;énergie du système<br>entre les instants $t$ et $t+\Delta t$ :</p>
 <ul>
- <li class="fragment fade-up">On suppose que le système est immobile.</li>
- <li class="fragment fade-up">On suppose que le système ne reçoit aucun travail.</li>
- <li class="fragment fade-up">Le système échange une énergie thermique $Q$ avec le thermostat (l'extérieur).</li>
+ <li class="fragment fade-up" style="color:#FFF056;">On suppose que le système est immobile.</li>
+ <li class="fragment fade-up" style="color:#16E7CF;">On suppose que le système ne reçoit aucun travail.</li>
+ <li class="fragment fade-up" style="color:#FF968D;">Le système échange une énergie thermique $Q$ avec le thermostat (l'extérieur).</li>
  </ul> 
  <p class="fragment fade-up">D'après le 1<sup>er</sup> principe de la thermodynamique :</p>
   <div class="fragment fade-up">
-  $$\Delta U = \cancel{W} + Q = Q$$
+  $${\color{#FFF056}\cancel{\Delta E_m}}  + \Delta U   = {\color{#16E7CF}\cancel{W}} + \color{#FF968D}Q$$
   </div>
+<div class="fragment fade-up">
+$$\Rightarrow \quad \Delta U   = Q $$
+</div>
 </section><section>
 <p>Pendant la durée $\Delta t$, l&rsquo;énergie thermique échangée s&rsquo;exprime en fonction du flux thermique comme :</p>
 <div class="fragment fade-up">
