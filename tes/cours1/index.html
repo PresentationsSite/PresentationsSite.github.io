@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>Théorie</title>
+<title>Énergie/Puissance</title>
 
 
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -28,10 +28,11 @@ img {border: none !important}
 
 .imp {font-weight:bold;color:#FF968D;}
 
+/* .fragment:not(ul,li) {font-weight:bold;color:red;} */
+
 span {font-weight:normal;color:white;}
 
 ul {
-color:#96A1A1;
 margin-left: auto;
 margin-right: auto;
 text-align: left;
@@ -44,114 +45,127 @@ ul li {
 text-indent: -1em;
 padding-left: 1em;
 }
+
 </style>
-<h1 id="conversion-en-énergie-électrique">Conversion en énergie électrique</h1>
+
+
+<section data-shortcode-section>
+<h2 id="puissance-et-énergie">Puissance et énergie</h2>
+</section><section>
+<iframe width="800" height="450" src="https://www.youtube.com/embed/S4O5voOCqAQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+</section><section>
+<p>Maintenir une puissance $P$ pendant un temps $t$ consomme l&rsquo;énergie $E$ donnée par :</p>
+<div class="fragment" style="display: flex;justify-content: center;">
+<div style = "border:solid #FF968D 5px;width:min-content;padding: 20px 30px 20px 30px;border-radius:10px;">
+<span class="imp">$E = P\times t$</span>
+</div></div>
+<p class="fragment" style="font-weight:normal;color:#93a1a1">Si $P$ est en watts (W) et $t$ en secondes (s),<br>alors $E$ est en joules (J). Mais le plus souvent,<br>$P$ est en kW et $t$ en h et donc $E$ en kWh.</p>
+<p class="fragment" style="font-weight:normal;color:#93a1a1">$\pu{1 kWh} = \pu{3,6 MJ}$</p>
+</section><section>
+<p>Robert aurait produit $\pu{1 kWh}$<br>en maintenant son effort pendant 1h26 🥵</p>
+</section><section>
+<p>L&rsquo;énergie est une monnaie d&rsquo;échange qui peut être <span class="imp">convertie</span> d&rsquo;une forme à une autre<br>sans jamais disparaître :</p>
+<p class="fragment fade-up"><span class="imp">l'énergie se conserve !</imp></p>
+<p class="fragment">
+<a href="https://phet.colorado.edu/sims/html/energy-forms-and-changes/latest/energy-forms-and-changes_fr.html">Une animation interactive pour l'illustrer</a>
+</p>
+</section><section>
+<iframe width="800" height="450" src="https://www.youtube.com/embed/BKfufXnupMA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
 </section><section>
 <div style="position:relative;margin:auto;width:fit-content;">
-<iframe width="640" height="410" src="https://educ.arte.tv/embed/version/53764df0-23fe-43ed-97be-7dca791c32e1/user/242fe557-dba8-4d71-b47a-1372f7232640" frameborder="0" allow="encrypted-media" scrolling="no" allowfullscreen="true" style="border-radius:10px;"></iframe>
+<div style = "border:solid #FF968D 5px;width:fit-content;padding: 20px 30px 20px 30px;">
+La <span class="imp">puissance</span> est le <span class="imp">taux de conversion</span><br>(la vitesse de conversion) <span class="imp">de l'énergie</span>.</b>
+</div>
 </div>
 </section><section>
+<div style="display: flex;justify-content: center;">
+<div style = "border:solid #FF968D 5px;width:100%;padding: 10px 20px 10px 20px;">
+En moyenne, un français consomme à tout moment environ <span class="imp">$\pu{1 kW}$</span> de puissance électrique.
+</div></div>
+<p class="fragment" style="font-weight:normal;color:#93a1a1">Cela donne un peu moins de $\pu{9 MWh}$<br>d'énergie électrique consommée sur une année.</p>
+<p class="fragment" style="font-weight:normal;color:#93a1a1">Comme on est seulement capable de maintenir en permanence environ $\pu{100 W}$ d'effort musculaire,<br>c'est comme si on était à tout moment<br>assisté par $10$ humains !</p>
+
+</section>
+</section><section>
 
 
 <section data-shortcode-section>
-<h2 id="induction-électromagnétique">Induction électromagnétique</h2>
+<h2 id="rendement-énergétique">Rendement énergétique</h2>
 </section><section>
-<h3 id="activité"><a href="/act-indetalt.pdf">Activité</a></h3>
+<h3 id="chaîne-énergétique-">Chaîne énergétique :</h3>
+<div style="position:relative;margin:auto;width:fit-content;">
+<img style="background:none;box-shadow:none;" src="/chenergie.png">
+</div>
 </section><section>
-<p>En 1820, Œrsted découvre qu&rsquo;un courant électrique peut mettre en mouvement une aiguille aimantée.</p>
+<p>Lorsqu&rsquo;on convertit<br>une forme d&rsquo;énergie en une autre,<br><span class="imp">une partie de l&rsquo;énergie se perd<br>sous forme d&rsquo;énergie thermique</span>.</p>
 </section><section>
-<iframe width="800" height="450" src="https://www.youtube.com/embed/n7EWhEYOa0o" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+<p>Le <span class="imp">rendement $\eta$</span> de la conversion est alors donné par :</p>
+<br>
+<div class="fragment" style="display: flex;justify-content: center;">
+<div style = "border:solid #FF968D 5px;width:min-content;padding: 20px 30px 20px 30px;font-size:1.5em;border-radius:15px;">
+<span class="imp">$\eta = \frac{E_\text{utile}}{E_\text{absorbée}}=\frac{P_\text{utile}}{P_\text{absorbée}}$</span>
+</div></div>
 </section><section>
-<p>Dans cette expérience, de l&rsquo;énergie <span class="imp fragment">électrique</span><br>est donc convertie en énergie <span class="imp fragment">mécanique</span>.</p>
+<p>Lorsque l&rsquo;énergie subit plusieurs conversions successives, le rendement total vaut <span class="fragment imp">le produit</span><br>des rendendements de chaque conversion :</p>
+<div class="imp fragment">
+$$\eta = \eta_1\times\eta_2$$
+</div>
+<div style="position:relative;margin:auto;width:fit-content;">
+<img style="background:none;box-shadow:none;" src="/rendglob.png">
+</div>
 </section><section>
-<p>En 1831, <span class="imp">Michael Faraday</span> met en évidence<br>le phénomène inverse.</p>
+<p>Prenons l&rsquo;exemple de la centrale hydroélectrique<br>de Tignes-Malgovert.</p>
 </section>
 <section data-noprocess data-shortcode-slide
-      data-background-image="/faraday.png"
+      data-background-image="https://lenergeek.com/wp-content/uploads/2015/03/barrage_tignes_photo_Daniel-Reversat.jpg"
       data-background-size="contain"
       data-background-transition="concave">
 </section><section>
-<iframe width="800" height="450" src="https://www.youtube.com/embed/hajIIGHPeuU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+<p style="font-size:0.9em;">
+L'eau du barrage tombe sur les turbines d'une hauteur<br>de 750 m avec une puissance $P_\text{e}=\pu{353 MW}$. 
+</p>
+<p class="fragment fade-up" style="font-size:0.9em">
+Les turbines convertissent l'énergie mécanique<br>de translations de l'eau en énergie de rotation.<br>Elles fournissent une puissance $P_\text{t}=\pu{320 MW}$. 
+</p>
+<p class="fragment fade-up" style="position:relative;margin:auto;width:40%;border-radius:20px;">
+<img  style="border-radius:20px;" src="/Pelton.jpg">
+</p>
+<p class="fragment fade-up">Quel est le rendement des turbines ?</p>
 </section><section>
-<p><a href="https://phet.colorado.edu/sims/html/faradays-law/latest/faradays-law_all.html?locale=fr">Que doit-il arrivé au champ magnétique pour créer<br>un courant électrique dans un conducteur ?</a></p>
-<br>
-<p class="fragment">Il doit varier.</p>
+<p>Enfin, cette puissance mécanique de rotation est convertie en puissance électrique par l&rsquo;alternateur<br>avec un rendement $\eta_\text{a}=98\%$.</p>
+<p class="fragment fade-up">Que vaut le rendement global de la centrale de Tignes ?</p>
+
+</section>
 </section><section>
-<p>Comment un alternateur<br>applique-t-il cette contrainte ?</p>
-<br>
-<p class="fragment">En faisant tourner des aimants.</p>
+
+
+<section data-shortcode-section>
+<h2 id="facteur-de-charge">Facteur de charge</h2>
 </section><section>
-<p>Quelle particularité a<br>le courant électrique ainsi créé ?</p>
-<br>
-<p class="fragment">Il est alternatif.</p>
+<p>Si une centrale maintenait sa puissance nominale<br>(de $x$ $\pu{kW}$) toute l&rsquo;année, elle produirait une énergie $E_{\text{max}}=x$ $\pu{kW}\times\pu{8766 h/an} = x\times \pu{8766 kWh/an}$.</p>
 </section><section>
-<p>L&rsquo;alternateur se compose :</p>
-<ul>
-<li>d&rsquo;un <span class="imp">rotor</span> (c&rsquo;est la partie en rotation contenant généralement les aimants)</li>
-<li>et d&rsquo;un <span class="imp">stator</span> (partie fixe contenant généralement les bobines de cuivre)</li>
-</ul>
-</section><section>
-<p>Comment appelle-t-on le dispositif permettant<br>de recueillir l&rsquo;énergie mécanique d&rsquo;une source<br>pour la transmettre à un alternateur ?</p>
-<br>
-<p class="fragment">Une <b>turbine</b></p>
-</section><section>
-<p>On appelle <span class="imp">turbo-alternateur</span><br>l&rsquo;accouplement des deux.</p>
+<p>Mais en pratique, l&rsquo;énergie produite $E_{\text{réelle}}$ est toujours moindre et on appelle <span class="imp">facteur de charge</span> le rapport :</p>
+<div class="fragment" style="display: flex;justify-content: center;">
+<div style = "border:solid #FF968D 5px;width:min-content;padding: 0px 50px 0px 50px;border-radius:15px;">
+$$\frac{E_{\text{réelle}}}{E_{\text{max}}}$$
+</div></div>
 </section>
 <section data-noprocess data-shortcode-slide
-      data-background-image="https://upload.wikimedia.org/wikipedia/commons/c/ca/Turbogenerator01.jpg"
+      data-background-image="/parc2023.png"
       data-background-size="contain"
       data-background-transition="concave">
-<aside class="notes"><p>L&rsquo;alternateur est en rouge</p>
+<aside class="notes"><p>J&rsquo;avais pas la place mais c&rsquo;est &ldquo;thermique renouvelable et déchets&rdquo;</p>
 </aside>
-</section>
-<section data-noprocess data-shortcode-slide
-      data-background-image="/chaineconv.png"
-      data-background-size="contain"
-      data-background-transition="concave">
 </section><section>
-<p>Remarque :</p>
-<p>Le rendement d&rsquo;un alternateur dépend de sa masse : plus il est gros, plus il s&rsquo;approche de 1<br>(typiquement 99% pour les plus gros<br>dans les centrales de haute puissance).</p>
-
-</section>
+<p>Les deux graphes précédents permettent de déduire<br>le facteur de charge moyen de chaque filière de production d&rsquo;énergie électrique en 2025 en France.</p>
+<p class="fragment fade-up">Déterminer le facteur de charge de l'éolien.</p>
 </section><section>
-
-
-<section data-shortcode-section>
-<h2 id="photovoltaïque">Photovoltaïque</h2>
-</section><section>
-<h3 id="théorie-des-bandes">Théorie des bandes</h3>
-</section><section>
-<iframe width="800" height="450" src="https://www.youtube.com/embed/EWLgeBVY-08" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
-</section><section>
-<h3 id="cellule-photovoltaïque">Cellule photovoltaïque</h3>
-</section><section>
-<p>Les cellules photovoltaïques sont faites<br>d&rsquo;un <span class="imp">matériau semi-conducteur</span>.</p>
-<p class="fragment fade-up">Exemple d'un tel matériau : <span class="imp fragment">le silicium</span></p>
-</section><section>
-<iframe width="800" height="450" src="https://www.youtube.com/embed/23i-_v_tWTA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
-</section><section>
-<p>Pour qu&rsquo;un matériau semi-conducteur convertisse efficacement l&rsquo;énergie solaire, il faut que son spectre d&rsquo;absorption recouvre le mieux possible<br>le spectre reçu du Soleil.</p>
-<p class="fragment">Donc dans l'idéal, la longueur d'onde correspondant<br>à l'énergie du<span class="imp"> gap</span> du semi-conducteur<br>doit être dans l'infrarouge.</p>
-</section><section>
-<p>Le Silicium y arrive pas mal.</p>
-<img src="/siabsorption.png" style="background-color:white">
-</section><section>
-<h3 id="caractéristique-dune-cellule-photovoltaïque">Caractéristique d&rsquo;une cellule photovoltaïque</h3>
-</section><section>
-<iframe width=800 height=509 src="https://www.edumedia-sciences.com/fr/media/frame/945/?auth=71677486d928cc2aaa2dfe8768008130/27824" frameborder=0></iframe>
-</section>
-<section data-noprocess data-shortcode-slide
-      data-background-image="/chainephoto.png"
-      data-background-size="contain"
-      data-background-transition="concave">
-</section><section>
-<p>Remarques :</p>
-<br>
+<p>Plus l&rsquo;énergie est intermittente,<br>plus le facteur de charge est faible :</p>
 <ul>
-<li class="fragment" style="color:#96A1A1;font-weight:normal;">le <span class="imp">rendement</span> d'une cellule photovoltaïque est globalement <span class="imp">faible</span> (< 25%).</li>
-<br>
-<li class="fragment" style="color:#96A1A1;font-weight:normal;">le <span class="imp">courant</span> produit par une cellule photovoltaïque<br>est <span class="imp">continu</span>. Il faut le convertir en courant alternatif grâce à un onduleur avant de l'envoyer dans le réseau.</li>
-</ul>
+<li class="fragment fade-up">$\approx 80\%$ pour une centrale nucléaire ou à flamme,</li>
+<li class="fragment fade-up">$40$-$60\%$ pour une centrale hydroélectrique,</li>
+<li class="fragment fade-up">$20$-$40\%$ pour un champ éolien<br>(jusqu'à $50\%$ pour un champ offshore),</li>
+<li class="fragment fade-up">$10$-$25\%$ pour une centrale solaire photovoltaïque<br>(jusqu'à $40\%$ pour une solaire thermique).</li>
 
 </section>
 </section><section>
