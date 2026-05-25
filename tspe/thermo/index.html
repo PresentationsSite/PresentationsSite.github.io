@@ -82,7 +82,7 @@ vertical-align:middle !important;
 <section data-shortcode-section>
 <h1 id="thermodynamique">Thermodynamique</h1>
 </section><section>
-<p>La thermodynamique est une branche récente de la physique, développée au 19<sup>e</sup>, siècle qui s&rsquo;intéresse aux conversions d&rsquo;énergie en lien avec la température.</p>
+<p>La thermodynamique est une branche récente de la physique (développée au 19<sup>e</sup> siècle) qui s&rsquo;intéresse aux conversions d&rsquo;énergie en lien avec la température.</p>
 
 </section>
 </section><section>
@@ -95,21 +95,21 @@ vertical-align:middle !important;
 </section><section>
 <p>L&rsquo;état gazeux est <span class="imp fragment">dispersé</span> et <span class="imp fragment">désordonnée</span>.</p>
 </section><section>
-<p>À l&rsquo;échelle microscopique, les entités qui le composent sont éloignées les unes des autres et ont un mouvement aléatoire incessant.</p>
-<p class="fragment fade-up">Pour le décrire parfaitement, il faudrait connaître la masse, la position et la vitesse de chacune des entités...</p>
+<p>À l&rsquo;échelle microscopique, les entités qui le composent sont éloignées les unes des autres et ont<br>un mouvement aléatoire incessant.</p>
+<p class="fragment fade-up">Pour le décrire parfaitement, il faudrait connaître<br>la masse, la position et la vitesse de chacune<br>des milliards de milliards d'entités...</p>
 </section><section>
-<p>À l&rsquo;échelle macroscopique, on utilise 3 grandeurs intensives (ne dépendant pas du volume) qui moyennent de manière complémentaire<br>le chaos microscopique :</p>
+<p>À l&rsquo;échelle macroscopique, on peut n&rsquo;utiliser que trois grandeurs intensives (ne dépendant pas du volume)<br>qui moyennent de manière complémentaire<br>le chaos microscopique :</p>
 <ul>
 <li class="fragment fade-up">la <span class="imp">masse volumique $\rho$</span><br>qui dit combien les entités sont serrées en moyenne</li>
 </u>
 </section><section>
 <ul>
-<li>la <span class="imp">pression $P$</span> qui renseigne sur la force moyenne par unité de surface provoquée due aux chocs incessants des entités</li>
+<li>la <span class="imp">pression $P$</span> qui renseigne sur la force moyenne par unité de surface due aux chocs incessants des entités</li>
 <br>
 <li class="fragment fade-up">la <span class="imp">température $T$</span> qui correspond à l'énergie cinétique moyenne des entités (traduisant<br>l'<span class="imp">agitation</span> des entité)</li>
 </ul>
 </section><section>
-<p>Ces trois grandeurs sont liées entre elles<br>dans la <span class="imp">loi des gaz parfaits</span>.</p>
+<p>Ces trois grandeurs sont liées entre elles<br>dans la <span class="imp">loi des gaz parfaits</span> :</p>
 <div class="fragment fade-up">
 $$P=\frac R M \times \rho \times T$$
 </div>
@@ -153,7 +153,7 @@ $R= 8,314$ <span class="fragment">$\color{#FFF056}\pu{Pa*m3*K-1*mol-1}$</span></
 <p>Moralité, le modèle du gaz parfait marche pour une <span class="imp">pression pas trop grande</span> (<span class="imp">$P&lt;\pu{10 bar}=\pu{1 MPa}$</span>).</p>
 <p class="fragment fade-up">Et pour une <span class="imp">température très supérieure à la température d'ébullition</span> du gaz (<span class="imp">$T\gg T_{vap}$</span>).</p>
 </section><section>
-<p>Comme l&rsquo;air se liquéfie vers -190°C à pression atmosphérique ($P_{atm}\approx \pu{1 bar}$), l&rsquo;ai peut être considéré comme une GP aux conditions<br>ordinaires de température et de pression.</p>
+<p>Comme l&rsquo;air se liquéfie vers -190°C à pression atmosphérique ($P_{atm}\approx \pu{1 bar}$), l&rsquo;air peut être considéré comme une GP aux conditions<br>ordinaires de température et de pression.</p>
 
 </section>
 </section><section>
@@ -260,8 +260,11 @@ $$\Delta E_{tot} = W + Q$$
 <div class="fragment fade-up" style="position:relative;margin:auto;width:fit-content;border:solid 5px #FF968D;padding:0 50px 0 50px;border-radius:10px">
 $$\Delta U = W + Q$$
 </div>
+<br>
+<p class="fragment fade-up">On a alors en effet $E_m=\text{cte}$, et donc :<p>
+<p class="fragment fade-up">$\Delta E_{tot} = \cancel{\Delta E_m}+ \Delta U$</p>
 </section><section>
-<p>Par convention, les transferts d&rsquo;énergie sont comptés <span class="imp">positivement</span> lorsqu&rsquo;ils <span class="imp">entrent</span> dans le système<br>et <b style="color:#56C1FF">négativement</b> quand ils en sortent.</p>
+<p>Par convention, les transferts d&rsquo;énergie sont comptés <span class="imp">positivement</span> lorsqu&rsquo;ils <span class="imp">entrent</span> dans le système (dirigés de l&rsquo;extérieur vers le système)<br>et <b style="color:#56C1FF">négativement</b> quand ils en sortent.</p>
 </section><section>
 <p>Prenons l&rsquo;exemple du système<br>{résistance chauffante d&rsquo;une bouilloire électrique} :</p>
 <ul>
@@ -290,16 +293,18 @@ compté <b class="fragment"style="color:#56C1FF">négativement</b></li>
 </section><section>
 <p>Il y a trois modes de transfert thermique :</p>
 <ul>
-<li class="fragment fade-up">la <span class="imp">conduction</span></li>
-<li class="fragment fade-up">la <span class="imp">convection</span></li>
-<li class="fragment fade-up">le <span class="imp">rayonnement</span></li>
+<li class="fragment fade-up">la <b style="color:#FF968D;">conduction</b></li>
+<li class="fragment fade-up">la <b style="color:#56C1FF;">convection</b></li>
+<li class="fragment fade-up">le <b style="color:#FFD932;">rayonnement</b></li>
 </ul>
+</section><section>
+<h3 style="color:#FF968D";>La conduction<h3>
 </section><section>
 <iframe width="800" height="450" src="https://www.youtube.com/embed/LxJoLeeqk88" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
 </section><section>
 <iframe width=750 height=600 src="https://www.edumedia.com/media/frame/fr/99/?auth=97c65277ed86063586415897215a6a81/27824" frameborder=0 style="border-radius:10px;"></iframe>
 </section><section>
-<p>Un transfert thermique par <span class="imp">conduction</span><br>a lieu de proche en proche.</p>
+<p>Un transfert thermique par <span class="imp">conduction</span><br>a lieu <span class="imp">de proche en proche.</p>
 <p class="fragment fade-up">Il n'y a pas déplacement macroscopique de matière.</p>
 <p class="fragment fade-up">L'agitation microscopique des entités<br>est communiquée de l'une à l'autre.</p>
 </section><section>
@@ -308,10 +313,12 @@ compté <b class="fragment"style="color:#56C1FF">négativement</b></li>
 </section><section>
 <iframe width="800" height="450" src="https://www.youtube.com/embed/AeJ9q45PfD0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
 </section><section>
+<h3 style="color:#56C1FF";>La convection<h3>
+</section><section>
 <iframe width=750 height=600 src="https://www.edumedia.com/media/frame/fr/428/?auth=88e553efb2b0037fe7e0d153f50db345/27824" frameborder=0 style="border-radius:10px;"></iframe>
 </section><section>
-<p>Un transfert thermique par <span class="imp">convection</span><br> ne peut avoir lieu que dans un fluide.</p>
-<p class="fragment fade-up">Il correspond à un mouvement macroscopique de matière : le fluide est animé d'un mouvement interne.</p>
+<p>Un transfert thermique par <b style="color:#56C1FF;">convection</b><br> ne peut avoir lieu que dans un <b style="color:#56C1FF;">fluide</b>.</p>
+<p class="fragment fade-up">Il correspond à un <b style="color:#56C1FF;">mouvement macroscopique de matière</b> : le fluide est animé d'un mouvement interne.</p>
 <p class="fragment fade-up">Comment expliquer ce mouvement d'ensemble ?</p>
 <aside class="notes"><p>Le fluide chauffé se dilate et devient donc moins dense. Il s&rsquo;élève sous l&rsquo;action de la poussée d&rsquo;Archimède et il est alors remplacé par de l&rsquo;air plus froid.</p>
 </aside>
@@ -330,10 +337,12 @@ compté <b class="fragment"style="color:#56C1FF">négativement</b></li>
 <p><u>Petite énigme</u></p>
 <p class="fragment fade-up">Pourquoi un glaçon fond-il moins vite dans<br>de l'eau salée que dans de l'eau douce ?</p>
 </section><section>
+<h3 style="color:#FFD932";>Le rayonnement<h3>
+</section><section>
 <iframe width=800 height=509 src="https://www.edumedia.com/media/frame/fr/944/?auth=8b4fea5814c4af50a22d86df6fd9378e/27824" frameborder=0 style="border-radius:10px;"></iframe>
 </section><section>
-<p>Le transfert thermique par <span class="imp">rayonnement</span> est<br>le seul à pouvoir se faire dans le vide.</p>
-<p class="fragment fade-up">Il correspond à l'émission ou l'absorption<br>d'ondes électromagnétiques.</p>
+<p>Le transfert thermique par <b style="color:#FFD932;">rayonnement</b> est<br>le seul à pouvoir se faire dans le <b style="color:#FFD932;">vide</b>.</p>
+<p class="fragment fade-up">Il correspond à l'<b style="color:#FFD932;">émission ou l'absorption<br>d'ondes électromagnétiques</b>.</p>
 </section><section>
 <p>Comment marche une couverture de survie ?</p>
 <div style="position:relative;margin-left:auto;margin-right:auto;width:700px;max-width:100%;border-radius:10px;">
@@ -354,7 +363,7 @@ compté <b class="fragment"style="color:#56C1FF">négativement</b></li>
 <section data-shortcode-section>
 <h2 id="flux-thermique">Flux thermique</h2>
 </section><section>
-<p>Le flux thermique est la puissance qui traverse une surface au cours d&rsquo;un transfert thermique.</p>
+<p>Le <span class="imp">flux thermique $\Phi$</span> est la puissance qui traverse<br>une surface au cours d&rsquo;un transfert thermique.</p>
 <p class="fragment fade-up">C'est donc l'énergie thermique $Q$ par unité de temps.</p>
 </section><section>
 <div style="position:relative;margin:auto;width:fit-content;border:solid 5px #FF968D;padding:0 50px 0 50px;border-radius:10px">
@@ -376,7 +385,7 @@ $$\Phi = \frac{Q}{\Delta t}$$
 <section data-shortcode-section>
 <h2 id="résistance-thermique">Résistance thermique</h2>
 </section><section>
-<p>Le flux thermique par conduction et/ou convection<br>à travers un milieu séparé par deux surfaces<br>aux températures $T_f$ et $T_c &gt;T_f$ s&rsquo;effectue<br><span class="imp">de la surface froide vers la surface chaude</span>.</p>
+<p>Le flux thermique par conduction et/ou convection<br>à travers un milieu séparé par deux surfaces<br>aux températures $T_f$ et $T_c &gt;T_f$ s&rsquo;effectue<br><span class="imp">de la surface chaude vers la surface froide</span>.</p>
 </section><section>
 <p>Pour traduire l&rsquo;aptitude du milieu à résister<br>au passage du flux thermique, on définit<br>la <span class="imp">résistance thermique $R_{th}$</span> comme :</p>
 <div  class="fragment fade-up"style="position:relative;margin:auto;width:fit-content;border:solid 5px #FF968D;padding:0 50px 0 50px;border-radius:10px">
@@ -400,7 +409,7 @@ $$R_{th} = \frac{\Delta T}{\Phi}=\frac{T_c - T_f}{\Phi}$$
 <li class="fragment fade-up"><b style="color:#FFF056">$\Delta T$</b> $\longleftrightarrow$  <b class="fragment"style="color:#16E7CF">$U$</b></li>
 </ul>
 </section><section>
-<p>Pour une même différence de température,<br>plus la résistance thermique du milieu est grande<br>et plus le flux thermique est <span class="fragment">faible.</span></p>
+<p>Pour une même différence de température,<br>plus la résistance thermique du milieu est grande<br>et plus le flux thermique est <span class="fragment strike" data-fragment-index="1" >grand</span> / <span class="fragment highlight-red" data-fragment-index="1" >faible</span>.</span></p>
 </section><section>
 <p>Si les parois du matériau sont planes (mur par exemple), la résistance thermique de conduction peut s&rsquo;exprimer en fonction de la surface $S$ des parois, de l&rsquo;épaisseur $e$ entre les deux parois et de la conductivité thermique $\lambda$ caractérisant le matériau :</p>
 <div class="fragment fade-up" style="position:relative;margin:auto;width:fit-content;border:solid 5px;padding:0 50px 0 50px;border-radius:10px">
@@ -431,7 +440,7 @@ $$R_\text{th cond}=\frac{e}{\lambda S}$$
 <h2 id="évolution-temporelle-de-la-température-dun-système">Évolution temporelle de la température d&rsquo;un système</h2>
 </section><section>
 <p>La <span class="imp">loi phénoménologique de Newton</span> (aussi appelée loi du refroidissement de Newton) <span class="imp">modélise le transfert thermique</span> entre un système et le milieu extérieur<br>par <span class="imp">convection et conduction</span>.</p>
-<p class="fragment fade-up">Elle énonce que le flux thermique antre un système et le milieu extérieur est proportionnel à la différence de température entre ce système et le milieu extérieur.</p>
+<p class="fragment fade-up">Elle énonce que le flux thermique entre un système et le milieu extérieur est proportionnel à la différence de température entre ce système et le milieu extérieur.</p>
 </section><section>
 <div style="position:relative;margin:auto;width:fit-content;border:solid 5px #FF968D;padding:0 50px 0 50px;border-radius:10px">
 <p>$$\Phi = h S \left(T_\mathrm{ext}-T\right)$$</p>
@@ -491,7 +500,7 @@ $$</p>
 </section><section>
 <p>On obtient :</p>
 <div class="fragment fade-up">
-$$mc{\color{#FF968D}\Delta T} = hs(T_\mathrm{ext}-T(t)){\color{#FF968D}\Delta t}$$
+$$mc{\color{#FF968D}\Delta T} = hS(T_\mathrm{ext}-T(t)){\color{#FF968D}\Delta t}$$
 </div>
 <p class="fragment fade-up">Et en réarrangeant :</p>
 <div class="fragment fade-up">
@@ -504,16 +513,16 @@ $${\color{#FF968D}\frac{\Delta T}{\Delta t}} \xrightarrow[\Delta t\to 0]{} {\col
 </div>
 <p class="fragment fade-up">On obtient alors :</p>
 <div class="fragment fade-up">
-$$ mc {\color{#FF968D}\frac{\mathrm{d} T}{\mathrm{d} t}} = \frac{hs}{mc} T_\mathrm{ext} - \frac{hs}{mc} T(t) $$
+$$ mc {\color{#FF968D}\frac{\mathrm{d} T}{\mathrm{d} t}} = hS T_\mathrm{ext} - hS T(t) $$
 </div>
 </section><section>
 <p>D&rsquo;où :</p>
 <div class="fragment fade-up">
-$$mc {\color{#FFF056}\frac{\mathrm{d} T}{\mathrm{d} t}} + hs {\color{#FFF056}T(t)} =hs T_\mathrm{ext}$$
+$$mc {\color{#FFF056}\frac{\mathrm{d} T}{\mathrm{d} t}} + hS\, {\color{#FFF056}T(t)} =hS \,T_\mathrm{ext}$$
 </div>
 <p class="fragment fade-up">Et finalement :</p>
 <div class="fragment fade-up" style="position:relative;margin:auto;width:fit-content;border:solid 5px ;padding:0 50px 0 50px;border-radius:10px">
-$${\color{#FFF056}\frac{\mathrm{d} T}{\mathrm{d} t} }+ \frac{hs}{mc} {\color{#FFF056}T(t)}= \frac{hs}{mc} T_\mathrm{ext}$$
+$${\color{#FFF056}\frac{\mathrm{d} T}{\mathrm{d} t} }+ \frac{hS}{mc} {\color{#FFF056}T(t)}= \frac{hS}{mc} T_\mathrm{ext}$$
 </div>
 </section><section>
 <p>On reconnaît une équation différentielle du 1<sup>er</sup> ordre<br>à coefficients constants avec second membre :</p>
@@ -577,7 +586,7 @@ $$A = \frac{\varphi_D}{\varphi_\mathrm{entrant}}$$
 </section><section>
 <p>Grâce à sa couverture nuageuse, l&rsquo;albédo de<br>la Terre est relativement élevé ($\approx$ 30%)<br>quand celui de la Lune vaut 7% seulement&hellip;</p>
 </section><section>
-<p>La carte suivante, réalisée à partir des données du projet CERES de la NASA, montre le rayonnement solaire directement réfléchi $\varphi_D$.</p>
+<p>La carte suivante, réalisée à partir des données du projet CERES de la NASA, montre le rayonnement solaire directement diffusé $\varphi_D$.</p>
 </section>
 <section data-noprocess data-shortcode-slide
       data-background-size="contain"
