@@ -4,7 +4,7 @@
     <meta charset="utf-8">
 <title>IA</title>
 
-
+<meta name="author" content="Marc Cordier">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -522,37 +522,37 @@ Une heuristique est donc un compromis entre d’un côté l’optimalité (trouv
 </section><section>
 <p>Supposons que l&rsquo;on cherche à placer les objets suivants dans un sac de capacité 900.</p>
 <table>
-  <thead>
-      <tr>
-          <th>objets</th>
-          <th style="text-align: center">🥏</th>
-          <th style="text-align: center">🎺</th>
-          <th style="text-align: center">🥊</th>
-          <th style="text-align: center">🧸</th>
-          <th style="text-align: center">🪠</th>
-          <th style="text-align: center">⏰</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>valeurs $v$</td>
-          <td style="text-align: center">5</td>
-          <td style="text-align: center">50</td>
-          <td style="text-align: center">65</td>
-          <td style="text-align: center">20</td>
-          <td style="text-align: center">10</td>
-          <td style="text-align: center">12</td>
-      </tr>
-      <tr>
-          <td>poids $p$</td>
-          <td style="text-align: center">320</td>
-          <td style="text-align: center">700</td>
-          <td style="text-align: center">845</td>
-          <td style="text-align: center">180</td>
-          <td style="text-align: center">70</td>
-          <td style="text-align: center">420</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>objets</th>
+					<th style="text-align: center">🥏</th>
+					<th style="text-align: center">🎺</th>
+					<th style="text-align: center">🥊</th>
+					<th style="text-align: center">🧸</th>
+					<th style="text-align: center">🪠</th>
+					<th style="text-align: center">⏰</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>valeurs $v$</td>
+					<td style="text-align: center">5</td>
+					<td style="text-align: center">50</td>
+					<td style="text-align: center">65</td>
+					<td style="text-align: center">20</td>
+					<td style="text-align: center">10</td>
+					<td style="text-align: center">12</td>
+			</tr>
+			<tr>
+					<td>poids $p$</td>
+					<td style="text-align: center">320</td>
+					<td style="text-align: center">700</td>
+					<td style="text-align: center">845</td>
+					<td style="text-align: center">180</td>
+					<td style="text-align: center">70</td>
+					<td style="text-align: center">420</td>
+			</tr>
+	</tbody>
 </table>
 </section>
 <section data-noprocess data-shortcode-slide
@@ -584,28 +584,28 @@ Une heuristique est donc un compromis entre d’un côté l’optimalité (trouv
 </section><section>
 <p>Le ratio valeur/poids de chaque objet<br>semble un bon critère.</p>
 <table>
-  <thead>
-      <tr>
-          <th>objets</th>
-          <th style="text-align: center">🥏</th>
-          <th style="text-align: center">🎺</th>
-          <th style="text-align: center">🥊</th>
-          <th style="text-align: center">🧸</th>
-          <th style="text-align: center">🪠</th>
-          <th style="text-align: center">⏰</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>ratio $v/p$</td>
-          <td style="text-align: center">1/64</td>
-          <td style="text-align: center">1/14</td>
-          <td style="text-align: center">1/13</td>
-          <td style="text-align: center">1/9</td>
-          <td style="text-align: center">1/7</td>
-          <td style="text-align: center">1/35</td>
-      </tr>
-  </tbody>
+	<thead>
+			<tr>
+					<th>objets</th>
+					<th style="text-align: center">🥏</th>
+					<th style="text-align: center">🎺</th>
+					<th style="text-align: center">🥊</th>
+					<th style="text-align: center">🧸</th>
+					<th style="text-align: center">🪠</th>
+					<th style="text-align: center">⏰</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>ratio $v/p$</td>
+					<td style="text-align: center">1/64</td>
+					<td style="text-align: center">1/14</td>
+					<td style="text-align: center">1/13</td>
+					<td style="text-align: center">1/9</td>
+					<td style="text-align: center">1/7</td>
+					<td style="text-align: center">1/35</td>
+			</tr>
+	</tbody>
 </table>
 </section><section>
 <p>Problème : ça ne marche pas forcément&hellip;</p>
