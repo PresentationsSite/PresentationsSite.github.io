@@ -381,7 +381,37 @@ $\displaystyle   t = \frac1\lambda \times \ln \left(\frac{N_0}{N(t)} \right)$</p
 
 
 <section data-shortcode-section>
-<iframe src="https://trinket.io/embed/python/097b4013d8fb" width="100%" height="600" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+<div class="trinket-embed" style="margin:1rem 0;text-align:center;">
+  <iframe id="trinket-0"
+          src="/trinket/player.html#eyJhdXRvcnVuIjpmYWxzZSwiY29kZSI6ImZyb20gcmFuZG9tIGltcG9ydCByYW5kb21cblxuTjAgPSAxMDAwMDBcbk4gPSBOMFxudCA9IDBcbmR0ID0gMUUtMlxubGJkYSA9IDJcblxud2hpbGUgTjpcbiAgICBwcmludChmXCJ7dDouMmZ9XFx0e059XCIpXG4gICAgZm9yIGkgaW4gcmFuZ2UoTikgOlxuICAgICAgICBpZiByYW5kb20oKSBcdTAwM2MgbGJkYSpkdCA6XG4gICAgICAgICAgICBOIC09IDFcbiAgICB0ICs9IGR0XG5cbnByaW50KGZcInt0Oi4yZn1cXHR7MH1cIikiLCJkZWZhdWx0IjoiY29kZSIsImxhbmciOiJweXRob24iLCJtb2RlIjoidG9nZ2xlIiwid2lkdGgiOjB9"
+          title="Fenêtre de code"
+          loading="lazy"
+          style="display:inline-block;vertical-align:top;width:100%;height:340px;border:0;overflow:hidden;border-radius:8px;background:transparent;color-scheme:normal;"
+          sandbox="allow-scripts allow-same-origin allow-popups allow-modals allow-downloads">
+  </iframe>
+  <script>
+<p>(function(){
+var iframe = document.getElementById(&ldquo;trinket-0&rdquo;);
+if (!iframe) return;
+var cfg = {
+code: &ldquo;ZnJvbSByYW5kb20gaW1wb3J0IHJhbmRvbQoKTjAgPSAxMDAwMDAKTiA9IE4wCnQgPSAwCmR0ID0gMUUtMgpsYmRhID0gMgoKd2hpbGUgTjoKICAgIHByaW50KGYie3Q6LjJmfVx0e059IikKICAgIGZvciBpIGluIHJhbmdlKE4pIDoKICAgICAgICBpZiByYW5kb20oKSA8IGxiZGEqZHQgOgogICAgICAgICAgICBOIC09IDEKICAgIHQgKz0gZHQKCnByaW50KGYie3Q6LjJmfVx0ezB9Iik=&rdquo;,
+lang: &ldquo;python&rdquo;,
+mode: &ldquo;toggle&rdquo;,
+autorun:  false
+};
+var sent = false;
+function send(){
+if (sent || !iframe.contentWindow) return;
+sent = true;
+iframe.contentWindow.postMessage({ __trinket: true, cfg: cfg }, &ldquo;*&rdquo;);
+}
+window.addEventListener(&ldquo;message&rdquo;, function(e){
+if (e.source === iframe.contentWindow &amp;&amp; e.data &amp;&amp; e.data.__trinket_ready) send();
+});
+iframe.addEventListener(&ldquo;load&rdquo;, function(){ setTimeout(send, 50); });
+})();
+</script></p>
+</div>
 </section><section>
 <p>Comment pourrait-on afficher<br>aussi le temps de demi-vie ?</p>
 

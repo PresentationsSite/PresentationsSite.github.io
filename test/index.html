@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>Essai</title>
+
+<meta name="author" content="Marc Cordier">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="/reveal-js/css/reset.css">
+<link rel="stylesheet" href="/reveal-js/css/reveal.css"><link rel="stylesheet" href="/reveal-js/css/theme/sky.css" id="theme">
+<link rel="stylesheet" href="/highlight-js/github-dark.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  </head>
+  <body>
+    
+    <div class="reveal">
+      <div class="slides">
+  
+
+    <section><div class="trinket-embed" style="margin:1rem 0;text-align:center;">
+  <iframe id="trinket-0"
+          src="/trinket/player.html#eyJhdXRvcnVuIjp0cnVlLCJjb2RlIjoiV2ViIFZQeXRob24gMy4yXG5pbXBvcnQgcmFuZG9tXG5cbiMgLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tXG4jIDEuIFNjw6huZSBldCBUZXJyZVxuIyAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS1cblIgPSAxXG5zY2VuZS53aWR0aCAgPSA5MDBcbnNjZW5lLmhlaWdodCA9IDYwMFxuc2NlbmUuYmFja2dyb3VuZCA9IGNvbG9yLmJsYWNrXG5cbmVhcnRoID0gc3BoZXJlKHBvcz12ZWMoMCwwLDApLCByYWRpdXM9UiwgdGV4dHVyZT10ZXh0dXJlcy5lYXJ0aClcblxuIyAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS1cbiMgMi4gUGFyYW3DqHRyZXMgZGVzIGZsw6hjaGVzXG4jIC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLVxuTl9hcnJvd3MgPSAyMDAwMFxua19sZW4gICAgPSAwLjA4KlJcblxucl9taW4sIHJfbWF4ID0gUiArIGtfbGVuLCAyKlJcbmE0LCBiNCA9IHJfbWluKiotNCwgcl9tYXgqKi00ICAgICAjIHBvdXIgbGEgbG9pIDEvcuKBtFxuXG5cbiMgLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tXG4jIDMuIENsaWMgc291cmlzIMKrIHNlIHBsYWNlciBzdXIgbGEgc3VyZmFjZSDCu1xuIyAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS1cbk9ic19wb2xlID0gdmVjKDAsMCxSKjEuMDIpICAgICAgICAjIHBvc2l0aW9uIGNhbcOpcmEg4oCcYXUgc29s4oCdXG5zdXJmYWNlID0gRmFsc2VcblxuZGVmIGF1X3NvbChzdXJmYWNlKTpcbiAgICBpZiBzY2VuZS5tb3VzZS5waWNrID09IGVhcnRoOiAgICAgICAgICMgb24gbmUgcsOpYWdpdCBxdWUgc2kgbGEgVGVycmUgZXN0IGNsaXF1w6llXG4gICAgICAgIHN1cmZhY2UgPSBUcnVlXG4gICAgICAgIHNjZW5lLnVwID0gdmVjKDAsMCwxKVxuICAgICAgICBzY2VuZS5jYW1lcmEucG9zID0gT2JzX3BvbGVcbiAgICAgICAgc2NlbmUuY2FtZXJhLmF4aXMgPSB2ZWMoMSwwLDApXG4gICAgICAgIHNjZW5lLnJhbmdlID0gMC41XG5cbnNjZW5lLmJpbmQoJ2NsaWNrJywgYXVfc29sKSAgICMgdW4gY2xpYyBnYXVjaGUgZMOpY2xlbmNoZSBhdV9zb2xcblxuIyAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS1cbiMgNC4gTnVhZ2UgZGUgdmVjdGV1cnNcbiMgLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tXG5mb3IgXyBpbiByYW5nZShOX2Fycm93cyk6XG4gICAgIyByYXlvbiBkaXN0cmlidcOpIHNlbG9uIDEvcuKBtFxuICAgIHUgICA9IHJhbmRvbS5yYW5kb20oKVxuICAgIHIgPSAoYTQgLSB1KihhNCAtIGI0KSkqKigtMS80KVxuXG4gICAgIyBvcmllbnRhdGlvbiB1bmlmb3JtZVxuICAgIHBoaSAgID0gMipwaSpyYW5kb20ucmFuZG9tKClcbiAgICBjb3NfdCA9IHJhbmRvbS51bmlmb3JtKC0xLCAxKVxuICAgIHNpbl90ID0gc3FydCgxIC0gY29zX3QqY29zX3QpXG4gICAgcl9oYXQgPSB2ZWMoc2luX3QqY29zKHBoaSksXG4gICAgICAgICAgICAgICAgc2luX3Qqc2luKHBoaSksXG4gICAgICAgICAgICAgICAgY29zX3QpXG5cbiAgICAjIGxvbmd1ZXVyIOKInSAxL3LCslxuICAgIEwgPSBrX2xlbiAvIHIqKjJcblxuICAgIGFycm93KHBvcyAgICAgICAgPSByKnJfaGF0LFxuICAgICAgICAgIGF4aXMgICAgICAgPSAtTCpyX2hhdCxcbiAgICAgICAgICBzaGFmdHdpZHRoID0gTC8yMCxcbiAgICAgICAgICBjb2xvciAgICAgID0gY29sb3IuY3lhbixcbiAgICAgICAgICByb3VuZCAgICAgID0gVHJ1ZSlcbiBcbndoaWxlIFRydWU6XG4gICAgcmF0ZSgxKVxuICAgIFxuIiwiZGVmYXVsdCI6ImNvZGUiLCJsYW5nIjoidnB5dGhvbiIsIm1vZGUiOiJvdXRwdXQiLCJ3aWR0aCI6MH0"
+          title="Fenêtre de code"
+          loading="lazy"
+          style="display:inline-block;vertical-align:top;width:100%;height:650px;border:0;overflow:hidden;border-radius:8px;background:transparent;color-scheme:normal;"
+          sandbox="allow-scripts allow-same-origin allow-popups allow-modals allow-downloads">
+  </iframe>
+  <script>
+  
+
+  (function(){
+    var iframe = document.getElementById("trinket-0");
+    if (!iframe) return;
+    var cfg = {
+      code: "V2ViIFZQeXRob24gMy4yCmltcG9ydCByYW5kb20KCiMgLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tCiMgMS4gU2PDqG5lIGV0IFRlcnJlCiMgLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tClIgPSAxCnNjZW5lLndpZHRoICA9IDkwMApzY2VuZS5oZWlnaHQgPSA2MDAKc2NlbmUuYmFja2dyb3VuZCA9IGNvbG9yLmJsYWNrCgplYXJ0aCA9IHNwaGVyZShwb3M9dmVjKDAsMCwwKSwgcmFkaXVzPVIsIHRleHR1cmU9dGV4dHVyZXMuZWFydGgpCgojIC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQojIDIuIFBhcmFtw6h0cmVzIGRlcyBmbMOoY2hlcwojIC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQpOX2Fycm93cyA9IDIwMDAwCmtfbGVuICAgID0gMC4wOCpSCgpyX21pbiwgcl9tYXggPSBSICsga19sZW4sIDIqUgphNCwgYjQgPSByX21pbioqLTQsIHJfbWF4KiotNCAgICAgIyBwb3VyIGxhIGxvaSAxL3LigbQKCgojIC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQojIDMuIENsaWMgc291cmlzIMKrIHNlIHBsYWNlciBzdXIgbGEgc3VyZmFjZSDCuwojIC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQpPYnNfcG9sZSA9IHZlYygwLDAsUioxLjAyKSAgICAgICAgIyBwb3NpdGlvbiBjYW3DqXJhIOKAnGF1IHNvbOKAnQpzdXJmYWNlID0gRmFsc2UKCmRlZiBhdV9zb2woc3VyZmFjZSk6CiAgICBpZiBzY2VuZS5tb3VzZS5waWNrID09IGVhcnRoOiAgICAgICAgICMgb24gbmUgcsOpYWdpdCBxdWUgc2kgbGEgVGVycmUgZXN0IGNsaXF1w6llCiAgICAgICAgc3VyZmFjZSA9IFRydWUKICAgICAgICBzY2VuZS51cCA9IHZlYygwLDAsMSkKICAgICAgICBzY2VuZS5jYW1lcmEucG9zID0gT2JzX3BvbGUKICAgICAgICBzY2VuZS5jYW1lcmEuYXhpcyA9IHZlYygxLDAsMCkKICAgICAgICBzY2VuZS5yYW5nZSA9IDAuNQoKc2NlbmUuYmluZCgnY2xpY2snLCBhdV9zb2wpICAgIyB1biBjbGljIGdhdWNoZSBkw6ljbGVuY2hlIGF1X3NvbAoKIyAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0KIyA0LiBOdWFnZSBkZSB2ZWN0ZXVycwojIC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQpmb3IgXyBpbiByYW5nZShOX2Fycm93cyk6CiAgICAjIHJheW9uIGRpc3RyaWJ1w6kgc2Vsb24gMS9y4oG0CiAgICB1ICAgPSByYW5kb20ucmFuZG9tKCkKICAgIHIgPSAoYTQgLSB1KihhNCAtIGI0KSkqKigtMS80KQoKICAgICMgb3JpZW50YXRpb24gdW5pZm9ybWUKICAgIHBoaSAgID0gMipwaSpyYW5kb20ucmFuZG9tKCkKICAgIGNvc190ID0gcmFuZG9tLnVuaWZvcm0oLTEsIDEpCiAgICBzaW5fdCA9IHNxcnQoMSAtIGNvc190KmNvc190KQogICAgcl9oYXQgPSB2ZWMoc2luX3QqY29zKHBoaSksCiAgICAgICAgICAgICAgICBzaW5fdCpzaW4ocGhpKSwKICAgICAgICAgICAgICAgIGNvc190KQoKICAgICMgbG9uZ3VldXIg4oidIDEvcsKyCiAgICBMID0ga19sZW4gLyByKioyCgogICAgYXJyb3cocG9zICAgICAgICA9IHIqcl9oYXQsCiAgICAgICAgICBheGlzICAgICAgID0gLUwqcl9oYXQsCiAgICAgICAgICBzaGFmdHdpZHRoID0gTC8yMCwKICAgICAgICAgIGNvbG9yICAgICAgPSBjb2xvci5jeWFuLAogICAgICAgICAgcm91bmQgICAgICA9IFRydWUpCiAKd2hpbGUgVHJ1ZToKICAgIHJhdGUoMSkKICAgIAo=",
+      lang: "vpython",
+      mode: "output",
+      autorun:  true 
+    };
+    var sent = false;
+    function send(){
+      if (sent || !iframe.contentWindow) return;
+      sent = true;
+      iframe.contentWindow.postMessage({ __trinket: true, cfg: cfg }, "*");
+    }
+    window.addEventListener("message", function(e){
+      if (e.source === iframe.contentWindow && e.data && e.data.__trinket_ready) send();
+    });
+    iframe.addEventListener("load", function(){ setTimeout(send, 50); });
+  })();
+  </script>
+</div>
+
+</section><section>
+<div class="trinket-embed" style="margin:1rem 0;text-align:center;">
+  <iframe id="trinket-1"
+          src="/trinket/player.html#eyJhdXRvcnVuIjpmYWxzZSwiY29kZSI6ImZvciBpIGluIHJhbmdlKDUpOlxuICAgIHByaW50KGkpIiwiZGVmYXVsdCI6ImNvZGUiLCJsYW5nIjoicHl0aG9uIiwibW9kZSI6InRvZ2dsZSIsIndpZHRoIjowfQ"
+          title="Fenêtre de code"
+          loading="lazy"
+          style="display:inline-block;vertical-align:top;width:100%;height:340px;border:0;overflow:hidden;border-radius:8px;background:transparent;color-scheme:normal;"
+          sandbox="allow-scripts allow-same-origin allow-popups allow-modals allow-downloads">
+  </iframe>
+  <script>
+  
+
+  (function(){
+    var iframe = document.getElementById("trinket-1");
+    if (!iframe) return;
+    var cfg = {
+      code: "Zm9yIGkgaW4gcmFuZ2UoNSk6CiAgICBwcmludChpKQ==",
+      lang: "python",
+      mode: "toggle",
+      autorun:  false 
+    };
+    var sent = false;
+    function send(){
+      if (sent || !iframe.contentWindow) return;
+      sent = true;
+      iframe.contentWindow.postMessage({ __trinket: true, cfg: cfg }, "*");
+    }
+    window.addEventListener("message", function(e){
+      if (e.source === iframe.contentWindow && e.data && e.data.__trinket_ready) send();
+    });
+    iframe.addEventListener("load", function(){ setTimeout(send, 50); });
+  })();
+  </script>
+</div>
+
+</section>
+
+  
+
+
+</div>
+      
+
+    </div>
+<script type="text/javascript" src=/reveal-hugo/object-assign.js></script>
+
+<a href="/reveal-js/css/print/" id="print-location" style="display: none;"></a>
+<script type="text/javascript">
+  var printLocationElement = document.getElementById('print-location');
+  var link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.type = 'text/css';
+  link.href = printLocationElement.href + (window.location.search.match(/print-pdf/gi) ? 'pdf.css' : 'paper.css');
+  document.getElementsByTagName('head')[0].appendChild(link);
+</script>
+
+<script type="application/json" id="reveal-hugo-site-params">{"highlight_theme":"github-dark","line-numbers":true,"theme":"sky","transition":"concave","transition_speed":"fast"}</script>
+<script type="application/json" id="reveal-hugo-page-params">null</script>
+
+<script src="/reveal-js/js/reveal.js"></script>
+
+<script type="text/javascript">
+  
+  
+  function camelize(map) {
+    if (map) {
+      Object.keys(map).forEach(function(k) {
+        newK = k.replace(/(\_\w)/g, function(m) { return m[1].toUpperCase() });
+        if (newK != k) {
+          map[newK] = map[k];
+          delete map[k];
+        }
+      });
+    }
+    return map;
+  }
+  
+  var revealHugoDefaults = { center: true, controls: true, history: true, progress: true, transition: "slide" };
+  var revealHugoSiteParams = JSON.parse(document.getElementById('reveal-hugo-site-params').innerHTML);
+  var revealHugoPageParams = JSON.parse(document.getElementById('reveal-hugo-page-params').innerHTML);
+  
+  var options = Object.assign({},
+    camelize(revealHugoDefaults),
+    camelize(revealHugoSiteParams),
+    camelize(revealHugoPageParams));
+  Reveal.initialize(options);
+</script>
+
+
+  
+  
+  <script type="text/javascript" src="/reveal-js/plugin/markdown/marked.js"></script>
+  
+  <script type="text/javascript" src="/reveal-js/plugin/markdown/markdown.js"></script>
+  
+  <script type="text/javascript" src="/reveal-js/plugin/highlight/highlight.js"></script>
+  
+  <script type="text/javascript" src="/reveal-js/plugin/zoom-js/zoom.js"></script>
+  
+  
+  <script type="text/javascript" src="/reveal-js/plugin/notes/notes.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({startOnLoad: false});
+    let render = (event) => {
+      let mermaidElems = event.currentSlide.querySelectorAll('.mermaid');
+      if (!mermaidElems.length){
+          return
+      }
+      mermaidElems.forEach(mermaidElem => {
+          let processed = mermaidElem.getAttribute('data-processed');
+          if (!processed){
+              
+              mermaid.init(undefined, mermaidElem);
+          }
+      });
+    };
+    Reveal.addEventListener('slidechanged', render);
+    Reveal.addEventListener('ready', render);
+  </script>
+
+    
+
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']]
+  },
+  svg: {
+    fontCache: 'global'
+  }
+};
+</script>
+
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+</script>
+    
+  </body>
+</html>

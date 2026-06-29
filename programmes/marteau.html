@@ -1,0 +1,375 @@
+<style>
+    body { margin: 2; padding: 5; overflow: hidden; }
+</style>
+
+<meta charset="utf-8">
+<div id="glowscript" class="glowscript">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link type="text/css" href="https://www.glowscript.org/css/redmond/2.1/jquery-ui.custom.css" rel="stylesheet" />
+<link type="text/css" href="https://www.glowscript.org/css/ide.css" rel="stylesheet" />
+<script type="text/javascript" src="https://www.glowscript.org/lib/jquery/2.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://www.glowscript.org/lib/jquery/2.1/jquery-ui.custom.min.js"></script>
+<script type="text/javascript" src="https://www.glowscript.org/package/glow.3.2.min.js"></script>
+<script type="text/javascript" src="https://www.glowscript.org/package/RSrun.3.2.min.js"></script>
+<script type="text/javascript"><!--//--><![CDATA[//><!--
+
+// START JAVASCRIPT
+;(function() {;
+var ρσ_modules = {};
+var marteau_frame, paused, marteau, centreG, pointmanche, moinsvite, grille_visible, gridline, t;
+ρσ_modules.pythonize = {};
+
+(function(){
+    function strings() {
+        var string_funcs, exclude, name;
+        string_funcs = set("capitalize strip lstrip rstrip islower isupper isspace lower upper swapcase center count endswith startswith find rfind index rindex format join ljust rjust partition rpartition replace split rsplit splitlines zfill".split(" "));
+        if (!arguments.length) {
+            exclude = (function(){
+                var s = ρσ_set();
+                s.jsset.add("split");
+                s.jsset.add("replace");
+                return s;
+            })();
+        } else if (arguments[0]) {
+            exclude = Array.prototype.slice.call(arguments);
+        } else {
+            exclude = null;
+        }
+        if (exclude) {
+            string_funcs = string_funcs.difference(set(exclude));
+        }
+        var ρσ_Iter0 = string_funcs;
+        ρσ_Iter0 = ((typeof ρσ_Iter0[Symbol.iterator] === "function") ? (ρσ_Iter0 instanceof Map ? ρσ_Iter0.keys() : ρσ_Iter0) : Object.keys(ρσ_Iter0));
+        for (var ρσ_Index0 of ρσ_Iter0) {
+            name = ρσ_Index0;
+            (ρσ_expr_temp = String.prototype)[(typeof name === "number" && name < 0) ? ρσ_expr_temp.length + name : name] = (ρσ_expr_temp = ρσ_str.prototype)[(typeof name === "number" && name < 0) ? ρσ_expr_temp.length + name : name];
+        }
+    };
+    if (!strings.__module__) Object.defineProperties(strings, {
+        __module__ : {value: "pythonize"}
+    });
+
+    ρσ_modules.pythonize.strings = strings;
+})();
+async function __main__() {
+"use strict";
+    var display = canvas;
+    var scene = canvas();
+
+    function round(num, n=0) {return Number(num.toFixed(n))}
+
+    var version, print, arange, __name__, type, ρσ_ls, ρσ_unpack, v_0, pesanteur, g, theta0, v0, toursparseconde, w0, manche, tete, marteau, decal, centreG, pointmanche, gridlines, t, dt, k, marteau_frame, moinvite, grille_visible, trails, pause_button, reset_button, vit_button, trail_button, grille_button, frame_button, paused;
+    version = ρσ_list_decorate([ "3.2", "glowscript" ]);
+    Array.prototype['+'] = function(r) {return this.concat(r)}
+    Array.prototype['*'] = function(r) {return __array_times_number(this, r)}
+    window.__GSlang = "vpython";
+    print = GSprint;
+    arange = range;
+    __name__ = "__main__";
+    type = pytype;
+    var strings = ρσ_modules.pythonize.strings;
+
+    strings();
+    "3";
+    ρσ_unpack = [850, 440];
+    scene.width = ρσ_unpack[0];
+    scene.height = ρσ_unpack[1];
+    "4";
+    scene.background = vec(25, 25, 25)["/"](255);
+    "5";
+    scene.ambient = vec(.5, .5, .5);
+    "6";
+    v_0 = 8;
+    "7";
+    pesanteur = 10;
+    "8";
+    g = pesanteur["*"](vec(0, 1["-u"]()["*"](1), 0));
+    "9";
+    theta0 = pi["/"](4);
+    "10";
+    v0 = v_0["*"](vec(cos(theta0), sin(theta0), 0));
+    "11";
+    toursparseconde = 1.3;
+    "12";
+    w0 = 1["-u"]()["*"](toursparseconde)["*"](2)["*"](pi)["*"](vec(0, 0, 1));
+    "14";
+    scene.center = vector(v0.x["*"](v0.y)["/"](pesanteur)["*"](1.5), 0, 0);
+    "15";
+    scene.range = 4.5;
+    "17";
+    manche = ρσ_interpolate_kwargs.call(this, cylinder, [ρσ_desugar_kwargs({size: vector(1, .2, .2), color: vector(.72, .42, 0)})]);
+    "18";
+    tete = ρσ_interpolate_kwargs.call(this, box, [ρσ_desugar_kwargs({size: vector(.2, .6, .2), pos: vector(1, 0, 0), color: color.gray(.6)})]);
+    "19";
+    marteau = ρσ_interpolate_kwargs.call(this, compound, [ρσ_list_decorate([ manche, tete ])].concat([ρσ_desugar_kwargs({origin: vec(.95, 0, 0), v: v0})]));
+    "20";
+    decal = vec(0, 0, .1);
+    "21";
+    centreG = ρσ_interpolate_kwargs.call(this, sphere, [ρσ_desugar_kwargs({pos: marteau.pos["+"](decal), radius: .05, color: vec(1, 0, 0), emissive: true, make_trail: false})]);
+    "22";
+    pointmanche = ρσ_interpolate_kwargs.call(this, sphere, [ρσ_desugar_kwargs({pos: marteau.pos["+"](decal)["-"](1["*"](marteau.axis)["*"](.85)), radius: .05, color: vec(0, 162, 255)["/"](255), emissive: true, make_trail: false})]);
+    "24";
+    gridlines = ρσ_list_decorate([]);
+    "26";
+    async function make_grid() {
+        var ρσ_ls, thickness, dx, xmax, ymax, x, y, gridline;
+        "27";
+        thickness = .01;
+        "28";
+        dx = .5;
+        "29";
+        xmax = 10;
+        "30";
+        ymax = 4;
+        "31";
+        x = 0;
+        "32";
+        while (x["<="](xmax)) {
+            "33";
+            y = 1["-u"]()["*"](ymax);
+            "34";
+            gridline = ρσ_interpolate_kwargs.call(this, curve, [ρσ_desugar_kwargs({pos: ρσ_list_decorate([ vector(x, y, 1["-u"]()["*"](thickness)) ]), color: vec(.4, .4, .4), radius: thickness})]);
+            "35";
+            gridlines.append(gridline);
+            "36";
+            while (y["<="](ymax)) {
+                "37";
+                gridline.append(vector(x, y, 1["-u"]()["*"](thickness)));
+                "38";
+                y = y["+"](dx);
+            }
+            "39";
+            x = x["+"](dx);
+        }
+        "40";
+        y = 1["-u"]()["*"](ymax);
+        "41";
+        while (y["<="](ymax)) {
+            "42";
+            x = 0;
+            "43";
+            gridline = ρσ_interpolate_kwargs.call(this, curve, [ρσ_desugar_kwargs({pos: ρσ_list_decorate([ vector(x, y, 1["-u"]()["*"](thickness)) ]), color: vec(.4, .4, .4), radius: thickness})]);
+            "44";
+            gridlines.append(gridline);
+            "45";
+            while (x["<="](xmax)) {
+                "46";
+                gridline.append(vector(x, y, 1["-u"]()["*"](thickness)));
+                "47";
+                x = x["+"](dx);
+            }
+            "48";
+            y = y["+"](dx);
+        }
+    };
+    if (!make_grid.__module__) Object.defineProperties(make_grid, {
+        __module__ : {value: null}
+    });
+
+    "50";
+    (await make_grid());
+    "52";
+    t = 0;
+    "53";
+    dt = 1e-5;
+    "54";
+    k = 0;
+    "57";
+    async function toggle_trails() {
+        "58";
+        centreG.make_trail = !centreG.make_trail;
+        "59";
+        pointmanche.make_trail = !pointmanche.make_trail;
+    };
+    if (!toggle_trails.__module__) Object.defineProperties(toggle_trails, {
+        __module__ : {value: null}
+    });
+
+    "61";
+    marteau_frame = false;
+    "63";
+    async function toggle_frame() {
+        "64";
+        "65";
+        marteau_frame = !marteau_frame;
+    };
+    if (!toggle_frame.__module__) Object.defineProperties(toggle_frame, {
+        __module__ : {value: null}
+    });
+
+    "67";
+    async function toggle_pause() {
+        "68";
+        "69";
+        paused = !paused;
+    };
+    if (!toggle_pause.__module__) Object.defineProperties(toggle_pause, {
+        __module__ : {value: null}
+    });
+
+    "71";
+    async function reset() {
+        "72";
+        "73";
+        paused = true;
+        "74";
+        marteau.v = v0;
+        "75";
+        marteau.pos = vec(.95, 0, 0);
+        "76";
+        marteau.axis = vector(1.1, 0, 0);
+        "77";
+        centreG.pos = marteau.pos["+"](decal);
+        "78";
+        pointmanche.pos = marteau.pos["+"](decal)["-"](1["*"](marteau.axis)["*"](.85));
+        "79";
+        centreG.clear_trail();
+        "80";
+        pointmanche.clear_trail();
+        "83";
+        (await run_animation());
+    };
+    if (!reset.__module__) Object.defineProperties(reset, {
+        __module__ : {value: null}
+    });
+
+    "85";
+    moinvite = false;
+    "87";
+    async function vamoinsvite() {
+        "88";
+        "89";
+        moinsvite = !moinsvite;
+    };
+    if (!vamoinsvite.__module__) Object.defineProperties(vamoinsvite, {
+        __module__ : {value: null}
+    });
+
+    "91";
+    grille_visible = false;
+    "93";
+    async function affichergrille() {
+        "94";
+        "95";
+        var ρσ_Iter1 = gridlines;
+        ρσ_Iter1 = ((typeof ρσ_Iter1[Symbol.iterator] === "function") ? (ρσ_Iter1 instanceof Map ? ρσ_Iter1.keys() : ρσ_Iter1) : Object.keys(ρσ_Iter1));
+        for (var ρσ_Index1 of ρσ_Iter1) {
+            gridline = ρσ_Index1;
+            "96";
+            gridline.visible = grille_visible;
+        }
+        "97";
+        grille_visible = !grille_visible;
+    };
+    if (!affichergrille.__module__) Object.defineProperties(affichergrille, {
+        __module__ : {value: null}
+    });
+
+    "99";
+    trails = ρσ_list_decorate([]);
+    "101";
+    async function run_animation() {
+        var ρσ_ls, k, duree_trace;
+        "102";
+        "103";
+        t = 0;
+        "104";
+        k = 0;
+        "105";
+        duree_trace = .1;
+        "106";
+        while (marteau.pos.y[">="](1["-u"]()["*"](3))) {
+            "107";
+            if (!moinsvite) {
+                "108";
+                (await rate(1["/"](dt)));
+                "109";
+            } else {
+                "110";
+                (await rate(.1["/"](dt)));
+                "111";
+            }
+            if (!paused) {
+                "112";
+                t=t["+"](dt);
+                "113";
+                if (t[">="](0)) {
+                    "114";
+                    marteau.v=marteau.v["+"](g["*"](dt));
+                    "115";
+                    marteau.pos=marteau.pos["+"](marteau.v["*"](dt));
+                    "116";
+                    marteau.axis=marteau.axis["+"](cross(marteau.axis, w0)["*"](dt));
+                    "117";
+                    centreG.pos = marteau.pos["+"](decal);
+                    "118";
+                    pointmanche.pos = marteau.pos["+"](decal)["-"](1["*"](marteau.axis)["*"](.85));
+                    "119";
+                }
+            }
+            if (marteau_frame) {
+                "120";
+                scene.center = centreG.pos;
+                "121";
+                scene.range = 2;
+                "131";
+            } else {
+                "132";
+                scene.center = vector(v0.x["*"](v0.y)["/"](pesanteur)["*"](1.5), 0, 0);
+                "133";
+                scene.range = 4.5;
+            }
+            "134";
+            k=k["+"](1);
+        }
+    };
+    if (!run_animation.__module__) Object.defineProperties(run_animation, {
+        __module__ : {value: null}
+    });
+
+    "136";
+    pause_button = ρσ_interpolate_kwargs.call(this, button, [ρσ_desugar_kwargs({text: "Lecture/Pause", bind: toggle_pause})]);
+    "137";
+    reset_button = ρσ_interpolate_kwargs.call(this, button, [ρσ_desugar_kwargs({text: "Raz", bind: reset})]);
+    "138";
+    vit_button = ρσ_interpolate_kwargs.call(this, button, [ρσ_desugar_kwargs({text: "Lent/Normal", bind: vamoinsvite})]);
+    "139";
+    trail_button = ρσ_interpolate_kwargs.call(this, button, [ρσ_desugar_kwargs({text: "Trace", bind: toggle_trails})]);
+    "140";
+    grille_button = ρσ_interpolate_kwargs.call(this, button, [ρσ_desugar_kwargs({text: "grille", bind: affichergrille})]);
+    "141";
+    frame_button = ρσ_interpolate_kwargs.call(this, button, [ρσ_desugar_kwargs({text: "Référentiel", bind: toggle_frame})]);
+    "143";
+    paused = true;
+    "144";
+    (await run_animation());
+};
+if (!__main__.__module__) Object.defineProperties(__main__, {
+    __module__ : {value: null}
+});
+
+;$(function(){ window.__context = { glowscript_container: $("#glowscript").removeAttr("id") }; __main__() })})()
+// END JAVASCRIPT
+
+//--><!]]></script>
+</div>
+<script>
+(function () {
+  // Centre horizontalement les boutons ajoutés par GlowScript.
+  var tries = 0;
+  var iv = setInterval(function () {
+    tries++;
+    var btns = document.querySelectorAll('.glowscript button');
+    if (btns.length) {
+      clearInterval(iv);
+      var caption = btns[0].parentElement;   // conteneur de la légende
+      caption.style.textAlign = 'center';
+      caption.style.marginTop = '8px';
+      // Un peu d'espace entre les boutons
+      btns.forEach(function (b) { b.style.margin = '3px 4px'; });
+    } else if (tries > 50) {
+      clearInterval(iv); // abandon après ~5 s
+    }
+  }, 100);
+})();
+</script>
