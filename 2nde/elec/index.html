@@ -79,10 +79,12 @@ Il faut &ldquo;casser&rdquo; le circuit ! Retirer un fil<br>et mettre l&rsquo;am
 <section data-noprocess data-shortcode-slide
       data-background-image="/commentmesi2.png"
       data-background-size="contain"
-      data-transition="fade-in concave-out">
+      data-transition="fade-in fade-out">
 <p><br><br><br><br><br>
 Il faut &ldquo;casser&rdquo; le circuit ! Retirer un fil<br>et mettre l&rsquo;ampèremètre à la place<br>
 (l&rsquo;ampèremètre doit être traversé par le courant).</p>
+</section><section>
+<p><a href="https://www.edumedia.com/fr/media/94-quiz-multimetre?auth=db28a827883c07c3dcb80248bcdad8dc/27824"><b style="font-size:2em;">Quiz multimètre</b></a></p>
 </section><section>
 <p>⚠️‼️⚠️‼️⚠️‼️⚠️‼️⚠️‼️⚠️</p>
 <p>Pour la borne A, il y a souvent deux choix possibles sur l&rsquo;ampèremètre. Il faut toujours commencer par celle protégée par un gros fusible (10 ou 20 A)<br>et régler le calibre en conséquence.</p>
@@ -208,25 +210,23 @@ Si branchement dans la borne A,<br>il y a court-circuit du générateur 💀.</p
 <h2 id="caractéristique-dun-dipôle">Caractéristique d&rsquo;un dipôle</h2>
 </section><section>
 <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
-<div style="background-color:#0076BA;padding:15px 10px 20px 10px; width:content; color:white">
+<div style="background-color:#0076BA;padding:15px 10px 20px 10px; width:content; color:white;border-radius:10px;">
 La <b>caractéristique</b> d’un dipôle électrique<br>est la relation existant entre l’intensité I<br>du courant traversant le dipôle<br>et la tension U aux bornes de celui-ci. 
 </div>
 </div>
 </section><section>
-<p>Généralement elle est fournie<br>sous la forme d’un graphique représentant :</p>
+<p>Elle est générallement fournie<br>sous la forme d’un graphique représentant :</p>
 <br>
-<ul>
-<li>soit la tension aux bornes du dipôle<br>en fonction de l’intensité du courant<br>qui le traverse : $U = f(I)$ ;</li>
-<br>	
-<li class="fragment">soit l’intensité du courant traversant<br>le dipôle en fonction de la tension<br>appliquée à ses bornes : $I = g(U)$.</li>
+<ul style="margin-top:-1em;">
+<li class="fragment fade-up">soit la tension aux bornes du dipôle<br>en fonction de l’intensité du courant<br>qui le traverse : $U = f(I)$ ;</li>
+<li class="fragment fade-up" style="margin-top:1em;">soit l’intensité du courant traversant<br>le dipôle en fonction de la tension<br>appliquée à ses bornes : $I = g(U)$.</li>
 </ul>
 </section><section>
 <p>Il y a deux montages possibles<br>pour tracer une caractéristique :</p>
 <br>
-<ul>
-<li>soit on utilise un générateur variable ;</li>
-<br>	
-<li class="fragment">soit une résistance variable<br>en série avec le dipôle.</li>
+<ul style="margin-top:-1em;">
+<li class="fragment fade-up">soit on utilise un générateur variable ;</li>
+<li class="fragment fade-up" style="margin-top:1em;">soit une résistance variable<br>en série avec le dipôle.</li>
 </ul>
 </section>
 <section data-noprocess data-shortcode-slide
@@ -234,18 +234,16 @@ La <b>caractéristique</b> d’un dipôle électrique<br>est la relation existan
       data-background-size="contain"
       data-background-transition="concave">
 </section><section>
-<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-  <iframe
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-    allowfullscreen="allowfullscreen"
-    loading="eager"
-    referrerpolicy="strict-origin-when-cross-origin"
-    src="https://www.youtube.com/embed/MzIkKmHrtDc?autoplay=0&controls=1&end=0&loop=0&mute=0&start=0"
-    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;"
-    title="YouTube video"
-  ></iframe>
+<div class="yt-slide" style="--yt-fill:0.8;display:block;margin:0 auto;aspect-ratio:16 / 9;width:min(calc(var(--yt-fill) * 100%),calc(var(--slide-height, 700px) * var(--yt-fill) * 16 / 9));border-radius:12px;overflow:hidden;">
+  <iframe data-src="https://www.youtube-nocookie.com/embed/MzIkKmHrtDc"
+          style="display:block;width:100%;height:100%;max-width:none;max-height:none;border:0;border-radius:inherit;"
+          title="Lecteur vidéo YouTube"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen></iframe>
 </div>
 </section>
+<p>Fonctionnement d&rsquo;un rhéostat :</p>
 <section data-noprocess data-shortcode-slide
       data-background-image="/exemplescarcteristiques.png"
       data-background-size="contain"
@@ -258,7 +256,7 @@ La <b>caractéristique</b> d’un dipôle électrique<br>est la relation existan
 <p>C&rsquo;est la <span class="imp" style="color:#FEAE00">loi d&rsquo;Ohm</span> :</p>
 <br>
 <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
-<div style="background-color:#F27200;padding:15px 50px 20px 50px; width:content; color:white">
+<div style="background-color:#F27200;padding:15px 50px 20px 50px; width:content; color:white;border-radius:10px;">
 $$U_R = R\times I_R$$
 </div>
 </div>
