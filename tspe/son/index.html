@@ -80,6 +80,7 @@ font-weight:normal;
 <p>L&rsquo;onde sonore est<br>une onde <span class="imp fragment">longitudinale</span><br>car la perturbation se fait<br><span class="imp fragment">dans la même direction</span><br>que sa propagation.</p>
 </section>
 <section data-noprocess data-shortcode-slide
+      data-background-color="#191919"
       data-background-image="/animsonrond.gif"
       data-background-size="contain"
       data-background-transition="concave">
@@ -132,8 +133,17 @@ d’avoir une plage de sensibilité si étendue :</p>
 <li class="fragment fade-up">le seuil d'audibilité à $\pu{1 kHz}$, appelé <span class="imp">intensité sonore de référence $I_0$</span> vaut $\pu{1,0E-12 W*m-2}$.</li>
 <li class="fragment fade-up">Le seuil de douleur est de l'ordre de $\pu{1 W*m-2}$.</li>
 </ul>
-<p class="fragment fade-up">Notre sensibilité est <span class="imp">logarithmique</span>.</p>
-<aside class="notes"><p>On peut par exemple mesurer que l&rsquo;amplitude du son émis par quelqu&rsquo;un qui parle fort est environ 10 000 fois plus grande que celle d&rsquo;une personne qui chuchote à la même distance ! Pourtant, on n&rsquo;a pas la sensation d&rsquo;un son 10 000 fois plus fort&hellip; (~30 dB pour chuchotement et 70dB voix parlé fort et ~60dB pour voix normal)</p>
+<p class="fragment fade-up">Il y a un facteur <span class="imp">mille milliards</span> entre les deux 🤯</p>
+</section><section>
+<p>Notre sensibilité est <span class="imp">logarithmique</span>.</p>
+<p class="fragment fade-up">
+On peut par exemple mesurer que l'amplitude du son émis par quelqu'un qui parle fort est environ 10 000 fois plus grande que celle d'une personne<br>
+qui chuchote à la même distance !
+</p>
+<p class="fragment fade-up">
+On n'a pourtant pas la sensation<br>d'un son 10 000 fois plus fort... 
+</p>
+<aside class="notes"><p>~30 dB pour chuchotement et 70dB voix parlé fort et ~60dB pour voix normal</p>
 </aside>
 
 </section>
@@ -151,18 +161,29 @@ $$\log(x) = \frac{\ln(x)}{\ln(10)}$$
 On a ainsi $\log(10)=$ <span class="imp fragment">$1$</span>.
 </p>
 </section><section>
-<p>Les règles de calcul de $\ln$ sont conservées :</p>
+<p>Les règles de calcul de $\log$<br>sont les mêmes
+que celles de $\ln$ :</p>
 <br>
+<div class="fragment fade-up" style="position:relative;margin:auto;width:fit-content;border:solid 5px #FF968D;padding:50px;border-radius:10px">
 <ul style="margin-top:-0.5em; margin-bottom:-0.5em;">
 <li class="fragment fade-up">$\log(1)=$ <span class="imp fragment">$0$</span></li>
 <li class="fragment fade-up">$\log(a{\color{#FF968D}\times} b)=$ <span class="fragment">$\log(a){\color{#FF968D}+}\log(b)$</span></li>
 <li class="fragment fade-up">$\log(a{\color{#FF968D}\,/\,}b)=$ <span class="fragment">$\log(a){\color{#FF968D}-}\log(b)$</span></li>
 <li class="fragment fade-up">$\log(a^{\color{#FF968D}n})=$ <span class="fragment">${\color{#FF968D}n}\log(a)$</span></li>
 </ul>
+</div>
 </section><section>
 <p>La fonction réciproque du logarithme<br>décimal est la fonction <span class="imp fragment">$10^x$</span>.</p>
 <p class="fragment fade-up">Ainsi, si $\log(x)=b$</p>
 <p class="fragment fade-up">Alors $x=$ <span class="imp fragment">$10^b$</span></p>
+</section><section>
+<p>Le boulot de la fonction $\log$ est de fournir l&rsquo;exposant d&rsquo;un nombre écrit sous la forme d&rsquo;une puissance de 10.</p>
+<p class="fragment fade-up">Exemples :</p>
+<ul>
+<li class="fragment fade-up">$\log(10^{\color{#FF968D} 7}) = $ <span class="imp fragment">$\;7$</span></li>
+<li class="fragment fade-up">$\log(0,01) = $ <span class="fragment">$\;\log(10^{\color{#FF968D}-2})=$</span><span class="imp fragment">$\;-2$</span></li>
+<li class="fragment fade-up">$\log(2) = $<span class="fragment">$\;\log(10^{\color{#FF968D}0,3})=$</span><span class="imp fragment">$\;0,3$ </span></li>
+</ul>
 
 </section>
 </section><section>
@@ -185,6 +206,21 @@ $$L=10\log\left(\frac{I}{I_0}\right)$$
 à <span class="imp fragment">ajouter 3 dB</span> au niveau sonore<br>
 et multiplier l’intensité par 10<br>
 <span class="imp fragment">ajoute 10 dB</span>.</p>
+</section><section>
+<p>Preuve :</p>
+<p class="fragment fade-up">
+Si 2 trompettes, l'intensité sonore devient $I = 2\times I_t$ où $I_t$ est l'intensité d'une trompette seule.
+</p>
+<p class="fragment fade-up">
+$\begin{aligned}
+L &= 10\times \log(I)\\
+& = 10\times \log(2\times I_t)\\
+&= 10\times(\log(2) + \log(I_t))\\
+& = L_t + \pu{3 dB}
+\end{aligned}
+$
+</p>
+<p class="fragment fade-up">Où $L_t$ est le niveau sonore d'une trompette seule.</p>
 </section>
 <section data-noprocess data-shortcode-slide
       data-background-size="contain"
@@ -197,12 +233,12 @@ et multiplier l’intensité par 10<br>
       data-background-size="contain"
       data-background-transition="concave">
 </section><section>
-<iframe width="550" height="440" src="https://www.edumedia.com/media/frame/fr/155/?auth=51a8d1c53ced40fce13e3b1dccd9e62d/27824" frameborder="0" style="border-radius:5px;"></iframe>
+<iframe width="700" height="560" src="https://www.edumedia.com/media/frame/fr/155/?auth=51a8d1c53ced40fce13e3b1dccd9e62d/27824" frameborder="0" style="border-radius:5px;"></iframe>
 <aside class="notes"><p>Pour les tests audiométriques qui mesurent le degré de perte auditive, on utilise le dB HL (= hearing loss). Le dB HL tient compte de la variation de sensibilité de l&rsquo;oreille humaine en fonction des fréquences (= hauteur des sons). Le 0 dB HL correspond ainsi, pour chaque fréquence testée, à l&rsquo;intensité minimale perçue par la moyenne des personnes normo-entendantes.</p>
 </aside>
 </section><section>
 <p>Comment obtenir l&rsquo;intensité sonore $I$<br>à partir du niveau d&rsquo;intensité sonore $L$ ?</p>
-<div class="fragment fade-up imp" style="font-size:1.2em;">
+<div class="fragment fade-up imp" style="font-size:1.2em;border:5px solid #FF968D;width:fit-content;border-radius:10px;margin:auto;padding:0 50px 0 50px;">
 $$I=I_0\times 10^{\frac{L}{10}}$$
 </div>
 
@@ -290,8 +326,7 @@ Et ils atténuent trop de toute façon.</p>
 I = p_eff^2 / (rho*c)
 où p_eff est la pression acoustique efficace en Pa
 rho est la masse volumique de l&rsquo;air (1,2 kg/m^2 à 20°C) et c la célérité des ondes sonores (343 m/s à 20°C) (checker les dimensions).
-Dans un milieu donné et à température fixée, que peut-on dire de la pression acoustique et de l&rsquo;intensité sonore ? Proportionnalité.
-Et rho*c = 415 kg/m^2/s.
+rho*c = 415 kg/m^2/s dans l&rsquo;air à pression et température ambiante.
 Le seuil d&rsquo;audition étant à 20 microPa = 2E-5 Pa, retrouver l&rsquo;intensité sonore de référence : -&gt; I = (2E-5)^2/415 = 1,0E-12 W/m^2</p>
 </aside>
 
