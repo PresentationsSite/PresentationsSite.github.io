@@ -209,18 +209,24 @@ et multiplier l’intensité par 10<br>
 </section><section>
 <p>Preuve :</p>
 <p class="fragment fade-up">
-Si 2 trompettes, l'intensité sonore devient $I = 2\times I_t$ où $I_t$ est l'intensité d'une trompette seule.
-</p>
+Si $\color{#61D836}I_t$ est l'intensité sonore d'une trompette,<br>
+pour 2 trompettes, on a : ${\color{#FEAE00}I} = 2\times {\color{#61D836}I_t}$</p>
 <p class="fragment fade-up">
-$\begin{aligned}
-L &= 10\times \log(I)\\
-& = 10\times \log(2\times I_t)\\
-&= 10\times(\log(2) + \log(I_t))\\
-& = L_t + \pu{3 dB}
-\end{aligned}
-$
+Appelons $\color{#61D836}L_t$ le niveau sonore d'une trompette et cherchons le niveau sonore $\color{#FEAE00} L$ des 2 trompettes : 
 </p>
-<p class="fragment fade-up">Où $L_t$ est le niveau sonore d'une trompette seule.</p>
+</section><section>
+<div style="font-size:0.9em;">
+<p>$$
+\begin{aligned}
+{\color{#FEAE00}L} &amp;= 10\times \log\left(\frac{\color{#FEAE00}I}{I_0}\right)&amp;\\
+&amp; = 10\times \log\left(\frac{2\times {\color{#61D836}I_t}}{I_0}\right)\\
+&amp; = 10\times \log\left(2\times\frac{ {\color{#61D836}I_t}}{I_0}\right)\\
+&amp;= 10\times\left(\log(2) + \log\left(\frac{\color{#61D836}I_t}{I_0}\right)\right)\\
+&amp;=10\times \log\left(\frac{\color{#61D836}I_t}{I_0}\right) + {\color{#FF95CA}10\times\log(2)}\\
+&amp; = {\color{#61D836}L_t} + \color{#FF95CA}\pu{3 dB}
+\end{aligned}
+$$</p>
+</div>
 </section>
 <section data-noprocess data-shortcode-slide
       data-background-size="contain"
