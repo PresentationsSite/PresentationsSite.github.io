@@ -47,8 +47,8 @@
 
   /* ---------- Geometry ---------- */
   const sources = [
-    {label:'S₁',x:0,y:0,active:true,onTime:-Infinity,offTime:-Infinity,color:'#ff5555'},
-    {label:'S₂',x:0,y:0,active:true,onTime:-Infinity,offTime:-Infinity,color:'#55aaff'}
+    {label:'S₁',x:0,y:0,active:true,onTime:-Infinity,offTime:-Infinity,color:'#ff5555',labelColor:'#e01b1b'},
+    {label:'S₂',x:0,y:0,active:true,onTime:-Infinity,offTime:-Infinity,color:'#55aaff',labelColor:'#0a5fd6'}
   ];
   const M = {x:0,y:0,drag:false};
 
@@ -62,6 +62,14 @@
   /* ---------- Helpers ---------- */
   const nbsp='\u00A0';
   const BASE_RADIUS = 8;     // px – base size of source dot
+
+  /* --- style des étiquettes d₁ / d₂ --- */
+  const LABEL_SIZE   = 22;   // px – taille du texte
+  const LABEL_FONT   = `bold ${LABEL_SIZE}px system-ui, sans-serif`;
+  const LABEL_OFFSET = 28;   // px – écart entre le segment et son étiquette
+  const HALO_BLUR    = 5;   // px – rayon du flou blanc
+  const HALO_PASSES  = 4;    // nb de passes (densifie le halo)
+  const HALO_STROKE  = 2;    // px – épaisseur du liseré blanc net
   function updLabels(){
     gapVal.textContent    = `a = ${a}${nbsp}mm`;
     lambdaVal.textContent = `λ = ${λ}${nbsp}mm`;
@@ -172,13 +180,29 @@
     if(!len) return;
     const ang=Math.atan2(dy,dx);
     const nx=dy/len, ny=-dx/len; // perpendicular left
-    const off=18*sign;
+    const off=LABEL_OFFSET*sign;
     ctx.save();
     ctx.translate(mx+nx*off, my+ny*off);
     // keep readable left→right
     ctx.rotate((ang>Math.PI/2||ang<-Math.PI/2)?ang+Math.PI:ang);
-    ctx.fillStyle=col; ctx.textAlign='center'; ctx.textBaseline='middle';
-    ctx.shadowColor=col; ctx.shadowBlur=4;
+    ctx.font=LABEL_FONT;
+    ctx.textAlign='center'; ctx.textBaseline='middle';
+    ctx.lineJoin='round'; ctx.miterLimit=2;
+
+    // 1) halo blanc diffus (plusieurs passes : les ombres s'additionnent)
+    ctx.shadowColor='rgba(255,255,255,0.95)';
+    ctx.shadowBlur=HALO_BLUR;
+    ctx.fillStyle='rgba(255,255,255,0.95)';
+    for(let i=0;i<HALO_PASSES;i++) ctx.fillText(txt,0,0);
+
+    // 2) liseré blanc net : décolle le glyphe du fond, même sur les franges vives
+    ctx.shadowBlur=0;
+    ctx.strokeStyle='rgba(255,255,255,0.97)';
+    ctx.lineWidth=HALO_STROKE;
+    ctx.strokeText(txt,0,0);
+
+    // 3) texte coloré par-dessus
+    ctx.fillStyle=col;
     ctx.fillText(txt,0,0);
     ctx.restore();
   }
@@ -220,8 +244,8 @@
     ctx.fillStyle='#ffffcc'; ctx.beginPath(); ctx.arc(M.x,M.y,6,0,2*Math.PI); ctx.fill();
 
     // labels
-    labelSeg(sources[0].x,sources[0].y,M.x,M.y,`d₁ = ${r1.toFixed(0)} mm`,sources[0].color,+1);
-    labelSeg(sources[1].x,sources[1].y,M.x,M.y,`d₂ = ${r2.toFixed(0)} mm`,sources[1].color,-1);
+    labelSeg(sources[0].x,sources[0].y,M.x,M.y,`d₁ = ${r1.toFixed(0)} mm`,sources[0].labelColor,+1);
+    labelSeg(sources[1].x,sources[1].y,M.x,M.y,`d₂ = ${r2.toFixed(0)} mm`,sources[1].labelColor,-1);
     ctx.restore();
 
     /* Update history */
