@@ -1,0 +1,858 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>Flux</title>
+  <style>
+    :root { --ui-bg: rgba(20,20,20,.55); --ui-fg: #fff; --ui-border: rgba(255,255,255,.18); }
+    html, body { margin:0; height:100%; overflow:hidden; background:#0b0f14; touch-action:none; }
+    canvas { width:100vw; height:100vh; display:block; }
+
+    .ui{
+      position:fixed;
+      left:max(10px, env(safe-area-inset-left));
+      top:max(10px, env(safe-area-inset-top));
+      width: fit-content;
+      max-width: calc(100vw - 20px);
+      color:var(--ui-fg);
+      font:14px/1.2 system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      background:var(--ui-bg);
+      border:1px solid var(--ui-border);
+      border-radius:14px;
+      padding:10px 10px 8px;
+      backdrop-filter:blur(10px);
+      -webkit-backdrop-filter:blur(10px);
+      user-select:none;
+    }
+    .row{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      flex-wrap:wrap;
+      margin:6px 0;
+      justify-content:center;
+    }
+    .row>label{display:flex;gap:8px;align-items:center;white-space:nowrap;}
+    input[type="range"]{ width: clamp(160px, 52vw, 240px); }
+
+    button{
+      appearance:none;border:1px solid var(--ui-border);background:rgba(255,255,255,.08);
+      color:var(--ui-fg);border-radius:10px;padding:7px 10px;cursor:pointer;
+    }
+    button:active{transform:translateY(1px);}
+    .pill{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:6px 10px;border-radius:999px;border:1px solid var(--ui-border);
+      background:rgba(255,255,255,.06);
+      font-size:12px;opacity:.95;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="c"></canvas>
+
+  <div class="ui">
+    <div class="row">
+      <label>Débit</label>
+      <input id="qSlider" type="range" min="0" max="12" step="0.05" value="6.0" />
+      <span id="qVal" class="pill"></span>
+    </div>
+
+    <div class="row">
+      <label><input id="perfect" type="checkbox" checked /> Fluide parfait</label>
+      <label><input id="particles" type="checkbox" checked /> particules</label>
+    </div>
+
+    <div class="row">
+      <button id="injectGrid">Injecter grille</button>
+      <button id="resetBtn">Reset</button>
+    </div>
+  </div>
+
+<script>
+(() => {
+  const canvas = document.getElementById('c');
+  const ctx = canvas.getContext('2d');
+
+  function dpr(){ return Math.max(1, Math.min(3, window.devicePixelRatio || 1)); }
+
+  const view = {
+    pad: 40,
+    W:0,H:0,s:1,ox:0,oy:0,
+    world:{ L:10, yMin:-1.25, yMax:1.25 }
+  };
+
+  function resize(){
+    const DPR = dpr();
+    const cssW = canvas.clientWidth || window.innerWidth;
+    const cssH = canvas.clientHeight || window.innerHeight;
+    canvas.width  = Math.floor(cssW * DPR);
+    canvas.height = Math.floor(cssH * DPR);
+    ctx.setTransform(1,0,0,1,0,0);
+
+    view.W = canvas.width; view.H = canvas.height;
+    const pad = view.pad*DPR;
+
+    const sX = (view.W - 2*pad)/view.world.L;
+    const sY = (view.H - 2*pad)/(view.world.yMax - view.world.yMin);
+    view.s = Math.min(sX, sY);
+
+    view.ox = pad;
+    const y0 = (view.world.yMin + view.world.yMax)/2;
+    view.oy = view.H/2 + view.s*y0;
+  }
+  window.addEventListener('resize', resize);
+
+  function w2s(x,y){ return { x: view.ox + view.s*x, y: view.oy - view.s*y }; }
+  function s2w(px,py){ return { x: (px - view.ox)/view.s, y: (view.oy - py)/view.s }; }
+
+  // ---------- Géométrie (spline) ----------
+  const geom = {
+    L: view.world.L,
+    xs: [0, 1.7, 3.4, 5.0, 6.6, 8.3, 10.0],
+    top:[0.70, 0.62, 0.52, 0.45, 0.52, 0.62, 0.70],
+    bot:[-0.70,-0.62,-0.52,-0.45,-0.52,-0.62,-0.70],
+    minGap:0.24
+  };
+
+  function catmullRom(p0,p1,p2,p3,t){
+    const t2=t*t,t3=t2*t;
+    return 0.5*((2*p1)+(-p0+p2)*t+(2*p0-5*p1+4*p2-p3)*t2+(-p0+3*p1-3*p2+p3)*t3);
+  }
+  function sampleSpline(xs,ys,x){
+    const n=xs.length;
+    if(x<=xs[0]) return ys[0];
+    if(x>=xs[n-1]) return ys[n-1];
+    let i=0; while(i<n-1 && x>xs[i+1]) i++;
+    const x0=xs[i],x1=xs[i+1],t=(x-x0)/(x1-x0);
+    const y1=ys[i],y2=ys[i+1],y0=ys[Math.max(0,i-1)],y3=ys[Math.min(n-1,i+2)];
+    return catmullRom(y0,y1,y2,y3,t);
+  }
+
+  function topRaw(x){ return sampleSpline(geom.xs, geom.top, x); }
+  function botRaw(x){ return sampleSpline(geom.xs, geom.bot, x); }
+
+  // Clamp local pour garantir gap>=minGap partout (dessin + physique cohérents)
+  function pairAt(x){
+    let top = topRaw(x), bot = botRaw(x);
+    const gap = top - bot;
+    if(gap < geom.minGap){
+      const mid = 0.5*(top + bot);
+      const half = 0.5*geom.minGap;
+      top = mid + half; bot = mid - half;
+    }
+    return {top, bot};
+  }
+  function topAt(x){ return pairAt(x).top; }
+  function botAt(x){ return pairAt(x).bot; }
+  function ycAt(x){ const p=pairAt(x); return 0.5*(p.top+p.bot); }
+
+  function deriv(f,x){
+    const eps=0.02;
+    const x0=Math.max(0,x-eps), x1=Math.min(geom.L,x+eps);
+    if(x1===x0) return 0;
+    return (f(x1)-f(x0))/(x1-x0);
+  }
+
+  function enforceMinGapAtIndex(i){
+    const mid=0.5*(geom.top[i]+geom.bot[i]);
+    const half=0.5*geom.minGap;
+    if(geom.top[i]-geom.bot[i] < geom.minGap){
+      geom.top[i]=mid+half; geom.bot[i]=mid-half;
+    }
+  }
+
+  function updateWorldBounds(){
+    let yMin=+Infinity,yMax=-Infinity;
+    for(let k=0;k<260;k++){
+      const x=geom.L*(k/259);
+      yMin=Math.min(yMin, botAt(x));
+      yMax=Math.max(yMax, topAt(x));
+    }
+    const m=0.35;
+    view.world.yMin=yMin-m; view.world.yMax=yMax+m;
+    resize();
+  }
+
+  // ---------- Sections normales ----------
+  function norm2(x,y){ return x*x+y*y; }
+  function normalize(x,y){
+    const n=Math.sqrt(norm2(x,y)) || 1;
+    return {x:x/n, y:y/n};
+  }
+  function bisectRoot(f, a, b, it=30){
+    let fa=f(a), fb=f(b);
+    if(!(fa<=0 && fb>=0) && !(fa>=0 && fb<=0)) return null;
+    for(let k=0;k<it;k++){
+      const m=0.5*(a+b);
+      const fm=f(m);
+      if((fa<=0 && fm<=0) || (fa>=0 && fm>=0)){ a=m; fa=fm; }
+      else { b=m; fb=fm; }
+    }
+    return 0.5*(a+b);
+  }
+
+  function sectionAt(x0){
+    x0 = Math.max(0, Math.min(geom.L, x0));
+    const y0 = ycAt(x0);
+    const dyc = deriv(ycAt, x0);
+
+    const tHat = normalize(1, dyc);
+    const nHat = normalize(-dyc, 1);
+
+    const fTop = (t) => (y0 + t*nHat.y) - topAt(Math.max(0, Math.min(geom.L, x0 + t*nHat.x)));
+    const fBot = (t) => (y0 + t*nHat.y) - botAt(Math.max(0, Math.min(geom.L, x0 + t*nHat.x)));
+
+    let tTop=null, tBot=null;
+
+    let tMax=0.02;
+    if(fTop(0) < 0){
+      for(let k=0;k<24;k++){
+        if(fTop(tMax) >= 0){ tTop = bisectRoot(fTop, 0, tMax); break; }
+        tMax *= 1.5;
+      }
+    }
+
+    let tMin=-0.02;
+    if(fBot(0) > 0){
+      for(let k=0;k<24;k++){
+        if(fBot(tMin) <= 0){ tBot = bisectRoot(fBot, tMin, 0); break; }
+        tMin *= 1.5;
+      }
+    }
+
+    if(tTop===null || tBot===null){
+      const top = topAt(x0), bot = botAt(x0);
+      const xt=x0, xb=x0, yt=top, yb=bot;
+      const hN = Math.abs(yt-yb);
+      return {x0,y0, tHat, nHat, xt,yt, xb,yb, hN};
+    }
+
+    const xt = Math.max(0, Math.min(geom.L, x0 + tTop*nHat.x));
+    const yt = y0 + tTop*nHat.y;
+    const xb = Math.max(0, Math.min(geom.L, x0 + tBot*nHat.x));
+    const yb = y0 + tBot*nHat.y;
+
+    const hN = Math.sqrt((xt-xb)*(xt-xb) + (yt-yb)*(yt-yb));
+    return {x0,y0, tHat, nHat, xt,yt, xb,yb, hN};
+  }
+
+  function posFromXS(x,s){
+    const sec = sectionAt(x);
+    const ss = Math.max(0, Math.min(1, s));
+    return {
+      x: sec.xb + ss*(sec.xt - sec.xb),
+      y: sec.yb + ss*(sec.yt - sec.yb)
+    };
+  }
+
+  function sFromXY(x,y){
+    const sec = sectionAt(x);
+    const vx = sec.xt - sec.xb, vy = sec.yt - sec.yb;
+    const denom = vx*vx + vy*vy;
+    if(denom < 1e-12) return 0.5;
+    const px = x - sec.xb, py = y - sec.yb;
+    let s = (px*vx + py*vy)/denom;
+    return Math.max(0.02, Math.min(0.98, s));
+  }
+
+  function insidePipe(x,y){
+    if(x<0||x>geom.L) return false;
+    return y>botAt(x) && y<topAt(x);
+  }
+
+  // ---------- Modèle ----------
+  const state = {
+    Q_Ls: 6.0,
+    perfect: true,
+    showParticles: true,
+    depth: 0.004,
+    rho: 1000,
+    pIn: 120e3
+  };
+
+  function Qm3s_in(){ return state.Q_Ls/1000; }
+  function Qm3s_eff(_x){ return Qm3s_in(); } // débit imposé => constant
+
+  function areaAt(x){
+    const sec = sectionAt(x);
+    return Math.max(1e-10, sec.hN * state.depth); // section NORMALE
+  }
+
+  function profile(s){
+    if(state.perfect) return 1;
+    s=Math.max(0,Math.min(1,s));
+    return 6*s*(1-s);
+  }
+
+  function vMeanAt(x){ return Qm3s_eff(x) / areaAt(x); } // vitesse moyenne le long du tube
+
+  function velocityAtXS(x,s){
+    const sec = sectionAt(x);
+    const v = profile(s) * vMeanAt(x);
+    return { vx: v*sec.tHat.x, vy: v*sec.tHat.y, vmag: v };
+  }
+
+  function pressureAt(x){
+    const v0=vMeanAt(0), v=vMeanAt(x);
+    let p = state.pIn + 0.5*state.rho*(v0*v0 - v*v);
+    if(!state.perfect){
+      const k = 0.9*state.rho*v0*v0;
+      p -= k*(x/geom.L);
+    }
+    return p;
+  }
+
+  // ---------- Particules ----------
+  const particles=[]; // fond : {x,s}
+  const gridPts=[];   // grille : {x,s,hue,alive}
+
+  function wrapX(x){
+    const L = geom.L;
+    x = x % L;
+    if (x < 0) x += L;
+    return x;
+  }
+
+  function makeBackgroundParticles(N=280){
+    particles.length=0;
+    for(let i=0;i<N;i++){
+      particles.push({ x: Math.random()*geom.L, s: 0.04+0.92*Math.random() });
+    }
+  }
+
+  function injectGrid(cols=8, rows=6){
+    const x0=0.40, x1=1.70;
+    for(let i=0;i<cols;i++){
+      const x=x0+(x1-x0)*(i/(cols-1));
+      for(let j=0;j<rows;j++){
+        const s=0.18+0.64*(j/(rows-1));
+        const hue=210+120*(i/(cols-1));
+        gridPts.push({ x,s,hue,alive:true });
+      }
+    }
+  }
+
+  function advectXS(obj,dt,recycle=false){
+    const sec = sectionAt(obj.x);
+    const v = profile(obj.s) * vMeanAt(obj.x);
+
+    // stocké en x, on avance via la projection sur x du vecteur tangent
+    obj.x += v * sec.tHat.x * dt;
+
+    if(recycle){
+      // IMPORTANT: wrap périodique -> plus d'empilement au bord
+      obj.x = wrapX(obj.x);
+      // mini jitter pour éviter des alignements visibles à l'entrée
+      if (obj.x < 0.002) obj.x += 0.002 + 0.01*Math.random();
+    }
+  }
+
+  function stepParticles(dt){
+    // fond : périodique
+    for(const p of particles) advectXS(p,dt,true);
+
+    // grille : non périodique (elle disparaît en sortie)
+    for(const g of gridPts){
+      if(!g.alive) continue;
+      advectXS(g,dt,false);
+      if(g.x > geom.L + 0.2) g.alive=false;
+    }
+    for(let i=gridPts.length-1;i>=0;i--){
+      if(!gridPts[i].alive) gridPts.splice(i,1);
+    }
+  }
+
+  // ---------- Sondes + anneau ----------
+  const probes={
+    v:{ x:1.4,y:1.12,s:0.5,inPipe:false,active:false },
+    p:{ x:2.5,y:1.12,s:0.5,inPipe:false,active:false }
+  };
+  const meter={ x:4.8 };
+
+  // ---------- Poignées ----------
+  const handles=[];
+  for(let i=0;i<geom.xs.length;i++){ handles.push({i,side:'top'}); handles.push({i,side:'bot'}); }
+  function handleWorldPos(hd){
+    const x=geom.xs[hd.i];
+    const y=(hd.side==='top') ? geom.top[hd.i] : geom.bot[hd.i];
+    return {x,y};
+  }
+
+  // ---------- UI ----------
+  const qSlider=document.getElementById('qSlider');
+  const qVal=document.getElementById('qVal');
+  const perfect=document.getElementById('perfect');
+  const particlesCB=document.getElementById('particles');
+  const injectGridBtn=document.getElementById('injectGrid');
+  const resetBtn=document.getElementById('resetBtn');
+
+  function updateUI(){ qVal.textContent = `Q = ${state.Q_Ls.toFixed(2)} L/s`; }
+  qSlider.addEventListener('input',()=>{ state.Q_Ls=parseFloat(qSlider.value); updateUI(); });
+  perfect.addEventListener('change',()=>{ state.perfect=perfect.checked; });
+  particlesCB.addEventListener('change',()=>{ state.showParticles = particlesCB.checked; });
+  injectGridBtn.addEventListener('click',()=>injectGrid(8,6));
+
+  resetBtn.addEventListener('click',()=>{
+    geom.top=[0.70,0.62,0.52,0.45,0.52,0.62,0.70];
+    geom.bot=[-0.70,-0.62,-0.52,-0.45,-0.52,-0.62,-0.70];
+
+    state.Q_Ls=6.0; qSlider.value=state.Q_Ls;
+    state.perfect=true; perfect.checked=true;
+    state.showParticles=true; particlesCB.checked=true;
+
+    probes.v={ x:1.4,y:1.12,s:0.5,inPipe:false,active:false };
+    probes.p={ x:2.5,y:1.12,s:0.5,inPipe:false,active:false };
+    meter.x=4.8;
+
+    gridPts.length=0;
+    makeBackgroundParticles();
+    updateWorldBounds();
+    updateUI();
+  });
+
+  // ---------- Anneau ----------
+  function ringGeometryAt(x0){
+    const DPR=dpr();
+    const sec = sectionAt(x0);
+    const rot = Math.atan2(-sec.tHat.y, sec.tHat.x);
+
+    const xc = 0.5*(sec.xt+sec.xb);
+    const yc = 0.5*(sec.yt+sec.yb);
+    const sp = w2s(xc,yc);
+
+    const stroke = 4*DPR;
+    const ry0 = 0.5*sec.hN*view.s;
+    const ry = Math.max(6*DPR, ry0 - 0.55*stroke);
+    const rx = Math.max(5*DPR, 0.38*ry);
+
+    return { sp, rx, ry, rot, stroke, A: areaAt(x0), QL: Qm3s_eff(x0)*1000 };
+  }
+
+  function hitRingDiskAtScreen(sx, sy){
+    const g = ringGeometryAt(meter.x);
+    const dx = sx - g.sp.x;
+    const dy = sy - g.sp.y;
+    const c = Math.cos(-g.rot), s = Math.sin(-g.rot);
+    const x = dx*c - dy*s;
+    const y = dx*s + dy*c;
+    const r2 = (x*x)/(g.rx*g.rx) + (y*y)/(g.ry*g.ry);
+    return r2 <= 1.0;
+  }
+
+  // ---------- Pointer interactions ----------
+  let drag=null;
+
+  function dist2(a,b){ const dx=a.x-b.x, dy=a.y-b.y; return dx*dx+dy*dy; }
+  function hitHandle(p){
+    let best=-1,bestD=1e9;
+    for(let k=0;k<handles.length;k++){
+      const hp=handleWorldPos(handles[k]);
+      const d=dist2(p,hp);
+      if(d<bestD){ bestD=d; best=k; }
+    }
+    return (bestD<0.10*0.10) ? best : -1;
+  }
+
+  function probeScreenPos(key){
+    const pr = probes[key];
+    const pos = pr.inPipe ? posFromXS(pr.x, pr.s) : {x: pr.x, y: pr.y};
+    return w2s(pos.x, pos.y);
+  }
+  function hitProbeScreen(key, sx, sy){
+    const sp = probeScreenPos(key);
+    const R = 10*dpr();
+    const dx = sx - sp.x, dy = sy - sp.y;
+    return (dx*dx + dy*dy) < (R*R);
+  }
+
+  canvas.addEventListener('pointerdown',(e)=>{
+    canvas.setPointerCapture(e.pointerId);
+    const DPR=dpr();
+    const sx = e.clientX*DPR, sy = e.clientY*DPR;
+    const p=s2w(sx, sy);
+
+    const hIdx=hitHandle(p);
+    if(hIdx>=0){ drag={type:'handle',idx:hIdx,idPointer:e.pointerId}; return; }
+
+    if (hitProbeScreen('v', sx, sy)) { drag={type:'probe',idx:'v',idPointer:e.pointerId}; probes.v.active=true; return; }
+    if (hitProbeScreen('p', sx, sy)) { drag={type:'probe',idx:'p',idPointer:e.pointerId}; probes.p.active=true; return; }
+
+    if (hitRingDiskAtScreen(sx, sy)) { drag={type:'meter',idx:0,idPointer:e.pointerId}; return; }
+
+    if(insidePipe(p.x,p.y) && !probes.v.active){
+      probes.v.active=true; probes.v.inPipe=true;
+      probes.v.x=Math.max(0,Math.min(geom.L,p.x));
+      probes.v.s=sFromXY(probes.v.x,p.y);
+    }
+  });
+
+  canvas.addEventListener('pointermove',(e)=>{
+    if(!drag || drag.idPointer!==e.pointerId) return;
+    const DPR=dpr();
+    const sx = e.clientX*DPR, sy = e.clientY*DPR;
+    const p=s2w(sx, sy);
+
+    if(drag.type==='handle'){
+      const hd=handles[drag.idx];
+      const i=hd.i;
+      if(hd.side==='top') geom.top[i]=Math.max(geom.bot[i]+geom.minGap, Math.min(1.30,p.y));
+      else geom.bot[i]=Math.min(geom.top[i]-geom.minGap, Math.max(-1.30,p.y));
+      enforceMinGapAtIndex(i);
+      updateWorldBounds();
+      return;
+    }
+    if(drag.type==='meter'){ meter.x=Math.max(0,Math.min(geom.L,p.x)); return; }
+
+    if(drag.type==='probe'){
+      const pr=probes[drag.idx];
+      pr.x=p.x; pr.y=p.y;
+      if(insidePipe(pr.x,pr.y)){
+        pr.inPipe=true;
+        pr.x=Math.max(0,Math.min(geom.L,pr.x));
+        pr.s=sFromXY(pr.x,pr.y);
+      }else{
+        pr.inPipe=false;
+        pr.x=p.x; pr.y=p.y;
+      }
+    }
+  });
+
+  canvas.addEventListener('pointerup',(e)=>{ if(drag && drag.idPointer===e.pointerId) drag=null; });
+
+  // ---------- Dessin ----------
+  function clearScreen(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    const g=ctx.createLinearGradient(0,0,0,canvas.height);
+    g.addColorStop(0,'rgba(8,10,14,1)');
+    g.addColorStop(1,'rgba(10,16,26,1)');
+    ctx.fillStyle=g; ctx.fillRect(0,0,canvas.width,canvas.height);
+  }
+
+  function drawPipeFillAndWalls(){
+    const DPR=dpr();
+    ctx.save();
+    ctx.lineWidth=2*DPR;
+
+    ctx.beginPath();
+    for(let k=0;k<=260;k++){
+      const x=geom.L*(k/260);
+      const p=w2s(x, topAt(x));
+      if(k===0) ctx.moveTo(p.x,p.y); else ctx.lineTo(p.x,p.y);
+    }
+    for(let k=260;k>=0;k--){
+      const x=geom.L*(k/260);
+      const p=w2s(x, botAt(x));
+      ctx.lineTo(p.x,p.y);
+    }
+    ctx.closePath();
+    ctx.fillStyle='rgba(60,150,240,0.20)';
+    ctx.fill();
+
+    ctx.beginPath();
+    for(let k=0;k<=260;k++){
+      const x=geom.L*(k/260);
+      const p=w2s(x, topAt(x));
+      if(k===0) ctx.moveTo(p.x,p.y); else ctx.lineTo(p.x,p.y);
+    }
+    ctx.strokeStyle='rgba(200,220,255,0.75)';
+    ctx.stroke();
+
+    ctx.beginPath();
+    for(let k=0;k<=260;k++){
+      const x=geom.L*(k/260);
+      const p=w2s(x, botAt(x));
+      if(k===0) ctx.moveTo(p.x,p.y); else ctx.lineTo(p.x,p.y);
+    }
+    ctx.strokeStyle='rgba(200,220,255,0.55)';
+    ctx.stroke();
+
+    ctx.restore();
+  }
+
+  function drawHandle(hd){
+    const DPR=dpr();
+    const wp=handleWorldPos(hd);
+    const sp=w2s(wp.x, wp.y);
+    const R=7.5*DPR;
+
+    ctx.save();
+    ctx.beginPath(); ctx.arc(sp.x,sp.y,R,0,Math.PI*2);
+    ctx.fillStyle='rgba(255,170,70,0.95)';
+    ctx.fill();
+    ctx.strokeStyle='rgba(0,0,0,0.35)';
+    ctx.lineWidth=2*DPR;
+    ctx.stroke();
+    ctx.restore();
+  }
+
+  function drawParticles(){
+    const DPR=dpr();
+    ctx.save();
+    ctx.fillStyle='rgba(240,245,255,0.55)';
+    const r=2.1*DPR;
+
+    for(const p of particles){
+      // p.x est toujours dans [0,L) (wrap), donc pas d'empilement aux bords
+      const pos = posFromXS(p.x,p.s);
+      const sp=w2s(pos.x,pos.y);
+      ctx.beginPath(); ctx.arc(sp.x,sp.y,r,0,Math.PI*2); ctx.fill();
+    }
+    ctx.restore();
+  }
+
+  function drawGrid(){
+    const DPR=dpr();
+    ctx.save();
+    const r=3.0*DPR;
+
+    ctx.shadowBlur = 10*DPR;
+    ctx.shadowColor = 'rgba(255,255,255,0.65)';
+
+    for(const g of gridPts){
+      if(g.x < 0 || g.x > geom.L) continue;
+      const pos = posFromXS(g.x,g.s);
+      const sp=w2s(pos.x,pos.y);
+
+      ctx.fillStyle=`hsla(${g.hue}, 95%, 70%, 1.0)`;
+      ctx.beginPath(); ctx.arc(sp.x,sp.y,r,0,Math.PI*2); ctx.fill();
+
+      ctx.shadowBlur = 0;
+      ctx.fillStyle='rgba(255,255,255,0.85)';
+      ctx.beginPath(); ctx.arc(sp.x,sp.y,1.2*DPR,0,Math.PI*2); ctx.fill();
+      ctx.shadowBlur = 10*DPR;
+    }
+    ctx.restore();
+  }
+
+  function drawNiceArrowFromCenter(sp, vx, vy, color){
+    const DPR=dpr();
+    const speed = Math.hypot(vx, vy);
+    if(speed < 1e-6) return;
+
+    const L = Math.min(140*DPR, 26*DPR + 34*DPR*speed);
+    const ang = Math.atan2(-vy, vx);
+
+    const x0 = sp.x, y0 = sp.y;
+    const x1 = x0 + L*Math.cos(ang);
+    const y1 = y0 + L*Math.sin(ang);
+
+    const shaftW = 4.2*DPR;
+    const outlineW = shaftW + 2.4*DPR;
+
+    const headLen = Math.max(14*DPR, Math.min(22*DPR, 0.22*L));
+    const headWid = 0.65*headLen;
+
+    const xb = x1 - headLen*Math.cos(ang);
+    const yb = y1 - headLen*Math.sin(ang);
+
+    const nx = Math.cos(ang + Math.PI/2);
+    const ny = Math.sin(ang + Math.PI/2);
+
+    const lx = xb + headWid*0.5*nx;
+    const ly = yb + headWid*0.5*ny;
+    const rx = xb - headWid*0.5*nx;
+    const ry = yb - headWid*0.5*ny;
+
+    ctx.save();
+    ctx.lineCap='round';
+    ctx.lineJoin='round';
+
+    ctx.strokeStyle='rgba(0,0,0,0.35)';
+    ctx.lineWidth=outlineW;
+    ctx.beginPath(); ctx.moveTo(x0,y0); ctx.lineTo(xb,yb); ctx.stroke();
+    ctx.fillStyle='rgba(0,0,0,0.35)';
+    ctx.beginPath(); ctx.moveTo(x1,y1); ctx.lineTo(lx,ly); ctx.lineTo(rx,ry); ctx.closePath(); ctx.fill();
+
+    ctx.strokeStyle=color;
+    ctx.lineWidth=shaftW;
+    ctx.beginPath(); ctx.moveTo(x0,y0); ctx.lineTo(xb,yb); ctx.stroke();
+    ctx.fillStyle=color;
+    ctx.beginPath(); ctx.moveTo(x1,y1); ctx.lineTo(lx,ly); ctx.lineTo(rx,ry); ctx.closePath(); ctx.fill();
+
+    ctx.restore();
+  }
+
+  function pressureRangeNow(){
+    let pMin=+Infinity,pMax=-Infinity;
+    for(let k=0;k<=120;k++){
+      const x=geom.L*(k/120);
+      const p=pressureAt(x);
+      pMin=Math.min(pMin,p); pMax=Math.max(pMax,p);
+    }
+    const span=Math.max(1500,pMax-pMin);
+    const pad=0.10*span;
+    return {pMin:pMin-pad, pMax:pMax+pad};
+  }
+
+  function drawPressureDial(px,py,pPa){
+    const DPR=dpr();
+    const r=28*DPR, pad=10*DPR;
+    let x=px+36*DPR, y=py+36*DPR;
+    x=Math.max(r+pad, Math.min(canvas.width-r-pad, x));
+    y=Math.max(r+pad, Math.min(canvas.height-r-pad, y));
+
+    const {pMin,pMax}=pressureRangeNow();
+    const t=Math.max(0,Math.min(1,(pPa-pMin)/(pMax-pMin)));
+    const a0=-3*Math.PI/4, a1=3*Math.PI/4;
+    const ang=a0+t*(a1-a0);
+
+    ctx.save();
+    ctx.beginPath(); ctx.arc(x,y,r,0,Math.PI*2);
+    ctx.fillStyle='rgba(210,120,255,0.10)'; ctx.fill();
+    ctx.strokeStyle='rgba(210,120,255,0.92)'; ctx.lineWidth=2*DPR; ctx.stroke();
+
+    ctx.strokeStyle='rgba(255,255,255,0.35)'; ctx.lineWidth=1.5*DPR;
+    for(let k=0;k<=10;k++){
+      const a=a0+(a1-a0)*(k/10);
+      const r0=r*0.76,r1=r*0.92;
+      ctx.beginPath();
+      ctx.moveTo(x+r0*Math.cos(a), y+r0*Math.sin(a));
+      ctx.lineTo(x+r1*Math.cos(a), y+r1*Math.sin(a));
+      ctx.stroke();
+    }
+
+    ctx.strokeStyle='rgba(210,120,255,0.98)'; ctx.lineWidth=3*DPR;
+    ctx.beginPath();
+    ctx.moveTo(x,y);
+    ctx.lineTo(x+r*0.78*Math.cos(ang), y+r*0.78*Math.sin(ang));
+    ctx.stroke();
+
+    ctx.beginPath(); ctx.arc(x,y,4.3*DPR,0,Math.PI*2);
+    ctx.fillStyle='rgba(210,120,255,0.98)'; ctx.fill();
+
+    ctx.fillStyle='rgba(255,255,255,0.92)';
+    ctx.font=`${11*DPR}px system-ui`;
+    ctx.textAlign='center'; ctx.textBaseline='middle';
+    ctx.fillText(`${(pPa/1000).toFixed(1)} kPa`, x, y+r+12*DPR);
+    ctx.restore();
+  }
+
+  function drawProbeV(){
+    const DPR=dpr();
+    const pr=probes.v;
+    const pos=pr.inPipe ? posFromXS(pr.x, pr.s) : {x:pr.x,y:pr.y};
+    const sp=w2s(pos.x,pos.y);
+    const R=10*DPR;
+
+    if(pr.inPipe){
+      const vel = velocityAtXS(pr.x, pr.s);
+      // flèche derrière (dessinée avant le disque)
+      drawNiceArrowFromCenter(sp, vel.vx, vel.vy, 'rgba(120,220,255,0.95)');
+    }
+
+    ctx.save();
+    ctx.beginPath(); ctx.arc(sp.x,sp.y,R,0,Math.PI*2);
+    ctx.fillStyle='rgba(120,220,255,0.95)'; ctx.fill();
+    ctx.strokeStyle='rgba(0,0,0,0.35)'; ctx.lineWidth=2*DPR; ctx.stroke();
+    ctx.fillStyle='rgba(10,18,24,0.95)';
+    ctx.font=`${12*DPR}px system-ui`;
+    ctx.textAlign='center'; ctx.textBaseline='middle';
+    ctx.fillText('V', sp.x, sp.y+0.5*DPR);
+
+    if(pr.inPipe){
+      const vel = velocityAtXS(pr.x, pr.s);
+      ctx.fillStyle='rgba(255,255,255,0.95)';
+      ctx.font=`${12*DPR}px system-ui`;
+      ctx.textAlign='left'; ctx.textBaseline='bottom';
+      ctx.fillText(`${vel.vmag.toFixed(2)} m/s`, sp.x+R+10*DPR, sp.y-12*DPR);
+    }
+    ctx.restore();
+  }
+
+  function drawProbeP(){
+    const DPR=dpr();
+    const pr=probes.p;
+    const pos=pr.inPipe ? posFromXS(pr.x, pr.s) : {x:pr.x,y:pr.y};
+    const sp=w2s(pos.x,pos.y);
+    const R=10*DPR;
+
+    ctx.save();
+    ctx.beginPath(); ctx.arc(sp.x,sp.y,R,0,Math.PI*2);
+    ctx.fillStyle='rgba(210,120,255,0.95)'; ctx.fill();
+    ctx.strokeStyle='rgba(0,0,0,0.35)'; ctx.lineWidth=2*DPR; ctx.stroke();
+    ctx.fillStyle='rgba(18,8,22,0.95)';
+    ctx.font=`${12*DPR}px system-ui`;
+    ctx.textAlign='center'; ctx.textBaseline='middle';
+    ctx.fillText('P', sp.x, sp.y+0.5*DPR);
+
+    if(pr.inPipe) drawPressureDial(sp.x, sp.y, pressureAt(pr.x));
+    ctx.restore();
+  }
+
+  function drawAreaRingBack(){
+    const g = ringGeometryAt(meter.x);
+    ctx.save();
+
+    ctx.beginPath();
+    ctx.ellipse(g.sp.x, g.sp.y, g.rx, g.ry, g.rot, 0, Math.PI*2);
+    ctx.fillStyle='rgba(180,255,160,0.06)';
+    ctx.fill();
+
+    ctx.beginPath();
+    ctx.ellipse(g.sp.x, g.sp.y, g.rx, g.ry, g.rot, Math.PI/2, 3*Math.PI/2, false);
+    ctx.strokeStyle='rgba(180,255,160,0.25)';
+    ctx.lineWidth=g.stroke;
+    ctx.stroke();
+
+    ctx.restore();
+  }
+
+  function drawAreaRingFront(){
+    const g = ringGeometryAt(meter.x);
+    const DPR=dpr();
+    ctx.save();
+
+    ctx.beginPath();
+    ctx.ellipse(g.sp.x, g.sp.y, g.rx, g.ry, g.rot, -Math.PI/2, Math.PI/2, false);
+    ctx.strokeStyle='rgba(180,255,160,0.95)';
+    ctx.lineWidth=g.stroke;
+    ctx.stroke();
+
+    const tx = g.sp.x + g.rx + 12*DPR;
+    const ty = g.sp.y;
+    ctx.fillStyle='rgba(255,255,255,0.92)';
+    ctx.font=`${12*DPR}px system-ui`;
+    ctx.textAlign='left'; ctx.textBaseline='middle';
+    ctx.fillText(`A = ${g.A.toFixed(4)} m²`, tx, ty - 8*DPR);
+    ctx.fillText(`Q = ${g.QL.toFixed(2)} L/s`,  tx, ty + 8*DPR);
+
+    ctx.restore();
+  }
+
+  function drawHandles(){ for(const hd of handles) drawHandle(hd); }
+
+  // ---------- Boucle ----------
+  let lastT=performance.now();
+  function frame(t){
+    const dt=Math.min(0.033,(t-lastT)/1000);
+    lastT=t;
+
+    stepParticles(dt);
+
+    clearScreen();
+    drawAreaRingBack();
+    drawPipeFillAndWalls();
+
+    if(state.showParticles) drawParticles();
+    drawGrid();
+
+    drawHandles();
+    drawAreaRingFront();
+    drawProbeV();
+    drawProbeP();
+
+    requestAnimationFrame(frame);
+  }
+
+  // init
+  resize();
+  updateWorldBounds();
+  makeBackgroundParticles();
+  updateUI();
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>

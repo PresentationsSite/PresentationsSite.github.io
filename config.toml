@@ -1,0 +1,28 @@
+baseURL = "http://PresentationsSite.github.io/"
+locale = "fr-fr"
+title = "Présentations"
+
+theme = "reveal-hugo"
+
+disableKinds = ["taxonomy", "term"]
+
+[markup.goldmark.renderer]
+unsafe = true
+
+[outputFormats.Reveal]
+baseName = "index"
+mediaType = "text/html"
+isHTML = true
+
+[markup.highlight]
+codeFences = false
+
+[params.reveal_hugo]
+theme = "sky"
+transition = "concave"
+transition_speed  = "fast"
+highlight_theme = "github-dark"
+line-numbers = true
+
+[security]
+  allowContent = ['.*']

@@ -1,0 +1,1052 @@
++++
+title = "Champ uniforme"
+outputs = ["Reveal"]
+[reveal_hugo]
+theme = "league"
+highlight_theme = "atom-one-dark-reasonable"
++++
+
+
+<style>
+img {
+border: none !important;
+}
+
+.imp {
+font-weight:bold;color:#FF968D;
+}
+
+li {
+color: #fff;
+}
+
+ul {
+margin-left: auto;
+margin-right: auto;
+text-align: left;
+width: fit-content;
+list-style-position: outside;
+color:#fff;
+}
+
+span {
+font-weight:normal;
+}
+
+.video-container {
+  height: 60vh; /* limite la hauteur à 80% de la fenêtre */
+  width: calc(60vh * 9 / 16); /* largeur en fonction du ratio portrait */
+  margin: 0 auto;
+  position: relative;
+}
+
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  border-radius:10px;
+}
+</style>
+
+{{%note%}}
+Penser à recharger la page après exécution des trinkets sinon ça rame...
+{{%/note%}}
+
+# Mouvement dans un champ uniforme
+
+---
+
+{{%section%}}
+
+## Champ de pesanteur uniforme
+
+---
+
+Le <span class="imp">champ de pesanteur</span> est décrit par un champ vectoriel $\vec{g}$ dont la direction est indiquée<br>par un fil à plomb.
+
+<p class="fragment fade-up">Placée dans un champ de pesanteur, toute masse $m$ subit une force <span class="imp">$\vec{P}=m\vec{g}$</span> appelée <span class="imp">poids</span>.</p>
+
+---
+
+La valeur de $g$ varie en fonction<br>de la position sur Terre et de l'altitude.
+
+---
+
+{{< slide  background-iframe="/visualisation_g.html" background-size="contain" background-transition="concave" background-interactive="true">}}
+
+{{%note%}}
+Ça c'est qu'on obtient avec un modèle d'ellipsoïde (sans les anomalies).
+{{%/note%}}
+
+---
+
+{{< slide  background-video="/postdamgravitypotato.mp4" background-size="contain" background-transition="concave"  background-video-loop="true">}}
+
+{{%note%}}
+Postdam gravity potato
+Distance radiale (en m) qui sépare la surface équipotentielle du géoïde de l’ellipsoïde de référence (WGS-84/GRS80). Une valeur +80 m signifie que, si la Terre était recouverte d’un océan au repos, la surface de l’eau serait 80 m au-dessus de l’ellipsoïde ; –100 m signifie 100 m en dessous. 
+Les anomalies jouent sur le 3e chiffre après la virgule de g.
+{{%/note%}}
+
+---
+
+Au voisinage de la surface d'une planète, sur des distances faibles par rapport à son rayon, le champ de pesanteur <span class="imp">$\vec{g}$</span> peut être considéré comme <span class="imp">uniforme</span>.
+
+<p class="fragment fade-up"><u>Rq</u> : uniforme signifie partout identique ($\vec{g}=\vec{\text{cte}}$).
+
+
+---
+
+{{< runpython lang="vpython" mode="output" file="champg.py" width="900" height="600" mode="output"  autorun="false">}}
+{{< /runpython >}}
+
+{{%note%}}
+Cliquer sur la Terre pour se poser dessus.
+{{%/note%}}
+
+{{%/section%}}
+
+---
+
+{{%section%}}
+
+## Équations horaires du mouvement<br>et équation de la trajectoire
+
+---
+
+On étudie le lancer d'une balle de basket.
+
+<p class="fragment fade-up">À l'instant $t=0$, la balle quitte les mains du joueur.</p>
+
+<p class="fragment fade-up">On néglige les forces de frottement<br>
+$\Rightarrow$ seule force extérieure : <span class="fragment">le poids</span><br>
+$\Leftrightarrow$ situation de <span class="imp fragment">chute libre</span>.
+
+---
+
+Dans le <span class="imp">référentiel terrestre</span>, supposé <span class="imp">galiléen</span>,<br>le mouvement du centre de masse $\mathrm{M}$ d'un système de masse constante $m$ est étudié dans le repère d'espace $(\mathrm{O};\vec{i},\vec{j},\vec{k})$.
+
+<div style="position:relative;margin-left:auto;margin-right:auto;width:500px;max-width:100%;">
+<img src="/reperehoraire.png" style="box-shadow:none;background:none;">
+</div>
+
+
+---
+
+Conditions initiales :
+
+<div style="position:relative;margin-left:auto;margin-right:auto;width:700px;max-width:100%;">
+<img src="/cihoraires.png" style="box-shadow:none;background:none;">
+</div>
+
+---
+
+À la date $t=0$, le point $\mathrm{M}$ est situé en $\mathrm{M_0}(0,0,h)$.<br>
+Et son vecteur vitesse initial vaut :
+
+<div class="fragment fade-up">
+$$
+\vec{v}(t=0)=\vec{v}_0=
+\begin{cases}
+v_x(0)=v_0\cos(\alpha)\\
+v_y(0)=0\\
+v_z(0)=v_0\sin(\alpha)
+\end{cases}
+$$
+</dib>
+
+---
+
+
+<b  style="color:#FF968D">Inventaire des forces extérieures</b>
+
+<br>
+
+<ul>
+<li class="imp fragment fade-up">le poids</li>
+</ul>
+
+---
+
+<b style="color:#61D836">Vecteur accélération</b>
+
+<br>
+
+<p class="fragment fade-up">Application de la deuxième loi de Newton :</p>
+
+<div class="fragment fade-up">
+$$m{\color{#61D836}\vec{a}} = \sum \color{#FF968D}\vec{F}_\mathrm{ext}$$
+</div>
+
+<div class="fragment fade-up">
+$$\Rightarrow m{\color{#61D836}\vec{a}}={\color{#FF968D}m\vec{g}} \Rightarrow {\color{#61D836}\vec{a}}={\color{#FF968D}\vec{g}}$$
+</div>
+
+<p class="fragment fade-up">Le mouvement est <b class="fragment" style="color:#61D836">uniformément accéléré vers le bas</b>.</p>
+
+---
+
+Coordonnées du vecteur accélération :
+
+<div class="fragment fade-up" style="color:#61D836;">
+$$
+\vec{a}(t)=
+\begin{cases}
+a_x(t)=0\\
+a_y(t)=0\\
+a_z(t)=-g
+\end{cases}
+$$
+</div>
+
+---
+
+<b style="color:#FFF056">Vecteur vitesse</b>
+
+Les coordonnées du <b style="color:#FFF056">vecteur vitesse</b> sont des <span class="imp"><a href="../primitives" target="_blank" rel="noopener noreferrer">primitives</a></span> des coordonnées du <b style="color:#61D836">vecteur accélération</b>.
+
+<p class="fragment fade-up">
+<span style="color:#61D836;">
+$
+\vec{a}(t)=
+\begin{cases}
+\frac{\mathrm{d}v_x}{\mathrm{d}t}=0\\
+\frac{\mathrm{d}v_y}{\mathrm{d}t}=0\\
+\frac{\mathrm{d}v_z}{\mathrm{d}t}=-g
+\end{cases}
+$
+</span>
+<span class="fragment">
+$\Rightarrow$
+</span>
+<span class="fragment" style="color:#FFF056">
+$
+\vec{v}(t)=
+\begin{cases}
+v_x(t)=c_1\\
+v_y(t)=c_2\\
+v_z(t)=-gt+c_3
+\end{cases}
+$
+</span>
+</p>
+
+{{%note%}}
+
+{{%/note%}}
+
+---
+
+Comment obtenir les constantes d'intégration<br>$c_1$, $c_2$ et $c_3$ ?
+
+<p class="fragment fade-up">Grâce aux <span class="imp">conditions initiales</span> :</p>
+
+<ul>
+<li class="fragment fade-up">$v_x(0)=c_1=v_0\cos\alpha$</li>
+<li class="fragment fade-up">$v_y(0)=c_2=0$</li>
+<li class="fragment fade-up">$v_z(0)=c_3=v_0\sin\alpha$</li>
+</ul>
+
+---
+
+Coordonnées du vecteur vitesse :
+
+<div class="fragment fade-up" style="color:#FFF056;">
+$$
+\vec{v}(t)=
+\begin{cases}
+v_x(t)=v_0\cos\alpha\\
+v_y(t)=0\\
+v_z(t)=-gt+v_0\sin\alpha
+\end{cases}
+$$
+</div>
+
+---
+
+<b style="color:#56C1FF">Coordonnées du vecteur position</b> :<br>
+<span class="imp">équations horaires du mouvement</span>
+
+<p class="fragment fade-up">Les coordonnées du <b style="color:#56C1FF">vecteur position</b> sont des <span class="imp">primitives</span> des coordonnées du <b style="color:#FFF056">vecteur vitesse</b>.</p>
+
+
+---
+
+
+
+<span style="color:#FFF056;">
+$
+\vec{v}(t)=
+\begin{cases}
+\frac{\mathrm{d}x}{\mathrm{d}t}=v_0\cos\alpha\\
+\frac{\mathrm{d}y}{\mathrm{d}t}=0\\
+\frac{\mathrm{d}z}{\mathrm{d}t}=-gt+v_0\sin\alpha
+\end{cases}
+$
+</span>
+<br><br>
+<span class="fragment">
+$\Downarrow$
+</span>
+<br><br>
+<span class="fragment" style="color:#56C1FF">
+$
+\overrightarrow{OM}(t)=
+\begin{cases}
+x(t)=(v_0\cos\alpha)t+c'_1\\
+y(t)=c'_2\\
+z(t)=-\frac12 gt^2+(v_0\sin\alpha)t+c'_3
+\end{cases}
+$
+</span>
+
+---
+
+On obtient $c'_1$, $c'_2$ et $c'_3$ grâce aux conditions initiales :
+
+<ul>
+<li class="fragment fade-up">$x(0)=c'_1=0$</li>
+<li class="fragment fade-up">$y(0)=c'_2=0$</li>
+<li class="fragment fade-up">$z(0)=c'_3=h$</li>
+</ul>
+
+---
+
+D'où les <b style="color:#56C1FF">équations horaires</b>
+
+<div class="fragment fade-up" style="color:#56C1FF;">
+$$
+\overrightarrow{OM}(t)=
+\begin{cases}
+x(t)=(v_0\cos\alpha)t\\
+y(t)=0\\
+z(t)=-\frac12 gt^2 + (v_0\sin\alpha)t + h
+\end{cases}
+$$
+</div>
+
+---
+
+<div style="position:relative;margin-left:auto;margin-right:auto;width:700px;max-width:100%;margin-bottom:-1em;margin-top:-1em;">
+<img src="/equhoraires.png" style="box-shadow:none;background:none;">
+</div>
+
+---
+
+<span class="imp">Équation de la trajectoire</span>
+
+Comment obtenir <span class="imp">$z(x)$</span> à partir de <span style="color:#56C1FF"> $\overrightarrow{OM}(t)$</span> ?
+
+<br>
+
+<ul>
+<li class="fragment fade-up">On isole <span style="color:#FF95CA">$t$</span> grâce à l'équation $x(t)$<br></li>
+<li class="fragment fade-up">On remplace dans $z(t)$.</li>
+</li>
+
+---
+
+$x(t) = (v_0\cos\alpha)\times t$ <span class="fragment">&nbsp;$\Rightarrow \color{#FF95CA}t=$</span><span class="fragment" style="color:#FF95CA">$\displaystyle \frac{x}{v_0\cos\alpha}$</span>
+
+<p class="fragment fade-up">
+D'où
+</p>
+
+<p class="fragment fade-up"> $z(x)=$<span class="fragment">$-\frac12 g \left({\color{#FF95CA}\frac{x}{v_0\cos\alpha}}\right)^2+v_0\sin\alpha\left( {\color{#FF95CA}\frac{x}{v_0\cos\alpha}}\right)+h$</span></p>
+
+
+---
+
+
+En simplifiant, on obtient <span class="imp">l'équation de la trajectoire</span> :
+
+<div class="fragment fade-up imp">
+$$
+z({\color{#56C1FF}x})=-\frac{g}{2\left(v_0\cos(\alpha)\right)^2}{\color{#56C1FF}x^2}+\tan(\alpha)\, {\color{#56C1FF}x}+h
+$$
+</div>
+
+<p class="fragment fade-up">La trajectoire est donc <span class="imp">plane</span><br> (comprise dans le plan $(\mathrm{O},\vec{i},\vec{k})$.</p>
+
+<p class="fragment fade-up">
+Le mouvement de chute libre est <span class="imp">parabolique</span><br>(la trajectoire est une portion de parabole).</p>
+
+---
+
+<iframe scrolling="no" title="Chute libre" src="https://www.geogebra.org/material/iframe/id/gbaatmty/width/849/height/599/border/888888/sfsb/true/smb/false/stb/false/stbh/false/ai/false/asb/false/sri/true/rc/false/ld/false/sdz/false/ctl/false" width="849px" height="599px" style="border:0px;border-radius:10px;"> </iframe>
+
+
+---
+
+{{< runpython lang="vpython" mode="output" file="parabole.py" width="800" height="600" mode="output"  autorun="false">}}
+{{< /runpython >}}
+
+---
+
+<iframe width="800" height="450" src="https://www.youtube.com/embed/Un5roSKDusQ?si=Av0ShoUGce8GlrCC" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+
+---
+
+Le mouvement de chute libre<br><span class="imp">ne dépend pas de la masse</span> !
+
+<p class="fragment fade-up">En effet, la masse a disparu dès le départ<br>(2<sup>e</sup> loi de Newton).</p>
+
+---
+
+<iframe width="800" height="450" src="https://www.youtube.com/embed/E43-CfukEgs?si=3qTYV7xJrQjcooqu" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+
+{{%/section%}}
+
+---
+
+{{%section%}}
+
+## Petits exercices
+
+---
+
+{{< slide  background-video="/jetpierre.mp4" background-size="contain" background-transition="concave">}}
+
+---
+
+Si on néglige les frottements, à quelle hauteur<br>se trouve approximativement  la personne ?
+
+<p class="fragment fade-up">Que peut-on supposer en réalité ?</p>
+
+---
+
+
+À quelle vitesse minimale doit partir<br>la balle 🏐 pour passer le filet ?
+
+<div style="position:relative;margin-left:auto;margin-right:auto;width:680px;max-width:100%;">
+<img src="/servicevolley.png" style="box-shadow:none;background:none;border-radius:10px;">
+</div>
+
+rayon de la balle : $r=\pu{10 cm}$
+
+
+---
+
+<p style="color:#61D836;">
+Ici, la vitesse initiale est purement horizontale<br>($\Rightarrow \alpha=0$)
+</p>
+
+<div  style="color:#61D836;">
+$$
+\vec{v}_0   = 
+\begin{cases}
+v_0\\
+0\\
+0
+\end{cases}
+$$
+</div>
+
+---
+
+<p style="color:#61D836;">
+L'équation de la trajectoire devient alors :<br>
+</p>
+
+<div class="fragment fade-up" style="color:#61D836;">
+$$
+z(x) = -\frac{g}{2v_0^2}x^2 + h
+$$
+</div>
+
+<p class="fragment fade-up" style="color:#61D836;">
+Et pour que le ballon passe au-dessus du filet, il faut :
+</p>
+
+<div class="fragment fade-up" style="color:#61D836;">
+$$
+z(x_\mathrm{filet})=z(L/2) > H+r
+$$
+</div>
+
+---
+
+<div  style="color:#61D836;">
+$$
+\Rightarrow -\frac{g}{2v_0^2}\left(  \frac L2\right)^{\!2} + h > H+r
+$$
+</div>
+
+<div  class="fragment fade-up" style="color:#61D836;">
+$$
+\Leftrightarrow -\frac{g}{2v_0^2}\left(  \frac L2\right)^{\!2} > H+r-h
+$$
+</div>
+
+
+<div  class="fragment fade-up" style="color:#61D836;">
+$$
+\Leftrightarrow \frac{g}{2v_0^2}\left(  \frac L2\right)^2 < h-(H+r)
+$$
+</div>
+
+---
+
+<div   style="color:#61D836;">
+$$
+\Leftrightarrow \frac{g}{2v_0^2} < \frac{4\times\left(h-(H+r)\right)}{L^2}
+$$
+</div>
+
+
+<div  class="fragment fade-up" style="color:#61D836;">
+$$
+\Leftrightarrow v_0^2 > \frac{g L^2}{8\times\left(h-(H+r)\right)}
+$$
+</div>
+
+<div  class="fragment fade-up" style="color:#61D836;">
+$$
+\Leftrightarrow v_0 > \sqrt{\frac{g L^2}{8\times\left(h-(H+r)\right)}}
+$$
+</div>
+
+---
+
+<p style="color:#61D836;">
+Application numérique :
+</p>
+
+<div  class="fragment fade-up" style="color:#61D836;">
+$$
+\begin{aligned}
+v_0 &> \sqrt{\frac{9,8 \times 18^2}{8\times\left(3,50-(2,40+0,10)\right)}}\\
+v_0 &> \pu{20 m*s-1}
+\end{aligned}
+$$
+</div>
+
+---
+
+Question subsidiaire :<br>
+Comment s'assurer que le service<br>atterrit bien dans les limites du terrain ?
+
+<p class="fragment fade-up" style="color:#61D836;">
+On trouve la distance horizontale $x_\mathrm{sol}$ parcourue par<br>le ballon au moment de toucher le sol en résolvant $z(x_\mathrm{sol})=r$. Et il faut alors $x_\mathrm{sol} < L$.
+</p>
+
+---
+
+<div  style="color:#61D836;">
+$$
+\begin{aligned}
+z(x_\mathrm{sol})&=r\\
+\Leftrightarrow -\frac{g}{2v_0^2}x_\mathrm{sol}^2 + h &= r
+\end{aligned}
+$$
+</div>
+
+<div  class="fragment fade-up" style="color:#61D836;">
+$$
+\Rightarrow x_\mathrm{sol} = \pm v_0\sqrt{\frac{2(h-r)}{g}}
+$$
+</div>
+
+<p class="fragment fade-up" style="color:#61D836;">
+Seule la solution positive<br>(devant le serveur) nous intéresse...
+</p>
+
+---
+
+<p style="color:#61D836;">
+Il faut donc :
+</p>
+
+<div  class="fragment fade-up" style="color:#61D836;">
+$$
+v_0\sqrt{\frac{2(h-r)}{g}} < L
+$$
+</div>
+
+<div  class="fragment fade-up" style="color:#61D836;">
+$$
+\Rightarrow v_0 < L\sqrt{\frac{g}{2(h-r)}}
+$$
+</div>
+
+---
+
+<p style="color:#61D836;">
+A.N. :
+</p>
+
+<div  class="fragment fade-up" style="color:#61D836;">
+$$
+v_0 < 18\times \sqrt{\frac{9,8}{2\times (3,50-0,10)}}
+$$
+</div>
+
+<div  class="fragment fade-up" style="color:#61D836;">
+$$
+v_0 < \pu{22 m*s-1}
+$$
+</div>
+
+---
+
+<p style="color:#61D836;">
+La vitesse du service doit finalement être<br>comprise entre 20 et 22 m/s. Easy peasy.
+</p>
+
+{{%/section%}}
+
+---
+
+{{%section%}}
+
+## Aspects énergétiques
+
+---
+
+Lors d'une chute libre,<br>l'<span class="imp">énergie mécanique $E_m$</span> du système est la somme<br>de son <b style="color:#FFF056">énergie cinétique $E_c=\frac12 mv^2$</b> et de son<br><b style="color:#56C1FF">énergie potentielle de pesanteur $E_{pp}=mgz$</b>.
+
+---
+
+Et comme la seule force agissant sur le système est conservative, le <span class="imp">théorème de l'énergie mécanique</span>,
+
+<p class="fragment fade-up imp">$$\Delta E_m = \sum W_\mathrm{AB}(\vec{F}_\mathrm{n.c.}) = 0$$</p>
+
+<p class="fragment fade-up">nous assure que l'<span class="imp">énergie mécanique<br>est conservée</span> pendant le mouvement.
+
+---
+
+L'<b style="color:#FFF056">énergie cinétique</b> est ainsi convertie en <b style="color:#56C1FF">énergie potentielle de pesanteur</b> et inversement.
+
+---
+
+{{< runpython lang="vpython" mode="output" file="consem.py" width="800" height="600" mode="output"  autorun="false">}}
+{{< /runpython >}}
+
+---
+
+<u>Remarque</u> :
+
+Utiliser la conservation de l'énergie peut permettre<br>de déterminer plus rapidement la valeur<br>de certaines grandeurs par rapport à la<br> 2<sup>e</sup> loi de Newton (équations horaires).
+
+---
+
+<u>Exemple</u> :
+
+Déterminer la vitesse d'arrivée au sol d'une pièce de 1€ qui tombe du 3<sup>e</sup> étage de la Tour Eiffel ($h=\pu{276 m}$)<br>en négligeant les frottements.
+
+{{%/section%}}
+
+---
+
+{{%section%}}
+
+## Champ électrique créé par<br>un condensateur plan
+
+---
+
+Un <span class="imp">condensateur plan</span> est constitué de deux plaques métalliques chargées, parallèles entre elles<br>et séparées par un isolant (air, huile...). 
+
+<p class="fragment fade-up">Il se crée alors un <span class="imp">champ électrique uniforme</span> dans<bR>la zone de l'espace située entre les deux plaques (suffisamment loin des bords).</p>
+
+
+---
+
+{{< runpython lang="vpython" mode="output" file="condensateur.py" width="800" height="500" mode="output"  autorun="false">}}
+{{< /runpython >}}
+
+---
+
+
+<p>Les <span class="imp">lignes de champ</span> sont <span class="fragment imp">perpendiculaires</span> aux plaques, <span class="imp">orientées de la plaque chargée <span class="fragment imp">positivement</span> vers la plaque chargée <span class="fragment imp">négativement</span></span>.</p>
+
+---
+
+{{< slide  background-image="/ldccondo.png" background-size="contain" background-transition="concave">}}
+
+---
+
+La norme $E$ du champ créé par le condensateur plan est donnée par la formule :
+
+<br>
+
+<div class="fragment fade-up" style="position:relative;margin:auto;width:fit-content;border:solid 5px #FF968D;padding:0 50px 0 50px;border-radius:10px">
+$$E=\frac U d$$
+</div>
+
+<br>
+
+<ul>
+<li style="color:#aaa;" class="fragment fade-up">$U$ est la tension entre les plaques (en <span class="fragment">$\pu{V}$<span>)</li>
+<li style="color:#aaa;" class="fragment fade-up">$d$ est la tension entre els plaques (en $\pu{m}$)</li>
+<li style="color:#aaa;" class="fragment fade-up">$E$ (en <span class="fragment">$\pu{V*m-1}$<span>)</li>
+</ul>
+
+
+
+{{%/section%}}
+
+---
+
+{{%section%}}
+
+## Mouvement dans un<br>champ électrique uniforme
+
+---
+
+Prenons l'exemple du principe de fonctionnement<br>des imprimantes à jet d’encre continu dévié, principalement utilisées pour  imprimer  les  dates  d’expiration  figurant  sur  les  produits alimentaires.
+
+<div style="position:relative;margin-left:auto;margin-right:auto;width:450px;max-width:100%;">
+<img src="/impression.jpg" style="box-shadow:none;background:none;border-radius:15px;">
+</div>
+
+---
+
+Le jet d’encre sort de la tête d’impression par une buse qui le décompose en très petites gouttes dont certaines sont chargées électriquement.
+
+<p class="fragment fade-up">Celles-ci  passent  sous  un  déflecteur  constitué  de  deux  plaques  P<sub>1</sub> et  P<sub>2</sub> parallèles,  chargées  électriquement, assimilables à un condensateur plan. Ces plaques dévient les gouttes chargées de leur trajectoire initiale.</p>
+
+<p class="fragment fade-up">Les gouttes non chargées poursuivent leur mouvement rectiligne vers une gouttière de recyclage.</p>
+
+---
+
+{{< slide  background-image="/jetdencre.png" background-size="contain" background-transition="concave">}}
+
+---
+
+{{< slide  background-image="/schemajetdencre.png" background-size="contain" background-transition="concave">}}
+
+---
+
+À la date $t_0=0$ s, la goutte d’encre G pénètre dans<br>la zone de champ électrique uniforme au niveau du<bR>point O avec une vitesse initiale notée $\vec{v}_0=v_0\\,\vec{i}$.
+
+---
+
+
+Sachant que la goutte, chargée négativement,<br>est déviée vers le haut, quel est le signe des<br>charges portées par P<sub>1</sub> et P<sub>2</sub> ? 
+
+<p class="fragment fade-up">Que peut-on dire du champ $\vec{E}$ entre les plaques ?</p>
+
+---
+
+{{< slide  background-image="/schemajetdencrechamp.png" background-size="contain" background-transition="concave">}}
+
+---
+
+Obtenons les équations horaires du mouvement<br>de la goutte dans le déflecteur.
+
+<p class="fragment fade-up">
+On se place dans le <span class="imp">référentiel terrestre</span> supposé <span class="imp">galiléen</span> et muni du <span class="imp">repère d'espace</span> $(O;\vec{i},\vec{j},\vec{k})$.
+</p>
+
+---
+
+<span class="imp">Bilan des forces extérieures s'appliquant à la goutte :</span>
+
+<br>
+
+<ul>
+<li class="fragment fade-up">poids $\vec{P}=m\vec{g}$</li>
+<li class="fragment fade-up">force électrique $\vec{F}_e = $ <span class="fragment">$q\vec{E}$</span></li>
+<li class="fragment fade-up">actions de l'air sur la bille<br>(force d'Archimède, frottements)</li>
+</ul>
+
+<p class="fragment fade-up">Dans la suite, on négligera les autres<br>forces que la force électrique.</p>
+
+{{%note%}}
+À justifier :
+masse (2.10E-10 kg) et surface toutes petites
+{{%/note%}}
+
+---
+
+<b style="color:#61D836">Vecteur accélération</b>
+
+<br>
+
+<p class="fragment fade-up">Application de la deuxième loi de Newton :</p>
+
+<div class="fragment fade-up">
+$$m{\color{#61D836}\vec{a}} = \sum \color{#FF968D}\vec{F}_\mathrm{ext}$$
+</div>
+
+<div class="fragment fade-up">
+$$\Rightarrow m{\color{#61D836}\vec{a}}={\color{#FF968D}q\vec{E}} \Rightarrow {\color{#61D836}\vec{a}}=\frac {\color{#FF968D}q} m {\color{#FF968D}\vec{E}}$$
+</div>
+
+<p class="fragment fade-up">Comme $q<0$, le mouvement est<br><b class="fragment" style="color:#61D836">uniformément accéléré vers le <span class="fragment" style="font-weight:bold;">haut</span></b>.</p>
+
+---
+
+Coordonnées du vecteur accélération :
+
+<div class="fragment fade-up" style="color:#61D836;">
+$$
+\vec{a}(t)=
+\begin{cases}
+a_x(t)=0\\
+a_y(t)=0\\
+a_z(t)=-\frac {qE}{m}
+\end{cases}
+$$
+</div>
+<p class="fragment fade-up">
+<u>Rq</u> : en effet, $\vec{E}=-E\,\vec{k}$
+
+{{%note%}}
+Le - est important ! C'est E qu'on projette et E est vers le bas ! 
+{{%/note%}}
+
+---
+
+<p><b style="color:#FFF056">Vecteur vitesse</b></p>
+
+<br>
+
+<p class="fragment fade-up">On primitive les coordonnées de <b style="color:#61D836">$\vec{a}$</b>.</p>
+
+<p class="fragment fade-up">
+$\Rightarrow$
+<span class="fragment" style="color:#FFF056">
+$
+\vec{v}(t)=
+\begin{cases}
+v_x(t)=c_1\\
+v_y(t)=c_2\\
+v_z(t)=-\frac{qE}{m} t+c_3
+\end{cases}
+$
+</span>
+</p>
+
+---
+
+D'après les conditions initiales :
+
+<ul>
+<li class="fragment fade-up">$v_x(0)=c_1=v_0$</li>
+<li class="fragment fade-up">$v_y(0)=c_2=0$</li>
+<li class="fragment fade-up">$v_z(0)=c_3=0$</li>
+</ul>
+
+---
+
+D'où
+
+<div class="fragment fade-up" style="color:#FFF056;">
+$$
+\vec{v}(t)=
+\begin{cases}
+v_x(t)=v_0\\
+v_y(t)=0\\
+v_z(t)=-\frac{qE}{m} t
+\end{cases}
+$$
+</div>
+
+---
+
+<b style="color:#56C1FF">Coordonnées du vecteur position</b><br>
+= <span class="imp">équations horaires du mouvement</span>
+
+On primitive les coordonnées de <b style="color:#FFF056">$\vec{v}$</b>.
+
+
+<p class="fragment fade-up">
+$\Rightarrow$
+<span class="fragment" style="color:#56C1FF">
+$
+\overrightarrow{OG}(t)=
+\begin{cases}
+x_\mathrm{G}(t)=v_0 t + c'_1\\
+y_\mathrm{G}(t)=c'_2\\
+z_\mathrm{G}(t)=-\frac{qE}{2m} t^2+c'_3
+\end{cases}
+$
+</span>
+</p>
+
+---
+
+
+D'après les conditions initiales :
+
+<ul>
+<li class="fragment fade-up">$x_\mathrm{G}(0)=c'_1=0$</li>
+<li class="fragment fade-up">$y_\mathrm{G}(0)=c'_2=0$</li>
+<li class="fragment fade-up">$z_\mathrm{G}(0)=c'_3=0$</li>
+</ul>
+
+---
+
+
+D'où
+
+<br>
+
+<p class="fragment fade-up">
+<span style="color:#56C1FF">
+$
+\overrightarrow{OG}(t)=
+\begin{cases}
+x_\mathrm{G}(t)=v_0 t\\
+y_\mathrm{G}(t)=0\\
+z_\mathrm{G}(t)=-\frac{qE}{2m} t^2
+\end{cases}
+$
+</span>
+</p>
+
+---
+
+Déterminer la valeur de la hauteur <b style="color:#56C1FF">H’I</b> du point d’impact I de la goutte sur le support d’impression<br>si on suppose que le mouvement de la goutte est rectiligne uniforme en sortie du déflecteur (de S à I).
+
+---
+
+
+{{< slide  background-image="/schemajetdencrechamp.png" background-size="contain" background-transition="concave">}}
+
+---
+
+Marche à suivre possible :
+
+<ul>
+<li class="fragment fade-up" style="color:#aaa;">Déterminer le temps $t_\mathrm{S}$ où la goutte<br>sort du déflecteur grâce à $x(t_\mathrm{S})=L$<br>et la déviation HS = $z(t_\mathrm{S})$.</li>
+<li class="fragment fade-up" style="color:#aaa;">Déterminer les coordonnées de $\vec{v}_\mathrm{S}$.</li>
+<li class="fragment fade-up" style="color:#aaa;">Montrer que $\tan\alpha=-\frac{qEL}{mv_0^2}$<br>et en déduire $\mathrm{S'I}$.<br>Puis ajouter $\mathrm{H'S'} = \mathrm{HS}$.</li>
+</ul>
+
+
+---
+
+Données pour l'application numérique :
+
+- $m=\pu{2e-10 kg}$
+- $q=\pu{-4e-13 C}$
+- $L=\pu{2 cm}$
+- $D=\pu{3 cm}$
+- $E=\pu{9e5 V*m-1}$
+- $v_0=\pu{20 m*s-1}$
+
+---
+
+<p style="color:#56C1FF;">
+On est sensé trouver :
+</p>
+
+<div style="color:#56C1FF;" class="fragment fade-up">
+$$
+\mathrm{H'I}=-\frac{qEL}{mv_0^2}\left(\frac L2+D\right)
+$$
+</div>
+
+
+<p class="fragment fade-up" style="color:#56C1FF;">
+<u>Rq</u>&nbsp;: le terme en facteur est bien sans dimension car $qEL$ a la dimension d'une énergie (charge $\times$ champ $\times$ distance $=$ charge $\times$ tension = énergie) et $mv_0^2$ aussi . 
+</p>
+
+---
+
+<p style="color:#56C1FF;">
+A.N. :
+</p>
+
+<div style="color:#56C1FF;font-size:0.6em;" class="fragment fade-up">
+$$
+\mathrm{H'I}=-\frac{\pu{-4e-13 C}\times\pu{9e5 V*m-1}\times\pu{2e-2 m}}{\pu{2e-10 kg}\times (\pu{20 m*s-1})^2}\times\left(\frac{\pu{2e-2 m}}{2}+\pu{3e-2 m}\right)
+$$
+</div>
+
+<div style="color:#56C1FF;" class="fragment fade-up">
+$$
+\mathrm{H'I}=\pu{4e-3 m}=\pu{4 mm}
+$$
+</div>
+
+<p class="fragment fade-up" style="color:#56C1FF;">
+Cette déviation paraît cohérente<br>avec la photo en introduction.
+</p>
+
+{{%/section%}}
+
+
+---
+
+{{%section%}}
+
+## Aspect énergétique
+
+---
+
+On retrouve une utilisation du champ électrique uniforme d'un condensateur dans les<br><span class="imp">accélérateurs linéaires de particules chargées</span>.
+
+<p class="fragment fade-up">Comme leur nom l'indique, leur but est d'accélérer fortement une particule chargée (électron ou ion).<p>
+
+<p class="fragment fade-up">Cette particule peut ensuite servir à une expérience<br>de physique des particules ou en radiothérapie. Et en l'envoyant sur une cible, on crée des rayons X utilisée en imagerie médicale ou, là encore, en radiothérapie.
+</p>
+
+---
+
+{{< slide  background-image="https://cds.cern.ch/images/OPEN-PHO-ACCEL-2017-011-1/file?size=large" background-size="contain" background-transition="concave">}}
+
+---
+
+{{< slide  background-image="https://www.rumcsi.org/wp-content/uploads/2023/09/three-medical-providers-in-treatment-room-with-patient-next-to-linear-accelerator.jpg" background-size="contain" background-transition="concave">}}
+
+---
+
+Imaginons qu'un électron est injecté<br>sans vitesse initiale en A.
+
+<div style="position:relative;margin-left:auto;margin-right:auto;width:500px;max-width:100%;">
+<img src="/accel1.png" style="box-shadow:none;background:none;">
+</div>
+
+---
+
+Si on néglige l'action de la gravité, le <span class="imp">théorème<br>de l'énergie cinétique</span> nous dit que :
+
+<div class="fragment fade-up">
+$$
+\begin{aligned}
+\Delta E_c &= \sum W_\mathrm{AB}(\vec{F}_\mathrm{ext})\\
+ &=\overrightarrow{\mathrm{AB}}\cdot \overrightarrow{F_e}\\
+ &=-qEd
+\end{aligned}
+$$
+</div>
+
+---
+
+Or $E=\frac Ud$. On obtient donc :
+
+<div class="fragment fade-up">
+$$E_{c\mathrm{B}}-E_{c\mathrm{A}}=-qU$$
+</div>
+
+<p class="fragment fade-up">Et comme par hypothèse, $v_A = 0$</p>
+
+<div class="fragment fade-up">
+$v_B=$ <span class="fragment">$\displaystyle\sqrt{\frac{-2qU}{m}}$</span>
+</div>
+
+---
+
+Pour une tension de $\pu{20,0 kV}$,<br>on obtient une vitesse de :
+
+<div class="fragment fade-up" style="font-size:0.9em;">
+$$
+\begin{aligned}
+v_B &= \sqrt{\frac{-2\times (\pu{-1,60E-19 C})\times(\pu{20,0E3 V})}{\pu{9,11E-31 kg}}}\\
+&= \pu{8,38E7 m*s-1}
+\end{aligned}
+$$
+</div>
+
+{{%/section%}}
+
+
+---
+
+[Retour site](https://coursphychi.github.io/tspe/champuni/)

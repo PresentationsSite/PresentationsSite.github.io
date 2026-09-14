@@ -1,0 +1,197 @@
+{{- /*
+  Shortcode GeoGebra pour reveal-hugo.
+  L'appliquette s'inscrit dans la diapositive en respectant SIMULTANÉMENT
+  une contrainte de largeur et une contrainte de hauteur : c'est la plus
+  restrictive des deux qui l'emporte, le ratio natif étant toujours conservé.
+
+  Usage : {{< geogebra-slide id="jy5thkeg" maxheight="480" rounded="true" shadow="true" >}}
+
+  - id         : identifiant du matériel GeoGebra (obligatoire)
+  - width      : largeur native de l'appliquette, définit le ratio (défaut 1011)
+  - height     : hauteur native de l'appliquette, définit le ratio (défaut 698)
+  - maxheight  : hauteur maximale en unités de diapo (défaut 480 ; la diapo
+                 reveal-hugo fait 700 de haut par défaut, prévoir la place du titre)
+  - maxwidth   : largeur maximale (défaut 100% de la zone de contenu)
+  - drag       : "false" pour figer la vue (défaut true).
+                 Indispensable pour faire tourner une vue 3D à la souris :
+                 dans GeoGebra, la rotation 3D est un glissement de la vue.
+  - zoombuttons: "true" pour afficher les boutons +/- de zoom (défaut false)
+  - rightclick : "true" pour activer clic droit, zoom molette et clavier (défaut false)
+  - rounded    : "true" pour un léger arrondi des coins (défaut false)
+  - shadow     : "true" pour une ombre portée (défaut false)
+  - lazy       : "false" pour charger l'appliquette immédiatement plutôt qu'à
+                 l'affichage de la diapo (défaut true)
+  - fullscreen : "false" pour supprimer le bouton plein écran mobile (défaut true)
+*/ -}}
+
+{{- $id := .Get "id" -}}
+{{- $w := .Get "width" | default "1011" -}}
+{{- $h := .Get "height" | default "698" -}}
+{{- $ar := printf "%.4f" (div (float $w) (float $h)) -}}
+
+{{- $maxh := .Get "maxheight" | default "480" -}}
+{{- if findRE `^[0-9.]+$` $maxh -}}{{- $maxh = printf "%spx" $maxh -}}{{- end -}}
+{{- $maxw := .Get "maxwidth" | default "100%" -}}
+{{- if findRE `^[0-9.]+$` $maxw -}}{{- $maxw = printf "%spx" $maxw -}}{{- end -}}
+
+{{- $rounded := eq (.Get "rounded") "true" -}}
+{{- $shadow := eq (.Get "shadow") "true" -}}
+{{- $lazy := ne (.Get "lazy") "false" -}}
+{{- $fs := ne (.Get "fullscreen") "false" -}}
+{{- $drag := ne (.Get "drag") "false" -}}
+{{- $szb := eq (.Get "zoombuttons") "true" -}}
+{{- $rc := eq (.Get "rightclick") "true" -}}
+{{- $uid := printf "ggbs-%s-%d" $id .Ordinal -}}
+{{- $src := printf "https://www.geogebra.org/material/iframe/id/%s/width/%s/height/%s/border/ffffff/sfsb/true/szb/%t/smb/false/stb/false/stbh/false/ai/false/asb/false/sri/true/rc/%t/ld/false/sdz/%t/ctl/false" $id $w $h $szb $rc $drag -}}
+
+<div class="ggb-slide{{ if $rounded }} ggb-rounded{{ end }}{{ if $shadow }} ggb-shadow{{ end }}"
+     id="{{ $uid }}"
+     data-prevent-swipe
+     style="--ggb-ratio: {{ $w }} / {{ $h }}; --ggb-ar: {{ $ar }}; --ggb-maxh: {{ $maxh }}; --ggb-maxw: {{ $maxw }};">
+  <iframe
+    scrolling="no"
+    title="Appliquette GeoGebra"
+    {{ if $lazy }}data-src{{ else }}src{{ end }}="{{ $src }}"
+    allowfullscreen>
+  </iframe>
+  {{- if $fs }}
+  <button type="button" class="ggb-fs-btn" aria-label="Plein écran" title="Plein écran"
+    onclick="ggbToggleFullscreen('{{ $uid }}')">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M8 3H5a2 2 0 0 0-2 2v3"/><path d="M16 3h3a2 2 0 0 1 2 2v3"/>
+      <path d="M8 21H5a2 2 0 0 1-2-2v-3"/><path d="M16 21h3a2 2 0 0 0 2-2v-3"/>
+    </svg>
+  </button>
+  {{- end }}
+</div>
+
+<style>
+  /* Sélecteurs préfixés .reveal pour passer devant les règles de thème
+     qui ciblent .reveal iframe / .reveal section img */
+  .reveal .ggb-slide {
+    position: relative;
+    /* Double contrainte : la largeur retenue est la plus petite entre la
+       largeur disponible et celle qu'impose la hauteur maximale.
+       C'est ce min() qui gère le cas où la hauteur est limitante. */
+    width: min(var(--ggb-maxw, 100%), calc(var(--ggb-maxh, 480px) * var(--ggb-ar, 1.448)));
+    aspect-ratio: var(--ggb-ratio, 1011 / 698);
+    max-width: 100%;
+    margin: 0 auto;              /* centrage horizontal dans la diapo */
+    line-height: 0;              /* supprime l'espace blanc sous l'iframe */
+    background: transparent;
+    overflow: hidden;
+    box-sizing: border-box;
+  }
+  .reveal .ggb-slide.ggb-rounded {
+    border-radius: 8px;
+  }
+  .reveal .ggb-slide.ggb-shadow {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  .reveal .ggb-slide iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    max-width: none;             /* neutralise les contraintes du thème reveal */
+    max-height: none;
+    margin: 0;
+    border: 0;
+    box-shadow: none;
+    display: block;
+    /* Mise à l'échelle uniforme : le ratio est strictement conservé et la
+       bordure interne de GeoGebra déborde puis est rognée par overflow:hidden */
+    transform: scale(1.015);
+    transform-origin: center;
+  }
+  /* Bouton plein écran : masqué par défaut, visible sur mobile/tactile */
+  .reveal .ggb-slide .ggb-fs-btn {
+    display: none;
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    z-index: 3;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    padding: 0;
+    border: 0;
+    border-radius: 6px;
+    background: rgba(0, 0, 0, 0.45);
+    color: #fff;
+    cursor: pointer;
+    opacity: 0.55;
+    transition: opacity 0.15s ease;
+  }
+  .reveal .ggb-slide .ggb-fs-btn:hover,
+  .reveal .ggb-slide .ggb-fs-btn:focus-visible {
+    opacity: 1;
+  }
+  @media (max-width: 768px), (pointer: coarse) {
+    .reveal .ggb-slide .ggb-fs-btn {
+      display: flex;
+    }
+  }
+  /* Plein écran natif : l'élément passe dans le top layer, les transformations
+     de reveal.js (scale sur .slides) sont alors ignorées */
+  .reveal .ggb-slide:fullscreen {
+    width: 100vw;
+    height: 100vh;
+    max-width: none;
+    aspect-ratio: auto;
+    margin: 0;
+    border-radius: 0;
+    box-shadow: none;
+    background: #fff;
+  }
+  .reveal .ggb-slide:fullscreen iframe {
+    transform: none;
+  }
+  /* Repli iOS : couvre la zone de la diapositive */
+  .reveal .ggb-slide.ggb-fake-fs {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    aspect-ratio: auto;
+    margin: 0;
+    border-radius: 0;
+    box-shadow: none;
+    background: #fff;
+  }
+  .reveal .ggb-slide.ggb-fake-fs iframe {
+    transform: none;
+  }
+</style>
+
+<script>
+  function ggbToggleFullscreen(id) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    if (el.classList.contains('ggb-fake-fs')) {
+      el.classList.remove('ggb-fake-fs');
+      return;
+    }
+    if (document.fullscreenElement === el) {
+      document.exitFullscreen();
+      return;
+    }
+    if (el.requestFullscreen) {
+      el.requestFullscreen().catch(function () {
+        el.classList.add('ggb-fake-fs');
+      });
+    } else {
+      el.classList.add('ggb-fake-fs');
+    }
+  }
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') {
+      document.querySelectorAll('.ggb-slide.ggb-fake-fs').forEach(function (el) {
+        el.classList.remove('ggb-fake-fs');
+      });
+    }
+  });
+</script>

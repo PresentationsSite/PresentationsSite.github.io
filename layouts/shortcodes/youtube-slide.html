@@ -1,0 +1,98 @@
+{{- /*
+  Shortcode : youtube-slide  (pour reveal-hugo)
+  ---------------------------------------------
+  Usage (dans un fichier Markdown de présentation) :
+    {{< youtube-slide id="dQw4w9WgXcQ" >}}
+    {{< youtube-slide id="dQw4w9WgXcQ" ratio="short" start="1:30" end="2:45" >}}
+    {{< youtube-slide dQw4w9WgXcQ >}}          (forme positionnelle minimale)
+
+  Paramètres :
+    id      : identifiant de la vidéo YouTube (obligatoire ; nommé ou positionnel)
+    ratio   : "16x9" (défaut) | "4x3" | "9x16" (alias : "short", "portrait", "vertical")
+    start   : instant de départ, en secondes ("90") ou au format "m:ss" / "h:mm:ss" ("1:30")
+    end     : instant d'arrêt, mêmes formats
+
+  Dimensionnement :
+    La fenêtre occupe 80 % de la plus contraignante des deux dimensions de la diapo.
+    Largeur = min(80 % de la largeur, 80 % de la hauteur x rapport d'aspect).
+    Les dimensions de la diapo sont lues dans les variables CSS --slide-width et
+    --slide-height que reveal.js (>= 4.2) publie sur .reveal-viewport ; la valeur
+    de repli 700px correspond à la hauteur par défaut de reveal-hugo.
+    Le taux de remplissage se règle globalement via --yt-fill dans votre CSS.
+
+  Lecture :
+    L'iframe est déclarée en data-src : reveal.js ne la charge qu'à l'arrivée sur
+    la diapo et la détruit en la quittant, ce qui coupe la vidéo à coup sûr.
+
+  Note :
+    max-width:none et max-height:none sont indispensables. Tous les thèmes
+    reveal.js appliquent « .reveal img, .reveal video, .reveal iframe
+    { max-width:95%; max-height:95% } », ce qui empêcherait l'iframe de remplir
+    exactement le conteneur : le lecteur YouTube ajouterait alors des bandes
+    noires et les coins arrondis ne seraient plus visibles sur les côtés
+    où l'iframe n'atteint pas le bord.
+*/ -}}
+
+{{- /* ---------- 1. Identifiant ---------- */ -}}
+{{- $id := "" -}}
+{{- if .IsNamedParams -}}
+  {{- $id = .Get "id" -}}
+{{- else -}}
+  {{- $id = .Get 0 -}}
+{{- end -}}
+{{- if not $id -}}
+  {{- errorf "youtube-slide : paramètre 'id' manquant (%s)" .Position -}}
+{{- end -}}
+
+{{- /* ---------- 2. Ratio d'aspect ---------- */ -}}
+{{- /* $num et $den servent à la fois pour aspect-ratio et pour le calcul de largeur. */ -}}
+{{- $ratio := "16x9" -}}
+{{- if .IsNamedParams -}}{{- $ratio = .Get "ratio" | default "16x9" -}}{{- end -}}
+{{- $num := 16 -}}
+{{- $den := 9 -}}
+{{- if eq $ratio "4x3" -}}
+  {{- $num = 4 -}}{{- $den = 3 -}}
+{{- else if in (slice "9x16" "short" "portrait" "vertical") $ratio -}}
+  {{- $num = 9 -}}{{- $den = 16 -}}
+{{- else if ne $ratio "16x9" -}}
+  {{- warnf "youtube-slide : ratio %q inconnu, repli sur 16x9 (%s)" $ratio .Position -}}
+{{- end -}}
+
+{{- /* ---------- 3. Conversion start / end en secondes ---------- */ -}}
+{{- /* Accepte "90", 90, "1:30", "1:02:05". */ -}}
+{{- $times := newScratch -}}
+{{- range $k := slice "start" "end" -}}
+  {{- if $.IsNamedParams -}}
+    {{- with $.Get $k -}}
+      {{- $v := printf "%v" . -}}
+      {{- if strings.Contains $v ":" -}}
+        {{- $sec := 0 -}}
+        {{- range split $v ":" -}}
+          {{- $sec = add (mul $sec 60) (int .) -}}
+        {{- end -}}
+        {{- $v = printf "%d" $sec -}}
+      {{- end -}}
+      {{- $times.Set $k $v -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+
+{{- /* ---------- 4. URL ---------- */ -}}
+{{- $params := slice -}}
+{{- with $times.Get "start" -}}{{- $params = $params | append (printf "start=%s" .) -}}{{- end -}}
+{{- with $times.Get "end"   -}}{{- $params = $params | append (printf "end=%s"   .) -}}{{- end -}}
+{{- $src := printf "https://www.youtube-nocookie.com/embed/%s" $id -}}
+{{- if $params -}}{{- $src = printf "%s?%s" $src (delimit $params "&") -}}{{- end -}}
+
+{{- /* ---------- 5. Styles ---------- */ -}}
+{{- $style := printf `--yt-fill:0.8;display:block;margin:0 auto;aspect-ratio:%d / %d;width:min(calc(var(--yt-fill) * 100%%),calc(var(--slide-height, 700px) * var(--yt-fill) * %d / %d));border-radius:12px;overflow:hidden;` $num $den $num $den -}}
+
+{{- /* ---------- 6. Rendu ---------- */ -}}
+<div class="yt-slide" style="{{ $style | safeCSS }}">
+  <iframe data-src="{{ $src }}"
+          style="display:block;width:100%;height:100%;max-width:none;max-height:none;border:0;border-radius:inherit;"
+          title="Lecteur vidéo YouTube"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen></iframe>
+</div>

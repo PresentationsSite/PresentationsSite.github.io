@@ -1,0 +1,318 @@
++++
+title = "Effet Doppler"
+outputs = ["Reveal"]
+[reveal_hugo]
+theme = "league"
+highlight_theme = "atom-one-dark-reasonable"
++++
+
+
+<style>
+img {
+border: none !important;
+}
+
+.imp {
+font-weight:bold;color:#FF968D;
+}
+
+li {
+color: #fff;
+}
+
+ul {
+margin-left: auto;
+margin-right: auto;
+text-align: left;
+width: fit-content;
+list-style-position: outside;
+color:#fff;
+}
+
+span {
+font-weight:normal;
+}
+
+</style>
+
+{{%section%}}
+
+
+
+# Effet Doppler
+
+---
+
+{{< slide  background-video="/doppler.mp3" background-size="contain" background-transition="concave">}}
+
+<div style="position:relative;margin-left:auto;margin-right:auto;width:700px;max-width:100%;margin-bottom:-40px;margin-top:-40px;">
+<img src="/voitdoppler.png" style="box-shadow:none;background:none;">
+</div>
+
+---
+
+{{< slide  background-video="/dopplershift.mp4"  background-transition="concave" data-background-video-loop="loop">}}
+
+---
+
+{{< slide  background-video="/tbbtdoppler.mp4" background-size="contain" background-transition="concave">}}
+
+{{%/section%}}
+
+---
+
+
+{{< slide background-iframe="/doppler.html" background-size="contain" background-transition="concave" background-interactive="true">}}
+
+
+---
+
+{{%section%}}
+
+## Définition et formule
+
+---
+
+L'effet Doppler correspond au <span class="imp">décalage</span> de la fréquence de l'onde reçue par un récepteur lorsque l'émetteur<br><span class="imp">se rapproche ou s'éloigne</span> du récepteur.
+
+ <p class="fragment fade-up">Le <span class="imp">décalage Doppler</span> <span class="imp">$\Delta f$</span> est lié à la vitesse <span class="imp">$v$</span><br>de l'émetteur par rapport au récepteur.</p>
+
+---
+
+<p>Si l'émetteur se rapproche du récepteur :</p>
+
+<div class="fragment fade-up" style="position:relative;margin:auto;width:fit-content;border:solid 5px #56C1FF;padding:0 50px 0 50px;border-radius:10px">
+$$\Delta f = f\times\frac{v}{c-v}$$
+</div>
+
+<br>
+
+<p class="fragment fade-up">Si l'émetteur s'éloigne du récepteur :</p>
+
+<div class="fragment fade-up" style="position:relative;margin:auto;width:fit-content;border:solid 5px #FF968D;padding:0 50px 0 50px;border-radius:10px">
+$$\Delta f = -f\times\frac{v}{c+v}$$
+</div>
+
+
+---
+
+<ul style="margin-top:1em;">
+<li style="color:#aaa;">$v$ : norme de la vitesse de l'émetteur<br>par rapport au récepteur<br>en <span class="fragment"><b style="color:#FFF056">$\pu{m*s-1}$</b></span></li>
+<li class="fragment fade-up" style="color:#aaa;">$f$ : fréquence de l'émetteur<br>en <span class="fragment"><b style="color:#FFF056">Hz</b></span></li>
+<li class="fragment fade-up" style="color:#aaa;">$c$ : célérité de l'onde<br>en <span class="fragment"><b style="color:#FFF056">$\pu{m*s-1}$</b></span></li>
+</ul>
+
+---
+
+On considèrera qu'on a toujours $v<c$.
+
+<br>
+
+<ul>
+<li class="fragment fade-up">Si l'émetteur se rapproche, <b style="color:#56C1FF;">$\Delta f$ <b class="fragment" style="color:#56C1FF;">$>$</b> 0</b>.
+<br>
+<span class="fragment">Le son perçu est plus <b class="fragment" style="color:#56C1FF;">aigü</b>.</span><br><span class="fragment">La lumière perçue est plus <b class="fragment" style="color:#56C1FF;">bleue</b>.</span>
+</li>
+<br>
+<li class="fragment fade-up">Si l'émetteur s'éloigne, <span class="imp">$\Delta f$ <span class="imp fragment">$<$</span> 0</span>.
+<br>
+<span class="fragment">Le son perçu est plus <span class="imp fragment">grave</span>.</span><br><span class="fragment">La lumière perçue est plus <span class="imp fragment">rouge</span>.</span>
+</li>
+</ul>
+
+---
+
+<div style="position:relative;margin-left:auto;margin-right:auto;width:900px;max-width:100%;">
+<img src="https://www.martin-perscheid.de/image/cartoon/3575.gif" style="box-shadow:none;background:none;border-radius:10px;">
+</div>
+
+
+
+{{% /section %}}
+
+---
+
+
+{{%section%}}
+
+## Applications
+
+---
+
+### Radars routiers
+
+<div style="position:relative;margin-left:auto;margin-right:auto;width:700px;max-width:100%;">
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/A40_Radar_discriminant_poids_lourds.jpg/1920px-A40_Radar_discriminant_poids_lourds.jpg" style="box-shadow:none;background:none;border-radius:10px;">
+</div>
+
+---
+
+### Échographie doppler
+
+<div style="position:relative;margin-left:auto;margin-right:auto;width:700px;max-width:100%;">
+<img src="https://upload.wikimedia.org/wikipedia/commons/e/e5/Doppler_ultrasound_of_systolic_velocity_%28Vs%29%2C_diastolic_velocity_%28Vd%29%2C_acceleration_time_%28AoAT%29%2C_systolic_acceleration_%28Ao_Accel%29_and_resistive_index_%28RI%29_of_normal_kidney.jpg?20171214074514f" style="box-shadow:none;border-radius:10px;">
+</div>
+
+{{%note%}}
+L'échographie Doppler est utilisée dans le diagnostic des atteintes des vaisseaux et du cœur :
+
+cœur : cardiopathies congénitales, valvulopathies, péricardites ;
+artères : sténoses, thromboses (athérosclérose), anévrismes, claudication intermittente, ischémie aiguë ;
+veines : thromboses veineuses profondes, varices.
+L'échographie Doppler est souvent un examen de première intention. En effet, il est relativement peu coûteux et il possède une grande sensibilité, en particulier pour le diagnostic des thromboses veineuses profondes.
+{{%/note%}}
+
+---
+
+### Radars météorologiques
+
+---
+
+<iframe width="800" height="450" src="https://www.youtube.com/embed/3vxKLc8KNd4?si=79iemh7kerHsMJH1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+
+---
+
+### Astrophysique
+
+<br>
+
+<ul>
+<li class="fragment fade-up">Découverte de l'expansion de l'univers<br>(loi de Hubble-Lemaître, 1929).<br></li>
+</ul>
+
+<div class="fragment fade-up">
+$$v=H_0\times d$$
+</div>
+
+---
+
+{{< slide  background-image="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Redshift.svg/1920px-Redshift.svg.png" background-size="contain" background-transition="concave">}}
+
+---
+
+{{< slide  background-image="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Hubble_ultra_deep_field_high_rez_edit1.jpg/1920px-Hubble_ultra_deep_field_high_rez_edit1.jpg" background-size="contain" background-transition="concave">}}
+
+
+---
+
+{{< slide  background-image="/constante-hubble.jpg" background-size="contain" background-transition="concave">}}
+
+
+{{%note%}}
+Une des plus grandes crises de la physique actuelle !
+The landscape of H0 measurements around 2021, with the 2018 results from CMB measurements highlighted in pink and 2020 distance ladder values highlighted in cyan.
+Différence de plus de 5 écarts-types (z>5) !!
+En physique, on parle de tension...
+{{%/note%}}
+
+---
+
+<ul>
+<li>Détection d'exoplanètes</li>
+</ul>
+
+---
+
+<iframe width="800" height="450" src="https://www.youtube.com/embed/B-oZYm3L1JE?si=U2Nxo7OcSAHX0Kss" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+
+---
+
+<ul>
+<li>Anisotropie dipolaire du CMB</li>
+</ul>
+
+
+<p class="fragment fade-up">Elles permettent de savoir où on se dirige<br>de manière absolue dans l'univers.</p>
+
+<p class="fragment fade-up">
+Le CMB est le seul référentiel galiléen absolu.
+</p>
+
+---
+
+{{< slide  background-image="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Horn_Antenna-in_Holmdel,_New_Jersey_-_restoration1.jpg/1920px-Horn_Antenna-in_Holmdel,_New_Jersey_-_restoration1.jpg" background-size="contain" background-transition="concave">}}
+
+
+{{%note%}}
+In 1964, Arno Penzias and Robert Woodrow Wilson at the Crawford Hill location of Bell Telephone Laboratories in nearby Holmdel Township, New Jersey had built a Dicke radiometer that they intended to use for radio astronomy and satellite communication experiments. The antenna was constructed in 1959 to support Project Echo—the National Aeronautics and Space Administration's passive communications satellites, which used large Earth orbiting aluminized plastic balloons as reflectors to bounce radio signals from one point on the Earth to another. On 20 May 1964 they made their first measurement clearly showing the presence of the microwave background, with their instrument having an excess 4.2K antenna temperature which they could not account for. After receiving a telephone call from Crawford Hill, Dicke said "Boys, we've been scooped.":   A meeting between the Princeton and Crawford Hill groups determined that the antenna temperature was indeed due to the microwave background. Penzias and Wilson received the 1978 Nobel Prize in Physics for their discovery.
+Penzias & Wilson ont trouvé qu’après avoir soustrait toutes les contributions connues (atmosphère, instrument, sol, Galaxie…), il restait un bruit isotrope correspondant à \approx 3{,}5\ \text{K} de température d’antenne — un excès inexplicable par des causes locales. C’était la CMB.
+On calibre en K parce qu’en régime de Rayleigh-Jeans (ici h\nu\ll kT), l’intensité spectrale est proportionnelle à T, ce qui rend la lecture et les budgets de bruit très pratiques. À 4 GHz, h\nu/k\approx0{,}19\ \text{K}\ll 3\text{–}4\ \text{K}, on est donc bien dans ce régime. 
+En bref : température d’antenne = manière d’exprimer le bruit reçu par l’antenne en kelvins via P=kT\Delta\nu ; excès = résiduel en K après soustraction de toutes les contributions identifiées — chez Penzias & Wilson, ~3,5 K, signature du fond cosmologique. 
+{{%/note%}}
+
+---
+
+
+{{< slide  background-image="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Cmbr.svg/1920px-Cmbr.svg.png" background-size="contain" background-transition="concave" background-color="#FFF">}}
+
+
+{{%note%}}
+The cosmic microwave background radiation is an emission of uniform black body thermal energy coming from all directions. Intensity of the CMB is expressed in kelvin (K), the SI unit of temperature. The CMB has a thermal black body spectrum at a temperature of 2.72548±0.00057 K. Variations in intensity are expressed as variations in temperature. The blackbody temperature uniquely characterizes the intensity of the radiation at all wavelengths; a measured brightness temperature at any wavelength can be converted to a blackbody temperature.
+Le pic est à environ 1 mm pour la longueur d'onde et 160 GHz pour la fréquence. Attention, on ne passe pas de l'un à l'autre  en prenant c/lambda_max !!
+Le graphe est en nombre d'onde en cm^-1, c'est une habitude dans le monde de l'infrarouge et du sub-millimétrique, déjà vu en spectroscopie infrarouge. 1 cm^-1 \approx 30 GHz.
+{{%/note%}}
+
+---
+
+
+{{< slide background-iframe="/cmb.html" background-size="contain" background-transition="concave" background-interactive="true">}}
+
+{{%note%}}
+The radiation is remarkably uniform across the sky, very unlike the almost point-like structure of stars or clumps of stars in galaxies. The radiation is isotropic to roughly one part in 25,000: the root mean square variations are just over 100 μK, after subtracting a dipole anisotropy from the Doppler shift of the background radiation. The latter is caused by the peculiar velocity of the Sun relative to the comoving cosmic rest frame as it moves at 369.82 ± 0.11 km/s towards the constellation Crater near its boundary with the constellation Leo. The CMB dipole and aberration at higher multipoles have been measured, consistent with galactic motion. Despite the very small degree of anisotropy in the CMB, many aspects can be measured with high precision and such measurements are critical for cosmological theories.
+{{%/note%}}
+
+---
+
+
+<div style="position:relative;margin-left:auto;margin-right:auto;width:100%;max-width:100%;margin-bottom:-1em;margin-top:-1em;">
+<img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Cosmic_Microwave_Background_%28CMB%29.jpeg" style="box-shadow:none;background:none;border-radius:10px;">
+</div>
+
+---
+
+<ul>
+<li>Anomalie des courbes de rotation des galaxies.</li>
+</ul>
+
+<br>
+<br>
+
+<div style="position:relative;margin-left:auto;margin-right:auto;width:700px;max-width:100%;">
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Rotation_Curve_UGC11455.svg/1280px-Rotation_Curve_UGC11455.svg.png" style="box-shadow:none;background:none;border-radius:10px;">
+</div>
+
+---
+
+<p>En mesurant le décalage Doppler de différents nuages d'hydrogène dans la galaxie d'Andromède <br>(puis dans d'autres galaxies),</p>
+
+<div style="position:relative;margin-left:auto;margin-right:auto;width:700px;max-width:100%;">
+<img src="/andromededoppler.png" style="box-shadow:none;background:none;border-radius:10px;">
+</div>
+
+{{%note%}}
+Ces nuages d'hydrogènes appelées régions H II sont constitués d'hydrogène ionisé par le rayonnement ultraviolet d'étoiles très chaudes.
+{{%/note%}}
+
+---
+
+ Vera Rubin montre à la fin des années 60 que les objets éloignés du centre galactique ne tournent pas<br>à la vitesse prévue par Kepler.</p>
+ 
+ 
+ <div style="position:relative;margin-left:auto;margin-right:auto;width:700px;max-width:100%;">
+<img src="https://galileo-unbound.blog/wp-content/uploads/2022/01/screen-shot-2016-12-27-at-12.24.35-pm-1024x724-1.png" style="box-shadow:none;background:none;border-radius:10px;">
+</div>
+
+---
+
+{{< slide  background-video="https://upload.wikimedia.org/wikipedia/commons/transcoded/3/33/Galaxy_rotation_under_the_influence_of_dark_matter.ogv/Galaxy_rotation_under_the_influence_of_dark_matter.ogv.360p.webm" background-size="contain" background-transition="concave">}}
+
+---
+
+Une explication populaire parmi les astrophysiciens serait la présence d'un halo de matière noire.
+
+{{% /section %}}
+
+
+---
+
+[Retour site](https://coursphychi.github.io/tspe/doppler/)

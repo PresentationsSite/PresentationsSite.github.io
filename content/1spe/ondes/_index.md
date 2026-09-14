@@ -1,0 +1,277 @@
++++
+title = "Ondes"
+outputs = ["Reveal"]
+[reveal_hugo]
+theme = "moon"
+highlight_theme = "atom-one-dark-reasonable"
++++
+
+
+<style>
+img {border: none !important}
+
+.imp {font-weight:bold;color:#FF968D;}
+
+span {font-weight:normal;color:white;}
+
+ul {
+margin-left: auto;
+margin-right: auto;
+text-align: left;
+width: fit-content;
+list-style-position: inside;
+color:#93a1a1;
+}
+
+ul li {
+text-indent: -1em;
+padding-left: 1em;
+}
+
+</style>
+
+
+
+{{%section%}}
+
+# Onde mécanique
+
+---
+
+Une onde <span class="imp">mécanique</span> <b style="color:#FDF6A5">progressive</b> est une onde<br>qui se <b style="color:#FDF6A5">propage</b> dans un <span class="imp">milieu matériel</span>.
+
+---
+
+Le milieu est composé de <span class="imp">particules</span><br>capables d'<b style="color:#FDF6A5">osciller sur place</b>.
+
+<p class="fragment">
+Si l'une de ces particules est mise en mouvement<br>par une perturbation, elle va entraîner la mise en mouvement de ses voisines <b style="color:#FDF6A5">de proche en proche</b>.
+</p>
+
+<p class="fragment">
+C'est ainsi que la perturbation<br>se <b style="color:#FDF6A5">propage</b> dans le milieu.
+</p>
+
+---
+
+{{< slide  background-video="/ondemilitaire.mp4" background-size="contain" background-transition="concave">}}
+
+---
+
+On a alors <b style="color:#FDF6A5">propagation d'énergie et d'information</b><br><span class="imp">sans transport de matière</span>.
+
+C'est la définition d'une onde progressive.
+
+
+{{%/section%}}
+
+---
+
+{{%section%}}
+
+## Célérité et retard
+
+---
+
+Imaginons que la perturbation propagée par une onde atteigne le point A à l'instant $t_A$,<br>puis le point B à l'instant $t_B$.
+
+On appelle <span class="imp">retard</span> la durée $\Delta t=t_B-t_A$.
+
+---
+
+{{< slide  background-image="/gif1onde.gif" background-size="contain" background-transition="concave">}}
+
+---
+
+Le retard $\Delta t$ et la distance $d=AB$ permettent de définir la célérité $c$ de l'onde&nbsp;:
+
+<div class="fragment" style="background-color:#FF968D;padding:2px 50px 2px 50px;width:fit-content;margin-right:auto;margin-left:auto;color:white;border-radius:15px;">
+<span style="color:#B51700;font-size:1.2em;">
+$$c=\frac{d}{\Delta t}$$</span>
+</div>
+
+<br>
+
+<ul class="fragment">
+<li>$d$ en <span class="fragment">$\pu{m}$</span></li>
+<li>$\Delta t$ en <span class="fragment">$\pu{s}$</span></li>
+<li>$c$ en <span class="fragment">$\pu{m*s-1}$</span></li>
+</ul>
+
+---
+
+<iframe src="/carte.html" width="100%" height="600px"></iframe>
+
+
+{{%/section%}}
+
+---
+
+{{%section%}}
+
+## Périodicités spatiale et temporelle
+
+---
+
+Une onde est par essence<br>un phénomène spatiotemporel.
+
+C'est-à-dire qu'elle se propage à la fois<br>
+à travers le temps et l'espace.
+
+{{%note%}}
+Ce n'est pas pour rien que l'origine de la théorie<br>de l'espace-temps d'Einstein prend racine chez<br>les ondes électromagnétiques de Maxwell...
+{{%/note%}}
+
+---
+
+Une onde mécanique <span class="imp">périodique</span> est une onde<br>dont la perturbation se répète à l'identique.
+
+---
+
+### Périodicité temporelle
+
+<br>
+
+<div class="fragment" style="background-color:#FF968D;padding:15px 50px 15px 50px;width:fit-content;margin-right:auto;margin-left:auto;color:white">
+<span style="color:#B51700;font-size:1.em;">
+La <b>période</b> $T$ d'une onde périodique est la plus petite <b>durée</b> entre deux répétitions<br>à l'identique de la perturbation.</span>
+</div>
+
+<br>
+
+<p class="fragment">
+C'est la durée d'un motif.
+</p>
+
+---
+
+{{< slide  background-image="/gif2onde.gif" background-size="contain" background-transition="concave">}}
+
+---
+
+La <span class="imp">fréquence</span> est <span class="fragment imp">l'inverse</span> de la période :
+
+<div class="fragment" style="background-color:#FF968D;padding:2px 50px 2px 50px;width:fit-content;margin-right:auto;margin-left:auto;color:white;border-radius:15px">
+<span style="color:#B51700;font-size:1.2em;">
+$$f=\frac{1}{T}$$</span>
+</div>
+
+<br>
+
+<ul class="fragment">
+<li>$f$ en <span class="fragment">$\pu{Hz}$</span></li>
+<li>$T$ en <span class="fragment">$\pu{s}$</span></li>
+</ul>
+
+
+---
+
+### Périodicité spatiale
+
+<br>
+
+<div class="fragment" style="background-color:#73FDEA;padding:15px 50px 15px 50px;width:fit-content;margin-right:auto;margin-left:auto;color:white">
+<span style="color:#006C65;font-size:1.em;">
+La <b>longueur d'onde</b> $\lambda$ d'une onde périodique est la plus petite <b>distance</b> entre deux répétitions<br>à l'identique de la perturbation.</span>
+</div>
+
+<br>
+
+<p class="fragment">
+C'est la taille d'un motif.
+</p>
+
+---
+
+{{< slide  background-image="/periodspatiale.png" background-size="contain" background-transition="concave">}}
+
+---
+
+{{< slide  background-image="/doubleperio.png" background-size="contain" background-transition="concave">}}
+
+---
+
+<ul>
+<li>Dans un cas on visualise la variation de l'amplitude de la perturbation en un point de l'espace au cours<br>du temps <span style="color:#FFF056"">$a(t)$</span> (c'est un enregistrement temporel).<br>
+<span style="color:#FFF056"">La durée du motif est la période $T$</span>.</li>
+<br>
+<li class="fragment">Dans l'autre cas, on visualise à un instant donné<br>la variation de l'amplitude dans l'espace <span style="color:#16E7CF"">$a(x)$</span><br>(c'est une photo).<br>
+<span style="color:#16E7CF"">La taille du motif est la longueur d'onde $\lambda$</span>.</li>
+</ul>
+
+
+---
+
+Lien entre les deux périodicités ?
+
+<p class="fragment">La célérité !</p>
+
+
+<div class="fragment" style="background-color:#FEF8B9;padding:2px 50px 2px 50px;width:fit-content;margin-right:auto;margin-left:auto;color:white;border-radius:15px;">
+<span style="color:#EE220C;font-size:1.2em;">
+$$c=\frac{\lambda}{T}$$</span>
+</div>
+
+<br>
+
+<ul class="fragment">
+<li>$c$ en <span class="fragment">$\pu{m*s-1}$</span></li>
+<li>$\lambda$ en <span class="fragment">$\pu{m}$</span></li>
+<li>$T$ en <span class="fragment">$\pu{s}$</span></li>
+</ul>
+
+---
+
+<div style="position:relative;width:60%;margin-right:auto;margin-left:auto;border-radius:20px;">
+<a href="https://www.geogebra.org/m/jku6r5da">
+<img src="/geogebperio.png" style="width:100%;border-radius:20px">
+</a>
+</div>
+
+---
+
+Les évolutions temporelles de deux points séparés par un nombre entier de longueurs d'onde sont identiques.
+
+<p class="fragment">
+On dit alors que les signaux correspondant<br>à chacune des évolutions sont <span class="imp">en phases</span>.
+</p>
+
+<p class="fragment">
+Cela donne une méthode pour déterminer expérimentalement une longueur d'onde<br>(cf. 2<sup>e</sup> partie du TP).
+</p>
+
+---
+
+Rq :
+
+<a href="https://www.geogebra.org/m/jku6r5da">Sur l'animation</a>, reculer un récepteur d'ultrasons par rapport à l'autre revient à reculer le point bleu par rapport au point rouge.
+
+---
+
+Une onde est dite <span class="imp">sinusoïdale</span> si la fonction modélisant l'évolution de la perturbation par rapport au temps<br>ou à la distance est elle-même sinusoïdale<br>(une fonction sinus ou cosinus).
+
+<p class="fragment">
+Une onde sinusoïdale est <i>a fortiori</i> périodique<br>(la période est celle de la fonction sinusoïdale). 
+</p>
+
+<p class="fragment">
+Mathématiquent : $\displaystyle a(t)=A\cos\left(2\pi\frac{t}{T}+\phi\right)$<br>ou
+$\displaystyle a(x)=A\cos\left(2\pi\frac{x}{\lambda}+\psi\right)$
+</p>
+
+{{%note%}}
+Forme mathématique pas à connaître.
+Ces fonctions ne sont étudiées qu'en terminale.
+{{%/note%}}
+
+---
+
+<div style="position:relative;width:800px;margin-right:auto;margin-left:auto;">
+<iframe scrolling="no" title="sinusoide" src="https://www.geogebra.org/material/iframe/id/rf735wwy/width/910/height/739/border/888888/sfsb/true/smb/false/stb/false/stbh/false/ai/false/asb/false/sri/false/rc/false/ld/false/sdz/false/ctl/false" width="910px" height="617px" style="border:0px;"> </iframe>
+</div>
+
+{{%/section%}}
+
+---
+
+[Retour site](https://coursphychi.github.io/1spe/ondes/)

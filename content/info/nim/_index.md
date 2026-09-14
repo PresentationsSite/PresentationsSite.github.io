@@ -1,0 +1,313 @@
++++
+title = "Nim"
+outputs = ["Reveal"]
+[reveal_hugo]
+highlight_theme = "atom-one-dark-reasonable"
++++
+
+<style>
+  button {
+    text-decoration: none;
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    background-color: #0076BA;
+    color: #fff;
+    border-radius: 5px;
+    box-shadow: 7px 6px 28px 1px rgba(0, 0, 0, 0.24);
+    cursor: pointer;
+    outline: none;
+    transition: 0.2s all;
+  }
+  /* Adding transformation when the button is active */
+
+.hum {
+background-color:#1DB100;
+}
+
+.mach {
+background-color:#D41876;
+}
+
+.jet {
+background-color:#F27200;
+}
+
+  button:active {
+    transform: scale(0.98);
+    /* Scaling button to 0.98 to its original size */
+    box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24);
+    /* Lowering the shadow */
+  }
+</style>
+
+## Jeu de Nim classique
+
+---
+
+<p id="ligne1" style="text-align:center">
+</p>
+<p id="ligne2" style="text-align:center">
+</p>
+<p id="ligne3" style="text-align:center">
+</p>
+<p id="ligne4" style="text-align:center">
+</p>
+
+<p id="prompt">
+</p>
+
+<script>
+var lignes = ["ligne1","ligne2","ligne3","ligne4"];
+var plateau = [1,3,5,7];
+var numligne = -1;
+var Fini = false;
+const tourMach = '<button class="mach" onclick="fHIA()">Au tour de la machine</button>';
+const tourHum = '<button class="hum" onclick="fIAH()">À votre tour</button>';
+
+
+function dessinePlateau(){
+    for (let i = 0; i < lignes.length; i++){
+        const el = document.getElementById(lignes[i]);
+        if (plateau[i] == 0){
+            el.innerHTML = "<br>";
+        }
+        else {
+            const chaine = "😀".repeat(plateau[i]);
+            el.innerHTML = chaine;
+        }
+    }
+}
+
+
+
+function somme(tab){
+    let S = 0;
+    for (let i = 0; i < tab.length; i++){
+        S += tab[i];
+    }
+    return S;
+}
+
+function uneSeuleLigne(tab){
+    let compt = 0;
+    let numLigne = -1;
+    for (let i = 0; i < tab.length; i++){
+        if (tab[i] != 0){
+            numLigne = i;
+            compt += 1;
+        }
+    }
+    if (compt > 1){
+        numLigne = -1;
+        return [false,numLigne];
+    }
+    else {
+        return [true,numLigne];
+    }
+}
+    
+dessinePlateau();
+const pr = document.getElementById("prompt");
+pr.innerHTML = 'Qui commence ?<br><button class="hum" id="moi" onclick="fmoi()">Moi</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button class="mach" id="machine" onclick="fmachine()">Machine</button>';
+
+
+function choixJeton(){
+    const pr = document.getElementById("prompt");
+    if (plateau[numligne] > 1){
+        pr.innerHTML = "Choisir un nombre de jetons :<br>";
+        for (let i = 0; i < plateau[numligne]; i++){
+            pr.innerHTML += '<button class="jet" onclick="fj'+i+'()">'+ (i+1) +'</button>';
+            if (i < plateau[numligne]-1){
+                pr.innerHTML += '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
+            }
+        }
+    }
+    else {
+        plateau[numligne] = 0;
+        dessinePlateau();
+        victoire(plateau);
+        if (!Fini){
+            pr.innerHTML = tourMach;
+        }
+    }
+}    
+
+function victoire(tab){
+    if (somme(tab) == 0){
+    		const fin = document.getElementById("ligne2");
+        fin.innerHTML = "🍾 🥳 Vous avez gagné 🥳 🎉";
+        fin.style = "font-weight:bold;";
+        Fini = true;
+    }
+}    
+
+function f0(){
+    numligne = 0;
+    console.log(numligne);
+    choixJeton();
+}
+function f1(){
+    numligne = 1;
+    console.log(numligne);
+    choixJeton();
+}
+function f2(){
+    numligne = 2;
+    console.log(numligne);
+    choixJeton();
+}
+function f3(){
+    numligne = 3;
+    console.log(numligne);
+    choixJeton();
+}    
+
+function fj0(){
+    plateau[numligne] -= 1;
+    dessinePlateau();
+    victoire(plateau);
+    if (!Fini){
+        pr.innerHTML = tourMach;
+    }
+}
+function fj1(){
+    plateau[numligne] -= 2;
+    dessinePlateau();
+    pr.innerHTML = tourMach;
+}
+function fj2(){
+    plateau[numligne] -= 3;
+    dessinePlateau();
+    victoire(plateau);
+    if (!Fini){
+        pr.innerHTML = tourMach;
+    }
+}
+function fj3(){
+    plateau[numligne] -= 4;
+    dessinePlateau();
+    victoire(plateau);
+    if (!Fini){
+        pr.innerHTML = tourMach;
+    }
+}
+function fj4(){
+    plateau[numligne] -= 5;
+    dessinePlateau();
+    victoire(plateau);
+    if (!Fini){
+        pr.innerHTML = tourMach;
+    }
+}
+function fj5(){
+    plateau[numligne] -= 6;
+    dessinePlateau();
+    victoire(plateau);
+    if (!Fini){
+        pr.innerHTML = tourMach;
+    }
+}
+function fj6(){
+    plateau[numligne] -= 7;
+    dessinePlateau();
+    victoire(plateau);
+    if (!Fini){
+        pr.innerHTML = tourMach;
+    }
+}
+
+function tourHumain(){
+    const pr = document.getElementById("prompt");
+    pr.innerHTML = "Choisir une ligne :<br>";
+    pr.innerHTML += '&nbsp;&nbsp;&nbsp;&nbsp;';
+    for (let i = 0; i < 4; i++){
+        if (plateau[i] != 0){
+            pr.innerHTML += '<button onclick="f'+i+'()">'+ (i+1) +'</button> ';
+            pr.innerHTML += '&nbsp;&nbsp;&nbsp;&nbsp;';
+        }
+    }
+}
+
+function fIAH(){
+    tourHumain();
+}
+    
+function fHIA(){
+    tourIA();
+} 
+
+function tourIA(){
+    const pr = document.getElementById("prompt");
+    resLignes = uneSeuleLigne(plateau);
+    if (resLignes[0]){
+        numLigne = resLignes[1];
+        plateau[numLigne] = 0;
+        dessinePlateau();
+        pr.innerHTML = "L'IA a vidé le plateau.<br><br>";
+        const fin2 = document.getElementById("ligne2");
+        fin2.innerHTML = "Vous avez perdu...😭";
+        fin2.style = "font-weight:bold;";
+        Fini = true;
+        return;
+    }
+    console.log(plateau)
+    let nimSum = 0;
+    for (let i = 0; i < 4; i++){
+        nimSum = nimSum^plateau[i];
+    }
+    console.log(nimSum);
+    if (nimSum == 0){
+        let j = Math.floor(Math.random() * 4);
+        while (plateau[j] == 0){
+            j = Math.floor(Math.random() * 4)
+        }
+        let nbjetons = Math.max(1,Math.floor(Math.random() * plateau[j]));
+        plateau[j] -= nbjetons;
+        dessinePlateau();
+        if (nbjetons == 1){
+            pr.innerHTML = "L'IA a pris 1 jeton sur la ligne" +(j+1)+".<br>";
+            }
+        else {
+            pr.innerHTML = "L'IA a pris "+ nbjetons +" jetons sur la ligne " +(j+1)+".<br>";
+            }
+    }
+    else {
+        let j = 0;
+        while ((plateau[j]^nimSum) > plateau[j]){
+            j += 1;
+        }
+        const old = plateau[j];
+        plateau[j] = plateau[j]^nimSum;
+        console.log(plateau)
+        dessinePlateau();
+        if (old-plateau[j] == 1){
+            pr.innerHTML = "L'IA a pris 1 jeton sur la ligne " +(j+1)+".<br>";
+            }
+        else {
+            pr.innerHTML = "L'IA a pris "+ (old-plateau[j]) +" jetons sur la ligne " +(j+1)+".<br>";
+            }
+    }
+    victoire(plateau);
+    if (!Fini){
+        pr.innerHTML += tourHum;
+    }
+}  
+
+function fmoi(){
+    const pr = document.getElementById("prompt");
+    pr.innerHTML = "Vous allez perdre...<br><br>";
+    tourHumain();
+}
+
+function fmachine(){
+    const pr = document.getElementById("prompt");
+    pr.innerHTML = "Vous pouvez encore gagner...<br><br>";
+    tourIA();
+}
+
+</script>
+
+---
+
+[Retour site](https://info-tsi-vieljeux.github.io/projets/nim)

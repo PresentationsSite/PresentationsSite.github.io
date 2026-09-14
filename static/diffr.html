@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Diffraction par une fente — modèle de Huygens–Fresnel</title>
+<style>
+  :root{
+    --panel:rgba(10,14,24,.74);
+    --edge:rgba(255,255,255,.13);
+    --ink:#e9edf6;
+    --ink-dim:#94a0ba;
+    --accent:#7aa2ff;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%;overflow:hidden;background:#000;color:var(--ink);
+    font:400 14px/1.5 ui-sans-serif,system-ui,"Segoe UI",Roboto,Helvetica,sans-serif;
+    -webkit-font-smoothing:antialiased}
+  canvas#sim{display:block;position:fixed;inset:0}
+
+  .panel{position:fixed;top:16px;left:16px;z-index:10;width:278px;
+    background:var(--panel);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+    border:1px solid var(--edge);border-radius:16px;padding:16px 18px 14px;
+    user-select:none}
+  .panel h1{margin:0;font-size:15px;font-weight:600;letter-spacing:-.01em}
+  .head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}
+
+  .iconbtn{flex:none;width:30px;height:30px;display:grid;place-items:center;padding:0;
+    border:1px solid var(--edge);background:#0b1020;border-radius:9px;
+    color:var(--ink-dim);cursor:pointer;transition:color .15s,border-color .15s}
+  .iconbtn:hover{color:var(--ink);border-color:rgba(255,255,255,.35)}
+  .iconbtn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+  .fab{position:fixed;top:16px;left:16px;z-index:11;width:42px;height:42px;
+    display:none;place-items:center;padding:0;cursor:pointer;
+    background:var(--panel);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+    border:1px solid var(--edge);border-radius:13px;color:var(--ink)}
+  .fab:hover{border-color:rgba(255,255,255,.4)}
+  .fab:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+  body.collapsed .panel{display:none}
+  body.collapsed .fab{display:grid}
+
+  .swatches{display:flex;gap:8px}
+  .swatches button{flex:1;position:relative;border:1px solid var(--edge);
+    background:#0b1020;border-radius:10px;padding:9px 0 8px;cursor:pointer;
+    color:var(--ink-dim);font:inherit;font-size:12px;transition:color .15s,border-color .15s}
+  .swatches button i{display:block;height:4px;border-radius:2px;margin:0 10px 6px}
+  .swatches button:hover{color:var(--ink)}
+  .swatches button[aria-pressed="true"]{color:var(--ink);border-color:rgba(255,255,255,.45);
+    background:#131a30}
+  .swatches button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+  .field{margin-top:16px}
+  .field .row{display:flex;justify-content:space-between;align-items:baseline;
+    font-size:12px;color:var(--ink-dim);margin-bottom:5px}
+  .field .row b{color:var(--ink);font-weight:600;font-variant-numeric:tabular-nums}
+  input[type=range]{width:100%;accent-color:var(--accent);margin:0}
+
+  .opts{margin-top:18px;padding-top:14px;border-top:1px solid var(--edge);display:grid;gap:9px}
+  .opts label{display:flex;gap:9px;align-items:flex-start;font-size:12.5px;cursor:pointer;color:var(--ink)}
+  .opts input{margin:2px 0 0;accent-color:var(--accent)}
+
+  .busy{position:fixed;left:16px;bottom:16px;z-index:10;padding:7px 13px;
+    background:var(--panel);border:1px solid var(--edge);border-radius:10px;
+    font-size:12px;color:var(--ink-dim);display:none}
+
+  @media (max-width:720px){
+    .panel{width:auto;left:10px;right:10px;top:10px;padding:12px 14px}
+    .fab{top:10px;left:10px}
+  }
+</style>
+</head>
+<body>
+<canvas id="sim"></canvas>
+
+<button class="fab" id="fab" aria-label="Ouvrir les réglages"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M4 7h9M19 7h1M4 12h3M13 12h7M4 17h7M17 17h3"/><circle cx="16" cy="7" r="2.4"/><circle cx="10" cy="12" r="2.4"/><circle cx="14" cy="17" r="2.4"/></svg></button>
+
+<div class="panel" id="panel">
+  <div class="head">
+    <h1>Diffraction par une fente</h1>
+    <button class="iconbtn" id="hide" aria-label="Masquer les réglages"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  </div>
+
+  <div class="swatches" role="group" aria-label="Couleur de la lumière">
+    <button data-c="bleu"  aria-pressed="true"><i style="background:#5082ff"></i>bleu<br>450 nm</button>
+    <button data-c="vert"  aria-pressed="false"><i style="background:#46e06e"></i>vert<br>532 nm</button>
+    <button data-c="rouge" aria-pressed="false"><i style="background:#ff5040"></i>rouge<br>650 nm</button>
+  </div>
+
+  <div class="field">
+    <div class="row"><label for="a">Largeur de la fente <i>a</i></label><b><span id="aOut"></span> µm</b></div>
+    <input id="a" type="range" min="4" max="70" step="1" value="22" />
+  </div>
+
+  <div class="field">
+    <div class="row"><label for="d">Distance de l'écran <i>D</i></label><b><span id="dOut"></span> µm</b></div>
+    <input id="d" type="range" min="3" max="40" step="0.5" value="28" />
+  </div>
+
+  <div class="field">
+    <div class="row"><label for="g">Contraste de l'affichage</label></div>
+    <input id="g" type="range" min="30" max="100" step="5" value="55" />
+  </div>
+
+  <div class="opts">
+    <label><input type="checkbox" id="opt-int"> Montrer l'intensité moyenne au lieu du champ</label>
+  </div>
+
+</div>
+
+<div class="busy" id="busy">Recalcul du champ…</div>
+
+<script>
+(() => {
+"use strict";
+
+/* ─────────────────────────────────────────────────────────────
+   Modèle
+   ─────────────────────────────────────────────────────────────
+   On ne résout pas l'équation d'onde pas à pas (FDTD) : on calcule
+   directement l'amplitude complexe stationnaire Ψ(x,y), puis
+        u(x,y,t) = Re[ Ψ(x,y) e^{-iωt} ].
+   • à gauche de la fente : onde plane pure  Ψ = e^{ik(x-x_f)}
+   • à droite : intégrale de Rayleigh–Sommerfeld 2D sur la fente
+        Ψ(P) = √(k/2π) e^{-iπ/4} ∫ (cosθ / √r) e^{ikr} dy'
+     qui redonne exactement e^{ikd} pour une fente infinie.
+   Conséquence : aucune réflexion, aucune onde stationnaire, et le
+   champ est périodique donc l'animation ne dérive jamais.
+   ───────────────────────────────────────────────────────────── */
+
+const PPU   = 24;    // pixels par micromètre
+const STEP  = 2;     // pas de la grille de calcul, en pixels
+const WALLW = 7;     // épaisseur dessinée de l'écran percé, en pixels
+let   BAND  = 96;    // largeur de la bande « écran d'observation », ajustée à la fenêtre
+const GAP   = 0;     // la bande est collée au bord droit
+const SPEED = 1.2;   // vitesse de phase affichée, en µm/s : à 60 im/s cela fait
+                     // ~0,28 rad d'avance de phase par image, loin sous π,
+                     // donc plus aucun repliement temporel
+
+const COLORS = {
+  bleu : {nm:450, lambda:0.450, rgb:[ 92,138,255], neg:[110, 70,  0], hex:'#5082ff'},
+  vert : {nm:532, lambda:0.532, rgb:[ 78,232,110], neg:[110,  0, 92], hex:'#46e06e'},
+  rouge: {nm:650, lambda:0.650, rgb:[255, 88, 64], neg:[  0, 88,112], hex:'#ff5040'}
+};
+
+/* table trigonométrique : évite ~40 M appels à Math.cos/sin par recalcul */
+const TN = 8192, TMASK = TN - 1, TSC = TN / (2 * Math.PI);
+const COS = new Float32Array(TN), SIN = new Float32Array(TN);
+for (let i = 0; i < TN; i++) { const p = 2*Math.PI*i/TN; COS[i]=Math.cos(p); SIN[i]=Math.sin(p); }
+const C45 = Math.SQRT1_2, S45 = Math.SQRT1_2;
+
+/* ── DOM ─────────────────────────────────────────────────── */
+const cvs = document.getElementById('sim');
+const ctx = cvs.getContext('2d');
+const off = document.createElement('canvas');
+const octx = off.getContext('2d', {willReadFrequently:false});
+const aIn = document.getElementById('a');
+const dIn = document.getElementById('d');
+const aOut = document.getElementById('aOut');
+const dOut = document.getElementById('dOut');
+const busy = document.getElementById('busy');
+const optInt  = document.getElementById('opt-int');
+const gIn  = document.getElementById('g');
+const fab  = document.getElementById('fab');
+const hide = document.getElementById('hide');
+
+/* ── Palettes tabulées : évite 300 000 Math.pow par image ── */
+const PAL = {pos:[null,null,null], neg:[null,null,null], int:[null,null,null]};
+function buildPalettes(){
+  const c = COLORS[colorKey], g = +gIn.value/100;
+  for (let ch = 0; ch < 3; ch++){
+    const p = new Uint8Array(256), n = new Uint8Array(256), q = new Uint8Array(256);
+    for (let i = 0; i < 256; i++){
+      const v = i/255;
+      p[i] = c.rgb[ch]*Math.pow(v, g);      // champ, alternance positive
+      n[i] = c.neg[ch]*Math.pow(v, g);      // champ, alternance négative
+      q[i] = c.rgb[ch]*Math.pow(v, g/2);    // intensité : I^(γ/2) = |Ψ|^γ
+    }
+    PAL.pos[ch] = p; PAL.neg[ch] = n; PAL.int[ch] = q;
+  }
+}
+
+/* ── État ────────────────────────────────────────────────── */
+let viewW, viewH, GW, GH, img, wallPx, centerPx;
+let colorKey = 'bleu';
+let cur = null;   // champ affiché
+let job = null;   // champ en cours de calcul
+let phase = 0, playing = true, lastT = performance.now();
+
+/* ── Mise en page ────────────────────────────────────────── */
+function layout(){
+  viewW = Math.max(480, innerWidth);
+  viewH = Math.max(360, innerHeight);
+  cvs.width = viewW; cvs.height = viewH;
+  GW = Math.ceil(viewW/STEP); GH = Math.ceil(viewH/STEP);
+  off.width = GW; off.height = GH;
+  img = octx.createImageData(GW, GH);
+  BAND = Math.max(46, Math.round(Math.min(96, viewW*0.16)));
+  wallPx = Math.round(viewW * 0.17);
+  centerPx = Math.round(viewH / 2);
+  const maxD = (viewW - BAND - GAP - 24 - wallPx) / PPU;
+  dIn.max = Math.max(6, maxD).toFixed(1);
+  if (+dIn.value > +dIn.max) dIn.value = dIn.max;
+}
+
+/* ── Lancement d'un calcul ───────────────────────────────── */
+function restart(){
+  const col = COLORS[colorKey];
+  const lambda = col.lambda;
+  const a = +aIn.value / 10;               // µm
+  const D = Math.min(+dIn.value, +dIn.max);// µm
+  const k = 2*Math.PI/lambda;
+  const xw = wallPx/PPU, yc = centerPx/PPU;
+
+  // échantillonnage de la fente : pas ≤ λ/6, largement sous le critère de Nyquist (λ/2)
+  const M = Math.min(900, Math.max(64, Math.ceil(6*a/lambda)));
+  const dy = a/M;
+  const ys = new Float64Array(M);
+  for (let j = 0; j < M; j++) ys[j] = yc - a/2 + (j + 0.5)*dy;
+
+  job = {
+    Re:new Float32Array(GW*GH), Im:new Float32Array(GW*GH),
+    done:new Uint8Array(GH), mirror:(2*centerPx/STEP)|0,
+    GW, GH, row:0, k, xw, ys,
+    F: Math.sqrt(k/(2*Math.PI))*dy,
+    lambda, a, D, color: col,
+    screenPx: wallPx + Math.round(D*PPU)
+  };
+}
+
+function computeRow(gy){
+  const {Re, Im, GW:gw, k, xw, ys, F} = job;
+  const M = ys.length;
+  const yP = (gy*STEP)/PPU;
+  const base = gy*gw;
+  for (let gx = 0; gx < gw; gx++){
+    const xP = (gx*STEP)/PPU;
+    const i = base + gx;
+    if (xP < xw){                       // amont : onde plane rigoureusement progressive
+      const ph = k*(xP - xw);
+      Re[i] = Math.cos(ph); Im[i] = Math.sin(ph);
+      continue;
+    }
+    const d = Math.max(xP - xw, 0.20);   // on ne s'approche pas de la singularité
+    let sr = 0, si = 0;
+    for (let m = 0; m < M; m++){
+      const dyy = yP - ys[m];
+      const r = Math.sqrt(d*d + dyy*dyy);
+      const invr = 1/r;
+      const w = d*invr*Math.sqrt(invr);  // cosθ/√r = d·r^{-3/2}
+      const ip = (k*r*TSC)|0;
+      sr += w*COS[ip & TMASK];
+      si += w*SIN[ip & TMASK];
+    }
+    const re = F*(sr*C45 + si*S45);      // facteur e^{-iπ/4}
+    const im = F*(si*C45 - sr*S45);
+    Re[i] = re; Im[i] = im;
+  }
+}
+
+/* le problème est symétrique par rapport à l'axe optique :
+   on calcule une ligne, on recopie sa symétrique. */
+function mirrorRow(gy, gm){
+  const {Re, Im, GW:gw} = job;
+  const a = gy*gw, b = gm*gw;
+  Re.copyWithin(b, a, a + gw);
+  Im.copyWithin(b, a, a + gw);
+}
+
+function runJob(budgetMs){
+  const t0 = performance.now();
+  while (job.row < job.GH){
+    const gy = job.row++;
+    if (!job.done[gy]){
+      computeRow(gy); job.done[gy] = 1;
+      const gm = job.mirror - gy;
+      if (gm >= 0 && gm < job.GH && !job.done[gm]){ mirrorRow(gy, gm); job.done[gm] = 1; }
+      if (performance.now() - t0 > budgetMs) return;
+    }
+  }
+  finishJob();
+}
+
+/* profil exact sur l'écran, à pleine résolution verticale */
+function finishJob(){
+  const j = job;
+  const d = Math.max(j.screenPx/PPU - j.xw, 0.20);
+  const M = j.ys.length;
+  const prof = new Float32Array(viewH);
+  let mx = 1e-12;
+  for (let y = 0; y < viewH; y++){
+    const yP = y/PPU;
+    let sr = 0, si = 0;
+    for (let m = 0; m < M; m++){
+      const dyy = yP - j.ys[m];
+      const r = Math.sqrt(d*d + dyy*dyy);
+      const invr = 1/r;
+      const w = d*invr*Math.sqrt(invr);
+      const ip = (j.k*r*TSC)|0;
+      sr += w*COS[ip & TMASK]; si += w*SIN[ip & TMASK];
+    }
+    const re = j.F*(sr*C45 + si*S45), im = j.F*(si*C45 - sr*S45);
+    const I = re*re + im*im;
+    prof[y] = I; if (I > mx) mx = I;
+  }
+  j.prof = prof; j.profMax = mx;
+  renderBand(j);
+  cur = j; job = null;
+}
+
+/* ── Bande "écran d'observation" (redessinée à chaque recalcul) ── */
+function renderBand(j){
+  const bw = BAND, bh = viewH;
+  const c = document.createElement('canvas');
+  c.width = bw; c.height = bh;
+  const g = c.getContext('2d');
+  const col = j.color.rgb, inv = 1/j.profMax, gam = 1/2.2;   // encodage sRGB
+
+  g.fillStyle = '#000'; g.fillRect(0,0,bw,bh);
+  for (let y = 0; y < bh; y++){
+    const v = Math.max(0, j.prof[y]*inv);
+    const b = Math.pow(v, gam);
+    g.fillStyle = `rgb(${(col[0]*b)|0},${(col[1]*b)|0},${(col[2]*b)|0})`;
+    g.fillRect(0, y, bw, 1);
+  }
+
+  g.strokeStyle = 'rgba(255,255,255,.22)'; g.lineWidth = 1;
+  g.strokeRect(.5, .5, bw - 1, bh - 1);
+
+  j.band = c;
+}
+
+/* ── Rendu du champ ──────────────────────────────────────── */
+function drawField(){
+  const {Re, Im} = cur, data = img.data;
+  const N = Re.length;
+  let p = 0;
+
+  if (optInt.checked){
+    // intensité rapportée à celle de l'onde incidente (I₀ = 1)
+    const r = PAL.int[0], g = PAL.int[1], b = PAL.int[2];
+    for (let i = 0; i < N; i++){
+      let v = Re[i]*Re[i] + Im[i]*Im[i];
+      const j = v >= 1 ? 255 : (v*255)|0;
+      data[p++] = r[j]; data[p++] = g[j]; data[p++] = b[j]; data[p++] = 255;
+    }
+  } else {
+    const cp = Math.cos(phase), sp = Math.sin(phase);
+    const pr = PAL.pos[0], pg = PAL.pos[1], pb = PAL.pos[2];
+    const nr = PAL.neg[0], ng = PAL.neg[1], nb = PAL.neg[2];
+    for (let i = 0; i < N; i++){
+      const u = Re[i]*cp + Im[i]*sp;
+      if (u >= 0){
+        const j = u >= 1 ? 255 : (u*255)|0;
+        data[p++] = pr[j]; data[p++] = pg[j]; data[p++] = pb[j];
+      } else {
+        const v = -u, j = v >= 1 ? 255 : (v*255)|0;
+        data[p++] = nr[j]; data[p++] = ng[j]; data[p++] = nb[j];
+      }
+      data[p++] = 255;
+    }
+  }
+  octx.putImageData(img, 0, 0);
+  ctx.imageSmoothingEnabled = true;
+  ctx.imageSmoothingQuality = 'high';
+  ctx.drawImage(off, 0, 0, GW, GH, 0, 0, GW*STEP, GH*STEP);
+}
+
+function drawOverlays(){
+  const aPx = cur.a*PPU;
+  const x0 = wallPx - WALLW/2;
+
+  // écran percé
+  ctx.fillStyle = '#8a93a8';
+  ctx.fillRect(x0, 0, WALLW, centerPx - aPx/2);
+  ctx.fillRect(x0, centerPx + aPx/2, WALLW, viewH - (centerPx + aPx/2));
+
+  // plan de l'écran d'observation
+  ctx.save();
+  ctx.strokeStyle = 'rgba(255,255,255,.4)';
+  ctx.setLineDash([5,5]); ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(cur.screenPx + .5, 0); ctx.lineTo(cur.screenPx + .5, viewH); ctx.stroke();
+  ctx.restore();
+
+  // axe optique
+  ctx.strokeStyle = 'rgba(255,255,255,.13)';
+  ctx.setLineDash([2,6]); ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(0, centerPx + .5); ctx.lineTo(viewW, centerPx + .5); ctx.stroke();
+  ctx.setLineDash([]);
+
+  // figure observée
+  if (cur.band) ctx.drawImage(cur.band, viewW - BAND - GAP, 0);
+}
+
+/* ── Boucle ──────────────────────────────────────────────── */
+function frame(now){
+  const dt = Math.min(0.05, (now - lastT)/1000); lastT = now;
+  if (job) runJob(9);
+  if (playing && cur) phase += cur.k*SPEED*dt;
+
+  ctx.fillStyle = '#000'; ctx.fillRect(0, 0, viewW, viewH);
+  if (cur){ drawField(); drawOverlays(); }
+  busy.style.display = job ? 'block' : 'none';
+  requestAnimationFrame(frame);
+}
+
+/* ── Interactions ────────────────────────────────────────── */
+function labels(){
+  aOut.textContent = (+aIn.value/10).toFixed(1);
+  dOut.textContent = (+dIn.value).toFixed(1);
+}
+const debounce = (fn, ms) => { let t; return (...v) => { clearTimeout(t); t = setTimeout(() => fn(...v), ms); }; };
+const scheduled = debounce(restart, 110);
+
+for (const b of document.querySelectorAll('.swatches button')){
+  b.addEventListener('click', () => {
+    colorKey = b.dataset.c;
+    for (const o of document.querySelectorAll('.swatches button'))
+      o.setAttribute('aria-pressed', String(o === b));
+    document.documentElement.style.setProperty('--accent', COLORS[colorKey].hex);
+    buildPalettes(); restart();
+  });
+}
+gIn.addEventListener('input', () => { labels(); buildPalettes(); });
+aIn.addEventListener('input', () => { labels(); scheduled(); });
+dIn.addEventListener('input', () => { labels(); scheduled(); });
+
+/* panneau escamotable : replié par défaut sur les petits écrans */
+function setPanel(open){ document.body.classList.toggle('collapsed', !open); }
+fab.addEventListener('click', () => setPanel(true));
+hide.addEventListener('click', () => setPanel(false));
+
+addEventListener('keydown', e => {
+  if (e.key === 'Escape') setPanel(false);
+  if (e.code === 'Space'){ e.preventDefault(); playing = !playing; }
+  if (e.key === 'i' || e.key === 'I'){ optInt.checked = !optInt.checked; }
+});
+
+addEventListener('resize', debounce(() => { layout(); cur = null; restart(); }, 180));
+
+/* ── Départ ──────────────────────────────────────────────── */
+setPanel(innerWidth > 720);
+labels();
+buildPalettes();
+layout();
+restart();
+requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>

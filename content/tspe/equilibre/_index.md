@@ -1,0 +1,1254 @@
++++
+title = "Équilibre chimique"
+outputs = ["Reveal"]
+[reveal_hugo]
+theme = "league"
+highlight_theme = "atom-one-dark-reasonable"
++++
+
+
+<style>
+img {
+border: none !important;
+}
+
+.imp {
+font-weight:bold;color:#FF968D;
+}
+
+li {
+color: #fff;
+}
+
+ul {
+margin-left: auto;
+margin-right: auto;
+text-align: left;
+width: fit-content;
+list-style-position: outside;
+color:#fff;
+}
+
+span {
+font-weight:normal;
+}
+
+.video-container {
+  height: 60vh; /* limite la hauteur à 80% de la fenêtre */
+  width: calc(60vh * 9 / 16); /* largeur en fonction du ratio portrait */
+  margin: 0 auto;
+  position: relative;
+}
+
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  border-radius:10px;
+}
+</style>
+
+
+
+
+# Évolution spontanée d'un système chimique
+
+---
+
+
+{{%section%}}
+
+## Transformation non totale&nbsp;: l'équilibre chimique
+
+---
+
+Que se passe-t-il en terme d'avancement $x$ si une transformation chimique est non totale ?
+
+---
+
+L'avancement final est inférieur<br>à l'avancement maximal.
+
+<div style="position:relative;margin:auto;border:solid #FF968D 5px;border-radius:5px;width:fit-content;padding:20px;">
+$x_\mathrm{f} < x_\mathrm{max}$
+</div>
+
+---
+
+En appelant taux d'avancement<br>le ratio $\tau=\frac{x_\mathrm{f}}{x_\mathrm{max}}$, cela revient à :
+
+<br>
+
+<div class="fragment fade-up" style="position:relative;margin:auto;border:solid #FF968D 5px;border-radius:10px;width:fit-content;padding:20px;">
+<b class="imp">transformation non totale</b><br>
+$\Leftrightarrow$<br>
+$\color{#FF968D}\tau < 1$
+</div>
+
+---
+
+Que peut-on alors dire de l'état final du système ?
+
+<br>
+
+<p class="fragment imp">L’ensemble des réactifs et produits de la réaction coexistent et leurs quantités de matière<br>n’évoluent plus dans le temps.</p>
+
+<p class="fragment fade-up">C'est la caractéristique<br>d'un état d'<span class="imp">équilibre chimique</span>.</p>
+
+---
+
+### Exercice
+
+<br>
+
+Le fluorure d'hydrogène $\ce{HF}$ réagit avec l'eau<br>selon la réaction d'équation :
+
+$$\ce{HF(aq) + H2O(ℓ) <=> F-(aq) + H3O+(aq)}$$
+
+Une solution d'acide fluorhydrique est préparée en ajoutant du fluorure d'hydrogène ($n_0=\pu{1,0 mmol}$) dans de l'eau distillée pour former une solution de volume $V=\pu{1,0 L}$. Le pH de la solution vaut 3,2.
+
+---
+
+Calculer le taux d'avancement final $\tau$<br>de cette transformation et en déduire<br>son caractère totale ou non totale.
+
+---
+
+<p style="color:#16E7CF;">
+Dressons le tableau d'avancement de la réaction :
+</p>
+
+<div class="fragment fade-up" style="position:relative;margin-left:auto;margin-right:auto;width:700px;max-width:100%;">
+<img src="/tabavhf.png" style="box-shadow:none;background:none;">
+</div>
+
+---
+
+<p style="color:#16E7CF;">
+Si la réaction était totale, $\ce{HF}$ serait<br>le réactif limitant et on aurait donc :
+</p>
+
+<p class="fragment fade-up" style="color:#16E7CF;">
+$$n_0-x_{max} = 0 \Rightarrow x_{max}=n_0$$
+</p>
+
+<p class="fragment fade-up" style="color:#16E7CF;">
+D'où $x_{max}=\pu{1,0E-3 mol}$
+</p>
+
+---
+
+<p style="color:#16E7CF;">
+D'autre part, on connaît $\ce{[H_3O+]}_f$<br>grâce au pH à l'équilibre :
+</p>
+
+<div  class="fragment fade-up"style="color:#16E7CF;">
+
+$$
+\begin{aligned}
+\ce{[H_3O+]}_f&=c°\times 10^{-\mathrm{pH}}\\\\
+&=\pu{6,3E-4 mol*L-1}
+\end{aligned}
+$$
+
+</div>
+
+---
+
+<p style="color:#16E7CF;">
+À partir de $\ce{[H_3O+]}_f$, on peut déterminer $n_f(\ce{H3O+})$ :
+</p>
+
+<p class="fragment fade-up" style="color:#16E7CF;">
+$n_f(\ce{H3O+})=\ce{[H_3O+]}_f\times V = \pu{6,3E-4 mol*L-1}$
+</p>
+
+<p class="fragment fade-up" style="color:#16E7CF;">
+Or, d'après le tableau d'avancement, la quantité de matière finale en ions oxonium est aussi<br>l'avancement final de la réaction !
+</p>
+
+---
+
+<p style="color:#16E7CF;">
+Donc $x_f = \pu{6,3E-4 mol*L-1}$
+</p>
+
+<p class="fragment fade-up" style="color:#16E7CF;">
+On peut maintenant calculer le taux d'avancement :
+</p>
+
+<div class="fragment fade-up" style="color:#16E7CF;">
+
+$$\tau = \frac{x_f}{x_{max}} = \frac{\pu{6,3E-4}}{\pu{1,0E-3}} = 63\\%$$
+</div>
+
+<p class="fragment fade-up" style="color:#16E7CF;">
+Comme $\tau <1$, on peut affirmer que<br>la transformation n'est pas totale.
+</p>
+
+---
+
+<iframe width="800" height="450" src="https://www.youtube.com/embed/hd3EAzJ_McA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+
+
+{{%note%}}
+La particularité de l'acide fluorhydrique est de dissoudre les os (!) et aussi le verre (!!) mais cela serait bien plus lent et dangereux que dans la série.
+Une alternative à l'inhumation et la crémation est ainsi la liquéfaction par hydrolyse alcaline (moins de gaz à effet de serre produit) ! Le terme utilisé, moins flippant : aquamation funéraire. On l'utilise aussi industriellement pour disposer du bétail malade (serait plus sûr).
+{{%/note%}}
+
+
+---
+
+Comment s'établit l'état d'équilibre final ?
+
+<p class="fragment fade-up">Il est dû à la compensation entre<br>la réaction dans son sens direct :<br>
+$\color{#FF968D}\ce{\text{réactifs} -> \text{produits}}$
+</p>
+
+<div class="fragment fade-up">
+Et la réaction dans le sens opposé (indirect) :
+$\color{#FF968D}\ce{\text{produits} -> \text{réactifs}}$
+</div>
+
+---
+
+On modélise ce double sens de la réaction<br>par une double flèche à simple pointe :
+
+$\ce{\text{réactifs} \color{#FF968D}{<=>} \text{produits}}$
+
+---
+
+Que peut-on dire des vitesses de formation<br>et de disparition d'une espèce chimique<br>intervenant dans la réaction lorsque<br>l'équilibre chimique est atteint ?
+
+---
+
+La vitesse volumique de disparition d’un réactif A dans le sens direct doit être égale à sa vitesse volumique<br>de formation dans le sens indirect :
+
+<div class="fragment fade-up">
+$$-\frac{\mathrm{d[A]}}{\mathrm{dt}}=\frac{\mathrm{d[A]}}{\mathrm{dt}}$$
+</div>
+
+<div class="fragment fade-up">
+D'où $\displaystyle \frac{\mathrm{d[A]}}{\mathrm{dt}}=0\Rightarrow \mathrm{[A]=cste}$
+
+
+---
+
+C'est pour cela qu'on parle d'<span class="imp">équilibre dynamique</span> :
+
+<p class="fragment fade-up">
+Microscopiquement, les deux réactions opposées continuent à se faire mais macroscopiquement,<br>les effets se compensent.
+</p>
+
+{{%/section%}}
+
+---
+
+{{%section%}}
+
+## Quotient de réaction
+
+---
+
+Soit une transformation modélisée par la réaction :
+
+$$\ce{\nu_A A + \nu_B B <=> \nu_C C + \nu_D D}$$
+
+<p class="fragment fade-up">
+Le <span class="imp">quotient de réaction $\mathrm{Q_r}$</span> est une grandeur<br>sans dimension définie par&nbsp;:</p>
+
+<div class="fragment fade-up" style="position:relative;margin:auto;border:solid #FF968D 5px;border-radius:10px;width:fit-content;padding:20px;">
+$\displaystyle Q_r = \frac{a_\mathrm{C}^{\nu_\mathrm{C}}\times a_\mathrm{D}^{\nu_\mathrm{D}}}{a_\mathrm{A}^{\nu_\mathrm{A}}\times a_\mathrm{B}^{\nu_\mathrm{B}}}$
+</div>
+
+---
+
+La grandeur $a_\mathrm{X}$ est l'<span class="imp">activité</span> de l'espèce $\ce{X}$.
+
+<p class="fragment fade-up">C'est une grandeur sans dimension telle que&nbsp;:</p>
+
+<div class="fragment fade-up" style="position:relative;margin:auto;border:solid #FF968D 5px;border-radius:10px;width:fit-content;padding:20px;">
+<ul>
+<li>$\displaystyle a_\mathrm{X}=\frac{\ce{[X]}}{c°}$ si $\ce{X}$ est un soluté<br>où $c°$ est la <span class="imp">concentration standard</span><br>
+$c°= \pu{1 mol*L-1}$</li>
+<li class="fragment fade-up">$a_\mathrm{X}=1$ pour un solvant</li>
+<li class="fragment fade-up">$a_\mathrm{X}=1$ pour un solide</li>
+</ul>
+</div>
+
+---
+
+### Petit exercice
+
+<br>
+
+Dans $V=\pu{200 mL}$ d'eau distillée, on dissout totalement $m_1=\pu{0,30 g}$ de iodure de potassium $\ce{KI}$<br>et $m_2=\pu{0,30 g}$ de nitrate de plomb $\ce{Pb(NO3)_2}$.
+
+---
+
+Les ions iodures et les ions plomb peuvent<br>précipiter selon la réaction d'équation&nbsp;:
+
+$$\ce{Pb^2+(aq) + 2 I-(aq) <=> PbI2(s)}$$
+
+<p class="fragment fade-up">
+Exprimer et calculer<br>le quotient de réaction initial $Q_{r\text{i}}$.
+</p>
+
+<div class="fragment fade-up">
+Données :<br>
+$M(\ce{KI})=\pu{166 g*mol-1}$<br>
+$M(\ce{Pb(NO3)_2})=\pu{331 g*mol-1}$
+</div>
+
+---
+
+<p style="color:#16E7CF;">
+dissolution de $\ce{KI}$ :
+</p>
+
+<p class="fragment fade-up" style="color:#16E7CF;">
+$$\ce{KI(s)\xrightarrow{\ce{H2O}} K^+(aq) + I-(aq)}$$ 
+</p>
+
+
+<p class="fragment fade-up" style="color:#16E7CF;">
+dissolution de $\ce{Pb(NO3)2}$ :
+</p>
+
+<p class="fragment fade-up" style="color:#16E7CF;">
+$$\ce{Pb(NO3)2(s)\xrightarrow{\ce{H2O}} Pb^2+(aq) + 2NO3-(aq)}$$ 
+</p>
+
+---
+
+<div style="color:#16E7CF;">
+
+$$
+\begin{aligned}
+\ce{[I-]_i} &=C(\ce{KI})\\\\
+&=\frac{n(\ce{ KI})}{V}\\\\
+&=\frac{\frac{m(\ce{KI})}{M(\ce{KI})}}{V}\\\\
+&=\frac{\frac{0,30}{166}}{0,200}\\\\
+&=\pu{9,0E-3 mol*L-1}
+\end{aligned}
+$$
+
+</div>
+
+---
+
+<div style="color:#16E7CF;">
+
+$$
+\begin{aligned}
+\ce{[Pb^2+]_i} &=C(\ce{Pb(NO3)2})\\\\
+&=\frac{\frac{m(\ce{Pb(NO3)2})}{M(\ce{Pb(NO3)2})}}{V}\\\\
+&=\frac{\frac{0,30}{331}}{0,200}\\\\
+&=\pu{4,5E-3 mol*L-1}
+\end{aligned}
+$$
+
+</div>
+
+---
+
+<div style="color:#16E7CF;">
+<u>Rq</u> : pour $\ce{[NO3-]}$, on aurait
+</div>
+
+<div class="fragment fade-up" style="color:#16E7CF;">
+$$
+\begin{aligned}
+\ce{[NO3-]_i} &={\color{#FFF056}2\times}C(\ce{Pb(NO3)2})\\\\
+\end{aligned}
+$$
+</div>
+
+---
+
+<div style="color:#16E7CF;">
+Calcul de $Q_{r\text{i}}$ :
+</div>
+
+<div class="fragment fade-up" style="color:#16E7CF;">
+
+$$
+Q_{r\text{i}}=\frac{a(\ce{PbI2})\_\text{i}}{a(\ce{Pb^2+})\_\text{i}\times a(\ce{I-})_\text{i}^2}
+$$
+
+</div>
+
+
+<div class="fragment fade-up" style="color:#16E7CF;">
+
+$$
+\phantom{Q_{r\text{i}}}=\frac{1}{\frac{\ce{[Pb^2+]\_i}}{c°}\times \left(\frac{\ce{[I-]_i}}{c°}\right)^2}
+$$
+
+</div>
+
+---
+
+<div style="color:#16E7CF;">
+
+$$
+\begin{aligned}
+Q_{r\text{i}}&=\frac{1}{\pu{4,5E-3}\times (\pu{9,0E-3})^2}\\\\
+&=\pu{2,7E6}
+\end{aligned}
+$$
+
+</div>
+
+
+
+{{%/section%}}
+
+
+---
+
+{{%section%}}
+
+## Évolution spontanée
+
+---
+
+Lorsqu'un système atteint l'équilibre chimique,<br>son quotient de réaction prend une valeur indépendante de la composition initiale<br>appelée <span class="imp">constante d'équilibre $K(T)$</span>.
+
+<p class="fragment fade-up">$K(T)$ est sans unité et ne dépend<br>que de la température</p>
+
+---
+
+À l'équilibre :
+
+<br>
+
+<div class="fragment grow" style="position:relative;margin:auto;border:solid #FF968D 5px;border-radius:10px;width:fit-content;padding:20px;">
+$\displaystyle Q_{r\text{,eq}}=K(T)$
+</div>
+
+---
+
+<span class="imp">Un système chimique hors équilibre évolue spontanément de manière à rapprocher<br>le quotient de réaction de la constante d'équilibre. </span>
+
+---
+
+Dans quel sens évoluera la réaction si $Q_r<K(T)$ ?
+
+<p class="fragment fade-up">(aide : on veut que $Q_r \nearrow$)</p>
+
+
+---
+
+<div style="position:relative;margin-left:auto;margin-right:auto;width:500px;max-width:100%;margin-bottom:-40px;margin-top:-40px;">
+<img src="/doublefleche1.png" style="box-shadow:none;background:none;">
+</div>
+<br>
+<div style="position:relative;margin-left:auto;margin-right:auto;width:300px;max-width:100%;margin-bottom:-40px;margin-top:-40px;">
+<img src="/doublefleche2.png" style="box-shadow:none;background:none;">
+</div>
+
+<br>
+
+- Si <b style="color:#FF968D">$Q_r < K(T)$</b>, la réaction évolue spontanément dans le <b style="color:#FF968D">sens direct</b> (consommation des réactifs et formation des produits)
+
+---
+
+<div style="position:relative;margin-left:auto;margin-right:auto;width:300px;max-width:100%;margin-bottom:-40px;margin-top:-40px;">
+<img src="/doublefleche1.png" style="box-shadow:none;background:none;">
+</div>
+<br>
+<div  style="position:relative;margin-left:auto;margin-right:auto;width:500px;max-width:100%;margin-bottom:-40px;margin-top:-40px;">
+<img src="/doublefleche2.png" style="box-shadow:none;background:none;">
+</div>
+
+<br>
+
+- Si <b style="color:#56C1FF">$Q_r > K(T)$</b>, la réaction évolue spontanément dans le <b style="color:#56C1FF">sens indirect</b> (consommation des produits<br>et formations des réactifs)
+
+---
+
+{{< slide  background-image="/equchim.png" background-size="contain" background-transition="concave">}}
+
+---
+
+<div class="video-container">
+  <iframe src="https://www.youtube.com/embed/nyoOhWLwN_g"
+          title="YouTube Short"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen>
+  </iframe>
+</div>
+
+
+{{%/section%}}
+
+---
+
+{{%section%}}
+
+## Description microscopique
+
+----
+
+<p style="textsize:50em;">
+<b style="color:#00A2FF">●</b> + <b style="color:#FF644E">●</b> $\ce{<=>}$ <b style="color:#00FF00">●</b> + <b style="color:#FFFF00">●</b> 
+</p>
+
+---
+
+  <style>
+    /* Container principal */
+    .simulation-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+    }
+    
+    /* Container pour le curseur et sa zone de valeur */
+    .slider-container {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      max-width: 800px;
+      margin: 5px 0;
+    }
+    
+    /* Le curseur occupe tout l'espace restant */
+    .slider-input {
+      -webkit-appearance: none;
+      appearance: none;
+      flex: 1;
+      height: 15px;
+      background: #ddd;
+      outline: none;
+      border-radius: 4px;
+    }
+    
+    .slider-input::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+      border-radius: 50%;
+      border: none;
+      margin-top: -2px;
+      background: #4CAF50;
+    }
+    
+    .slider-input::-moz-range-thumb {
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+      border-radius: 50%;
+      border: none;
+      background: #4CAF50;
+    }
+    
+    /* Zone d'affichage de la valeur initiale */
+    .slider-value {
+      display: inline-block;
+      width: 50px;
+      margin-left: 10px;
+      text-align: center;
+      font-size: 14px;
+    }
+    
+    /* Couleurs pour la zone de valeur correspondant à chaque slider */
+    #blueCountValue { color: #00A2FF; }
+    #redCountValue  { color: #FF644E; }
+    #cCountValue    { color: #00FF00; }
+    #dCountValue    { color: #FFFF00; }
+    
+    /* Pour le slider K, on souhaite qu'il ne prenne pas 100% de la largeur pour laisser place au bouton */
+    .slider-container.full-width {
+      justify-content: center;
+    }
+    
+    /* Couleurs spécifiques aux sliders */
+    #blueCount { background: #56C1FF; }
+    #blueCount::-webkit-slider-runnable-track { background: #56C1FF; height: 15px; border-radius: 4px; }
+    #blueCount::-moz-range-track { background: #56C1FF; height: 15px; border-radius: 4px; }
+    #blueCount::-webkit-slider-thumb { background: #00A2FF; }
+    #blueCount::-moz-range-thumb { background: #00A2FF; }
+    
+    #redCount { background: #FF968D; }
+    #redCount::-webkit-slider-runnable-track { background: #FF968D; height: 15px; border-radius: 4px; }
+    #redCount::-moz-range-track { background: #FF968D; height: 15px; border-radius: 4px; }
+    #redCount::-webkit-slider-thumb { background: #FF644E; }
+    #redCount::-moz-range-thumb { background: #FF644E; }
+    
+    #cCount { background: #A8E6A3; }
+    #cCount::-webkit-slider-runnable-track { background: #A8E6A3; height: 15px; border-radius: 4px; }
+    #cCount::-moz-range-track { background: #A8E6A3; height: 15px; border-radius: 4px; }
+    #cCount::-webkit-slider-thumb { background: #00FF00; }
+    #cCount::-moz-range-thumb { background: #00FF00; }
+    
+    #dCount { background: #FFE699; }
+    #dCount::-webkit-slider-runnable-track { background: #FFE699; height: 15px; border-radius: 4px; }
+    #dCount::-moz-range-track { background: #FFE699; height: 15px; border-radius: 4px; }
+    #dCount::-webkit-slider-thumb { background: #FFFF00; }
+    #dCount::-moz-range-thumb { background: #FFFF00; }
+    
+    /* Style du slider K */
+    #kValue { background: #D3D3D3; }
+    #kValue::-webkit-slider-runnable-track { background: #D3D3D3; height: 15px; border-radius: 4px; }
+    #kValue::-moz-range-track { background: #D3D3D3; height: 15px; border-radius: 4px; }
+    #kValue::-webkit-slider-thumb { background: #888888; }
+    #kValue::-moz-range-thumb { background: #888888; }
+    
+    /* Bouton de contrôle du son */
+    .sound-toggle {
+      width: 40px;
+      height: 40px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      margin-left: 10px;
+    }
+    .sound-toggle span {
+      font-size: 24px;
+      color: white;
+      /* Pas de text-decoration par défaut */
+      text-decoration: none;
+    }
+    
+    /* Canvas */
+    #simulationCanvas {
+      border: 5px solid #888;
+      background-color: #200A14;
+      margin: 10px 0;
+    }
+</style>
+
+<div class="simulation-container" style="margin-top:-0.5em;">
+  <!-- Sliders pour A, B, C et D -->
+  <div class="slider-container">
+    <input type="range" id="blueCount" min="0" max="300" value="200" class="slider-input"
+      oninput="document.getElementById('blueCountValue').textContent=this.value">
+    <span class="slider-value" id="blueCountValue">200</span>
+  </div>
+  <div class="slider-container">
+    <input type="range" id="redCount" min="0" max="300" value="50" class="slider-input"
+      oninput="document.getElementById('redCountValue').textContent=this.value">
+    <span class="slider-value" id="redCountValue">50</span>
+  </div>
+  <div class="slider-container">
+    <input type="range" id="cCount" min="0" max="300" value="0" class="slider-input"
+      oninput="document.getElementById('cCountValue').textContent=this.value">
+    <span class="slider-value" id="cCountValue">0</span>
+  </div>
+  <div class="slider-container">
+    <input type="range" id="dCount" min="0" max="300" value="0" class="slider-input"
+      oninput="document.getElementById('dCountValue').textContent=this.value">
+    <span class="slider-value" id="dCountValue">0</span>
+  </div>
+
+  <!-- Canvas de la simulation -->
+  <canvas id="simulationCanvas" width="800" height="500" style="margin-top:-0.2em;"></canvas>
+
+  <!-- Curseur pour K et bouton de contrôle du son -->
+<div class="slider-container" style="margin-top:-0.8em;">
+  <span style="font-size:0.5em;">K&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;</span>
+  <input type="range" id="kValue" min="0.2" max="5" value="1" step="0.1" class="slider-input" style="width: calc(100% - 100px);">
+  <button id="soundToggle" class="sound-toggle">
+    <span id="soundIcon" style="font-size: 24px; color: #FF644E; text-decoration: line-through;">♫</span>
+  </button>
+</div>
+
+<script>
+  // Création du contexte audio et du compresseur (les paramètres restent inchangés)
+  let audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  const compressor = audioCtx.createDynamicsCompressor();
+  compressor.threshold.value = -24; // en dB
+  compressor.knee.value = 24;
+  compressor.ratio.value = 24;
+  compressor.attack.value = 0.003;
+  compressor.release.value = 0.25;
+  compressor.connect(audioCtx.destination);
+  
+  let soundEnabled = false;
+  
+  // Débloquer le contexte audio dès le premier clic (très utile sur Safari en ligne)
+  document.addEventListener('click', function() {
+    if (audioCtx.state === 'suspended') {
+      audioCtx.resume();
+    }
+  });
+  
+  // Fonction pour jouer un son sinusoïdal avec enveloppe et panning stéréo
+  function playCollisionSound(frequency) {
+    if (!soundEnabled) return;
+    if (audioCtx.state === 'suspended') {
+      audioCtx.resume();
+    }
+    const oscillator = audioCtx.createOscillator();
+    const gainNode = audioCtx.createGain();
+    const panner = audioCtx.createStereoPanner();
+    
+    oscillator.type = 'sine';
+    oscillator.frequency.value = frequency;
+    
+    // Dirige le son vers la gauche pour 660 Hz, vers la droite pour 990 Hz.
+    if (frequency === 660) {
+      panner.pan.value = -1;
+    } else if (frequency === 990) {
+      panner.pan.value = 1;
+    } else {
+      panner.pan.value = 0;
+    }
+    
+    // Enveloppe sonore : attaque rapide jusqu'à 0.3, puis décroissance exponentielle jusqu'à 0.01 en 0.2 s.
+    gainNode.gain.setValueAtTime(0.0001, audioCtx.currentTime);
+    gainNode.gain.linearRampToValueAtTime(0.3, audioCtx.currentTime + 0.005);
+    gainNode.gain.exponentialRampToValueAtTime(0.005, audioCtx.currentTime + 0.2);
+    
+    // Chaînage : oscillator -> gain -> panner -> compressor -> destination
+    oscillator.connect(gainNode);
+    gainNode.connect(panner);
+    panner.connect(compressor);
+    
+    oscillator.start();
+    oscillator.stop(audioCtx.currentTime + 0.22);
+  }
+  
+  const canvas = document.getElementById('simulationCanvas');
+  const ctx = canvas.getContext('2d');
+  
+  const blueCountInput = document.getElementById('blueCount');
+  const redCountInput  = document.getElementById('redCount');
+  const cCountInput    = document.getElementById('cCount');
+  const dCountInput    = document.getElementById('dCount');
+  const kValueInput    = document.getElementById('kValue');
+  
+  let blueCount = parseInt(blueCountInput.value);
+  let redCount  = parseInt(redCountInput.value);
+  let cCount    = parseInt(cCountInput.value);
+  let dCount    = parseInt(dCountInput.value);
+  let equilibriumConstant = parseFloat(kValueInput.value);
+  
+  // Variables d'initialisation (utilisées lors du premier démarrage)
+  let initA, initB, initC, initD;
+  
+  const SPEED = 2;
+  const energyThreshold = 5;
+  let particles = [];
+  
+  const PARTICLE_TYPES = {
+    BLUE: 'blue',
+    RED: 'red',
+    C: 'c',
+    D: 'd'
+  };
+  
+  const a = 1.7;
+  
+  function fK(K) {
+    const lnK = Math.log(K);
+    return (0.5 * lnK + Math.sqrt((0.5 * lnK) ** 2 + 4)) / 2;
+  }
+  
+  function randomSpeed() {
+    return SPEED + (Math.random() - 0.5) * SPEED;
+  }
+  
+  class Particle {
+    constructor(x, y, type, vx, vy) {
+      this.x = x;
+      this.y = y;
+      this.radius = 3;
+      this.type = type;
+      this.vx = vx;
+      this.vy = vy;
+      this.removed = false;
+      this.cooldown = 0;
+    }
+    draw() {
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+      if (this.type === PARTICLE_TYPES.BLUE) ctx.fillStyle = '#00A2FF';
+      else if (this.type === PARTICLE_TYPES.RED) ctx.fillStyle = '#FF644E';
+      else if (this.type === PARTICLE_TYPES.C) ctx.fillStyle = '#00FF00';
+      else if (this.type === PARTICLE_TYPES.D) ctx.fillStyle = '#FFFF00';
+      ctx.fill();
+      ctx.closePath();
+    }
+    update() {
+      this.x += this.vx;
+      this.y += this.vy;
+      if (this.x + this.radius > canvas.width || this.x - this.radius < 0) {
+        this.vx = -this.vx;
+        this.x = Math.max(this.radius, Math.min(this.x, canvas.width - this.radius));
+      }
+      if (this.y + this.radius > canvas.height || this.y - this.radius < 0) {
+        this.vy = -this.vy;
+        this.y = Math.max(this.radius, Math.min(this.y, canvas.height - this.radius));
+      }
+    }
+  }
+  
+  function createParticle(type) {
+    const radius = 3;
+    let x, y, overlapping;
+    do {
+      overlapping = false;
+      x = Math.random() * (canvas.width - 2 * radius) + radius;
+      y = Math.random() * (canvas.height - 2 * radius) + radius;
+      for (let p of particles) {
+        const dx = p.x - x, dy = p.y - y;
+        if (Math.sqrt(dx * dx + dy * dy) < p.radius + radius) {
+          overlapping = true;
+          break;
+        }
+      }
+    } while (overlapping);
+    const angle = Math.random() * 2 * Math.PI;
+    const speed = randomSpeed();
+    const vx = speed * Math.cos(angle);
+    const vy = speed * Math.sin(angle);
+    return new Particle(x, y, type, vx, vy);
+  }
+  
+  // Initialisation des particules (au démarrage seulement)
+  function initParticles() {
+    particles = [];
+    for (let i = 0; i < blueCount; i++) particles.push(createParticle(PARTICLE_TYPES.BLUE));
+    for (let i = 0; i < redCount; i++) particles.push(createParticle(PARTICLE_TYPES.RED));
+    for (let i = 0; i < cCount; i++) particles.push(createParticle(PARTICLE_TYPES.C));
+    for (let i = 0; i < dCount; i++) particles.push(createParticle(PARTICLE_TYPES.D));
+  }
+  
+  function getCounts() {
+    return {
+      countA: particles.filter(p => p.type === PARTICLE_TYPES.BLUE).length,
+      countB: particles.filter(p => p.type === PARTICLE_TYPES.RED).length,
+      countC: particles.filter(p => p.type === PARTICLE_TYPES.C).length,
+      countD: particles.filter(p => p.type === PARTICLE_TYPES.D).length
+    };
+  }
+  
+  function computeGlobalQ() {
+    const counts = getCounts();
+    if (counts.countA > 0 && counts.countB > 0)
+      return (counts.countC * counts.countD) / (counts.countA * counts.countB);
+    else
+      return Infinity;
+  }
+  
+  // Gestion des effets de réaction (halo)
+  let reactionEffects = [];
+  
+  class ReactionEffect {
+    constructor(x, y, color) {
+      this.x = x;
+      this.y = y;
+      this.radius = 0;
+      this.maxRadius = 50;
+      this.alpha = 1;
+      this.color = color;
+    }
+    update() {
+      this.radius += 3;
+      this.alpha = 1 - this.radius / this.maxRadius;
+    }
+    draw(ctx) {
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+      ctx.strokeStyle = 'rgba(' + this.color + ', ' + this.alpha + ')';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+      ctx.closePath();
+    }
+  }
+  
+  function createReactionProducts(p1, p2, type1, type2, effectColor) {
+    const midX = (p1.x + p2.x) / 2;
+    const midY = (p1.y + p2.y) / 2;
+    
+    reactionEffects.push(new ReactionEffect(midX, midY, effectColor));
+    
+    const angle = Math.atan2(p2.y - p1.y, p2.x - p1.x);
+    const delta = 0.2;
+    const offset = 4;
+    const prod1_x = midX + offset * Math.cos(angle + Math.PI / 2);
+    const prod1_y = midY + offset * Math.sin(angle + Math.PI / 2);
+    const prod2_x = midX + offset * Math.cos(angle - Math.PI / 2);
+    const prod2_y = midY + offset * Math.sin(angle - Math.PI / 2);
+    const prod1_vx = SPEED * Math.cos(angle + Math.PI / 2 + delta);
+    const prod1_vy = SPEED * Math.sin(angle + Math.PI / 2 + delta);
+    const prod2_vx = SPEED * Math.cos(angle - Math.PI / 2 - delta);
+    const prod2_vy = SPEED * Math.sin(angle - Math.PI / 2 - delta);
+    const prod1 = new Particle(prod1_x, prod1_y, type1, prod1_vx, prod1_vy);
+    const prod2 = new Particle(prod2_x, prod2_y, type2, prod2_vx, prod2_vy);
+    prod1.cooldown = 0;
+    prod2.cooldown = 0;
+    particles.push(prod1);
+    particles.push(prod2);
+  }
+  
+  function performElasticCollision(p1, p2) {
+    const dx = p1.x - p2.x;
+    const dy = p1.y - p2.y;
+    const distance = Math.sqrt(dx * dx + dy * dy);
+    const nx = dx / distance;
+    const ny = dy / distance;
+    const v1n = p1.vx * nx + p1.vy * ny;
+    const v2n = p2.vx * nx + p2.vy * ny;
+    const diff = v1n - v2n;
+    p1.vx -= diff * nx;
+    p1.vy -= diff * ny;
+    p2.vx += diff * nx;
+    p2.vy += diff * ny;
+    const overlap = p1.radius + p2.radius - distance;
+    p1.x += nx * (overlap / 2);
+    p1.y += ny * (overlap / 2);
+    p2.x -= nx * (overlap / 2);
+    p2.y -= ny * (overlap / 2);
+  }
+  
+  function handleCollisions() {
+    const current_fK = fK(equilibriumConstant);
+    const forwardThreshold = energyThreshold / current_fK;
+    const reverseThreshold = energyThreshold * current_fK;
+    
+    for (let i = 0; i < particles.length; i++) {
+      let p1 = particles[i];
+      if (p1.removed) continue;
+      for (let j = i + 1; j < particles.length; j++) {
+        let p2 = particles[j];
+        if (p2.removed) continue;
+        const dx = p1.x - p2.x, dy = p1.y - p2.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+        if (distance < p1.radius + p2.radius) {
+          const energy1 = Math.sqrt(p1.vx ** 2 + p1.vy ** 2);
+          const energy2 = Math.sqrt(p2.vx ** 2 + p2.vy ** 2);
+          const totalEnergy = energy1 + energy2;
+          
+          // Réaction directe : A+B -> C+D
+          if ((p1.type === PARTICLE_TYPES.BLUE && p2.type === PARTICLE_TYPES.RED) ||
+              (p1.type === PARTICLE_TYPES.RED && p2.type === PARTICLE_TYPES.BLUE)) {
+            const probForward = 1 / (1 + Math.exp(-(totalEnergy - forwardThreshold) / a));
+            if (Math.random() < probForward) {
+              createReactionProducts(p1, p2, PARTICLE_TYPES.C, PARTICLE_TYPES.D, '255,0,255');
+              playCollisionSound(660); // 660 Hz pour collision directe (gauche)
+              p1.removed = true;
+              p2.removed = true;
+              break;
+            } else {
+              performElasticCollision(p1, p2);
+            }
+          }
+          // Réaction inverse : C+D -> A+B
+          else if ((p1.type === PARTICLE_TYPES.C && p2.type === PARTICLE_TYPES.D) ||
+                   (p1.type === PARTICLE_TYPES.D && p2.type === PARTICLE_TYPES.C)) {
+            const probReverse = 1 / (1 + Math.exp(-(totalEnergy - reverseThreshold) / a));
+            if (Math.random() < probReverse) {
+              createReactionProducts(p1, p2, PARTICLE_TYPES.BLUE, PARTICLE_TYPES.RED, '255,255,0');
+              playCollisionSound(990); // 990 Hz pour collision inverse (droite)
+              p1.removed = true;
+              p2.removed = true;
+              break;
+            } else {
+              performElasticCollision(p1, p2);
+            }
+          }
+          else {
+            performElasticCollision(p1, p2);
+          }
+        }
+      }
+    }
+    particles = particles.filter(p => !p.removed);
+  }
+  
+  // --- Fonctions d'affichage graphiques ---
+  // Dessine le bâton (outline gris et partie colorée) avec 25% de transparence.
+  function drawHorizontalBar(value, maxValue, x, y, barMaxWidth, barHeight, fillColor) {
+    ctx.save();
+    ctx.globalAlpha = 0.75;
+    ctx.fillStyle = "#444";
+    ctx.fillRect(x, y, barMaxWidth, barHeight);
+    let barWidth = (value / maxValue) * barMaxWidth;
+    ctx.fillStyle = fillColor;
+    ctx.fillRect(x, y, barWidth, barHeight);
+    ctx.restore();
+    ctx.fillStyle = "#FFFFFF";
+    ctx.font = "14px Arial";
+    ctx.fillText(value, x - 30, y + barHeight - 2);
+  }
+  
+  // Mapping logarithmique pour l'échelle de 0 à 10.
+  function mapLogarithmic(v) {
+    if (v < 0) v = 0;
+    if (v > 10) v = 10;
+    if (v < 1) {
+      return 0.5 * v;
+    } else {
+      return 0.5 * Math.log10(v) + 0.5;
+    }
+  }
+  
+  // Dessine l'axe commun pour K et Q avec 25% de transparence, puis affiche les flèches et le texte.
+  function drawIndicatorCommon(x, y, width, height, Kvalue, Qvalue) {
+    let ratioK = mapLogarithmic(Kvalue);
+    let gradient = ctx.createLinearGradient(x, 0, x + width, 0);
+    gradient.addColorStop(0, "#B51700");
+    gradient.addColorStop(ratioK, "#004D80");
+    gradient.addColorStop(1, "#B51700");
+    
+    ctx.save();
+    ctx.globalAlpha = 0.75;
+    ctx.fillStyle = gradient;
+    ctx.fillRect(x, y, width, height);
+    ctx.restore();
+    
+    let arrowX_K = x + mapLogarithmic(Kvalue) * width;
+    ctx.fillStyle = "#FFFFFF";
+    ctx.beginPath();
+    ctx.moveTo(arrowX_K, y);
+    ctx.lineTo(arrowX_K - 5, y - 10);
+    ctx.lineTo(arrowX_K + 5, y - 10);
+    ctx.closePath();
+    ctx.fill();
+    ctx.fillText("K : " + Kvalue.toFixed(2), arrowX_K + 10, y - 10);
+    
+    let arrowX_Q;
+    if (!isFinite(Qvalue)) {
+      arrowX_Q = x + width;
+      ctx.fillText("Q : ∞", arrowX_Q + 10, y + height + 20);
+    } else {
+      arrowX_Q = x + mapLogarithmic(Qvalue) * width;
+      ctx.fillText("Q : " + Qvalue.toFixed(2), arrowX_Q + 10, y + height + 20);
+    }
+    ctx.fillStyle = "#FFFFFF";
+    ctx.beginPath();
+    ctx.moveTo(arrowX_Q, y + height);
+    ctx.lineTo(arrowX_Q - 5, y + height + 10);
+    ctx.lineTo(arrowX_Q + 5, y + height + 10);
+    ctx.closePath();
+    ctx.fill();
+  }
+  
+  let running = true;
+  let animationFrameId = null;
+  
+  function animate() {
+    if (!running) return;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
+    particles.forEach(p => { p.update(); p.draw(); });
+    
+    for (let i = reactionEffects.length - 1; i >= 0; i--) {
+      let effect = reactionEffects[i];
+      effect.update();
+      effect.draw(ctx);
+      if (effect.radius > effect.maxRadius) {
+        reactionEffects.splice(i, 1);
+      }
+    }
+    
+    handleCollisions();
+    
+    const counts = getCounts();
+    let Q_current;
+    if (counts.countA === 0 || counts.countB === 0)
+      Q_current = Infinity;
+    else
+      Q_current = (counts.countC * counts.countD) / (counts.countA * counts.countB);
+    
+    const barMaxWidth = 250;
+    const barHeight = 15;
+    const marginRight = 10;
+    const barStartX = canvas.width - marginRight - barMaxWidth;
+    const barStartY = 10;
+    const barSpacing = 25;
+    
+    drawHorizontalBar(counts.countA, 500, barStartX, barStartY, barMaxWidth, barHeight, "#00A2FF");
+    drawHorizontalBar(counts.countB, 500, barStartX, barStartY + barSpacing, barMaxWidth, barHeight, "#FF644E");
+    drawHorizontalBar(counts.countC, 500, barStartX, barStartY + 2 * barSpacing, barMaxWidth, barHeight, "#00FF00");
+    drawHorizontalBar(counts.countD, 500, barStartX, barStartY + 3 * barSpacing, barMaxWidth, barHeight, "#FFFF00");
+    
+    const indicatorX = 10;
+    const indicatorY = 40;
+    const indicatorWidth = 200;
+    const indicatorHeight = 20;
+    drawIndicatorCommon(indicatorX, indicatorY, indicatorWidth, indicatorHeight, equilibriumConstant, Q_current);
+    
+    animationFrameId = requestAnimationFrame(animate);
+  }
+  
+  // Met à jour le nombre de particules d'un type donné sans relancer la simulation
+  function updateParticleCount(type, newCount) {
+    const currentParticles = particles.filter(p => p.type === type);
+    const currentCount = currentParticles.length;
+    const diff = newCount - currentCount;
+    
+    if (diff > 0) {
+      for (let i = 0; i < diff; i++) {
+        particles.push(createParticle(type));
+      }
+    } else if (diff < 0) {
+      let countToRemove = -diff;
+      for (let i = particles.length - 1; i >= 0 && countToRemove > 0; i--) {
+        if (particles[i].type === type) {
+          particles.splice(i, 1);
+          countToRemove--;
+        }
+      }
+    }
+  }
+  
+  // Écouteurs d'événements pour les curseurs
+  blueCountInput.addEventListener('input', function() {
+    const newBlueCount = parseInt(this.value);
+    updateParticleCount(PARTICLE_TYPES.BLUE, newBlueCount);
+  });
+  
+  redCountInput.addEventListener('input', function() {
+    const newRedCount = parseInt(this.value);
+    updateParticleCount(PARTICLE_TYPES.RED, newRedCount);
+  });
+  
+  cCountInput.addEventListener('input', function() {
+    const newCCount = parseInt(this.value);
+    updateParticleCount(PARTICLE_TYPES.C, newCCount);
+  });
+  
+  dCountInput.addEventListener('input', function() {
+    const newDCount = parseInt(this.value);
+    updateParticleCount(PARTICLE_TYPES.D, newDCount);
+  });
+  
+  // Modification de la constante d'équilibre sans réinitialiser la simulation
+  kValueInput.addEventListener('input', function() {
+    equilibriumConstant = parseFloat(this.value);
+  });
+  
+  // Gestion du pause/reprise de l'animation via un clic ou un toucher sur le canvas
+  function toggleAnimation() {
+    if (running) {
+      running = false;
+      if (animationFrameId) cancelAnimationFrame(animationFrameId);
+    } else {
+      running = true;
+      animate();
+    }
+  }
+  
+  canvas.addEventListener('click', toggleAnimation);
+  canvas.addEventListener('touchstart', function(e) {
+    e.preventDefault(); // empêche le déclenchement d'autres événements tactiles
+    toggleAnimation();
+  });
+  
+  // Initialisation au démarrage
+  blueCount = parseInt(blueCountInput.value);
+  redCount  = parseInt(redCountInput.value);
+  cCount    = parseInt(cCountInput.value);
+  dCount    = parseInt(dCountInput.value);
+  equilibriumConstant = parseFloat(kValueInput.value);
+  initA = blueCount;
+  initB = redCount;
+  initC = cCount;
+  initD = dCount;
+  initParticles();
+  animate();
+  
+  // Bouton de contrôle du son
+  document.getElementById('soundToggle').addEventListener('click', function() {
+    soundEnabled = !soundEnabled;
+    const icon = document.getElementById('soundIcon');
+    if (soundEnabled) {
+      icon.style.color = "white";
+      icon.style.textDecoration = "none";
+    } else {
+      icon.style.color = "#FF644E";
+      icon.style.textDecoration = "line-through";
+    }
+  });
+</script>
+
+---
+
+<!---
+<style>
+  /* Appliquez ces styles à votre fragment personnalisé */
+  .fragment.barre {
+    position: relative;
+    display: inline-block;
+  }
+  /* Le pseudo-élément qui représente la barre */
+  .fragment.barre::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 2px;
+    background-color: black; /* Vous pouvez adapter la couleur */
+    transition: width 0.5s ease; /* Ajustez la durée et le timing */
+  }
+  /* Lorsque le fragment est visible, la barre s'étend sur toute la largeur */
+  .fragment.strike.visible::after {
+    width: 100%;
+  }
+</style>
+Inutile ici car placé dans le CSS global
+--->
+
+Lors d'un choc, si l'énergie cinétique dépasse<br> un seuil d'activation, la réaction se fait. 
+
+Sinon, il y a collision élastique.
+
+<p class="fragment fade-up">$K$ mesure combien de fois la réaction est plus probable dans le sens direct que dans le sens indirect.</p>
+
+<p class="fragment fade-up">Pour $K=3$ par exemple, un choc entre deux réactifs<br>a 3 fois plus de chance de donner lieu à une réaction qu'un choc entre deux produits.</p>
+
+---
+
+Le quotient de réaction mesure, lui, combien de fois<br>il est plus probable de se rencontrer pour les produits que pour les réactifs.
+
+<p class="fragment fade-up">Pour $Q_r=3$ par exemple, deux réactifs ont 3 fois moins de chance de s'entrechoquer que deux produits.</p>
+
+---
+
+À l'équilibre, la réaction direct et la réaction inverse doivent se faire au même rythme.
+
+<div class="fragment fade-up">
+Donc :
+
+$(\text{proba que deux réactifs se rencontrent}) $<br>
+$\times$<br>
+$(\text{proba que les réactifs réagissent})$<br>
+$=$<br>
+$(\text{proba que deux produits se rencontrent})$<br> 
+$\times$<br>
+$(\text{proba que les produits réagissent})$
+</div>
+
+---
+
+Ce qui peut se réécrire&nbsp;:
+
+<p class="fragment fade-up">
+$\frac{\text{proba que deux produits se rencontrent}}{\text{proba que deux réactifs se rencontrent}}$<br>
+$=$<br>
+$\frac{\text{proba que les réactifs réagissent}}{\text{proba que les produits réagissent}}$
+</p>
+
+<div class="fragment fade-up">
+On a retrouvé 
+
+$Q_{r,\mathrm{eq}} = K$
+</div>
+
+{{%/section%}}
+
+---
+
+[Retour site](https://coursphychi.github.io/tspe/equilibre/)
