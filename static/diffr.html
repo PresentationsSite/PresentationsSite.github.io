@@ -144,6 +144,11 @@ let   BAND  = 96;    // largeur de la bande d'observation, ajustée à la fenêt
 const SPEED = 1.2;   // vitesse de phase, en µm/s : à 60 im/s cela fait ~0,28 rad
                      // d'avance de phase par image, loin sous π — pas de repliement
 const SPL   = 4;     // échantillons de la fente par longueur d'onde (écart < 0,4 %)
+const DNEAR = 0.17;  // µm (4 px). En deçà, la quadrature de Rayleigh–Sommerfeld ne
+                     // converge plus : le noyau se concentre sur moins d'un pas
+                     // d'échantillonnage. On y emploie la valeur exacte dans le plan
+                     // de la fente, Ψ = e^{ikd} dans l'ouverture et 0 derrière l'obstacle,
+                     // ce qui raccorde sans discontinuité à l'onde plane incidente.
 
 /* projectiles classiques */
 const NPART = 3000;  // population de billes
@@ -257,13 +262,14 @@ function restart(){
     done:new Uint8Array(GH), mirror:(2*centerPx/STEP)|0,
     GW, GH, row:0, k, xw, ys,
     F: Math.sqrt(k/(2*Math.PI))*dy,
-    lambda, a, color: col
+    lambda, a, color: col,
+    yc, half: a/2
   };
   resetParticles();
 }
 
 function computeRow(gy){
-  const {Re, Im, GW:gw, k, xw, ys, F} = job;
+  const {Re, Im, GW:gw, k, xw, ys, F, yc, half} = job;
   const M = ys.length;
   const yP = (gy*STEP)/PPU;
   const base = gy*gw;
@@ -275,7 +281,12 @@ function computeRow(gy){
       Re[i] = Math.cos(ph); Im[i] = Math.sin(ph);
       continue;
     }
-    const d = Math.max(xP - xw, 0.20);   // on ne s'approche pas de la singularité
+    const d = xP - xw;
+    if (d < DNEAR){                     // voisinage immédiat de l'ouverture
+      if (Math.abs(yP - yc) < half){ const ph = k*d; Re[i] = Math.cos(ph); Im[i] = Math.sin(ph); }
+      else { Re[i] = 0; Im[i] = 0; }
+      continue;
+    }
     let sr = 0, si = 0;
     for (let m = 0; m < M; m++){
       const dyy = yP - ys[m];
@@ -321,7 +332,7 @@ function runJob(budgetMs){
 function computeProfile(){
   if (!cur) return;
   const j = cur;
-  const d = Math.max(screenPx/PPU - j.xw, 0.20);
+  const d = screenPx/PPU - j.xw;   // toujours ≥ 3 µm, très loin de DNEAR
   const M = j.ys.length;
   const prof = j.prof && j.prof.length === viewH ? j.prof : new Float32Array(viewH);
   let mx = 1e-12;
