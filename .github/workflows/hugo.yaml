@@ -39,7 +39,12 @@ jobs:
       - name: Construire le site
         env:
           HUGO_BASEURL: ${{ steps.pages.outputs.base_url }}
-        run: hugo --minify --baseURL "${HUGO_BASEURL}"
+        # Pas de --minify : certaines pages contiennent un <script> non
+        # refermé qui fait trébucher le minifieur JS de Hugo (voir les
+        # pages "mirages", "egiemeca", "radioact", etc.). Comme le
+        # déploiement manuel précédent ne minifiait pas non plus, on
+        # reproduit ce comportement plutôt que de corriger le contenu ici.
+        run: hugo --baseURL "${HUGO_BASEURL}"
 
       - name: Publier l'artefact Pages
         uses: actions/upload-pages-artifact@v3
