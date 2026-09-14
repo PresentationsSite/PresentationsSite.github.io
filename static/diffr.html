@@ -16,7 +16,7 @@
   html,body{margin:0;height:100%;overflow:hidden;background:#000;color:var(--ink);
     font:400 14px/1.5 ui-sans-serif,system-ui,"Segoe UI",Roboto,Helvetica,sans-serif;
     -webkit-font-smoothing:antialiased}
-  canvas#sim{display:block;position:fixed;inset:0}
+  canvas#sim{display:block;position:fixed;inset:0;touch-action:none}
 
   .panel{position:fixed;top:16px;left:16px;z-index:10;width:278px;
     background:var(--panel);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
@@ -51,6 +51,7 @@
   .swatches button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 
   .field{margin-top:16px}
+  .field.dim{opacity:.4;pointer-events:none}
   .field .row{display:flex;justify-content:space-between;align-items:baseline;
     font-size:12px;color:var(--ink-dim);margin-bottom:5px}
   .field .row b{color:var(--ink);font-weight:600;font-variant-numeric:tabular-nums}
@@ -58,6 +59,7 @@
 
   .opts{margin-top:18px;padding-top:14px;border-top:1px solid var(--edge);display:grid;gap:9px}
   .opts label{display:flex;gap:9px;align-items:flex-start;font-size:12.5px;cursor:pointer;color:var(--ink)}
+  .opts label.dim{opacity:.4;pointer-events:none}
   .opts input{margin:2px 0 0;accent-color:var(--accent)}
 
   .busy{position:fixed;left:16px;bottom:16px;z-index:10;padding:7px 13px;
@@ -89,23 +91,23 @@
 
   <div class="field">
     <div class="row"><label for="a">Largeur de la fente <i>a</i></label><b><span id="aOut"></span> µm</b></div>
-    <input id="a" type="range" min="4" max="70" step="1" value="22" />
+    <input id="a" type="range" min="4" max="150" step="1" value="22" />
   </div>
 
   <div class="field">
     <div class="row"><label for="d">Distance de l'écran <i>D</i></label><b><span id="dOut"></span> µm</b></div>
-    <input id="d" type="range" min="3" max="40" step="0.5" value="28" />
+    <input id="d" type="range" min="3" max="45" step="0.5" value="45" />
   </div>
 
-  <div class="field">
+  <div class="field" id="fieldG">
     <div class="row"><label for="g">Contraste de l'affichage</label></div>
-    <input id="g" type="range" min="30" max="100" step="5" value="55" />
+    <input id="g" type="range" min="30" max="100" step="5" value="100" />
   </div>
 
   <div class="opts">
-    <label><input type="checkbox" id="opt-int"> Montrer l'intensité moyenne au lieu du champ</label>
+    <label id="labInt"><input type="checkbox" id="opt-int"> Montrer l'intensité moyenne au lieu du champ</label>
+    <label><input type="checkbox" id="opt-part"> Envoyer des projectiles au lieu d'une onde</label>
   </div>
-
 </div>
 
 <div class="busy" id="busy">Recalcul du champ…</div>
@@ -115,7 +117,7 @@
 "use strict";
 
 /* ─────────────────────────────────────────────────────────────
-   Modèle
+   Modèle ondulatoire
    ─────────────────────────────────────────────────────────────
    On ne résout pas l'équation d'onde pas à pas (FDTD) : on calcule
    directement l'amplitude complexe stationnaire Ψ(x,y), puis
@@ -126,16 +128,26 @@
      qui redonne exactement e^{ikd} pour une fente infinie.
    Conséquence : aucune réflexion, aucune onde stationnaire, et le
    champ est périodique donc l'animation ne dérive jamais.
+
+   Le champ ne dépend pas de la position de l'écran : déplacer
+   celui-ci ne recalcule que le profil d'intensité, ce qui est
+   1000 fois moins coûteux et donc instantané.
    ───────────────────────────────────────────────────────────── */
 
-const PPU   = 24;    // pixels par micromètre
+const PPU   = 24;    // pixels par micromètre — fixe : au-delà, la longueur d'onde
+                     // tomberait sous quelques pixels et les franges se replieraient
+const DMIN  = 3;     // distance minimale de l'écran, en µm ; le maximum est imposé
+                     // par la largeur de la fenêtre
 const STEP  = 2;     // pas de la grille de calcul, en pixels
 const WALLW = 7;     // épaisseur dessinée de l'écran percé, en pixels
-let   BAND  = 96;    // largeur de la bande « écran d'observation », ajustée à la fenêtre
-const GAP   = 0;     // la bande est collée au bord droit
-const SPEED = 1.2;   // vitesse de phase affichée, en µm/s : à 60 im/s cela fait
-                     // ~0,28 rad d'avance de phase par image, loin sous π,
-                     // donc plus aucun repliement temporel
+let   BAND  = 96;    // largeur de la bande d'observation, ajustée à la fenêtre
+const SPEED = 1.2;   // vitesse de phase, en µm/s : à 60 im/s cela fait ~0,28 rad
+                     // d'avance de phase par image, loin sous π — pas de repliement
+const SPL   = 4;     // échantillons de la fente par longueur d'onde (écart < 0,4 %)
+
+/* projectiles classiques */
+const NPART = 3000;  // population de billes
+const VPART = 220;   // vitesse, en px/s
 
 const COLORS = {
   bleu : {nm:450, lambda:0.450, rgb:[ 92,138,255], neg:[110, 70,  0], hex:'#5082ff'},
@@ -143,7 +155,7 @@ const COLORS = {
   rouge: {nm:650, lambda:0.650, rgb:[255, 88, 64], neg:[  0, 88,112], hex:'#ff5040'}
 };
 
-/* table trigonométrique : évite ~40 M appels à Math.cos/sin par recalcul */
+/* table trigonométrique : évite des dizaines de millions d'appels à cos/sin */
 const TN = 8192, TMASK = TN - 1, TSC = TN / (2 * Math.PI);
 const COS = new Float32Array(TN), SIN = new Float32Array(TN);
 for (let i = 0; i < TN; i++) { const p = 2*Math.PI*i/TN; COS[i]=Math.cos(p); SIN[i]=Math.sin(p); }
@@ -153,21 +165,36 @@ const C45 = Math.SQRT1_2, S45 = Math.SQRT1_2;
 const cvs = document.getElementById('sim');
 const ctx = cvs.getContext('2d');
 const off = document.createElement('canvas');
-const octx = off.getContext('2d', {willReadFrequently:false});
+const octx = off.getContext('2d');
 const aIn = document.getElementById('a');
 const dIn = document.getElementById('d');
+const gIn = document.getElementById('g');
 const aOut = document.getElementById('aOut');
 const dOut = document.getElementById('dOut');
 const busy = document.getElementById('busy');
 const optInt  = document.getElementById('opt-int');
-const gIn  = document.getElementById('g');
+const optPart = document.getElementById('opt-part');
+const labInt  = document.getElementById('labInt');
+const fieldG  = document.getElementById('fieldG');
 const fab  = document.getElementById('fab');
 const hide = document.getElementById('hide');
+
+/* ── État ────────────────────────────────────────────────── */
+let viewW, viewH, GW, GH, img, wallPx, centerPx;
+let screenPx = 0, sMin = 0, sMax = 0;
+let colorKey = 'bleu';
+let cur = null;       // champ affiché
+let job = null;       // champ en cours de calcul
+let phase = 0, playing = true, lastT = performance.now();
+let dragging = false, hoverLine = false, firstLayout = true;
+
+/* projectiles */
+let pX = null, pY = null, hist = null, histMax = 1, bandPart = null, partDirty = true;
 
 /* ── Palettes tabulées : évite 300 000 Math.pow par image ── */
 const PAL = {pos:[null,null,null], neg:[null,null,null], int:[null,null,null]};
 function buildPalettes(){
-  const c = COLORS[colorKey], g = +gIn.value/100;
+  const c = COLORS[colorKey], g = +gIn.value/100;   // 1,00 = linéaire (le plus tranché)
   for (let ch = 0; ch < 3; ch++){
     const p = new Uint8Array(256), n = new Uint8Array(256), q = new Uint8Array(256);
     for (let i = 0; i < 256; i++){
@@ -180,17 +207,17 @@ function buildPalettes(){
   }
 }
 
-/* ── État ────────────────────────────────────────────────── */
-let viewW, viewH, GW, GH, img, wallPx, centerPx;
-let colorKey = 'bleu';
-let cur = null;   // champ affiché
-let job = null;   // champ en cours de calcul
-let phase = 0, playing = true, lastT = performance.now();
+function setScreenFromSlider(){
+  screenPx = Math.max(sMin, Math.min(sMax, Math.round(wallPx + (+dIn.value)*PPU)));
+}
+function setSliderFromScreen(){
+  dIn.value = ((screenPx - wallPx)/PPU).toFixed(1);
+}
 
 /* ── Mise en page ────────────────────────────────────────── */
 function layout(){
-  viewW = Math.max(480, innerWidth);
-  viewH = Math.max(360, innerHeight);
+  viewW = Math.max(320, innerWidth);
+  viewH = Math.max(300, innerHeight);
   cvs.width = viewW; cvs.height = viewH;
   GW = Math.ceil(viewW/STEP); GH = Math.ceil(viewH/STEP);
   off.width = GW; off.height = GH;
@@ -198,22 +225,29 @@ function layout(){
   BAND = Math.max(46, Math.round(Math.min(96, viewW*0.16)));
   wallPx = Math.round(viewW * 0.17);
   centerPx = Math.round(viewH / 2);
-  const maxD = (viewW - BAND - GAP - 24 - wallPx) / PPU;
-  dIn.max = Math.max(6, maxD).toFixed(1);
+
+  sMin = wallPx + Math.round(DMIN*PPU);
+  sMax = viewW - BAND - 8;
+  dIn.min = String(DMIN);
+  dIn.max = ((sMax - wallPx)/PPU).toFixed(1);
+  if (firstLayout){ firstLayout = false; dIn.value = dIn.max; }  // écran à fond à droite
   if (+dIn.value > +dIn.max) dIn.value = dIn.max;
+  setScreenFromSlider();
+
+  pX = new Float32Array(NPART); pY = new Float32Array(NPART);
+  for (let i = 0; i < NPART; i++){ pX[i] = Math.random()*wallPx; pY[i] = Math.random()*viewH; }
+  hist = new Float32Array(viewH); histMax = 1; partDirty = true;
 }
 
-/* ── Lancement d'un calcul ───────────────────────────────── */
+/* ── Lancement d'un calcul de champ ──────────────────────── */
 function restart(){
   const col = COLORS[colorKey];
   const lambda = col.lambda;
   const a = +aIn.value / 10;               // µm
-  const D = Math.min(+dIn.value, +dIn.max);// µm
   const k = 2*Math.PI/lambda;
   const xw = wallPx/PPU, yc = centerPx/PPU;
 
-  // échantillonnage de la fente : pas ≤ λ/6, largement sous le critère de Nyquist (λ/2)
-  const M = Math.min(900, Math.max(64, Math.ceil(6*a/lambda)));
+  const M = Math.min(900, Math.max(48, Math.ceil(SPL*a/lambda)));
   const dy = a/M;
   const ys = new Float64Array(M);
   for (let j = 0; j < M; j++) ys[j] = yc - a/2 + (j + 0.5)*dy;
@@ -223,9 +257,9 @@ function restart(){
     done:new Uint8Array(GH), mirror:(2*centerPx/STEP)|0,
     GW, GH, row:0, k, xw, ys,
     F: Math.sqrt(k/(2*Math.PI))*dy,
-    lambda, a, D, color: col,
-    screenPx: wallPx + Math.round(D*PPU)
+    lambda, a, color: col
   };
+  resetParticles();
 }
 
 function computeRow(gy){
@@ -252,9 +286,8 @@ function computeRow(gy){
       sr += w*COS[ip & TMASK];
       si += w*SIN[ip & TMASK];
     }
-    const re = F*(sr*C45 + si*S45);      // facteur e^{-iπ/4}
-    const im = F*(si*C45 - sr*S45);
-    Re[i] = re; Im[i] = im;
+    Re[i] = F*(sr*C45 + si*S45);         // facteur e^{-iπ/4}
+    Im[i] = F*(si*C45 - sr*S45);
   }
 }
 
@@ -278,15 +311,19 @@ function runJob(budgetMs){
       if (performance.now() - t0 > budgetMs) return;
     }
   }
-  finishJob();
+  cur = job; job = null;
+  computeProfile();
 }
 
-/* profil exact sur l'écran, à pleine résolution verticale */
-function finishJob(){
-  const j = job;
-  const d = Math.max(j.screenPx/PPU - j.xw, 0.20);
+/* ── Profil exact sur l'écran, à pleine résolution ────────
+   Ne dépend que de la position de l'écran : recalculé à chaque
+   image pendant un glissement, pour environ 0,5 ms.            */
+function computeProfile(){
+  if (!cur) return;
+  const j = cur;
+  const d = Math.max(screenPx/PPU - j.xw, 0.20);
   const M = j.ys.length;
-  const prof = new Float32Array(viewH);
+  const prof = j.prof && j.prof.length === viewH ? j.prof : new Float32Array(viewH);
   let mx = 1e-12;
   for (let y = 0; y < viewH; y++){
     const yP = y/PPU;
@@ -305,101 +342,197 @@ function finishJob(){
   }
   j.prof = prof; j.profMax = mx;
   renderBand(j);
-  cur = j; job = null;
 }
 
-/* ── Bande "écran d'observation" (redessinée à chaque recalcul) ── */
+/* ── Bande d'observation : figure d'interférence ─────────── */
 function renderBand(j){
   const bw = BAND, bh = viewH;
-  const c = document.createElement('canvas');
+  const c = j.band && j.band.width === bw && j.band.height === bh
+          ? j.band : (j.band = document.createElement('canvas'));
   c.width = bw; c.height = bh;
   const g = c.getContext('2d');
   const col = j.color.rgb, inv = 1/j.profMax, gam = 1/2.2;   // encodage sRGB
 
   g.fillStyle = '#000'; g.fillRect(0,0,bw,bh);
   for (let y = 0; y < bh; y++){
-    const v = Math.max(0, j.prof[y]*inv);
-    const b = Math.pow(v, gam);
+    const b = Math.pow(Math.max(0, j.prof[y]*inv), gam);
     g.fillStyle = `rgb(${(col[0]*b)|0},${(col[1]*b)|0},${(col[2]*b)|0})`;
     g.fillRect(0, y, bw, 1);
   }
+  j.bandReady = true;
+}
 
-  g.strokeStyle = 'rgba(255,255,255,.22)'; g.lineWidth = 1;
-  g.strokeRect(.5, .5, bw - 1, bh - 1);
+/* ── Bande d'observation : densité d'impacts ─────────────── */
+function resetParticles(){
+  if (hist) hist.fill(0);
+  histMax = 1; partDirty = true;
+}
 
-  j.band = c;
+function renderBandParticles(){
+  const bw = BAND, bh = viewH;
+  if (!bandPart) bandPart = document.createElement('canvas');
+  if (bandPart.width !== bw || bandPart.height !== bh){ bandPart.width = bw; bandPart.height = bh; }
+  const g = bandPart.getContext('2d');
+  const col = COLORS[colorKey].rgb;
+  g.fillStyle = '#000'; g.fillRect(0,0,bw,bh);
+  if (histMax <= 0) return;
+  const R = 3;                       // lissage ±3 px : réduit le bruit de comptage
+  for (let y = 0; y < bh; y++){
+    let s = 0, n = 0;
+    for (let q = y - R; q <= y + R; q++) if (q >= 0 && q < bh){ s += hist[q]; n++; }
+    const b = Math.pow(Math.min(1, s/n/histMax), 1/2.2);
+    g.fillStyle = `rgb(${(col[0]*b)|0},${(col[1]*b)|0},${(col[2]*b)|0})`;
+    g.fillRect(0, y, bw, 1);
+  }
+  partDirty = false;
+}
+
+function stepParticles(dt){
+  const aPx = (cur ? cur.a : +aIn.value/10)*PPU;
+  const half = aPx/2, adv = VPART*dt;
+  let touched = false;
+  for (let i = 0; i < NPART; i++){
+    const x0 = pX[i], x1 = x0 + adv, y = pY[i];
+    // absorbées par l'écran percé, sauf en face de la fente
+    if (x0 < wallPx && x1 >= wallPx && Math.abs(y - centerPx) > half){
+      pX[i] = 0; pY[i] = Math.random()*viewH; continue;
+    }
+    // absorbées par l'écran d'observation : on enregistre l'impact
+    if (x1 >= screenPx){
+      const yy = y|0;
+      if (yy >= 0 && yy < viewH){
+        const v = ++hist[yy];
+        if (v > histMax) histMax = v;
+        touched = true;
+      }
+      pX[i] = 0; pY[i] = Math.random()*viewH; continue;
+    }
+    pX[i] = x1;
+  }
+  if (touched) partDirty = true;
 }
 
 /* ── Rendu du champ ──────────────────────────────────────── */
-function drawField(){
-  const {Re, Im} = cur, data = img.data;
-  const N = Re.length;
-  let p = 0;
+function drawGrid(){
+  const data = img.data;
+  const cut = Math.max(0, Math.min(GW, Math.ceil(screenPx/STEP)));
 
+  if (!cur) return false;
+  const {Re, Im} = cur;
   if (optInt.checked){
-    // intensité rapportée à celle de l'onde incidente (I₀ = 1)
     const r = PAL.int[0], g = PAL.int[1], b = PAL.int[2];
-    for (let i = 0; i < N; i++){
-      let v = Re[i]*Re[i] + Im[i]*Im[i];
-      const j = v >= 1 ? 255 : (v*255)|0;
-      data[p++] = r[j]; data[p++] = g[j]; data[p++] = b[j]; data[p++] = 255;
+    for (let gy = 0; gy < GH; gy++){
+      let p = gy*GW*4; const base = gy*GW;
+      for (let gx = 0; gx < cut; gx++){
+        const i = base + gx, v = Re[i]*Re[i] + Im[i]*Im[i];
+        const j = v >= 1 ? 255 : (v*255)|0;
+        data[p++] = r[j]; data[p++] = g[j]; data[p++] = b[j]; data[p++] = 255;
+      }
+      for (let gx = cut; gx < GW; gx++){ data[p++]=0; data[p++]=0; data[p++]=0; data[p++]=255; }
     }
   } else {
     const cp = Math.cos(phase), sp = Math.sin(phase);
     const pr = PAL.pos[0], pg = PAL.pos[1], pb = PAL.pos[2];
     const nr = PAL.neg[0], ng = PAL.neg[1], nb = PAL.neg[2];
-    for (let i = 0; i < N; i++){
-      const u = Re[i]*cp + Im[i]*sp;
-      if (u >= 0){
-        const j = u >= 1 ? 255 : (u*255)|0;
-        data[p++] = pr[j]; data[p++] = pg[j]; data[p++] = pb[j];
-      } else {
-        const v = -u, j = v >= 1 ? 255 : (v*255)|0;
-        data[p++] = nr[j]; data[p++] = ng[j]; data[p++] = nb[j];
+    for (let gy = 0; gy < GH; gy++){
+      let p = gy*GW*4; const base = gy*GW;
+      for (let gx = 0; gx < cut; gx++){
+        const i = base + gx, u = Re[i]*cp + Im[i]*sp;
+        if (u >= 0){
+          const j = u >= 1 ? 255 : (u*255)|0;
+          data[p++] = pr[j]; data[p++] = pg[j]; data[p++] = pb[j];
+        } else {
+          const v = -u, j = v >= 1 ? 255 : (v*255)|0;
+          data[p++] = nr[j]; data[p++] = ng[j]; data[p++] = nb[j];
+        }
+        data[p++] = 255;
       }
-      data[p++] = 255;
+      for (let gx = cut; gx < GW; gx++){ data[p++]=0; data[p++]=0; data[p++]=0; data[p++]=255; }
     }
   }
+
   octx.putImageData(img, 0, 0);
   ctx.imageSmoothingEnabled = true;
   ctx.imageSmoothingQuality = 'high';
   ctx.drawImage(off, 0, 0, GW, GH, 0, 0, GW*STEP, GH*STEP);
+  return true;
+}
+
+function drawParticles(){
+  const c = COLORS[colorKey].rgb;
+  ctx.fillStyle = `rgb(${c[0]},${c[1]},${c[2]})`;
+  ctx.beginPath();
+  for (let i = 0; i < NPART; i++){
+    const x = pX[i];
+    if (x > screenPx) continue;
+    ctx.rect(x - 1.5, pY[i] - 1.5, 3, 3);
+  }
+  ctx.fill();
+}
+
+/* ── Habillage : obstacle, écran, bande, légendes ────────── */
+function tag(text, x, y, align){
+  ctx.font = '11.5px ui-sans-serif,system-ui,sans-serif';
+  ctx.textAlign = align; ctx.textBaseline = 'middle';
+  ctx.lineJoin = 'round'; ctx.lineWidth = 3.5;
+  ctx.strokeStyle = 'rgba(0,0,0,.8)'; ctx.strokeText(text, x, y);
+  ctx.fillStyle = 'rgba(255,255,255,.88)'; ctx.fillText(text, x, y);
 }
 
 function drawOverlays(){
-  const aPx = cur.a*PPU;
-  const x0 = wallPx - WALLW/2;
+  const aPx = (optPart.checked || !cur ? +aIn.value/10 : cur.a)*PPU;
 
   // écran percé
   ctx.fillStyle = '#8a93a8';
-  ctx.fillRect(x0, 0, WALLW, centerPx - aPx/2);
-  ctx.fillRect(x0, centerPx + aPx/2, WALLW, viewH - (centerPx + aPx/2));
-
-  // plan de l'écran d'observation
-  ctx.save();
-  ctx.strokeStyle = 'rgba(255,255,255,.4)';
-  ctx.setLineDash([5,5]); ctx.lineWidth = 1;
-  ctx.beginPath(); ctx.moveTo(cur.screenPx + .5, 0); ctx.lineTo(cur.screenPx + .5, viewH); ctx.stroke();
-  ctx.restore();
+  ctx.fillRect(wallPx - WALLW/2, 0, WALLW, centerPx - aPx/2);
+  ctx.fillRect(wallPx - WALLW/2, centerPx + aPx/2, WALLW, viewH - (centerPx + aPx/2));
 
   // axe optique
-  ctx.strokeStyle = 'rgba(255,255,255,.13)';
+  ctx.save();
+  ctx.strokeStyle = 'rgba(255,255,255,.12)';
   ctx.setLineDash([2,6]); ctx.lineWidth = 1;
-  ctx.beginPath(); ctx.moveTo(0, centerPx + .5); ctx.lineTo(viewW, centerPx + .5); ctx.stroke();
-  ctx.setLineDash([]);
+  ctx.beginPath(); ctx.moveTo(0, centerPx + .5); ctx.lineTo(screenPx, centerPx + .5); ctx.stroke();
+  ctx.restore();
 
-  // figure observée
-  if (cur.band) ctx.drawImage(cur.band, viewW - BAND - GAP, 0);
+  // bande d'observation, collée à l'écran
+  const bx = screenPx + 2;
+  const src = optPart.checked ? bandPart : (cur && cur.bandReady ? cur.band : null);
+  if (src) ctx.drawImage(src, bx, 0);
+  else { ctx.fillStyle = '#000'; ctx.fillRect(bx, 0, BAND, viewH); }
+  ctx.strokeStyle = 'rgba(255,255,255,.2)'; ctx.lineWidth = 1;
+  ctx.strokeRect(bx + .5, .5, BAND - 1, viewH - 1);
+
+  // plan de l'écran : trait plein, épais, saisissable
+  const hot = dragging || hoverLine;
+  ctx.strokeStyle = hot ? '#ffffff' : 'rgba(255,255,255,.82)';
+  ctx.lineWidth = hot ? 4 : 3;
+  ctx.beginPath(); ctx.moveTo(screenPx, 0); ctx.lineTo(screenPx, viewH); ctx.stroke();
+
+  // poignée
+  ctx.fillStyle = hot ? '#ffffff' : 'rgba(255,255,255,.82)';
+  ctx.beginPath();
+  if (ctx.roundRect) { ctx.roundRect(screenPx - 4, centerPx - 20, 8, 40, 4); ctx.fill(); }
+  else ctx.fillRect(screenPx - 4, centerPx - 20, 8, 40);
+
+  // légendes
+  tag("position de l'écran", screenPx - 10, 18, 'right');
 }
 
 /* ── Boucle ──────────────────────────────────────────────── */
 function frame(now){
   const dt = Math.min(0.05, (now - lastT)/1000); lastT = now;
   if (job) runJob(9);
-  if (playing && cur) phase += cur.k*SPEED*dt;
+
+  if (optPart.checked){
+    if (playing) stepParticles(dt);
+    if (partDirty) renderBandParticles();
+  } else if (playing && cur) {
+    phase += cur.k*SPEED*dt;
+  }
 
   ctx.fillStyle = '#000'; ctx.fillRect(0, 0, viewW, viewH);
-  if (cur){ drawField(); drawOverlays(); }
+  if (optPart.checked) drawParticles(); else drawGrid();
+  drawOverlays();
   busy.style.display = job ? 'block' : 'none';
   requestAnimationFrame(frame);
 }
@@ -410,7 +543,7 @@ function labels(){
   dOut.textContent = (+dIn.value).toFixed(1);
 }
 const debounce = (fn, ms) => { let t; return (...v) => { clearTimeout(t); t = setTimeout(() => fn(...v), ms); }; };
-const scheduled = debounce(restart, 110);
+const scheduled = debounce(restart, 40);
 
 for (const b of document.querySelectorAll('.swatches button')){
   b.addEventListener('click', () => {
@@ -418,12 +551,44 @@ for (const b of document.querySelectorAll('.swatches button')){
     for (const o of document.querySelectorAll('.swatches button'))
       o.setAttribute('aria-pressed', String(o === b));
     document.documentElement.style.setProperty('--accent', COLORS[colorKey].hex);
-    buildPalettes(); restart();
+    buildPalettes(); restart(); partDirty = true;
   });
 }
-gIn.addEventListener('input', () => { labels(); buildPalettes(); });
-aIn.addEventListener('input', () => { labels(); scheduled(); });
-dIn.addEventListener('input', () => { labels(); scheduled(); });
+aIn.addEventListener('input', () => { labels(); resetParticles(); scheduled(); });
+dIn.addEventListener('input', () => {   // le champ ne dépend pas de D : instantané
+  labels(); setScreenFromSlider(); resetParticles(); computeProfile();
+});
+gIn.addEventListener('input', buildPalettes);
+
+function syncModes(){
+  labInt.classList.toggle('dim', optPart.checked);
+  fieldG.classList.toggle('dim', optPart.checked);
+}
+optPart.addEventListener('change', () => { syncModes(); resetParticles(); });
+
+/* glissement de l'écran à la souris ou au doigt */
+const toCanvasX = e => {
+  const r = cvs.getBoundingClientRect();
+  return (e.clientX - r.left) * (viewW / r.width);
+};
+const nearLine = x => Math.abs(x - screenPx) < 16;
+cvs.addEventListener('pointermove', e => {
+  const x = toCanvasX(e);
+  if (dragging){
+    screenPx = Math.max(sMin, Math.min(sMax, Math.round(x)));
+    setSliderFromScreen(); labels(); resetParticles(); computeProfile();
+  } else {
+    const h = nearLine(x);
+    if (h !== hoverLine){ hoverLine = h; cvs.style.cursor = h ? 'ew-resize' : 'default'; }
+  }
+});
+cvs.addEventListener('pointerdown', e => {
+  if (!nearLine(toCanvasX(e))) return;
+  dragging = true; cvs.setPointerCapture(e.pointerId); e.preventDefault();
+});
+const endDrag = () => { dragging = false; };
+cvs.addEventListener('pointerup', endDrag);
+cvs.addEventListener('pointercancel', endDrag);
 
 /* panneau escamotable : replié par défaut sur les petits écrans */
 function setPanel(open){ document.body.classList.toggle('collapsed', !open); }
@@ -442,7 +607,9 @@ addEventListener('resize', debounce(() => { layout(); cur = null; restart(); }, 
 setPanel(innerWidth > 720);
 labels();
 buildPalettes();
+syncModes();
 layout();
+labels();
 restart();
 requestAnimationFrame(frame);
 })();
