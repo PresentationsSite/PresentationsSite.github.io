@@ -132,7 +132,7 @@ Que peut-on conclure des 3 graphes ?
 ---
 
 <div style="display: flex;justify-content: center;">
-<div style="background-color:rgb(0,0,255,0.2);border:solid blue 5px;padding:20px 50px 30px 50px;border-radius:20px;width:contain">
+<div style="background-color:#B9DFFC; border:solid #0076BA 5px;padding:20px 50px 30px 50px;border-radius:20px;width:contain">
 L'évolution de la population<br>ne dépend pas de la<br>population de départ.
 </div>
 
@@ -145,21 +145,23 @@ Et que peut-on conclure de ce graphe ?
 ---
 
 <div style="display: flex;justify-content: center;">
-<div style="background-color:rgb(0,0,255,0.2);border:solid blue 5px;padding:20px 50px 30px 50px;border-radius:20px;width:contain">
+<div style="background-color:#B9DFFC; border:solid #0076BA 5px;padding:20px 50px 30px 50px;border-radius:20px;width:contain">
 L'écart en tours (= en temps)<br>entre chaque division<br>par 2 de la population<br>est le même.
 </div></div>
 {{% /section %}}
 
 ---
 {{% section %}}
+
 ### Décroissance radioactive
 
 ---
-{{< slide  background-image="/expdiv2.png" background-size="70%" background-transition="concave">}}
+
+{{< slide  background-image="/expdiv2.png" background-size="contain" background-transition="concave">}}
 
 ---
 
-<div style="background-color:rgb(255,0,0,0.2);border:solid red 5px;padding:10px 10px 15px 10px;border-radius:20px;width:70%;margin:15%;">
+<div style="background-color:#F8CDC8;border:solid #FF644E 5px;padding:10px 10px 15px 10px;border-radius:20px;width:70%;margin:15%;">
 La <span style="font-weight:bold;">demi-vie</span> (souvent notée t<sub>1/2</sub>)<br>est la <span style="font-weight:boled">durée</span> au bout de laquelle<br>la population initiale $N_0$<br>est divisée par deux.
 </div>
 
@@ -167,20 +169,24 @@ La <span style="font-weight:bold;">demi-vie</span> (souvent notée t<sub>1/2</su
 
 Population restante au bout de <span style="color:red;font-weight:bold">n</span> demi-vies :
 
-<div style="background-color:rgb(0,0,255,0.2);border:solid blue 5px;width:20%;margin-left:40%;display:flex;justify-content:center;padding:10px 10px 15px 10px;border-radius:20px">
+<div style="background-color:#B9DFFC;border:solid #0076BA 5px;width:20%;margin-left:40%;display:flex;justify-content:center;padding:10px 10px 15px 10px;border-radius:20px">
 $\displaystyle \frac{N_0}{2^{\color{red}n}}$
 </div>
-
 
 ---
 
 Plusieurs phénomènes suivent des évolutions similaires aux décroissances radioactives.
 
-L'ingrédient commun est la destruction<br>d'une **proportion constante** de la population<br>sur des laps de temps égaux.
+<p class="fragment fade-up">L'ingrédient commun est la destruction<br>d'une <b>proportion constante</b> de la population<br>sur des laps de temps égaux.</p>
 
 ---
 
-{{<youtube w6kFzeR3m1Q>}}
+{{< geogebra-slide id="tscgbnpn" width="685" height="944" maxheight="600" rounded="true" shadow="true" >}}
+
+
+---
+
+{{< youtube-slide id="w6kFzeR3m1Q" ratio="16x9" >}}
 
 {{% /section %}}
 
