@@ -168,7 +168,7 @@ L'échographie Doppler est souvent un examen de première intention. En effet, i
 
 ---
 
-<iframe width="800" height="450" src="https://www.youtube.com/embed/3vxKLc8KNd4?si=79iemh7kerHsMJH1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+{{< youtube-slide id="3vxKLc8KNd4" ratio="16x9" >}}
 
 ---
 
@@ -213,7 +213,7 @@ En physique, on parle de tension...
 
 ---
 
-<iframe width="800" height="450" src="https://www.youtube.com/embed/B-oZYm3L1JE?si=U2Nxo7OcSAHX0Kss" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+{{< youtube-slide id="B-oZYm3L1JE" ratio="16x9" >}}
 
 ---
 
@@ -304,7 +304,7 @@ Ces nuages d'hydrogènes appelées régions H II sont constitués d'hydrogène i
 
 ---
 
-{{< slide  background-video="https://upload.wikimedia.org/wikipedia/commons/transcoded/3/33/Galaxy_rotation_under_the_influence_of_dark_matter.ogv/Galaxy_rotation_under_the_influence_of_dark_matter.ogv.360p.webm" background-size="contain" background-transition="concave">}}
+{{< slide  background-video="/dark_matter_galaxy.mp4" background-size="contain" background-transition="concave" background-color="black">}}
 
 ---
 
