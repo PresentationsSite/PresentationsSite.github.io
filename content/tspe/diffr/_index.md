@@ -497,7 +497,7 @@ On doit maintenant prendre en compte l'éventuel ralentissement de la lumière d
 
 ---
 
-{{< slide  background-image="/troudyoung.png" background-size="contain" background-transition="concave">}}
+{{< slide  background-image="/troudyoung.png" background-size="contain" background-transition="concave" background-color="black">}}
 
 ---
 
@@ -559,7 +559,6 @@ i &= x_{k+1}-x_k\\
 $$
 </b>
 
-<br>
 
 <ul>
 <li class="fragment fade-up">Si $\lambda\nearrow$, <b style="color:#FFF056">$i$</b> <b class="fragment" style="color:#FFF056">$\nearrow$</b></li>
