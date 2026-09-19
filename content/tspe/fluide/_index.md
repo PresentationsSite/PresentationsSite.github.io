@@ -240,12 +240,6 @@ Qu'en est-il pour un iceberg dans l'océan 🚢 ?
 rho eau de mer (1,036) > rho eau douce  -> proportion immergée un peu plus faible (89%)
 {{%/note%}}
 
----
-
-Petite énigme :
-
-<iframe width="800" height="450" src="https://www.youtube.com/embed/Go0gKexmLlc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
-
 
 {{%/section%}}
 
