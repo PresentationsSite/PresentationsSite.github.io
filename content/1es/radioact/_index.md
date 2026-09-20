@@ -93,11 +93,11 @@ f = open('out.csv', 'w')
 print("|{:^10}|{:^15}|{:^15}|".format("tour","survivants","proportion"))
 print("-"*44)
 
-while N :
+while N:
     f.write("{}\t{:.4f}\n".format(t,N/N0*100))
     print("|{:^10}|{:^15}|{:^15.1f}|".format(t,N,N/N0*100))
-    for i in range(N) :
-        if random() < 0.5 and random() < 0.5 :
+    for i in range(N):
+        if random() < 0.5 and random() < 0.5:
             N -= 1
     t += 1
 
@@ -116,11 +116,11 @@ N0 = 2000
 N = N0
 t = 0
 
-while N != 0 :            # Tant qu'il y a des survivants
-    for i in range(N) :   # pour chaque survivant
-        if random() < 0.5 and random() < 0.5 :
-            N = N - 1     # le survivant meurt
-    t = t + 1             # on ajoute un tour
+while N != 0:            # Tant qu'il y a des survivants
+    for i in range(N):   # pour chaque survivant
+        if random() < 0.5 and random() < 0.5:
+            N = N - 1    # le survivant meurt
+    t = t + 1            # on ajoute un tour
 ```
 
 ---
