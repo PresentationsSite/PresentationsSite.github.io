@@ -421,7 +421,7 @@ L'onde issues de <span style="color:#56C1FF;">S<sub>1</sub></span> parcourt donc
 et celle issue de <span style="color:#FF968D;">S<sub>2</sub></span> parcourt une distance $\color{#FF968D} \mathrm{S_2M}$.
 </p>
 
-<p class="fragment fade-up">Appelons enfin $\color{#61D836}\delta$ la différence entre ces deux distances.</p>
+<p class="fragment fade-up">Appelons enfin $\color{#61D836}\delta$ la différence entre ces deux distances. On appelle $\color{#61D836}\delta$ la <b style="color:#61D836">différence de marche</b>.</p>
 
 ---
 
@@ -655,6 +655,10 @@ La détection des ondes gravitationnelles<br>utilise aussi l'interférométrie.
 ---
 
 {{< slide  background-image="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/VirgoDetectorAerialView.jpg/1920px-VirgoDetectorAerialView.jpg" background-size="contain" background-transition="concave">}}
+
+---
+
+{{< youtube-slide id="k7UKKYZIR3w" ratio="16x9" start="4">}}
 
 ---
 
