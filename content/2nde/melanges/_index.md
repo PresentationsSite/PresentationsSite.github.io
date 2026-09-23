@@ -408,7 +408,7 @@ Pour séparer et identifier les constituants<br>d'un mélange en phase homogène
 
 ---
 
-{{< youtube-slide id="CmHFVxTxkGs" ratio="16x9" >}}
+{{< youtube-slide id="lj5OWzhZSac" ratio="16x9" start="0:57" >}}
 
 ---
 
