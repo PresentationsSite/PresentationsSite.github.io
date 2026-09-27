@@ -65,7 +65,7 @@ On trace la <span class="imp">transmittance</span> (en %) <br>en fonction du <sp
 
 <ul>
 <li>Plus la transmittance est faible<br>et plus l'absorbance est grande.</li>
-<li class="fragment">Le nombre d'onde est l'inverse<br>de la longueur d'onde.</li>
+<li class="fragment fade-up">Le nombre d'onde est l'inverse<br>de la longueur d'onde.</li>
 </ul>
 
 ---
@@ -76,7 +76,7 @@ La spectroscopie infrarouge exploite le fait que<br>les molécules possèdent de
 
 Ces fréquences de résonance dépendent de<br>la nature de la liaison entre les atomes.
 
-<p class="fragment">
+<p class="fragment fade-up">
 Et pour chaque résonance, on obtient un creux dans<br>le spectre de transmittance (correspondant à une<br>forte absorbance du rayonnement IR).
 </p>
 
@@ -91,7 +91,7 @@ Les 4 modes de vibration de la molécule de $\ce{CO2}$<br>
 
 ---
 
-<iframe width="640" height="500" src="https://www.youtube.com/embed/qFsmnTmS2sg?si=9tXm4fZgbhK2kECD&amp;start=67" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+{{< youtube-slide id="qFsmnTmS2sg" ratio="4x3" start="67" >}}
 
 
 {{%note%}}
@@ -101,11 +101,11 @@ Lien vers la vidéo : https://archive.org/details/vibration_of_molecules
 
 ---
 
-{{<youtube DDTIJgIh86E>}}
+{{< youtube-slide id="DDTIJgIh86E" ratio="4x3" >}}
 
 ---
 
-{{<youtube U0Hu3-J0igE>}}
+{{< youtube-slide id="U0Hu3-J0igE" ratio="16x9" >}}
 
 ---
 

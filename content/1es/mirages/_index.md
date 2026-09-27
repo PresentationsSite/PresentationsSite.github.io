@@ -87,7 +87,7 @@ Et comment expliquer les mirages suivant ?
 
 ---
 
-{{%youtube epeOGJcR2dE%}}
+{{< youtube-slide id="epeOGJcR2dE" ratio="4x3" >}}
 
 
 ---

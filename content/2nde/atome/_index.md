@@ -49,13 +49,13 @@ th:not(:last-child), td:not(:last-child) { border-right: 1px solid #00A2FF; }
 
 À partir des informations données dans la vidéo<br>qui suit, on peut déterminer l'<span class="imp"><a href="../maths">ordre de grandeur</a></span><br>de la <span class="imp" style="color:#FF644E">taille d'un atome</span> et de la <span class="imp" style="color:#1DB100">taille de son noyau</span>.
 <br><br>
-<p class="fragment">
+<p class="fragment fade-up">
 Notez les informations utiles<br>et essayez de déterminer<br>ces ordres de grandeur.</p>
 
 ---
 
 
-<iframe width="800" height="450" src="https://www.youtube.com/embed/hWn0NOptFHU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+{{< youtube-slide id="hWn0NOptFHU" ratio="16x9" >}}
 
 ---
 
@@ -78,7 +78,7 @@ En utilisant des unités plus adaptées<br>grâce aux bons sous-multiples :
 
 ---
 
-<iframe width="800" height="450" src="https://www.youtube.com/embed/7WhRJV_bAiE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+{{< youtube-slide id="7WhRJV_bAiE" ratio="16x9" >}}
 
 
 {{% /section %}}
@@ -115,7 +115,7 @@ Le nuage électronique est constitué <span class="fragment imp">d'électrons</s
 {{< slide  background-image="/noypres.png" background-size="contain" background-transition="concave">}}
 
 Le noyau est composé <span class="fragment imp" style="color:#FF644E">de protons</span>,<br>particules portant une charge <span class="fragment imp" style="color:#FF644E">positive</span><br>et de <span class="fragment imp" style="color:#61D836">neutrons</span>, particules de charge <span class="fragment imp" style="color:#61D836">nulle</span>.
-<p class="fragment">Protons et neutrons sont des <span class="fragment imp" style="color:#FEAE00">nucléons</span>.</p>
+<p class="fragment fade-up">Protons et neutrons sont des <span class="fragment imp" style="color:#FEAE00">nucléons</span>.</p>
 <br><br><br><br><br><br><br><br>
 
 
@@ -154,7 +154,7 @@ Or un atome étant électriquement <span class="fragment imp" style="color:#61D8
 
 <p class="fragment fade-up">Les <span class="fragment imp" style="color:#FF644E">protons</span> et <span class="fragment imp" style="color:#61D836">neutrons</span> ont quasiment<br>la même <span class="fragment imp" style="color:#FEAE00">masse</span> qui est environ<br><span class="fragment imp" style="color:#FEAE00">2000 fois</span> <span class="imp" style="color:#FEAE00">plus grande</span> que celle<br>d'un <span class="fragment imp">électron</span>.</p>
 
-<p class="fragment">
+<p class="fragment fade-up">
 On en conclut que le <span class="fragment imp" style="color:#FEAE00">noyau</span> est responsable de<br>la quasi intégralité de la <span class="fragment imp" style="color:#FEAE00">masse</span> d'un atome.</p>
 
 {{%/section%}}
@@ -222,11 +222,11 @@ Entité électriquement neutre<br>comprenant plus d'un atome.
 
 Son <span class="fragment imp" style="color:#FF644E">nombre de protons</span>, noté <span class="fragment imp" style="color:#FF644E">$Z$</span> et appelé <span class="fragment imp" style="color:#FF644E">numéro atomique</span>, conditionne le nombre d'électrons<br>et ainsi toutes ses propriétés chimiques.
 
-<p class="fragment">À un numéro atomique correspond un <span class="imp" style="color:#FF644E">symbole chimique</span> unique fait d'une majuscule parfois associée à une minuscule. Il désigne l'élément chimique.</p>
+<p class="fragment fade-up">À un numéro atomique correspond un <span class="imp" style="color:#FF644E">symbole chimique</span> unique fait d'une majuscule parfois associée à une minuscule. Il désigne l'élément chimique.</p>
 
 ---
 
-<iframe width="800" height="450" src="https://www.youtube.com/embed/dyoVw-bjsU8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+{{< youtube-slide id="dyoVw-bjsU8" ratio="16x9" >}}
 
 
 {{%note%}}
@@ -236,7 +236,7 @@ si pas le temps
 
 ---
 
-<iframe width="800" height="450" src="https://www.youtube.com/embed/p6ek7RhZXv8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+{{< youtube-slide id="p6ek7RhZXv8" ratio="16x9" >}}
 
 
 {{%note%}}
@@ -265,7 +265,7 @@ L'identité de l'élément cuivre est gardée<br>en son cœur, dans les 29 proto
 
 Le rêve des alchimistes de transformer<br>le plomb en or était donc voué à l'échec. 
 
-<p class="fragment">Aucune réaction chimique ne sera jamais capable de modifier un élément. Seules les réactions nucléaires (beaucoup plus énergétiques) le peuvent.</p>
+<p class="fragment fade-up">Aucune réaction chimique ne sera jamais capable de modifier un élément. Seules les réactions nucléaires (beaucoup plus énergétiques) le peuvent.</p>
 
 ---
 
@@ -275,7 +275,7 @@ Tous les éléments connus sont répertoriés<br>dans le <span class="imp">table
 
 <img src="/mendeleiev.png" style="width:40%; border-radius:20px">
 
-<p class="fragment">La première mouture du tableau a été conçue<br>par le chimiste russe Mendeleïev en 1869.</p>
+<p class="fragment fade-up">La première mouture du tableau a été conçue<br>par le chimiste russe Mendeleïev en 1869.</p>
 
 ---
 
@@ -346,18 +346,18 @@ Comment obtenir le nombre de neutrons N<br>si on connaît Z et A ?
 <ul>
 <li class="fragment fade-up">Donner la composition du noyau s'écrivant $\ce{_{7}^{15}N}$ :</li>
 <ul>
-<li class="fragment" style="color:#1DB100">Z = 7 $\Rightarrow$ 7 protons</li>
-<li class="fragment" style="color:#1DB100">A = 15 $\Rightarrow$ N = A - Z = 15 - 7 = 8 neutrons </li>
+<li class="fragment fade-up" style="color:#1DB100">Z = 7 $\Rightarrow$ 7 protons</li>
+<li class="fragment fade-up" style="color:#1DB100">A = 15 $\Rightarrow$ N = A - Z = 15 - 7 = 8 neutrons </li>
 </ul>
 <li class="fragment fade-up">Donner la composition du noyau s'écrivant $\ce{^{1}H}$ :</li>
 <ul>
-<li class="fragment" style="color:#1DB100">Z = 1 $\Rightarrow$ 1 protons</li>
-<li class="fragment" style="color:#1DB100">A = 1 $\Rightarrow$ N = A - Z = 1 - 1 = 0 neutron</li>
+<li class="fragment fade-up" style="color:#1DB100">Z = 1 $\Rightarrow$ 1 protons</li>
+<li class="fragment fade-up" style="color:#1DB100">A = 1 $\Rightarrow$ N = A - Z = 1 - 1 = 0 neutron</li>
 </ul>
 <li class="fragment fade-up">Donner la composition du noyau s'écrivant $\ce{^{63}Cu}$ :</li>
 <ul>
-<li class="fragment" style="color:#1DB100">Z = 29 $\Rightarrow$ 29 protons</li>
-<li class="fragment" style="color:#1DB100">A = 63 $\Rightarrow$ N = A - Z = 63 - 29 = 34 neutrons </li>
+<li class="fragment fade-up" style="color:#1DB100">Z = 29 $\Rightarrow$ 29 protons</li>
+<li class="fragment fade-up" style="color:#1DB100">A = 63 $\Rightarrow$ N = A - Z = 63 - 29 = 34 neutrons </li>
 </ul>
 </ul>
 
@@ -366,15 +366,15 @@ Comment obtenir le nombre de neutrons N<br>si on connaît Z et A ?
 <ul>
 <li>Donner l'écriture symbolique du noyau<br>contenant 6 protons et 8 neutrons :</li>
 <ul>
-<li class="fragment" style="color:#1DB100">6 protons $\Rightarrow$ Z = 6 $\Rightarrow$ symbole : $\ce C$</li>
-<li class="fragment" style="color:#1DB100">8 neutrons $\Rightarrow$ A = 6 + 8 = 14 nucléons</li>
-<li class="fragment" style="color:#1DB100">D'où $\ce{^{14}_6 C}$ (c'est le carbone 14)</li>
+<li class="fragment fade-up" style="color:#1DB100">6 protons $\Rightarrow$ Z = 6 $\Rightarrow$ symbole : $\ce C$</li>
+<li class="fragment fade-up" style="color:#1DB100">8 neutrons $\Rightarrow$ A = 6 + 8 = 14 nucléons</li>
+<li class="fragment fade-up" style="color:#1DB100">D'où $\ce{^{14}_6 C}$ (c'est le carbone 14)</li>
 </ul>
 <li class="fragment fade-up">Donner l'écriture symbolique du noyau<br>contenant 79 protons et 118 neutrons :</li>
 <ul>
-<li class="fragment" style="color:#1DB100">79 protons $\Rightarrow$ Z = 79 $\Rightarrow$ symbole : $\ce{Au}$</li>
-<li class="fragment" style="color:#1DB100">118 neutrons $\Rightarrow$ A = 79 + 118 = 197 nucléons</li>
-<li class="fragment" style="color:#1DB100">D'où $\ce{^{197}_{79} Au}$ (c'est l'or 197)</li>
+<li class="fragment fade-up" style="color:#1DB100">79 protons $\Rightarrow$ Z = 79 $\Rightarrow$ symbole : $\ce{Au}$</li>
+<li class="fragment fade-up" style="color:#1DB100">118 neutrons $\Rightarrow$ A = 79 + 118 = 197 nucléons</li>
+<li class="fragment fade-up" style="color:#1DB100">D'où $\ce{^{197}_{79} Au}$ (c'est l'or 197)</li>
 </ul>
 </ul>
 

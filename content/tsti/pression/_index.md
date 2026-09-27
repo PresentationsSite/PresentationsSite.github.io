@@ -91,7 +91,7 @@ Convertir 1 psi en Pa.
 
 ---
 
-{{%youtube b1NbsR2xKKk%}}
+{{< youtube-slide id="b1NbsR2xKKk" ratio="16x9" >}}
 
 ---
 
@@ -109,20 +109,20 @@ Pression absolue ou relative ?
 
 
 
-{{%youtube K5g6P8-GmBg%}}
+{{< youtube-slide id="K5g6P8-GmBg" ratio="16x9" >}}
 
 ---
 
-{{%youtube uYIzWI12T8g%}}
+{{< youtube-slide id="uYIzWI12T8g" ratio="4x3" >}}
 
 ---
 
-{{%youtube EJHrr21UvY8%}}
+{{< youtube-slide id="EJHrr21UvY8" ratio="16x9" >}}
 
 ---
 
 
-{{%youtube 6zeHWVUiXoc%}}
+{{< youtube-slide id="6zeHWVUiXoc" ratio="16x9" >}}
 
 
 {{% /section %}}

@@ -154,7 +154,7 @@ La différence entre ce qui rentre et ce qui sort, valant 0,9 W/m2 correspond à
 
 ---
 
-{{%youtube SD9yVca6hHI%}}
+{{< youtube-slide id="SD9yVca6hHI" ratio="16x9" >}}
 
 ---
 

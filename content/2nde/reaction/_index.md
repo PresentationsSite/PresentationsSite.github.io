@@ -66,7 +66,7 @@ Que va-t-on observer ?
 
 ---
 
-<iframe width="800" height="450" src="https://www.youtube.com/embed/r3xXKiFdUdU?start=312" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+{{< youtube-slide id="r3xXKiFdUdU" ratio="16x9" start="312" >}}
 
 
 
@@ -96,12 +96,12 @@ Une <span style="font-weight:bold">transformation chimique</span> est une transf
 
 Les signes d'une transformation<br>chimique peuvent être :
 <ul>
-<li class = "fragment" style="color:#FFF056">un changement de couleur,</li>
-<li class = "fragment" style="color:#FFF056">l'apparition ou la disparition d'un solide,</li>
-<li class = "fragment" style="color:#FFF056">un dégagement gazeux,</li>
-<li class = "fragment" style="color:#FFF056">un dégagement de chaleur,</li>
-<li class = "fragment" style="color:#FFF056">une odeur,</li>
-<li class = "fragment">etc.</li>
+<li class = "fragment fade-up" style="color:#FFF056">un changement de couleur,</li>
+<li class = "fragment fade-up" style="color:#FFF056">l'apparition ou la disparition d'un solide,</li>
+<li class = "fragment fade-up" style="color:#FFF056">un dégagement gazeux,</li>
+<li class = "fragment fade-up" style="color:#FFF056">un dégagement de chaleur,</li>
+<li class = "fragment fade-up" style="color:#FFF056">une odeur,</li>
+<li class = "fragment fade-up">etc.</li>
 </ul>
 
 
@@ -164,8 +164,8 @@ Un <span style="font-weight:bold">réactif limitant</span> est un réactif qui <
 Quels est le réactif limitant<br>pour chacune des expériences ?
 
 <ul style="color:#1DB100">
-<li class="fragment">Transfos 1 à 3 : <span class="fragment" style="color:#61D836">l'hydrogénocarbonate de sodium</span></li>
-<li class="fragment">Transfos 4 à 6 : <span class="fragment" style="color:#61D836">l'acide éthanoïque</span></li>
+<li class="fragment fade-up">Transfos 1 à 3 : <span class="fragment" style="color:#61D836">l'hydrogénocarbonate de sodium</span></li>
+<li class="fragment fade-up">Transfos 4 à 6 : <span class="fragment" style="color:#61D836">l'acide éthanoïque</span></li>
 </ul>
 
 
@@ -318,7 +318,7 @@ On verse une certaine masse de poudre<br>de magnésium dans une solution<br>d'ac
 ---
 
 
-<iframe width="800" height="450" src="https://www.youtube.com/embed/9oZZwdWvChw?start=95" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+{{< youtube-slide id="9oZZwdWvChw" ratio="4x3" start="95" >}}
 
 
 ---
@@ -336,7 +336,7 @@ Le gaz dégagé est cette fois-ci du dihydrogène $\ce{H2 (g)}$.<br>Quel test au
 
 ---
 
-<iframe width="800" height="450" src="https://www.youtube.com/embed/yMqYQKMmd3U" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+{{< youtube-slide id="yMqYQKMmd3U" ratio="16x9" >}}
 
 
 ---
@@ -375,10 +375,10 @@ L'ion chlorure $\ce{Cℓ^- (aq)}$<br>n'est ni un réactif, ni un produit.<br>Il 
 
 Réactifs :
 <ul>
-<li class="fragment">
+<li class="fragment fade-up">
 $\ce{H3O+ (aq)}$
 </li>
-<li class="fragment">$\ce{Mg (s)}$
+<li class="fragment fade-up">$\ce{Mg (s)}$
 </li>
 </ul>
 
@@ -386,13 +386,13 @@ $\ce{H3O+ (aq)}$
 
 Produits :
 <ul>
-<li class="fragment">
+<li class="fragment fade-up">
 $\ce{H2 (g)}$
 </li>
-<li class="fragment">
+<li class="fragment fade-up">
 $\ce{Mg^2+ (aq)}$
 </li>
-<li class="fragment">
+<li class="fragment fade-up">
 $\ce{H2O (ℓ)}$
 </li>
 </ul>
@@ -401,10 +401,10 @@ $\ce{H2O (ℓ)}$
 
 Réactif limitant :
 <ul>
-<li class="fragment">
+<li class="fragment fade-up">
 $\ce{Mg (s)}$ dans les expériences 1, 2 et 3
 </li>
-<li class="fragment">
+<li class="fragment fade-up">
 $\ce{H3O+ (aq)}$ dans les expériences 3 et 4
 </li>
 </ul>
@@ -415,10 +415,10 @@ L'expérience 3 est particulière, Pourquoi ?
 
 <br>
 
-<p class="fragment" style="color:#61D836">Les deux réactifs ont été entièrement consommés.<br>
+<p class="fragment fade-up" style="color:#61D836">Les deux réactifs ont été entièrement consommés.<br>
 Ils sont donc tous les deux limitants.</p>
 
-<p class="fragment">On dit qu'ils sont en<br><span class="imp" style="color:#FF42A1">proportions stœchiométriques</span><br> (car leurs proportions respectent<br>la stœchiométrie de la réaction).</p>
+<p class="fragment fade-up">On dit qu'ils sont en<br><span class="imp" style="color:#FF42A1">proportions stœchiométriques</span><br> (car leurs proportions respectent<br>la stœchiométrie de la réaction).</p>
 
 
 ---
@@ -460,7 +460,7 @@ Donc pour 1 mole de $\ce{H2 (g)}$ produite,<br>il y a 1 mole de $\ce{Mg (s)}$ <b
 
 L'équation de la réaction modélisant tout ça s'écrit :
 
-<div class="fragment" style="display: flex; justify-content: center; align-items: center; height: 100%;">
+<div class="fragment fade-up" style="display: flex; justify-content: center; align-items: center; height: 100%;">
 <div style="border:solid 5px white; padding:15px 10px 20px 10px; width:content;font-size:0.8em;">
 $$\ce{Mg + \color{#FF42A1}2\color{white}H3O+ (aq) -> Mg^2+ (aq) + H2 (g) + 2 H2O(ℓ)}$$
 </div></div>
@@ -482,7 +482,7 @@ Rappel :
 
 On doit avoir
 
-<div class="fragment" style="display: flex; justify-content: center; align-items: center; height: 100%;">
+<div class="fragment fade-up" style="display: flex; justify-content: center; align-items: center; height: 100%;">
 <div style="background-color:#D41876;padding:15px 50px 20px 10px; width:content; color:white">
 <ul>
 <li style="color:white">conservation des éléments</li>
@@ -924,7 +924,7 @@ Si la masse du réactif limitant <span class="imp">$\nearrow$</span>,<br>
 
 <br>
 
-<p class="fragment">
+<p class="fragment fade-up">
 Plus la masse du réactif limitant est élevée, plus la variation de température observée sera <span class="fragment">grande</span>.</p>
 
 ---
@@ -933,7 +933,7 @@ Les dissolutions par exemple peuvent être<br>exothermiques ou endothermiques...
 
 ---
 
-{{%youtube o7adWQqvDUU%}}
+{{< youtube-slide id="o7adWQqvDUU" ratio="4x3" >}}
 
 
 ---
@@ -946,7 +946,7 @@ La vidéo suivante montre comment une dissolution endothermique est utilisée da
 ---
 
 
-{{%youtube _VYueePBvdw%}}
+{{< youtube-slide id="_VYueePBvdw" ratio="16x9" >}}
 
 
 ---

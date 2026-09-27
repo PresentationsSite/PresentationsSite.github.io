@@ -59,9 +59,9 @@ height: 100%;
 
 L'énergie de mouvement d'un objet s'appelle :
 
-<p class="imp fragment" style="color:#FF968D">l'énergie cinétique $E_c$</p>
+<p class="imp fragment fade-up" style="color:#FF968D">l'énergie cinétique $E_c$</p>
 
-<div class="imp fragment" style="display: flex;justify-content: center;">
+<div class="imp fragment fade-up" style="display: flex;justify-content: center;">
 <div style = "border:solid #FF968D 5px;padding: 20px 20px 30px 20px; font-size:1.2em;border-radius:10px;">
 $E_c = \frac{1}{2}mv^2$
 </div></div>
@@ -92,7 +92,7 @@ Exemples :
 
 Comment peut-on faire varier<br>l'énergie cinétique d'un système&nbsp;?
 
-<p class="fragment">Grâce au <span class="imp">travail d'une force</span>&nbsp;!</p>
+<p class="fragment fade-up">Grâce au <span class="imp">travail d'une force</span>&nbsp;!</p>
 
 ---
 
@@ -104,7 +104,7 @@ Comment peut-on faire varier<br>l'énergie cinétique d'un système&nbsp;?
 
 Pour modifier l'énergie cinétique d'un système,<br>il faut qu'au moins <span class="imp">une force travaille</span>.
 
-<p class="fragment">Le <span class="imp">travail d'une force $W$</span> est l'énergie<br>liée au déplacement d'une force. </p>
+<p class="fragment fade-up">Le <span class="imp">travail d'une force $W$</span> est l'énergie<br>liée au déplacement d'une force. </p>
 
 ---
 
@@ -115,7 +115,7 @@ Pour modifier l'énergie cinétique d'un système,<br>il faut qu'au moins <span 
 
 Mais seule la composante du déplacement parallèle<br>à la force contribue au travail (en prenant<br>ou donnant de l'énergie au système). 
 
-<p class="fragment">On ne peut donc pas simplement multiplier la force par le déplacement, il faut faire un <span class="imp">produit scalaire</span> qui permet de multiplier la force par la projection du vecteur déplacement sur la direction de la force.</p>
+<p class="fragment fade-up">On ne peut donc pas simplement multiplier la force par le déplacement, il faut faire un <span class="imp">produit scalaire</span> qui permet de multiplier la force par la projection du vecteur déplacement sur la direction de la force.</p>
 
 ---
 
@@ -125,7 +125,7 @@ Mais seule la composante du déplacement parallèle<br>à la force contribue au 
 
 Pour une force $\vec{F}$ constante<br>sur un déplacement entre les points A et B :
 
-<div class="imp fragment" style="display: flex;justify-content: center;">
+<div class="imp fragment fade-up" style="display: flex;justify-content: center;">
 <div style = "border:solid #FF968D 5px;padding: 20px 20px 30px 20px; font-size:1.0em;border-radius:10px;">
 $W_{\! AB}(\vec{F}) = \overrightarrow{F}\cdot\overrightarrow{AB} = F\times AB\times \cos(\alpha)$
 </div></div>
@@ -137,7 +137,7 @@ $W_{\! AB}(\vec{F}) = \overrightarrow{F}\cdot\overrightarrow{AB} = F\times AB\ti
 <li>$F$ en <span class="fragment imp">N</span></li>
 <li>$AB$ en <span class="fragment imp">m</span></li>
 </ul>
-<p class="fragment">
+<p class="fragment fade-up">
 On voit ainsi que $\pu{1 J} = \pu{1 N*m} $
 </p>
 
@@ -150,7 +150,7 @@ entre cette force et le déplacement<br>$\overrightarrow{AB}$.
 
 <ul>
 <li><span class="imp">Si $W>0$</span><br>$\Leftrightarrow \cos\alpha > 0$<br>$\Leftrightarrow$ force dans le sens du déplacement,<br>le travail est dit <span class="imp fragment">moteur</span></li>
-<li class="fragment"><span class="imp">Si $W<0$</span><br>$\Leftrightarrow \cos\alpha < 0$<br>$\Leftrightarrow$ force dans le sens opposé au déplacement,<br> le travail est dit <span class="imp fragment">résistant</span></li>
+<li class="fragment fade-up"><span class="imp">Si $W<0$</span><br>$\Leftrightarrow \cos\alpha < 0$<br>$\Leftrightarrow$ force dans le sens opposé au déplacement,<br> le travail est dit <span class="imp fragment">résistant</span></li>
 </ul>
 
 ---
@@ -159,9 +159,9 @@ Cas particuliers :
 
 La <span class="imp">réaction normale au support</span> (force du support sur le système en l'absence de frottement) est toujours perpendiculaire au déplacement. 
 
-<p class="fragment">Comme $\cos 90^\circ = $ <span class="imp fragment"> $\;0$</span>, son travail est donc <span class="imp fragment">nul.</span></p>
+<p class="fragment fade-up">Comme $\cos 90^\circ = $ <span class="imp fragment"> $\;0$</span>, son travail est donc <span class="imp fragment">nul.</span></p>
 
-<p class="fragment">On dit que <span class="imp fragment">la réaction normale ne travaille pas.</span></p>
+<p class="fragment fade-up">On dit que <span class="imp fragment">la réaction normale ne travaille pas.</span></p>
 
 ---
 
@@ -169,7 +169,7 @@ Le <span class="imp">poids</span> étant vertical, il ne travaille pas <br>si le
 
 <br>
 
-<p class="fragment">Et pour un déplacement entre<br>les points A et B d'altitudes $z_A$ et $z_B$ :</p>
+<p class="fragment fade-up">Et pour un déplacement entre<br>les points A et B d'altitudes $z_A$ et $z_B$ :</p>
 
 ---
 
@@ -212,7 +212,7 @@ $\Delta E_c = E_{cB} - E_{cA} = \sum W_{\!AB}(\vec{F})$
 
 <br>
 
-<p class="fragment">
+<p class="fragment fade-up">
 La variation d'énergie cinétique d'un système<br>entre un point A et un point B vaut la somme des travaux des forces extérieures sur  le déplacement<br>$\overrightarrow{AB}$.</p>
 
 ---
@@ -332,7 +332,7 @@ E_{cB}-E_{cA} = W_{\!AB}(\vec{N}) + W_{\! AB}(\vec{P}) + W_{\!AB}(\vec{F})
 $$
 </p>
 
-<p style="color:#009688" class="fragment">
+<p style="color:#009688" class="fragment fade-up">
 D'où
 $$
 -\pu{4E6} = 0 + \pu{8E6} - 500\times F
@@ -365,7 +365,7 @@ Pouvez-vous citer un exemple de force conservative ?
 
 Le <span class="imp">poids</span> est une <span class="imp">force conservative</span>.
 
-<p class="fragment">
+<p class="fragment fade-up">
 En effet, on l'a vu, le travail du poids ne dépend<br>que de la différence d'altitude $z_B-z_A$<br>(pas du tout des points intermédiaires).</p>
 
 
@@ -395,13 +395,13 @@ $E_{pp} = mgz$
 
 <br>
 
-<p class="fragment">Unités :</p>
+<p class="fragment fade-up">Unités :</p>
 
 <ul>
-<li class="fragment">$E_{pp}$ en <span class="fragment imp">$\pu{J}$</span></li>
-<li class="fragment">$m$ en <span class="fragment imp">$\pu{kg}$</span></li>
-<li class="fragment">$g$ en <span class="fragment imp">$\pu{N*kg-1}$</span></li>
-<li class="fragment">$z$ en <span class="fragment imp">$\pu{m}$</span></li>
+<li class="fragment fade-up">$E_{pp}$ en <span class="fragment imp">$\pu{J}$</span></li>
+<li class="fragment fade-up">$m$ en <span class="fragment imp">$\pu{kg}$</span></li>
+<li class="fragment fade-up">$g$ en <span class="fragment imp">$\pu{N*kg-1}$</span></li>
+<li class="fragment fade-up">$z$ en <span class="fragment imp">$\pu{m}$</span></li>
 </ul>
 
 
@@ -409,7 +409,7 @@ $E_{pp} = mgz$
 
 Une force dont le travail dépend du chemin suivi (et pas seulement des extrémités) est dite <span class="imp">non conservative</span>.
 
-<p class="fragment">
+<p class="fragment fade-up">
 C'est typiquement le cas <span class="fragment">des <span class="imp">forces de frottements</span>.</span>
 </p>
 
@@ -453,7 +453,7 @@ alors l'<span class="imp">énergie mécanique</span> du système <span class="im
 
 <br>
 
-<div class="imp fragment" style="display: flex;justify-content: center;">
+<div class="imp fragment fade-up" style="display: flex;justify-content: center;">
 <div style = "border:solid #FF968D 5px;padding: 20px 20px 30px 20px; font-size:1.2em;border-radius:10px;">
 $\Delta E_{m} = 0$
 </div></div>
@@ -465,7 +465,7 @@ $\Delta E_{m} = 0$
 
 ---
 
-<iframe width="720" height="405" src="https://www.youtube.com/embed/77ZF50ve6rs?si=SHsNs4PXod_RPG6l" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" style="border-radius:10px;" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+{{< youtube-slide id="77ZF50ve6rs" ratio="16x9" >}}
 
 ---
 
@@ -486,7 +486,7 @@ Quelle boule arrive en premier ?
 
 ---
 
-<iframe width="720" height="405" src="https://www.youtube.com/embed/88NZStgiIt0?si=M4-CaW5lwCyRgTHq&amp;start=190" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+{{< youtube-slide id="88NZStgiIt0" ratio="16x9" start="190" >}}
 
 ---
 
@@ -512,7 +512,7 @@ Que vaut la vitesse en D ? En E ? En B ? Et en C ?
 
 Les forces non conservatives comme les frottements dissipent l'énergie mécanique. 
 
-<p class="fragment">
+<p class="fragment fade-up">
 Mais celle-ci n'a pas disparu ;<br>elle se retrouve convertie sous forme thermique.
 </p>
 
@@ -522,7 +522,7 @@ Et la variation de l'énergie mécanique vaut donc<br>la somme des travaux des f
 
 <br>
 
-<div class="fragment imp" style="display: flex;justify-content: center;">
+<div class="fragment fade-up imp" style="display: flex;justify-content: center;">
 <div style = "border:solid #FF968D 5px;padding: 20px 20px 30px 20px; font-size:1.1em;border-radius:10px;">
 $\Delta E_{m} = E_{mB} - E_{mA} = \sum{W_{\!AB}(\vec{F}_{n.c.})}$
 </div></div>
@@ -607,15 +607,15 @@ On voit qu'il a encore de la marge. D'autant plus que le centre de gravité n'a 
 
 ---
 
-{{%youtube ivc3-Tt56Uo%}}
+{{< youtube-slide id="ivc3-Tt56Uo" ratio="16x9" >}}
 
 ---
 
-{{%youtube peCItLpo3f4%}}
+{{< youtube-slide id="peCItLpo3f4" ratio="16x9" >}}
 
 ---
 
-{{%youtube 3a2qOozWpr0%}}
+{{< youtube-slide id="3a2qOozWpr0" ratio="16x9" >}}
 
 {{%/section%}}
 

@@ -196,7 +196,7 @@ Au final on a un mouvement uniformément accéléré d'accélération g sin α
 
 ---
 
-<iframe width="800" height="450" src="https://www.youtube.com/embed/1svxk26qvtY?si=V8h1TzA2vYIMp1OM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+{{< youtube-slide id="1svxk26qvtY" ratio="16x9" >}}
 
 {{%/section%}}
 

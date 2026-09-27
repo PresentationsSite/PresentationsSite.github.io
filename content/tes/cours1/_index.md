@@ -41,7 +41,7 @@ padding-left: 1em;
 
 ---
 
-<iframe width="800" height="450" src="https://www.youtube.com/embed/S4O5voOCqAQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+{{< youtube-slide id="S4O5voOCqAQ" ratio="16x9" >}}
 
 ---
 
@@ -49,14 +49,14 @@ padding-left: 1em;
 Maintenir une puissance $P$ pendant un temps $t$ consomme l'énergie $E$ donnée par :
 
 
-<div class="fragment" style="display: flex;justify-content: center;">
+<div class="fragment fade-up" style="display: flex;justify-content: center;">
 <div style = "border:solid #FF968D 5px;width:min-content;padding: 20px 30px 20px 30px;border-radius:10px;">
 <span class="imp">$E = P\times t$</span>
 </div></div>
 
-<p class="fragment" style="font-weight:normal;color:#93a1a1">Si $P$ est en watts (W) et $t$ en secondes (s),<br>alors $E$ est en joules (J). Mais le plus souvent,<br>$P$ est en kW et $t$ en h et donc $E$ en kWh.</p>
+<p class="fragment fade-up" style="font-weight:normal;color:#93a1a1">Si $P$ est en watts (W) et $t$ en secondes (s),<br>alors $E$ est en joules (J). Mais le plus souvent,<br>$P$ est en kW et $t$ en h et donc $E$ en kWh.</p>
 
-<p class="fragment" style="font-weight:normal;color:#93a1a1">$\pu{1 kWh} = \pu{3,6 MJ}$</p>
+<p class="fragment fade-up" style="font-weight:normal;color:#93a1a1">$\pu{1 kWh} = \pu{3,6 MJ}$</p>
 
 ---
 
@@ -68,13 +68,13 @@ L'énergie est une monnaie d'échange qui peut être <span class="imp">convertie
 
 <p class="fragment fade-up"><span class="imp">l'énergie se conserve !</imp></p>
 
-<p class="fragment">
+<p class="fragment fade-up">
 <a href="https://phet.colorado.edu/sims/html/energy-forms-and-changes/latest/energy-forms-and-changes_fr.html">Une animation interactive pour l'illustrer</a>
 </p>
 
 ---
 
-<iframe width="800" height="450" src="https://www.youtube.com/embed/BKfufXnupMA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+{{< youtube-slide id="BKfufXnupMA" ratio="16x9" >}}
 
 ---
 
@@ -91,10 +91,10 @@ La <span class="imp">puissance</span> est le <span class="imp">taux de conversio
 En moyenne, un français consomme à tout moment environ <span class="imp">$\pu{1 kW}$</span> de puissance électrique.
 </div></div>
 
-<p class="fragment" style="font-weight:normal;color:#93a1a1">Cela donne un peu moins de $\pu{9 MWh}$<br>d'énergie électrique consommée sur une année.</p>
+<p class="fragment fade-up" style="font-weight:normal;color:#93a1a1">Cela donne un peu moins de $\pu{9 MWh}$<br>d'énergie électrique consommée sur une année.</p>
 
 
-<p class="fragment" style="font-weight:normal;color:#93a1a1">Comme on est seulement capable de maintenir en permanence environ $\pu{100 W}$ d'effort musculaire,<br>c'est comme si on était à tout moment<br>assisté par $10$ humains !</p>
+<p class="fragment fade-up" style="font-weight:normal;color:#93a1a1">Comme on est seulement capable de maintenir en permanence environ $\pu{100 W}$ d'effort musculaire,<br>c'est comme si on était à tout moment<br>assisté par $10$ humains !</p>
 
 
 {{%/section%}}
@@ -123,7 +123,7 @@ Le <span class="imp">rendement $\eta$</span> de la conversion est alors donné p
 
 <br>
 
-<div class="fragment" style="display: flex;justify-content: center;">
+<div class="fragment fade-up" style="display: flex;justify-content: center;">
 <div style = "border:solid #FF968D 5px;width:min-content;padding: 20px 30px 20px 30px;font-size:1.5em;border-radius:15px;">
 <span class="imp">$\eta = \frac{E_\text{utile}}{E_\text{absorbée}}=\frac{P_\text{utile}}{P_\text{absorbée}}$</span>
 </div></div>
@@ -132,7 +132,7 @@ Le <span class="imp">rendement $\eta$</span> de la conversion est alors donné p
 
 Lorsque l'énergie subit plusieurs conversions successives, le rendement total vaut <span class="fragment imp">le produit</span><br>des rendendements de chaque conversion&nbsp;:
 
-<div class="imp fragment">
+<div class="imp fragment fade-up">
 $$\eta = \eta_1\times\eta_2$$
 </div>
 
@@ -192,7 +192,7 @@ Si une centrale maintenait sa puissance nominale<br>(de $x$ $\pu{kW}$) toute l'a
 
 Mais en pratique, l'énergie produite $E_{\text{réelle}}$ est toujours moindre et on appelle <span class="imp">facteur de charge</span> le rapport :
 
-<div class="fragment" style="display: flex;justify-content: center;">
+<div class="fragment fade-up" style="display: flex;justify-content: center;">
 <div style = "border:solid #FF968D 5px;width:min-content;padding: 0px 50px 0px 50px;border-radius:15px;">
 $$\frac{E_{\text{réelle}}}{E_{\text{max}}}$$
 </div></div>

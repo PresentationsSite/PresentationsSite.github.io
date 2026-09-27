@@ -246,7 +246,7 @@ Qui est capable de toucher ses pieds<br>en ayant ses jambes contre un mur ?
 
 ---
 
-{{%youtube 2VpzHJ_R55I%}}
+{{< youtube-slide id="2VpzHJ_R55I" ratio="4x3" >}}
 
 ---
 

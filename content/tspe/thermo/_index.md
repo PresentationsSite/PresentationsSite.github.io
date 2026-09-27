@@ -140,11 +140,11 @@ $$PV = nRT$$
 <br>
 
 <ul>
-<li class="fragment">$P$ : pression (en <span class="fragment">$\color{#FFF056}\pu{Pa}$</span>)</li>
-<li class="fragment">$V$ : volume  (en <span class="fragment">$\color{#FFF056}\pu{m3}$</span>)</li>
-<li class="fragment">$n$ : quantité de matière  (en <span class="fragment">$\color{#FFF056}\pu{mol}$</span>)</li>
-<li class="fragment">$T$ : température  (en <span class="fragment">$\color{#FFF056}\pu{K}$</span>)</li>
-<li class="fragment">$R$ : constante des gaz parfaits<br>
+<li class="fragment fade-up">$P$ : pression (en <span class="fragment">$\color{#FFF056}\pu{Pa}$</span>)</li>
+<li class="fragment fade-up">$V$ : volume  (en <span class="fragment">$\color{#FFF056}\pu{m3}$</span>)</li>
+<li class="fragment fade-up">$n$ : quantité de matière  (en <span class="fragment">$\color{#FFF056}\pu{mol}$</span>)</li>
+<li class="fragment fade-up">$T$ : température  (en <span class="fragment">$\color{#FFF056}\pu{K}$</span>)</li>
+<li class="fragment fade-up">$R$ : constante des gaz parfaits<br>
 $R= 8,314$ <span class="fragment">$\color{#FFF056}\pu{Pa*m3*K-1*mol-1}$</span></li>
 </ul>
 
@@ -402,7 +402,7 @@ Il y a trois modes de transfert thermique :
 
 ---
 
-<iframe width="800" height="450" src="https://www.youtube.com/embed/LxJoLeeqk88" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+{{< youtube-slide id="LxJoLeeqk88" ratio="16x9" >}}
 
 ---
 
@@ -426,7 +426,7 @@ Aérogel de silice, polystyrène expansé, laine de roche, laine de verre, lièg
 
 ---
 
-<iframe width="800" height="450" src="https://www.youtube.com/embed/AeJ9q45PfD0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+{{< youtube-slide id="AeJ9q45PfD0" ratio="16x9" >}}
 
 ---
 
@@ -506,7 +506,7 @@ Space blanket en anglais. Développée par la NASA en 1964.
 Comment expliquer ce qu'on voit dans cette vidéo ?
 
 
-<iframe width="560" height="420" src="https://www.youtube.com/embed/Pp9Yax8UNoM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+{{< youtube-slide id="Pp9Yax8UNoM" ratio="4x3" >}}
 
 {{%note%}}
 Dans ce matériau très isolant, le flux thermique dû à la conduction thermique du centre vers les bords (en particulier les coins) n'arrive pas à compenser le flux thermique radiatif sortant. Résultat : les coins se refroidissent rapidement ($\approx\pu{35 ^\circ C}$) malgré que le centre soit encore à plus de ($\pu{1200 ^\circ C}$)&nbsp;!

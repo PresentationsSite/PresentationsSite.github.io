@@ -65,8 +65,8 @@ font-weight:normal;
 Quels indices expérimentaux témoignent-ils<br>de la nature ondulatoire d'un phénomène ?
 
 <ul>
-<li class="imp fragment">la diffraction</li>
-<li class="imp fragment">les interférences</li>
+<li class="imp fragment fade-up">la diffraction</li>
+<li class="imp fragment fade-up">les interférences</li>
 </ul>
 
 

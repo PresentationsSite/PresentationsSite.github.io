@@ -57,7 +57,7 @@ height: 100%;
 
 ---
 
-{{<youtube -OqPbuo1S_s>}}
+{{< youtube-slide id="-OqPbuo1S_s" ratio="16x9" >}}
 
 ---
 

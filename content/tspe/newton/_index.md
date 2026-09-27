@@ -86,7 +86,7 @@ On situera le point matériel au <span class="imp">centre de masse</span><br>du 
 
 ---
 
-<iframe width="800" height="450" src="https://www.youtube.com/embed/wV2UTkkQ0Fg?si=fOqNGooWsHn1QwRl&amp;start=15" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:15px;"></iframe>
+{{< youtube-slide id="wV2UTkkQ0Fg" ratio="16x9" start="15" >}}
 
 ---
 
@@ -164,7 +164,7 @@ $${\color{#FF968D}\sum \vec{F}_\mathrm{ext}} =  m\color{#FFF056}{\vec{a}}$$
 ---
 
 
-<iframe width="800" height="450" src="https://www.youtube.com/embed/sPZ2bjW53c8?si=DgySGmJWjYJU8tBo&amp;start=32" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:15px;"></iframe>
+{{< youtube-slide id="sPZ2bjW53c8" ratio="16x9" start="32" >}}
 
 
 ---
@@ -192,7 +192,7 @@ On appelle aussi la 2<sup>e</sup> loi de Newton, le <span class="imp">principe f
 
 ---
 
-<iframe width="800" height="450" src="https://www.youtube.com/embed/36keC5eDUWk?si=lc2e3qlt2ql_KEed&amp;start=80" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:15px;"></iframe>
+{{< youtube-slide id="36keC5eDUWk" ratio="16x9" start="80" >}}
 
 ---
 
@@ -210,7 +210,7 @@ Les trois lois forment ainsi un triptyque minimal : cadre, outil, symétrie.  Su
 
 ---
 
-<iframe width="800" height="450" src="https://www.youtube.com/embed/OnoNITE-CLc?si=0LBgaEIfp5CqrFYO&amp;start=80" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:15px;"></iframe>
+{{< youtube-slide id="OnoNITE-CLc" ratio="16x9" start="80" >}}
 
 {{%/section%}}
 

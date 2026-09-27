@@ -42,15 +42,15 @@ padding-left: 1em;
 
 Où sont les "minéraux" ?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-<p class="fragment">Ils sont dissous !</p>
+<p class="fragment fade-up">Ils sont dissous !</p>
 
 ---
 
 Une solution est un <b style="color:#FF8596">mélange homogène</b> obtenu<br>par <b style="color:#FF8596">dissolution</b> d'un <b style="color:#FFE46D">soluté</b> dans un <b style="color:#7CADED">solvant</b>.
 
-<p class="fragment">Le <b style="color:#7CADED">solvant</b> est l'espèce <b>ultra majoritaire</b><br>dans laquelle les <b style="color:#FFE46D">solutés</b> sont dissouts.</p>
+<p class="fragment fade-up">Le <b style="color:#7CADED">solvant</b> est l'espèce <b>ultra majoritaire</b><br>dans laquelle les <b style="color:#FFE46D">solutés</b> sont dissouts.</p>
 
-<p class="fragment">Si le <b style="color:#7CADED">solvant</b> est l'eau, on parle de <b style="color:#7CADED">solution aqueuse</b>.</p>
+<p class="fragment fade-up">Si le <b style="color:#7CADED">solvant</b> est l'eau, on parle de <b style="color:#7CADED">solution aqueuse</b>.</p>
 
 ---
 
@@ -69,7 +69,7 @@ Qu'est-ce qui change entre ces solutions ?
 <img src="/diffconc.png" style="box-shadow:none;background:none;border-radius:20px;">
 </div>
 
-<p class="fragment">Et qu'arrive-t-il à la dernière ?</p>
+<p class="fragment fade-up">Et qu'arrive-t-il à la dernière ?</p>
 
 
 
@@ -94,15 +94,15 @@ $$C_m = \frac{m_{soluté}}{V_{solution}}$$
 
 <br>
 
-<p class="fragment">Unité : <span class="fragment" style="font-weight:bold;color:#FF644E;">le g/L</span></p>
+<p class="fragment fade-up">Unité : <span class="fragment" style="font-weight:bold;color:#FF644E;">le g/L</span></p>
 
 ---
 
 Supposons que l'on connaisse la concentration en masse $C_m$ d'un soluté et le volume $V$ de la solution. 
 
-<p class="fragment">Comment obtenir la masse $m$ du soluté<br>présent en solution ?</p>
+<p class="fragment fade-up">Comment obtenir la masse $m$ du soluté<br>présent en solution ?</p>
 
-<div class="fragment" style="display: flex; justify-content: center; align-items: center; height: 100%;">
+<div class="fragment fade-up" style="display: flex; justify-content: center; align-items: center; height: 100%;">
 <div  style="border: solid 5px;padding:0px 50px 0px 50px">
 $$m = C_m \times V$$
 </div></div>
@@ -112,7 +112,7 @@ $$m = C_m \times V$$
 Et si on a la masse et la concentration,<br>comment obtenir le volume ?
 
 
-<div class="fragment" style="display: flex; justify-content: center; align-items: center; height: 100%;">
+<div class="fragment fade-up" style="display: flex; justify-content: center; align-items: center; height: 100%;">
 <div  style="border: solid 5px;padding:0px 50px 0px 50px">
 $$V = \frac{m}{C_m}$$
 </div></div>
@@ -129,7 +129,7 @@ Exemples :
 <div  style="color:#45B53C">
 $m = \pu{25 g}$ , $V= \pu{500 mL}$ , $C_m$ ?<br> <div>
 
-<div  class="fragment" style="color:#45B53C">
+<div  class="fragment fade-up" style="color:#45B53C">
 $$\begin{align}
 C_m &= \frac{m}{V}\\
 &=\frac{\pu{25 g}}{\pu{500 mL}}\\
@@ -148,7 +148,7 @@ C_m &= \frac{m}{V}\\
 
 <div   style="color:#45B53C">
 $V = \pu{50 m3}$ , $C_m= \pu{2,0 mg/L}$ , on cherche $m$.<br></div>
-<div  class="fragment" style="color:#45B53C">
+<div  class="fragment fade-up" style="color:#45B53C">
 $$\begin{align}
 C_m = \frac{m}{V} \Rightarrow m &= C_m\times V\\
 &=\pu{2,0 mg/L}\times\pu{50 m3}\\
@@ -168,7 +168,7 @@ C_m = \frac{m}{V} \Rightarrow m &= C_m\times V\\
 
 <div   style="color:#45B53C">
 $m = \pu{4,5 kg}$ , $C_m= \pu{9,0 g/L}$ , on cherche $V$.<br></div>
-<div  class="fragment" style="color:#45B53C">
+<div  class="fragment fade-up" style="color:#45B53C">
 $$\begin{align}
 C_m = \frac{m}{V} \Rightarrow V &= \frac{m}{C_m}\\
 &=\frac{\pu{4,5 kg}}{\pu{9,0 g/L}}\\
@@ -187,9 +187,9 @@ Une masse volumique est aussi une masse divisée<br>par un volume mais ce n'est 
 
 <br>
 
-<div class="fragment">
+<div class="fragment fade-up">
 Pour calculer la masse volumique d'une solution, quelle masse doit-on utiliser ?
-<p class="fragment" style="color:#FF8596">$m_{solution}$ <span class="fragment" style="color:#FF8596">et pas $m_{soluté}$ !</span></p>
+<p class="fragment fade-up" style="color:#FF8596">$m_{solution}$ <span class="fragment" style="color:#FF8596">et pas $m_{soluté}$ !</span></p>
 </div>
 
 ---
@@ -199,8 +199,8 @@ Comment faire pour augmenter une concentration ?  (deux solutions)
 <br>
 
 <ul class="imp">
-  <li class="fragment">on dissout plus de soluté</li><br>
-  <li class="fragment">on évapore une partie du solvant</li>
+  <li class="fragment fade-up">on dissout plus de soluté</li><br>
+  <li class="fragment fade-up">on évapore une partie du solvant</li>
 </ul>
 
 ---
@@ -218,9 +218,9 @@ Dans tous les bassins de la photo, la concentration<br>en masse du sel est la m�
 
 <b style="color:#FF8596">Concentration maximale d'un soluté</b> :<br>masse maximale d’une espèce chimique<br>qui peut être dissoute par litre de solution.
 
-<p class="fragment">La solution est alors dite <b style="color:#FF8596">saturée</b>. Si on ajoute encore du soluté, il se dépose au fond sans se dissoudre.</p>
+<p class="fragment fade-up">La solution est alors dite <b style="color:#FF8596">saturée</b>. Si on ajoute encore du soluté, il se dépose au fond sans se dissoudre.</p>
 
-<p class="fragment">Pour le sel, la concentration maximale<br>vaut 359 g/L dans une eau à 20°C.</p>
+<p class="fragment fade-up">Pour le sel, la concentration maximale<br>vaut 359 g/L dans une eau à 20°C.</p>
 
 
 ----
@@ -235,7 +235,7 @@ Est-il possible de dissoudre l'intégralité de l'aspirine&nbsp;?<br>
 On a $C_{max}= \frac{\pu{1,0 g}}{\pu{300 mL}} = \frac{\pu{1,0 g}}{\pu{0,300 L}} = \pu{3,3 g/L}$ ,
 $V = \pu{400 mL}$ et $m = \pu{1,20 g}$.</p>
 
-<div  class="fragment" style="color:#45B53C">
+<div  class="fragment fade-up" style="color:#45B53C">
 Si on dilue les 1,20 g dans les 400 mL,<br>on atteind une concentration $C$ valant :
 $$C =  \frac{\pu{1,2 g}}{\pu{400 mL}} =  \frac{\pu{1,2 g}}{\pu{0,400 L}} = \pu{3,0 g/L}$$
 $C≤ C_{max}$ $\Rightarrow$ toute l'aspirine peut être dissoute.
@@ -252,7 +252,7 @@ On a $C_{max}= \pu{3,3 g/L}$ et
 $V = \pu{400 mL}$.<br>
 On cherche $m_{max}$.</p>
 
-<div  class="fragment" style="color:#45B53C">
+<div  class="fragment fade-up" style="color:#45B53C">
 $$
 \begin{align}
 C_{max} =  \frac{m_{max}}{V} \rightarrow m_{max} &= C_{max}\times V\\
@@ -277,10 +277,10 @@ On peut dissoudre au maximum<br>1,3 g d'aspirine dans ce volume.
 Matériel :
 
 <ul class="imp">
-  <li class="fragment" style="color:#FF8596">balance</li>
-  <li class="fragment">sabot ou coupelle plastique</li>
-  <li class="fragment">pissette d'eau distillée</li>
-  <li class="fragment" style="color:#FF8596">fiole jaugée (+ bouchon)</li>
+  <li class="fragment fade-up" style="color:#FF8596">balance</li>
+  <li class="fragment fade-up">sabot ou coupelle plastique</li>
+  <li class="fragment fade-up">pissette d'eau distillée</li>
+  <li class="fragment fade-up" style="color:#FF8596">fiole jaugée (+ bouchon)</li>
 </ul>
 
 
@@ -292,7 +292,7 @@ Matériel :
 
 Penser à <b class="imp">faire la tare</b> avant<br>d'ajouter le soluté sur la balance.
 
-<p class="fragment">Lors du remplissage de la fiole, il faut que<br>le <b class="imp">bas du ménisque</b> affleure le <b class="imp">trait de jauge</b>.</p>
+<p class="fragment fade-up">Lors du remplissage de la fiole, il faut que<br>le <b class="imp">bas du ménisque</b> affleure le <b class="imp">trait de jauge</b>.</p>
 
 <img class="fragment" src="/menisque.jpeg" style="border-radius:10px;">
 
@@ -300,13 +300,13 @@ Penser à <b class="imp">faire la tare</b> avant<br>d'ajouter le soluté sur la 
 
 <i class="fas fa-exclamation-triangle" style="color:#E22146"></i> <i class="fas fa-exclamation-triangle" style="color:#E22146"></i> <i class="fas fa-exclamation-triangle" style="color:#E22146"></i><br> Si on dépasse un peu le trait de jauge<br>lors du remplissage de la fiole,<br>pourquoi ne peut-on pas retirer<br>le trop plein avec une pipette ? 
 
-<p class="imp fragment">Du soluté est dissous dedans !</p>
+<p class="imp fragment fade-up">Du soluté est dissous dedans !</p>
 
 ---
 
 Et pourquoi récupère-t-on l'eau de rinçage<br>de la coupelle ou du sabot dans la fiole ?
 
-<p class="imp fragment">Du soluté est dissous dedans !</p>
+<p class="imp fragment fade-up">Du soluté est dissous dedans !</p>
 
 {{% /section %}}
 
@@ -314,7 +314,7 @@ Et pourquoi récupère-t-on l'eau de rinçage<br>de la coupelle ou du sabot dans
 
 Comment faire pour <span class="imp">diminuer<br>la concentration d'une solution</span> ?
 
-<p class="fragment">On <span = class="imp">ajoute du solvant</span> = on <span = class="imp">dilue</span>.</p>
+<p class="fragment fade-up">On <span = class="imp">ajoute du solvant</span> = on <span = class="imp">dilue</span>.</p>
 
 ---
 
@@ -328,9 +328,9 @@ Comment faire pour <span class="imp">diminuer<br>la concentration d'une solution
 Matériel :
 
 <ul class="imp">
-  <li class="fragment" style="color:#FF8596">pipette jaugée + propipette (poire à pipetter)</li>
-  <li class="fragment" style="color:#FF8596">fiole jaugée + bouchon</li>
-  <li class="fragment">pissette d'eau distillée</li>
+  <li class="fragment fade-up" style="color:#FF8596">pipette jaugée + propipette (poire à pipetter)</li>
+  <li class="fragment fade-up" style="color:#FF8596">fiole jaugée + bouchon</li>
+  <li class="fragment fade-up">pissette d'eau distillée</li>
 </ul>
 
 
@@ -413,10 +413,10 @@ On veut obtenir 250 mL d'une solution diluée 5 fois<br>($F=5$), quel matériel 
 
 <div   style="color:#45B53C">
 $V_{fille} = \pu{250 mL}$ , $F = 5$<br></div>
-<div  class="fragment" style="color:#45B53C">
+<div  class="fragment fade-up" style="color:#45B53C">
 $$\Rightarrow V_{mère}=\frac{V_{fille}}{F}=\frac{\pu{250 mL}}{5} =\pu{50 mL}$$
 <div>
-<p class="fragment">Il faut donc une <u>pipette jaugée de 50 mL</u><br>et une <u>fiole jaugée de 250 mL</u>.<p>
+<p class="fragment fade-up">Il faut donc une <u>pipette jaugée de 50 mL</u><br>et une <u>fiole jaugée de 250 mL</u>.<p>
 
 <ul style="color:#45B53C">
 <li class="fragment fade-up">On prélève la solution mère avec la pipette,</li> 

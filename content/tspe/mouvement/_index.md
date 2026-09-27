@@ -383,17 +383,13 @@ La <span class="imp">norme</span> $a$(t) du vecteur accélération vaut :
 ---
 
 
-<div style="position:relative;margin:auto;width:800px;max-width:100%;">
-<iframe width="800" height="450" src="https://www.youtube-nocookie.com/embed/Ooe94mPwXEY?si=vT3LiuPpVc0f8KOk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
-</div>
+{{< youtube-slide id="Ooe94mPwXEY" ratio="16x9" >}}
 
 Jusqu'à 3'22'' (la méthode d'Euler est introduite après, utile pour le supérieur mais pas au programme de Tspé)
 
 ---
 
-<div style="position:relative;margin:auto;width:800px;max-width:100%;">
-<iframe width="800" height="450" src="https://www.youtube-nocookie.com/embed/9W6zhF1cdso?si=yDmqcv_dHdqQ47FI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
-</div>
+{{< youtube-slide id="9W6zhF1cdso" ratio="16x9" >}}
 
 Jusqu'à 4'51'' (mouvement circulaire uniforme décrit dans un repère orthonormé fixe = pas au programme)
 

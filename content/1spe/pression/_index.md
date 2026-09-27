@@ -82,9 +82,9 @@ Fluides = <span class="fragment imp">{liquides,gaz}</span>
 3 grandeurs permettent de décrire un fluide :
 
 <ul>
-<li class="fragment">la <b style="color:#FEAE00">masse volumique</b></li>
-<li class="fragment">la <b style="color:#FF968D">température</b></li>
-<li class="fragment">la <b style="color:#61D836">pression</b></li>
+<li class="fragment fade-up">la <b style="color:#FEAE00">masse volumique</b></li>
+<li class="fragment fade-up">la <b style="color:#FF968D">température</b></li>
+<li class="fragment fade-up">la <b style="color:#61D836">pression</b></li>
 
 ---
 
@@ -92,7 +92,7 @@ Fluides = <span class="fragment imp">{liquides,gaz}</span>
 
 Elle traduit à quel point les entités qui constituent<br>le fluide sont rapprochées et lourdes.
 
-<p class="fragment">ODG qu'il est bon d'avoir en tête :<br>
+<p class="fragment fade-up">ODG qu'il est bon d'avoir en tête :<br>
 Combien de fois approximativement la densité d'un liquide est-elle plus grande que celle d'un gaz ?
 </p>
 
@@ -102,7 +102,7 @@ Combien de fois approximativement la densité d'un liquide est-elle plus grande 
 
 Elle traduit l'agitation thermique des entités.
 
-<p class="fragment">Les molécules de diazote de l'air ont une vitesse moyenne d'environ $\pu{470 m*s-1}$ à 20°C<br>
+<p class="fragment fade-up">Les molécules de diazote de l'air ont une vitesse moyenne d'environ $\pu{470 m*s-1}$ à 20°C<br>
 et presque $\pu{980 m*s-1}$ à 1000°C.</p>
 
 ---
@@ -111,7 +111,7 @@ et presque $\pu{980 m*s-1}$ à 1000°C.</p>
 
 Elle traduit les chocs des entités sur une paroi.
 
-<p class="fragment">Sur $\pu{1 cm2}$ de vitre, chaque seconde c'est environ $\pu{2E23}$ molécules d'air qui viennent taper !</p>
+<p class="fragment fade-up">Sur $\pu{1 cm2}$ de vitre, chaque seconde c'est environ $\pu{2E23}$ molécules d'air qui viennent taper !</p>
 
 
 {{%/section%}}
@@ -150,11 +150,11 @@ Un fluide exerce sur une surface une action modélisée par une <span class="imp
 Le coefficient de proportionnalité entre la valeur de<br>la force pressante et la surface est appelée <span class="imp">pression</span>.<br>
 La pression est donc une force par unité de surface.
 
-<p class="fragment">
+<p class="fragment fade-up">
 Unité : <span class="fragment imp">$\pu{N*m-2}$</span>
 </p>
 
-<p class="fragment"><span class="imp">$\pu{1 Pa}$</span> $\;= \pu{1 N*m-2}$<br>
+<p class="fragment fade-up"><span class="imp">$\pu{1 Pa}$</span> $\;= \pu{1 N*m-2}$<br>
 <span class="fragment">$\pu{1 bar} = \pu{1E5 Pa}$</span><br>
 <span class="fragment">$\pu{1 atm} = \pu{1013 hPa} = $</span><span class="fragment">$\pu{1,013E5 Pa}=\pu{1,013 bar}$</span>
 </p> 
@@ -168,9 +168,9 @@ Unité : <span class="fragment imp">$\pu{N*m-2}$</span>
 <br>
 
 <ul>
-<li class="fragment">$F$ en N</li>
-<li class="fragment">$P$ en Pa</li>
-<li class="fragment">$S$ en $\pu{m^2}$</li>
+<li class="fragment fade-up">$F$ en N</li>
+<li class="fragment fade-up">$P$ en Pa</li>
+<li class="fragment fade-up">$S$ en $\pu{m^2}$</li>
 </ul>
 
 ---
@@ -179,7 +179,7 @@ La force pressante exercée par l'air à la <span class="imp">pression atmosphé
 
 ---
 
-{{< youtube JsoE4F2Pb20>}}
+{{< youtube-slide id="JsoE4F2Pb20" ratio="4x3" >}}
 
 {{%/section%}}
 
@@ -268,7 +268,7 @@ $$P_1 V_1 = P_2 V_2$$
 
 ---
 
-{{<youtube EkDhlzA-lwI>}}
+{{< youtube-slide id="EkDhlzA-lwI" ratio="16x9" >}}
 
 {{%note%}}
 Quelle est l'erreur à 3'23'' ?
@@ -276,7 +276,7 @@ Quelle est l'erreur à 3'23'' ?
 
 ---
 
-{{<youtube GgBE8_SyQCU>}}
+{{< youtube-slide id="GgBE8_SyQCU" ratio="4x3" >}}
 
 ---
 
@@ -286,13 +286,13 @@ Comment évolue la pression le long du tube ?
 
 ---
 
-{{<youtube K5g6P8-GmBg>}}
+{{< youtube-slide id="K5g6P8-GmBg" ratio="16x9" >}}
 
 ---
 
 Dans un fluide, du fait de la gravité,<br>plus on s'enfonce, plus la pression est grande.
 
-<p class="fragment">Et si le fluide est <u>incompressible</u>,<br>on a <span class="imp">proportionnalité<br>entre variation d'altitude<br>et variation de pression</span>.</p>
+<p class="fragment fade-up">Et si le fluide est <u>incompressible</u>,<br>on a <span class="imp">proportionnalité<br>entre variation d'altitude<br>et variation de pression</span>.</p>
 
 
 {{%note%}}
@@ -311,7 +311,7 @@ C'est la loi fondamentale de la statique des fluides :
 $$P_2 - P_1 = \rho g (z_1 - z_2)$$
 </div>
 
-<p class="fragment">
+<p class="fragment fade-up">
 ⚠️ Attention à l'ordre inversé<br>entre la pression et l'altitude
 </p>
 
@@ -320,17 +320,17 @@ $$P_2 - P_1 = \rho g (z_1 - z_2)$$
 Constantes 
 
 <ul>
-<li class="fragment">$g$ est la pesanteur terrestre (en $\pu{N*kg-1}$ ou $\pu{m*s-2}$)</li>
-<li class="fragment">$\rho$ est la masse volumique du fluide (en <span class="imp fragment">$\pu{kg*m-3}$</span>)<br>(fluide incompressible $\Leftrightarrow$ $\rho=cste$)</li>
+<li class="fragment fade-up">$g$ est la pesanteur terrestre (en $\pu{N*kg-1}$ ou $\pu{m*s-2}$)</li>
+<li class="fragment fade-up">$\rho$ est la masse volumique du fluide (en <span class="imp fragment">$\pu{kg*m-3}$</span>)<br>(fluide incompressible $\Leftrightarrow$ $\rho=cste$)</li>
 </ul>
 
-<p class="fragment">
+<p class="fragment fade-up">
 Variables :
 </p>
 
 <ul>
-<li class="fragment">Pression $P$ en <span class="imp fragment">$\pu{Pa}$</span></li>
-<li class="fragment">Altitude $z$ en <span class="imp fragment">$\pu{m}$</span></li>
+<li class="fragment fade-up">Pression $P$ en <span class="imp fragment">$\pu{Pa}$</span></li>
+<li class="fragment fade-up">Altitude $z$ en <span class="imp fragment">$\pu{m}$</span></li>
 </ul>
 
 ---
@@ -347,12 +347,12 @@ Comment expliquer alors que des arbres bien plus grands transpirent l'eau du sol
 
 ---
 
-{{<youtube EV0E3pNkiDI>}}
+{{< youtube-slide id="EV0E3pNkiDI" ratio="16x9" >}}
 
 
 ---
 
-{{< youtube -Zq_fmPz9IU >}}
+{{< youtube-slide id="-Zq_fmPz9IU" ratio="16x9" >}}
 
 ---
 

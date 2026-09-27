@@ -88,7 +88,7 @@ Relation de conjugaison d'une lentille mince<br>(ou relation de Descartes)
 
 <br>
 
-<div class="fragment" style="background-color:#FF644E;padding:5px 50px 5px 50px;width:fit-content;margin-right:auto;margin-left:auto;color:white;border-radius:10px;">
+<div class="fragment fade-up" style="background-color:#FF644E;padding:5px 50px 5px 50px;width:fit-content;margin-right:auto;margin-left:auto;color:white;border-radius:10px;">
 $$\frac{1}{\overline{OA'}}-\frac{1}{\overline{OA}}=\frac{1}{f'}$$
 </div>
 
@@ -110,7 +110,7 @@ Définition de l'agrandissement algébrique $\gamma$ :
 
 <br>
 
-<div class="fragment" style="background-color:#FF644E;padding:5px 50px 5px 50px;width:fit-content;margin-right:auto;margin-left:auto;color:white;border-radius:10px;">
+<div class="fragment fade-up" style="background-color:#FF644E;padding:5px 50px 5px 50px;width:fit-content;margin-right:auto;margin-left:auto;color:white;border-radius:10px;">
 $$\gamma=\frac{\overline{A'B'}}{\overline{AB}}$$
 </div>
 
@@ -129,7 +129,7 @@ Le théorème de Thalès permet d'obtenir une formule ne dépendant plus des tai
 
 <br>
 
-<div class="fragment" style="background-color:#0076BA;padding:5px 50px 5px 50px;width:fit-content;margin-right:auto;margin-left:auto;color:white;border-radius:10px;">
+<div class="fragment fade-up" style="background-color:#0076BA;padding:5px 50px 5px 50px;width:fit-content;margin-right:auto;margin-left:auto;color:white;border-radius:10px;">
 $$\gamma=\frac{\overline{OA'}}{\overline{OA}}$$
 </div>
 
@@ -159,7 +159,7 @@ $$\gamma=\frac{\overline{OA'}}{\overline{OA}}$$
 <p> si<br>$-f' ≤ \overline{OA} ≤ 0$<br>(A entre F et O)</p>
 
 
-<p class="fragment">alors<br>$\overline{OA'} ≤ 0$ et $\gamma≥1$<br>L'image est <b style="color:#FF95CA">virtuelle</b>, <b style="color:#56C1FF">droite</b> et <b style="color:#88FA4E">agrandie</b></p>
+<p class="fragment fade-up">alors<br>$\overline{OA'} ≤ 0$ et $\gamma≥1$<br>L'image est <b style="color:#FF95CA">virtuelle</b>, <b style="color:#56C1FF">droite</b> et <b style="color:#88FA4E">agrandie</b></p>
 
 ---
 
@@ -179,7 +179,7 @@ $$\gamma=\frac{\overline{OA'}}{\overline{OA}}$$
 <p> si<br>$-2f' ≤ \overline{OA} ≤ - f'$</p>
 
 
-<p  class="fragment">alors<br>$\overline{OA'} ≥ 2f'$ et $\gamma≤-1$<br>L'image est <b style="color:#FF95CA">réelle</b>, <b style="color:#56C1FF">renversée</b> et <b style="color:#88FA4E">agrandie</b></p>
+<p  class="fragment fade-up">alors<br>$\overline{OA'} ≥ 2f'$ et $\gamma≤-1$<br>L'image est <b style="color:#FF95CA">réelle</b>, <b style="color:#56C1FF">renversée</b> et <b style="color:#88FA4E">agrandie</b></p>
 
 ---
 
@@ -199,7 +199,7 @@ $$\gamma=\frac{\overline{OA'}}{\overline{OA}}$$
 <p> si<br>$\overline{OA} ≤ - 2f'$</p>
 
 
-<p class="fragment">alors<br>$f' ≤ \overline{OA'} ≤ 2f'$ et $-1≤\gamma≤0$<br>L'image est <b style="color:#FF95CA">réelle</b>, <b style="color:#56C1FF">renversée</b> et <b style="color:#88FA4E">réduite</b></p>
+<p class="fragment fade-up">alors<br>$f' ≤ \overline{OA'} ≤ 2f'$ et $-1≤\gamma≤0$<br>L'image est <b style="color:#FF95CA">réelle</b>, <b style="color:#56C1FF">renversée</b> et <b style="color:#88FA4E">réduite</b></p>
 
 {{%/section%}}
 

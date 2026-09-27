@@ -86,7 +86,7 @@ Grâce à la fameuse formule d'Einstein<br>$E=mc^2$ qui lie la masse à l'énerg
 
 Dans l’espace, deux corps peuvent<br>échanger de l’énergie à distance<br>via un transfert thermique radiatif.
 
-<p class="fragment">Le corps émet alors un rayonnement électromagnétique lié à sa température (rayonnement de <b>corps noir</b>).</p>
+<p class="fragment fade-up">Le corps émet alors un rayonnement électromagnétique lié à sa température (rayonnement de <b>corps noir</b>).</p>
 
 
 ---
@@ -151,7 +151,7 @@ $$T(\text{en K}) = \frac{2,89\times10^6}{\lambda_{max}(\text{en nm})}$$
 
 Avec sa température de surface de $\pu{5778 K}$,<br>le spectre du Soleil est centré<br>sur le rayonnement visible.
 
-<p class="fragment">Et la Terre rayonne dans l'infrarouge, à une longueur d'onde maximale d'environ 10 μm.</p>
+<p class="fragment fade-up">Et la Terre rayonne dans l'infrarouge, à une longueur d'onde maximale d'environ 10 μm.</p>
 
 
 ---
@@ -221,7 +221,7 @@ On apprend plein de choses en analysant la lumière des étoiles :
 
 ---
 
-{{%youtube B-oZYm3L1JE%}}
+{{< youtube-slide id="B-oZYm3L1JE" ratio="16x9" >}}
 
 {{% /section %}}
 
@@ -317,7 +317,7 @@ Le rayonnement solaire ne touche pas aussi efficacement toute la surface terrest
 
 Sans surprise, il y a un maximum d'énergie reçue au niveau de l'équateur et un minimum<br>au niveau des pôles.
 
-<p class="fragment">Les températures moyennes au sol suivent logiquement (mais pas parfaitement)<br>ce gradient de l'équateur aux pôles.</p>
+<p class="fragment fade-up">Les températures moyennes au sol suivent logiquement (mais pas parfaitement)<br>ce gradient de l'équateur aux pôles.</p>
 
 ---
 
@@ -336,7 +336,7 @@ Regardons maintenant comment évolue l'irradiation  au cours de l'année.
 
 Comment expliquer ces variations saisonnières ?
 
-<p class="fragment"> C'est là que l'inclinaison de l'axe de rotation<br>de la Terre entre en jeu.</p>
+<p class="fragment fade-up"> C'est là que l'inclinaison de l'axe de rotation<br>de la Terre entre en jeu.</p>
 
 
 ---
@@ -364,12 +364,12 @@ L'**élévation** (ou hauteur)<br>du Soleil est l'angle <br>(compris entre 0° e
 
 Au cours d'une journée, l'élévation du Soleil<br>est bien sûr maximale à <span class="fragment" style="font-weight:normal">midi</span>.
 
-<p class="fragment"> On parle ici du midi solaire (moment où le Soleil<br>est à son zénith) qui peut être décalé<br>par rapport au midi administratif.</p>
+<p class="fragment fade-up"> On parle ici du midi solaire (moment où le Soleil<br>est à son zénith) qui peut être décalé<br>par rapport au midi administratif.</p>
 
 ---
 
 Au cours de l'année, l'élévation du Soleil<br>est maximale dans l'hémisphère Nord le jour<br><span class="fragment" style="font-weight:normal">du <span class="imp">solstice d'été</span> (autour du 21 juin).</span>
-<p class="fragment">Et minimale le jour <span class="fragment" style="font-weight:normal">du <span class="imp">solstice d'hiver</span><br>(autour du 21 décembre).</span></p>
+<p class="fragment fade-up">Et minimale le jour <span class="fragment" style="font-weight:normal">du <span class="imp">solstice d'hiver</span><br>(autour du 21 décembre).</span></p>
 
 ---
 
@@ -446,7 +446,7 @@ Grâce à sa couverture nuageuse, l'albédo de la Terre est relativement élevé
 
 La Terre étant chauffée par le Soleil, elle émet, comme on l'a vu, un rayonnement de corps noir déterminé par sa température<br>de surface moyenne.
 
-<p class="fragment">
+<p class="fragment fade-up">
 Ce rayonnement est situé<br>dans <span class="fragment">l'infrarouge</span><br>(autour de 10 μm).
 </p>
 
@@ -492,11 +492,11 @@ Les gaz à effet de serre renvoient vers la surface une partie du rayonnement in
 
 Si la quantité de gaz à effet de serre augmente,<br>une partie du budget radiatif est déséquilibré<br>(il y a plus d'énergie entrante que sortante).<br>On parle de <span>forçage radiatif</span>.
 
-<p class="fragment">La température de surface augmente alors (entraînant un plus fort flux sortant)<br>jusqu'à ce que l'équilibre soit rétabli.</p>
+<p class="fragment fade-up">La température de surface augmente alors (entraînant un plus fort flux sortant)<br>jusqu'à ce que l'équilibre soit rétabli.</p>
 
 ---
 
-<iframe width="800" height="450" src="https://www.youtube.com/embed/ewc8FBtEKPs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+{{< youtube-slide id="ewc8FBtEKPs" ratio="16x9" >}}
 
 
 {{% /section %}}

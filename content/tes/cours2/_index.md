@@ -57,7 +57,7 @@ En 1820, Œrsted découvre qu'un courant électrique peut mettre en mouvement un
 
 ---
 
-<iframe width="800" height="450" src="https://www.youtube.com/embed/n7EWhEYOa0o" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+{{< youtube-slide id="n7EWhEYOa0o" ratio="16x9" >}}
 
 ---
 
@@ -77,7 +77,7 @@ En 1831, <span class="imp">Michael Faraday</span> met en évidence<br>le phénom
 
 ---
 
-<iframe width="800" height="450" src="https://www.youtube.com/embed/hajIIGHPeuU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+{{< youtube-slide id="hajIIGHPeuU" ratio="16x9" >}}
 
 
 ---
@@ -86,7 +86,7 @@ En 1831, <span class="imp">Michael Faraday</span> met en évidence<br>le phénom
 
 <br>
 
-<p class="fragment">Il doit varier.</p>
+<p class="fragment fade-up">Il doit varier.</p>
 
 ---
 
@@ -94,7 +94,7 @@ Comment un alternateur<br>applique-t-il cette contrainte ?
 
 <br>
 
-<p class="fragment">En faisant tourner des aimants.</p>
+<p class="fragment fade-up">En faisant tourner des aimants.</p>
 
 ---
 
@@ -102,7 +102,7 @@ Quelle particularité a<br>le courant électrique ainsi créé ?
 
 <br>
 
-<p class="fragment">Il est alternatif.</p>
+<p class="fragment fade-up">Il est alternatif.</p>
 
 ---
 
@@ -117,7 +117,7 @@ Comment appelle-t-on le dispositif permettant<br>de recueillir l'énergie mécan
 
 <br>
 
-<p class="fragment">Une <b>turbine</b></p>
+<p class="fragment fade-up">Une <b>turbine</b></p>
 
 
 ---
@@ -163,7 +163,7 @@ Le rendement d'un alternateur dépend de sa masse : plus il est gros, plus il s'
 
 ---
 
-<iframe width="800" height="450" src="https://www.youtube.com/embed/EWLgeBVY-08" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+{{< youtube-slide id="EWLgeBVY-08" ratio="16x9" >}}
 
 
 
@@ -181,13 +181,13 @@ Les cellules photovoltaïques sont faites<br>d'un <span class="imp">matériau se
 
 ---
 
-<iframe width="800" height="450" src="https://www.youtube.com/embed/23i-_v_tWTA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+{{< youtube-slide id="23i-_v_tWTA" ratio="16x9" >}}
 
 ---
 
 Pour qu'un matériau semi-conducteur convertisse efficacement l'énergie solaire, il faut que son spectre d'absorption recouvre le mieux possible<br>le spectre reçu du Soleil.
 
-<p class="fragment">Donc dans l'idéal, la longueur d'onde correspondant<br>à l'énergie du<span class="imp"> gap</span> du semi-conducteur<br>doit être dans l'infrarouge.</p>
+<p class="fragment fade-up">Donc dans l'idéal, la longueur d'onde correspondant<br>à l'énergie du<span class="imp"> gap</span> du semi-conducteur<br>doit être dans l'infrarouge.</p>
 
 ---
 
@@ -219,11 +219,11 @@ Remarques :
 
 <ul>
 
-<li class="fragment" style="color:#96A1A1;font-weight:normal;">le <span class="imp">rendement</span> d'une cellule photovoltaïque est globalement <span class="imp">faible</span> (< 25%).</li>
+<li class="fragment fade-up" style="color:#96A1A1;font-weight:normal;">le <span class="imp">rendement</span> d'une cellule photovoltaïque est globalement <span class="imp">faible</span> (< 25%).</li>
 
 <br>
 
-<li class="fragment" style="color:#96A1A1;font-weight:normal;">le <span class="imp">courant</span> produit par une cellule photovoltaïque<br>est <span class="imp">continu</span>. Il faut le convertir en courant alternatif grâce à un onduleur avant de l'envoyer dans le réseau.</li>
+<li class="fragment fade-up" style="color:#96A1A1;font-weight:normal;">le <span class="imp">courant</span> produit par une cellule photovoltaïque<br>est <span class="imp">continu</span>. Il faut le convertir en courant alternatif grâce à un onduleur avant de l'envoyer dans le réseau.</li>
 
 </ul>
 

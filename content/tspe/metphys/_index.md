@@ -163,7 +163,7 @@ Et pour chaque résonance, on obtient un creux dans le spectre de transmittance 
 
 ---
 
-<iframe width="640" height="480" src="https://www.youtube.com/embed/qFsmnTmS2sg?si=9tXm4fZgbhK2kECD&amp;start=67" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+{{< youtube-slide id="qFsmnTmS2sg" ratio="4x3" start="67" >}}
 
 
 
@@ -174,12 +174,12 @@ Lien vers la vidéo : https://archive.org/details/vibration_of_molecules
 
 ---
 
-<iframe width="640" height="480" src="https://www.youtube.com/embed/DDTIJgIh86E" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+{{< youtube-slide id="DDTIJgIh86E" ratio="4x3" >}}
 
 
 ---
 
-<iframe width="640" height="480" src="https://www.youtube.com/embed/U0Hu3-J0igE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+{{< youtube-slide id="U0Hu3-J0igE" ratio="16x9" >}}
 
 
 ---
@@ -253,7 +253,7 @@ Pour une sensibilité maximale et se prémunir au mieux de l'absorbance d'autres
 
 Les mesures se font au spectrophotomètre :
 
-<iframe width="800" height="450" src="https://www.youtube.com/embed/aTcJy2S1eCs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+{{< youtube-slide id="aTcJy2S1eCs" ratio="16x9" >}}
 
 
 ---
@@ -464,9 +464,9 @@ $\ce{[Fe^3+]}=$<span class="fragment">$\\;{\color{#FFF056}C}$</span>
 <br>
 $\ce{[C\ell^-]}=$<span class="fragment">$\\;3\times{\color{#FFF056} C}$</span>
 
-<div class="fragment">
+<div class="fragment fade-up">
 Et d'après la loi de Kohlrausch :<br>
-<div class="fragment">
+<div class="fragment fade-up">
 
 $
 \begin{aligned}
@@ -478,7 +478,7 @@ $
 </div>
 </div>
 
-<p class="fragment">
+<p class="fragment fade-up">
 Si la loi s'applique, on doit obtenir une <span style="color:#FFF056 ;">conductivité proportionnelle à la concentration</span> apportée.
 </p>
 
@@ -487,9 +487,9 @@ Si la loi s'applique, on doit obtenir une <span style="color:#FFF056 ;">conducti
 Le protocole du dosage est toujours le même :
 
 <ul>
-<li class="fragment">on réalise une <b style="color:#FFF056">gamme étalon</b> en diluant une solution contenant le composé ionique présent dans la solution à doser.</li>
-<li class="fragment">on mesure les conductivités des solutions étalons<br>et on trace la <b style="color:#FFF056">courbe d'étalonnage</b>.</li>
-<li class="fragment">on mesure la conductivité de la solution à doser<br>et on détermine sa concentration grâce à la courbe.</li>
+<li class="fragment fade-up">on réalise une <b style="color:#FFF056">gamme étalon</b> en diluant une solution contenant le composé ionique présent dans la solution à doser.</li>
+<li class="fragment fade-up">on mesure les conductivités des solutions étalons<br>et on trace la <b style="color:#FFF056">courbe d'étalonnage</b>.</li>
+<li class="fragment fade-up">on mesure la conductivité de la solution à doser<br>et on détermine sa concentration grâce à la courbe.</li>
 </ul>
 
 
@@ -505,13 +505,13 @@ Le protocole du dosage est toujours le même :
 
 Loi de Mariotte :
 
-<p class="fragment">Le produit de la pression d'un gaz par son volume<br><span class="imp">à température fixée</span> est une constante.</p>
+<p class="fragment fade-up">Le produit de la pression d'un gaz par son volume<br><span class="imp">à température fixée</span> est une constante.</p>
 
-<div class="fragment">
+<div class="fragment fade-up">
 $$PV = C(T)$$
 </div>
 
-<p class="fragment">On va maintenant généraliser cette loi en explicitant cette constante dépendant de la température.</p>
+<p class="fragment fade-up">On va maintenant généraliser cette loi en explicitant cette constante dépendant de la température.</p>
 
 ---
 
@@ -536,11 +536,11 @@ $$PV = nRT$$
 <br>
 
 <ul>
-<li class="fragment">$P$ : pression (en <span class="fragment">$\color{#FFF056}\pu{Pa}$</span>)</li>
-<li class="fragment">$V$ : volume  (en <span class="fragment">$\color{#FFF056}\pu{m3}$</span>)</li>
-<li class="fragment">$n$ : quantité de matière  (en <span class="fragment">$\color{#FFF056}\pu{mol}$</span>)</li>
-<li class="fragment">$T$ : température  (en <span class="fragment">$\color{#FFF056}\pu{K}$</span>)</li>
-<li class="fragment">$R$ : constante des gaz parfaits<br>
+<li class="fragment fade-up">$P$ : pression (en <span class="fragment">$\color{#FFF056}\pu{Pa}$</span>)</li>
+<li class="fragment fade-up">$V$ : volume  (en <span class="fragment">$\color{#FFF056}\pu{m3}$</span>)</li>
+<li class="fragment fade-up">$n$ : quantité de matière  (en <span class="fragment">$\color{#FFF056}\pu{mol}$</span>)</li>
+<li class="fragment fade-up">$T$ : température  (en <span class="fragment">$\color{#FFF056}\pu{K}$</span>)</li>
+<li class="fragment fade-up">$R$ : constante des gaz parfaits<br>
 $R= 8,314$ <span class="fragment">$\color{#FFF056}\pu{Pa*m3*K-1*mol-1}$</span></li>
 </ul>
 
@@ -560,7 +560,7 @@ La loi des gaz parfaits permet donc de déterminer<br>la quantité de matière d
 
 <br>
 
-<p class="fragment" style="color:#56C1FF;font-size:1.2em;">
+<p class="fragment fade-up" style="color:#56C1FF;font-size:1.2em;">
 $\displaystyle n=\;$<span class="fragment">$\displaystyle\frac{PV}{RT}$</span>
 </p>
 
@@ -568,9 +568,9 @@ $\displaystyle n=\;$<span class="fragment">$\displaystyle\frac{PV}{RT}$</span>
 
 À température et pression fixée, une même quantité<br>de gaz parfait occupe <span class="imp">le même volume</span><br><span class="imp">quel que soit le gaz</span>.
 
-<p class="fragment">Le <b style="color:#16E7CF">volume molaire $V_m$</b> d’un gaz parfait est<br>le volume occupé par une mole de ce gaz :</p>
+<p class="fragment fade-up">Le <b style="color:#16E7CF">volume molaire $V_m$</b> d’un gaz parfait est<br>le volume occupé par une mole de ce gaz :</p>
 
-<p class="fragment" style="color:#73FDEA;font-size:1.2em">
+<p class="fragment fade-up" style="color:#73FDEA;font-size:1.2em">
 $\displaystyle V_m=\frac{V}{n}=\;$<span class="fragment">$\displaystyle\frac{RT}{P}$</span>
 </p>
 
@@ -578,7 +578,7 @@ $\displaystyle V_m=\frac{V}{n}=\;$<span class="fragment">$\displaystyle\frac{RT}
 
 <ul>
 <li>À 0 °C (<span class="fragment">$\color{#FFF056}\pu{273,15 K}$</span>) et pression atmosphérique<br>(<span class="fragment">$\color{#FFF056}\pu{1 atm}=\pu{1,013 bar}=\pu{1,013E5 Pa}$</span>),<br>$V_m=\,$<span class="fragment">$\pu{22,4e-3m^3*mol-1}=\color{#FFF056}\pu{22,4 L*mol-1}$</span></li>
-<li class="fragment">Et à 20 °C et sous $\pu{1 atm}$,<br>
+<li class="fragment fade-up">Et à 20 °C et sous $\pu{1 atm}$,<br>
 $V_m=\;$<span class="fragment">$\color{#FFF056}\pu{24 L*mol-1}$</span>
 </li>
 </ul>

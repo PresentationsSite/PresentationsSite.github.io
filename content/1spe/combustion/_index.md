@@ -71,8 +71,8 @@ Une combustion convertit l’énergie stockée<br>dans la matière organique.
 
 Lors de la <span class="imp">combustion complète</span> d'un alcane<br>ou d'un alcool, les deux uniques <span class="imp">produits</span> sont :
 <ul>
-<li class="imp fragment">le dioxyde de carbone ($\ce{CO2 (g)}$)</li>
-<li class="imp fragment">la vapeur d'eau ($\ce{H2O (g)}$)</li>
+<li class="imp fragment fade-up">le dioxyde de carbone ($\ce{CO2 (g)}$)</li>
+<li class="imp fragment fade-up">la vapeur d'eau ($\ce{H2O (g)}$)</li>
 
 ---
 
@@ -88,7 +88,7 @@ Les deux couples oxydant-réducteur sont $(\ce{O2 (g)/H2O (g)})$ et $(\ce{CO2 (g
 <span class="fragment">$\ce{CH4 (g) +2 H2O (g) =  CO2 (g) + 8 H+ + 8 e-}$</span>
 </li>
 <br>
-<li class="fragment">Demi-équation de réduction du dioxygène :<br>
+<li class="fragment fade-up">Demi-équation de réduction du dioxygène :<br>
 <span class="fragment">$\ce{O2 (g) +4 H+ + 4 e- = 2 H2O (g)}$</span>
 </li>
 </ul>
@@ -97,7 +97,7 @@ Les deux couples oxydant-réducteur sont $(\ce{O2 (g)/H2O (g)})$ et $(\ce{CO2 (g
 
 Équation bilan de la réaction :
 
-<div class="fragment">
+<div class="fragment fade-up">
 $$\ce{CH4 (g) + 2 O2 (g) -> CO2(g) + 2 H2O (g)}$$
 </div>
 
@@ -121,7 +121,7 @@ On peut retrouver théoriquement l'énergie libérée<br>par une combustion où 
 
 En effet, dans une combustion comme dans toute transformation chimique, les éléments se réorganisent.
 
-<p class="fragment">Pour cela, des liaisons entre atomes sont rompues<br>et des nouvelles sont formées.</p>
+<p class="fragment fade-up">Pour cela, des liaisons entre atomes sont rompues<br>et des nouvelles sont formées.</p>
 
 ---
 
@@ -133,16 +133,16 @@ Par conséquent,
 
 <ul>
 
-<li class="fragment">rompre des liaisons correspond à un transfert d'énergie <span><span class="imp fragment">positive</span> (le système nécessite de l'énergie de l'extérieur),</span></li>
+<li class="fragment fade-up">rompre des liaisons correspond à un transfert d'énergie <span><span class="imp fragment">positive</span> (le système nécessite de l'énergie de l'extérieur),</span></li>
 <br>
-<li class="fragment">former des nouvelles liaisons correspond à un transfert d'énergie <span><b class="fragment"style="color:#56C1FF">négative</b> (le système libère de l'énergie qu'il fournit à son environnement).</span></li>
+<li class="fragment fade-up">former des nouvelles liaisons correspond à un transfert d'énergie <span><b class="fragment"style="color:#56C1FF">négative</b> (le système libère de l'énergie qu'il fournit à son environnement).</span></li>
 </ul>
 
 ---
 
 L'énergie de réaction fait le bilan entre l'énergie entrante utilisée pour rompre les liaisons et l'énergie sortante libérée par la formation des nouvelles liaisons.
 
-<p class="fragment">
+<p class="fragment fade-up">
 Si le bilan est <b class="fragment"style="color:#56C1FF">négatif</b> (cas des combustions),<br>la transformation est <span class="imp">exothermique</span> puisque<br>le transfert thermique final est vers l'extérieur.</p>
 
 ---
@@ -161,14 +161,14 @@ Reprenons l'exemple de la combustion du méthane.
 
 Pour une mole d'avancement, on consomme
 <ul>
-<li class="fragment">une mole de méthane</li> 
-<li class="fragment">deux moles de dioxygène</li>
+<li class="fragment fade-up">une mole de méthane</li> 
+<li class="fragment fade-up">deux moles de dioxygène</li>
 </ul>
 
-<p class="fragment">Et on produit</p>
+<p class="fragment fade-up">Et on produit</p>
 <ul>
-<li class="fragment">une mole de dioxyde de carbone</li> 
-<li class="fragment">deux moles d'eau</li>
+<li class="fragment fade-up">une mole de dioxyde de carbone</li> 
+<li class="fragment fade-up">deux moles d'eau</li>
 
 ---
 
@@ -244,7 +244,7 @@ Peut-on retrouver le PC du méthane à partir<br>de son énergie molaire de réa
 
 <br>
 
-<p class="fragment">Bien sûr !</p>
+<p class="fragment fade-up">Bien sûr !</p>
 
 ---
 
@@ -266,16 +266,14 @@ Comment détermine-t-on<br>le contenu énergétique des aliments ?
 
 ---
 
-<div style="position:relative;margin:auto;width:fit-content;">
-<iframe width="305" height="542" src="https://www.youtube.com/embed/gx1J3FyaT7Y" title="Determining calories in food by burning it" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-</div>
+{{< youtube-slide id="gx1J3FyaT7Y" ratio="short" >}}
 
 
 {{%/section%}}
 
 ---
 
-{{<youtube 5fzc3wgAKks>}}
+{{< youtube-slide id="5fzc3wgAKks" ratio="16x9" >}}
 
 ---
 

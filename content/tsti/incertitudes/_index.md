@@ -10,11 +10,11 @@ outputs = ["Reveal"]
 
 ---
 
-{{%youtube WqFWG7i-JC4%}}
+{{< youtube-slide id="WqFWG7i-JC4" ratio="16x9" >}}
 
 ---
 
-{{%youtube KOvHirpl7vk%}}
+{{< youtube-slide id="KOvHirpl7vk" ratio="16x9" >}}
 
 
 

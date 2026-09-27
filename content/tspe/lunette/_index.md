@@ -399,7 +399,7 @@ $$G>1\Rightarrow f'_\mathrm{ob}> f'_\mathrm{oc}$$
 
 ---
 
-<iframe width="800" height="450" src="https://www.youtube.com/embed/rh-o9qHK6Lg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+{{< youtube-slide id="rh-o9qHK6Lg" ratio="16x9" >}}
 
 ---
 

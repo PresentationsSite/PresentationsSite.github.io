@@ -25,7 +25,7 @@ En 1839, Antoine Becquerel et son fils Alexandre Edmond découvre l'**effet phot
 
 ---
 
-{{%youtube v-1zjdUTu0o%}}
+{{< youtube-slide id="v-1zjdUTu0o" ratio="16x9" >}}
 
 
 
@@ -126,7 +126,7 @@ Le modèle corpusculaire de la lumière permet d'expliquer les spectres discrets
 
 ---
 
-{{%youtube 9Uf_LNULgeo%}}
+{{< youtube-slide id="9Uf_LNULgeo" ratio="16x9" >}}
 
 
 ---

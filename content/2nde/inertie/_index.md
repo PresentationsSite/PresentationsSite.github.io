@@ -45,7 +45,7 @@ th:not(:last-child), td:not(:last-child) { border-right: 1px solid #00A2FF; }
 
 ---
 
-<iframe width="800" height="450" src="https://www.youtube.com/embed/W1lkeM6YoqU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+{{< youtube-slide id="W1lkeM6YoqU" ratio="16x9" >}}
 
 ---
 
@@ -53,7 +53,7 @@ Comment décrire le mouvement de tous les objets qu'il lâche (en les assimilant
 
 ---
 
-<iframe width="800" height="450" src="https://www.youtube.com/embed/DhPVhIzMaqg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+{{< youtube-slide id="DhPVhIzMaqg" ratio="16x9" >}}
 
 ---
 
@@ -160,7 +160,7 @@ La <span class="imp" style="color:#FF42A1">contraposée du principe d'inertie</s
 
 ---
 
-<iframe width="800" height="450" src="https://www.youtube.com/embed/gp5G1QG6cXc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+{{< youtube-slide id="gp5G1QG6cXc" ratio="16x9" >}}
 
 ---
 
@@ -191,9 +191,9 @@ La <span class="imp" style="color:#FF42A1">contraposée du principe d'inertie</s
 Une <span class="imp" style="color:#FF644E">action</span> est donc ce qui permet à un système<br>de modifier le mouvement d'un autre système.
 </div></div>
 
-<p class="fragment">On modélise une action par une <span class="imp" style="color:#FF644E">force</span> représentée<br>par un <span class="imp" style="color:#FF644E">vecteur</span> ayant  la direction et le sens<br>de la modification du mouvement.</p>
+<p class="fragment fade-up">On modélise une action par une <span class="imp" style="color:#FF644E">force</span> représentée<br>par un <span class="imp" style="color:#FF644E">vecteur</span> ayant  la direction et le sens<br>de la modification du mouvement.</p>
 
-<p class="fragment">La norme du vecteur (l'intensité<br>de la force), s'exprime en <span class="fragment imp" style="color:#FF644E">newton (N)</span>.</p>
+<p class="fragment fade-up">La norme du vecteur (l'intensité<br>de la force), s'exprime en <span class="fragment imp" style="color:#FF644E">newton (N)</span>.</p>
 
 
 ---
@@ -202,7 +202,7 @@ Pour savoir ce qui agit sur un système, on fait l'inventaire des objets en inte
 
 <br>
 
-<p class="fragment">Voyons quelques exemples :</p>
+<p class="fragment fade-up">Voyons quelques exemples :</p>
 
 ---
 
@@ -287,14 +287,14 @@ Le poids (force de la Terre sur le système) est <span class="imp">vertical</spa
 
 <br>
 
-<div class="fragment" style="display: flex;justify-content: center;">
+<div class="fragment fade-up" style="display: flex;justify-content: center;">
 <div style = "border: solid #FF644E 5px;padding: 20px 20px 20px 20px; color: #FF644E; font-size:60px;border-radius:10px;">
 $P=m\times g$
 </div></div>
 
 <br>
 
-<p class="fragment">où $m$ est la masse du système (en <span class="imp fragment">kg</span>)<br><span class="fragment">et $g = \pu{9,8 m*s-2}$ est la pesanteur terrestre.</span>
+<p class="fragment fade-up">où $m$ est la masse du système (en <span class="imp fragment">kg</span>)<br><span class="fragment">et $g = \pu{9,8 m*s-2}$ est la pesanteur terrestre.</span>
 
 
 {{%/section%}}
@@ -309,7 +309,7 @@ $P=m\times g$
 
 Pas besoin de vivre dans l'ISS<br>pour observer les effets du principe d'inertie.
 
-<p class="fragment">Exemples ?</p>
+<p class="fragment fade-up">Exemples ?</p>
 
 ---
 
@@ -323,15 +323,15 @@ un objet au repos à tendance à rester<br>au repos si rien n'agit sur lui...
 
 Le poids (force de la Terre sur l'objet), va toujours agir empêchant les beaux mouvements rectilignes uniformes vus dans l'ISS, à moins que...
 
-<p class="fragment">Une autre force le compense.<br>Et c'est le cas si l'objet repose<br>sur un support horizontal.</p>
+<p class="fragment fade-up">Une autre force le compense.<br>Et c'est le cas si l'objet repose<br>sur un support horizontal.</p>
 
 ---
 
 L'autre problème, ce sont les frottements<br>qui freinent l'objet en mouvement.
 
-<p class="fragment">Y avait-il des frottements dans l'ISS ?</p>
+<p class="fragment fade-up">Y avait-il des frottements dans l'ISS ?</p>
 
-<p class="fragment">Oui ! Mais les frottements de l'air sur un objet<br>sont beaucoup plus faibles que ceux<br>d'un support solide.</p>
+<p class="fragment fade-up">Oui ! Mais les frottements de l'air sur un objet<br>sont beaucoup plus faibles que ceux<br>d'un support solide.</p>
 
 
 ---
@@ -408,7 +408,7 @@ Le principe d'inertie peut aussi<br>se limiter à une direction particulière.
 
 ---
 
-<iframe width="800" height="450" src="https://www.youtube.com/embed/36keC5eDUWk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+{{< youtube-slide id="36keC5eDUWk" ratio="16x9" >}}
 
 ---
 
@@ -417,7 +417,7 @@ Si un système A agit sur un système B,<br>alors le système B agit sur le syst
 
 <br>
 
-<div class="fragment" style="display: flex;justify-content: center;">
+<div class="fragment fade-up" style="display: flex;justify-content: center;">
 <div style = "border: solid #FF644E 5px;padding: 20px 20px 20px 20px; color: #FF644E; font-size:60px;border-radius:10px;">
 $\vec{F}_{A\rightarrow B} = -\vec{F}_{B\rightarrow A} $
 </div></div>
@@ -434,8 +434,8 @@ $\vec{F}_{A\rightarrow B} = -\vec{F}_{B\rightarrow A} $
 Exemple :
 
 La Terre agit sur nous autant qu'on agit sur la Terre...<br>
-<p class="fragment">Pourquoi alors la Terre ne bouge pas quand on saute ?</p>
-<p class="fragment">Elle bouge !</p>
+<p class="fragment fade-up">Pourquoi alors la Terre ne bouge pas quand on saute ?</p>
+<p class="fragment fade-up">Elle bouge !</p>
 
 <br><br><br><br>
 
@@ -448,7 +448,7 @@ Appliquer la même force sur des objets de masses différentes n'a pas le même 
 
 Cela ne semble pas déraisonnable de supposer<br>que les hauteurs des "sauts" du bonhomme<br>et de la Terre sont inversement proportionnelles<br>aux masses des deux corps.
 
-<p class="fragment">Plus la masse est grande, plus le saut est <span class="fragment">petit.</span></p>
+<p class="fragment fade-up">Plus la masse est grande, plus le saut est <span class="fragment">petit.</span></p>
 
 {{%note%}}
 Justification : le centre de masse du système {Terre+bonhomme} ne doit pas bouger puisque ce système est isolé (aucune force n'agit sur lui) donc masse bonhomme * hauteur saut bonhomme = masse Terre * hauteur saut Terre
@@ -494,7 +494,7 @@ Et $\pu{0,5 m}\times\frac{\pu{6E11 kg}}{\pu{6E24 kg}} = \pu{0,5 m}\times \pu{1E-
 
 ---
 
-<iframe width="800" height="450" src="https://www.youtube.com/embed/p2M8Y0z9Rl0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+{{< youtube-slide id="p2M8Y0z9Rl0" ratio="16x9" >}}
 
 
 {{%/section%}}
@@ -567,7 +567,7 @@ Pour faire les calculs, donc lorsqu'on cherche la norme de la force, on abandonn
 
 <br>
 
-<div class="fragment" style="display: flex;justify-content: center;">
+<div class="fragment fade-up" style="display: flex;justify-content: center;">
 <div style = "padding: 20px 20px 20px 20px; color: #FF644E; font-size:50px;">
 $\displaystyle F_{A\rightarrow B} =F_{B\rightarrow A} = G\frac{m_A\!\times\!m_B}{\mathrm{AB}^2}$
 </div></div>
@@ -590,7 +590,7 @@ F_{Terre\rightarrow nounours} &= G\frac{m\times M_T}{R_T^2} \\\\
 \end{aligned}
 $$
 
-<p class="fragment">C'est la formule du poids !</p>
+<p class="fragment fade-up">C'est la formule du poids !</p>
 
 ---
 
@@ -600,13 +600,13 @@ $$
 g = 6,67\times10^{-11} \\,\color{#1DB100}{\text{N}\\!\cdot\\!\text{m}^2\\!\cdot\\!\text{kg}^{-2}}\color{white}\times\frac{\pu{5,97E24 \color{#1DB100}kg}}{\left(\pu{6,37E6 \color{#1DB100}m}\right)^2}
 $$
 
-<p class="fragment">
+<p class="fragment fade-up">
 $\Rightarrow g = 9,81$ <span class="fragment">$\color{#1DB100}\text{N}\!\cdot\!\text{kg}^{-1}$</span>
 </p>
 
 <br>
 
-<p class="fragment">On retrouve bien la valeur de la pesanteur terrestre !</p>
+<p class="fragment fade-up">On retrouve bien la valeur de la pesanteur terrestre !</p>
 
 ---
 
@@ -624,7 +624,7 @@ Que vaut la pesanteur $g$ sur l'ISS ?
 On parle de <span class="imp">chute libre</span> lorsqu'un système n'est soumis qu'à son propre poids.
 
 
-<iframe width="800" height="450" src="https://www.youtube.com/embed/E43-CfukEgs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+{{< youtube-slide id="E43-CfukEgs" ratio="16x9" >}}
 
 
 ---
@@ -634,8 +634,8 @@ Que peut-on dire du mouvement<br>d'un objet en chute libre ?
 <br>
 
 <ul>
-<li class="fragment">il est accéléré vers le bas,</li>
-<li class="fragment">il ne dépend pas de la masse.</li>
+<li class="fragment fade-up">il est accéléré vers le bas,</li>
+<li class="fragment fade-up">il ne dépend pas de la masse.</li>
 </ul>
 
 ---
@@ -685,7 +685,7 @@ $\color{#FEAE00}\overrightarrow{\Delta v} = \color{#FFD932}\overrightarrow{ v}_{
 
 Comme le stipule la contraposée du principe d'inertie, si $\color{#FEAE00}\Delta v \neq 0$ alors la somme des forces agissant<br>sur le système est non nulle.
 
-<p class="fragment">Mais en plus, la direction et le sens de cette résultante des forces sont celles de $\textstyle\color{#FEAE00}\Delta \vec{v}$ comme on l'a vu<br>dans le cas d'une chute libre (activité Python).</p>
+<p class="fragment fade-up">Mais en plus, la direction et le sens de cette résultante des forces sont celles de $\textstyle\color{#FEAE00}\Delta \vec{v}$ comme on l'a vu<br>dans le cas d'une chute libre (activité Python).</p>
 
 ---
 
@@ -697,7 +697,7 @@ Comme le stipule la contraposée du principe d'inertie, si $\color{#FEAE00}\Delt
 
 ---
 
-<iframe width="800" height="450" src="https://www.youtube.com/embed/fRNUbLc6U8s" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+{{< youtube-slide id="fRNUbLc6U8s" ratio="16x9" >}}
 
 
 

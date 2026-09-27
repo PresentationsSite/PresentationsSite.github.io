@@ -915,14 +915,7 @@ Inverser un seul acide aminé dans une protéine (en passant de S à R) empêche
 ---
 
 
-<div class="video-container">
-  <iframe src="https://www.youtube.com/embed/BoPLmR98S2k"
-          title="YouTube Short"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen>
-  </iframe>
-</div>
+{{< youtube-slide id="BoPLmR98S2k" ratio="short" >}}
 
 
 

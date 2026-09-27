@@ -59,7 +59,7 @@ Retour sur l'expérience du début d'année.
 
 ---
 
-{{<youtube sHvXoj1YvQU>}}
+{{< youtube-slide id="sHvXoj1YvQU" ratio="16x9" >}}
 
 ---
 
@@ -71,7 +71,7 @@ Retour sur l'expérience du début d'année.
 <ul>
 <li>Quels groupes caractéristiques et familles<br>pouvez-vous identifier ?</li>
 <br>
-<li class="fragment">Justifier que le passage d'une fonction alcool à une fonction cétone corresponde bien à une oxydation.</li>
+<li class="fragment fade-up">Justifier que le passage d'une fonction alcool à une fonction cétone corresponde bien à une oxydation.</li>
 </ul>
 
 ---
@@ -79,7 +79,7 @@ Retour sur l'expérience du début d'année.
 <ul>
 <li>Au moment du secouage, qui est l'oxydant ?</li>
 <br>
-<li class="fragment">Quel est son réducteur conjugué&nbsp;?</li>
+<li class="fragment fade-up">Quel est son réducteur conjugué&nbsp;?</li>
 </ul>
 
 {{%/section%}}

@@ -112,13 +112,13 @@ $l\_{fus} = \pu{334 kJ * kg-1}$
 
 Pourquoi a-t-on froid<br>en sortant de l'eau à la plage ?
 
-<p class="fragment" style="font-weight:normal">Le passage de l'eau de l'état liquide à l'état gazeux est <span style="font-weight:bold">endothermique</span> (il nécessite de l'énergie).</p>
+<p class="fragment fade-up" style="font-weight:normal">Le passage de l'eau de l'état liquide à l'état gazeux est <span style="font-weight:bold">endothermique</span> (il nécessite de l'énergie).</p>
 
-<p class="fragment" style="font-weight:normal">On peut utiliser ce "froid" à notre avantage.</p>
+<p class="fragment fade-up" style="font-weight:normal">On peut utiliser ce "froid" à notre avantage.</p>
 
 ---
 
-{{%youtube YtsBFn2tv1o%}}
+{{< youtube-slide id="YtsBFn2tv1o" ratio="16x9" >}}
 
 {{%note%}}
 De la même façon, on peut refroidir une boisson en la mettant dans un linge mouillé, le tout laissé au soleil (pour que ça s'évapore).
@@ -130,7 +130,7 @@ De la même façon, on peut refroidir une boisson en la mettant dans un linge mo
 
 {{% fragment %}}De l'énergie thermique est libérée&nbsp;!{{% /fragment %}}
 
-<p class="fragment" style="font-weight:normal">Cette fois-ci, la transformation est <span style="font-weight:bold">exothermique</span>.</p>
+<p class="fragment fade-up" style="font-weight:normal">Cette fois-ci, la transformation est <span style="font-weight:bold">exothermique</span>.</p>
 
 ---
 
@@ -169,9 +169,9 @@ entre les charges partielles négatives<br>
 des atomes d'oxygène et celles positives<br>
 des atomes d'hydrogène qui cause ces liaisons.
 
-<p class="fragment" style="font-weight:normal">Ces charges partielles sont créées par la différence d'électronégativité entre l'oxygène et l'hydrogène.</p>
+<p class="fragment fade-up" style="font-weight:normal">Ces charges partielles sont créées par la différence d'électronégativité entre l'oxygène et l'hydrogène.</p>
 
-<p class="fragment" style="font-weight:normal">L'oxygène est plus électronégatif que l'hydrogène<br>
+<p class="fragment fade-up" style="font-weight:normal">L'oxygène est plus électronégatif que l'hydrogène<br>
 ce qui signifie qu'il attire plus à lui les électrons<br>
 au sein de la molécule.</p>
 
@@ -191,11 +191,11 @@ en moyenne.
 
 ---
 
-{{%youtube aZ8JxFwR_nY%}}
+{{< youtube-slide id="aZ8JxFwR_nY" ratio="16x9" >}}
 
 ---
 
-{{%youtube UukRgqzk-KE%}}
+{{< youtube-slide id="UukRgqzk-KE" ratio="16x9" >}}
 
 {{% /section %}}
 
@@ -218,7 +218,7 @@ en moyenne.
 
 ---
 
-{{%youtube aM_07vahum0%}}
+{{< youtube-slide id="aM_07vahum0" ratio="16x9" >}}
 
 ---
 

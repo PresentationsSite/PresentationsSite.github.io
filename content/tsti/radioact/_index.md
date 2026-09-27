@@ -88,7 +88,7 @@ Un noyau instable va se désintégrer en noyaux fils<br>plus stables. Parfois, l
 
 ---
 
-{{%youtube clRcF7emyiM%}}
+{{< youtube-slide id="clRcF7emyiM" ratio="16x9" >}}
 
 ---
 
@@ -193,7 +193,7 @@ L'ingrédient commun est la destruction<br>d'une <span>proportion constante</spa
 
 ---
 
-{{%youtube w6kFzeR3m1Q%}}
+{{< youtube-slide id="w6kFzeR3m1Q" ratio="16x9" >}}
 
 ---
 
@@ -208,7 +208,7 @@ L'activité est l'opposée de la dérivée<br>du nombre de noyaux par rapport au
 
 <div style="background-color:#0076BA;padding:20px 10px 30px 10px;width:85%;margin-right:auto;margin-left:auto;color:white">
 <p>$\displaystyle A(t)=-\frac{dN(t)}{dt}$</p>
-<p class="fragment">$\Rightarrow A(t)=\lambda N(t) = \lambda N_0\exp(-\lambda t)$</p>
+<p class="fragment fade-up">$\Rightarrow A(t)=\lambda N(t) = \lambda N_0\exp(-\lambda t)$</p>
 </div>
 
 {{% /section %}}
@@ -287,15 +287,15 @@ Par conservation de la charge et du nombre de nucléons, déterminer la nature d
 
 ---
 
-{{%youtube i15ef618DP0%}}
+{{< youtube-slide id="i15ef618DP0" ratio="16x9" >}}
 
 ---
 
-{{%youtube 1_zwLuNJ5Ck%}}
+{{< youtube-slide id="1_zwLuNJ5Ck" ratio="16x9" >}}
 
 ---
 
-{{%youtube VZHpAwSGYZE%}}
+{{< youtube-slide id="VZHpAwSGYZE" ratio="16x9" >}}
 
 
 {{% /section %}}
@@ -357,12 +357,12 @@ Fusion ou fission ?
 
 ---
 
-{{%youtube n5cAi6-jrMs%}}
+{{< youtube-slide id="n5cAi6-jrMs" ratio="16x9" >}}
 
 
 ---
 
-{{%youtube 1MUcizMqVAc%}}
+{{< youtube-slide id="1MUcizMqVAc" ratio="16x9" >}}
 
 {{% /section %}}
 

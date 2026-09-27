@@ -122,19 +122,19 @@ La lumière se déplace en ligne droite<br>dans un milieu transparent homogène.
 
 En temps normal, peut-on voir un faisceau lumineux ?
 
-<p class="fragment imp">Non !</p>
+<p class="fragment fade-up imp">Non !</p>
 
 {{%note%}}
 Le prouver avec un laser dans la salle.
 Le "en temps normal" n'est pas clair. Dans une pièce avec que de l'air. Ou dans le vide.
 {{%/note%}}
 
-<p class="fragment">Qu'est-ce qui les rend alors visibles<br>dans les photos précédentes ?</p>
+<p class="fragment fade-up">Qu'est-ce qui les rend alors visibles<br>dans les photos précédentes ?</p>
 
-<p class="fragment imp" >Des objets diffusants : poussière, gouttelettes d'eau...</p>
+<p class="fragment fade-up imp" >Des objets diffusants : poussière, gouttelettes d'eau...</p>
 
 
-<p class="fragment">On ne voit pas le faisceau de lumière !<br>
+<p class="fragment fade-up">On ne voit pas le faisceau de lumière !<br>
 On voit la poussière ou les goutelettes d'eau éclairées.</p>
 
 ---
@@ -146,15 +146,15 @@ On voit la poussière ou les goutelettes d'eau éclairées.</p>
 La vitesse (ou célérité) $c$ de la lumière<br>dans le vide ou l'air vaut :
 
 
-<div class="fragment" style="display: flex; justify-content: center; align-items: center; height: 100%;">
+<div class="fragment fade-up" style="display: flex; justify-content: center; align-items: center; height: 100%;">
 <div style="background-color:#00AB8E;padding:15px 50px 20px 50px; width:content; color:white; border-radius:15px;">
 $$c = \pu{3,0E8 m*s-1}$$
 </div>
 </div>
 
-<p class="fragment">Soit environ $\pu{300000 km/s}$</p>
+<p class="fragment fade-up">Soit environ $\pu{300000 km/s}$</p>
 
-<p class="fragment" style="color:#929292">C'est environ <span class="fragment">un million</span> de fois plus rapide<br>que la vitesse du son dans l'air !</p>
+<p class="fragment fade-up" style="color:#929292">C'est environ <span class="fragment">un million</span> de fois plus rapide<br>que la vitesse du son dans l'air !</p>
 
 ---
 
@@ -180,12 +180,12 @@ Comment l'a-t-on mesurée ?
 ---
 
 
-<iframe width="600" height="450" src="https://www.youtube.com/embed/kkUdOE5G9Ls" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+{{< youtube-slide id="kkUdOE5G9Ls" ratio="4x3" >}}
 
 
 ---
 
-<iframe width="600" height="450" src="https://www.youtube.com/embed/aLeWyoaPw3s" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+{{< youtube-slide id="aLeWyoaPw3s" ratio="4x3" >}}
 
 ---
 
@@ -194,7 +194,7 @@ Comment l'a-t-on mesurée ?
 Mesure de Fizeau
 
 
-<iframe width="800" height="450" src="https://www.youtube.com/embed/Sck_bIocv5g" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+{{< youtube-slide id="Sck_bIocv5g" ratio="4x3" >}}
 
 {{%note%}}
 il trouve 315 000 km/s
@@ -203,13 +203,13 @@ il trouve 315 000 km/s
 ---
 
 
-<iframe width="600" height="450" src="https://www.youtube.com/embed/FY_6TmIbQt4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+{{< youtube-slide id="FY_6TmIbQt4" ratio="4x3" >}}
 
 ---
 
 Mesure de Foucault
 
-<iframe width="800" height="450" src="https://www.youtube.com/embed/QV0YZRVXnYE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+{{< youtube-slide id="QV0YZRVXnYE" ratio="16x9" >}}
 
 
 {{%note%}}
@@ -220,12 +220,12 @@ il trouve 298 000 km/s
 ---
 
 
-<iframe width="600" height="450" src="https://www.youtube.com/embed/nqWBd-ukvmA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+{{< youtube-slide id="nqWBd-ukvmA" ratio="4x3" >}}
 
 
 ---
 
-<iframe width="600" height="450" src="https://www.youtube.com/embed/ZCeXHP5-skM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+{{< youtube-slide id="ZCeXHP5-skM" ratio="4x3" >}}
 
 ---
 
@@ -365,7 +365,7 @@ On peut décomposer la lumière blanche<br>venant du soleil à l'aide d'un <span
 
 ---
 
-<iframe width="800" height="450" src="https://www.youtube.com/embed/yrRkJMHEcYE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+{{< youtube-slide id="yrRkJMHEcYE" ratio="16x9" >}}
 
 
 ---
@@ -386,10 +386,10 @@ On retrouve dans la lumière blanche<br>toutes les couleurs de l'arc-en-ciel.
 
 On dit que le prisme <span class="imp">disperse</span> la lumière blanche<br>en l'ensemble de ses composantes colorées.
 
-<p class="fragment">
+<p class="fragment fade-up">
 On obtient alors le <span class="imp">spectre de la lumière blanche</span>.</p>
 
-<p class="fragment">
+<p class="fragment fade-up">
 À chaque lumière colorée de ce spectre (ou radiation) correspond <span class="imp">une longueur d'onde</span> $\lambda$ mesurée en nm.</p>
 
 ---
@@ -401,7 +401,7 @@ On obtient alors le <span class="imp">spectre de la lumière blanche</span>.</p>
 
 Explication de la dispersion :
 
-<p class="fragment">Le prisme ou la goutte d'eau <span class="imp">réfracte</span> la lumière lui faisant changer de direction. Or cette <span class="imp">réfraction dépend de la longueur d'onde</span> et donc de la couleur.</p>
+<p class="fragment fade-up">Le prisme ou la goutte d'eau <span class="imp">réfracte</span> la lumière lui faisant changer de direction. Or cette <span class="imp">réfraction dépend de la longueur d'onde</span> et donc de la couleur.</p>
 
 {{%note%}}
 La réfraction qu'on verra plus loin est une déviation de la lumière lorsqu'elle change de milieu.
@@ -409,7 +409,7 @@ La réfraction qu'on verra plus loin est une déviation de la lumière lorsqu'el
 
 <br>
 
-<div class="fragment"><p>Résultat :</p>
+<div class="fragment fade-up"><p>Résultat :</p>
 
 <p>chaque couleur suit un chemin différent<br>après son passage dans le prisme.</p></div>
 
@@ -458,9 +458,9 @@ L'appareil de mesure permettant de produire et d'analyser les spectres est le <s
 Il y a 3 types de spectres :
 
 <ul>
-<li class="fragment"><span class="imp">spectre continu</span>, émis par un corps chaud ;</li>
-<li class="fragment"><span class="imp">spectre de raies d'émission</span>, constitué de quelques radiations émises par un gaz dans lequel on fait passer une décharge électrique ;</li>
-<li class="fragment"><span class="imp">spectre de raies d'absorption</span>, obtenu en faisant traverser la lumière émise par un corps chaud à travers un gaz. Le résultat est un spectre continu dont il manque quelques radiations.</li>
+<li class="fragment fade-up"><span class="imp">spectre continu</span>, émis par un corps chaud ;</li>
+<li class="fragment fade-up"><span class="imp">spectre de raies d'émission</span>, constitué de quelques radiations émises par un gaz dans lequel on fait passer une décharge électrique ;</li>
+<li class="fragment fade-up"><span class="imp">spectre de raies d'absorption</span>, obtenu en faisant traverser la lumière émise par un corps chaud à travers un gaz. Le résultat est un spectre continu dont il manque quelques radiations.</li>
 </ul>
 
 ---
@@ -475,7 +475,7 @@ Il y a 3 types de spectres :
 
 Les raies d'émission apparaissent aux mêmes longueurs d'ondes que les raies d'absorption<br>s'il s'agit du même gaz.
 
-<p class="fragment">Les deux spectres sont donc complémentaires.</p>
+<p class="fragment fade-up">Les deux spectres sont donc complémentaires.</p>
 
 ---
 
@@ -488,7 +488,7 @@ Les raies d'émission apparaissent aux mêmes longueurs d'ondes que les raies d'
 
 Les longueurs d'onde de ces raies sont caractéristiques de l'élément qui émet ou qui absorbe la lumière.
 
-<p class="fragment">C'est une sorte de code-barres<br>pour l'élément.</p>
+<p class="fragment fade-up">C'est une sorte de code-barres<br>pour l'élément.</p>
 
 ---
 
@@ -507,18 +507,11 @@ Correspond à une transition 3p->3s, on parle des D lines du sodium
 
 ---
 
-<iframe width="800" height="450" src="https://www.youtube.com/embed/7u3rRy97m9Y" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+{{< youtube-slide id="7u3rRy97m9Y" ratio="16x9" >}}
 
 ---
 
-<div class="short">
-  <iframe src="https://www.youtube.com/embed/uUGzrS5tpLc?si=bCgnMbYAtIOeSrnp"
-          title="YouTube Short"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen>
-  </iframe>
-</div>
+{{< youtube-slide id="uUGzrS5tpLc" ratio="short" >}}
 
 ---
 
@@ -548,7 +541,7 @@ Visiblement elle peut être réfléchie...
 
 <br>
 
-<p class="fragment">Mais elle peut aussi être transmise. Preuve ?</p>
+<p class="fragment fade-up">Mais elle peut aussi être transmise. Preuve ?</p>
 
 ---
 
@@ -557,11 +550,11 @@ Et cette transmission est un peu particulière.
 
 <br>
 
-<p class="fragment"><b>Expérience de la pièce</b></p>
+<p class="fragment fade-up"><b>Expérience de la pièce</b></p>
 
 ---
 
-<iframe width="800" height="450" src="https://www.youtube.com/embed/3EsLH95KQl4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+{{< youtube-slide id="3EsLH95KQl4" ratio="16x9" >}}
 
 ---
 
@@ -570,7 +563,7 @@ Au final, c'est comme si la pièce s'était<br>rapprochée de la surface de l'ea
 
 <br>
 
-<p class="fragment">Tentez au brouillon de dessiner les rayons lumineux<br>qui expliquent ce qu'on observe.</p>
+<p class="fragment fade-up">Tentez au brouillon de dessiner les rayons lumineux<br>qui expliquent ce qu'on observe.</p>
 
 ---
 
@@ -581,9 +574,9 @@ Au final, c'est comme si la pièce s'était<br>rapprochée de la surface de l'ea
 Un peu de vocabulaire :
 
 <ul>
-<li class="fragment">on appelle <b style="color:#61D836">rayon incident</b>, le rayon qui arrive<br>sur l'interface entre deux milieux ;</li>
-<li class="fragment"><b style="color:#FF42A1">rayon réfléchi</b>, le rayon qui "rebondit" ;</li>
-<li class="fragment">et <b style="color:#FFD932">rayon réfracté</b>, le rayon qui traverse<br>vers l'autre milieu ;</li>
+<li class="fragment fade-up">on appelle <b style="color:#61D836">rayon incident</b>, le rayon qui arrive<br>sur l'interface entre deux milieux ;</li>
+<li class="fragment fade-up"><b style="color:#FF42A1">rayon réfléchi</b>, le rayon qui "rebondit" ;</li>
+<li class="fragment fade-up">et <b style="color:#FFD932">rayon réfracté</b>, le rayon qui traverse<br>vers l'autre milieu ;</li>
 </ul>
 
 ---
@@ -618,9 +611,9 @@ La droite perpendiculaire à la surface de séparation entre les deux milieux et
   <div style="position: relative; padding: 30px;">
 <ul>
 <li style="margin-bottom:1em;"> Le <b style="color:#61D836;">rayon incident</b>, le <b style="color:#FF42A1">rayon réfléchi</b><br>et la <b style="color:#fff">normale</b> sont dans un même plan. 
-<li class="fragment"> L'<b style="color:#FF42A1">angle réfléchi</b> est égal à l'<b style="color:#61D836">angle incident</b>.
+<li class="fragment fade-up"> L'<b style="color:#FF42A1">angle réfléchi</b> est égal à l'<b style="color:#61D836">angle incident</b>.
 </li>
-    <div class="fragment" 
+    <div class="fragment fade-up" 
          style="position: absolute; top: 0; left: 0; right: 0; bottom: 0;
                 border:solid 5px #00A2FF; border-radius: 20px;">
     </div>
@@ -649,16 +642,16 @@ L'<span class="imp">indice optique</span> (ou indice de réfraction)<br>est un n
 
 La lumière se propage à la vitesse $c$ dans le vide<br>mais va moins vite dans tout autre milieu transparent. 
 
-<p class="fragment">L'indice optique est le ratio entre ces deux vitesses&nbsp;:</p>
+<p class="fragment fade-up">L'indice optique est le ratio entre ces deux vitesses&nbsp;:</p>
 
-<div class ="fragment" style="display: flex; justify-content: center; align-items: center; height: 100%;">
+<div class ="fragment fade-up" style="display: flex; justify-content: center; align-items: center; height: 100%;">
 <div style="border:solid 5px #00AB8E;padding:15px 20px 20px 20px; width:content; color:white; border-radius:15px;">
 $\displaystyle n=\frac{c}{c_{milieu}}$ avec $n≥1$
 </div>
 </div>
 
 
-<p class="fragment">Dans le vide, $n=$ <span class="fragment">1</span> et dans l'air $n\approx$ <span class="fragment">1</span></p>
+<p class="fragment fade-up">Dans le vide, $n=$ <span class="fragment">1</span> et dans l'air $n\approx$ <span class="fragment">1</span></p>
 
 ---
 
@@ -668,7 +661,7 @@ $\displaystyle n=\frac{c}{c_{milieu}}$ avec $n≥1$
 indice optique du verre : $n_{verre} = 1,5$
 </p>
 
-<p class="fragment" style="color:#61D836">
+<p class="fragment fade-up" style="color:#61D836">
 $$
 \begin{aligned}
 c_{verre} &= \frac{c}{n_{verre}} \\
@@ -686,7 +679,7 @@ $$
 
 Qu'implique la vidéo précédente ?
 
-<p class="fragment"> Il y a réfraction (déviation des rayons lumineux) seulement s'il y a passage entre deux milieux transparents d'<span class="imp">indice optique différent</span>.</p>
+<p class="fragment fade-up"> Il y a réfraction (déviation des rayons lumineux) seulement s'il y a passage entre deux milieux transparents d'<span class="imp">indice optique différent</span>.</p>
 
 {{%/section%}}
 
@@ -708,21 +701,21 @@ Qu'implique la vidéo précédente ?
         Le <b style="color:#61D836">rayon incident</b>, le <b style="color:#FFD932">rayon réfracté</b><br>
         et la <b style="color:#fff">normale</b> sont dans un même plan.
       </li>
-      <li class="fragment">
+      <li class="fragment fade-up">
         L'<b style="color:#FFD932">angle réfracté $i_2$</b> est lié à l'<b style="color:#61D836">angle incident $i_1$</b><br>
         par la relation :<br>
         $$\color{#61D836}n_1\times \sin(i_1)=\color{#FFD932}n_2\times \sin(i_2)$$
       </li>
     </ul>
     <!-- L'élément pour l'encadrement qui apparaît après -->
-    <div class="fragment" 
+    <div class="fragment fade-up" 
          style="position: absolute; top: 0; left: 0; right: 0; bottom: 30px;
                 border: solid 5px #00AB8E; border-radius: 20px;">
     </div>
   </div>
 </div>
 
-<p class="fragment">$\color{#61D836}n_1$ et $\color{#FFD932}n_2$ sont les <span class="imp">indices optiques</span><br>des milieu 1 et 2.</p>
+<p class="fragment fade-up">$\color{#61D836}n_1$ et $\color{#FFD932}n_2$ sont les <span class="imp">indices optiques</span><br>des milieu 1 et 2.</p>
 
 ---
 
@@ -745,7 +738,7 @@ Qu'implique la vidéo précédente ?
 
 Lorsqu'un rayon de lumière passe d'un milieu 1 à un milieu 2 d'<b style="color:#16E7CF">indice plus grand</b>, il se <span class="imp"><span class="imp fragment"><b>rapproche</b></span> de la normale</span> (son angle par rapport<br>à la normale <span class="fragment imp"><b>diminue</b></span>).
 
-<p class="fragment">
+<p class="fragment fade-up">
 Lorsqu'un rayon de lumière passe d'un milieu 1 à un milieu 2 d'<b style="color:#16E7CF">indice plus petit</b>, il <span class="imp">s'éloigne de la normale</span> (son angle par rapport à la normale <span class="imp"><b>augmente</b></span>)
 </p>
 
@@ -853,11 +846,11 @@ Quelle phénomène peut-on observer seulement lorsque le rayon incident est dans
 
 Au delà d'un certain angle, appelé <span class="imp">angle critique</span> $i_c$,<br>il n'y a plus de rayon réfracté entre un milieu transparent d'indice $n_1$ et un milieu<br>d'indice inférieur $n_2<n_1$.
 
-<p class="fragment">On a alors <span class="imp">réflexion totale interne</span>.</p>
+<p class="fragment fade-up">On a alors <span class="imp">réflexion totale interne</span>.</p>
 
 <ul>
-<li class="fragment"><u>réflexion totale</u> car toute la lumière est réfléchie</li>
-<li class="fragment"><u>interne</u> car cela se passe à l'intérieur du milieu transparent d'indice supérieur</li>
+<li class="fragment fade-up"><u>réflexion totale</u> car toute la lumière est réfléchie</li>
+<li class="fragment fade-up"><u>interne</u> car cela se passe à l'intérieur du milieu transparent d'indice supérieur</li>
 </ul>
 
 ---
@@ -899,8 +892,8 @@ Déterminer l'angle critique pour une interface eau-air et pour une interface ve
 <br> 
 
 <ul style="color:#61D836">
-<li class="fragment">eau$\leftrightarrow$air : $i_c=\sin^{-1}\left(\frac{1,0}{1,33}\right)=49°$</li>
-<li class="fragment">eau$\leftrightarrow$verre : $i_c=\sin^{-1}\left(\frac{1,0}{1,5}\right)=42°$</li>
+<li class="fragment fade-up">eau$\leftrightarrow$air : $i_c=\sin^{-1}\left(\frac{1,0}{1,33}\right)=49°$</li>
+<li class="fragment fade-up">eau$\leftrightarrow$verre : $i_c=\sin^{-1}\left(\frac{1,0}{1,5}\right)=42°$</li>
 </ul>
 
 ---
@@ -908,7 +901,7 @@ Déterminer l'angle critique pour une interface eau-air et pour une interface ve
 Que voit-on en regardant au-dessus<br>de notre tête, dans l'eau ?
 
 
-<p class="fragment" style="color:#61D836">Seuls les rayons faisant entre nos yeux et la normale un angle inférieur à $i_c=42°$ proviennent de l'extérieur. Au-delà, les rayons ont été réfléchis. Cela restreint l'ensemble de la lumière venant de l'extérieur dans un cône au-dessus de note tête&nbsp;: la fenêtre de Snell.</p>
+<p class="fragment fade-up" style="color:#61D836">Seuls les rayons faisant entre nos yeux et la normale un angle inférieur à $i_c=42°$ proviennent de l'extérieur. Au-delà, les rayons ont été réfléchis. Cela restreint l'ensemble de la lumière venant de l'extérieur dans un cône au-dessus de note tête&nbsp;: la fenêtre de Snell.</p>
 
 ---
 
@@ -923,9 +916,9 @@ Applications de la réflexion totale interne :
 
 <ul class="fragment"><li>Elle fait briller les pierres précieuses ! </li></ul>
 
-<p class="fragment">On taille ces cailloux transparents pour que la lumière qui pénètre dans la pierre ressorte majoritairement vers l'avant après des réflexions totales internes<br>sur les facettes arrières.</p> 
+<p class="fragment fade-up">On taille ces cailloux transparents pour que la lumière qui pénètre dans la pierre ressorte majoritairement vers l'avant après des réflexions totales internes<br>sur les facettes arrières.</p> 
 
-<p class="fragment">Plus l'indice optique est élevé, plus $i_c$ est <span class="fragment strike" style="color:#93a1a1;">grand</span>/petit<br>
+<p class="fragment fade-up">Plus l'indice optique est élevé, plus $i_c$ est <span class="fragment strike" style="color:#93a1a1;">grand</span>/petit<br>
 et donc plus la lumière est réfléchie.</p>
 
 ---
@@ -934,20 +927,13 @@ et donc plus la lumière est réfléchie.</p>
 
 ---
 
-<div class="short">
-  <iframe src="https://www.youtube.com/embed/Ws8d07vnA-I"
-          title="YouTube Short"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen>
-  </iframe>
-</div>
+{{< youtube-slide id="Ws8d07vnA-I" ratio="short" >}}
 
 ---
 
 Que peut-on prédire quant à l'indice<br>de réfraction de la moissonite ?
 
-<p class="fragment" style="color:#61D836">Il doit être du même ordre que celui du diamant !</p>
+<p class="fragment fade-up" style="color:#61D836">Il doit être du même ordre que celui du diamant !</p>
 
 
 ---
@@ -963,7 +949,7 @@ Comment ces bouts de plastique transparent<br>réfléchissent-ils la lumière ?
 
 <img src="/catadioptre.png" style="width:300px;border-radius:20px">
 
-<p class="fragment" style="color:#61D836">Comme les diamants.</p>
+<p class="fragment fade-up" style="color:#61D836">Comme les diamants.</p>
 
 ---
 
@@ -974,7 +960,7 @@ Comment ces bouts de plastique transparent<br>réfléchissent-ils la lumière ?
 Mais on a toujours pas vu l'application industrielle principale de la réflexion totale interne !<br>
 Quelle est-elle ?
 
-<p class="fragment" style="color:#61D836">Les fibres optiques !</p>
+<p class="fragment fade-up" style="color:#61D836">Les fibres optiques !</p>
 
 
 {{%note%}}
@@ -985,11 +971,11 @@ onde radio jusqu'à l'antenne du relais le plus proche -> fibre optique jusqu'à
 
 ---
 
-{{%youtube aFRnXB8DUm8%}}
+{{< youtube-slide id="aFRnXB8DUm8" ratio="16x9" >}}
 
 ---
 
-{{%youtube Lic3gCS_bKo%}}
+{{< youtube-slide id="Lic3gCS_bKo" ratio="16x9" >}}
 
 ---
 
@@ -1000,14 +986,7 @@ onde radio jusqu'à l'antenne du relais le plus proche -> fibre optique jusqu'à
 ---
 
 
-<div class="short">
-  <iframe src="https://www.youtube.com/embed/XyYa0CLjoSs"
-          title="YouTube Short"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen>
-  </iframe>
-</div>
+{{< youtube-slide id="XyYa0CLjoSs" ratio="short" >}}
 
 
 {{%/section%}}
@@ -1046,7 +1025,7 @@ Et comment expliquer les mirages suivant ?
 
 ---
 
-{{%youtube epeOGJcR2dE%}}
+{{< youtube-slide id="epeOGJcR2dE" ratio="4x3" >}}
 
 
 ---
@@ -1092,7 +1071,7 @@ Conséquence ?
 <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
   <div style="position: relative; padding: 30px;">
 L'<span class="imp">angle de réfraction dépend de <span class="fragment" style="color:#FF968D;">$n$</span></span><br>et comme <span class="imp"><span class="fragment" style="color:#FF968D;">$n$</span> dépend de <span class="fragment" style="color:#FF968D;">$\lambda$</span></span>,<br><span class="imp" style="color:#FF968D;">l'angle dépend de <span class="fragment" style="color:#FF968D;">$\lambda$</span></span><br>et donc de la <span class="fragment" style="color:#FF968D;">couleur</span>.
-    <div class="fragment" 
+    <div class="fragment fade-up" 
          style="position: absolute; top: 0; left: 0; right: 0; bottom: 0;
                 border: solid 5px #00AB8E; border-radius: 20px;">
     </div>

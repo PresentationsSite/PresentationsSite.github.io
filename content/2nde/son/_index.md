@@ -70,7 +70,7 @@ animation: pulse 0.75s infinite;
 
 Le son est produit par une vibration<br>qui se propage de proche en proche<br>dans un milieu matériel.
 
-<p class="fragment">Les particules du milieu lui-même<br>
+<p class="fragment fade-up">Les particules du milieu lui-même<br>
     ne font qu'osciller sur place.</p>
 
 
@@ -88,7 +88,7 @@ On est en présence d'une <span class="imp">onde</span> (l'onde sonore) caracté
 ---
 
 
-{{%youtube aDrs6EieFCM%}}
+{{< youtube-slide id="aDrs6EieFCM" ratio="16x9" >}}
 
 
 ---
@@ -110,7 +110,7 @@ Par contre, plus le milieu matériel est dense<br>et plus le signal sonore se pr
 ---
 
 
-{{%youtube BYe4x3x35is%}}
+{{< youtube-slide id="BYe4x3x35is" ratio="16x9" >}}
 
 
 ---
@@ -118,7 +118,7 @@ Par contre, plus le milieu matériel est dense<br>et plus le signal sonore se pr
 <style type="text/css">@media screen and (max-width: 767px) {.tg {width: auto !important;}.tg col {width: auto !important;}.tg-wrap {overflow-x: auto;-webkit-overflow-scrolling: touch;margin: auto 0px;}}</style><div class="tg-wrap"><table style="border-collapse:collapse;border-spacing:0;margin:0px auto" class="tg"><tbody><tr><td style="background-color:#1e1bb2;border-color:#c0c0c0;border-style:solid;border-width:1px;color:#ffffff;font-family:Arial, sans-serif;font-size:32px;overflow:hidden;padding:10px 20px;text-align:center;vertical-align:top;word-break:normal">milieu</td><td style="border-color:#c0c0c0;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:32px;overflow:hidden;padding:10px 20px;text-align:center;vertical-align:top;word-break:normal">air</td><td style="border-color:#c0c0c0;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:32px;overflow:hidden;padding:10px 20px;text-align:center;vertical-align:top;word-break:normal">eau</td><td style="border-color:#c0c0c0;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:32px;overflow:hidden;padding:10px 20px;text-align:left;vertical-align:top;word-break:normal">acier</td></tr><tr><td style="background-color:#11575a;border-color:#c0c0c0;border-style:solid;border-width:1px;color:#ffffff;font-family:Arial, sans-serif;font-size:32px;overflow:hidden;padding:10px 20px;text-align:center;vertical-align:top;word-break:normal">vitesse du son (m/s)</td><td style="border-color:#c0c0c0;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:32px;overflow:hidden;padding:10px 20px;text-align:center;vertical-align:top;word-break:normal">340</td><td style="border-color:#c0c0c0;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:32px;overflow:hidden;padding:10px 20px;text-align:center;vertical-align:top;word-break:normal">1500</td><td style="border-color:#c0c0c0;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:32px;overflow:hidden;padding:10px 20px;text-align:left;vertical-align:top;word-break:normal">5800</td></tr></tbody></table></div>
 
 
-<p class="fragment">Comment convertir ces vitesses en km/h ?</p>
+<p class="fragment fade-up">Comment convertir ces vitesses en km/h ?</p>
 
 ---
 
@@ -132,7 +132,7 @@ Commençons par convertir des km/h en m/s<br>en prenant l'exemple de $\pu{72 km/
 
 Il faut donc <span class="imp">diviser par 3,6</span><br>pour passer <span class="imp">des km/h aux m/s</span>.
 
-<p class="fragment">Que doit-on alors faire pour passer des m/s aux km/h ?</p>
+<p class="fragment fade-up">Que doit-on alors faire pour passer des m/s aux km/h ?</p>
 
 
 <img class="fragment" src="/convkmhms.png" style="background: none;width:60%">
@@ -146,7 +146,7 @@ En appelant $d$ la distance parcourue (en m)<br>et $\Delta t$ la durée écoulé
 
 <br>
 
-<div class="fragment" style="display: flex; justify-content: center; align-items: center; height: 100%;">
+<div class="fragment fade-up" style="display: flex; justify-content: center; align-items: center; height: 100%;">
 <div style="background-color:#FF644E;padding:0px 50px 0px 50px;width:fit-content;color:white;border-radius:10px;">
 $$v = \frac{d}{\Delta t}$$
 </div>
@@ -158,7 +158,7 @@ $$v = \frac{d}{\Delta t}$$
 
 On écrit $\Delta t$ car une durée est l'écart entre deux instants et le symbole $\Delta$ (Delta) symbolise, en physique, un écart : $\Delta t = t_{final} - t_{initial}$.
 
-<p class="fragment">Symétriquement, on peut aussi considérer<br>la distance comme un écart entre deux positions<br>et au lieu de $d$, on aurait pu écrire $\Delta x$.</p>
+<p class="fragment fade-up">Symétriquement, on peut aussi considérer<br>la distance comme un écart entre deux positions<br>et au lieu de $d$, on aurait pu écrire $\Delta x$.</p>
 
 
 ---
@@ -166,15 +166,15 @@ On écrit $\Delta t$ car une durée est l'écart entre deux instants et le symbo
 
 Si on connaît la vitesse et la durée,<br>comment obtient-on la distance ?
 
-<div class="fragment" style="display: flex; justify-content: center; align-items: center; height: 100%;">
+<div class="fragment fade-up" style="display: flex; justify-content: center; align-items: center; height: 100%;">
 <div style="background-color:#0076BA;padding:0px 50px 0px 50px;width:fit-content;color:white;border-radius:10px;">
 $$d=v\times \Delta t$$
 </div>
 </div>
 
-<p class="fragment">Et si on connaît la distance et la vitesse,<br>comment obtient-on la durée ?</p>
+<p class="fragment fade-up">Et si on connaît la distance et la vitesse,<br>comment obtient-on la durée ?</p>
 
-<div class="fragment" style="display: flex; justify-content: center; align-items: center; height: 100%;">
+<div class="fragment fade-up" style="display: flex; justify-content: center; align-items: center; height: 100%;">
 <div style="background-color:#1DB100;padding:0px 50px 0px 50px;width:fit-content;color:white;border-radius:10px;">
 $$\Delta t = \frac{d}{v}$$
 </div>
@@ -205,7 +205,7 @@ document.getElementById('jouerSon').addEventListener('click', function() {
 ---
 
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/_BgJEXQkjNQ?start=65" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+{{< youtube-slide id="_BgJEXQkjNQ" ratio="16x9" start="65" >}}
 
 Qu'est-ce que cette vidéo<br>nous permet de déterminer&nbsp;?
 
@@ -261,11 +261,11 @@ Pour augmenter l'intensité du son émis,<br>beaucoup d’instruments et d’êt
 
 Les sons musicaux sont des signaux <span class="imp">périodiques</span>.
 
-<p class="fragment">Un <span class="imp">signal périodique</span> est un signal<br>qui se <span class="imp" style="color:#FFD932">répète à l'identique dans le temps</span>.</p>
+<p class="fragment fade-up">Un <span class="imp">signal périodique</span> est un signal<br>qui se <span class="imp" style="color:#FFD932">répète à l'identique dans le temps</span>.</p>
 
-<p class="fragment">La <span class="imp">période $T$</span> d'un signal périodique<br>est la <span class="imp" style="color:#FFD932">durée d'une répétition</span> (d'un motif).</p>
+<p class="fragment fade-up">La <span class="imp">période $T$</span> d'un signal périodique<br>est la <span class="imp" style="color:#FFD932">durée d'une répétition</span> (d'un motif).</p>
 
-<p class="fragment">Unité : <span class="fragment">la seconde</span></p>
+<p class="fragment fade-up">Unité : <span class="fragment">la seconde</span></p>
 
 
 ---
@@ -301,13 +301,13 @@ Les sons musicaux sont des signaux <span class="imp">périodiques</span>.
 
 Pour des sons musicaux, la période est souvent très petite, de l'ordre de la cs ou ms. On lui préfère alors<br>le <span class="imp" style="color:#FFD932">nombre de répétitions (de motifs) par seconde</span><br>qui est l'inverse de la période et qu'on appelle<br>la <span class="imp">fréquence $f$</span>.
 
-<div class="fragment" style="display: flex; justify-content: center; align-items: center; height: 100%;">
+<div class="fragment fade-up" style="display: flex; justify-content: center; align-items: center; height: 100%;">
 <div style="background-color:#ED220D;padding:0px 50px 0px 50px;width:fit-content;color:white;border-radius:15px;">
 $$f = \frac{1}{T}$$
 </div>
 </div>
 
-<p class="fragment">Unité : le <span class="imp">hertz (Hz)</span></p>
+<p class="fragment fade-up">Unité : le <span class="imp">hertz (Hz)</span></p>
 
 
 ---
@@ -538,7 +538,7 @@ plus la fréquence est grande,<br><span class="fragment">plus la hauteur est <sp
 
 Le signal de deux notes identiques jouées par des instruments différents possède la même période<br>mais la <span class="imp">forme des signaux</span> est différente.
 
-<p class="fragment">On appelle <span class="imp">timbre</span> ce qui distingue<br>deux notes de même hauteur.</p>
+<p class="fragment fade-up">On appelle <span class="imp">timbre</span> ce qui distingue<br>deux notes de même hauteur.</p>
 
 ---
 
@@ -552,7 +552,7 @@ https://www.edumedia-sciences.com/fr/media/frame/320/?auth=8c1ba56b82bdf81fef2eb
 
 Enfin, la troisième caractéristique<br>d'un son est son <span class="imp" style="color:#61D836">intensité</span>.
 
-<p class="fragment">L'<span class="imp" style="color:#61D836">intensité sonore</span> est <span class="imp" style="color:#FF644E">proportionnelle</span><br>à l'<span class="imp">amplitude</span> du signal<br>(une amplitude n fois plus grande<br>multiplie par n l'intensité sonore).</p>
+<p class="fragment fade-up">L'<span class="imp" style="color:#61D836">intensité sonore</span> est <span class="imp" style="color:#FF644E">proportionnelle</span><br>à l'<span class="imp">amplitude</span> du signal<br>(une amplitude n fois plus grande<br>multiplie par n l'intensité sonore).</p>
 
 ---
 
@@ -584,9 +584,9 @@ Si l'<span style="color:#61D836">intensité sonore</span> de la trompette seule 
 
 Mais cette relation de proportionnalité rend mal compte de notre <span class="imp" style="color:#FFD932">sensation auditive</span>.
 
-<p class="fragment">On peut par exemple mesurer que l'<span class="imp">amplitude</span> du son émis par quelqu'un qui parle fort est environ 10&nbsp;000 fois plus grande que celle d'une personne qui chuchote à la même distance ! Pourtant, on n'a<br>pas la <span class="imp" style="color:#FFD932">sensation</span> d'un son 10&nbsp;000 fois plus fort...</p>
+<p class="fragment fade-up">On peut par exemple mesurer que l'<span class="imp">amplitude</span> du son émis par quelqu'un qui parle fort est environ 10&nbsp;000 fois plus grande que celle d'une personne qui chuchote à la même distance ! Pourtant, on n'a<br>pas la <span class="imp" style="color:#FFD932">sensation</span> d'un son 10&nbsp;000 fois plus fort...</p>
 
-<p class="fragment" style="color:1DB100"><span class="imp">Amplitude</span> et <span class="imp" style="color:#FFD932">sensation auditive</span><br>ne sont pas <span class="imp" style="color:#FF644E">proportionnelles</span>&nbsp;!</p>
+<p class="fragment fade-up" style="color:1DB100"><span class="imp">Amplitude</span> et <span class="imp" style="color:#FFD932">sensation auditive</span><br>ne sont pas <span class="imp" style="color:#FF644E">proportionnelles</span>&nbsp;!</p>
 
 {{%note%}}
 70dB pour parle fort
@@ -598,7 +598,7 @@ Mais cette relation de proportionnalité rend mal compte de notre <span class="i
 
 Pour tenir compte de cette échelle non proportionnelle, on utilise une autre grandeur :<br>le <span class="imp" style="color:#FF42A1">niveau sonore</span>, mesuré en décibels (dB).
 
-<p class="fragment">Lorsque l'<span class="imp" style="color:#61D836">intensité sonore</span> augmente, le <span class="imp" style="color:#FF42A1">niveau sonore</span> augmente aussi, mais beaucoup moins vite.</p>
+<p class="fragment fade-up">Lorsque l'<span class="imp" style="color:#61D836">intensité sonore</span> augmente, le <span class="imp" style="color:#FF42A1">niveau sonore</span> augmente aussi, mais beaucoup moins vite.</p>
 
 ---
 
@@ -624,7 +624,7 @@ il faut 3 tel, 1 choisit le capteur "niveau de bruit" (qui moyenne le niveau son
 
 ---
 
-{{%youtube DFGU0yaD9vo%}}
+{{< youtube-slide id="DFGU0yaD9vo" ratio="16x9" >}}
 
 ---
 

@@ -240,10 +240,10 @@ synthèse additive des couleurs</span>
 La <b style="color:#fff;">lumière blanche</b> est une<br>addition de lumières colorées.
 
 <ul>
-<li class="fragment"><b style="color:#f00;">rouge</b> + <b style="color:#0f0">vert</b> + <b style="color:#00f">bleu</b> = <b class="fragment" style="color:#fff;">blanc</b></li>
-<li class="fragment"><b style="color:#f00;">rouge</b> + <b style="color:#0f0">vert</b> = <b class="fragment" style="color:#ff0;">jaune</b></li>
-<li class="fragment"> <b style="color:#0f0">vert</b> + <b style="color:#00f">bleu</b> = <b class="fragment" style="color:#0ff;">cyan</b></li>
-<li class="fragment"><b style="color:#f00;">rouge</b> + <b style="color:#00f">bleu</b> = <b class="fragment" style="color:#f0f;">magenta</b></li>
+<li class="fragment fade-up"><b style="color:#f00;">rouge</b> + <b style="color:#0f0">vert</b> + <b style="color:#00f">bleu</b> = <b class="fragment" style="color:#fff;">blanc</b></li>
+<li class="fragment fade-up"><b style="color:#f00;">rouge</b> + <b style="color:#0f0">vert</b> = <b class="fragment" style="color:#ff0;">jaune</b></li>
+<li class="fragment fade-up"> <b style="color:#0f0">vert</b> + <b style="color:#00f">bleu</b> = <b class="fragment" style="color:#0ff;">cyan</b></li>
+<li class="fragment fade-up"><b style="color:#f00;">rouge</b> + <b style="color:#00f">bleu</b> = <b class="fragment" style="color:#f0f;">magenta</b></li>
 </ul>
 
 
@@ -273,9 +273,9 @@ Vidéo de [art.pete.repeat](https://www.instagram.com/reel/C4_RpwJRizk/?igsh=anh
 Des <b style="color:#fff">couleurs complémentaires</b> sont des couleurs<br>qui donnent du <b style="color:#fff">blanc</b> lorsqu'on les additionne.
 
 <ul>
-<li class="fragment"><b style="color:#f00;">rouge</b> + <b class="fragment" style="color:#0ff">cyan</b> = <b style="color:#fff;">blanc</b></li>
-<li class="fragment"> <b style="color:#0f0">vert</b> + <b class="fragment" style="color:#f0f">magenta</b> = <b style="color:#fff;">blanc</b></li>
-<li class="fragment"><b style="color:#00f;">bleu</b> + <b class="fragment" style="color:#ff0">jaune</b> = <b style="color:#fff;">blanc</b></li>
+<li class="fragment fade-up"><b style="color:#f00;">rouge</b> + <b class="fragment" style="color:#0ff">cyan</b> = <b style="color:#fff;">blanc</b></li>
+<li class="fragment fade-up"> <b style="color:#0f0">vert</b> + <b class="fragment" style="color:#f0f">magenta</b> = <b style="color:#fff;">blanc</b></li>
+<li class="fragment fade-up"><b style="color:#00f;">bleu</b> + <b class="fragment" style="color:#ff0">jaune</b> = <b style="color:#fff;">blanc</b></li>
 </ul>
 
 ---
@@ -296,7 +296,7 @@ Que peut-il arriver à la lumière<br>lorsqu'elle arrive sur un objet ?
 
 <br>
 
-<p class="fragment">Elle peut être :</p>
+<p class="fragment fade-up">Elle peut être :</p>
 <ul class="fragment">
 <li class="imp">absorbée</li>
 <li class="imp">diffusée (ou réfléchie)</li>
@@ -371,7 +371,7 @@ synthèse soustractive des couleurs</span>
 
 Cela explique pourquoi les couleurs primaires en peinture sont le <b style="color:#0ff">cyan</b>, le <b style="color:#ff0">jaune</b> et le <b style="color:#f0f">magenta</b>.
 
-<p class="fragment">Le mélange de peintures de différentes couleurs va absorber et donc soustraire toujours plus de lumières colorées à la lumière incidente. Il faut donc partir<br>des couleurs qui en soustraient le moins.</p>
+<p class="fragment fade-up">Le mélange de peintures de différentes couleurs va absorber et donc soustraire toujours plus de lumières colorées à la lumière incidente. Il faut donc partir<br>des couleurs qui en soustraient le moins.</p>
 
 ---
 
@@ -396,7 +396,7 @@ Principe de l'imprimerie couleur (CMJN ou CMYK).
 
 Si l'objet est transparent, alors la lumière <b class="imp">transmise</b> joue le rôle de la lumière diffusée d'un objet opaque.
 
-<p class="fragment">Superposer des filtres colorés va absorber et donc soustraire de plus en plus de lumières colorées.</p>
+<p class="fragment fade-up">Superposer des filtres colorés va absorber et donc soustraire de plus en plus de lumières colorées.</p>
 
 ---
 

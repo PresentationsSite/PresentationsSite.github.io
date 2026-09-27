@@ -49,7 +49,7 @@ th:not(:last-child), td:not(:last-child) { border-right: 1px solid #00A2FF; }
 ---
 
 
-<iframe width="640" height="480" src="https://www.youtube.com/embed/yWHZWalGDls" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+{{< youtube-slide id="yWHZWalGDls" ratio="4x3" >}}
 
 ---
 
@@ -83,7 +83,7 @@ il faut que vos deux mains soient proches l'une de l'autre (ne pas tenir la pipe
 
 ---
 
-<iframe width="800" height="450" src="https://www.youtube.com/embed/GYIqw1iI0-g" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+{{< youtube-slide id="GYIqw1iI0-g" ratio="16x9" >}}
 
 ---
 
@@ -92,7 +92,7 @@ il faut que vos deux mains soient proches l'une de l'autre (ne pas tenir la pipe
 ---
 
 
-<iframe width="640" height="480" src="https://www.youtube.com/embed/RvvL3Z7PSXQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+{{< youtube-slide id="RvvL3Z7PSXQ" ratio="4x3" >}}
 
 ---
 

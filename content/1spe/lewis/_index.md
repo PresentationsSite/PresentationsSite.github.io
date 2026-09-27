@@ -204,7 +204,7 @@ Pour l'atome d'Hydrogène : ${\color{#FFF}n_v} =$ <span class="fragment">${\\,\c
 
 
 Pour l'atome de Sodium : ${\color{#FFF}n_v} =$ <span class="fragment">${\\,\color{#FFF}1}$</span><br>
-<p class="fragment">Ici : ${\color{#FFF056}n_{l}} = $<span class="fragment">${\,\color{#FFF056}0}$</span>&nbsp;&nbsp;et&nbsp;&nbsp;${\color{#56C1FF}n_{nl}} =$<span class="fragment"> $\,{\color{#56C1FF}0}$</span></p>
+<p class="fragment fade-up">Ici : ${\color{#FFF056}n_{l}} = $<span class="fragment">${\,\color{#FFF056}0}$</span>&nbsp;&nbsp;et&nbsp;&nbsp;${\color{#56C1FF}n_{nl}} =$<span class="fragment"> $\,{\color{#56C1FF}0}$</span></p>
 <p class="fragment fade-up">$\Rightarrow$ Charge formelle : <span class="fragment">$q =  {\color{#FFF}1}-{\color{#FFF056}0}-{\color{#56C1FF}0}\times 2 = +1$</span></p>
 
 <p class="fragment fade-up">On obtient l'ion sodium $\ce{Na+}$.</p>
@@ -533,7 +533,7 @@ Prévoir la polarité de la molécule de méthane $\ce{CH4}$<br>et celle d'ammon
 
 ---
 
-{{<youtube _xfd8fXE4dE>}}
+{{< youtube-slide id="_xfd8fXE4dE" ratio="16x9" >}}
 
 ---
 

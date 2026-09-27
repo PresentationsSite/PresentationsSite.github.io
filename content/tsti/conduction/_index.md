@@ -35,7 +35,7 @@ Que nous apprend cette image ?
 
 L'immeuble au premier plan est beaucoup mieux **isolé** que celui en arrière plan !
 
-<p class="fragment">Cela se traduit par un plus faible flux thermique à travers sa paroi et ainsi un plus fort écart de température entre l'extérieur et l'intérieur.</p>
+<p class="fragment fade-up">Cela se traduit par un plus faible flux thermique à travers sa paroi et ainsi un plus fort écart de température entre l'extérieur et l'intérieur.</p>
 
 {{%/section%}}
 
@@ -49,7 +49,7 @@ L'immeuble au premier plan est beaucoup mieux **isolé** que celui en arrière p
 
 Le **flux thermique** à travers une paroi est l'<b>énergie qui traverse cette paroi<br>par unité de temps</b>.<br>
 
-<p class="fragment">Le flux est toujours orienté <b>du chaud vers le froid</b>.</p>
+<p class="fragment fade-up">Le flux est toujours orienté <b>du chaud vers le froid</b>.</p>
 
 
 ---
@@ -60,9 +60,9 @@ Le **flux thermique** à travers une paroi est l'<b>énergie qui traverse cette 
 
 Le flux thermique $\Phi$ à travers une paroi dépend
 <ul>
-<li class="fragment">de la surface $S$ de la paroi,</li> 
-<li class="fragment">de l'écart de température $\Delta \theta$<br>de part et d'autre de la paroi,</li> 
- <li class="fragment">et de la résistance thermique $R_{th}$ de la paroi.</li> 
+<li class="fragment fade-up">de la surface $S$ de la paroi,</li> 
+<li class="fragment fade-up">de l'écart de température $\Delta \theta$<br>de part et d'autre de la paroi,</li> 
+ <li class="fragment fade-up">et de la résistance thermique $R_{th}$ de la paroi.</li> 
  </ul>
 
 ---
@@ -158,7 +158,7 @@ Expliquez le double vitrage<br>à l'aide du tableau précédent.
 
 ---
 
-{{%youtube vqDbMEdLiCs%}}
+{{< youtube-slide id="vqDbMEdLiCs" ratio="16x9" >}}
 
 ---
 

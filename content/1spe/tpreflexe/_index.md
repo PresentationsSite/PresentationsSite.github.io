@@ -116,15 +116,15 @@ Répéter l'expérience  au moins 10 fois <br>et notez dans un tableau de mesure
 
 Calculer ensuite votre temps de réaction moyen<br><b style="color:#FFF056;">$\overline{t_{TR}}=\frac{1}{n}\sum_i^n t_{{TR}_i}$</b>
 
-<p class="fragment">Peut-on déjà classer les élèves du groupe ?</p>
+<p class="fragment fade-up">Peut-on déjà classer les élèves du groupe ?</p>
 
-<p class="fragment">Non, il s'agit peut-être seulement de fluctuations statistiques pour des temps de réaction identiques.</p>
+<p class="fragment fade-up">Non, il s'agit peut-être seulement de fluctuations statistiques pour des temps de réaction identiques.</p>
 
 ---
 
 On va alors réaliser une évaluation de type A<br>de l'incertitude sur cette moyenne.
 
-<p class="fragment">
+<p class="fragment fade-up">
 L'<b style="color:#FF968D;">incertitude-type $\mathrm{u}(\overline{t_{TR}})$</b> s'obtient en calculant l'écart-type expérimental des mesures divisé<br>par la racine carrée du nombre de mesures :
 <b style="color:#FF968D;">$\mathrm{u}(\overline{t_{TR}})=\frac{S_\mathrm{exp}}{\sqrt{n}}$</b>
 </p>
@@ -140,9 +140,9 @@ Notez enfin proprement<br>le résultat de votre mesure :
 
 Pour pouvoir être considérer plus réactif, il ne faut pas que les intervalles de confiance se chevauchent.
 
-<p class="fragment">Et même alors, il restera théoriquement environ une chance sur trois que la différence soit due au hasard.</p>
+<p class="fragment fade-up">Et même alors, il restera théoriquement environ une chance sur trois que la différence soit due au hasard.</p>
 
-<p class="fragment">En doublant la largeur de l'intervalle,<br>il ne reste plus qu'une chance sur vingt...</p>
+<p class="fragment fade-up">En doublant la largeur de l'intervalle,<br>il ne reste plus qu'une chance sur vingt...</p>
 
 
 

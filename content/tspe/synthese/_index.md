@@ -76,9 +76,7 @@ font-weight:normal;
 ---
 
 
-<div style="position:relative;margin:auto;width:800px;max-width:100%;">
-<iframe width="800" height="427" src="https://www.youtube-nocookie.com/embed/gRBG7RdY00I?si=Lg-tUtLk4FpPxJ45" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
-</div>
+{{< youtube-slide id="gRBG7RdY00I" ratio="16x9" >}}
 
 ---
 
@@ -115,9 +113,7 @@ On obtient un mélange contenant les produits synthétisés, le solvant, le cata
 
 ---
 
-<div style="position:relative;margin:auto;width:800px;max-width:100%;">
-<iframe width="800" height="427" src="https://www.youtube-nocookie.com/embed/iHk2tV8KwUI?si=c__OWLHeN2Kcs4gj" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
-</div>
+{{< youtube-slide id="iHk2tV8KwUI" ratio="16x9" >}}
 
 ---
 
@@ -139,9 +135,7 @@ On obtient un mélange contenant les produits synthétisés, le solvant, le cata
 
 ---
 
-<div style="position:relative;margin:auto;width:800px;max-width:100%;">
-<iframe width="800" height="427" src="https://www.youtube-nocookie.com/embed/2XkwYikTxao?si=LfBsRbelcXx0SHCQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
-</div>
+{{< youtube-slide id="2XkwYikTxao" ratio="16x9" >}}
 
 ---
 
@@ -157,9 +151,7 @@ On obtient un mélange contenant les produits synthétisés, le solvant, le cata
 
 ---
 
-<div style="position:relative;margin:auto;width:800px;max-width:100%;">
-<iframe width="800" height="427" src="https://www.youtube-nocookie.com/embed/3wKTiLfnSNs?si=WIs5yGx8uo-tiyRh" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
-</div>
+{{< youtube-slide id="3wKTiLfnSNs" ratio="16x9" >}}
 
 ---
 
@@ -176,15 +168,11 @@ On obtient un mélange contenant les produits synthétisés, le solvant, le cata
 
 ---
 
-<div style="position:relative;margin:auto;width:800px;max-width:100%;">
-<iframe width="800" height="427" src="https://www.youtube-nocookie.com/embed/iVwT10cV84k?si=V3QtsQz1s0pwBLEk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
-</div>
+{{< youtube-slide id="iVwT10cV84k" ratio="16x9" >}}
 
 ---
 
-<div style="position:relative;margin:auto;width:800px;max-width:100%;">
-<iframe width="800" height="427" src="https://www.youtube-nocookie.com/embed/S-CDbA8tYKM?si=2lPQIBnGUMKQCpkT" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
-</div>
+{{< youtube-slide id="S-CDbA8tYKM" ratio="16x9" >}}
 
 ---
 
@@ -200,21 +188,15 @@ On obtient un mélange contenant les produits synthétisés, le solvant, le cata
 
 ---
 
-<div style="position:relative;margin:auto;width:800px;max-width:100%;">
-<iframe width="800" height="427" src="https://www.youtube-nocookie.com/embed/XuO9EPJcY7I?si=aNany-wbGKWWdTVy" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
-</div>
+{{< youtube-slide id="XuO9EPJcY7I" ratio="16x9" >}}
 
 ---
 
-<div style="position:relative;margin:auto;width:800px;max-width:100%;">
-<iframe width="800" height="427" src="https://www.youtube-nocookie.com/embed/p7g21N5oFLE?si=jRtIl0Tbtv9WGOz_" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
-</div>
+{{< youtube-slide id="p7g21N5oFLE" ratio="16x9" >}}
 
 ---
 
-<div style="position:relative;margin:auto;width:800px;max-width:100%;">
-<iframe width="800" height="427" src="https://www.youtube-nocookie.com/embed/1e27UfFGfBA?si=10JWPW7ZJQ_rUQgZ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
-</div>
+{{< youtube-slide id="1e27UfFGfBA" ratio="16x9" >}}
 
 {{% /section %}}
 
@@ -333,9 +315,7 @@ Dans le cas d'une estérification où l'eau est un produit non soluble avec le s
 
 ---
 
-<div style="position:relative;margin:auto;width:800px;max-width:100%;">
-<iframe width="800" height="427" src="https://www.youtube-nocookie.com/embed/_zbHeEtRTZw?si=g5E8-LguN7JeHR4F" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
-</div>
+{{< youtube-slide id="_zbHeEtRTZw" ratio="16x9" >}}
 
 ---
 

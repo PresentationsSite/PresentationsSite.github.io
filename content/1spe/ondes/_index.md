@@ -44,11 +44,11 @@ Une onde <span class="imp">mécanique</span> <b style="color:#FDF6A5">progressiv
 
 Le milieu est composé de <span class="imp">particules</span><br>capables d'<b style="color:#FDF6A5">osciller sur place</b>.
 
-<p class="fragment">
+<p class="fragment fade-up">
 Si l'une de ces particules est mise en mouvement<br>par une perturbation, elle va entraîner la mise en mouvement de ses voisines <b style="color:#FDF6A5">de proche en proche</b>.
 </p>
 
-<p class="fragment">
+<p class="fragment fade-up">
 C'est ainsi que la perturbation<br>se <b style="color:#FDF6A5">propage</b> dans le milieu.
 </p>
 
@@ -85,7 +85,7 @@ On appelle <span class="imp">retard</span> la durée $\Delta t=t_B-t_A$.
 
 Le retard $\Delta t$ et la distance $d=AB$ permettent de définir la célérité $c$ de l'onde&nbsp;:
 
-<div class="fragment" style="background-color:#FF968D;padding:2px 50px 2px 50px;width:fit-content;margin-right:auto;margin-left:auto;color:white;border-radius:15px;">
+<div class="fragment fade-up" style="background-color:#FF968D;padding:2px 50px 2px 50px;width:fit-content;margin-right:auto;margin-left:auto;color:white;border-radius:15px;">
 <span style="color:#B51700;font-size:1.2em;">
 $$c=\frac{d}{\Delta t}$$</span>
 </div>
@@ -132,14 +132,14 @@ Une onde mécanique <span class="imp">périodique</span> est une onde<br>dont la
 
 <br>
 
-<div class="fragment" style="background-color:#FF968D;padding:15px 50px 15px 50px;width:fit-content;margin-right:auto;margin-left:auto;color:white">
+<div class="fragment fade-up" style="background-color:#FF968D;padding:15px 50px 15px 50px;width:fit-content;margin-right:auto;margin-left:auto;color:white">
 <span style="color:#B51700;font-size:1.em;">
 La <b>période</b> $T$ d'une onde périodique est la plus petite <b>durée</b> entre deux répétitions<br>à l'identique de la perturbation.</span>
 </div>
 
 <br>
 
-<p class="fragment">
+<p class="fragment fade-up">
 C'est la durée d'un motif.
 </p>
 
@@ -151,7 +151,7 @@ C'est la durée d'un motif.
 
 La <span class="imp">fréquence</span> est <span class="fragment imp">l'inverse</span> de la période :
 
-<div class="fragment" style="background-color:#FF968D;padding:2px 50px 2px 50px;width:fit-content;margin-right:auto;margin-left:auto;color:white;border-radius:15px">
+<div class="fragment fade-up" style="background-color:#FF968D;padding:2px 50px 2px 50px;width:fit-content;margin-right:auto;margin-left:auto;color:white;border-radius:15px">
 <span style="color:#B51700;font-size:1.2em;">
 $$f=\frac{1}{T}$$</span>
 </div>
@@ -170,14 +170,14 @@ $$f=\frac{1}{T}$$</span>
 
 <br>
 
-<div class="fragment" style="background-color:#73FDEA;padding:15px 50px 15px 50px;width:fit-content;margin-right:auto;margin-left:auto;color:white">
+<div class="fragment fade-up" style="background-color:#73FDEA;padding:15px 50px 15px 50px;width:fit-content;margin-right:auto;margin-left:auto;color:white">
 <span style="color:#006C65;font-size:1.em;">
 La <b>longueur d'onde</b> $\lambda$ d'une onde périodique est la plus petite <b>distance</b> entre deux répétitions<br>à l'identique de la perturbation.</span>
 </div>
 
 <br>
 
-<p class="fragment">
+<p class="fragment fade-up">
 C'est la taille d'un motif.
 </p>
 
@@ -195,7 +195,7 @@ C'est la taille d'un motif.
 <li>Dans un cas on visualise la variation de l'amplitude de la perturbation en un point de l'espace au cours<br>du temps <span style="color:#FFF056"">$a(t)$</span> (c'est un enregistrement temporel).<br>
 <span style="color:#FFF056"">La durée du motif est la période $T$</span>.</li>
 <br>
-<li class="fragment">Dans l'autre cas, on visualise à un instant donné<br>la variation de l'amplitude dans l'espace <span style="color:#16E7CF"">$a(x)$</span><br>(c'est une photo).<br>
+<li class="fragment fade-up">Dans l'autre cas, on visualise à un instant donné<br>la variation de l'amplitude dans l'espace <span style="color:#16E7CF"">$a(x)$</span><br>(c'est une photo).<br>
 <span style="color:#16E7CF"">La taille du motif est la longueur d'onde $\lambda$</span>.</li>
 </ul>
 
@@ -204,10 +204,10 @@ C'est la taille d'un motif.
 
 Lien entre les deux périodicités ?
 
-<p class="fragment">La célérité !</p>
+<p class="fragment fade-up">La célérité !</p>
 
 
-<div class="fragment" style="background-color:#FEF8B9;padding:2px 50px 2px 50px;width:fit-content;margin-right:auto;margin-left:auto;color:white;border-radius:15px;">
+<div class="fragment fade-up" style="background-color:#FEF8B9;padding:2px 50px 2px 50px;width:fit-content;margin-right:auto;margin-left:auto;color:white;border-radius:15px;">
 <span style="color:#EE220C;font-size:1.2em;">
 $$c=\frac{\lambda}{T}$$</span>
 </div>
@@ -232,11 +232,11 @@ $$c=\frac{\lambda}{T}$$</span>
 
 Les évolutions temporelles de deux points séparés par un nombre entier de longueurs d'onde sont identiques.
 
-<p class="fragment">
+<p class="fragment fade-up">
 On dit alors que les signaux correspondant<br>à chacune des évolutions sont <span class="imp">en phases</span>.
 </p>
 
-<p class="fragment">
+<p class="fragment fade-up">
 Cela donne une méthode pour déterminer expérimentalement une longueur d'onde<br>(cf. 2<sup>e</sup> partie du TP).
 </p>
 
@@ -250,11 +250,11 @@ Rq :
 
 Une onde est dite <span class="imp">sinusoïdale</span> si la fonction modélisant l'évolution de la perturbation par rapport au temps<br>ou à la distance est elle-même sinusoïdale<br>(une fonction sinus ou cosinus).
 
-<p class="fragment">
+<p class="fragment fade-up">
 Une onde sinusoïdale est <i>a fortiori</i> périodique<br>(la période est celle de la fonction sinusoïdale). 
 </p>
 
-<p class="fragment">
+<p class="fragment fade-up">
 Mathématiquent : $\displaystyle a(t)=A\cos\left(2\pi\frac{t}{T}+\phi\right)$<br>ou
 $\displaystyle a(x)=A\cos\left(2\pi\frac{x}{\lambda}+\psi\right)$
 </p>

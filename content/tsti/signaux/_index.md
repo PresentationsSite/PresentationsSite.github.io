@@ -120,7 +120,7 @@ Exemple : quelle devra être la bande passante pour transmettre fidèlement le s
 
 ---
 
-{{%youtube w7y-1eY0mcE%}}
+{{< youtube-slide id="w7y-1eY0mcE" ratio="16x9" >}}
 
 
 ---
@@ -213,7 +213,7 @@ Sa taille d'environ 30 cm est-elle adaptée ?
 
 ---
 
-{{%youtube g3aETl-9dfw%}}
+{{< youtube-slide id="g3aETl-9dfw" ratio="16x9" >}}
 
 
 {{% /section %}}
@@ -254,11 +254,11 @@ Il ne sont quasiment plus aujourd'hui utilisés que pour des transmission de pet
 ---
 
 
-{{%youtube aFRnXB8DUm8%}}
+{{< youtube-slide id="aFRnXB8DUm8" ratio="16x9" >}}
 
 ---
 
-{{%youtube Lic3gCS_bKo%}}
+{{< youtube-slide id="Lic3gCS_bKo" ratio="16x9" >}}
 
 ---
 
@@ -268,7 +268,7 @@ C'est à la fois le média des câbles sous-marins<br>et celui des raccords des 
 
 ---
 
-{{%youtube LEM_I3HbIU8%}}
+{{< youtube-slide id="LEM_I3HbIU8" ratio="16x9" >}}
 
 ---
 

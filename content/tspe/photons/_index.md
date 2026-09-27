@@ -72,7 +72,7 @@ Comme souvent, tout part d'une expérience.
 
 ---
 
-<iframe width="800" height="450" src="https://www.youtube.com/embed/oYnp0WZDhYQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+{{< youtube-slide id="oYnp0WZDhYQ" ratio="16x9" >}}
 
 {{%note%}}
 Première lampe visible mais luminosité de fou (qu'il augmente au fur et à mesure)
@@ -351,7 +351,7 @@ Comme les atomes, toutes les entités (molécules, ions, noyaux) ainsi que leurs
 
 Théorie des bandes :
 
-<iframe width="800" height="450" src="https://www.youtube.com/embed/EWLgeBVY-08" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+{{< youtube-slide id="EWLgeBVY-08" ratio="16x9" >}}
 
 
 ---

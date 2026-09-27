@@ -86,23 +86,23 @@ La pression dans l'eau augmente<br>proportionnellement à la profondeur du plong
 
 Appelons B un point à la surface (<b style="color:#FFD932">$z_B=\pu{0 m}$</b>)<br>et A un point à une profondeur de 20 m (<b style="color:#61D836">$z_A=\pu{-20 m}$</b>)
 
-<p class="fragment">Puis appliquons le principe fondamental de l'hydrostatique entre A et B :<p>
+<p class="fragment fade-up">Puis appliquons le principe fondamental de l'hydrostatique entre A et B :<p>
 
 ---
 
 ${\color{#FFD932}P_B} - {\color{#61D836}P_A} = \rho g ({\color{#61D836}z_A}-{\color{#FFD932}z_B})$
 
-<p class="fragment">On cherche la pression à la profondeur de 20 m <b style="color:#61D836">$P_A$</b> :</p>
+<p class="fragment fade-up">On cherche la pression à la profondeur de 20 m <b style="color:#61D836">$P_A$</b> :</p>
 
-<p class="fragment">$- {\color{#61D836}P_A} = \rho g ({\color{#61D836}z_A}-{\color{#FFD932}z_B})-{\color{#FFD932}P_B}$</p>
+<p class="fragment fade-up">$- {\color{#61D836}P_A} = \rho g ({\color{#61D836}z_A}-{\color{#FFD932}z_B})-{\color{#FFD932}P_B}$</p>
 
-<p class="fragment">$\quad\;\; {\color{#61D836}P_A} = {\color{#FF644E}-}\rho g ({\color{#61D836}z_A}-{\color{#FFD932}z_B}){\color{#FF644E}+}{\color{#FFD932}P_B}$</p>
+<p class="fragment fade-up">$\quad\;\; {\color{#61D836}P_A} = {\color{#FF644E}-}\rho g ({\color{#61D836}z_A}-{\color{#FFD932}z_B}){\color{#FF644E}+}{\color{#FFD932}P_B}$</p>
 
 ---
 
 Application numérique :
 
-<div class="fragment">
+<div class="fragment fade-up">
 
 $ 
 \begin{aligned}
@@ -113,7 +113,7 @@ $
 
 </div>
 
-<div class="fragment">
+<div class="fragment fade-up">
 
 On retrouve bien une pression de 3,0 bar<br>soit environ 3 fois la pression atmosphérique.
 
@@ -128,7 +128,7 @@ On retrouve bien une pression de 3,0 bar<br>soit environ 3 fois la pression atmo
 
 $P_0 = P(h=0) = \pu{101,3E3} = \pu{1,013E5}$
 
-<p class="fragment">
+<p class="fragment fade-up">
 $P_0$ (pression à la surface du liquide)<br>représente la pression atmosphérique.
 </p>
 
@@ -151,11 +151,11 @@ P_A = -\rho g (z_A-z_B)+P_B \tag{b}
 
 Si B est un point à la surface, $P_B=P_0=\color{#FFD932}\pu{101,3E3 Pa}$<br>et $z_B=\color{#61D836}\pu{0 m}$.
 
-<p class="fragment">Si A est un point à la profondeur $h$,<br>alors $z_A=\color{#FF644E}-h$.</p>
+<p class="fragment fade-up">Si A est un point à la profondeur $h$,<br>alors $z_A=\color{#FF644E}-h$.</p>
 
-<p class="fragment">Posons $P_A=\color{#73FDEA}P$.</p>
+<p class="fragment fade-up">Posons $P_A=\color{#73FDEA}P$.</p>
 
-<p class="fragment">Dans le cas de l'eau : $\rho \times g= \pu{1,0E3}\times\pu{9,81} = \color{#FF95CA}\pu{9,81E3}$</p>
+<p class="fragment fade-up">Dans le cas de l'eau : $\rho \times g= \pu{1,0E3}\times\pu{9,81} = \color{#FF95CA}\pu{9,81E3}$</p>
 
 ---
 
@@ -168,7 +168,7 @@ $
 \end{aligned}
 $
 
-<p class="fragment">On retrouve bien quelque chose de très proche de (a).</p>
+<p class="fragment fade-up">On retrouve bien quelque chose de très proche de (a).</p>
 
 {{%/section%}}
 
@@ -179,8 +179,8 @@ $
 Sources d'erreur :
 
 <ul>
-<li class="fragment">mauvaise lecture de la profondeur,</li>
-<li class="fragment">erreur de mesure du capteur de pression.</li>
+<li class="fragment fade-up">mauvaise lecture de la profondeur,</li>
+<li class="fragment fade-up">erreur de mesure du capteur de pression.</li>
 </ul>
 
 ---
@@ -205,11 +205,11 @@ Sachant qu'avec la <span class="imp">profondeur</span>, la <span class="imp">pre
 
 À 20 m de profondeur, on est à la pression $P_2$<br>calculée en 1.2., soit environ 3,0 bar.
 
-<p class="fragment">
+<p class="fragment fade-up">
 Appliquons la loi de Mariotte<br>pour connaître le volume $V_2$ d'air disponible :
 </p>
 
-<p class="fragment">
+<p class="fragment fade-up">
 $P_1 V_1 = P_2 V_2$<br>
 </p>
 
@@ -218,15 +218,15 @@ $P_1 V_1 = P_2 V_2$<br>
 
 $$\Rightarrow V_2 = \frac{P_1 V_1}{P_2}$$
 
-<p class="fragment">
+<p class="fragment fade-up">
 $$V_2 = \frac{\pu{200 bar}\times \pu{12 L}}{\pu{3,0 bar}}$$
 </p>
 
-<p class="fragment">
+<p class="fragment fade-up">
 $$V_2 = \pu{8,0E2 L}$$
 </p>
 
-<p class="fragment">
+<p class="fragment fade-up">
 Il y a environ 800 L d'air disponible
 </p>
 
@@ -235,7 +235,7 @@ Il y a environ 800 L d'air disponible
 
 Et comme le plongeur consomme<br>15 L d'air par minute,<br>son autonomie est de :
 
-<p class="fragment">
+<p class="fragment fade-up">
 $$\frac{\pu{8,0E2 L}}{\pu{15 L*min-1}} = \pu{53 min}$$
 </p>
 
@@ -247,7 +247,7 @@ $$\frac{\pu{8,0E2 L}}{\pu{15 L*min-1}} = \pu{53 min}$$
 
 Pour qu'il y ait encore de la pression dans la bouteille,<br>il doit rester de l'air...
 
-<p class="fragment">
+<p class="fragment fade-up">
 L'autonomie est donc bien sûr diminuée.
 </p>
 
@@ -263,11 +263,11 @@ $$F = P\times S$$
 
 $$F_1 = \pu{1,0 bar}\times \pu{70 mm2}$$
 
-<p class="fragment">
+<p class="fragment fade-up">
 $$F_1 = (\pu{1,0E5 Pa})\times(\pu{70E-6 m^2})$$
 </p>
 
-<p class="fragment">
+<p class="fragment fade-up">
 $$F_1 = \pu{7,0 N}$$
 </p>
 

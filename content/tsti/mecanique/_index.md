@@ -287,7 +287,7 @@ Petites expériences sur l'apesanteur :
 
 ---
 
-{{% youtube fqBpRkrvcl0%}}
+{{< youtube-slide id="fqBpRkrvcl0" ratio="16x9" >}}
 
 {{%/section%}}
 
@@ -301,9 +301,9 @@ Petites expériences sur l'apesanteur :
 
 L'énergie de mouvement d'un objet s'appelle :
 
-<p class="imp fragment" style="color:#FF968D">l'énergie cinétique $E_c$</p>
+<p class="imp fragment fade-up" style="color:#FF968D">l'énergie cinétique $E_c$</p>
 
-<div class="fragment" style="display: flex;justify-content: center;">
+<div class="fragment fade-up" style="display: flex;justify-content: center;">
 <div style = "border:solid #FF968D 5px;padding: 20px 20px 30px 20px; font-size:60px">
 $E_c = \frac{1}{2}mv^2$
 </div></div>
@@ -332,7 +332,7 @@ Exemples :
 
 Pour modifier l'énergie cinétique d'un système,<br>il faut qu'au moins <span class="imp">une force travaille</span>.
 
-<p class="fragment">Le <span class="imp">travail d'une force $W$</span> est l'énergie<br>liée au déplacement d'une force. </p>
+<p class="fragment fade-up">Le <span class="imp">travail d'une force $W$</span> est l'énergie<br>liée au déplacement d'une force. </p>
 
 ---
 
@@ -343,7 +343,7 @@ Pour modifier l'énergie cinétique d'un système,<br>il faut qu'au moins <span 
 
 Pour une force $\vec{F}$ constante<br>sur un déplacement entre les points A et B :
 
-<div class="fragment" style="display: flex;justify-content: center;">
+<div class="fragment fade-up" style="display: flex;justify-content: center;">
 <div style = "border:solid #00A2FF 5px;padding: 20px 20px 30px 20px; font-size:60px">
 $W = \overrightarrow{F}\cdot\overrightarrow{AB} = F\times AB\times \cos(\alpha)$
 </div></div>
@@ -360,7 +360,7 @@ $W = \overrightarrow{F}\cdot\overrightarrow{AB} = F\times AB\times \cos(\alpha)$
 
 <ul>
 <li>Si $W>0$<br>$\Leftrightarrow \cos\alpha > 0$<br>$\Leftrightarrow$ force dans le sens du déplacement,<br>le travail est dit <span class="imp fragment">moteur</span></li>
-<li class="fragment">Si $W<0$<br>$\Leftrightarrow \cos\alpha < 0$<br>$\Leftrightarrow$ force dans le sens opposé au déplacement,<br> le travail est dit <span class="imp fragment">résistant</span></li>
+<li class="fragment fade-up">Si $W<0$<br>$\Leftrightarrow \cos\alpha < 0$<br>$\Leftrightarrow$ force dans le sens opposé au déplacement,<br> le travail est dit <span class="imp fragment">résistant</span></li>
 </ul>
 
 ---
@@ -369,17 +369,17 @@ Cas particuliers :
 
 La <span class="imp">réaction normale au support</span> (force du support sur le système en l'absence de frottement) est toujours perpendiculaire au déplacement. 
 
-<p class="fragment">Comme $\cos 90^\circ = $ <span class="imp fragment">$0$</span>, son travail est donc <span class="imp fragment">nul.</span></p>
+<p class="fragment fade-up">Comme $\cos 90^\circ = $ <span class="imp fragment">$0$</span>, son travail est donc <span class="imp fragment">nul.</span></p>
 
-<p class="fragment">On dit que <span class="imp fragment">la réaction normale ne travaille pas.</span></p>
+<p class="fragment fade-up">On dit que <span class="imp fragment">la réaction normale ne travaille pas.</span></p>
 
 ---
 
 Le <span class="imp">poids</span> étant vertical, il ne travaille pas <br>si le déplacement est horizontal.</p>
 
-<p class="fragment">Et pour un déplacement entre les points A et B d'altitudes $z_A$ et $z_B$, on a :</p>
+<p class="fragment fade-up">Et pour un déplacement entre les points A et B d'altitudes $z_A$ et $z_B$, on a :</p>
 
-<p class="fragment">
+<p class="fragment fade-up">
 $$
 W = \overrightarrow{P}\cdot\overrightarrow{AB} = -mg(z_B-z_A)
 $$
@@ -395,14 +395,14 @@ $$
 
 <p class="imp" style="color:#FF968D">Théorème de l'énergie cinétique (TEC) :</p>
 
-<div class="fragment" style="display: flex;justify-content: center;">
+<div class="fragment fade-up" style="display: flex;justify-content: center;">
 <div style = "border:solid #FF968D 5px;padding: 20px 20px 30px 20px; font-size:60px">
 $\Delta E_c = E_{c\,finale} - E_{c\,initiale} = \sum W$
 </div></div>
 
 <br>
 
-<p class="fragment">
+<p class="fragment fade-up">
 La variation d'énergie cinétique d'un système<br>entre un point de départ et un point d'arrivée vaut<br>la somme des travaux des forces extérieures.</p>
 
 ---
@@ -501,7 +501,7 @@ $$
 $$
 </p>
 
-<p style="color:green" class="fragment">
+<p style="color:green" class="fragment fade-up">
 D'où
 $$
 -\pu{4E6} = 0 + \pu{8E6} - 500\times F
@@ -536,11 +536,11 @@ $$
 
 ---
 
-{{%youtube 3a2qOozWpr0%}}
+{{< youtube-slide id="3a2qOozWpr0" ratio="16x9" >}}
 
 ---
 
-{{%youtube ivc3-Tt56Uo%}}
+{{< youtube-slide id="ivc3-Tt56Uo" ratio="16x9" >}}
 
 {{%/section%}}
 

@@ -57,7 +57,7 @@ font-weight:normal;
 
 ---
 
-<iframe width="800" height="450" src="https://www.youtube.com/embed/clRcF7emyiM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+{{< youtube-slide id="clRcF7emyiM" ratio="16x9" >}}
 
 ---
 
@@ -140,12 +140,12 @@ On constate que les noyaux <span class="imp">stables</span><br>sont très minori
 
 ---
 
-<iframe width="800" height="450" src="https://www.youtube.com/embed/VZHpAwSGYZE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+{{< youtube-slide id="VZHpAwSGYZE" ratio="16x9" >}}
 
 
 ---
 
-<iframe width="800" height="450" src="https://www.youtube.com/embed/mqgmKzRneic" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+{{< youtube-slide id="mqgmKzRneic" ratio="16x9" >}}
 
 
 {{%/section%}}
@@ -277,12 +277,12 @@ L'énergie est typiquement de l'ordre du MeV<br>($\approx\pu{1E-13 J}$)
 
 ---
 
-<iframe width="800" height="450" src="https://www.youtube.com/embed/i15ef618DP0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+{{< youtube-slide id="i15ef618DP0" ratio="16x9" >}}
 
 
 ---
 
-<iframe width="800" height="450" src="https://www.youtube.com/embed/1_zwLuNJ5Ck" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+{{< youtube-slide id="1_zwLuNJ5Ck" ratio="16x9" >}}
 
 
 
@@ -654,11 +654,11 @@ En bref
 
 ---
 
-<iframe width="800" height="450" src="https://www.youtube.com/embed/QoS1H7J-86w?si=EBc2P8Av62KoMTVD" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+{{< youtube-slide id="QoS1H7J-86w" ratio="16x9" >}}
 
 ---
 
-<iframe width="800" height="450" src="https://www.youtube.com/embed/yrTy03O0gWw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+{{< youtube-slide id="yrTy03O0gWw" ratio="16x9" >}}
 
 {{%note%}}
 La raison pour laquelle les cellules cancéreuses sont des grandes consommatrices de sucre est encore un mystère. Pour une raison inconnue, la plupart des cellules cancéreuses préfèrent la fermentation aérobie (en présence de dioxygène) à la respiration. La fermentation est bien plus rapide mais aussi bien moins efficace (6% par rapport à respiration) -> beaucoup de glucose nécessaire.
@@ -670,7 +670,7 @@ La raison pour laquelle les cellules cancéreuses sont des grandes consommatrice
 
 ---
 
-<iframe width="800" height="450" src="https://www.youtube.com/embed/TYGa4KBu5oo?start=132" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+{{< youtube-slide id="TYGa4KBu5oo" ratio="16x9" start="132" >}}
 
 ---
 
@@ -708,7 +708,7 @@ Isotopes used include iodine 125 (half-life 59.4 days) palladium 103 (half-life 
 
 ---
 
-<iframe width="800" height="600" src="https://www.youtube.com/embed/x_UtBSJtF30" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+{{< youtube-slide id="x_UtBSJtF30" ratio="16x9" >}}
 
 ---
 

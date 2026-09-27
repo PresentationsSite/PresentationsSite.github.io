@@ -163,7 +163,7 @@ D'autres ordres de grandeur à trouver :
 
 Convertir 34 pm en km
 
-<div class="fragment">
+<div class="fragment fade-up">
 
 $$
 \begin{aligned}
@@ -179,7 +179,7 @@ $$
 
 Convertir 34 μg en fg (femtogramme)
 
-<div class="fragment">
+<div class="fragment fade-up">
 
 $$
 \begin{aligned}
@@ -195,7 +195,7 @@ $$
 
 Convertir 34 m$^3$ en nm$^3$
 
-<div class="fragment">
+<div class="fragment fade-up">
 
 $$
 \begin{aligned}
@@ -212,7 +212,7 @@ $$
 
 Convertir 34 nm$^2$ en μm$^2$
 
-<div class="fragment">
+<div class="fragment fade-up">
 
 $$
 \begin{aligned}
@@ -237,14 +237,14 @@ $$
 
 ---
 
-<iframe width="560" height="420" src="https://www.youtube.com/embed/bBT1hOYQPnY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+{{< youtube-slide id="bBT1hOYQPnY" ratio="16x9" >}}
 
 
 
 ---
 
 
-<iframe width="800" height="450" src="https://www.youtube.com/embed/PtftD6sU-Sc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+{{< youtube-slide id="PtftD6sU-Sc" ratio="16x9" >}}
 
 {{% /section %}}
 
@@ -256,7 +256,7 @@ $$
 
 ---
 
-<iframe width="800" height="450" src="https://www.youtube.com/embed/KOvHirpl7vk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+{{< youtube-slide id="KOvHirpl7vk" ratio="16x9" >}}
 
 {{% /section %}}
 

@@ -62,9 +62,7 @@ On place un fil de cuivre $\ce{Cu (s)}$<br>dans une solution de nitrate d'argent
 
 ---
 
-<div class="video-container">
-    <iframe src="https://www.youtube.com/embed/1NKI0gxbQZA?si=CeLWBZM0wFNcdE6K&amp;start=119" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-  </div>
+{{< youtube-slide id="1NKI0gxbQZA" ratio="16x9" start="119" >}}
 
 ---
 

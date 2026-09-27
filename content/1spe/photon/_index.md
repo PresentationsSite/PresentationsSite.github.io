@@ -78,8 +78,8 @@ height: 100%;
 Indices expérimentaux de la nature<br>ondulatoire de la lumière :
 
 <ul>
-<li class="imp fragment">interférences</li>
-<li class="imp fragment">diffraction</li>
+<li class="imp fragment fade-up">interférences</li>
+<li class="imp fragment fade-up">diffraction</li>
 </ul>
 
 ---
@@ -96,7 +96,7 @@ Indices expérimentaux de la nature<br>ondulatoire de la lumière :
 
 ---
 
-<iframe width="800" height="450" src="https://www.youtube.com/embed/WTxDyYHaYAI?si=Ga82EXtQjYQGlijg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+{{< youtube-slide id="WTxDyYHaYAI" ratio="16x9" >}}
 
 
 ---
@@ -132,7 +132,7 @@ Il s'agit d'une <span class="imp">onde électromagnétique</span> de célérité
 
 Et comme toute onde, on peut donc lui associer une <span class="imp">fréquence $\nu$</span> en (Hz) et une <span class="imp">longueur d'onde $\lambda$</span> (en m) liées entre elles par :
 
-<div class="imp fragment" style="display: flex; justify-content: center;">
+<div class="imp fragment fade-up" style="display: flex; justify-content: center;">
 <div style = "border:solid #FF968D 5px;padding: 20px 20px 30px 20px; font-size:1.2em;border-radius:10px;">
 $\displaystyle \lambda = \frac{c}{\nu}$
 </div></div>
@@ -177,8 +177,8 @@ s'étend des ondes radio aux rayons gamma :
 Deux observations expérimentales ne trouvent pas d'explication dans le modèle ondulatoire :
 
 <ul>
-<li class="imp fragment">le rayonnement du corps noir</li>
-<li class="imp fragment">l'effet photoélectrique</li>
+<li class="imp fragment fade-up">le rayonnement du corps noir</li>
+<li class="imp fragment fade-up">l'effet photoélectrique</li>
 </ul>
 
 ---
@@ -192,7 +192,7 @@ L'échange d'énergie entre le rayonnement et la matière se ferait par petits p
 
 ---
 
-{{<youtube oYnp0WZDhYQ>}}
+{{< youtube-slide id="oYnp0WZDhYQ" ratio="16x9" >}}
 
 {{%note%}}
 Passer la vidéo sans le son.
@@ -217,7 +217,7 @@ En 1905, Einstein explique l'effet<br> en généralisant l'idée de Planck au ra
 Le <span class="imp">photon</span> est une particule de lumière sans masse voyageant à $c$ qui transporte une énergie :
 
 
-<div class="imp fragment" style="display: flex; justify-content: center;">
+<div class="imp fragment fade-up" style="display: flex; justify-content: center;">
 <div style = "border:solid #FF968D 5px;padding: 20px 20px 30px 20px; font-size:1.2em;border-radius:10px;">
 $E = h\times \nu$
 </div></div>
@@ -227,16 +227,16 @@ $E = h\times \nu$
 Unités :
 
 <ul>
-<li class="fragment">E en <span class="fragment imp">joule (J)</span>
-<li class="fragment">$\nu$ en <span class="fragment imp">hertz (Hz)</span></li>
-<li class="fragment">$h=\pu{6,63E-34 J*s}$<br>est la <span class="imp">constante de Planck</span>.</li>
+<li class="fragment fade-up">E en <span class="fragment imp">joule (J)</span>
+<li class="fragment fade-up">$\nu$ en <span class="fragment imp">hertz (Hz)</span></li>
+<li class="fragment fade-up">$h=\pu{6,63E-34 J*s}$<br>est la <span class="imp">constante de Planck</span>.</li>
 </ul>
 
 ---
 
 On peut lier énergie du photon et longueur d'onde :
 
-<div class="imp fragment" style="display: flex; justify-content: center;">
+<div class="imp fragment fade-up" style="display: flex; justify-content: center;">
 <div style = "border:solid #FF968D 5px;padding: 20px 20px 30px 20px; font-size:1.2em;border-radius:10px;">
 $\displaystyle E = h\times \frac{c}{\lambda}=\frac{hc}{\lambda}$
 </div></div>
@@ -246,10 +246,10 @@ $\displaystyle E = h\times \frac{c}{\lambda}=\frac{hc}{\lambda}$
 Unités :
 
 <ul>
-<li class="fragment">E en <span class="fragment imp">joule (J)</span>
-<li class="fragment">$\lambda$ en <span class="fragment imp">mètre (m)</span>
-<li class="fragment">$h=\pu{6,63E-34 J*s}$<br>est la constante de Planck.</li>
-<li class="fragment">$c=$<span class="fragment"> $\pu{3,00E8 m*s^-1}$</span><br>est la célérité de la lumière.</li>
+<li class="fragment fade-up">E en <span class="fragment imp">joule (J)</span>
+<li class="fragment fade-up">$\lambda$ en <span class="fragment imp">mètre (m)</span>
+<li class="fragment fade-up">$h=\pu{6,63E-34 J*s}$<br>est la constante de Planck.</li>
+<li class="fragment fade-up">$c=$<span class="fragment"> $\pu{3,00E8 m*s^-1}$</span><br>est la célérité de la lumière.</li>
 </ul>
 
 {{%note%}}
@@ -266,7 +266,7 @@ Approfondissement de l'effet photoélectrique en Tspé
 
 ---
 
-{{%youtube 9Uf_LNULgeo%}}
+{{< youtube-slide id="9Uf_LNULgeo" ratio="16x9" >}}
 
 ---
 
@@ -335,7 +335,7 @@ Les niveaux d'énergie quantifiés permettent d'expliquer les spectres discrets 
 
 ---
 
-{{%youtube 7u3rRy97m9Y%}}
+{{< youtube-slide id="7u3rRy97m9Y" ratio="16x9" >}}
 
 {{%note%}}
 On retrouve souvent ce spectre dans les flammes (surtout près de la mer)
@@ -347,18 +347,11 @@ On retrouve souvent ce spectre dans les flammes (surtout près de la mer)
 
 ---
 
-<div class="short">
-  <iframe src="https://www.youtube.com/embed/uUGzrS5tpLc?si=bCgnMbYAtIOeSrnp"
-          title="YouTube Short"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen>
-  </iframe>
-</div>
+{{< youtube-slide id="uUGzrS5tpLc" ratio="short" >}}
 
 ---
 
-{{%youtube 0ijsRfsilQ4%}}
+{{< youtube-slide id="0ijsRfsilQ4" ratio="16x9" >}}
 
 {{%note%}}
 Insister qu'il ne faut surtout pas reproduire cette expérience. Très dangereux.
@@ -399,7 +392,7 @@ Spectre du Soleil vu depuis la Terre.
 
 ---
 
-<iframe width="700" height="500" src="https://www.youtube.com/embed/I9Ab8BLW3kA?si=GR9rnNjAGDv6ODfy" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+{{< youtube-slide id="I9Ab8BLW3kA" ratio="16x9" >}}
 
 {{%/section%}}
 

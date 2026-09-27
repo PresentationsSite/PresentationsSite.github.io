@@ -277,7 +277,7 @@ $$X = \frac{\text{V}_\text{fiole}}{\text{V}_\text{pipette}}$$
 
 ---
 
-{{< youtube 8du_PjM7CE4 >}}
+{{< youtube-slide id="8du_PjM7CE4" ratio="16x9" >}}
 
 
 ---

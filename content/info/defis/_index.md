@@ -12,7 +12,7 @@ theme = "black"
 
 ---
 
-{{%youtube -73jokmqmd0%}}
+{{< youtube-slide id="-73jokmqmd0" ratio="16x9" >}}
 
 ---
 
@@ -309,7 +309,7 @@ Ainsi, `set([1,2,3,1,2,5])` renvoie `{1,2,3,5}`.
 
 {{%section%}}
 
-{{%youtube ywWBy6J5gz8%}}
+{{< youtube-slide id="ywWBy6J5gz8" ratio="16x9" >}}
 
 ---
 
@@ -774,7 +774,7 @@ C'est typiquement un problème<br>pour la programmation dynamique :
 
 ---
 
-{{%youtube F48AbiZGds0%}}
+{{< youtube-slide id="F48AbiZGds0" ratio="16x9" >}}
 
 ---
 
@@ -893,7 +893,7 @@ Problèmes classiques :
 
 Dans les deux cas, l'utilisation du backtracking<br>donne des codes plutôt élégants :
 
-{{%youtube tU1ceGzt0lo%}}
+{{< youtube-slide id="tU1ceGzt0lo" ratio="16x9" >}}
 
 
 {{%/section%}}

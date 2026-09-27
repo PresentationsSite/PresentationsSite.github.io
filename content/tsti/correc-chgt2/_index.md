@@ -32,7 +32,7 @@ Un matériau organique est<br>un matériau à base de **carbone**.
 
 Lorsque la température de la pièce descend,<br>le MCP se solidifie. Ce changement d'état étant **exothermique**, il libère de l'énergie<br>thermique dans la pièce.
 
-<p class="fragment">La solidification du MCP permet donc d'amortir le refroidissement (et à l'inverse, sa fusion agirait comme un amortisseur à réchauffement).</p>
+<p class="fragment fade-up">La solidification du MCP permet donc d'amortir le refroidissement (et à l'inverse, sa fusion agirait comme un amortisseur à réchauffement).</p>
 
 
 {{%/section%}}
@@ -68,10 +68,10 @@ Bilan énergétique :
 
 Dans le calorimètre, supposé isolé, la variation globale d'énergie est nulle (ce qui revient à dire que l'énergie cédée par l'eau vaut l'énergie utilisée par l'heptadécane pour fusionner). <span style="color:#F00;font-weight:normal">(1 pt)</span>
 
-<p class="fragment">
+<p class="fragment fade-up">
 Or $\Delta U_{heptadécane} = m\times l_f$ &nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#F00;font-weight:normal">(1 pt)</span></p>
 
-<p class="fragment">
+<p class="fragment fade-up">
 On en déduit $\Delta U_{eau} = m\times l_f$</p>
 
 ---
@@ -101,17 +101,17 @@ $
 
 Les énergies massiques de changements d'état des deux MCP sont sensiblement les mêmes.
 
-<p class="fragment">
+<p class="fragment fade-up">
 Par contre, l'heptadécane a l'avantage d'une température de changement d'état plus proche des températures usuelles d'un intérieur et comme son effet d'atténuation des variations de température se fera surtout sentir autour de sa température de changement d'état, on devrait plutôt conseiller l'utilisation de l'heptadécane.</p>
 
 ---
 
 Cependant l'octadécane peut s'avérer utile non pas pour amortir un refroidissement mais au contraire pour atténuer un réchauffement. 
 
-<p class="fragment">
+<p class="fragment fade-up">
 Dans une zone géographique soumise aux grosses chaleur (bientôt partout), on pourrait donc aussi conseiller l'octadécane.</p>
 
-<p class="fragment">
+<p class="fragment fade-up">
 Rq: en pratique, on incorpore<br>plusieurs MCP différents.</p>
 
 

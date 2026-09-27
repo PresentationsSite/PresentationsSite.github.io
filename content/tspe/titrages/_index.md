@@ -49,9 +49,9 @@ Les <span class="imp">titrages</span> sont des méthodes de <span class="imp">do
 La <span class="imp">réaction support d'un titrage</span> doit être :
 
 <ul>
-<li class="fragment imp">totale</li>
-<li class="fragment imp">rapide</li>
-<li class="fragment imp">unique</li>
+<li class="fragment fade-up imp">totale</li>
+<li class="fragment fade-up imp">rapide</li>
+<li class="fragment fade-up imp">unique</li>
 </ul>
 
 ---
@@ -139,8 +139,8 @@ $$
 En terminale, on ajoute les réactions acide-base<br>comme support de titrage et deux types de suivi :
 
 <ul>
-<li class="fragment imp">pH-métrique</li>
-<li class="fragment imp">conductimétrique</li>
+<li class="fragment fade-up imp">pH-métrique</li>
+<li class="fragment fade-up imp">conductimétrique</li>
 </ul>
 
 {{% /section %}}
@@ -182,8 +182,8 @@ L'utilisation d'un indicateur coloré d'acidité peut permettre de repérer le s
 Deux méthodes permettent de<br>repérer précisément $V_E$ :
 
 <ul>
-<li class="fragment imp">la méthode de la dérivée</li>
-<li class="fragment imp">la méthode des tangentes</li>
+<li class="fragment fade-up imp">la méthode de la dérivée</li>
+<li class="fragment fade-up imp">la méthode des tangentes</li>
 </ul>
 
 ---

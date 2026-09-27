@@ -129,7 +129,7 @@ $1\text{s}\rightarrow 2\text{s}\rightarrow 2\text{p}\rightarrow 3\text{s}\righta
 
 - Donner la configuration électronique<br>du carbone ($Z=6$) :
 
-<p class="fragment" style="color:#1DB100">$1\text{s}^2\, 2\text{s}^2\,2\text{p}^2$</p>
+<p class="fragment fade-up" style="color:#1DB100">$1\text{s}^2\, 2\text{s}^2\,2\text{p}^2$</p>
 
 - Donner la configuration électronique<br>de l'aluminium ($Z=13$) :
 
@@ -217,7 +217,7 @@ Une période commence ainsi toujours par $n\text{s}^1$<br>(les éléments de la 
 
 <br>
 
-<iframe  width="560" height="315" src="https://www.youtube.com/embed/uixxJtJPVXk" frameborder="0" allowfullscreen style="border-radius:20px"></iframe>
+{{< youtube-slide id="uixxJtJPVXk" ratio="16x9" >}}
 
 ---
 
@@ -225,11 +225,11 @@ L'avant dernière colonne, la 17<sup>e</sup>, juste avant la 18<sup>e</sup> des 
 
 <br>
 
-<iframe  width="560" height="315" src="https://www.youtube.com/embed/saLvwX3_p1s" frameborder="0" allowfullscreen style="border-radius:20px"></iframe>
+{{< youtube-slide id="saLvwX3_p1s" ratio="16x9" >}}
 
 ---
 
-<iframe  width="800" height="450" src="https://www.youtube.com/embed/u2ogMUDBaf4" frameborder="0" allowfullscreen style="border-radius:20px"></iframe>
+{{< youtube-slide id="u2ogMUDBaf4" ratio="16x9" >}}
 
 ---
 
@@ -238,9 +238,9 @@ Trouver l'emplacement dans le tableau périodique<br>à partir de la configurati
 <ul>
 <li class="fragment fade-up">si <span class="imp">$n\text{s}^1$</span> ou <span class="imp">$n\text{s}^2$</span> :<br>
 <ul>
-<li class="fragment" style="color:#1DB100">$n$ donne la ligne</li>
-<li class="fragment" style="color:#1DB100">$ns^1$ est sur la 1<sup>re</sup> colonne</li>
-<li class="fragment" style="color:#1DB100">$ns^2$ est sur la 2<sup>e</sup> colonne,<br>sauf si $n=1$ $\rightarrow$ 18<sup>e</sup> colonne (Hélium) </li>
+<li class="fragment fade-up" style="color:#1DB100">$n$ donne la ligne</li>
+<li class="fragment fade-up" style="color:#1DB100">$ns^1$ est sur la 1<sup>re</sup> colonne</li>
+<li class="fragment fade-up" style="color:#1DB100">$ns^2$ est sur la 2<sup>e</sup> colonne,<br>sauf si $n=1$ $\rightarrow$ 18<sup>e</sup> colonne (Hélium) </li>
 
 </ul>
 
@@ -563,7 +563,7 @@ Reprendre les questions en remplaçant<br>l'atome de fluor F par un atome de chl
 À part l'hydrogène, de combien de doublets doit être entouré un atome dans un schéma de Lewis pour se retrouver avec le même nombre d'électrons de valence que le gaz noble qui le suit dans la classification<br>(conférant ainsi à l'atome un gain de stabilité) ?
 
 
-<p style="color:#00A2FF" class="fragment">
+<p style="color:#00A2FF" class="fragment fade-up">
 4 doublets (pour avoir 8 électrons de valence)</p>
 
 ---

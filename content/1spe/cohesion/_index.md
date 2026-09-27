@@ -115,11 +115,11 @@ Polarité
 ---
 
 
-<iframe width="360" height="640" src="https://www.youtube.com/embed/XrH7eJl1wQc?si=bX3lLqyanPhCsQyk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+{{< youtube-slide id="XrH7eJl1wQc" ratio="short" >}}
 
 ---
 
-<iframe width="800" height="450" src="https://www.youtube.com/embed/bnfLSGPbUEw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+{{< youtube-slide id="bnfLSGPbUEw" ratio="16x9" >}}
 
 
 ---
@@ -206,25 +206,25 @@ C'est la force de cette interaction<br>qui explique la grande cohésion de l'eau
 
 ---
 
-<iframe width="800" height="450" src="https://www.youtube.com/embed/sBZfPmIcS-E" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+{{< youtube-slide id="sBZfPmIcS-E" ratio="16x9" >}}
 
 ---
 
-<iframe width="800" height="450" src="https://www.youtube.com/embed/moITG5Q7zzI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
-
-
----
-
-<iframe width="800" height="450" src="https://www.youtube.com/embed/zRUFzJrDtq0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+{{< youtube-slide id="moITG5Q7zzI" ratio="16x9" >}}
 
 
 ---
 
-<iframe width="800" height="450" src="https://www.youtube.com/embed/UukRgqzk-KE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+{{< youtube-slide id="zRUFzJrDtq0" ratio="16x9" >}}
+
 
 ---
 
-<iframe width="800" height="450" src="https://www.youtube.com/embed/uhfXbSSrabw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+{{< youtube-slide id="UukRgqzk-KE" ratio="16x9" >}}
+
+---
+
+{{< youtube-slide id="uhfXbSSrabw" ratio="16x9" >}}
 
 
 
@@ -253,7 +253,7 @@ Elle se modélise en 3 étapes :
 
 ---
 
-<iframe width="725" height="450" src="https://www.youtube.com/embed/xdedxfhcpWo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+{{< youtube-slide id="xdedxfhcpWo" ratio="16x9" >}}
 
   
   ---
@@ -418,7 +418,7 @@ Données :
 
 ---
 
-<iframe width="800" height="450" src="https://www.youtube.com/embed/BZJK4gWHQW0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+{{< youtube-slide id="BZJK4gWHQW0" ratio="16x9" >}}
 
 
 ---
@@ -493,7 +493,7 @@ Ce dégazage doit toujours se faire <span class="imp">vers un mur</span><br> car
 
 ---
 
-<iframe width="800" height="450" src="https://www.youtube.com/embed/iHk2tV8KwUI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+{{< youtube-slide id="iHk2tV8KwUI" ratio="16x9" >}}
 
 {{%/section%}}
 
@@ -526,7 +526,7 @@ Molécule de savon
 
 ---
 
-<iframe width="800" height="450" src="https://www.youtube.com/embed/YnyYsEBJ80I" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+{{< youtube-slide id="YnyYsEBJ80I" ratio="16x9" >}}
 
 
 {{%/section%}}

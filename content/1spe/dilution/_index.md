@@ -62,9 +62,9 @@ Principe :
 Matériel :
 
 <ul>
-  <li class="imp fragment" style="color:#FF8596">pipette jaugée + propipette (poire à pipetter)</li>
-  <li class="imp fragment" style="color:#FF8596">fiole jaugée + bouchon</li>
-  <li class="fragment">pissette d'eau distillée</li>
+  <li class="imp fragment fade-up" style="color:#FF8596">pipette jaugée + propipette (poire à pipetter)</li>
+  <li class="imp fragment fade-up" style="color:#FF8596">fiole jaugée + bouchon</li>
+  <li class="fragment fade-up">pissette d'eau distillée</li>
 </ul>
 
 
@@ -109,7 +109,7 @@ $$n_\text{fille}=n_\text{mère}$$
 
 Et donc, en utilisant concentration et volume :
 
-<div class="fragment" style="position: relative; margin: auto; width:fit-content;">
+<div class="fragment fade-up" style="position: relative; margin: auto; width:fit-content;">
 <div style="padding:0px 50px 10px 50px; font-size:1.2em; border: 5px solid #FF968D; border-radius : 20px; border-color:#FF968D;">
 
 $$C_\text{fille}\times V_\text{fille}=C_\text{mère}\times V_\text{mère}$$
@@ -123,7 +123,7 @@ Le <span class="imp">facteur de dilution $F$</span> est le nombre de fois<br>que
 
 <br>
 
-<p class="fragment">Déterminez $F$ en fonction de $C_{mère}$ et $C_{fille}$,<br>puis en fonction de $V_{mère}$ et $V_{fille}$<br>et enfin en fonction de $V_{fiole}$ et $V_{pipette}$.</p>
+<p class="fragment fade-up">Déterminez $F$ en fonction de $C_{mère}$ et $C_{fille}$,<br>puis en fonction de $V_{mère}$ et $V_{fille}$<br>et enfin en fonction de $V_{fiole}$ et $V_{pipette}$.</p>
 
 ---
 
@@ -141,10 +141,10 @@ On veut obtenir 250 mL d'une solution diluée 5 fois<br>($F=5$), quel matériel 
 
 <div   style="color:#16E7CF">
 $V_{fille} = \pu{250 mL}$ , $F = 5$<br></div>
-<div  class="fragment" style="color:#16E7CF">
+<div  class="fragment fade-up" style="color:#16E7CF">
 $$\Rightarrow V_{mère}=\frac{V_{fille}}{F}=\frac{\pu{250 mL}}{5} =\pu{50 mL}$$
 <div>
-<p class="fragment">Il faut donc une <u>pipette jaugée de 50 mL</u><br>et une <u>fiole jaugée de 250 mL</u>.<p>
+<p class="fragment fade-up">Il faut donc une <u>pipette jaugée de 50 mL</u><br>et une <u>fiole jaugée de 250 mL</u>.<p>
 
 <ul class="fragment" style="color:#16E7CF">
 <li>On prélève la solution mère avec la pipette,</li> 

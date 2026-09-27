@@ -47,11 +47,11 @@ padding-left: 1em;
 
 ---
 
-<iframe width="800" height="450" src="https://www.youtube.com/embed/YH2Lfc1KLQE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+{{< youtube-slide id="YH2Lfc1KLQE" ratio="16x9" >}}
 
 ---
 
-<iframe width="800" height="450" src="https://www.youtube.com/embed/jX9pskbKSw0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+{{< youtube-slide id="jX9pskbKSw0" ratio="16x9" >}}
 
 ---
 
@@ -60,7 +60,7 @@ padding-left: 1em;
 
 ---
 
-<iframe width="800" height="450" src="https://www.youtube.com/embed/oaDkph9yQBs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+{{< youtube-slide id="oaDkph9yQBs" ratio="16x9" >}}
 
 
 ---
@@ -91,14 +91,14 @@ Exemples :
 
 Équation de la sublimation du $\ce{CO2}$
 
-<p class="fragment" style="color:#1DB100">$$\ce{CO2 (s) -> CO2 (g)}$$</p>
+<p class="fragment fade-up" style="color:#1DB100">$$\ce{CO2 (s) -> CO2 (g)}$$</p>
 
 
 ---
 
 Équation de la liquéfaction du méthane $\ce{CH4}$
 
-<p class="fragment" style="color:#1DB100">$$\ce{CH4 (g) -> CH4 (\ell)}$$</p>
+<p class="fragment fade-up" style="color:#1DB100">$$\ce{CH4 (g) -> CH4 (\ell)}$$</p>
 
 
 {{% /section %}}
@@ -209,13 +209,13 @@ Pendant les changements d'état,<br>l'énergie apportée n'augmente pas la temp�
 
 Pourquoi a-t-on généralement froid<br>en sortant de la mer ou de la douche ? 
 
-<p class="fragment" style="font-weight:normal;color:#1DB100;">Le passage de l'eau de l'état liquide à l'état gazeux nécessite de l'énergie que l'eau prend à son environnement (ce qui le refroidit).</p>
+<p class="fragment fade-up" style="font-weight:normal;color:#1DB100;">Le passage de l'eau de l'état liquide à l'état gazeux nécessite de l'énergie que l'eau prend à son environnement (ce qui le refroidit).</p>
 
-<p class="fragment" style="font-weight:normal;color:#1DB100;">On dit que ce changement d'état est <span class="imp">endothermique</span>.</p>
+<p class="fragment fade-up" style="font-weight:normal;color:#1DB100;">On dit que ce changement d'état est <span class="imp">endothermique</span>.</p>
 
 ---
 
-<iframe width="800" height="450" src="https://www.youtube.com/embed/YtsBFn2tv1o" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+{{< youtube-slide id="YtsBFn2tv1o" ratio="16x9" >}}
 
 
 {{%note%}}
@@ -227,9 +227,9 @@ De la même façon, on peut refroidir une boisson en la mettant dans un linge mo
 Changements d'état <span class="imp">endothermiques</span><br>
 (= qui nécessitent de l'énergie pour se faire, refroidissant ainsi l'environnement<br>en récupérant son énergie thermique) :
 <ul class="imp">
-<li class="fragment">vaporisation</li>
-<li class="fragment">fusion</li>
-<li class="fragment">sublimation</li>
+<li class="fragment fade-up">vaporisation</li>
+<li class="fragment fade-up">fusion</li>
+<li class="fragment fade-up">sublimation</li>
 </ul>
 
 ---
@@ -244,9 +244,9 @@ Qu'ont en commun<br>les 3 changements d'état endothermiques ?
 
 À l'inverse, que se passe-t-il<br>(en terme d'énergie)<br>lors d'une liquéfaction<br>ou d'une solidification ?
 
-<p class="fragment" style="font-weight:normal;color:#1DB100">De l'énergie thermique est libérée&nbsp;!</p>
+<p class="fragment fade-up" style="font-weight:normal;color:#1DB100">De l'énergie thermique est libérée&nbsp;!</p>
 
-<p class="fragment" style="font-weight:normal;color:#1DB100">Cette fois-ci, la transformation est <span class="imp" style="color:#FF644E;">exothermique</span>.</p>
+<p class="fragment fade-up" style="font-weight:normal;color:#1DB100">Cette fois-ci, la transformation est <span class="imp" style="color:#FF644E;">exothermique</span>.</p>
 
 ---
 
@@ -275,9 +275,9 @@ Et cela explique aussi comment les bouillottes "magiques" chauffent.
 Changements d'état <span class="imp" style="color:#FF644E">exothermiques</span><br>
 (= qui fournissent de l'énergie,<br>réchauffant ainsi l'environnement<br>en lui cédant de l'énergie thermique) :
 <ul class="imp" style="color:#FF644E">
-<li class="fragment">liquéfaction</li>
-<li class="fragment">solidification</li>
-<li class="fragment">condensation</li>
+<li class="fragment fade-up">liquéfaction</li>
+<li class="fragment fade-up">solidification</li>
+<li class="fragment fade-up">condensation</li>
 </ul>
 
 {{%/section%}}
@@ -299,7 +299,7 @@ L'<span class="imp" style="color:#FF644E">énergie massique de changement d'éta
 
 <br>
 
-<p class="fragment">unité : <span class="fragment imp" style="color:#FF644E">$\pu{J*kg-1}$</span></p>
+<p class="fragment fade-up">unité : <span class="fragment imp" style="color:#FF644E">$\pu{J*kg-1}$</span></p>
 
 ---
 
@@ -307,7 +307,7 @@ L'<span class="imp" style="color:#FF644E">énergie massique de changement d'éta
 
 <br>
 
-<p class="fragment">
+<p class="fragment fade-up">
 Exemple :<br>pour une espèce chimique donnée $L_{\text{vaporisation}} = -L_{\text{liquéfaction}}$
 </p>
 
@@ -331,11 +331,11 @@ Pour l'eau :
 Un échantillon de masse $m$<br>d'une espèce chimique change d'état.<br>
 L'énergie massique du changement d'état vaut $L$.
 
-<p class="fragment">Que vaut l'énergie thermique $Q$ échangée ?</p>
+<p class="fragment fade-up">Que vaut l'énergie thermique $Q$ échangée ?</p>
 
 <br>
 
-<div class="fragment" style="display: flex; justify-content: center; align-items: center; height: 100%;">
+<div class="fragment fade-up" style="display: flex; justify-content: center; align-items: center; height: 100%;">
 <div style="background-color:#FF644E;padding:15px 30px 20px 30px; width:content; color:white;border-radius:15px;">
 $$Q = m\times L $$
 </div>

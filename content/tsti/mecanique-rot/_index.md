@@ -25,7 +25,7 @@ Rappel sur le principe d'inertie :
 ---
 
 
-{{%youtube j1URC2G2qnc%}}
+{{< youtube-slide id="j1URC2G2qnc" ratio="16x9" >}}
 
 ---
 
@@ -107,7 +107,7 @@ Contrairement au nom qu'on lui donne,<br>la chute du parachutiste n'est pas libr
 
 <br>
 
-Par contre, le mouvement du ballon est bien approximativement une chute libre !
+<p class="fragment fade-up">Par contre, le mouvement du ballon est bien approximativement une chute libre !</p>
 
 ---
 
@@ -115,7 +115,7 @@ Petites expériences sur l'apesanteur :
 
 ---
 
-{{% youtube yAEWhl7Ge38%}}
+{{< youtube-slide id="fqBpRkrvcl0" ratio="16x9" >}}
 
 {{%/section%}}
 
@@ -220,11 +220,11 @@ Unité du moment $\mathcal{M}$ ?
 
 ---
 
-{{%youtube 3a2qOozWpr0%}}
+{{< youtube-slide id="3a2qOozWpr0" ratio="16x9" >}}
 
 ---
 
-{{%youtube ivc3-Tt56Uo%}}
+{{< youtube-slide id="ivc3-Tt56Uo" ratio="16x9" >}}
 
 {{%/section%}}
 

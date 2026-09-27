@@ -23,11 +23,11 @@ Le son est une vibration **mécanique**<br>dans un **milieu matériel**, qui se 
 
 ---
 
-{{%youtube aDrs6EieFCM%}}
+{{< youtube-slide id="aDrs6EieFCM" ratio="16x9" >}}
 
 ---
 
-{{%youtube BYe4x3x35is%}}
+{{< youtube-slide id="BYe4x3x35is" ratio="16x9" >}}
 
 ---
 
@@ -99,7 +99,7 @@ Un <b>son complexe</b> est une somme<br>de signaux sinusoïdaux<br>de fréquence
 ---
 
 
-{{%youtube UrBZsUBibtk%}}
+{{< youtube-slide id="UrBZsUBibtk" ratio="16x9" >}}
 
 {{%/section%}}
 
@@ -316,7 +316,7 @@ Conséquences :
 ---
 
 
-{{%youtube mVLKQWImJH8%}}
+{{< youtube-slide id="mVLKQWImJH8" ratio="16x9" >}}
 
 ---
 

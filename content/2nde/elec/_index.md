@@ -46,7 +46,7 @@ ul li {
 ---
 
 
-### intensité I
+<h3 style="border:solid 5px;width:fit-content;margin:auto;padding:10px 50px;">intensité I</h3>
 
 ---
 
@@ -99,7 +99,7 @@ Pour la borne A, il y a souvent deux choix possibles sur l'ampèremètre. Il fau
 
 ⚠️‼️⚠️‼️⚠️‼️⚠️‼️⚠️‼️⚠️
 
-<p class="fragment">Si la valeur lue est inférieure au calibre qui précède,<br>on peut changer le branchement pour la borne<br>moins protégée et descendre le calibre.</p>
+<p class="fragment fade-up">Si la valeur lue est inférieure au calibre qui précède,<br>on peut changer le branchement pour la borne<br>moins protégée et descendre le calibre.</p>
 
 ---
 
@@ -109,16 +109,16 @@ On lit 0,25 A sur le calibre 10 A.<br>
 Le calibre qui précède indique "200m".<br> 
 Peut-on changer de borne de branchement ?
 
-<p class="fragment"> 0,25 A = 250 mA<br> et 250 mA $>$ 200 mA<br> Donc non !</p>
+<p class="fragment fade-up"> 0,25 A = 250 mA<br> et 250 mA $>$ 200 mA<br> Donc non !</p>
 
 
 ---
 
 Quel que soit l'appareil de mesure, on commence toujours par le plus <span class="imp fragment">gros</span> calibre !
 
-<p class="fragment">Et on descend progressivement<br>(lorsque la valeur lue est<br>inférieure au calibre<br>qui précède).</p>
+<p class="fragment fade-up">Et on descend progressivement<br>(lorsque la valeur lue est<br>inférieure au calibre<br>qui précède).</p>
 
-<p class="fragment">Si un 1 s'affiche seul sur la gauche de l'écran, cela signal que vous êtes hors calibre. C'est mal 💀</p>
+<p class="fragment fade-up">Si un 1 s'affiche seul sur la gauche de l'écran, cela signal que vous êtes hors calibre. C'est mal 💀</p>
 
 ----
 
@@ -127,23 +127,25 @@ Quel que soit l'appareil de mesure, on commence toujours par le plus <span class
 
 
 
-Analogie : débit d'une rivière
+Analogie ? <span class="fragment">Débit d'une rivière</span>
 
 <br><br><br><br><br><br><br><br><br><br><br>
 
 ---
 
-{{< slide  background-image="/loidesnoeuds.png" background-size="contain" background-transition="concave">}}
 
 <span class="imp">Loi des nœuds :</span>
 
 (aussi appelée au collège<br>"loi d'additivité des intensités")
 
-<br><br><br><br><br><br><br><br><br><br><br>
+
+<img src="/loidesnoeuds1.png" style="box-shadow:none;background:none;width:40%;">
+<br>
+<img class="fragment fade-up" src="/loidesnoeuds2.png" style="box-shadow:none;background:none;width:20%;">
 
 ---
 
-### tension U
+<h3 style="border:solid 5px;width:fit-content;margin:auto;padding:10px 50px;">tension U</h3>
 
 ---
 
@@ -175,7 +177,7 @@ Si branchement dans la borne A,<br>il y a court-circuit du générateur 💀.
 
 
 
-Analogie : dénivelé d'une rivière
+Analogie ? <span class="fragment">Dénivelé d'une rivière</span>
 
 <br><br><br><br><br><br><br><br><br><br><br>
 
@@ -187,22 +189,30 @@ Analogie : dénivelé d'une rivière
 
 On peut représenter une tension par une flèche.
 
-Par convention, la flèche pointe<br>vers la borne V du voltmètre.
+<p class="fragment fade-up">Par convention, la flèche pointe<br>vers la borne V du voltmètre.</p>
 
 
 <br><br><br><br><br><br><br><br>
 
 ---
 
-{{< slide  background-image="/loidesmailles.png" background-size="contain" background-transition="concave">}}
+{{%slide transition="concave-in fade-out"%}}
 
 <span class="imp">Loi des mailles :</span>
 
 (aussi appelée au collège<br>"loi d'additivité des tensions")
 
-<br><br><br><br><br><br><br><br><br>
+<img src="/loidesmailles1.png" style="box-shadow:none;background:none;width:55%;">
 
+---
 
+{{%slide transition="fade-in concave-out"%}}
+
+<span class="imp">Loi des mailles :</span>
+
+(aussi appelée au collège<br>"loi d'additivité des tensions")
+
+<img src="/loidesmailles2.png" style="box-shadow:none;background:none;width:55%;">
 
 ---
 
@@ -239,22 +249,22 @@ Pour mesurer la résistance d'un dipôle, il faut <u>sortir le dipôle du circui
 
 Peut-on avoir tension sans intensité ?
 
-<p class="fragment" style="color:#1DB100">OUI</p>
+<p class="fragment fade-up" style="color:#1DB100">OUI</p>
 
-<p class="fragment">Où ?</p>
+<p class="fragment fade-up">Où ?</p>
 
-<p class="fragment" style="color:#1DB100">Aux bornes d'une pile non branchée,<br>d'un interrupteur ouvert relié à un générateur, etc.</p>
+<p class="fragment fade-up" style="color:#1DB100">Aux bornes d'une pile non branchée,<br>d'un interrupteur ouvert relié à un générateur, etc.</p>
 
 
 ---
 
 Peut-on avoir intensité sans tension ?
 
-<p class="fragment" style="color:#1DB100">OUI</p>
+<p class="fragment fade-up" style="color:#1DB100">OUI</p>
 
-<p class="fragment">Où ?</p>
+<p class="fragment fade-up">Où ?</p>
 
-<p class="fragment" style="color:#1DB100">Aux bornes d'un fil, d'un interrupteur fermé,<br>d'un très bon conducteur, etc.<br>Il faut juste que la résistance du dipôle<br>soit <span class="fragment" style="color:#1DB100">nulle ou quasi nulle.</span></p>
+<p class="fragment fade-up" style="color:#1DB100">Aux bornes d'un fil, d'un interrupteur fermé,<br>d'un très bon conducteur, etc.<br>Il faut juste que la résistance du dipôle<br>soit <span class="fragment" style="color:#1DB100">nulle ou quasi nulle.</span></p>
 
 
 {{%note%}}
@@ -367,9 +377,9 @@ $$U_R = R\times I_R$$
 
 <br>
 
-<p class="fragment">$R$ est la <span class="imp" style="color:#FEAE00">résistance</span> (constante) du dipôle.</p>
+<p class="fragment fade-up">$R$ est la <span class="imp" style="color:#FEAE00">résistance</span> (constante) du dipôle.</p>
 
-<p class="fragment">Unité : <span class="imp" style="color:#FEAE00">le ohm (Ω)</span></p>
+<p class="fragment fade-up">Unité : <span class="imp" style="color:#FEAE00">le ohm (Ω)</span></p>
 
 ---
 
@@ -379,7 +389,7 @@ Un dipôle peut avoir le comportement électrique<br>d'un dipôle ohmique sur un
 
 <br>
 
-<p class="fragment" style='color:#929292'>cf. fin de l'activité 1</p>
+<p class="fragment fade-up" style='color:#929292'>cf. fin de l'activité 1</p>
 
 
 ---
@@ -390,7 +400,7 @@ de la caractéristique d'un générateur et de celle<br>
 d'un récepteur permet de prévoir la valeur de l’intensité du courant délivré par le générateur<br>
 et la valeur de la tension aux bornes du récepteur.
 
-<p class="fragment">
+<p class="fragment fade-up">
     Ce sont les coordonnées du point<br>d'intersection des deux courbes, appelé<br><span class="imp">point de fonctionnement du circuit</span>.
 </p>
 

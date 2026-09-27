@@ -45,11 +45,11 @@ Deux choses à déterminer :
 
 Le premier point est le plus facile :
 
-<p class="fragment">La DJA du bleu patenté est de 2,5 mg<br>par kg de masse corporelle.</p>
+<p class="fragment fade-up">La DJA du bleu patenté est de 2,5 mg<br>par kg de masse corporelle.</p>
 
-<p class="fragment">Prenons un adulte de 60 kg. Sa consommation journalière ne devra pas dépasser :</p>
+<p class="fragment fade-up">Prenons un adulte de 60 kg. Sa consommation journalière ne devra pas dépasser :</p>
 
-<div class="fragment">
+<div class="fragment fade-up">
 
 $$
 \begin{aligned}
@@ -65,7 +65,7 @@ $$
 
 Cherchons la quantité de matière $n_{max}$ correspondante :
 
-<div class="fragment">
+<div class="fragment fade-up">
 
 $$
 \begin{aligned}
@@ -86,16 +86,16 @@ $$
 Maintenant passons au 2<sup>e</sup> point :<br>
 la quantité de bleu patenté dans un verre.
 
-<p class="fragment">Plusieurs étapes pour y arriver :</p>
+<p class="fragment fade-up">Plusieurs étapes pour y arriver :</p>
 
 <ol style="list-style-type: upper-alpha;">
-<li class="fragment">Concentration :</li>
+<li class="fragment fade-up">Concentration :</li>
 <ol style="list-style-type: lower-alpha;">
-<li class="fragment">Détermination de la concentration de la solution S</li>
-<li class="fragment">Détermination de la concentration du sirop</li>
+<li class="fragment fade-up">Détermination de la concentration de la solution S</li>
+<li class="fragment fade-up">Détermination de la concentration du sirop</li>
 </ol>
-<li class="fragment">Estimation du volume de sirop dans un verre</li>
-<li class="fragment">Détermination de la quantité de matière en bleu patenté dans un verre de sirop</li>
+<li class="fragment fade-up">Estimation du volume de sirop dans un verre</li>
+<li class="fragment fade-up">Détermination de la quantité de matière en bleu patenté dans un verre de sirop</li>
 </ol>
 
 
@@ -105,12 +105,12 @@ A.a. <b>Détermination<br>de la concentration de la solution S</b>
 
 C'est le cœur de l'exercice !
 
-<p class="fragment">Deux solutions pour l'obtenir : </p>
+<p class="fragment fade-up">Deux solutions pour l'obtenir : </p>
 
 <ul>
-<li class="fragment"> Par lecture graphique. La précision n'a pas besoin d'être extrême dans cet exercice puisqu'on est amené à faire des estimations.</li>
+<li class="fragment fade-up"> Par lecture graphique. La précision n'a pas besoin d'être extrême dans cet exercice puisqu'on est amené à faire des estimations.</li>
 <br>
-<li class="fragment"> Par le calcul.</li>
+<li class="fragment fade-up"> Par le calcul.</li>
 
 {{%/section%}}
 
@@ -120,30 +120,30 @@ C'est le cœur de l'exercice !
 
 Solution calculatoire :
 
-<p class="fragment">On commence déjà par dire que la courbe d'étalonnage obtenue confirme que <span class="imp">la loi de Beer-Lambert est respectée sur la gamme étalon</span>. 
+<p class="fragment fade-up">On commence déjà par dire que la courbe d'étalonnage obtenue confirme que <span class="imp">la loi de Beer-Lambert est respectée sur la gamme étalon</span>. 
 
-<p class="fragment">En effet, on voit sur le graphique que les points de mesure obtenus sont <span class="imp">alignés avec l'origine</span>. </p>
+<p class="fragment fade-up">En effet, on voit sur le graphique que les points de mesure obtenus sont <span class="imp">alignés avec l'origine</span>. </p>
 
 ---
 
 L'absorbance $A$ des solutions étalons est donc proportionnelle à leur concentration $C$ : $A=k\times C$
 
-<p class="fragment">De plus, <span class="imp">l'absorbance de la solution S est dans la gamme</span> (puisqu'elle est inférieure à 1,6). <span class="imp">On peut donc lui appliquer la loi de Beer-Lambert !</span></p>
+<p class="fragment fade-up">De plus, <span class="imp">l'absorbance de la solution S est dans la gamme</span> (puisqu'elle est inférieure à 1,6). <span class="imp">On peut donc lui appliquer la loi de Beer-Lambert !</span></p>
 
 ---
 
 Déterminons le coefficient de proportionnalité $k$ :
 
-<p class="fragment">plutôt que de calculer la moyenne des coefficients pour chaque mesure, on peut constater que le point correspondant à S<sub>5</sub> touche la droite. </p>
+<p class="fragment fade-up">plutôt que de calculer la moyenne des coefficients pour chaque mesure, on peut constater que le point correspondant à S<sub>5</sub> touche la droite. </p>
 
-<p class="fragment">Le rapport $A_5/C_5$ sera donc une bonne estimation du coefficient directeur de la droite (et d'autant meilleure que ce point est éloigné de l'origine).</p>
+<p class="fragment fade-up">Le rapport $A_5/C_5$ sera donc une bonne estimation du coefficient directeur de la droite (et d'autant meilleure que ce point est éloigné de l'origine).</p>
 
 
 ---
 
 On a donc :
 
-<div class="fragment">
+<div class="fragment fade-up">
 
 $$
 \begin{aligned}
@@ -159,7 +159,7 @@ $$
 
 On peut maintenant déterminer la concentration $C$ de la solution S sachant que son absorbance mesurée vaut $A=0,75$ :
 
-<div class="fragment">
+<div class="fragment fade-up">
 
 $$
 \begin{aligned}
@@ -207,13 +207,13 @@ La réponse est cohérente<br>par rapport aux calculs.
 
 B. Passons au volume de sirop dans un verre :
 
-<p class="fragment">Le volume typique d'un verre est de $\pu{20 cL}$<br>mais le sirop est généralement dilué.</p>
+<p class="fragment fade-up">Le volume typique d'un verre est de $\pu{20 cL}$<br>mais le sirop est généralement dilué.</p>
 
-<p class="fragment">Supposons que le sirop est dilué 10 fois<br>(il est généralement recommandé d'avoir<br>1 volume de sirop pour 9 volumes d'eau).</p>
+<p class="fragment fade-up">Supposons que le sirop est dilué 10 fois<br>(il est généralement recommandé d'avoir<br>1 volume de sirop pour 9 volumes d'eau).</p>
 
-<p class="fragment">Cela fait alors un volume $V_{sirop}=\pu{2,0 cL}$.</p>
+<p class="fragment fade-up">Cela fait alors un volume $V_{sirop}=\pu{2,0 cL}$.</p>
 
-<p class="fragment"><u>Rq</u> : on aurait aussi pu dire qu'un verre<br>contient au final la solution S...</p>
+<p class="fragment fade-up"><u>Rq</u> : on aurait aussi pu dire qu'un verre<br>contient au final la solution S...</p>
 
 
 {{%/section%}}
@@ -236,9 +236,9 @@ $$
 
 Or on a vu au début que la quantité journalière à ne pas dépasser était $n_{max}=\pu{2,7e-4 mol}$.
 
-<p class="fragment">Cela représente un nombre de verres : </p>
+<p class="fragment fade-up">Cela représente un nombre de verres : </p>
 
-<div class="fragment">
+<div class="fragment fade-up">
 
 $$
 \left\lfloor\frac{n_{max}}{n}\right\rfloor = \left\lfloor\frac{\pu{2,7e-4 mol}}{\pu{9,4e-7 mol}}\right\rfloor = \pu{2,8E2}
@@ -246,7 +246,7 @@ $$
 
 </div>
 
-<p class="fragment">Une personne de 60 kg ne doit donc pas boire plus de 280 verres de sirop par jour pour éviter la toxicité du bleu patenté.</p>
+<p class="fragment fade-up">Une personne de 60 kg ne doit donc pas boire plus de 280 verres de sirop par jour pour éviter la toxicité du bleu patenté.</p>
 
 ---
 

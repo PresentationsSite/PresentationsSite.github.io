@@ -39,7 +39,7 @@ Le réseau de transport et de distribution<br>de l'électricité est organisé �
 ---
 
 
-<iframe width="100%" height="500" frameborder="0" scrolling="no" allowfullscreen src="https://arcg.is/9TuTP"></iframe>
+<iframe width="100%" height="500" frameborder="0" scrolling="no" allowfullscreen src="https://arcg.is/1jmLKL0"></iframe>
 
 ---
 
@@ -61,11 +61,11 @@ Et comment modifie-t-on la tension ?
 
 La puissance perdue par effet joule (sous forme de chaleur) par un dipole de résistance $R$ vaut :
 
-<div class="fragment" style="background-color:#0076BA;padding:20px 10px 30px 10px;;width:70%;margin:15%;color:white">
+<div class="fragment fade-up" style="background-color:#0076BA;padding:20px 10px 30px 10px;;width:70%;margin:15%;color:white">
 $P_J = RI^2$
 </div>
 
-<p class="fragment">
+<p class="fragment fade-up">
 $P_J$ en W, $R$ en $\Omega$ et $I$ en A
 </p>
 {{%/section%}}
@@ -138,9 +138,6 @@ C'est le cas par exemple dans les prises dites "rasoir" qu'on trouve parfois dan
 {{< slide  background-image="/giftransfoisolement.gif" background-size="50%" background-transition="concave">}}
 
 
----
-
-{{%youtube D8EQPx-ptKk%}}
 
 {{% /section %}}
 
@@ -217,11 +214,11 @@ on fournit à l'utilisateur une puissance utile $P$ mais on transporte pour cela
 {{% /section %}}
 
 ---
-{{%youtube paTSnR25r2Q%}}
+{{< youtube-slide id="paTSnR25r2Q" ratio="16x9" >}}
 
 ---
 
-{{%youtube 9GeXkussHfw%}}
+{{< youtube-slide id="9GeXkussHfw" ratio="16x9" >}}
 
 ---
 

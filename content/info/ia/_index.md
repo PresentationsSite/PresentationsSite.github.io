@@ -331,7 +331,7 @@ Tout jeu impartial à deux joueurs est une variante du jeu de Nim (théorème de
 
 ---
 
-{{%youtube 2jahbr5wMHk%}}
+{{< youtube-slide id="2jahbr5wMHk" ratio="16x9" >}}
 
 ---
 

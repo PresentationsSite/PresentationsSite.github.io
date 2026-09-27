@@ -435,11 +435,11 @@ Enfin, le **nombre de cycles de charges<br>et de décharges** permet de prédire
 
 ---
 
-{{%youtube AFZZoMc8PjU%}}
+{{< youtube-slide id="AFZZoMc8PjU" ratio="16x9" >}}
 
 ---
 
-{{%youtube -OspFfT3GrY%}}
+{{< youtube-slide id="-OspFfT3GrY" ratio="16x9" >}}
 
 {{%note%}}
 {{%/note%}}
@@ -450,12 +450,12 @@ Enfin, le **nombre de cycles de charges<br>et de décharges** permet de prédire
 
 ---
 
-{{%youtube LwfPaUd274E%}}
+{{< youtube-slide id="LwfPaUd274E" ratio="4x3" >}}
 
 
 ---
 
-{{%youtube tKki89sq0XY%}}
+{{< youtube-slide id="tKki89sq0XY" ratio="16x9" >}}
 
 ---
 

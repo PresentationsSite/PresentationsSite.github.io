@@ -214,11 +214,11 @@ Parmi les oxydants, on peut citer :
 
 ---
 
-<iframe width="800" height="450" src="https://www.youtube.com/embed/AFZZoMc8PjU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+{{< youtube-slide id="AFZZoMc8PjU" ratio="16x9" >}}
 
 ---
 
-<iframe width="800" height="450" src="https://www.youtube.com/embed/qdGrzroYcIk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+{{< youtube-slide id="qdGrzroYcIk" ratio="16x9" >}}
 
 
 ---
@@ -315,14 +315,7 @@ C'est la raison pour laquelle ils se retrouvent au cœur de nombreuses piles (pi
 
 ---
 
-<div class="video-container">
-  <iframe src="https://www.youtube.com/embed/yGDkiUAwxRs?si=pls_cHsG20qzRN7W"
-          title="YouTube Short"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen>
-  </iframe>
-</div>
+{{< youtube-slide id="yGDkiUAwxRs" ratio="short" >}}
 
 
 {{% /section %}}
@@ -474,7 +467,7 @@ Comment ça marche ?
 
 ---
 
-<iframe width="800" height="450" src="https://www.youtube.com/embed/TQ1BN93FoDs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+{{< youtube-slide id="TQ1BN93FoDs" ratio="16x9" >}}
 
 ---
 
@@ -485,7 +478,7 @@ Donc il peut malgré tout y avoir un léger mélange des solutions (c'est aussi 
 
 ---
 
-<iframe width="800" height="450" src="https://www.youtube.com/embed/GT4yJjJ9OKE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+{{< youtube-slide id="GT4yJjJ9OKE" ratio="16x9" >}}
 
 ---
 

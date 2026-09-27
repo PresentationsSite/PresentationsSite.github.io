@@ -6,16 +6,16 @@ outputs = ["Reveal"]
 
 {{% section %}}
 
-{{%youtube iUNu9YcjHk4%}}
+{{< youtube-slide id="iUNu9YcjHk4" ratio="16x9" >}}
 
 ---
 
-{{%youtube 45-osdvFW28%}}
+{{< youtube-slide id="45-osdvFW28" ratio="4x3" >}}
 
 
 ---
 
-{{%youtube aj9g4rbQHl4%}}
+{{< youtube-slide id="aj9g4rbQHl4" ratio="16x9" >}}
 
 
 ---

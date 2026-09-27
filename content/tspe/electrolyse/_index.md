@@ -161,7 +161,7 @@ Pendant une durée $\Delta t$ (en s), si le générateur de courant continu dél
 
 ---
 
-<iframe width="800" height="450" src="https://www.youtube.com/embed/qdGrzroYcIk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+{{< youtube-slide id="qdGrzroYcIk" ratio="16x9" >}}
 
 ---
 
@@ -169,14 +169,7 @@ Pendant une durée $\Delta t$ (en s), si le générateur de courant continu dél
 
 ---
 
-<div class="video-container">
-  <iframe src="https://www.youtube.com/embed/_VbUQs_uk9Q?si=swpuB4PmHbeGxKJt"
-          title="YouTube Short"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen>
-  </iframe>
-</div>
+{{< youtube-slide id="_VbUQs_uk9Q" ratio="short" >}}
 
 
 {{% /section %}}

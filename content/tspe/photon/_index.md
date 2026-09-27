@@ -58,7 +58,7 @@ height: 100%;
 
 ---
 
-{{<youtube oYnp0WZDhYQ>}}
+{{< youtube-slide id="oYnp0WZDhYQ" ratio="16x9" >}}
 
 {{%note%}}
 Passer la vidéo sans le son.
@@ -84,7 +84,7 @@ En 1905, Einstein explique l'effet<br> en généralisant l'idée de Planck au ra
 Le <span class="imp">photon</span> est une particule de lumière sans masse voyageant à $c$ qui transporte une énergie :
 
 
-<div class="imp fragment" style="display: flex; justify-content: center;">
+<div class="imp fragment fade-up" style="display: flex; justify-content: center;">
 <div style = "border:solid #FF968D 5px;padding: 20px 20px 30px 20px; font-size:1.2em">
 $\Delta E = h\times \nu$
 </div></div>
@@ -94,16 +94,16 @@ $\Delta E = h\times \nu$
 Unités :
 
 <ul>
-<li class="fragment">E en <span class="fragment imp">joule (J)</span>
-<li class="fragment">$\nu$ en <span class="fragment imp">hertz (Hz)</span></li>
-<li class="fragment">$h=\pu{6,63E-34 J*s}$<br>est la <span class="imp">constante de Planck</span>.</li>
+<li class="fragment fade-up">E en <span class="fragment imp">joule (J)</span>
+<li class="fragment fade-up">$\nu$ en <span class="fragment imp">hertz (Hz)</span></li>
+<li class="fragment fade-up">$h=\pu{6,63E-34 J*s}$<br>est la <span class="imp">constante de Planck</span>.</li>
 </ul>
 
 ---
 
 On peut lier énergie du photon et longueur d'onde :
 
-<div class="imp fragment" style="display: flex; justify-content: center;">
+<div class="imp fragment fade-up" style="display: flex; justify-content: center;">
 <div style = "border:solid #FF968D 5px;padding: 20px 20px 30px 20px; font-size:1.2em">
 $\displaystyle E = h\times \frac{c}{\lambda}=\frac{hc}{\lambda}$
 </div></div>
@@ -113,10 +113,10 @@ $\displaystyle E = h\times \frac{c}{\lambda}=\frac{hc}{\lambda}$
 Unités :
 
 <ul>
-<li class="fragment">E en <span class="fragment imp">joule (J)</span>
-<li class="fragment">$\lambda$ en <span class="fragment imp">mètre (m)</span>
-<li class="fragment">$h=\pu{6,63E-34 J*s}$<br>est la constante de Planck.</li>
-<li class="fragment">$c=$<span class="fragment"> $\pu{3,00E8 m*s^-1}$</span><br>est la célérité de la lumière.</li>
+<li class="fragment fade-up">E en <span class="fragment imp">joule (J)</span>
+<li class="fragment fade-up">$\lambda$ en <span class="fragment imp">mètre (m)</span>
+<li class="fragment fade-up">$h=\pu{6,63E-34 J*s}$<br>est la constante de Planck.</li>
+<li class="fragment fade-up">$c=$<span class="fragment"> $\pu{3,00E8 m*s^-1}$</span><br>est la célérité de la lumière.</li>
 </ul>
 
 ---

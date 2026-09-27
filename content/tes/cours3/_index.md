@@ -47,7 +47,7 @@ padding-left: 1em;
 
 Parmi ces centrales, lesquelles produisent de l'électricité grâce à un <span class="imp">turbo-alternateur</span> ?
 
-<p class="fragment">Toutes sauf la photovoltaïque !</p>
+<p class="fragment fade-up">Toutes sauf la photovoltaïque !</p>
 
 
 {{%/section%}}
@@ -68,7 +68,7 @@ Parmi ces centrales, lesquelles produisent de l'électricité grâce à un <span
 
 ---
 
-<iframe width="800" height="450" src="https://www.youtube.com/embed/I09DhTubNqE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+{{< youtube-slide id="I09DhTubNqE" ratio="16x9" >}}
 
 ---
 
@@ -88,7 +88,7 @@ Le fichier json dans /data/ utiliser dans /nuclear_map.html vient de là : https
 
 1 réacteur produit environ $\pu{1 GW de puissance}$ et une centrale contient généralement plusieurs réacteurs.
 
-<p class="fragment" style="font-weight:normal;color:#93a1a1">
+<p class="fragment fade-up" style="font-weight:normal;color:#93a1a1">
 La centrale de Civaux, dans la Vienne<br>produit $\pu{3 GW}$ de puissance et celle du Blayais,<br>en Gironde, fournit $\pu{3,6 GW}$. C'est théoriquement suffisant pour les 6 millions d'habitants<br>de la Nouvelle-Aquitaine.</p>
 
 ---
@@ -99,7 +99,7 @@ La centrale de Civaux, dans la Vienne<br>produit $\pu{3 GW}$ de puissance et cel
 
 ---
 
-<iframe width="800" height="450" src="https://www.youtube.com/embed/vqbdbigU900" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+{{< youtube-slide id="vqbdbigU900" ratio="16x9" >}}
 
 ---
 
@@ -107,7 +107,7 @@ La centrale de Civaux, dans la Vienne<br>produit $\pu{3 GW}$ de puissance et cel
 
 La centrale électrique la plus puissante au monde est le barrage des Trois Gorges en Chine qui<br>peut produire jusqu'à $\pu{22,5 GW}$.
 
-<p class="fragment" style="font-weight:normal;color:#93a1a1">
+<p class="fragment fade-up" style="font-weight:normal;color:#93a1a1">
 En France, la centrale hydroélectrique la plus puissante est celle de Grand'Maison, dans l'Isère,<br>qui peut fournir $\pu{1,8 GW}$.</p>
 
 ---
@@ -135,10 +135,10 @@ Les centrales thermiques à flamme les plus puissantes (à gaz ou à charbon) pe
 
 Une éolienne onshore peut fournir $2$-$\pu{3 MW}$,<br>ce qui pourrait théoriquement alimenté un village comme L'Houmeau (si elle tournait tout le temps).
 
-<p class="fragment" style="font-weight:normal;color:#93a1a1">
+<p class="fragment fade-up" style="font-weight:normal;color:#93a1a1">
 La puissance typique d'une éolienne offshore est plus grande : de $10$ à $\pu{15 MW}$ pour les modernes.</p>
 
-<p class="fragment" style="font-weight:normal;color:#93a1a1">
+<p class="fragment fade-up" style="font-weight:normal;color:#93a1a1">
 Le plus grand parc éolien est en Chine.<br>Il peut produire jusqu'à $\pu{6 GW}$.</p>
 
 ---
@@ -149,7 +149,7 @@ Le plus grand parc éolien est en Chine.<br>Il peut produire jusqu'à $\pu{6 GW}
 
 ---
 
-<iframe width="800" height="450" src="https://www.youtube.com/embed/k_ut9pb3kjU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+{{< youtube-slide id="k_ut9pb3kjU" ratio="16x9" >}}
 
 ---
 
@@ -157,7 +157,7 @@ Le plus grand parc éolien est en Chine.<br>Il peut produire jusqu'à $\pu{6 GW}
 
 La plus grande centrale solaire photovoltaïque est en Inde et peut fournir jusqu'à $\pu{2,2 GW}$ alors que la plus grande centrale solaire thermique est au Maroc et la puissance installée du complexe est de $\pu{590 MW}$.
 
-<p class="fragment" style="font-weight:normal;color:#93a1a1">
+<p class="fragment fade-up" style="font-weight:normal;color:#93a1a1">
 Le Soleil envoie environ $\pu{1 kW/m2}$ au niveau du sol<br>et les rendements des panneaux photovoltaïques sont d'environ 20%. Il faut donc au moins $\pu{5000000 m2}$,<br>soit $\pu{500 ha}$ pour produire $\pu{1 GW}$.</p>
 
 ---
@@ -197,10 +197,10 @@ La plus grande centrale géothermique est en Californie et fournit jusqu'à $\pu
 Avantages :
 
 <ul>
-<li class="fragment">Production d'électricité constante et fiable</li>
-<li class="fragment">Faibles émissions de gaz à effet de serre</li>
-<li class="fragment">Besoin de peu de combustible pour produire une grande quantité d'énergie</li>
-<li class="fragment">Longue durée de vie des centrales</li>
+<li class="fragment fade-up">Production d'électricité constante et fiable</li>
+<li class="fragment fade-up">Faibles émissions de gaz à effet de serre</li>
+<li class="fragment fade-up">Besoin de peu de combustible pour produire une grande quantité d'énergie</li>
+<li class="fragment fade-up">Longue durée de vie des centrales</li>
 </ul>
 
 ---
@@ -212,11 +212,11 @@ Avantages :
 Inconvénients :
 
 <ul>
-<li class="fragment">Risques associés aux accidents nucléaires</li>
-<li class="fragment">Problèmes de gestion des déchets radioactifs</li>
-<li class="fragment">Coûts élevés de construction et de démantèlement</li>
-<li class="fragment">Risques de prolifération nucléaire</li>
-<li class="fragment">Ressource non renouvelable</li>
+<li class="fragment fade-up">Risques associés aux accidents nucléaires</li>
+<li class="fragment fade-up">Problèmes de gestion des déchets radioactifs</li>
+<li class="fragment fade-up">Coûts élevés de construction et de démantèlement</li>
+<li class="fragment fade-up">Risques de prolifération nucléaire</li>
+<li class="fragment fade-up">Ressource non renouvelable</li>
 </ul>
 
 ---
@@ -233,10 +233,10 @@ Inconvénients :
 Avantages :
 
 <ul>
-<li class="fragment">Production d'électricité constante et fiable</li>
-<li class="fragment">Technologie éprouvée et bien maîtrisée</li>
-<li class="fragment">Coûts initiaux relativement faibles</li>
-<li class="fragment">Facilement pilotable pour ajuster l'offre à la demande (en particulier pour le gaz)</li>
+<li class="fragment fade-up">Production d'électricité constante et fiable</li>
+<li class="fragment fade-up">Technologie éprouvée et bien maîtrisée</li>
+<li class="fragment fade-up">Coûts initiaux relativement faibles</li>
+<li class="fragment fade-up">Facilement pilotable pour ajuster l'offre à la demande (en particulier pour le gaz)</li>
 </ul>
 
 ---
@@ -248,10 +248,10 @@ Avantages :
 Inconvénients :
 
 <ul>
-<li class="fragment">Fortes émissions de gaz à effet de serre</li>
-<li class="fragment">Pollution atmosphérique (particules, $\ce{SO2}$, $\ce{NO_x}$)</li>
-<li class="fragment">Exploitation des ressources fossiles non renouvelables</li>
-<li class="fragment">Impact environnemental de l'extraction du charbon</li>
+<li class="fragment fade-up">Fortes émissions de gaz à effet de serre</li>
+<li class="fragment fade-up">Pollution atmosphérique (particules, $\ce{SO2}$, $\ce{NO_x}$)</li>
+<li class="fragment fade-up">Exploitation des ressources fossiles non renouvelables</li>
+<li class="fragment fade-up">Impact environnemental de l'extraction du charbon</li>
 </ul>
 
 ---
@@ -268,10 +268,10 @@ Inconvénients :
 Avantages :
 
 <ul>
-<li class="fragment">Production d'électricité renouvelable</li>
-<li class="fragment">Capacité de stockage d'énergie<br>($\rightarrow$ régulation du réseau)</li>
-<li class="fragment">Longue durée de vie des installations</li>
-<li class="fragment">Faibles émissions de gaz à effet de serre</li>
+<li class="fragment fade-up">Production d'électricité renouvelable</li>
+<li class="fragment fade-up">Capacité de stockage d'énergie<br>($\rightarrow$ régulation du réseau)</li>
+<li class="fragment fade-up">Longue durée de vie des installations</li>
+<li class="fragment fade-up">Faibles émissions de gaz à effet de serre</li>
 </ul>
 
 ---
@@ -283,10 +283,10 @@ Avantages :
 Inconvénients :
 
 <ul>
-<li class="fragment">Impact sur les écosystèmes aquatiques</li>
-<li class="fragment">Déplacement des populations locales</li>
-<li class="fragment">Risques d'inondation en aval</li>
-<li class="fragment">Coûts initiaux élevés</li>
+<li class="fragment fade-up">Impact sur les écosystèmes aquatiques</li>
+<li class="fragment fade-up">Déplacement des populations locales</li>
+<li class="fragment fade-up">Risques d'inondation en aval</li>
+<li class="fragment fade-up">Coûts initiaux élevés</li>
 </ul>
 
 ---
@@ -303,9 +303,9 @@ Inconvénients :
 Avantages :
 
 <ul>
-<li class="fragment">Énergie renouvelable</li>
-<li class="fragment">Faibles émissions de gaz à effet de serre</li>
-<li class="fragment">Coûts opérationnels faibles</li>
+<li class="fragment fade-up">Énergie renouvelable</li>
+<li class="fragment fade-up">Faibles émissions de gaz à effet de serre</li>
+<li class="fragment fade-up">Coûts opérationnels faibles</li>
 </ul>
 
 ---
@@ -317,10 +317,10 @@ Avantages :
 Inconvénients :
 
 <ul>
-<li class="fragment">Production intermittente</li>
-<li class="fragment">Importante consommation de métaux<br>par kWh produit</li>
-<li class="fragment">Impact visuel et sonore</li>
-<li class="fragment">Besoin de grands espaces pour les installations</li>
+<li class="fragment fade-up">Production intermittente</li>
+<li class="fragment fade-up">Importante consommation de métaux<br>par kWh produit</li>
+<li class="fragment fade-up">Impact visuel et sonore</li>
+<li class="fragment fade-up">Besoin de grands espaces pour les installations</li>
 </ul>
 
 ---
@@ -337,10 +337,10 @@ Inconvénients :
 Avantages :
 
 <ul>
-<li class="fragment">Énergie renouvelable</li>
-<li class="fragment">Faibles émissions de gaz à effet de serre</li>
-<li class="fragment">Peu d'entretien nécessaire</li>
-<li class="fragment">Modularité et adaptabilité</li>
+<li class="fragment fade-up">Énergie renouvelable</li>
+<li class="fragment fade-up">Faibles émissions de gaz à effet de serre</li>
+<li class="fragment fade-up">Peu d'entretien nécessaire</li>
+<li class="fragment fade-up">Modularité et adaptabilité</li>
 </ul>
 
 {{%note%}}
@@ -367,9 +367,9 @@ Avantages :
 Inconvénients :
 
 <ul>
-<li class="fragment">Production intermittente.</li>
-<li class="fragment">Importante consommation de matériaux<br>par kWh produit.</li>
-<li class="fragment">Besoin de beaucoup de surface.</li>
+<li class="fragment fade-up">Production intermittente.</li>
+<li class="fragment fade-up">Importante consommation de matériaux<br>par kWh produit.</li>
+<li class="fragment fade-up">Besoin de beaucoup de surface.</li>
 </ul>
 
 {{%/section%}}

@@ -223,7 +223,7 @@ Enfin, comme leurs caractéristiques<br>électriques dépendent de leur géomét
 ---
 
 
-<iframe width="800" height="450" src="https://www.youtube.com/embed/KuekQ-m9xpw?start=78" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+{{< youtube-slide id="KuekQ-m9xpw" ratio="16x9" start="78" >}}
 
 {{%/section%}}
 

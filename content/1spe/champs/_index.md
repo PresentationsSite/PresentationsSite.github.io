@@ -59,11 +59,11 @@ height: 100%;
 Deux des interactions fondamentales de l'univers sont :
 
 <ul>
-<li class="fragment">l'<b style="color:#FFD932;">interaction gravitationnelle</b> entre deux masses<br>qui est toujours <span class="fragment"><b style="color:#FF968D;">attractive</b>.</span></li>
-<li class="fragment">l'<b style="color:#FFD932;">interaction électrostatique</b> entre deux charges électriques qui est :
+<li class="fragment fade-up">l'<b style="color:#FFD932;">interaction gravitationnelle</b> entre deux masses<br>qui est toujours <span class="fragment"><b style="color:#FF968D;">attractive</b>.</span></li>
+<li class="fragment fade-up">l'<b style="color:#FFD932;">interaction électrostatique</b> entre deux charges électriques qui est :
 <ul>
-<li class="fragment"><b style="color:#FF968D;">attractive</b> entre deux <u>charges opposées</u>,</li>
-<li class="fragment">et <b style="color:#56C1FF	;">répulsive</b> entre deux <u>charges identiques</u>.</li>
+<li class="fragment fade-up"><b style="color:#FF968D;">attractive</b> entre deux <u>charges opposées</u>,</li>
+<li class="fragment fade-up">et <b style="color:#56C1FF	;">répulsive</b> entre deux <u>charges identiques</u>.</li>
 </li>
 </ul>
 </ul>
@@ -73,7 +73,7 @@ Deux des interactions fondamentales de l'univers sont :
 
 Ces deux interactions sont remarquablement semblables dans leur forme mathématique.
 
-<p class="fragment">Mais avant d'évoquer la force électrostatique, on va tâcher d'en apprendre plus sur les charges électriques.</p>
+<p class="fragment fade-up">Mais avant d'évoquer la force électrostatique, on va tâcher d'en apprendre plus sur les charges électriques.</p>
 
 {{%/section%}}
 
@@ -86,7 +86,7 @@ Ces deux interactions sont remarquablement semblables dans leur forme mathémati
 
 ---
 
-<iframe width="800" height="450" src="https://www.youtube.com/embed/Vrh5FeGUTJA?si=6Y4B3DJ6r5pJR_vx" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+{{< youtube-slide id="Vrh5FeGUTJA" ratio="16x9" >}}
 
 ---
 
@@ -96,7 +96,7 @@ La charge électrique est découverte par les anciens Grecs qui constatent que c
 
 Ils remarquent également qu'en frottant l'ambre assez longtemps, on pouvait même obtenir une étincelle. 
 
-<p class="fragment">Le mot « électricité » vient du grec ancien<br>ἤλεκτρον / ḗlektron, « ambre ».</p>
+<p class="fragment fade-up">Le mot « électricité » vient du grec ancien<br>ἤλεκτρον / ḗlektron, « ambre ».</p>
 
 ---
 
@@ -110,7 +110,7 @@ De plus, deux matériaux différents "chargés" par frottement peuvent s'attirer
 
 On interprète aujourd'hui ces propriétés par l'apparition d'un déséquilibre de charge électrique (phénomène triboélectrique). 
 
-<p class="fragment">Des électrons de la fourrure sont arrachés et s'accumulent à la surface de l'ambre laissant la fourrure chargée positivement et l'ambre négativement.</p>
+<p class="fragment fade-up">Des électrons de la fourrure sont arrachés et s'accumulent à la surface de l'ambre laissant la fourrure chargée positivement et l'ambre négativement.</p>
 
 {{%note%}}
 Bien dire qu'une grande partie du phénomène reste encore inexpliqué aujourd'hui !
@@ -133,13 +133,13 @@ ODG 10 kV/cm pour décharge électrique disruptive
 
 Mais comment un objet chargé (le chat) peut-il attirer des objets non chargés (les morceaux de polystyrène) ?
 
-<p class="imp fragment">Par influence électrostatique !</p>
+<p class="imp fragment fade-up">Par influence électrostatique !</p>
 
-<p class="fragment"><a href="https://phet.colorado.edu/sims/html/balloons-and-static-electricity/latest/balloons-and-static-electricity_fr.html">Ballons du Colorado</a> 
+<p class="fragment fade-up"><a href="https://phet.colorado.edu/sims/html/balloons-and-static-electricity/latest/balloons-and-static-electricity_fr.html">Ballons du Colorado</a> 
 
 ---
 
-<iframe width="560" height="420" src="https://www.youtube.com/embed/ILK_JWl-uW0?si=5uE22KGLa1Muplc7" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+{{< youtube-slide id="ILK_JWl-uW0" ratio="4x3" >}}
 
 
 {{%note%}}
@@ -152,7 +152,7 @@ C'est la raison pour laquelle les lignards ont des combinaisons tissés de fil d
 
 ---
 
-{{<youtube m7SWW1FWsPI>}}
+{{< youtube-slide id="m7SWW1FWsPI" ratio="16x9" >}}
 
 {{%/section%}}
 
@@ -195,7 +195,7 @@ unités :
 <li>$d=AB$ en <span class="imp fragment">m</span></li>
 </ul>
 
-<p class="fragment">
+<p class="fragment fade-up">
 $G$ est la constante universelle de gravitation.<br>
 $G=\pu{6,67E-11 N*m^2*kg^-2}$
 </p>
@@ -206,7 +206,7 @@ $G=\pu{6,67E-11 N*m^2*kg^-2}$
 
 D'après la loi des actions réciproques<br>(3<sup>e</sup> loi de Newton) :
 
-<div class="fragment">
+<div class="fragment fade-up">
 $$\vec{F}_{A/B}= - \vec{F}_{B/A}$$
 </div>
 
@@ -247,7 +247,7 @@ unités :
 <li>$d=AB$ en <span class="imp fragment">m</span></li>
 </ul>
 
-<p class="fragment">
+<p class="fragment fade-up">
 $k$ est la constante de Coulomb.<br>
 $k=\frac{1}{4\pi\varepsilon_0}=\pu{8,99E9 N*m^2*C^-2}$<br>
 $\varepsilon_0$ est la permittivité du vide.
@@ -318,7 +318,7 @@ $$\vec{E} = k\frac{Q}{d^2}\vec{u}_{OP}$$
 
 L'unité du champ électrique est donc le <span class="fragment imp">$\pu{N*C^-1}$</span>
 
-<p class="fragment">
+<p class="fragment fade-up">
 Mais le champ électrique a aussi<br>une autre unité plus physique :<span class="fragment"> le <span class="imp">$\pu{V*m^-1}$</span>.</span>
 </p>
 
@@ -362,7 +362,7 @@ $$\vec{\mathcal{G}} = -G\frac{M}{d^2}\vec{u}_{OP}$$
 
 L'unité du champ gravitationnel est donc le <span class="fragment imp">$\pu{N*kg^-1}$</span>
 
-<p class="fragment">
+<p class="fragment fade-up">
 Mais le champ gravitationnel a aussi<br>une autre unité plus physique : <span class="fragment">le <span class="imp">$\pu{m*s^-2}$</span>.</span>
 </p>
 
@@ -392,7 +392,7 @@ Pour déterminer le vecteur champ gravitationnel en tout point, il suffit d'y pl
 
 On sait maintenant mieux ce que<br>représente la pesanteur $\vec{g}$.
 
-<p class="fragment">Il s'agit finalement du champ gravitationnel<br>créé par la Terre en un point de sa surface !</p>
+<p class="fragment fade-up">Il s'agit finalement du champ gravitationnel<br>créé par la Terre en un point de sa surface !</p>
 
 {{%note%}}
 Le prouver par le calcul.
@@ -403,10 +403,10 @@ Le prouver par le calcul.
 En prolongeant les vecteurs champ,<br>on obtient les <span class="imp">lignes de champ</span>.
 
 <ul>
-<li class="fragment">Jamais des lignes de champ ne se croisent !</li>
-<li class="fragment">Les lignes de champ électrique<br>d'une charge positive sortent de la charge.</li>
-<li class="fragment">Les lignes de champ électrique<br>d'une charge négative entrent dans la charge.</li>
-<li class="fragment">Les lignes de champ gravitationnel<br>entrent dans la masse.</li>
+<li class="fragment fade-up">Jamais des lignes de champ ne se croisent !</li>
+<li class="fragment fade-up">Les lignes de champ électrique<br>d'une charge positive sortent de la charge.</li>
+<li class="fragment fade-up">Les lignes de champ électrique<br>d'une charge négative entrent dans la charge.</li>
+<li class="fragment fade-up">Les lignes de champ gravitationnel<br>entrent dans la masse.</li>
 </ul>
 
 ---
@@ -427,7 +427,7 @@ En prolongeant les vecteurs champ,<br>on obtient les <span class="imp">lignes de
 
 ---
 
-{{<youtube DFIyXz6lO74>}}
+{{< youtube-slide id="DFIyXz6lO74" ratio="16x9" >}}
 
 ---
 

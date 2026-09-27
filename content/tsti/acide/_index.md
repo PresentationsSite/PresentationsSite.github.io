@@ -20,7 +20,7 @@ Donner les formules brutes<br>et développées de ces acides.
 
 <br>
 
-<p class="fragment">Quel est le point commun de ces acides ?</p>
+<p class="fragment fade-up">Quel est le point commun de ces acides ?</p>
 
 {{%note%}}
 La présence d'atome d'hydrogène ne fait pas systématiquement d'une molécule un acide !
@@ -328,26 +328,26 @@ $\displaystyle\text{pH} = -\log\left(\ce{[H3O+]}\right)$
 
 Si  $\ce{[H3O+]}=\pu{1,0E-8 mol * L-1}$, <br>
 
-<p class="fragment">$\text{pH}=$ <span class="fragment">$8,0$</span></p>
+<p class="fragment fade-up">$\text{pH}=$ <span class="fragment">$8,0$</span></p>
 
 <br>
 
-<p class="fragment">Si  $\ce{[H3O+]}=\pu{1,00E-12 mol * L-1}$, </p>
+<p class="fragment fade-up">Si  $\ce{[H3O+]}=\pu{1,00E-12 mol * L-1}$, </p>
 
-<p class="fragment">$\text{pH}=$ <span class="fragment">$12,0$</span></p>
+<p class="fragment fade-up">$\text{pH}=$ <span class="fragment">$12,0$</span></p>
 
 
 ---
 
 Si  $\ce{[H3O+]}=\pu{2,5E-2 mol * L-1}$,
 
-<p class="fragment">$\text{pH}=$ <span class="fragment">$1,6$</span></p>
+<p class="fragment fade-up">$\text{pH}=$ <span class="fragment">$1,6$</span></p>
 
 <br>
 
-<p class="fragment">Si  $\ce{[H3O+]}=\pu{8,4E-13 mol * L-1}$,</p>
+<p class="fragment fade-up">Si  $\ce{[H3O+]}=\pu{8,4E-13 mol * L-1}$,</p>
 
-<p class="fragment">$\text{pH}=$ <span class="fragment">$12,1$</span></p>
+<p class="fragment fade-up">$\text{pH}=$ <span class="fragment">$12,1$</span></p>
 
 ---
 
@@ -374,27 +374,27 @@ $\displaystyle\ce{[H3O+]} = 10^{-\text{pH}}$
 
 <p>Si  $\text{pH}=7,0$ </p>
 
-<p class="fragment">$\ce{[H3O+]}=$ <span class="fragment">$\pu{1,0E-7 mol * L-1}$</pan></p>
+<p class="fragment fade-up">$\ce{[H3O+]}=$ <span class="fragment">$\pu{1,0E-7 mol * L-1}$</pan></p>
 
 <br>
 
 
-<p class="fragment">Si  $\text{pH}=1,0$ </p>
+<p class="fragment fade-up">Si  $\text{pH}=1,0$ </p>
 
-<p class="fragment">$\ce{[H3O+]}=$ <span class="fragment">$\pu{1,0E-1 mol * L-1}$</pan></p>
+<p class="fragment fade-up">$\ce{[H3O+]}=$ <span class="fragment">$\pu{1,0E-1 mol * L-1}$</pan></p>
 
 
 ---
 
 <p>Si  $\text{pH}=9,8$ </span></p>
 
-<p class="fragment">$\ce{[H3O+]}=$ <span class="fragment">$\pu{1,6E-10 mol * L-1}$</span></p>
+<p class="fragment fade-up">$\ce{[H3O+]}=$ <span class="fragment">$\pu{1,6E-10 mol * L-1}$</span></p>
 
 <br>
 
-<p class="fragment">Si  $\text{pH}=0,5$ </span></p>
+<p class="fragment fade-up">Si  $\text{pH}=0,5$ </span></p>
 
-<p class="fragment">$\ce{[H3O+]}=$ <span class="fragment">$\pu{3,2E-1 mol * L-1}$</span></p>
+<p class="fragment fade-up">$\ce{[H3O+]}=$ <span class="fragment">$\pu{3,2E-1 mol * L-1}$</span></p>
 
 {{% /section %}}
 

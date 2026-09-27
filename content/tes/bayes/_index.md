@@ -327,7 +327,7 @@ Le temps d'attention du bébé est bien plus grand dans le premier cas que dans 
 
 ---
 
-<iframe width="800" height="450" src="https://www.youtube.com/embed/x-2uVNze56s?si=my6Y6lLlI8I66MSv" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+{{< youtube-slide id="x-2uVNze56s" ratio="16x9" >}}
 
 ---
 

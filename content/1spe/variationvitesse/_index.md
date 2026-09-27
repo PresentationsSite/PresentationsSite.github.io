@@ -59,20 +59,20 @@ height: 100%;
 
 corps ou ensemble de corps<br>dont on étudie le mouvement.
 
-<p class="fragment">On le modélisera par un <span class="imp">point matériel</span><br>(généralement situé au niveau<br>de son centre de gravité).</p>
+<p class="fragment fade-up">On le modélisera par un <span class="imp">point matériel</span><br>(généralement situé au niveau<br>de son centre de gravité).</p>
 
 ---
 
 <span class="imp">Référentiel</span> :
 
-<div class="fragment">
+<div class="fragment fade-up">
 Repère spatial + horloge
 
 C'est le cadre dans lequel on décrit le mouvement.
 </div>
 
-<p class="fragment">Exemples :</p>
-<p class="fragment">référentiel terrestre, géocentrique,<br>héliocentrique, référentiel du train,...
+<p class="fragment fade-up">Exemples :</p>
+<p class="fragment fade-up">référentiel terrestre, géocentrique,<br>héliocentrique, référentiel du train,...
 </p>
 
 
@@ -84,7 +84,7 @@ Un autre système peut interagir avec le système étudié par l'intermédiaire 
 
 La <span class="imp">résultante des forces $\vec{F}_\mathrm{res}$</span> est la somme des forces extérieures qui s'appliquent sur le système.
 
-<div class="fragment">
+<div class="fragment fade-up">
 $$\overrightarrow{F_{\mathrm{res}}} = \sum{\overrightarrow{{F}_\mathrm{ext}}}$$
 </div>
 
@@ -113,7 +113,7 @@ Le <span class="imp">vecteur vitesse $\vec{v}$</span> du point M est approché p
 
 $$\color{#FF968D}\vec{v} \approx \frac{\overrightarrow{\text{MM'}}}{\Delta t}$$
 
-<p class="fragment">Plus $\Delta t$ est petit, et plus le vecteur vitesse<br>s'approche de la vitesse instantanée en $t$</p>
+<p class="fragment fade-up">Plus $\Delta t$ est petit, et plus le vecteur vitesse<br>s'approche de la vitesse instantanée en $t$</p>
 
 
 ---
@@ -124,7 +124,7 @@ $$\color{#FF968D}\vec{v} \approx \frac{\overrightarrow{\text{MM'}}}{\Delta t}$$
 
 Et plus $\Delta t $ est petit, plus le vecteur vitesse<br>devient tangent à la trajectoire.
 
-<p class="fragment">$\Rightarrow$Le <span class="imp">vecteur vitesse instantanée</span><br>est <span class="imp">tangent</span> à la trajectoire.</p>
+<p class="fragment fade-up">$\Rightarrow$Le <span class="imp">vecteur vitesse instantanée</span><br>est <span class="imp">tangent</span> à la trajectoire.</p>
 
 ---
 
@@ -149,7 +149,7 @@ avec M' proche de M.
 
 ---
 
-{{<youtube fRNUbLc6U8s>}}
+{{< youtube-slide id="fRNUbLc6U8s" ratio="16x9" >}}
 
 
 ---
@@ -187,7 +187,7 @@ En résumé :
 
 Et la contraposée nous donne :
 
-<div class="fragment" style="position:relative;margin:auto;padding:10px 30px 20px 30px;border:solid 5px #FF968D;border-radius:15px; width:fit-content;">
+<div class="fragment fade-up" style="position:relative;margin:auto;padding:10px 30px 20px 30px;border:solid 5px #FF968D;border-radius:15px; width:fit-content;">
 $\sum{\vec{F}}$<span class="imp">$\;≠\;$</span>$\vec{0}$ $\Leftrightarrow$ <span class="imp"><s>MRU</s></span>
 </div>
 
@@ -195,14 +195,14 @@ $\sum{\vec{F}}$<span class="imp">$\;≠\;$</span>$\vec{0}$ $\Leftrightarrow$ <sp
 
 Peut-on réexprimer cet énoncé<br>avec le vecteur variation de vitesse ?
 
-<p class="fragment">Oui puisque<br>
+<p class="fragment fade-up">Oui puisque<br>
 <span class="imp"><s>MRU</s></span>$\;\Leftrightarrow\;$<span class="imp">$\vec{\Delta v}≠\vec{0}$</p>
 
 ---
 
 On a alors :
 
-<div class="fragment" style="position:relative;margin:auto;padding:10px 30px 20px 30px;border:solid 5px #FF968D;border-radius:15px; width:fit-content;">
+<div class="fragment fade-up" style="position:relative;margin:auto;padding:10px 30px 20px 30px;border:solid 5px #FF968D;border-radius:15px; width:fit-content;">
 $\sum{\vec{F}}$<span class="imp">$\;≠\;$</span>$\vec{0}$  $\;\Leftrightarrow\;$ </span>$\vec{\Delta v}$<span class="imp">$\;≠\;$</span>$\vec{0}$
 </div>
 
@@ -210,11 +210,11 @@ $\sum{\vec{F}}$<span class="imp">$\;≠\;$</span>$\vec{0}$  $\;\Leftrightarrow\;
 
 On peut aller quantitativement un peu plus loin<br>avec la relation approximative suivante :
 
-<div class="fragment imp" style="position:relative;margin:auto;padding:10px 30px 20px 30px;border:solid 5px #FF968D;border-radius:15px; width:fit-content;">
+<div class="fragment fade-up imp" style="position:relative;margin:auto;padding:10px 30px 20px 30px;border:solid 5px #FF968D;border-radius:15px; width:fit-content;">
 $\displaystyle \sum{\overrightarrow{F}}\approx m \times \frac{\overrightarrow{\Delta v}}{\Delta t}$
 </div>
 
-<p class="fragment">
+<p class="fragment fade-up">
 L'accord est d'autant meilleur que $\Delta t$ est petit.
 </p>
 
@@ -234,7 +234,7 @@ Unités :
 Pour une même résultante des forces et un même<br>laps de temps $\Delta t$, que peut-on dire<br>de l'influence de la masse ?
 
 
-<p class="fragment imp">
+<p class="fragment fade-up imp">
 Plus la masse est grande,<br><span class="fragment imp">plus la variation de vitesse est faible !</span>
 </p>
 

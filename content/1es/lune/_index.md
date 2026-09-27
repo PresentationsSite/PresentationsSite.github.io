@@ -59,7 +59,7 @@ Que savez-vous sur la Lune ?
 
 ---
 
-{{<youtube bVNTNeNMH8Q>}}
+{{< youtube-slide id="bVNTNeNMH8Q" ratio="16x9" >}}
 
 {{% /section %}}
 

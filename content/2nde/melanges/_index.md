@@ -349,9 +349,9 @@ Conversions :
 
 <div style="margin:auto; background-color:#3E74D1;padding:30px 20px 40px 0px ;width:fit-content; color:white; border-radius:10px; ">
 <ul style="color:white">
-<li class="fragment"> 1 $\pu{kg/L}$ = <span class="fragment">1</span> $\pu{kg/dm3}$ <span class="fragment">=  <span class="fragment">$10^3$</span> $\pu{kg/m3}$ <span></li><br>
-<li class="fragment"> 1 $\pu{kg/L}$ = <span class="fragment">1</span> $\pu{t/m^3}$ </li><br>
-<li class="fragment"> 1 $\pu{kg/L}$ = <span class="fragment">1</span> $\pu{g/mL}$ <span class="fragment">=  <span class="fragment">1</span> $\pu{g/cm3}$<span></li>
+<li class="fragment fade-up"> 1 $\pu{kg/L}$ = <span class="fragment">1</span> $\pu{kg/dm3}$ <span class="fragment">=  <span class="fragment">$10^3$</span> $\pu{kg/m3}$ <span></li><br>
+<li class="fragment fade-up"> 1 $\pu{kg/L}$ = <span class="fragment">1</span> $\pu{t/m^3}$ </li><br>
+<li class="fragment fade-up"> 1 $\pu{kg/L}$ = <span class="fragment">1</span> $\pu{g/mL}$ <span class="fragment">=  <span class="fragment">1</span> $\pu{g/cm3}$<span></li>
 </ul>
 </div>
 

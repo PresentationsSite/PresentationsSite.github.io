@@ -65,10 +65,10 @@ height: 100%;
 
 Un courant électrique est lié à un<br>mouvement de <span class="imp">porteurs de charge électrique</span>.
 
-<p class="fragment">
+<p class="fragment fade-up">
 Dans un matériau conducteur, il s'agit d'électrons, chargés négativement ($q=-e=\pu{-1,6E-19 C}$).
 </p>
-<p class="fragment">
+<p class="fragment fade-up">
 Mais il peut aussi s'agir d'ions dans les solutions.
 </p>
 
@@ -98,10 +98,10 @@ Combien d'électrons défilent à travers<br>la section d'un fil de cuivre penda
 
 
 Pendant $\Delta t= \pu{1 s}$, il circule une charge $\Delta q=I\times \Delta t = \pu{1 C}$.<br>
-<p class="fragment">
+<p class="fragment fade-up">
 Comme les porteurs de charges dans un conducteur sont des électrons, le nombre d'électrons<br>qui circulent vaut :
 </p>
-<p class="fragment">
+<p class="fragment fade-up">
 $\displaystyle \frac{\Delta q}{e}=\frac{\pu{1 C}}{\pu{1,6E-19 C}} = \pu{6,3E18}$
 </p>
 
@@ -155,19 +155,19 @@ Réalisons l'expérience et [traçons la caractéristique](../caract/).
 
 Quelle est l'équation de la courbe ?
 
-<p class="fragment">$U=E-{\color{#FF968D}r}\times I$, avec $r>0$.<br>
+<p class="fragment fade-up">$U=E-{\color{#FF968D}r}\times I$, avec $r>0$.<br>
 </p>
 
-<p class="fragment">
+<p class="fragment fade-up">
 Dimension de <span class="imp">$r$</span> ?
 </p>
 
-<p class="fragment">
+<p class="fragment fade-up">
 $[r]\times[I]=[U]$<br>
 $\displaystyle \Rightarrow [r]=\frac{[U]}{[I]}$
 </p>
 
-<p class="fragment">
+<p class="fragment fade-up">
 <span class="imp">$r$</span> a la dimension d'une résistance.
 </p>
 
@@ -195,9 +195,9 @@ générateur réel<br>=<br>générateur idéal<br>+<br>résistance (en série)
 Conséquences de $r$ ?
 
 <ul>
-<li class="fragment">La tension fournie par le générateur est plus faible lorsque l'intensité fournie grandit.</li>
-<li class="fragment">La résistance interne dissipe de l'énergie<br>(par effet joule).</li>
-<li class="fragment">Le générateur s'échauffe lorsque l'intensité augmente (toujours dû à la dissipation d'énergie).</li>
+<li class="fragment fade-up">La tension fournie par le générateur est plus faible lorsque l'intensité fournie grandit.</li>
+<li class="fragment fade-up">La résistance interne dissipe de l'énergie<br>(par effet joule).</li>
+<li class="fragment fade-up">Le générateur s'échauffe lorsque l'intensité augmente (toujours dû à la dissipation d'énergie).</li>
 </ul>
 
 {{%/section%}}
@@ -213,7 +213,7 @@ Conséquences de $r$ ?
 Qu'est-ce que l'énergie ?
 
 
-<p class="fragment">
+<p class="fragment fade-up">
 <span class="imp">L’énergie mesure la capacité à changer</span>
 <br>la température ou 
 le mouvement d’un corps.
@@ -226,13 +226,13 @@ L'énergie est une sorte de monnaie d'échange qui passe d'une forme à une autr
 
 Et la puissance ?
 
-<p class="fragment">La puissance mesure<br>le <span class="imp">taux de variation de l'énergie</span><br>(sa vitesse de variation).
+<p class="fragment fade-up">La puissance mesure<br>le <span class="imp">taux de variation de l'énergie</span><br>(sa vitesse de variation).
 
 ---
 
 Formule liant les deux ?
 
-<div class="fragment" style="position:relative;margin:auto;padding:10px 30px 20px 30px;border:solid 5px #FF968D;border-radius:15px;width:fit-content;">
+<div class="fragment fade-up" style="position:relative;margin:auto;padding:10px 30px 20px 30px;border:solid 5px #FF968D;border-radius:15px;width:fit-content;">
 $E = P\times \Delta t$
 </div>
 
@@ -246,23 +246,23 @@ Unités :
 <li>$\Delta t$ en <span class="imp fragment">s</span></li>
 </ul>
 
-<p class="fragment">
+<p class="fragment fade-up">
 Donc <span class="imp">$\pu{1 J} = \pu{1 W}\times \pu{1 s}$</span>
 
 ---
 
-{{%youtube BKfufXnupMA%}}
+{{< youtube-slide id="BKfufXnupMA" ratio="16x9" >}}
 
 ---
 
-{{%youtube S4O5voOCqAQ%}}
+{{< youtube-slide id="S4O5voOCqAQ" ratio="16x9" >}}
 
 ---
 
 En électricité, l'unité usuelle de l'énergie convertie est le <span class="imp">killowatt-heure</span> ($\text{kW}\\!\cdot\\!\text{h}$ souvent écrit <span class="imp">$\pu{kWh}$</span>).
 
 
-<p class="fragment">Convertir $\pu{1 kWh}$ en $\pu{J}$.
+<p class="fragment fade-up">Convertir $\pu{1 kWh}$ en $\pu{J}$.
 <span class="fragment">$$
 \begin{aligned}
 \text{1 kWh} &= \text{1 kW} \times \text{1 h} \\
@@ -274,7 +274,7 @@ $$
 </span>
 </p>
 
-<p class="fragment">Et donc <span class="imp">$\pu{1 kWh} = \pu{3,6 MJ}$</span>.</p>
+<p class="fragment fade-up">Et donc <span class="imp">$\pu{1 kWh} = \pu{3,6 MJ}$</span>.</p>
 
 ---
 
@@ -289,11 +289,11 @@ $$
 
 Pourquoi les deux graphes diffèrent ?
 
-<p class="fragment">
+<p class="fragment fade-up">
 Pouvez-vous en déduire le facteur de charge*<br>du nucléaire et celui de l'éolien ?
 </p>
 
-<p class="fragment" style="font-size:0.8em">
+<p class="fragment fade-up" style="font-size:0.8em">
 * rapport entre l'énergie électrique effectivement produite sur<br>une période donnée et l'énergie qui aurait été produite avec un fonctionnement à puissance nominale durant la même période.
 </p>
 
@@ -348,7 +348,7 @@ Elle est toujours sous forme <span class="fragment" style="color:#FF968D;"><b>th
 
 Par conservation de l'énergie :
 
-<p class="fragment">
+<p class="fragment fade-up">
 <b style="color:#88FA4E;">énergie fournie</b> = <b style="color:#56C1FF;">énergie utile</b>  + <b style="color:#FF968D;">énergie dissipée</b> 
 </p>
 
@@ -358,7 +358,7 @@ Le <span class="imp">rendement $\eta$ d'un convertisseur</span> est donné par :
 
 <br>
 
-<div class="fragment" style="position:relative;margin:auto;padding:10px 30px 20px 30px;border:solid 5px #FF968D;border-radius:15px;width:fit-content;">
+<div class="fragment fade-up" style="position:relative;margin:auto;padding:10px 30px 20px 30px;border:solid 5px #FF968D;border-radius:15px;width:fit-content;">
 $\displaystyle \eta = \frac{\color{#56C1FF}P_\text{utile}}{\color{#88FA4E}P_\text{fournie}}$
 </div>
 
@@ -367,7 +367,7 @@ $\displaystyle \eta = \frac{\color{#56C1FF}P_\text{utile}}{\color{#88FA4E}P_\tex
 Lorsque plusieurs conversions s'enchaînent,<br>les rendements <span class="imp fragment">se multiplient</span>.
 
 
-<p class="fragment">
+<p class="fragment fade-up">
 $\eta_\text{total} = \eta_\text{convertisseur 1}\times \eta_\text{convertisseur 2}\times\ldots$
 
 
@@ -387,7 +387,7 @@ La puissance convertie par le dipôle s'écrit :
 
 <br>
 
-<div class="fragment" style="position:relative;margin:auto;padding:10px 30px 20px 30px;border:solid 5px #FF968D;border-radius:15px;width:fit-content;">
+<div class="fragment fade-up" style="position:relative;margin:auto;padding:10px 30px 20px 30px;border:solid 5px #FF968D;border-radius:15px;width:fit-content;">
 $P = U\times I$
 </div>
 
@@ -489,13 +489,13 @@ La puissance dissipée par effet Joule est donnée par :
 
 <br>
 
-<div class="fragment" style="position:relative;margin:auto;padding:10px 30px 20px 30px;border:solid 5px #FF968D;border-radius:15px;width:fit-content;">
+<div class="fragment fade-up" style="position:relative;margin:auto;padding:10px 30px 20px 30px;border:solid 5px #FF968D;border-radius:15px;width:fit-content;">
 $\displaystyle P_J = U_{\!R} \times I = R I^2 = \frac{{U_{\!R}}^2}{R}$
 </div>
 
 <br>
 
-<p class="fragment">
+<p class="fragment fade-up">
 On passe d'une formule à l'autre<br>en appliquant la loi d'Ohm.
 </p>
 
@@ -505,7 +505,7 @@ Et l'énergie dissipée par effet Joule vaut donc :
 
 <br>
 
-<div class="fragment" style="position:relative;margin:auto;padding:10px 30px 20px 30px;border:solid 5px #FF968D;border-radius:15px;width:fit-content;">
+<div class="fragment fade-up" style="position:relative;margin:auto;padding:10px 30px 20px 30px;border:solid 5px #FF968D;border-radius:15px;width:fit-content;">
 $\displaystyle E_J = P_J\Delta t =  R I^2 \Delta t$
 </div>
 

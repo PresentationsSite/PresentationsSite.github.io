@@ -18,11 +18,11 @@ theme = "black"
 
 ---
 
-{{%youtube cK2-6cgqgYA%}}
+{{< youtube-slide id="cK2-6cgqgYA" ratio="4x3" >}}
 
 ---
 
-{{<youtube 1cCObZzGo3E>}}
+{{< youtube-slide id="1cCObZzGo3E" ratio="4x3" >}}
 
 {{% /section %}}
 
@@ -79,7 +79,7 @@ Un <b>son complexe</b> est une somme<br>de signaux sinusoïdaux<br>de fréquence
 
 ---
 
-{{<youtube UrBZsUBibtk>}}
+{{< youtube-slide id="UrBZsUBibtk" ratio="16x9" >}}
 
 {{%/section%}}
 
@@ -287,7 +287,7 @@ Conséquences :
 ---
 
 
-{{<youtube mVLKQWImJH8>}}
+{{< youtube-slide id="mVLKQWImJH8" ratio="16x9" >}}
 
 ---
 
@@ -345,27 +345,27 @@ Origine de cette relation et du fait que<br>les fréquences des harmoniques sont
 ---
 
 
-{{<youtube 6JeyiM0YNo4>}}
+{{< youtube-slide id="6JeyiM0YNo4" ratio="4x3" >}}
 
 ---
 
-{{<youtube cnH2ltfW48U>}}
+{{< youtube-slide id="cnH2ltfW48U" ratio="16x9" >}}
 
 ---
 
-{{<youtube uWoiMMLIvco>}}
+{{< youtube-slide id="uWoiMMLIvco" ratio="4x3" >}}
 
 ---
 
-{{<youtube eAXVa__XWZ8>}}
+{{< youtube-slide id="eAXVa__XWZ8" ratio="4x3" >}}
 
 ---
 
-{{<youtube CdUoFIZSuX0>}}
+{{< youtube-slide id="CdUoFIZSuX0" ratio="4x3" >}}
 
 ---
 
-{{<youtube 1yaqUI4b974>}}
+{{< youtube-slide id="1yaqUI4b974" ratio="16x9" >}}
 
 {{%/section%}}
 

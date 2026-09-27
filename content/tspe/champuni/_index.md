@@ -386,7 +386,7 @@ Le mouvement de chute libre est <span class="imp">parabolique</span><br>(la traj
 
 ---
 
-<iframe width="800" height="450" src="https://www.youtube.com/embed/Un5roSKDusQ?si=Av0ShoUGce8GlrCC" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+{{< youtube-slide id="Un5roSKDusQ" ratio="16x9" >}}
 
 ---
 
@@ -396,7 +396,7 @@ Le mouvement de chute libre<br><span class="imp">ne dépend pas de la masse</spa
 
 ---
 
-<iframe width="800" height="450" src="https://www.youtube.com/embed/E43-CfukEgs?si=3qTYV7xJrQjcooqu" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+{{< youtube-slide id="E43-CfukEgs" ratio="16x9" >}}
 
 {{%/section%}}
 

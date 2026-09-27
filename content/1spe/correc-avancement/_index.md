@@ -248,7 +248,7 @@ $
 
 Pour déterminer la quantité de matière nécessaire<br>en dioxygène, on va supposer que le mélange<br>est stœchiométrique et donc que<br>le dioxygène est lui aussi limitant.
 
-<p class="fragment">On obtiendra bien ainsi la quantité de matière minimale en dioxygène.</p>
+<p class="fragment fade-up">On obtiendra bien ainsi la quantité de matière minimale en dioxygène.</p>
 
 ---
 

@@ -100,12 +100,12 @@ Un <b>grand cercle</b> est l'intersection entre une sphère<br>et un plan passan
 
 <br>
 
-<p class="fragment">
+<p class="fragment fade-up">
 Exemples :<br>
 <dpan class="fragment">l'équateur, les méridiens</span>
 </p>
 
-<p class="fragment">
+<p class="fragment fade-up">
 Contre-exemples :<br>
 <dpan class="fragment">les tropiques, les cercles polaires</span>
 </p>

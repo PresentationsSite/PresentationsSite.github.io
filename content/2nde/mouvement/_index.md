@@ -105,10 +105,10 @@ Le référentiel, c'est l'observateur du mouvement.<br>On le munit d'un <span cl
 Exemples de référentiels :
 
 <ul>
-<li class="fragment"> le <span class="imp">référentiel terrestre</span>, lié au sol (dans notre exemple de trains, on peut imaginer un arbre).</li>
-<li class="fragment"> le référentiel du train où se trouve la croix verte<br>(ce que voit un passager immobile de ce train).</li>
-<li class="fragment"> le référentiel de l'autre train (ce que voit un passager immobile dans l'autre train).</li>
-<li class="fragment"> le référentiel géocentrique<br>(pour étudier le mouvement<br>d'un satellite par exemple).</li>
+<li class="fragment fade-up"> le <span class="imp">référentiel terrestre</span>, lié au sol (dans notre exemple de trains, on peut imaginer un arbre).</li>
+<li class="fragment fade-up"> le référentiel du train où se trouve la croix verte<br>(ce que voit un passager immobile de ce train).</li>
+<li class="fragment fade-up"> le référentiel de l'autre train (ce que voit un passager immobile dans l'autre train).</li>
+<li class="fragment fade-up"> le référentiel géocentrique<br>(pour étudier le mouvement<br>d'un satellite par exemple).</li>
 
 ---
 
@@ -117,7 +117,7 @@ Exemples de référentiels :
 
 ---
 
-<iframe width="800" height="450" src="https://www.youtube.com/embed/1s8jrDC6eFY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+{{< youtube-slide id="1s8jrDC6eFY" ratio="16x9" >}}
 
 ---
 
@@ -176,11 +176,11 @@ Quelle est la vitesse du courant ?
 Une fois qu'on a choisi le système et le référentiel,<br>il nous reste à décrire le mouvement.
 
 
-<p class="fragment">
+<p class="fragment fade-up">
 Pour ça, on a besoin de :</p>
 <ul class="imp">
-<li class="fragment"> sa trajectoire </li>
-<li class="fragment" style="color:#FFD932"> sa vitesse </li>
+<li class="fragment fade-up"> sa trajectoire </li>
+<li class="fragment fade-up" style="color:#FFD932"> sa vitesse </li>
 </ul>
 
 
@@ -196,9 +196,9 @@ La <span class="imp">trajectoire</span> d’un point, dans un référentiel d’
 Deux types de mouvements :
 
 <ul style="color:#fff">
-<li class="fragment"><span class="imp">mouvement de translation</span> :<br>
+<li class="fragment fade-up"><span class="imp">mouvement de translation</span> :<br>
 tous les points du système ont la même trajectoire</li>
-<li class="fragment"><span class="imp">mouvement de rotation</span> :<br>
+<li class="fragment fade-up"><span class="imp">mouvement de rotation</span> :<br>
 tous les points du système (sauf un) ont pour trajectoire un cercle</li>
 <ul>
 
@@ -211,7 +211,7 @@ tous les points du système (sauf un) ont pour trajectoire un cercle</li>
 
 La plupart des mouvements<br>sont une combinaison des deux :<br>une translation d'ensemble + une rotation propre.
 
-<p class="fragment">La rotation a ceci de particulier<br>qu'elle se fait toujours autour d'un point précis :<br>le <span class="imp">centre de masse</span> du système.</p>
+<p class="fragment fade-up">La rotation a ceci de particulier<br>qu'elle se fait toujours autour d'un point précis :<br>le <span class="imp">centre de masse</span> du système.</p>
 
 
 ---
@@ -436,7 +436,7 @@ Et dans le référentiel terrestre ?
 
 ---
 
-{{%youtube BLuI118nhzc%}}
+{{< youtube-slide id="BLuI118nhzc" ratio="16x9" >}}
 
 ---
 

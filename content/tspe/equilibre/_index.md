@@ -93,7 +93,7 @@ Que peut-on alors dire de l'état final du système ?
 
 <br>
 
-<p class="fragment imp">L’ensemble des réactifs et produits de la réaction coexistent et leurs quantités de matière<br>n’évoluent plus dans le temps.</p>
+<p class="fragment fade-up imp">L’ensemble des réactifs et produits de la réaction coexistent et leurs quantités de matière<br>n’évoluent plus dans le temps.</p>
 
 <p class="fragment fade-up">C'est la caractéristique<br>d'un état d'<span class="imp">équilibre chimique</span>.</p>
 
@@ -189,7 +189,7 @@ Comme $\tau <1$, on peut affirmer que<br>la transformation n'est pas totale.
 
 ---
 
-<iframe width="800" height="450" src="https://www.youtube.com/embed/hd3EAzJ_McA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+{{< youtube-slide id="hd3EAzJ_McA" ratio="16x9" >}}
 
 
 {{%note%}}
@@ -473,14 +473,7 @@ Dans quel sens évoluera la réaction si $Q_r<K(T)$ ?
 
 ---
 
-<div class="video-container">
-  <iframe src="https://www.youtube.com/embed/nyoOhWLwN_g"
-          title="YouTube Short"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen>
-  </iframe>
-</div>
+{{< youtube-slide id="nyoOhWLwN_g" ratio="short" >}}
 
 
 {{%/section%}}

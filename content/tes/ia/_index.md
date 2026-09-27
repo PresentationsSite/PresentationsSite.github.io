@@ -565,7 +565,7 @@ Le principal problème du deep learning :
 
 ---
 
-<iframe width="800" height="450" src="https://www.youtube.com/embed/LPZh9BOjkQs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+{{< youtube-slide id="LPZh9BOjkQs" ratio="16x9" >}}
 
 
 ---
@@ -629,7 +629,7 @@ La découverte des concepts peut s'assimiler à de l'IRM fonctionnel puisqu'on c
 ---
 
 
-<iframe width="800" height="450" src="https://www.youtube.com/embed/tf4-_4IbXPs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+{{< youtube-slide id="tf4-_4IbXPs" ratio="16x9" >}}
 
 ---
 
@@ -719,12 +719,12 @@ A father and his son driving together in their car have a terrible car accident.
 
 ---
 
-<iframe width="800" height="450" src="https://www.youtube.com/embed/cw9wcNKDOtQ?start=1982" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+{{< youtube-slide id="cw9wcNKDOtQ" ratio="16x9" start="1982" >}}
 
 ---
 
 
-<iframe width="800" height="450" src="https://www.youtube.com/embed/1WcpN4ds0iY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius:10px;"></iframe>
+{{< youtube-slide id="1WcpN4ds0iY" ratio="16x9" >}}
 
 ---
 

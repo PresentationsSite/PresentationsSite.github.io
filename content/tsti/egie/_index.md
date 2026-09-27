@@ -34,11 +34,11 @@ La puissance mesure le taux de variation<br>(la vitesse de variation) de l'éner
 
 ---
 
-{{%youtube BKfufXnupMA%}}
+{{< youtube-slide id="BKfufXnupMA" ratio="16x9" >}}
 
 ---
 
-{{%youtube S4O5voOCqAQ%}}
+{{< youtube-slide id="S4O5voOCqAQ" ratio="16x9" >}}
 
 
 {{% /section %}}
@@ -54,7 +54,7 @@ $$p(t) = \frac{\mathrm{d}E}{\mathrm{d}t}$$
 
 La puissance instantanée est la **dérivée**<br>par rapport au temps de l’énergie.
 
-<p class="fragment">C'est donc le <b>taux de variation<br>instantanée</b> de l'énergie.</p>
+<p class="fragment fade-up">C'est donc le <b>taux de variation<br>instantanée</b> de l'énergie.</p>
 
 ---
 
@@ -163,7 +163,7 @@ $$E = \int_{t_1}^{t_2}p(t)dt$$
 
 Pas d'inquiétude, cette notation deviendra<br>plus claire lorsque vous aurez fait le cours <br>sur les intégrales en maths (pas la peine<br>de l'utiliser avant cela).
 
-<p class="fragment">Pour ce qui nous concerne, ce n'est qu'une façon évoluée de désigner l'aire sous la courbe représentative de $p(t)$.</p>
+<p class="fragment fade-up">Pour ce qui nous concerne, ce n'est qu'une façon évoluée de désigner l'aire sous la courbe représentative de $p(t)$.</p>
 
 
 ---
