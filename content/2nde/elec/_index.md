@@ -127,7 +127,7 @@ Quel que soit l'appareil de mesure, on commence toujours par le plus <span class
 
 
 
-Analogie ? <span class="fragment">Débit d'une rivière</span>
+Analogie ? <span class="fragment">Débit d'une rivière !</span>
 
 <br><br><br><br><br><br><br><br><br><br><br>
 
@@ -141,7 +141,11 @@ Analogie ? <span class="fragment">Débit d'une rivière</span>
 
 <img src="/loidesnoeuds1.png" style="box-shadow:none;background:none;width:40%;">
 <br>
-<img class="fragment fade-up" src="/loidesnoeuds2.png" style="box-shadow:none;background:none;width:20%;">
+<img class="fragment fade-up" src="/loidesnoeuds2.png" style="box-shadow:none;background:none;width:25%;">
+
+---
+
+[Applet geogebra loi des nœuds](https://www.geogebra.org/m/kp2qtnqx)
 
 ---
 
@@ -177,7 +181,7 @@ Si branchement dans la borne A,<br>il y a court-circuit du générateur 💀.
 
 
 
-Analogie ? <span class="fragment">Dénivelé d'une rivière</span>
+Analogie ? <span class="fragment">Dénivelé d'une rivière !</span>
 
 <br><br><br><br><br><br><br><br><br><br><br>
 
@@ -213,6 +217,10 @@ On peut représenter une tension par une flèche.
 (aussi appelée au collège<br>"loi d'additivité des tensions")
 
 <img src="/loidesmailles2.png" style="box-shadow:none;background:none;width:55%;">
+
+---
+
+[Applet geogebra loi des mailles](https://www.geogebra.org/m/w7snw4aw)
 
 ---
 
@@ -271,10 +279,6 @@ Peut-on avoir intensité sans tension ?
 La résistance n'est strictement nulle qu'aux bornes d'un fil idéal = parfaitement conducteur, ce qui n'est jamais le cas sauf si supraconducteur.
 {{%/note%}}
 
----
-
-- [Applet geogebra loi des nœuds](https://www.geogebra.org/m/kp2qtnqx)
-- [Applet geogebra loi des mailles](https://www.geogebra.org/m/w7snw4aw)
 
 {{%/section%}}
 
