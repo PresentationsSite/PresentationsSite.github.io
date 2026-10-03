@@ -87,12 +87,55 @@
 {{- /* ---------- 5. Styles ---------- */ -}}
 {{- $style := printf `--yt-fill:0.8;display:block;margin:0 auto;aspect-ratio:%d / %d;width:min(calc(var(--yt-fill) * 100%%),calc(var(--slide-height, 700px) * var(--yt-fill) * %d / %d));border-radius:12px;overflow:hidden;` $num $den $num $den -}}
 
-{{- /* ---------- 6. Rendu ---------- */ -}}
+{{- /* ---------- 6. Fondu : CSS + JS émis une seule fois par page ----------
+
+  Même contrainte de forme que youtube-plus : la sortie doit survivre à un
+  passage dans Markdown, ce qui arrive si le shortcode est imbriqué dans un
+  shortcode appelé avec {{% %}} (le {{% section %}} de reveal-hugo, par
+  exemple). Donc : aucune ligne vide, aucun commentaire JavaScript (html/template
+  les supprime en laissant une ligne blanche), balises ouvrantes en début de
+  ligne et sans indentation.
+
+  Logique :
+    - une iframe n'est considérée comme chargée que si son src pointe vers un
+      embed : reveal.js la vide en passant par about:blank, dont l'évènement
+      load ne doit pas déclencher le fondu ;
+    - la classe is-loaded est retirée sur slidechanged pour la diapo quittée ;
+    - filet de sécurité : si reveal n'a pas déchargé l'iframe, aucun load ne
+      viendra, donc on la réaffiche dès l'arrivée sur la diapo.
+*/ -}}
+{{- if not (.Page.Scratch.Get "ytSlideFadeAssets") -}}
+{{- .Page.Scratch.Set "ytSlideFadeAssets" true }}
+<style>
+.yt-slide iframe { opacity: 0; transition: opacity .45s ease; }
+.yt-slide iframe.is-loaded { opacity: 1; }
+@media (prefers-reduced-motion: reduce) { .yt-slide iframe { transition: none; } }
+</style>
+<script>
+(function () {
+if (window.__ytSlideFade) return;
+window.__ytSlideFade = true;
+var SEL = '.yt-slide iframe';
+function loaded(f) { return (f.getAttribute('src') || '').indexOf('/embed/') > -1; }
+function reveal(f) { if (loaded(f)) f.classList.add('is-loaded'); }
+function init() {
+document.querySelectorAll(SEL).forEach(function (f) {
+f.addEventListener('load', function () { reveal(f); });
+reveal(f);
+});
+if (window.Reveal && Reveal.on) {
+Reveal.on('slidechanged', function (e) {
+if (e.previousSlide) e.previousSlide.querySelectorAll(SEL).forEach(function (f) { f.classList.remove('is-loaded'); });
+if (e.currentSlide) e.currentSlide.querySelectorAll(SEL).forEach(reveal);
+});
+}
+}
+if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+else init();
+})();
+</script>
+{{- end }}
+{{/* ---------- 7. Rendu ---------- */ -}}
 <div class="yt-slide" style="{{ $style | safeCSS }}">
-  <iframe data-src="{{ $src }}"
-          style="display:block;width:100%;height:100%;max-width:none;max-height:none;border:0;border-radius:inherit;"
-          title="Lecteur vidéo YouTube"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          referrerpolicy="strict-origin-when-cross-origin"
-          allowfullscreen></iframe>
+<iframe data-src="{{ $src }}" style="display:block;width:100%;height:100%;max-width:none;max-height:none;border:0;border-radius:inherit;" title="Lecteur vidéo YouTube" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 </div>
