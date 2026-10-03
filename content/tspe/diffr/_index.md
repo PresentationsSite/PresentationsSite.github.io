@@ -162,7 +162,7 @@ La <span class="imp">diffraction</span> d'une onde correspond à l'<span class="
 Le phénomène de diffraction est nettement observé lorsque la <b style="color:#56C1FF">taille caractéristique $a$ de l'obstacle ou de l'ouverture</b> est du <span class="imp">même ordre de grandeur</span> que<br><b style="color:#FFF056">la longueur d'onde $\lambda$ de l'onde</b>.
 
 <p class="fragment fade-up">
-Dans le cas d'ondes lumineuse, le critère est moins restrictif et le phénomène est encore apparent pour<br>des tailles $a$ jusqu'à 100 fois plus grandes que $\lambda$.
+Dans le cas d'ondes lumineuses, le critère est moins restrictif et le phénomène est encore apparent pour<br>des tailles $a$ jusqu'à 100 fois plus grandes que $\lambda$.
 </p>
 
 ---
@@ -208,13 +208,13 @@ $\lambda \nearrow\;\; \Rightarrow \;\;$<span class="imp">$\theta$</span> <span c
 
 ---
 
-Dans l'approximation des petits angles ($\theta\ll 1$), exprimer la taille de la tâche centrale $L$<br>en fonction de $\lambda$, $D$ et $a$.
+Dans l'approximation des petits angles ($\theta\ll 1$), exprimer la taille de la tache centrale $L$<br>en fonction de $\lambda$, $D$ et $a$.
 
 <div style="position:relative;margin-left:auto;margin-right:auto;width:700px;max-width:100%;">
 <img src="/dispdiffr.png" style="box-shadow:none;background:none;">
 </div>
 
-<p class="fragment fade-up">
+<p class="fragment fade-up" style="margin-top:-1em;">
 $$L\approx \frac{2\lambda D}{a}$$
 </p>
 
@@ -225,7 +225,7 @@ $$L\approx \frac{2\lambda D}{a}$$
 <p class="fragment fade-up" style="color:#61D836;">$$\tan\theta = \frac{L/2}{D}$$</p>
 
 <p class="fragment fade-up" style="color:#61D836;">Or d'après l'approximation des petits angles :<br>
-$\tan\theta \approx \theta$ (⚠️ valable qu'en radians)
+$\tan\theta \approx \theta$ (⚠️ valable uniquement en radians)
 </p>
 
 <p class="fragment fade-up" style="color:#61D836;">D'où :</p>
@@ -303,7 +303,7 @@ C'est une diffraction aux rayons X qui a<br>permis de découvrir (grâce à Rosa
 
 Enfin, la tâche de diffraction correspondant à l'ouverture d'un télescope ou d'une lunette donne<br>la résolution ultime atteignable par l'appareil.
 
-<p class="fragment fade-up"><span class="imp">$\Rightarrow$ Plus l'ouverture est large, plus il est résolu.</span></p>
+<p class="fragment fade-up"><span class="imp">$\Rightarrow$ Plus l'ouverture est large, meilleure est la résolution.</span></p>
 
 ---
 

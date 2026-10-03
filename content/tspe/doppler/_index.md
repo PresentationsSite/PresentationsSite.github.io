@@ -111,7 +111,7 @@ On considèrera qu'on a toujours $v<c$.
 <ul>
 <li class="fragment fade-up">Si l'émetteur se rapproche, <b style="color:#56C1FF;">$\Delta f$ <b class="fragment" style="color:#56C1FF;">$>$</b> 0</b>.
 <br>
-<span class="fragment">Le son perçu est plus <b class="fragment" style="color:#56C1FF;">aigü</b>.</span><br><span class="fragment">La lumière perçue est plus <b class="fragment" style="color:#56C1FF;">bleue</b>.</span>
+<span class="fragment">Le son perçu est plus <b class="fragment" style="color:#56C1FF;">aigu</b>.</span><br><span class="fragment">La lumière perçue est plus <b class="fragment" style="color:#56C1FF;">bleue</b>.</span>
 </li>
 <br>
 <li class="fragment fade-up">Si l'émetteur s'éloigne, <span class="imp">$\Delta f$ <span class="imp fragment">$<$</span> 0</span>.
@@ -222,11 +222,7 @@ En physique, on parle de tension...
 </ul>
 
 
-<p class="fragment fade-up">Elles permettent de savoir où on se dirige<br>de manière absolue dans l'univers.</p>
-
-<p class="fragment fade-up">
-Le CMB est le seul référentiel galiléen absolu.
-</p>
+<p class="fragment fade-up">Elle permet de savoir dans quelle direction<br>et à quelle vitesse nous nous déplaçons<br>par rapport à ce rayonnement fossile.</p>
 
 ---
 
@@ -285,7 +281,7 @@ The radiation is remarkably uniform across the sky, very unlike the almost point
 
 <p>En mesurant le décalage Doppler de différents nuages d'hydrogène dans la galaxie d'Andromède <br>(puis dans d'autres galaxies),</p>
 
-<div style="position:relative;margin-left:auto;margin-right:auto;width:700px;max-width:100%;">
+<div style="position:relative;margin-left:auto;margin-right:auto;width:600px;max-width:100%;">
 <img src="/andromededoppler.png" style="box-shadow:none;background:none;border-radius:10px;">
 </div>
 
@@ -298,7 +294,7 @@ Ces nuages d'hydrogènes appelées régions H II sont constitués d'hydrogène i
  Vera Rubin montre à la fin des années 60 que les objets éloignés du centre galactique ne tournent pas<br>à la vitesse prévue par Kepler.</p>
  
  
- <div style="position:relative;margin-left:auto;margin-right:auto;width:700px;max-width:100%;">
+ <div style="position:relative;margin-left:auto;margin-right:auto;width:600px;max-width:100%;">
 <img src="https://galileo-unbound.blog/wp-content/uploads/2022/01/screen-shot-2016-12-27-at-12.24.35-pm-1024x724-1.png" style="box-shadow:none;background:none;border-radius:10px;">
 </div>
 
