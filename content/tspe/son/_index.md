@@ -151,7 +151,7 @@ d’avoir une plage de sensibilité si étendue :</p>
 Notre sensibilité est <span class="imp">logarithmique</span>.
 
 <p class="fragment fade-up">
-On peut par exemple mesurer que l'amplitude du son émis par quelqu'un qui parle fort est environ 10 000 fois plus grande que celle d'une personne<br>
+On peut par exemple mesurer que l'intensité du son émis par quelqu'un qui parle fort est environ 10 000 fois plus grande que celle d'une personne<br>
 qui chuchote à la même distance !
 </p>
 
@@ -219,7 +219,7 @@ Le boulot de la fonction $\log$ est de fournir l'exposant d'un nombre écrit sou
 <ul>
 <li class="fragment fade-up">$\log(10^{\color{#FF968D} 7}) = $ <span class="imp fragment">$\;7$</span></li>
 <li class="fragment fade-up">$\log(0,01) = $ <span class="fragment">$\;\log(10^{\color{#FF968D}-2})=$</span><span class="imp fragment">$\;-2$</span></li>
-<li class="fragment fade-up">$\log(2) = $<span class="fragment">$\;\log(10^{\color{#FF968D}0,3})=$</span><span class="imp fragment">$\;0,3$ </span></li>
+<li class="fragment fade-up">$\log(2) \approx $<span class="fragment">$\;\log(10^{\color{#FF968D}0,3})\approx$</span><span class="imp fragment">$\;0,3$ </span></li>
 </ul>
 
 {{%/section%}}
