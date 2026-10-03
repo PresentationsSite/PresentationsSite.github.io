@@ -248,7 +248,7 @@ Que peut-on dire de l'eau ?
 
 C'est la réaction entre l'acide d'un couple<br> et la base d'un autre couple.
 
-Il y a alors échange d'<b style="color:#D41876 ;">un ion hydrogène $\color{#D41876}\ce{H+}$</b><br>donné par l'acide et capté par la base.
+<p class="fragment fade-up">Il y a alors échange d'<b style="color:#D41876 ;">un ion hydrogène $\color{#D41876}\ce{H+}$</b><br>donné par l'acide et capté par la base.</p>
 
 ---
 
@@ -320,27 +320,29 @@ $$\ce{CH3COOH + H2O -> CH3COO- + H3O+}$$
 
 ---
 
-Lorsqu'une espèce acide $\ce{AH}$ est ajoutée à une solution aqueuse, l'acide cède un ion hydrogène<br>à l'eau qui forme un ion oxonium $\ce{H3O+}$.<br><br>
-ajout de $\ce{AH}$ $\Rightarrow$  $\ce{[H3O+]}$➚
-<br><br>
+Lorsqu'une espèce acide $\ce{AH}$ est ajoutée à une solution aqueuse, l'acide cède un ion hydrogène<br>à l'eau qui forme un ion oxonium $\ce{H3O+}$.
 
-<p class="fragment fade-up"><span style="font-weight:normal">Et on sait aussi que : <br><br>ajout de $\ce{AH}$ $\Rightarrow$  $\text{pH}$➘</span></p>
+<p class="fragment fade-up">ajout de $\ce{AH}$ $\Rightarrow$  $\ce{[H3O+]}$<span class="fragment"><b style="color:#EE220C">➚</b></span></p>
 
+<br>
 
----
-
-**Le $\text{pH}$ est lié à la concentration<br>en ions oxonium $\ce{[H3O+]}$**<br>
-Quand l'un augmente, l'autre diminue.
-
----
-
-Définition du pH :<br><br>
-
-<div style = "position:relative;margin:auto;border:solid red 7px;width:fit-content;padding: 20px 40px 20px 40px;border-radius:20px;">
-$$\displaystyle\text{pH} = -\log\left(\frac{\ce{[H3O+]}}{c^\circ}\right)$$
+<div class="fragment fade-up"><span style="font-weight:normal">Et on sait aussi que si on ajoute<br>une espèce acide ($\ce{AH}$) en solution, $\text{pH}$</span><span class="fragment"><b style="color:#0076BA">➘</b></span>
 </div>
 
-<br><br>
+
+---
+
+**Le $\text{pH}$ est lié à la concentration<br>en ions oxonium $\ce{[H3O+]}$.**
+
+<p class="fragment fade-up">Quand l'un augmente, l'autre <span class="fragment">diminue</span>.</p>
+
+---
+
+Définition du pH :
+
+<div class="fragment fade-up" style = "position:relative;margin:auto;border:solid red 7px;width:fit-content;padding: 20px 40px 20px 40px;border-radius:20px;margin-bottom:1em;">
+$$\displaystyle\text{pH} = -\log\left(\frac{\ce{[H3O+]}}{c^\circ}\right)$$
+</div>
 
 <ul>
 <li class="fragment fade-up"> le pH est sans unité</li>
@@ -381,7 +383,7 @@ Si  $\ce{[H3O+]}=\pu{2,5E-2 mol * L-1}$,
 
 Précision sur la précision :
 
-on écrit généralement le pH<br>avec un seul chiffre après la virgule.
+<p class="fragment fade-up">on écrit généralement le pH avec<br> <b>un seul chiffre après la virgule</b>.</p>
 
 
 ---
