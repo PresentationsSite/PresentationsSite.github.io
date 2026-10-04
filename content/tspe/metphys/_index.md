@@ -64,7 +64,7 @@ L'<span class="imp">absorbance $A_\lambda$</span> d'une solution quantifie la pr
 ---
 
 Le spectre ultraviolet-visible d'une solution est la courbe représentant l'<span class="imp">absorbance $A_\lambda$</span> (sans unité)<br>en fonction de la <span class="imp">longueur d'onde $\lambda$</span>,<br>
-pour $\lambda$ pouvant aller d'environ 100 à 800 nm.
+pour $\lambda$ pouvant aller d'environ 200 à 800 nm.
 
 ---
 
@@ -240,7 +240,7 @@ Dans le cas d'un dosage par étalonnage spectrophotométrique, la propriété ph
 <ul>
 <li class="fragment fade-up">la solution doit absorber la lumière uv-visible<br>(la solution est généralement colorée),</li>
 <br>
-<li class="fragment fade-up">à la longueur d'onde choisie, la solution<br>doit être <span class="imp">la seule</span> à absorber le rayonnement.</li>
+<li class="fragment fade-up">à la longueur d'onde choisie, l'espèce dosée<br>doit être <span class="imp">la seule</span> à absorber le rayonnement.</li>
 </ul>
 
 ---
@@ -312,7 +312,7 @@ $$A_\lambda=\varepsilon_\lambda \times \ell \times C$$
 
 ---
 
-Le domaine de validité de la loi de Beer-Lambert</a> suppose que l'absorbance et donc<br>la <span class="imp">concentration reste modérée</span>.
+Le domaine de validité de la loi de Beer-Lambert suppose que l'absorbance et donc<br>la <span class="imp">concentration reste modérée</span>.
 
 ---
 
@@ -346,7 +346,7 @@ La présence d’ions dans une solution lui confère<br>des propriétés de cond
 
 ---
 
-La conductivité $\sigma_i$ de chaque ions i en solution contribue à la conductivité totale $\sigma$ :
+La conductivité $\sigma_i$ de chaque ion i en solution contribue à la conductivité totale $\sigma$ :
 
 $$\sigma=\sum_i \sigma_i$$
 
@@ -556,7 +556,7 @@ La pression est aussi une énergie par unité de volume.
 
 ---
 
-La loi des gaz parfaits permet donc de déterminer<br>la quantité de matière d'un gaz si on connaît<br>sa presssion, son volume et sa température :
+La loi des gaz parfaits permet donc de déterminer<br>la quantité de matière d'un gaz si on connaît<br>sa pression, son volume et sa température :
 
 <br>
 
@@ -566,7 +566,7 @@ $\displaystyle n=\;$<span class="fragment">$\displaystyle\frac{PV}{RT}$</span>
 
 ---
 
-À température et pression fixée, une même quantité<br>de gaz parfait occupe <span class="imp">le même volume</span><br><span class="imp">quel que soit le gaz</span>.
+À température et pression fixées, une même quantité<br>de gaz parfait occupe <span class="imp">le même volume</span><br><span class="imp">quel que soit le gaz</span>.
 
 <p class="fragment fade-up">Le <b style="color:#16E7CF">volume molaire $V_m$</b> d’un gaz parfait est<br>le volume occupé par une mole de ce gaz :</p>
 

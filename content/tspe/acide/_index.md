@@ -54,7 +54,7 @@ Il faut que la molécule puisse donner facilement cet atome d'hydrogène une foi
 ---
 
 
-<span>Définition d'un <span class="imp">acide</span><br>de <b>Brönsted</b> :</span>
+<span>Définition d'un <span class="imp">acide</span><br>de <b>Brønsted</b> :</span>
 <br>
 <br>
 
@@ -67,7 +67,7 @@ Il faut que la molécule puisse donner facilement cet atome d'hydrogène une foi
 
 ---
 
-<span>Définition d'une <b style="color:#0076BA;">base</b><br>de <b>Brönsted</b> :</span>
+<span>Définition d'une <b style="color:#0076BA;">base</b><br>de <b>Brønsted</b> :</span>
 <br>
 <br>
 
@@ -138,16 +138,18 @@ Les deux exemples précédents font partie<br>de deux familles chimiques ayant<b
 
 Autre exemple :
 
-<br>
 
-<p class="fragment fade-up">$($$\ce{\color{#EE220C}{H2CO3}}$$/$<span class="fragment">$\color{#0076BA}\ce{HCO3-}$</span>$)$</p>
-<span class="fragment">acide carbonique / ion bicarbonate</span>
+<p class="fragment fade-up" style="margin-top:1em;">$($$\ce{\color{#EE220C}{H2CO3}}$$/$<span class="fragment">$\color{#0076BA}\ce{HCO3-}$</span>$)$</p>
+<span class="fragment">acide carbonique / ion hydrogénocarbonate</span>
 
-<br><br>
 
-<p class="fragment fade-up">
+<p class="fragment fade-up" style="margin-top:2em;">
 $($<span class="fragment">$\ce{\color{#EE220C}{HCO3-}}$</span>$/$ <span>$\color{#0076BA}\ce{CO3^2-}$</span>$)$</p>
-<span class="fragment fade-up">ion bicarbonate / ion carbonate</span>
+<span class="fragment fade-up">ion hydrogénocarbonate / ion carbonate</span>
+
+{{%note%}}
+Le petit nom de l'ion hydrogénocarbonate est l'ion bicarbonate
+{{%/note%}}
 
 ---
 
@@ -155,19 +157,19 @@ Que peut-on dire de l'acide carbonique $\ce{\color{#EE220C}H2CO3}$ ?
 
 <br>
 
-<div style="position:relative;margin-left:auto;margin-right:auto;width:500px;max-width:100%;margin-bottom:-40px;margin-top:-40px;">
+<div style="position:relative;margin-left:auto;margin-right:auto;width:500px;max-width:100%;margin-bottom:-2em;margin-top:-1.5em;">
 <img src="/carbonique.png" style="box-shadow:none;background:none;">
 </div>
 
 <br>
 
-<p class="fragment fade-up">C'est un <span class="imp">diacide</span> !</p>
+<p class="fragment fade-up">C'est un <b style="color:#EE220C">diacide</b> !</p>
 
 ---
 
 <u>Remarque</u>
 
-l'acide carbonique est créé par la solvatation<br>du dioxyde de carbone dans l'eau :
+l'acide carbonique est formé par la réaction<br>du dioxyde de carbone dissous avec l'eau :
 
 <p class="fragment fade-up">
 $$\ce{CO2 (aq) + H2O (\ell) -> H2CO3 (aq)}$$
@@ -404,14 +406,14 @@ $$\ce{[H3O+]} = c^\circ\times10^{-\text{pH}}$$
 
 <p>Si  $\text{pH}=7,0$ </p>
 
-<p class="fragment fade-up" style="color:#017100;">$\ce{[H3O+]}=$ <span class="fragment">$\pu{1,0E-7 mol * L-1}$</pan></p>
+<p class="fragment fade-up" style="color:#017100;">$\ce{[H3O+]}=$ <span class="fragment">$\pu{1,0E-7 mol * L-1}$</span></p>
 
 <br>
 
 
 <p class="fragment fade-up">Si  $\text{pH}=1,0$ </p>
 
-<p class="fragment fade-up" style="color:#017100;">$\ce{[H3O+]}=$ <span class="fragment">$\pu{1,0E-1 mol * L-1}$</pan></p>
+<p class="fragment fade-up" style="color:#017100;">$\ce{[H3O+]}=$ <span class="fragment">$\pu{1,0E-1 mol * L-1}$</span></p>
 
 
 ---
@@ -480,9 +482,9 @@ Hortensias
 
 ---
 
-On fait barboter $n=\pu{5,0E-3 mol}$<br>d'acide chlorhydrique $\ce{HC\ell (g)}$<br>dans $V=\pu{500 mL}$ d'eau.
+On fait barboter $n=\pu{5,0E-3 mol}$<br>de chlorure d'hydrogène $\ce{HC\ell (g)}$<br>dans $V=\pu{500 mL}$ d'eau.
 
-La dissociation de l'acide chlorhydrique est totale et l'équation de la réaction est :
+La dissociation du chlorure d'hydrogène<br>est totale et l'équation de la réaction est :
 $$\ce{HC\ell (g) + H2O (\ell) -> H3O+ (aq) + C\ell^- (aq)} $$
 
 Que vaut le pH de la solution ?

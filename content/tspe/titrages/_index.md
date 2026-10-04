@@ -312,7 +312,7 @@ Données :
 
 <ul style="color:#aaa;">
 <li style="color:#aaa;">$\lambda_\ce{Na+}=\pu{5,0 mS*m^2*mol-1}$</li>
-<li style="color:#aaa;">$\lambda_\ce{HO-}=\pu{7,6 mS*m^2*mol-1}$</li>
+<li style="color:#aaa;">$\lambda_\ce{HO-}=\pu{19,9 mS*m^2*mol-1}$</li>
 <li style="color:#aaa;">$\lambda_\ce{CH3COO-}=\pu{4,1 mS*m^2*mol-1}$</li>
 </ul>
 

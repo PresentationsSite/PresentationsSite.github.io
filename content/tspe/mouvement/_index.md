@@ -77,7 +77,7 @@ Un référentiel est composé :
 <br>
 
 <ul>
-<li class="fragment fade-up">d'un <span class="imp">repère d'espace</span> $(0;\vec{i},\vec{j},\vec{k})$<br>permettant de définir la position,</li>
+<li class="fragment fade-up">d'un <span class="imp">repère d'espace</span> $(O;\vec{i},\vec{j},\vec{k})$<br>permettant de définir la position,</li>
 <br>
 <li class="fragment fade-up">d'un <span class="imp">repère de temps</span> ou horloge $(t)$<br>permettant d'associer une date à chaque position.</li>
 </ul>
@@ -196,7 +196,7 @@ $
 
 ---
 
-On obtient le vecteur vitesse $\vec{v}(t)$<br>en faisant tendre $\Delta$ vers $0$.
+On obtient le vecteur vitesse $\vec{v}(t)$<br>en faisant tendre $\Delta t$ vers $0$.
 
 <p class="fragment fade-up">On obtient alors la <span class="imp">dérivée</span> du vecteur position.</p>
 
@@ -288,13 +288,13 @@ Le vecteur accélération moyenne d'un point $\mathrm{M}$<br>entre deux instants
 $
 \begin{aligned}
 \vec{a}_m(t) &= \frac{\vec{v}(t+\Delta t)-\vec{v}(t)}{\Delta t}\\\\
-&= \frac{\overrightarrow{\Delta v}(t)}{\Delta t}
+&= \frac{\Delta \vec{v}(t)}{\Delta t}
 \end{aligned}
 $
 
 ---
 
-On obtient le vecteur vitesse $\vec{a}(t)$<br>en faisant tendre $\Delta$ vers $0$.
+On obtient le vecteur accélération $\vec{a}(t)$<br>en faisant tendre $\Delta t$ vers $0$.
 
 <p class="fragment fade-up">Cela donne la <span class="imp">dérivée</span> du vecteur vitesse et donc<br>la <span class="imp">dérivée seconde</span> du vecteur position.</p>
 
@@ -453,7 +453,7 @@ Tracer les évolutions de la position <b style="color:#00A2FF">$x(t)$</b>, <br>d
 
 ---
 
-<span class="imp">$\vec{a}(t)=\vec{cte}$</span>
+<span class="imp">$\vec{a}(t)=\overrightarrow{\text{cte}}$</span>
 
 Un mouvement rectiligne avec un vecteur accélération constant est dit <span class="imp">rectiligne uniformément accéléré</span>.
 
@@ -485,7 +485,7 @@ Tracer les évolutions de la position <b style="color:#00A2FF">$x(t)$</b>, <br>d
 
 ---
 
-Petite exercice :
+Petit exercice :
 
 <div style="position:relative;margin-left:auto;margin-right:auto;width:700px;max-width:100%;">
 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/2022_F1_CourseLayout_Belgium.svg/2539px-2022_F1_CourseLayout_Belgium.svg.png" style="box-shadow:none;background:none;">
