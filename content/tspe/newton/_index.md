@@ -109,7 +109,7 @@ Il existe une famille de référentiels,<br>appelés <b style="color:#56C1FF">r�
 
 <u>Rq :</u>
 
-Sur des <span class="imp">durée suffisamment courtes</span> pour pouvoir négliger les effets de la rotation de la surface terrestre, le <b style="color:#56C1FF">référentiel terrestre</b> peut être<br>considéré comme <b style="color:#56C1FF">galiléen</b>.
+Sur des <span class="imp">durées suffisamment courtes</span> pour pouvoir négliger les effets de la rotation de la surface terrestre, le <b style="color:#56C1FF">référentiel terrestre</b> peut être<br>considéré comme <b style="color:#56C1FF">galiléen</b>.
 
 ---
 

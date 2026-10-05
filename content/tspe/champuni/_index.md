@@ -86,7 +86,7 @@ La valeur de $g$ varie en fonction<br>de la position sur Terre et de l'altitude.
 {{< slide  background-video="/postdamgravitypotato.mp4" background-size="contain" background-transition="concave"  background-video-loop="true">}}
 
 {{%note%}}
-Postdam gravity potato
+Potsdam gravity potato
 Distance radiale (en m) qui sépare la surface équipotentielle du géoïde de l’ellipsoïde de référence (WGS-84/GRS80). Une valeur +80 m signifie que, si la Terre était recouverte d’un océan au repos, la surface de l’eau serait 80 m au-dessus de l’ellipsoïde ; –100 m signifie 100 m en dessous. 
 Les anomalies jouent sur le 3e chiffre après la virgule de g.
 {{%/note%}}
@@ -680,7 +680,7 @@ $$E=\frac U d$$
 
 <ul>
 <li style="color:#aaa;" class="fragment fade-up">$U$ est la tension entre les plaques (en <span class="fragment">$\pu{V}$<span>)</li>
-<li style="color:#aaa;" class="fragment fade-up">$d$ est la tension entre els plaques (en $\pu{m}$)</li>
+<li style="color:#aaa;" class="fragment fade-up">$d$ est la distance entre les plaques (en $\pu{m}$)</li>
 <li style="color:#aaa;" class="fragment fade-up">$E$ (en <span class="fragment">$\pu{V*m-1}$<span>)</li>
 </ul>
 
@@ -750,7 +750,7 @@ On se place dans le <span class="imp">référentiel terrestre</span> supposé <s
 <ul>
 <li class="fragment fade-up">poids $\vec{P}=m\vec{g}$</li>
 <li class="fragment fade-up">force électrique $\vec{F}_e = $ <span class="fragment">$q\vec{E}$</span></li>
-<li class="fragment fade-up">actions de l'air sur la bille<br>(force d'Archimède, frottements)</li>
+<li class="fragment fade-up">actions de l'air sur la goutte<br>(force d'Archimède, frottements)</li>
 </ul>
 
 <p class="fragment fade-up">Dans la suite, on négligera les autres<br>forces que la force électrique.</p>
@@ -933,7 +933,7 @@ Données pour l'application numérique :
 ---
 
 <p style="color:#56C1FF;">
-On est sensé trouver :
+On est censé trouver :
 </p>
 
 <div style="color:#56C1FF;" class="fragment fade-up">
@@ -984,7 +984,7 @@ On retrouve une utilisation du champ électrique uniforme d'un condensateur dans
 
 <p class="fragment fade-up">Comme leur nom l'indique, leur but est d'accélérer fortement une particule chargée (électron ou ion).<p>
 
-<p class="fragment fade-up">Cette particule peut ensuite servir à une expérience<br>de physique des particules ou en radiothérapie. Et en l'envoyant sur une cible, on crée des rayons X utilisée en imagerie médicale ou, là encore, en radiothérapie.
+<p class="fragment fade-up">Cette particule peut ensuite servir à une expérience<br>de physique des particules ou en radiothérapie. Et en l'envoyant sur une cible, on crée des rayons X utilisés en imagerie médicale ou, là encore, en radiothérapie.
 </p>
 
 ---
