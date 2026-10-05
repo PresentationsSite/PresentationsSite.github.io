@@ -208,7 +208,7 @@ Une <span class="imp">loi de vitesse</span> est l'expression de la vitesse volum
 Les <span class="imp">facteurs cinétiques</span> sont les grandeurs<br>qui apparaissent dans la loi de vitesse<br>(<b style="color:#FFF056">température</b>, <b style="color:#56C1FF">concentration</b>).
 
 
-Ce sont sont donc les paramètres<br>qui influent sur la durée d'une transformation.
+Ce sont donc les paramètres qui<br>influent sur la durée d'une transformation.
 
 </div>
 
@@ -304,7 +304,7 @@ $$\color{#FF968D}\ce{[A]}(t)= \ce{[A]}_0\times\mathrm{e}^{-kt}$$
 
 ---
 
-L'évolution de la concentration dépend donc de la<br><b style="color:#56C1FF">concentration initiale $[\mathrm{A_0}]$</b> et de la <b style="color:#FFF056">température</b><br>(via la constante de vitesse $k({\color{#FFF056}T})$). 
+L'évolution de la concentration dépend donc de la<br><b style="color:#56C1FF">concentration initiale $[\mathrm{A}]_0$</b> et de la <b style="color:#FFF056">température</b><br>(via la constante de vitesse $k({\color{#FFF056}T})$). 
 
 <!--
 <p class="fragment fade-up">
@@ -543,7 +543,7 @@ Un <b style="color:#FFF056">catalyseur</b> modifie le mécanisme réactionnel.
 <u>Exemple</u> :
 
 La transformation modélisée par la réaction<br>
-$\ce{H2C-Cℓ + HO- -> H3C-OH + Cℓ^-}$<br>
+$\ce{H3C-Cℓ + HO- -> H3C-OH + Cℓ^-}$<br>
 se déroule en un seul acte élémentaire.
 </div>
 
