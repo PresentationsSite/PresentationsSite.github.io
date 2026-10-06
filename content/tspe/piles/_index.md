@@ -307,11 +307,21 @@ La présence d'un seul ou deux électrons de valence pour les <span class="imp">
 
 ---
 
-C'est la raison pour laquelle ils se retrouvent au cœur de nombreuses piles (pile <b style="color:#FFF056">alcaline</b>, pile <b style="color:#FFF056">lithium</b>-ion,<br>pile <b style="color:#FFF056">magnésium</b>-soufre, etc.).
+C'est la raison pour laquelle ils se retrouvent au cœur de nombreuses piles (pile <b style="color:#FFF056">lithium</b>-ion,<br>pile <b style="color:#FFF056">magnésium</b>-soufre, etc.).
 
 ---
 
-<p>La famille des alcalins est même capable<br>de réduire l'eau, ce qui peut provoquer<br>leur enflamment à son contact !</p>
+🪤 Piège 🪤
+
+<p class="fragment fade-up">Une pile <b style="color:#FFF056">alcaline</b> ne s'appelle pas ainsi parce<br>qu'elle contient un métal alcalin mais parce<br>que son <b style="color:#56C1FF">électrolyte</b> (<b style="color:#56C1FF">substance contenant<br>des ions mobiles</b>) est alcalin (basique).</p>
+
+<p class="fragment fade-up"><u>Rq</u> : les électrodes de la pile alcaline de base<br>sont en zinc et en dioxyde de manganèse.</p> 
+
+
+
+---
+
+<p>La famille des alcalins est même capable<br>de réduire l'eau, ce qui peut provoquer<br>leur enflammement à son contact !</p>
 
 ---
 
@@ -494,7 +504,7 @@ Sur le schéma d'une pile, il faut savoir indiquer :
 <li class="fragment fade-up">les <span class="imp">polarités des électrodes</span> ;</li>
 <li class="fragment fade-up">le <span class="imp">déplacement des électrons</span><br>dans le circuit électrique ;</li>
 <li class="fragment fade-up">le <span class="imp">sens conventionnel du courant</span><br>dans le circuit électrique ;</li>
-<li class="fragment fade-up">les <span class="imp">déplacement des électrolytes</span><br>dans le pont salin.</li>
+<li class="fragment fade-up">les <span class="imp">déplacement des ions</span><br>dans le pont salin.</li>
 </ul>
 
 ----
@@ -602,7 +612,7 @@ ul.custom-pencil li::before {
 
 Exemple :
 
-Une pile cuivre-aluminium repose sur<br>les deux couples oxydant/réducteur suivant :<br>
+Une pile cuivre-aluminium repose sur<br>les deux couples oxydant/réducteur suivants :<br>
 $\ce{(Aℓ^3+(aq)/Aℓ(s))}$ et $\ce{(Cu^2+(aq)/Cu(s))}$
 
 La transformation spontanée a lieu entre<bR>les ions cuivre et l'aluminium.
@@ -626,7 +636,7 @@ Composition de la pile :
 
 
 <ul class="custom-pencil" style="margin-top:1em;">
-<li>Calculer l'avancement maximale<br>de la réaction supposée totale.</li>
+<li>Calculer l'avancement maximal<br>de la réaction supposée totale.</li>
 <li>En déduire la capacité électrique<br>de la pile.</li>
 
 {{%note%}}
@@ -636,7 +646,7 @@ ni(Cu2+) = 200E-3 * 0,50 = 1,0E-1 mol
 hyp 1 : ni(Al)-2xmax = 0 => xmax = ni(Al)/2 = 0,65 mol
 hyp 2 : ni(Cu2+)-3xmax = 0 => xmax = ni(Cu2+)/3 = 3,3E-2 mol Validée
 Q = 6*xmax*F = 6*3,3E-2*96500 = 1,9E4 C 
-Soit 5,3 Ah
+Soit 5,4 Ah
 
 On aurait pu directement demander la capacité de la pile sans question intermédiaire !
 {{%/note%}}
@@ -713,7 +723,7 @@ Quelle est la différence avec un <span class="imp">accumulateur</span> ?
  
  Quoi d'autre permet de stocker de l'énergie<br>sous forme chimique ?
  
- <span class="imp fragment fade-up">La chlorophylle !</span>
+ <span class="imp fragment fade-up">La photosynthèse !</span>
 
 
 {{% /section %}}
