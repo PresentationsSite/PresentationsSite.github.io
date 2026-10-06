@@ -86,7 +86,7 @@ Dans le référentiel héliocentrique,<br>les trajectoires des planètes du syst
 
 ---
 
-Une <span class="imp">ellipse</span> est une sorte de cercle applati.
+Une <span class="imp">ellipse</span> est une sorte de cercle aplati.
 
 <p class="fragment fade-up">Elle est caractérisée par son <span class="imp">excentricité $e$</span><br>(écart au cercle) comprise entre 0 et 1.</p>
 
@@ -112,7 +112,7 @@ Une <span class="imp">ellipse</span> est une sorte de cercle applati.
 
 ---
 
-À part mercure, les planètes du système solaire<br>ont une très faible excentricité :
+À part Mercure, les planètes du système solaire<br>ont une très faible excentricité :
 
 <table border="1" style="font-size:0.6em;">
   <tr>
@@ -144,7 +144,7 @@ Une <span class="imp">ellipse</span> est une sorte de cercle applati.
 ### Deuxième loi -- Loi des aires
 
 <div class="fragment fade-up" style="position:relative;margin:auto;width:fit-content;border:solid 5px #FF968D;padding:10px 50px 20px 50px;border-radius:10px">
-Le segment [SP] qui relie le centre P de la planète au centre S du Soleil balaie des <span class="imp">aires égales</span><br>sur des <span class="imp">durée égales</span>.
+Le segment [SP] qui relie le centre P de la planète au centre S du Soleil balaie des <span class="imp">aires égales</span><br>sur des <span class="imp">durées égales</span>.
 </div>
 
 ---
@@ -188,7 +188,7 @@ Le quotient du <span style="color:#FFF056;">carré de la période de révolution
 
 La constante dépend de l'astre "central". 
 
-<p class="fragment fade-up">Ainsi tous les satellites de la Terre partagent eux aussi un même quotient mais il est différent que pour<br>les planètes autour du soleil ($\frac{T^2}{a^3}=k'≠k$).</p>
+<p class="fragment fade-up">Ainsi tous les satellites de la Terre partagent eux aussi un même quotient mais il est différent de celui<br>des planètes autour du soleil ($\frac{T^2}{a^3}=k'≠k$).</p>
 
 ---
 
@@ -297,7 +297,7 @@ $$
 
 ---
 
-On constante que le vecteur accélération<br>n'a pas de composante tangentielle. 
+On constate que le vecteur accélération<br>n'a pas de composante tangentielle. 
 
 <div class="fragment fade-up" style="position:relative;margin:auto;width:fit-content;border:solid 5px #FF968D;padding:0 50px 0 50px;border-radius:10px">
 $$
@@ -535,7 +535,7 @@ Le résultat ne dépend plus de $R$ !!
 
 A.N. :
 
-<p class="fragment fade-up">$T\displaystyle =\frac{3\pi}{\pu{6,67e-11}\times\pu{5,0e3}}$<br>
+<p class="fragment fade-up">$T\displaystyle =\sqrt{\frac{3\pi}{\pu{6,67e-11}\times\pu{5,0e3}}}$<br>
 $\approx \pu{5E3 s}$</p>
 
 <p class="fragment fade-up">Soit entre 1h et 2h.</p>

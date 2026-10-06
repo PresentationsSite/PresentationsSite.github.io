@@ -111,7 +111,7 @@ Une solution d'acide fluorhydrique est préparée en ajoutant du fluorure d'hydr
 
 ---
 
-Calculer le taux d'avancement final $\tau$<br>de cette transformation et en déduire<br>son caractère totale ou non totale.
+Calculer le taux d'avancement final $\tau$<br>de cette transformation et en déduire<br>son caractère total ou non total.
 
 ---
 
@@ -161,7 +161,7 @@ $$
 </p>
 
 <p class="fragment fade-up" style="color:#16E7CF;">
-$n_f(\ce{H3O+})=\ce{[H_3O+]}_f\times V = \pu{6,3E-4 mol*L-1}$
+$n_f(\ce{H3O+})=\ce{[H_3O+]}_f\times V = \pu{6,3E-4 mol}$
 </p>
 
 <p class="fragment fade-up" style="color:#16E7CF;">
@@ -226,11 +226,11 @@ Que peut-on dire des vitesses de formation<br>et de disparition d'une espèce ch
 La vitesse volumique de disparition d’un réactif A dans le sens direct doit être égale à sa vitesse volumique<br>de formation dans le sens indirect :
 
 <div class="fragment fade-up">
-$$-\frac{\mathrm{d[A]}}{\mathrm{dt}}=\frac{\mathrm{d[A]}}{\mathrm{dt}}$$
+$$\frac{\mathrm{d[A]}}{\mathrm{dt}}=-v_\mathrm{direct} + v_\mathrm{indirect} = 0$$
 </div>
 
 <div class="fragment fade-up">
-D'où $\displaystyle \frac{\mathrm{d[A]}}{\mathrm{dt}}=0\Rightarrow \mathrm{[A]=cste}$
+D'où  $\mathrm{[A]=cste}$
 
 
 ---
@@ -465,7 +465,7 @@ Dans quel sens évoluera la réaction si $Q_r<K(T)$ ?
 
 <br>
 
-- Si <b style="color:#56C1FF">$Q_r > K(T)$</b>, la réaction évolue spontanément dans le <b style="color:#56C1FF">sens indirect</b> (consommation des produits<br>et formations des réactifs)
+- Si <b style="color:#56C1FF">$Q_r > K(T)$</b>, la réaction évolue spontanément dans le <b style="color:#56C1FF">sens indirect</b> (consommation des produits<br>et formation des réactifs)
 
 ---
 
@@ -1210,7 +1210,7 @@ Le quotient de réaction mesure, lui, combien de fois<br>il est plus probable de
 
 ---
 
-À l'équilibre, la réaction direct et la réaction inverse doivent se faire au même rythme.
+À l'équilibre, la réaction directe et la réaction inverse doivent se faire au même rythme.
 
 <div class="fragment fade-up">
 Donc :

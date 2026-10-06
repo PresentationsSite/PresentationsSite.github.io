@@ -175,7 +175,7 @@ Les noyaux instables subissent<br>des <span class="imp">désintégrations radioa
 
 Exemple :
 
-Lorsqu'un noyau d'uranium 235 absorbe un neutron,<br>il peut fissioner en deux noyaux fils dont l'un est <br>le strontium 94 tout en émettant 2 neutrons.
+Lorsqu'un noyau d'uranium 235 absorbe un neutron,<br>il peut fissionner en deux noyaux fils dont l'un est <br>le strontium 94 tout en émettant 2 neutrons.
 
 <p class="fragment fade-up">Déterminer l'autre noyau fils.</p>
 
@@ -245,7 +245,7 @@ Par conservation de la charge et du nombre de nucléons, déterminer la nature d
 
 ---
 
-La radioactivité <b style="color:#FF95CA">$\beta^+$</b> correspond à<br>la transformation d'un proton en neutron<br>en émettant <b style="color:#FF95CA">un positron $^{\\;\\; 0}_{+1}e$</b><br>(antiparticule de l'électron).
+La radioactivité <b style="color:#FF95CA">$\beta^+$</b> correspond à<br>la transformation d'un proton en neutron<br>en émettant <b style="color:#FF95CA">un positon $^{\\;\\; 0}_{+1}e$</b><br>(antiparticule de l'électron).
 
 <p class="fragment fade-up">Elle concerne des noyaux<br>comportant trop de <span class="fragment">protons</span>.</p>
 
@@ -679,7 +679,7 @@ La raison pour laquelle les cellules cancéreuses sont des grandes consommatrice
 <br>
 <ul>
 <li class="fragment fade-up">Radiothérapie externe : on focalise un faisceau de particule (photons X, électrons, neutrons, protons, ions carbone) issu d'un accélérateur linéaire sur les cellules cancéreuses.</li>
-<li class="fragment fade-up">Curie thérapie : une source radioactive scellée est placée à l'intérieur ou à proximité immédiate de la zone à traiter.</li>
+<li class="fragment fade-up">Curiethérapie : une source radioactive scellée est placée à l'intérieur ou à proximité immédiate de la zone à traiter.</li>
 </ul>
 </ul>
 

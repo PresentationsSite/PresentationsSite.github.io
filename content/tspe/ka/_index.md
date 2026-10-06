@@ -81,7 +81,7 @@ L'eau peut donc réagir sur elle-même !<br>C'est la réaction d'<span class="im
 
 <p class="fragment fade-up">Équation de la réaction&nbsp;:</p>
 
-<span class="fragment fade-up">$$\ce{{\color{#88FA4E}\ce{H2O}}(ℓ) + {\color{#88FA4E}\ce{H2O}}(ℓ) -> {\color{#FF968D}\ce{H3O+}}(aq) + {\color{#56C1FF}\ce{HO^-}}(aq)}$$</span>
+<span class="fragment fade-up">$$\ce{{\color{#88FA4E}\ce{H2O}}(ℓ) + {\color{#88FA4E}\ce{H2O}}(ℓ) <=> {\color{#FF968D}\ce{H3O+}}(aq) + {\color{#56C1FF}\ce{HO^-}}(aq)}$$</span>
 
 ---
 
@@ -681,7 +681,7 @@ Exemples :
 
 <u>Rq</u> :
 
-L'acide d'un couple peut très bien dominé sa base conjuguée dans une solution aqueuse basique<br>et réciproquement, une base peut dominer<br>dans une solution acide !
+L'acide d'un couple peut très bien dominer sa base conjuguée dans une solution aqueuse basique<br>et réciproquement, une base peut dominer<br>dans une solution acide !
 
 
 {{% /section %}}
@@ -703,11 +703,11 @@ La <span class="imp">zone de virage</span> d'un indicateur coloré<br>est la zon
 
 <p class="fragment fade-up">La couleur de l'indicateur coloré dans la zone de virage est alors <span class="fragment fade-up">un mélange des couleurs acide et basique.</span></p>
 
-<p class="fragment fade-up">La zone de virage intervient pour $\mathrm{pH}=$ <span class="fragment" style="color:#ACD89C">$\mathrm{pK_A}$</span>.</p>
+<p class="fragment fade-up">La zone de virage intervient autour de $\mathrm{pH}=$ <span class="fragment" style="color:#ACD89C">$\mathrm{pK_A}$</span>  <span class="fragment">(typiquement $\mathrm{pK_A}\pm 1$).</p>
 
 ---
 
-Les diagramme de prédominance permettent de caractériser efficacement  un indicateur coloré.
+Les diagrammes de prédominance permettent de caractériser efficacement  un indicateur coloré.
 
 ---
 
@@ -1009,7 +1009,7 @@ Pourquoi utilise-t-on du carbonate de calcium<br>sachant que l'ion carbonate est
 
 ---
 
-Un titrage pH-métrique d'un litre de solution à pH 5,5 représentant l'eau du lac est réalisé avec une solution d'ions carbonates avec $\ce{[CO3^2-]=\pu{1,00 mmol\*L-1}}$, puis par une solution d'ions hydroxyde avec $\ce{[HO^-]=\pu{1,00 mmol*L-1}}$.
+On réalise un titrage pH-métrique d'un litre<br>de solution à pH 5,5 représentant l'eau du lac<br>par une solution d'ions carbonates avec $\ce{[CO3^2-]=\pu{2,0E-4 mol\*L-1}}$,<br>puis par une solution d'ions hydroxyde avec $\ce{[HO^-]=\pu{2,0E-4 mol*L-1}}$.
 
 <p class="fragment fade-up">La concentration de ces solutions<br>titrantes est-elle adaptée ?</p>
 
