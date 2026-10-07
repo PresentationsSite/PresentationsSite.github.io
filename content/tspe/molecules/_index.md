@@ -211,7 +211,7 @@ butanal
 
 ---
 
-Trouver tous les isomères de constitution<br>de formule brute $\ce{C4H5NO}$.
+Proposer un maximum d'isomères de constitution<br>de formule brute $\ce{C4H9NO}$.
 
 ---
 
@@ -241,7 +241,7 @@ Les deux derniers ne sont pas isomères de constitution l'un par rapport à l'au
 <tbody>
   <tr>
     <td style="text-align:center;"><b style="color:#FFF056">alcool</b></td>
-    <td style="text-align:center;"><b style="color:#FF968D">hydroxy</b></td>
+    <td style="text-align:center;"><b style="color:#FF968D">hydroxyle</b></td>
   </tr>
 </table>
 
@@ -321,7 +321,7 @@ Exemple :
 <img src="/excet.png" style="box-shadow:none;background:none;">
 </div>
 
-<p class="fragment fade-up"><b style="color:#61D836">2-2-diméthyl</b><b style="color:#56C1FF">pentan</b><b style="color:#FF968D">-3-one</b></p>
+<p class="fragment fade-up"><b style="color:#61D836">2,2-diméthyl</b><b style="color:#56C1FF">pentan</b><b style="color:#FF968D">-3-one</b></p>
 
 ---
 
@@ -422,7 +422,7 @@ Exemple 2 :
 <img src="/examin2.png" style="box-shadow:none;background:none;">
 </div>
 
-<p class="fragment fade-up"><b style="color:#61D836">N-N-diéthyl</b><b style="color:#56C1FF">propan</b><b style="color:#FF968D">-1-amine</b></p>
+<p class="fragment fade-up"><b style="color:#61D836">N,N-diéthyl</b><b style="color:#56C1FF">propan</b><b style="color:#FF968D">-1-amine</b></p>
 
 
 ---
