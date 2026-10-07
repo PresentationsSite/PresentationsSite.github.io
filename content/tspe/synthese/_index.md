@@ -93,7 +93,7 @@ On obtient un mélange contenant les produits synthétisés, le solvant, le cata
 <li class="fragment fade-up" style="font-size:1.1em;color:#56C1FF;">Si le produit est soluble :</li>
 </ul>
 
-<p class="fragment fade-up">On réalise un <span class="imp">extraction liquide-liquide</span>.</p>
+<p class="fragment fade-up">On réalise une <span class="imp">extraction liquide-liquide</span>.</p>
 
  
 <p class="fragment fade-up">+&nbsp;lavage</p>
@@ -182,7 +182,7 @@ On obtient un mélange contenant les produits synthétisés, le solvant, le cata
 <li class="fragment fade-up">Mesure de la <span class="imp">température de fusion</span><br>au <span class="imp">banc Kofler</span> (pour un solide)</li>
 <li class="fragment fade-up">Mesure de la température d'ébullition<br>(pour un liquide)</li>
 <li class="fragment fade-up">Mesure de l'indice optique au<br>réfractomètre (pour un liquide)</li>
-<li class="fragment fade-up"><span class="imp">Spectrographie infrarouge</span></li>
+<li class="fragment fade-up"><span class="imp">Spectroscopie infrarouge</span></li>
 <li class="fragment fade-up"><span class="imp">Chromatographie sur couche mince<br>(CCM)</span></li>
 </ul>
 
@@ -337,7 +337,7 @@ C'est une réaction limitée<br>(et lente en plus) 😒
 $$\ce{R-Cl + H2O <=> R-OH + H+ + Cl-}$$
 
 
-Pour déplacer cet équilibre dans le sens direct jusqu'à atteindre un rendement de 100% (conversion totale),<br>il suffit d'ajouter des ions argents $\ce{Ag+}$<br>dans le milieu réactionnel. 
+Pour déplacer cet équilibre dans le sens direct jusqu'à atteindre un rendement de 100% (conversion totale),<br>il suffit d'ajouter des ions argent $\ce{Ag+}$<br>dans le milieu réactionnel. 
 
 
 <p class="fragment fade-up">Par quel miracle ?</p>
