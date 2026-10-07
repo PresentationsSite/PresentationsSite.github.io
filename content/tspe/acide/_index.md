@@ -358,34 +358,45 @@ $$\displaystyle\text{pH} = -\log\left(\frac{\ce{[H3O+]}}{c^\circ}\right)$$
 
 ---
 
-Si  $\ce{[H3O+]}=\pu{1,0E-8 mol * L-1}$, <br>
+Si  $\ce{[H3O+]}=\pu{1E-8 mol * L-1}$, <br>
 
 <p class="fragment fade-up" style="color:#017100;">$\text{pH}=$ <span class="fragment">$8,0$</span></p>
 
 <br>
 
-<p class="fragment fade-up">Si  $\ce{[H3O+]}=\pu{1,00E-12 mol * L-1}$, </p>
+<p class="fragment fade-up">Si  $\ce{[H3O+]}=\pu{1,0E-12 mol * L-1}$, </p>
 
-<p class="fragment fade-up" style="color:#017100;">$\text{pH}=$ <span class="fragment">$12,0$</span></p>
+<p class="fragment fade-up" style="color:#017100;">$\text{pH}=$ <span class="fragment">$12,00$</span></p>
 
 
 ---
 
 Si  $\ce{[H3O+]}=\pu{2,5E-2 mol * L-1}$,
 
-<p class="fragment fade-up" style="color:#017100;">$\text{pH}=$ <span class="fragment">$1,6$</span></p>
+<p class="fragment fade-up" style="color:#017100;">$\text{pH}=$ <span class="fragment">$1,60$</span></p>
 
 <br>
 
 <p class="fragment fade-up">Si  $\ce{[H3O+]}=\pu{8,4E-13 mol * L-1}$,</p>
 
-<p class="fragment fade-up" style="color:#017100;">$\text{pH}=$ <span class="fragment" >$12,1$</span></p>
+<p class="fragment fade-up" style="color:#017100;">$\text{pH}=$ <span class="fragment" >$12,08$</span></p>
 
 ---
 
-Précision sur la précision :
+<u>Précision sur la précision</u> 🧐
 
-<p class="fragment fade-up">on écrit généralement le pH avec<br> <b>un seul chiffre après la virgule</b>.</p>
+
+<p class="fragment fade-up">Le nombre de chiffres significatifs de la concentration en ions oxonium correspond<br>au nombre de chiffres <b>après la virgule</b> du pH.</p>
+
+<p class="fragment fade-up">En effet, la partie entière ne donne que<br>l'ordre de grandeur (la puissance de 10)<br>de la concentration (la mantisse de la notation scientifique reste donc indéterminée)</p>
+
+---
+
+Mais en pratique, les pH s'écrivent généralement avec <b>un seul chiffre après la virgule</b> car cela correspond à la précision des pH-mètres.
+
+<p class="fragment fade-up">Or cela implique une concentration à un seul chiffre significatif&nbsp;! Mais c'est rarissime<br>que cela soit respecté dans les sujets...</p>
+
+<p class="fragment fade-up">En pratique, lorsqu'on passe<br>de pH à concentration, on garde deux chiffres significatifs (à tort mais c'est comme ça).</p> 
 
 
 ---
