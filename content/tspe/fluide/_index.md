@@ -90,7 +90,7 @@ Le modèle nécessite une température<br>constante et homogène dans le fluide.
 
 ---
 
-Un corps plongé dans un fluide incompressible au repos reçoit une force opposée au poids du fluide déplacée.
+Un corps plongé dans un fluide incompressible au repos reçoit une force opposée au poids du fluide déplacé.
 
 <p class="fragment fade-up">C'est la <span class="imp">poussée d'Archimède</span> notée <span class="imp">$\vec{\pi}_A$</span>.</p>
 
@@ -102,7 +102,7 @@ Cette action est la résultante des forces<br>de pression du fluide sur le corps
 
 ---
 
-Calculons la résultante des forces de pression sur un cylindre vertical de hauteur $h$ et section $S$ immergé dans une fluide incompressible au repos<br>de masse volumique $\rho$.
+Calculons la résultante des forces de pression sur un cylindre vertical de hauteur $h$ et section $S$ immergé dans un fluide incompressible au repos<br>de masse volumique $\rho$.
 
 ---
 
@@ -574,7 +574,7 @@ Pas la même chose que la trajectoire dans le sens où on ne suit pas une partic
 
 ---
 
-En régime permanent, les lignes de champ se confondent avec la trajectoire des particules.
+En régime permanent, les lignes de courant se confondent avec la trajectoire des particules.
 
 {{%/section%}}
 
@@ -620,7 +620,7 @@ Cette relation exprime la conservation de l'énergie volumique d'une particule d
 
 Cette conservation est valable<br>le long d'une ligne de courant.
 
-<p class="fragment fade-up">Mais si l'écoulement est irrotationnel<br>(nul part dans le fluide, un petit moulinet ne se mettrait à tourner), elle est valable en tout point du fluide<br>(on dit que l'écoulement est potentiel).</p>
+<p class="fragment fade-up">Mais si l'écoulement est irrotationnel<br>(nulle part dans le fluide, un petit moulinet ne se mettrait à tourner), elle est valable en tout point du fluide<br>(on dit que l'écoulement est potentiel).</p>
 
 ---
 
