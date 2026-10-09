@@ -62,7 +62,7 @@ Principe :
 Matériel :
 
 <ul>
-  <li class="imp fragment fade-up" style="color:#FF8596">pipette jaugée + propipette (poire à pipetter)</li>
+  <li class="imp fragment fade-up" style="color:#FF8596">pipette jaugée + propipette (poire à pipeter)</li>
   <li class="imp fragment fade-up" style="color:#FF8596">fiole jaugée + bouchon</li>
   <li class="fragment fade-up">pissette d'eau distillée</li>
 </ul>
@@ -149,7 +149,7 @@ $$\Rightarrow V_{mère}=\frac{V_{fille}}{F}=\frac{\pu{250 mL}}{5} =\pu{50 mL}$$
 <ul class="fragment" style="color:#16E7CF">
 <li>On prélève la solution mère avec la pipette,</li> 
 <li>on verse le contenu de la pipette dans la fiole vide,</li> 
-<li>on complète par de l'eau distillée jusqu'au trait de jauge en pensant à agiter à mitan.</li></ul>
+<li>on complète par de l'eau distillée jusqu'au trait de jauge en pensant à agiter à mi-chemin.</li></ul>
 
 
 {{%/section%}}
