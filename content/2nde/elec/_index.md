@@ -155,7 +155,7 @@ Analogie ? <span class="fragment">Débit d'une rivière !</span>
 
 <ul>
 
-<li>Définition : différence de densité de charge électrique entre deux points du circuit</li>
+<li>Définition : différence de potentiel électrique entre deux points du circuit</li>
 
 <li> Unité : <span class="imp fragment">volt (V)</span> </li>
 
