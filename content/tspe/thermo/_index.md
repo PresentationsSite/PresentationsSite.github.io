@@ -325,7 +325,7 @@ Cet échange peut prendre deux formes :
 
 <span class="imp">Pemier principe de la thermodynamique</span>
 
-<p class="fragment fade-up">Pour un système isolé :</p>
+<p class="fragment fade-up">Pour un système fermé :</p>
 
 <div class="fragment fade-up" style="position:relative;margin:auto;width:fit-content;border:solid 5px #FF968D;padding:0 50px 0 50px;border-radius:10px">
 $$\Delta E_{tot} = W + Q$$
@@ -911,7 +911,7 @@ $$\varphi =\sigma T^4 $$
 <ul>
 <li class="fragment fade-up">$\varphi$ en <b class="fragment" style="color:#FFF056">$\pu{W*m-2}$</b></li>
 <li class="fragment fade-up">$T$ en <b class="fragment" style="color:#FFF056">$\pu{K}$</b></li>
-<li class="fragment fade-up">$\sigma =\pu{5,67E-8}$ <b class="fragment" style="color:#FFF056">$\pu{W*m^2*K^{-4}}$</b></li>
+<li class="fragment fade-up">$\sigma =\pu{5,67E-8}$ <b class="fragment" style="color:#FFF056">$\pu{W*m^{-2}*K^{-4}}$</b></li>
 </ul>
 
 <p class="fragment fade-up">$\sigma$ est la constante de Stefan-Boltzmann.<p>
