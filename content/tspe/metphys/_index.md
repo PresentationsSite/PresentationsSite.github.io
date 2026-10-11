@@ -60,6 +60,8 @@ font-weight:normal;
 
 L'<span class="imp">absorbance $A_\lambda$</span> d'une solution quantifie la proportion d'un rayonnement incident $I_0$ monochromatique absorbée en mesurant l'intensité<br>du rayonnement transmis $I$.
 
+<p style="font-size=0.8em;"><u>Rq</u> : $A=\log\left(\frac{I_0}{I}\right)$</p>
+
 
 ---
 
