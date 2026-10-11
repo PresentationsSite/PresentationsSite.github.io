@@ -140,7 +140,7 @@ On trace la <span class="imp">transmittance</span> (en %) <br>en fonction du <sp
 
 ---
 
-La spectroscopie infrarouge exploite le fait que les molécules possèdent des fréquences spécifiques pour lesquelles elles vibrent en correspondance avec des niveaux d'énergie discrets<br>(modes vibratoires). 
+La spectroscopie infrarouge exploite le fait que les molécules possèdent des fréquences spécifiques pour lesquelles elles vibrent en correspondance avec<br>des niveaux d'énergie discrets<br>(modes vibratoires). 
 
 ---
 
@@ -348,7 +348,7 @@ La présence d’ions dans une solution lui confère<br>des propriétés de cond
 
 ---
 
-La conductivité $\sigma_i$ de chaque ion i en solution contribue à la conductivité totale $\sigma$ :
+La conductivité $\sigma_i$ de chaque ion i en solution<br>contribue à la conductivité totale $\sigma$ :
 
 $$\sigma=\sum_i \sigma_i$$
 
@@ -358,7 +358,7 @@ $$\sigma=\sum_i \sigma_i$$
 
 <br>
 
-<div style="display: flex; border: solid 5px #FF968D; border-radius: 20px; width:fit-content;margin-right:auto;margin-left:auto;">
+<div class="fragment fade-up" style="display: flex; border: solid 5px #FF968D; border-radius: 20px; width:fit-content;margin-right:auto;margin-left:auto;">
 <div style="padding:10px 30px 20px 30px;width:fit-content;">
 Pour une concentration suffisamment faible,<br>
 la conductivité d'un ion est proportionnelle<br>à sa concentration.
@@ -383,11 +383,10 @@ $$\sigma_i = \lambda_i\times C_i$$
 
 ---
 
-La formule de la conductivité<br>de la solution devient alors :
+<p>La formule de la conductivité<br>de la solution devient alors :</p>
 
-<br>
 
-<div style="display: flex; border: solid 5px #FF968D; border-radius: 20px; width:fit-content;margin-right:auto;margin-left:auto;">
+<div class="fragment fade-up" style="display: flex; border: solid 5px #FF968D; border-radius: 20px; width:fit-content;margin-right:auto;margin-left:auto;">
 <div style="padding:20px 30px 20px 30px;width:fit-content;">
 $$\sigma = \sum_i\lambda_i\times C_i$$
 </div>
@@ -420,17 +419,14 @@ $$G=\frac{1}{R}$$
 
 On passe de la conductance à la conductivité<br>à partir de la géométrie des électrodes :
 
-<br>
 
-<div style="display: flex; border: solid 5px #FFF; border-radius: 20px; width:fit-content;margin-right:auto;margin-left:auto;">
+<div class="fragment fade-up" style="display: flex; border: solid 5px #FFF; border-radius: 20px; width:fit-content;margin-right:auto;margin-left:auto;">
 <div style="padding:0px 30px 0px 30px;width:fit-content;">
 $$\sigma=G\times k =G\times\frac{\ell}{S}$$
 </div>
 </div>
 
-<br>
-
-<ul>
+<ul style="margin-top:0.5em;">
 <li class="fragment fade-up">$\sigma$ : conductivité (en $\color{#FFF056}\pu{S*m-1}$)</li>
 <li class="fragment fade-up">$G$ : conductance (en $\color{#FFF056}\pu{S}$)</li>
 <li class="fragment fade-up">$k$ : "constante de cellule" (en $\color{#FFF056}\pu{m-1}$)</li>
@@ -456,7 +452,7 @@ Il faut qu'<span class="imp">un seul soluté ionique</span><br>soit dissous dans
 
 Exemple d'une solution de chlorure de fer III $\ce{(Fe^3+ + 3Cℓ^-)}$
 
-La concentration apportée<br>en $\ce{FeCℓ_3 (s)}$ vaut $C$. 
+<p class="fragment fade-up">La concentration apportée<br>en $\ce{FeCℓ_3 (s)}$ vaut $C$.</p>
 
 ---
 
