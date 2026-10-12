@@ -82,9 +82,8 @@ Indices expérimentaux de la nature<br>ondulatoire de la lumière :
 <li class="imp fragment fade-up">diffraction</li>
 </ul>
 
----
 
-[Animations interactives](https://phet.colorado.edu/sims/html/wave-interference/latest/wave-interference_all.html?locale=fr)
+<p class="fragment fade-up"><u>Rq</u> : ces phénomènes seront décrits en terminale.</p>
 
 ---
 
@@ -111,15 +110,6 @@ Indices expérimentaux de la nature<br>ondulatoire de la lumière :
 ---
 
 {{< slide  background-image="https://cdn.northropgrumman.com/-/jssmedia/Project/Northrop-Grumman/ngc/space/james-webb-space-telescope-jwst/Image-from-James-Webb-Space-Telescope-JWST-018.jpg?mw=3840&rev=5f5f9ad822fe4b8d98bedcf1a76f9fd4" background-size="contain" background-transition="concave">}}
-
----
-
-
-{{< slide  background-image="https://c02.purpledshub.com/uploads/sites/41/2022/07/Diffraction-spikes-from-the-JWST-8c138ca.jpg?webp=1&w=1200" background-size="contain" background-transition="concave">}}
-
----
-
-{{< slide  background-image="/webbdiffr4.png" background-size="contain" background-transition="concave" >}}
 
 ---
 
@@ -272,7 +262,7 @@ Approfondissement de l'effet photoélectrique en Tspé
 
 Les niveaux d'énergie d'un atome sont <span class="imp">quantifiés</span>.
 
-Le niveau le plus bas est appelé le <span class="imp">fondamental</span> et<br>les niveaux plus hauts en énergie sont dits <span class="imp">excités</span>.
+<p class="fragment fade-up">Le niveau le plus bas est appelé le <span class="imp">fondamental</span> et<br>les niveaux plus hauts en énergie sont dits <span class="imp">excités</span>.</p>
 
 ---
 
@@ -283,7 +273,7 @@ Le niveau le plus bas est appelé le <span class="imp">fondamental</span> et<br>
 
 Pour sauter d'un niveau d'énergie à l'autre,<br>l'électron doit absorber (s'il monte) ou émettre<br>(s'il descend) un photon dont l'énergie $h\nu$<br>correspond à la différence d'énergie<br>$\Delta E$ entre les deux niveaux :
 
-<div style="display: flex; justify-content: center;">
+<div class="fragment fade-up" style="display: flex; justify-content: center;">
 <div style = "border:solid #FF968D 5px; padding: 20px 20px 30px 20px; border-radius: 20px;">
 <span class="imp">$|\Delta E| = h\nu$</span>
 </div></div>
