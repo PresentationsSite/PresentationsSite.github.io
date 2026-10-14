@@ -167,7 +167,8 @@ On en conclut que le <span class="fragment imp" style="color:#FEAE00">noyau</spa
 
 ---
 
-Un ion est un atome ou une molécule qui a gagné<br>ou perdu un ou plusieurs électrons.
+Un ion est un atome ou un assemblage d'atomes<br>
+qui a <span class="imp fragment fade-up">gagné</span> ou <span class="imp fragment fade-up">perdu</span> un ou plusieurs <span class="imp fragment fade-up">électrons</span>.
 
 ---
 
@@ -216,7 +217,7 @@ Entité électriquement neutre<br>comprenant plus d'un atome.
 
 <p class="fragment fade-up">Son <span class="fragment imp" style="color:#FEAE00">nombre de nucléons</span>, noté <span class="fragment imp" style="color:#FEAE00">$A$</span>, permet de déterminer approximativement sa masse.</p>
 
-<p class="fragment fade-up"><u>Rq</u> : on appelle aussi $A$ le "nombre de masses".
+<p class="fragment fade-up"><u>Rq</u> : on appelle aussi $A$ le "nombre de masse".
 
 ---
 
@@ -351,7 +352,7 @@ Comment obtenir le nombre de neutrons N<br>si on connaît Z et A ?
 </ul>
 <li class="fragment fade-up">Donner la composition du noyau s'écrivant $\ce{^{1}H}$ :</li>
 <ul>
-<li class="fragment fade-up" style="color:#1DB100">Z = 1 $\Rightarrow$ 1 protons</li>
+<li class="fragment fade-up" style="color:#1DB100">Z = 1 $\Rightarrow$ 1 proton</li>
 <li class="fragment fade-up" style="color:#1DB100">A = 1 $\Rightarrow$ N = A - Z = 1 - 1 = 0 neutron</li>
 </ul>
 <li class="fragment fade-up">Donner la composition du noyau s'écrivant $\ce{^{63}Cu}$ :</li>
