@@ -105,7 +105,7 @@ Pas de feu non plus d'ailleurs...
 
 ---
 
-Par contre, plus le milieu matériel est dense<br>et plus le signal sonore se propage vite.
+Et la vitesse du signal sonore dépend du milieu.
 
 ---
 
@@ -172,7 +172,9 @@ $$d=v\times \Delta t$$
 </div>
 </div>
 
-<p class="fragment fade-up">Et si on connaît la distance et la vitesse,<br>comment obtient-on la durée ?</p>
+---
+
+Et si on connaît la distance et la vitesse,<br>comment obtient-on la durée ?
 
 <div class="fragment fade-up" style="display: flex; justify-content: center; align-items: center; height: 100%;">
 <div style="background-color:#1DB100;padding:0px 50px 0px 50px;width:fit-content;color:white;border-radius:10px;">
@@ -213,7 +215,7 @@ Qu'est-ce que cette vidéo<br>nous permet de déterminer&nbsp;?
 ---
 
 
-<iframe src="https://pod.phm.education.gouv.fr/video/20160-eruption-du-volcan-tavurvur-en-papouasie-nouvelle-guinee/?is_iframe=true" width="640" height="360" style="padding: 0; margin: 0; border:0" allowfullscreen ></iframe>
+<iframe src="https://podeduc.apps.education.fr/video/20160-eruption-du-volcan-tavurvur-en-papouasie-nouvelle-guinee/?is_iframe=true" width="640" height="360" style="padding: 0; margin: 0; border:0;border-radius:10px;" allowfullscreen title="Eruption du volcan Tavurvur en Papouasie Nouvelle Guinée" ></iframe>
 
 
 ---
@@ -247,14 +249,11 @@ Pour augmenter l'intensité du son émis,<br>beaucoup d’instruments et d’êt
 
 {{< slide background-video="/note.mp4" background-size="contain" background-transition="concave">}}
 
-
-
 ---
 
 {{%section%}}
 
 ## Signal sonore périodique
-
 
 
 ---
@@ -552,7 +551,7 @@ https://www.edumedia-sciences.com/fr/media/frame/320/?auth=8c1ba56b82bdf81fef2eb
 
 Enfin, la troisième caractéristique<br>d'un son est son <span class="imp" style="color:#61D836">intensité</span>.
 
-<p class="fragment fade-up">L'<span class="imp" style="color:#61D836">intensité sonore</span> est <span class="imp" style="color:#FF644E">proportionnelle</span><br>à l'<span class="imp">amplitude</span> du signal<br>(une amplitude n fois plus grande<br>multiplie par n l'intensité sonore).</p>
+<p class="fragment fade-up">L'<span class="imp" style="color:#61D836">intensité sonore</span> est <span class="imp" style="color:#FF644E">liée</span><br>à l'<span class="imp">amplitude</span> du signal.</p>
 
 ---
 
@@ -578,15 +577,15 @@ Enfin, la troisième caractéristique<br>d'un son est son <span class="imp" styl
 
 ---
 
-Si l'<span style="color:#61D836">intensité sonore</span> de la trompette seule vaut <span style="color:#61D836">$I_0$</span><br>à une certaine distance, alors l'intensité des 4 trompettes jouées ensemble vaudra <span class="fragment" style="color:#61D836">$4I_0$</span><br>à la même distance.
+Si l'<span style="color:#61D836">intensité sonore</span> de la trompette seule vaut <span style="color:#61D836">$I_1$</span><br>à une certaine distance, alors l'intensité des 4 trompettes jouées ensemble vaudra <span class="fragment" style="color:#61D836">$4I_1$</span><br>à la même distance.
 
 ---
 
 Mais cette relation de proportionnalité rend mal compte de notre <span class="imp" style="color:#FFD932">sensation auditive</span>.
 
-<p class="fragment fade-up">On peut par exemple mesurer que l'<span class="imp">amplitude</span> du son émis par quelqu'un qui parle fort est environ 10&nbsp;000 fois plus grande que celle d'une personne qui chuchote à la même distance ! Pourtant, on n'a<br>pas la <span class="imp" style="color:#FFD932">sensation</span> d'un son 10&nbsp;000 fois plus fort...</p>
+<p class="fragment fade-up">On peut par exemple mesurer que l'<span style="color:#61D836"><b>intensité sonore</span> du son émis par quelqu'un qui parle fort est environ 10&nbsp;000 fois plus grande que celle d'une personne qui chuchote à la même distance ! Pourtant, on n'a<br>pas la <span class="imp" style="color:#FFD932">sensation</span> d'un son 10&nbsp;000 fois plus fort...</p>
 
-<p class="fragment fade-up" style="color:1DB100"><span class="imp">Amplitude</span> et <span class="imp" style="color:#FFD932">sensation auditive</span><br>ne sont pas <span class="imp" style="color:#FF644E">proportionnelles</span>&nbsp;!</p>
+<p class="fragment fade-up" style="color:1DB100"><span class="imp" style="color:#61D836">Intensité sonore</span> et <span class="imp" style="color:#FFD932">sensation auditive</span><br>ne sont pas <span class="imp" style="color:#FF644E">proportionnelles</span>&nbsp;!</p>
 
 {{%note%}}
 70dB pour parle fort
@@ -596,9 +595,9 @@ Mais cette relation de proportionnalité rend mal compte de notre <span class="i
 
 ---
 
-Pour tenir compte de cette échelle non proportionnelle, on utilise une autre grandeur :<br>le <span class="imp" style="color:#FF42A1">niveau sonore</span>, mesuré en décibels (dB).
+Pour tenir compte de cette échelle non proportionnelle, on utilise une autre grandeur :<br>le <span class="imp" style="color:#FF42A1">niveau d'intensité sonore</span>,<bR>mesuré en décibels (dB).
 
-<p class="fragment fade-up">Lorsque l'<span class="imp" style="color:#61D836">intensité sonore</span> augmente, le <span class="imp" style="color:#FF42A1">niveau sonore</span> augmente aussi, mais beaucoup moins vite.</p>
+<p class="fragment fade-up">Lorsque l'<span class="imp" style="color:#61D836">intensité sonore</span> augmente, le <span class="imp" style="color:#FF42A1">niveau d'intensité sonore</span> augmente aussi,<br>mais beaucoup moins vite.</p>
 
 ---
 

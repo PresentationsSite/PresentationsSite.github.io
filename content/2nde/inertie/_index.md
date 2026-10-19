@@ -72,7 +72,7 @@ Tout système persévère dans son état de <span class="imp" style="color:#FFD9
 
 ---
 
-C'est une relation d'équivalence<br>qu'on peut réexprimer ainsi :
+C'est une équivalence<br>qu'on peut réexprimer ainsi :
 
 <div class="fragment fade-up" style="display: flex;justify-content: center;">
 <div style = "border: solid #FF42A1 5px;padding: 20px 20px 20px 20px;border-radius:10px;">
@@ -111,6 +111,27 @@ Et plus schématiquement :
 </div>
 </div>
 
+
+---
+
+<u>Rq</u> :
+
+<p class="fragment fade-up">Le principe d'inertie n'est valable<br>que dans un <span class="imp">référentiel galiléen</span>.</p> 
+
+<p class="fragment fade-up">Le référentiel terrestre peut être considéré comme galiléen sur des petites distances et des petites durées.</p>
+
+<p class="fragment fade-up">Tout référentiel en mouvement rectiligne uniforme<br>par rapport au référentiel terrestre peut être<br>considéré comme galiléen.</p>
+
+---
+
+<ul>
+<li>exemple : <span class="fragment">le wagon d'un train avançant en ligne droite à vitesse constante.</span></li>
+
+<br>
+
+<li class="fragment fade-up">Contre-exemple : <span class="fragment">le wagon d'un train accélérant, freinant ou tournant.</span></li>
+
+</ul>
 
 ---
 
@@ -164,6 +185,12 @@ La <span class="imp" style="color:#FF42A1">contraposée du principe d'inertie</s
 
 ---
 
+L'ISS se déplace à 28 000 km/h et pourtant<br>ses moteurs sont quasiment toujours éteints. 
+
+<p class="fragment fade-up">Comment est-ce possible ?</p>
+
+---
+
 {{< slide  background-video="/inertie3.mp4" background-size="contain" background-transition="concave">}}
 
 ---
@@ -174,6 +201,19 @@ La <span class="imp" style="color:#FF42A1">contraposée du principe d'inertie</s
 
 {{< slide  background-video="/skylab.mp4" background-size="contain" background-transition="concave">}}
 
+---
+
+Une station spatiale ne peut être<br>considérée comme un référentiel galiléen<br>que lorsque ses moteurs sont éteints.
+
+<p class="fragment fade-up">Voyons ce qui se passe en cas de boost des moteurs.</p>
+
+---
+
+{{< slide  background-video="/inertie-reboost.mp4" background-size="contain" background-transition="concave">}}
+
+---
+
+{{< slide  background-video="/inertie-boost-vieux.mp4" background-size="contain" background-transition="concave">}}
 
 
 {{%/section%}}
@@ -686,14 +726,6 @@ $\color{#FEAE00}\overrightarrow{\Delta v} = \color{#FFD932}\overrightarrow{ v}_{
 Comme le stipule la contraposée du principe d'inertie, si $\color{#FEAE00}\Delta v \neq 0$ alors la somme des forces agissant<br>sur le système est non nulle.
 
 <p class="fragment fade-up">Mais en plus, la direction et le sens de cette résultante des forces sont celles de $\textstyle\color{#FEAE00}\Delta \vec{v}$ comme on l'a vu<br>dans le cas d'une chute libre (activité Python).</p>
-
----
-
-{{< slide  background-video="/inertie-reboost.mp4" background-size="contain" background-transition="concave">}}
-
----
-
-{{< slide  background-video="/inertie-boost-vieux.mp4" background-size="contain" background-transition="concave">}}
 
 ---
 

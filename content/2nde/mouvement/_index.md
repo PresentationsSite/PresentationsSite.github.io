@@ -123,7 +123,7 @@ Exemples de référentiels :
 
 Est-ce que le parachutiste remonte<br>lorsqu'il ouvre son parachute ?
 
-<p class="fragment fade-up">La question est mal posée<br>(car ambigüe : par rapport à qui<br>est-il sensé remonter ?).</p>
+<p class="fragment fade-up">La question est mal posée<br>(car ambigüe : par rapport à qui<br>est-il censé remonter ?).</p>
 
 ---
 
@@ -197,9 +197,9 @@ Deux types de mouvements :
 
 <ul style="color:#fff">
 <li class="fragment fade-up"><span class="imp">mouvement de translation</span> :<br>
-tous les points du système ont la même trajectoire</li>
-<li class="fragment fade-up"><span class="imp">mouvement de rotation</span> :<br>
-tous les points du système (sauf un) ont pour trajectoire un cercle</li>
+tous les points du système ont une trajectoire identique (superposable)</li>
+<li class="fragment fade-up"><span class="imp">mouvement de rotation</span> autour d'un axe fixe :<br>
+tous les points du système (sauf ceux situés sur l'axe) ont pour trajectoire un cercle centré sur l'axe</li>
 <ul>
 
 ---
@@ -209,9 +209,14 @@ tous les points du système (sauf un) ont pour trajectoire un cercle</li>
 
 ---
 
-La plupart des mouvements<br>sont une combinaison des deux :<br>une translation d'ensemble + une rotation propre.
+La plupart des mouvements<br>sont une combinaison des deux :
+<p class="fragment fade-up">une translation d'ensemble<br>+ une rotation propre</p>
 
-<p class="fragment fade-up">La rotation a ceci de particulier<br>qu'elle se fait toujours autour d'un point précis :<br>le <span class="imp">centre de masse</span> du système.</p>
+---
+
+<u>Rq</u> :
+
+<p class="fragment fade-up">La rotation d'un objet libre se fait toujours<br>autour du <span class="imp">centre de masse</span> du système.</p>
 
 
 ---
@@ -342,7 +347,7 @@ Pour définir le vecteur vitesse, on va avoir besoin<br>du <span class="imp" sty
 
 
 <div style="position:relative;margin:auto;width:fit-content;color:#FFD932;border:solid 5px #FFD932;padding:0px 50px 20px 50px;border-radius:10px">
-$$\overrightarrow{v_{moy}} = \frac{\color{#00AB8E}\overrightarrow{\mathrm{MM'}}}{\Delta t}$$
+$$\overrightarrow{v_\mathrm{moy}} = \frac{\color{#00AB8E}\overrightarrow{\mathrm{MM'}}}{\Delta t}$$
 </div>
 
 <br>
@@ -352,12 +357,12 @@ $$\overrightarrow{v_{moy}} = \frac{\color{#00AB8E}\overrightarrow{\mathrm{MM'}}}
 
 ---
 
-Le <span class="imp" style="color:#FFD932">vecteur vitesse moyenne $\vec{v}_{moy}$</span><br>est donc défini comme le vecteur : 
+Le <span class="imp" style="color:#FFD932">vecteur vitesse moyenne $\vec{v}_\mathrm{moy}$</span><br>est donc défini comme le vecteur : 
 
 <ul>
 <li class="fragment fade-up" style="color:#fff;">de même direction que $\textstyle \color{#00AB8E}\overrightarrow{\mathrm{MM'}}$,</li>
 <li class="fragment fade-up" style="color:#fff;">de même sens que $\textstyle \color{#00AB8E}\overrightarrow{\mathrm{MM'}}$,</li>
-	<li class="fragment fade-up" style="color:#fff;">et de norme <span style="color:#FFD932;">$v_{moy}$</span> donnée par : $\color{#FFD932} v_{moy}=\frac{\mathrm{MM'}}{\Delta t}$</li>
+	<li class="fragment fade-up" style="color:#fff;">et de norme <span style="color:#FFD932;">$v_\mathrm{moy}$</span> donnée par : $\color{#FFD932} v_\mathrm{moy}=\frac{\mathrm{MM'}}{\Delta t}$</li>
 </ul>
 
 
@@ -367,7 +372,7 @@ Dans le <span class="imp">Système international d'unités (SI)</span> :
 <ul style="color:#fff">
 <li> $\mathrm{MM'}$ est mesuré en <span class="imp fragment">$\text{m}$</span></li>
 <li>$\Delta t$ est mesuré en <span class="imp fragment">$\text{s}$</span></li>
-<li>et donc $v_{moy}$ est donnée en <span class="imp fragment">$\pu{m*s-1}$</span></li>
+<li>et donc $v_\mathrm{moy}$ est donnée en <span class="imp fragment">$\pu{m*s-1}$</span></li>
 </ul>
 
 ---
@@ -411,7 +416,7 @@ Si la <span class="imp" style="color:#FFD932">vitesse $v$ est constante</span><b
 
 ---
 
-Si le mouvement est <span class="imp">rectiligne</span>,<br>$\vec{v}$ reste colinéaire à $\vec{v}\_{moy}$,<br>et s'il est en plus <span class="imp" style="color:#FFD932">uniforme</span>,<br>on a <span class="fragment" style="color:#FFD932;font-weight:bold">$\vec{v} = \vec{v}_{moy}$</span> à tout instant<br>(le vecteur vitesse est constant).
+Si le mouvement est <span class="imp">rectiligne</span>,<br>$\vec{v}$ reste colinéaire à $\vec{v}\_\mathrm{moy}$,<br>et s'il est en plus <span class="imp" style="color:#FFD932">uniforme</span>,<br>on a <span class="fragment" style="color:#FFD932;font-weight:bold">$\vec{v} = \vec{v}_\mathrm{moy}$</span> à tout instant<br>(le vecteur vitesse est constant).
 
 
 {{%/section%}}
