@@ -440,7 +440,7 @@ Ce sont des acrobates professionnels slovènes, les "Dunking Devils". La vidéo 
 
 Quelle est la trajectoire du "rebondeur"<br>dans le référentiel du tracteur ?
 
-Et dans le référentiel terrestre ?
+<p class="fragment fade-up">Et dans le référentiel terrestre ?</p>
 
 <p class="fragment fade-up">Et que peut-on dire de la composante horizontale<br>de sa vitesse (la vitesse de son ombre sur le sol)<br>dans ces deux référentiels ?</p>
 
@@ -452,7 +452,7 @@ Et dans le référentiel terrestre ?
 
 Quelle est la trajectoire du boulet<br>dans le référentiel du pick-up ?
 
-Et dans le référentiel terrestre ?
+<p class="fragment fade-up">Et dans le référentiel terrestre ?</p>
 
 <p class="fragment fade-up">Et que peut-on dire de la composante horizontale<br>de sa vitesse (la vitesse de son ombre sur le sol)<br>dans ces deux référentiels ?</p>
 
