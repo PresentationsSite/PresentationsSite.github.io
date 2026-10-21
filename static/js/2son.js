@@ -8,7 +8,7 @@ let color1 = [255, 100, 78];
 let color2 = [255, 217, 50];
 let color3 = [0, 162, 255];
 
-let freq = 0.2;
+let freq = 0.1886792453;
 
 function interpolateColor(color1, color2, ratio) {
 

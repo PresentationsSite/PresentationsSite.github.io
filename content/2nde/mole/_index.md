@@ -167,7 +167,7 @@ n \approx \frac{\pu{3,2E25}}{\pu{6,02E23}} \approx \pu{53 mol}
 $$
 <p>
 
-<p class="fragment fade-up"><u>Rq</u> : moles s'abrège mol<p>
+<p class="fragment fade-up"><u>Rq</u> : moles de symbole mol<p>
 
 ---
 
@@ -319,7 +319,7 @@ Déterminons enfin les quantités de matière<br>des différents métaux :</p>
 
 <u>Rq</u> :
 
-Le nombre d'éléments dans une mole<br>s'appelle le <span class="imp">nombre d'Avogadro</span> en hommage<br>à Amedeo Avogadro :
+Le nombre d'éléments dans une mole<br>s'appelle la <span class="imp">constante d'Avogadro</span> en hommage<br>à Amedeo Avogadro :
 
 <div style="position:relative;margin-left:auto;margin-right:auto;width:300px;max-width:100%;">
 <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Amedeo_Avogadro2.jpg" style="box-shadow:none;background:none;border-radius:15px;">
