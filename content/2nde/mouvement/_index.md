@@ -432,6 +432,10 @@ Si le mouvement est <span class="imp">rectiligne</span>,<br>$\vec{v}$ reste coli
 
 {{< slide  background-video="/inertietramp.mp4" background-size="contain" background-transition="concave">}}
 
+{{%note%}}
+Ce sont des acrobates professionnels slovènes, les "Dunking Devils". La vidéo date de 2019.
+{{%/note%}}
+
 ---
 
 Quelle est la trajectoire du "rebondeur"<br>dans le référentiel du tracteur ?
