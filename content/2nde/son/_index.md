@@ -330,7 +330,8 @@ Quelle est la période et la fréquence de ce signal ?
 
 
 {{%note%}}
-5 secondes théoriquement
+5,3 secondes théoriquement
+Faire mesurer sur une période puis sur 10 périodes.
 {{%/note%}}
 
 
