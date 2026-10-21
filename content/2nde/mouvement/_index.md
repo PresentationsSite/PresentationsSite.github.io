@@ -117,7 +117,7 @@ Exemples de référentiels :
 
 ---
 
-{{< youtube-slide id="1s8jrDC6eFY" ratio="16x9" >}}
+{{< youtube-slide id="1s8jrDC6eFY" ratio="16x9" start="1:51" end="2:11">}}
 
 ---
 
@@ -404,7 +404,8 @@ Comment améliorer la définition pour avoir accès à la vitesse instantanée e
 
 ---
 
-<iframe scrolling="no" title="vecteur déplacement et vitesse" src="https://www.geogebra.org/material/iframe/id/wefyydbs/width/620/height/463/border/888888/sfsb/true/smb/false/stb/false/stbh/false/ai/false/asb/false/sri/true/rc/false/ld/false/sdz/false/ctl/false" width="620px" height="463px" style="border:0px;"> </iframe>
+{{< geogebra-slide id="wefyydbs" width="620" height="463" maxheight="600" rounded="true" shadow="true" >}}
+
 
 ---
 
