@@ -161,7 +161,7 @@ Un <span style="font-weight:bold">réactif limitant</span> est un réactif qui <
 ---
 
 
-Quels est le réactif limitant<br>pour chacune des expériences ?
+Quel est le réactif limitant<br>pour chacune des expériences ?
 
 <ul style="color:#1DB100">
 <li class="fragment fade-up">Transfos 1 à 3 : <span class="fragment" style="color:#61D836">l'hydrogénocarbonate de sodium</span></li>
@@ -187,7 +187,7 @@ Données :
 <p style="color:#61D836">Pour l'hydrogénocarbonate de sodium :</p>
 
 <p style="color:#61D836">
-1<sup>re</sup> expérience : $m_{\ce{NaHCO3}} = \pu{2,0 g}$<br><span class="fragment" style="color:#61D836">$ N_{\ce{NaHCO3}}=$ </span><span class="fragment" style="color:#61D836">$\textstyle \frac{\pu{2,0 g}}{\pu{1,4E-22 g}} \approx \pu{1,4E22}$ molécules</span><br><span class="fragment" style="color:#61D836">et donc $n_{\ce{NaHCO3}} \approx $</span><span class="fragment" style="color:#61D836">$\frac{\pu{1,4E22}}{\pu{6,02E23}} \approx \pu{24 mmol}$</span></li>
+1<sup>re</sup> expérience : $m_{\ce{NaHCO3}} = \pu{2,0 g}$<br><span class="fragment" style="color:#61D836">$ N_{\ce{NaHCO3}}=$ </span><span class="fragment" style="color:#61D836">$\textstyle \frac{\pu{2,0 g}}{\pu{1,4E-22 g}} \approx \pu{1,4E22}$ entités</span><br><span class="fragment" style="color:#61D836">et donc $n_{\ce{NaHCO3}} \approx $</span><span class="fragment" style="color:#61D836">$\frac{\pu{1,4E22}}{\pu{6,02E23}} \approx \pu{24 mmol}$</span></li>
 </p>
 
 
@@ -899,7 +899,7 @@ Quel est le réactif limitant si on mélange :
 
 - 6 moles d'aluminium et 6 moles d'ions hydrogène ?
 - 1 mole d'aluminium et 3 moles d'ions hydrogène ?
-- 5 mole d'aluminium et 14 moles d'ions hydrogène ?
+- 5 moles d'aluminium et 14 moles d'ions hydrogène ?
 
 
 {{%/section%}}
@@ -913,7 +913,7 @@ Une transformation chimique est <span class="imp" style="color:#FF644E">exotherm
 
 ---
 
-Une transformation chimique est <span class="imp">endothermique</span><br>si elle récupère de l'énergie thermique de son environnement (ce qui le refoidit).
+Une transformation chimique est <span class="imp">endothermique</span><br>si elle récupère de l'énergie thermique de son environnement (ce qui le refroidit).
 
 ---
 
