@@ -135,7 +135,7 @@ Le "en temps normal" n'est pas clair. Dans une pièce avec que de l'air. Ou dans
 
 
 <p class="fragment fade-up">On ne voit pas le faisceau de lumière !<br>
-On voit la poussière ou les goutelettes d'eau éclairées.</p>
+On voit la poussière ou les gouttelettes d'eau éclairées.</p>
 
 ---
 
@@ -715,7 +715,7 @@ Qu'implique la vidéo précédente ?
   </div>
 </div>
 
-<p class="fragment fade-up">$\color{#61D836}n_1$ et $\color{#FFD932}n_2$ sont les <span class="imp">indices optiques</span><br>des milieu 1 et 2.</p>
+<p class="fragment fade-up">$\color{#61D836}n_1$ et $\color{#FFD932}n_2$ sont les <span class="imp">indices optiques</span><br>des milieux 1 et 2.</p>
 
 ---
 
@@ -840,7 +840,7 @@ Comment expliquer ce qu'on voit<br>(ou qu'on ne voit pas plutôt) ?
 
 ---
 
-Quelle phénomène peut-on observer seulement lorsque le rayon incident est dans un milieu d'indice plus grand que l'autre milieu ?
+Quel phénomène peut-on observer seulement lorsque le rayon incident est dans un milieu d'indice plus grand que l'autre milieu ?
 
 ---
 
@@ -893,7 +893,7 @@ Déterminer l'angle critique pour une interface eau-air et pour une interface ve
 
 <ul style="color:#61D836">
 <li class="fragment fade-up">eau$\leftrightarrow$air : $i_c=\sin^{-1}\left(\frac{1,0}{1,33}\right)=49°$</li>
-<li class="fragment fade-up">eau$\leftrightarrow$verre : $i_c=\sin^{-1}\left(\frac{1,0}{1,5}\right)=42°$</li>
+<li class="fragment fade-up">verre$\leftrightarrow$air : $i_c=\sin^{-1}\left(\frac{1,0}{1,5}\right)=42°$</li>
 </ul>
 
 ---
@@ -931,7 +931,7 @@ et donc plus la lumière est réfléchie.</p>
 
 ---
 
-Que peut-on prédire quant à l'indice<br>de réfraction de la moissonite ?
+Que peut-on prédire quant à l'indice<br>de réfraction de la moissanite ?
 
 <p class="fragment fade-up" style="color:#61D836">Il doit être du même ordre que celui du diamant !</p>
 
