@@ -3,6 +3,7 @@ title = "Tests d'identification"
 outputs = ["Reveal"]
 [reveal_hugo]
 theme = "black"
+custom_css = "css/noir-moderne.css"
 highlight_theme = "atom-one-dark-reasonable"
 
 +++
@@ -32,6 +33,12 @@ color:#fff;
 
 span {
 font-weight:normal;
+}
+
+/* Puces « outside » : on recale la puce dessinée par noir-moderne.css
+   sur l'emplacement de la puce native. */
+.reveal ul > li::before {
+left: -0.78em;
 }
 
 </style>

@@ -3,6 +3,7 @@ title = "Cortège"
 outputs = ["Reveal"]
 [reveal_hugo]
 theme = "black"
+custom_css = "css/noir-moderne.css"
 highlight_theme = "atom-one-dark-reasonable"
 +++
 
