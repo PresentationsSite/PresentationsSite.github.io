@@ -227,6 +227,24 @@ $$
 
 {{% section %}}
 
+## Rappels des règles avec<br>les puissances de 10 :
+
+---
+
+<div style="margin:auto; background-color:#0076BA; padding:20px 60px; width:fit-content; color:white; border-radius:10px; font-size:1.2em;">
+$10^a\times10^b=$ <span class="fragment"> $10^{a\color{#FF644E}+\color{white}b}$ </span>
+
+$\displaystyle 10^a/10^b=\frac{10^a}{10^b}=$ <span class="fragment"> $10^{a\color{#FF644E}-\color{white}b}$ </span>
+
+$\left(10^a\right)^b=$ <span class="fragment"> $10^{a\color{#FF644E}\times\color{white}b}$ </span>
+</div>
+
+{{% /section %}}
+
+---
+
+{{% section %}}
+
 ## Notation scientifique
 
 ---
@@ -276,8 +294,8 @@ Un nombre est écrit en <span class="imp">notation scientifique</span><br>lorsqu
 Et si le nombre comporte déjà<br>une puissance de 10 ?
 
 <ul>
-<li class="fragment fade-up">$632\times10^{5}$ $\longrightarrow$ <span class="fragment">$6{,}32\times10^{2}\times10^{5}$</span> <span class="fragment">$=6{,}32\times10^{7}$</span></li>
-<li class="fragment fade-up">$0{,}25\times10^{-3}$ $\longrightarrow$ <span class="fragment">$2{,}5\times10^{-1}\times10^{-3}$</span> <span class="fragment">$=2{,}5\times10^{-4}$</span></li>
+<li class="fragment fade-up">$632\times10^{5}$<br>$\longrightarrow$ <span class="fragment">$6{,}32\times10^{2}\times10^{5}$</span> <span class="fragment">$=6{,}32\times10^{7}$</span></li>
+<li class="fragment fade-up">$0{,}25\times10^{-3}$<br>$\longrightarrow$ <span class="fragment">$2{,}5\times10^{-1}\times10^{-3}$</span> <span class="fragment">$=2{,}5\times10^{-4}$</span></li>
 </ul>
 
 <p class="fragment fade-up">Si on multiplie $a$ par 10, on retire 1 à $n$<br>(et inversement) : le nombre ne change pas !</p>
@@ -320,14 +338,6 @@ Comment s'écrit $0{,}0045$<br>en notation scientifique ?
 
 ---
 
-Rappels des règles avec les puissances de 10 :
-
-- $10^a\times10^b=$ <span class="fragment"> $10^{a\color{#FF644E}+\color{white}b}$ </span>
-- $10^a/10^b=\frac{10^a}{10^b}=$ <span class="fragment"> $10^{a\color{#FF644E}-\color{white}b}$ </span>
-- $\left(10^a\right)^b=$ <span class="fragment"> $10^{a\color{#FF644E}\times\color{white}b}$ </span>
-
----
-
 Calculer et donner le résultat<br>en notation scientifique :
 
 <ul style="font-size:0.85em">
@@ -341,12 +351,11 @@ Calculer et donner le résultat<br>en notation scientifique :
 
 ---
 
-Pour revoir tout ça à la maison :
+Deux petites vidéos qui reprennent tout ça :
 
 ---
 
 {{< youtube-slide id="bBT1hOYQPnY" ratio="16x9" >}}
-
 
 
 ---
@@ -472,7 +481,7 @@ Pour <span class="imp">arrondir</span>, on regarde le chiffre suivant :<br>s'il 
 
 Et après un calcul ?
 
-<div class="encadre" style="margin-top:0.5em">
+<div class="encadre fragment fade-up" style="margin-top:0.5em">
 Le résultat d'une multiplication ou d'une division<br>s'écrit avec <b>autant de chiffres significatifs</b><br>que la donnée qui en a <b>le moins</b>.
 </div>
 
@@ -488,7 +497,9 @@ Un son parcourt $d = 1{,}7\ \text{km}$ en $\Delta t = 5{,}00\ \text{s}$.
 
 ---
 
-Éthanol : $\rho = 0{,}79\ \text{g/mL}$ et $V = 12{,}0\ \text{mL}$.<br>La calculatrice affiche $m = \rho\times V = 9{,}48$.<br>Quel résultat faut-il écrire ?
+Éthanol : $\rho = 0{,}79\ \text{g/mL}$ et $V = 12{,}0\ \text{mL}$.<br>La calculatrice affiche $m = \rho\times V = 9{,}48$.
+
+Quel résultat faut-il écrire ?
 
 <ol class="vote">
 <li class="fragment">$9{,}48\ \text{g}$</li>
@@ -518,7 +529,7 @@ Calculer en donnant le résultat avec<br>le bon nombre de chiffres significatifs
 
 ---
 
-Pour revoir tout ça à la maison :
+Vidéo riche (un peu trop) sur les cs : 
 
 ---
 
