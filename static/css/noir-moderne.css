@@ -317,14 +317,28 @@ body {
 
 /*********************************************
  * QUESTIONS
- * Toute phrase qui se termine par « ? » est surlignée automatiquement
- * par /js/noir-moderne.js (API CSS Custom Highlight) : aucune balise
- * ajoutée, aucun mot déplacé. Pour exclure un passage : class="pas-question".
+ * /js/noir-moderne.js repère les moments de participation (phrases en
+ * « ? », consignes à l'infinitif…) et dessine derrière chaque ligne un
+ * cadre .nm-q en position absolue : aucune balise autour du texte,
+ * aucun mot déplacé. Pour exclure un passage : class="pas-question" ;
+ * pour forcer un bloc : class="question".
  *********************************************/
-::highlight(nm-question) {
-  background-color: rgba(123, 97, 255, 0.3);
-  text-decoration: underline 3px rgba(165, 148, 255, 0.95);
-  text-underline-offset: 0.2em;
+.reveal .nm-q-hote {
+  isolation: isolate;        /* le cadre passe derrière le texte */
+}
+
+.reveal .nm-q {
+  position: absolute;
+  z-index: -1;
+  pointer-events: none;
+  border-radius: 0.32em;
+  background: rgba(123, 97, 255, 0.3);
+  box-shadow: inset 0 -3px 0 rgba(165, 148, 255, 0.95);
+  transition: opacity 0.4s ease;
+}
+
+.reveal .nm-q.nm-q-cache {
+  opacity: 0;
 }
 
 /*********************************************
