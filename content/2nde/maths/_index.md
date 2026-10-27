@@ -37,48 +37,17 @@ th:not(:last-child), td:not(:last-child) { border-right: 1px solid #00A2FF; }
 </style>
 
 
-
-{{% section %}}
-
-## Ordre de grandeur<br>et puissances de 10
-
----
-
-<span class="imp">Ordre de grandeur ?</span>
-
-C'est une mesure arrondie<br>à la puissance de 10 la plus proche.
-
-- $\pu{3E5}$ $\\,\\,$ ${\longrightarrow}$  <span class="fragment">$10^5$</span>
-- $\pu{5E5}$ $\\,\\,$ ${\longrightarrow}$ <span class="fragment">$10^6$</span>
-- $\pu{8E-5}$ ${\longrightarrow}$ <span class="fragment">$10^{-4}$</span>
-- $\pu{2E-5}$ ${\longrightarrow}$ <span class="fragment">$10^{-5}$</span>
-- $\pu{3,5}$ $\qquad \\;$ ${\longrightarrow}$ <span class="fragment">$10^0$ ou $1$</span>
-
----
-
-Rappels des règles avec les puissances de 10 :
-
-- $10^a\times10^b=$ <span class="fragment"> $10^{a\color{#FF644E}+\color{white}b}$ </span>
-- $10^a/10^b=\frac{10^a}{10^b}=$ <span class="fragment"> $10^{a\color{#FF644E}-\color{white}b}$ </span>
-- $\left(10^a\right)^b=$ <span class="fragment"> $10^{a\color{#FF644E}\times\color{white}b}$ </span>
-
----
-
-D'autres ordres de grandeur à trouver :
-
-
-- $\pu{632E5}$  ${\longrightarrow}$  <span class="fragment">$10^8$</span>
-- $\pu{632E-4}$  ${\longrightarrow}$ <span class="fragment">$10^{-1}$</span>
-- $\left(\pu{2E1}\right)^3$ ${\longrightarrow}$ <span class="fragment">$10^4$</span>
-- $\pu{5,0E-4}/1000$ ${\longrightarrow}$ <span class="fragment">$10^{-6}$</span>
-- $\frac{9800}{\pu{1060000}}$  ${\longrightarrow}$ <span class="fragment">$10^{-2}$</span>
-
-{{% /section %}}
+## Maths et expressions numériques<br>en sciences physiques
 
 ---
 
 {{% section %}}
 
+## Multiples et sous-multiples
+
+Pour remplacer les puissances de 10
+
+---
 
 ### les multiples :
 
@@ -141,7 +110,7 @@ D'autres ordres de grandeur à trouver :
 </tr>
 <tr>
 <td ><span class="fragment">micro</span></td>
-<td ><span class="fragment">$\mu$</span></td>
+<td ><span class="fragment">μ</span></td>
 <td>$10^{-6}$</td>
 </tr>
 <tr>
@@ -270,6 +239,52 @@ $$
 
 
 {{< youtube-slide id="PtftD6sU-Sc" ratio="16x9" >}}
+
+{{% /section %}}
+
+---
+
+{{% section %}}
+
+## Ordre de grandeur<br>et puissances de 10
+
+---
+
+<span class="imp">Ordre de grandeur ?</span>
+
+<p class="fragment fade-up">L'ordre de grandeur d'un nombre $a\times 10^b$<br>écrit en notation scientifique ($1≤a<10$) vaut :
+
+<ul>
+<li class="fragment fade-up"><span class="imp">$10^b$</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;si <span class="imp">$a<5$</span></li>
+<li class="fragment fade-up"><b style="color:#FFF056">$10^{b+1}$</b>&nbsp;&nbsp;si <b style="color:#FFF056">$a≥5$</b></li>
+</ul>
+
+---
+
+- $\pu{3E5}$ $\\,\\,$ ${\longrightarrow}$  <span class="fragment">$10^5$</span>
+- $\pu{5E5}$ $\\,\\,$ ${\longrightarrow}$ <span class="fragment">$10^6$</span>
+- $\pu{8E-5}$ ${\longrightarrow}$ <span class="fragment">$10^{-4}$</span>
+- $\pu{2E-5}$ ${\longrightarrow}$ <span class="fragment">$10^{-5}$</span>
+- $\pu{3,5}$ $\qquad \\;$ ${\longrightarrow}$ <span class="fragment">$10^0$ ou $1$</span>
+
+---
+
+Rappels des règles avec les puissances de 10 :
+
+- $10^a\times10^b=$ <span class="fragment"> $10^{a\color{#FF644E}+\color{white}b}$ </span>
+- $10^a/10^b=\frac{10^a}{10^b}=$ <span class="fragment"> $10^{a\color{#FF644E}-\color{white}b}$ </span>
+- $\left(10^a\right)^b=$ <span class="fragment"> $10^{a\color{#FF644E}\times\color{white}b}$ </span>
+
+---
+
+D'autres ordres de grandeur à trouver :
+
+
+- $\pu{632E5}$  ${\longrightarrow}$  <span class="fragment">$10^8$</span>
+- $\pu{632E-4}$  ${\longrightarrow}$ <span class="fragment">$10^{-1}$</span>
+- $\left(\pu{2E1}\right)^3$ ${\longrightarrow}$ <span class="fragment">$10^4$</span>
+- $\pu{5,0E-4}/1000$ ${\longrightarrow}$ <span class="fragment">$10^{-6}$</span>
+- $\frac{9800}{\pu{1060000}}$  ${\longrightarrow}$ <span class="fragment">$10^{-2}$</span>
 
 {{% /section %}}
 
