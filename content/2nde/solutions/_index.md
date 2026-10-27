@@ -237,7 +237,7 @@ On a $C_{max}= \frac{\pu{1,0 g}}{\pu{300 mL}} = \frac{\pu{1,0 g}}{\pu{0,300 L}} 
 $V = \pu{400 mL}$ et $m = \pu{1,20 g}$.</p>
 
 <div  class="fragment fade-up" style="color:#45B53C">
-Si on dilue les 1,20 g dans les 400 mL,<br>on atteint une concentration $C$ valant :
+Si on dissout les 1,20 g dans les 400 mL,<br>on atteint une concentration $C$ valant :
 $$C =  \frac{\pu{1,2 g}}{\pu{400 mL}} =  \frac{\pu{1,2 g}}{\pu{0,400 L}} = \pu{3,0 g/L}$$
 $C≤ C_{max}$ $\Rightarrow$ toute l'aspirine peut être dissoute.
 </div>

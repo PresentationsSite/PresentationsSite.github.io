@@ -197,7 +197,9 @@ Comme les atomes et molécules sont<br>électriquement <span class="fragment imp
 
 ---
 
-Un atome de sodium $\ce{Na}$ perd un électron.<br>Que devient-il ?
+Un atome de sodium $\ce{Na}$ perd un électron.
+
+Que devient-il ?
 
 <ol class="vote">
 <li class="fragment juste">l'ion $\ce{Na+}$</li>
