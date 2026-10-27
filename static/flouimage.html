@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lieu de l'image et mise au point — Lentille convergente</title>
+<style>
+  :root {
+    --bg: #0f172a;
+    --panel: #1e293b;
+    --text: #f8fafc;
+    --muted: #94a3b8;
+    --accent: #38bdf8;
+    --border: #334155;
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: 'Avenir Next', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 16px;
+    overflow-x: hidden;
+  }
+
+  .app-container {
+    width: 100%;
+    max-width: 1200px;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .canvas-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #090d16;
+  }
+
+  canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+    touch-action: none;
+  }
+
+  .controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px 24px;
+    background: var(--panel);
+    border-top: 1px solid var(--border);
+  }
+
+  .slider-container {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: #0f172a;
+    padding: 10px 24px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    width: 100%;
+    max-width: 560px;
+  }
+
+  .slider-container label {
+    font-size: 0.95rem;
+    color: var(--text);
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    flex: 1;
+    height: 6px;
+    background: #334155;
+    border-radius: 3px;
+    outline: none;
+  }
+
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--accent);
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
+    transition: transform 0.1s;
+  }
+
+  input[type="range"]::-webkit-slider-thumb:hover {
+    transform: scale(1.15);
+  }
+</style>
+</head>
+<body>
+
+<div class="app-container">
+  <div class="canvas-wrapper">
+    <canvas id="simCanvas" width="1200" height="675"></canvas>
+  </div>
+
+  <div class="controls">
+    <div class="slider-container">
+      <label for="screenSlider">Position de l'écran :</label>
+      <input type="range" id="screenSlider" min="430" max="830" step="1" value="530">
+    </div>
+  </div>
+</div>
+
+<script>
+const canvas = document.getElementById('simCanvas');
+const ctx = canvas.getContext('2d');
+const screenSlider = document.getElementById('screenSlider');
+
+// Géométrie du banc optique
+const opt = {
+  axisY: 340,
+  treeX: 110,
+  lensX: 370,
+  imageX: 630,     // Plan conjugué où se forme l'image nette (d_o = 260, d_i = 260)
+  minScreenX: 430, // Avant l'image
+  maxScreenX: 830, // Après l'image
+  screenH: 380,
+  lensDiam: 210
+};
+
+// État de la simulation (démarre légèrement défocalisé pour inviter à chercher l'image)
+const state = {
+  screenX: 530,
+  targetScreenX: 530,
+  isDragging: false,
+  isHoveringScreen: false
+};
+
+const d_o = opt.lensX - opt.treeX;   // 260 px
+const d_i = opt.imageX - opt.lensX;  // 260 px
+const gammaFocus = -d_i / d_o;       // -1
+
+// Modèle du cerisier
+const blossomClusters = [
+  { x: -45, y: 5,   r: 26, color: '#e91e63' },
+  { x: 45,  y: 5,   r: 26, color: '#e91e63' },
+  { x: -58, y: -25, r: 28, color: '#f06292' },
+  { x: 58,  y: -25, r: 28, color: '#f06292' },
+  { x: -25, y: -15, r: 32, color: '#f48fb1' },
+  { x: 25,  y: -15, r: 32, color: '#f48fb1' },
+  { x: -38, y: -58, r: 30, color: '#f06292' },
+  { x: 38,  y: -58, r: 30, color: '#f06292' },
+  { x: 0,   y: -38, r: 36, color: '#f8bbd0' },
+  { x: -18, y: -80, r: 27, color: '#f48fb1' },
+  { x: 18,  y: -80, r: 27, color: '#f48fb1' },
+  { x: 0,   y: -95, r: 25, color: '#ec407a' },
+  { x: -10, y: -52, r: 22, color: '#fce4ec' },
+  { x: 14,  y: -60, r: 20, color: '#fce4ec' }
+];
+
+// Les 3 sources des faisceaux sur l'arbre
+const raySources = [
+  { x: opt.treeX, y: opt.axisY - 98, color: [255, 105, 180] }, // Cime
+  { x: opt.treeX, y: opt.axisY - 25, color: [255, 205, 225] }, // Milieu du feuillage
+  { x: opt.treeX, y: opt.axisY + 100, color: [205, 130, 85] }  // Pied du tronc
+];
+
+// Échantillonnage d'un disque uniforme (spirale de Fibonacci) pour la tache de flou
+const NUM_KERNEL_SAMPLES = 64;
+const diskKernel = [];
+const goldenAngle = Math.PI * (3 - Math.sqrt(5));
+for (let i = 0; i < NUM_KERNEL_SAMPLES; i++) {
+  const r = Math.sqrt((i + 0.5) / NUM_KERNEL_SAMPLES);
+  const theta = i * goldenAngle;
+  diskKernel.push({
+    dx: r * Math.cos(theta),
+    dy: r * Math.sin(theta)
+  });
+}
+
+// Dessin vectoriel du cerisier centré en (0, 0)
+function renderTreeGraphic(targetCtx, withShadow = true) {
+  if (withShadow) {
+    targetCtx.fillStyle = 'rgba(0, 0, 0, 0.35)';
+    targetCtx.beginPath();
+    targetCtx.ellipse(0, 125, 36, 7, 0, 0, Math.PI * 2);
+    targetCtx.fill();
+  }
+
+  for (let i = 0; i < 6; i++) {
+    const pt = blossomClusters[i];
+    targetCtx.fillStyle = pt.color;
+    targetCtx.beginPath();
+    targetCtx.arc(pt.x, pt.y, pt.r, 0, Math.PI * 2);
+    targetCtx.fill();
+  }
+
+  targetCtx.fillStyle = '#6d4c41';
+  targetCtx.beginPath();
+  targetCtx.moveTo(-16, 125);
+  targetCtx.quadraticCurveTo(-8, 70, -10, 20);
+  targetCtx.lineTo(-34, -18);
+  targetCtx.lineTo(-26, -22);
+  targetCtx.lineTo(-5, 10);
+  targetCtx.lineTo(3, -32);
+  targetCtx.lineTo(11, -30);
+  targetCtx.lineTo(7, 14);
+  targetCtx.lineTo(32, -12);
+  targetCtx.lineTo(37, -5);
+  targetCtx.lineTo(10, 25);
+  targetCtx.quadraticCurveTo(10, 70, 18, 125);
+  targetCtx.closePath();
+  targetCtx.fill();
+
+  targetCtx.fillStyle = '#8d6e63';
+  targetCtx.beginPath();
+  targetCtx.moveTo(-6, 125);
+  targetCtx.quadraticCurveTo(-2, 70, -3, 18);
+  targetCtx.lineTo(3, 18);
+  targetCtx.quadraticCurveTo(4, 70, 6, 125);
+  targetCtx.closePath();
+  targetCtx.fill();
+
+  for (let i = 6; i < blossomClusters.length; i++) {
+    const pt = blossomClusters[i];
+    targetCtx.fillStyle = pt.color;
+    targetCtx.beginPath();
+    targetCtx.arc(pt.x, pt.y, pt.r, 0, Math.PI * 2);
+    targetCtx.fill();
+  }
+}
+
+// Pré-rendu hors-écran de l'image inversée (nette et pré-lissée)
+const sharpTreeCanvas = document.createElement('canvas');
+sharpTreeCanvas.width = 360;
+sharpTreeCanvas.height = 360;
+const sharpCtx = sharpTreeCanvas.getContext('2d');
+
+const softTreeCanvas = document.createElement('canvas');
+softTreeCanvas.width = 360;
+softTreeCanvas.height = 360;
+const softCtx = softTreeCanvas.getContext('2d');
+
+function initOffscreenCanvases() {
+  sharpCtx.clearRect(0, 0, 360, 360);
+  sharpCtx.save();
+  sharpCtx.translate(180, 180);
+  sharpCtx.scale(-1, -1);
+  renderTreeGraphic(sharpCtx, false);
+  sharpCtx.restore();
+
+  softCtx.clearRect(0, 0, 360, 360);
+  softCtx.save();
+  softCtx.globalAlpha = 0.08;
+  const preRadius = 15;
+  for (let i = 0; i < 32; i++) {
+    const r = Math.sqrt((i + 0.5) / 32) * preRadius;
+    const a = i * goldenAngle;
+    softCtx.drawImage(sharpTreeCanvas, r * Math.cos(a), r * Math.sin(a));
+  }
+  softCtx.restore();
+}
+initOffscreenCanvases();
+
+// Interactions : curseur ET glisser-déposer direct de l'écran sur le canvas
+function setTargetScreenX(val) {
+  let clamped = Math.max(opt.minScreenX, Math.min(opt.maxScreenX, val));
+  // Léger magnétisme doux au passage exact par le plan conjugué (630)
+  if (Math.abs(clamped - opt.imageX) < 3.5) {
+    clamped = opt.imageX;
+  }
+  state.targetScreenX = clamped;
+  screenSlider.value = Math.round(clamped);
+}
+
+screenSlider.addEventListener('input', (e) => {
+  setTargetScreenX(parseFloat(e.target.value));
+});
+
+function getCanvasCoords(e) {
+  const rect = canvas.getBoundingClientRect();
+  const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+  const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+  return {
+    x: (clientX - rect.left) * (canvas.width / rect.width),
+    y: (clientY - rect.top) * (canvas.height / rect.height)
+  };
+}
+
+canvas.addEventListener('pointerdown', (e) => {
+  const pos = getCanvasCoords(e);
+  if (Math.abs(pos.x - state.screenX) < 28 && Math.abs(pos.y - opt.axisY) < opt.screenH / 2 + 25) {
+    state.isDragging = true;
+    canvas.setPointerCapture(e.pointerId);
+  } else if (pos.x >= opt.minScreenX - 20 && pos.x <= opt.maxScreenX + 20 && Math.abs(pos.y - opt.axisY) < opt.screenH / 2) {
+    state.isDragging = true;
+    setTargetScreenX(pos.x);
+    canvas.setPointerCapture(e.pointerId);
+  }
+});
+
+canvas.addEventListener('pointermove', (e) => {
+  const pos = getCanvasCoords(e);
+  if (state.isDragging) {
+    setTargetScreenX(pos.x);
+  } else {
+    state.isHoveringScreen = (
+      Math.abs(pos.x - state.screenX) < 24 &&
+      Math.abs(pos.y - opt.axisY) < opt.screenH / 2 + 25
+    );
+    canvas.style.cursor = state.isHoveringScreen ? 'ew-resize' : 'default';
+  }
+});
+
+canvas.addEventListener('pointerup', (e) => {
+  if (state.isDragging) {
+    state.isDragging = false;
+    canvas.releasePointerCapture(e.pointerId);
+  }
+});
+
+// Dessin de l'arbre objet
+function drawTree() {
+  ctx.save();
+  ctx.translate(opt.treeX, opt.axisY);
+  renderTreeGraphic(ctx, true);
+  ctx.restore();
+}
+
+// Tracé des 3 faisceaux : convergent au plan de l'image (imageX) et divergent au-delà jusqu'à l'écran
+function drawRays() {
+  ctx.save();
+  ctx.globalCompositeOperation = 'screen';
+
+  const halfLens = opt.lensDiam / 2;
+  const numRays = 23;
+
+  for (const src of raySources) {
+    const [r, g, b] = src.color;
+    const dyObj = src.y - opt.axisY;
+    // Coordonnée Y du point image conjugué (à x = opt.imageX)
+    const imgY = opt.axisY + dyObj * gammaFocus;
+
+    for (let i = 0; i < numRays; i++) {
+      const frac = (i / (numRays - 1)) * 2 - 1; // [-1, 1]
+      const yAtLens = opt.axisY + frac * (halfLens * 0.94);
+
+      // 1. Rayon incident : de l'arbre jusqu'à la lentille
+      ctx.strokeStyle = `rgba(${r}, ${g}, ${b}, 0.26)`;
+      ctx.lineWidth = 1.3;
+      ctx.beginPath();
+      ctx.moveTo(src.x, src.y);
+      ctx.lineTo(opt.lensX, yAtLens);
+      ctx.stroke();
+
+      // 2. Rayon émergent réfracté : passe par (opt.imageX, imgY) et se prolonge en ligne droite jusqu'à l'écran
+      const slopeAfterLens = (imgY - yAtLens) / (opt.imageX - opt.lensX);
+      const yAtScreen = yAtLens + slopeAfterLens * (state.screenX - opt.lensX);
+
+      ctx.strokeStyle = `rgba(${r}, ${g}, ${b}, 0.34)`;
+      ctx.lineWidth = 1.35;
+      ctx.beginPath();
+      ctx.moveTo(opt.lensX, yAtLens);
+      ctx.lineTo(state.screenX, yAtScreen);
+      ctx.stroke();
+    }
+  }
+
+  ctx.restore();
+}
+
+// Dessin de la lentille convergente fixe
+function drawLens() {
+  ctx.save();
+  const h = opt.lensDiam / 2;
+  const thickness = 26;
+
+  const grad = ctx.createLinearGradient(opt.lensX - thickness, opt.axisY - h, opt.lensX + thickness, opt.axisY + h);
+  grad.addColorStop(0, 'rgba(125, 211, 252, 0.20)');
+  grad.addColorStop(0.5, 'rgba(224, 242, 254, 0.45)');
+  grad.addColorStop(1, 'rgba(56, 189, 248, 0.25)');
+
+  ctx.fillStyle = grad;
+  ctx.strokeStyle = 'rgba(186, 230, 253, 0.85)';
+  ctx.lineWidth = 2;
+
+  ctx.beginPath();
+  ctx.moveTo(opt.lensX, opt.axisY - h);
+  ctx.quadraticCurveTo(opt.lensX + thickness, opt.axisY, opt.lensX, opt.axisY + h);
+  ctx.quadraticCurveTo(opt.lensX - thickness, opt.axisY, opt.lensX, opt.axisY - h);
+  ctx.fill();
+  ctx.stroke();
+
+  // Flèches symboliques de la lentille convergente
+  ctx.beginPath();
+  ctx.moveTo(opt.lensX - 7, opt.axisY - h + 9);
+  ctx.lineTo(opt.lensX, opt.axisY - h);
+  ctx.lineTo(opt.lensX + 7, opt.axisY - h + 9);
+  ctx.moveTo(opt.lensX - 7, opt.axisY + h - 9);
+  ctx.lineTo(opt.lensX, opt.axisY + h);
+  ctx.lineTo(opt.lensX + 7, opt.axisY + h - 9);
+  ctx.stroke();
+
+  ctx.restore();
+}
+
+// Dessin de l'écran mobile (profil) et de la feuille de papier (face)
+function drawScreenAndPaper() {
+  const halfS = opt.screenH / 2;
+
+  // Distance courante entre la lentille et l'écran
+  const d_screen = state.screenX - opt.lensX;
+
+  // Facteur d'échelle projectif des centres des taches sur l'écran :
+  // Le rayon central issu de (x_obj, y_obj) passe par le centre optique (lensX, axisY) sans déviation
+  // Sa hauteur sur l'écran vaut donc y_screen = - y_obj * (d_screen / d_o)
+  const projScale = d_screen / d_i;
+
+  // Rayon géométrique du cercle de confusion (tache de diffusion) sur l'écran :
+  // Par théorème de Thalès dans le cône de demi-angle (D_lentille / 2) / d_i :
+  // R_flou = (D_lentille / 2) * |d_screen - d_i| / d_i
+  const coneHalfAperture = (opt.lensDiam * 0.94) / 2;
+  const blurRadius = coneHalfAperture * Math.abs(state.screenX - opt.imageX) / d_i;
+
+  // 1. Tranche de l'écran mobile sur le banc optique
+  ctx.save();
+
+  // Poignée de glissement en haut et en bas de l'écran pour suggérer l'interactivité
+  const activeColor = (state.isDragging || state.isHoveringScreen) ? '#38bdf8' : '#94a3b8';
+  ctx.fillStyle = activeColor;
+  ctx.beginPath();
+  ctx.roundRect(state.screenX - 7, opt.axisY - halfS - 14, 20, 14, 4);
+  ctx.roundRect(state.screenX - 7, opt.axisY + halfS, 20, 14, 4);
+  ctx.fill();
+
+  // Tranche blanche de la feuille
+  ctx.fillStyle = '#f8fafc';
+  ctx.fillRect(state.screenX, opt.axisY - halfS, 6, opt.screenH);
+
+  // Halo lumineux des 3 faisceaux coupés par l'écran
+  const sliceSpot = Math.max(3.5, blurRadius);
+  for (const src of raySources) {
+    const dyObj = src.y - opt.axisY;
+    const centerY = opt.axisY + dyObj * gammaFocus * projScale;
+    const [r, g, b] = src.color;
+
+    const grad = ctx.createRadialGradient(state.screenX, centerY, 1, state.screenX, centerY, sliceSpot + 6);
+    grad.addColorStop(0, `rgba(${r}, ${g}, ${b}, 0.85)`);
+    grad.addColorStop(1, `rgba(${r}, ${g}, ${b}, 0)`);
+
+    ctx.fillStyle = grad;
+    ctx.fillRect(state.screenX - 8, opt.axisY - halfS, 16, opt.screenH);
+  }
+  ctx.restore();
+
+  // 2. Feuille de papier vue de face (à droite)
+  const paperW = 270;
+  const paperH = 380;
+  const paperX = 890;
+  const paperY = opt.axisY - paperH / 2;
+  const paperCX = paperX + paperW / 2;
+  const paperCY = opt.axisY;
+
+  ctx.save();
+
+  // Lignes de rappel dynamiques reliant l'écran mobile à la feuille vue de face
+  ctx.strokeStyle = 'rgba(148, 163, 184, 0.25)';
+  ctx.setLineDash([4, 4]);
+  ctx.beginPath();
+  ctx.moveTo(state.screenX + 6, opt.axisY - halfS);
+  ctx.lineTo(paperX, paperY);
+  ctx.moveTo(state.screenX + 6, opt.axisY + halfS);
+  ctx.lineTo(paperX, paperY + paperH);
+  ctx.stroke();
+  ctx.setLineDash([]);
+
+  // Ombre portée
+  ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
+  ctx.fillRect(paperX + 8, paperY + 10, paperW, paperH);
+
+  // Découpe de la feuille
+  ctx.beginPath();
+  ctx.rect(paperX, paperY, paperW, paperH);
+  ctx.clip();
+
+  // Fond de la feuille
+  ctx.fillStyle = '#141824';
+  ctx.fillRect(paperX, paperY, paperW, paperH);
+
+  // Dimensions projetées de l'image de l'arbre sur l'écran
+  const scaledW = sharpTreeCanvas.width * projScale;
+  const scaledH = sharpTreeCanvas.height * projScale;
+  const baseX = paperCX - scaledW / 2;
+  const baseY = paperCY - scaledH / 2;
+
+  if (blurRadius < 0.8) {
+    // Écran exactement dans le plan conjugué : stigmatisme -> image parfaitement nette
+    ctx.globalAlpha = 1.0;
+    ctx.drawImage(sharpTreeCanvas, baseX, baseY, scaledW, scaledH);
+  } else {
+    // Écran en avant ou en arrière du plan de l'image :
+    // Chaque point image s'étale en une tache circulaire de rayon blurRadius
+    const sourceCanvas = blurRadius > 14 ? softTreeCanvas : sharpTreeCanvas;
+
+    // Légère baisse de la densité surfacique lumineuse quand l'arbre s'agrandit loin de la lentille
+    const energyScale = Math.min(1.1, 1 / Math.pow(projScale, 0.45));
+    ctx.globalAlpha = (energyScale / NUM_KERNEL_SAMPLES) * 1.65;
+
+    for (let i = 0; i < NUM_KERNEL_SAMPLES; i++) {
+      const k = diskKernel[i];
+      ctx.drawImage(
+        sourceCanvas,
+        baseX + k.dx * blurRadius,
+        baseY + k.dy * blurRadius,
+        scaledW,
+        scaledH
+      );
+    }
+  }
+
+  // Cadre de la feuille (s'illumine discrètement en bleu quand la mise au point est exacte)
+  ctx.globalAlpha = 1.0;
+  ctx.strokeStyle = blurRadius < 1.2 ? '#38bdf8' : '#cbd5e1';
+  ctx.lineWidth = blurRadius < 1.2 ? 2.5 : 2;
+  ctx.strokeRect(paperX, paperY, paperW, paperH);
+
+  ctx.restore();
+}
+
+function animate() {
+  state.screenX += (state.targetScreenX - state.screenX) * 0.22;
+
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  // Axe optique
+  ctx.strokeStyle = 'rgba(148, 163, 184, 0.12)';
+  ctx.lineWidth = 1;
+  ctx.setLineDash([8, 8]);
+  ctx.beginPath();
+  ctx.moveTo(30, opt.axisY);
+  ctx.lineTo(opt.maxScreenX + 30, opt.axisY);
+  ctx.stroke();
+  ctx.setLineDash([]);
+
+  drawTree();
+  drawRays();
+  drawLens();
+  drawScreenAndPaper();
+
+  requestAnimationFrame(animate);
+}
+
+requestAnimationFrame(animate);
+</script>
+</body>
+</html>

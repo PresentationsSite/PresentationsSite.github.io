@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cache sur lentille et formation de l'image</title>
+<style>
+  :root {
+    --bg: #0f172a;
+    --panel: #1e293b;
+    --text: #f8fafc;
+    --muted: #94a3b8;
+    --accent: #38bdf8;
+    --border: #334155;
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: 'Avenir Next', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 16px;
+    overflow-x: hidden;
+  }
+
+  .app-container {
+    width: 100%;
+    max-width: 1200px;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .canvas-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #090d16;
+  }
+
+  canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+    touch-action: none;
+  }
+
+  .controls {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    padding: 16px 24px;
+    background: var(--panel);
+    border-top: 1px solid var(--border);
+  }
+
+  .slider-container {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: #0f172a;
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    flex: 1;
+    max-width: 420px;
+  }
+
+  .slider-container label {
+    font-size: 0.9rem;
+    color: var(--text);
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    flex: 1;
+    height: 6px;
+    background: #334155;
+    border-radius: 3px;
+    outline: none;
+  }
+
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--accent);
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
+    transition: transform 0.1s;
+  }
+
+  input[type="range"]::-webkit-slider-thumb:hover {
+    transform: scale(1.15);
+  }
+</style>
+</head>
+<body>
+
+<div class="app-container">
+  <div class="canvas-wrapper">
+    <canvas id="simCanvas" width="1200" height="675"></canvas>
+  </div>
+
+  <div class="controls">
+    <div class="slider-container">
+      <label for="screenSlider">Écran :</label>
+      <input type="range" id="screenSlider" min="430" max="830" step="1" value="530">
+    </div>
+    <div class="slider-container">
+      <label for="cacheSlider">Cache :</label>
+      <input type="range" id="cacheSlider" min="0" max="208" step="1" value="0">
+    </div>
+  </div>
+</div>
+
+<script>
+const canvas = document.getElementById('simCanvas');
+const ctx = canvas.getContext('2d');
+const screenSlider = document.getElementById('screenSlider');
+const cacheSlider = document.getElementById('cacheSlider');
+
+const opt = {
+  axisY: 340,
+  treeX: 110,
+  lensX: 370,
+  imageX: 630,
+  minScreenX: 430,
+  maxScreenX: 830,
+  screenH: 380,
+  lensDiam: 210
+};
+
+const state = {
+  screenX: 530,
+  targetScreenX: 530,
+  cacheHeight: 0,
+  targetCacheHeight: 0,
+  isDraggingScreen: false,
+  isHoveringScreen: false
+};
+
+const d_o = opt.lensX - opt.treeX;  // 260
+const d_i = opt.imageX - opt.lensX; // 260
+const gammaFocus = -d_i / d_o;      // -1
+
+// Modèle du cerisier
+const blossomClusters = [
+  { x: -45, y: 5,   r: 26, color: '#e91e63' },
+  { x: 45,  y: 5,   r: 26, color: '#e91e63' },
+  { x: -58, y: -25, r: 28, color: '#f06292' },
+  { x: 58,  y: -25, r: 28, color: '#f06292' },
+  { x: -25, y: -15, r: 32, color: '#f48fb1' },
+  { x: 25,  y: -15, r: 32, color: '#f48fb1' },
+  { x: -38, y: -58, r: 30, color: '#f06292' },
+  { x: 38,  y: -58, r: 30, color: '#f06292' },
+  { x: 0,   y: -38, r: 36, color: '#f8bbd0' },
+  { x: -18, y: -80, r: 27, color: '#f48fb1' },
+  { x: 18,  y: -80, r: 27, color: '#f48fb1' },
+  { x: 0,   y: -95, r: 25, color: '#ec407a' },
+  { x: -10, y: -52, r: 22, color: '#fce4ec' },
+  { x: 14,  y: -60, r: 20, color: '#fce4ec' }
+];
+
+const raySources = [
+  { x: opt.treeX, y: opt.axisY - 98, color: [255, 105, 180] },
+  { x: opt.treeX, y: opt.axisY - 25, color: [255, 205, 225] },
+  { x: opt.treeX, y: opt.axisY + 100, color: [205, 130, 85] }
+];
+
+// Échantillonnage de la pupille circulaire de la lentille (80 points sur le disque unité)
+const NUM_PUPIL_SAMPLES = 80;
+const pupilKernel = [];
+const goldenAngle = Math.PI * (3 - Math.sqrt(5));
+for (let i = 0; i < NUM_PUPIL_SAMPLES; i++) {
+  const r = Math.sqrt((i + 0.5) / NUM_PUPIL_SAMPLES);
+  const theta = i * goldenAngle;
+  pupilKernel.push({
+    ux: r * Math.cos(theta), // [-1, 1]
+    uy: r * Math.sin(theta)  // [-1, 1] (-1 = haut de la lentille, +1 = bas de la lentille)
+  });
+}
+
+function renderTreeGraphic(targetCtx, withShadow = true) {
+  if (withShadow) {
+    targetCtx.fillStyle = 'rgba(0, 0, 0, 0.35)';
+    targetCtx.beginPath();
+    targetCtx.ellipse(0, 125, 36, 7, 0, 0, Math.PI * 2);
+    targetCtx.fill();
+  }
+
+  for (let i = 0; i < 6; i++) {
+    const pt = blossomClusters[i];
+    targetCtx.fillStyle = pt.color;
+    targetCtx.beginPath();
+    targetCtx.arc(pt.x, pt.y, pt.r, 0, Math.PI * 2);
+    targetCtx.fill();
+  }
+
+  targetCtx.fillStyle = '#6d4c41';
+  targetCtx.beginPath();
+  targetCtx.moveTo(-16, 125);
+  targetCtx.quadraticCurveTo(-8, 70, -10, 20);
+  targetCtx.lineTo(-34, -18);
+  targetCtx.lineTo(-26, -22);
+  targetCtx.lineTo(-5, 10);
+  targetCtx.lineTo(3, -32);
+  targetCtx.lineTo(11, -30);
+  targetCtx.lineTo(7, 14);
+  targetCtx.lineTo(32, -12);
+  targetCtx.lineTo(37, -5);
+  targetCtx.lineTo(10, 25);
+  targetCtx.quadraticCurveTo(10, 70, 18, 125);
+  targetCtx.closePath();
+  targetCtx.fill();
+
+  targetCtx.fillStyle = '#8d6e63';
+  targetCtx.beginPath();
+  targetCtx.moveTo(-6, 125);
+  targetCtx.quadraticCurveTo(-2, 70, -3, 18);
+  targetCtx.lineTo(3, 18);
+  targetCtx.quadraticCurveTo(4, 70, 6, 125);
+  targetCtx.closePath();
+  targetCtx.fill();
+
+  for (let i = 6; i < blossomClusters.length; i++) {
+    const pt = blossomClusters[i];
+    targetCtx.fillStyle = pt.color;
+    targetCtx.beginPath();
+    targetCtx.arc(pt.x, pt.y, pt.r, 0, Math.PI * 2);
+    targetCtx.fill();
+  }
+}
+
+// Canvas hors-écran
+const sharpTreeCanvas = document.createElement('canvas');
+sharpTreeCanvas.width = 360;
+sharpTreeCanvas.height = 360;
+const sharpCtx = sharpTreeCanvas.getContext('2d');
+
+const softTreeCanvas = document.createElement('canvas');
+softTreeCanvas.width = 360;
+softTreeCanvas.height = 360;
+const softCtx = softTreeCanvas.getContext('2d');
+
+function initOffscreenCanvases() {
+  sharpCtx.clearRect(0, 0, 360, 360);
+  sharpCtx.save();
+  sharpCtx.translate(180, 180);
+  sharpCtx.scale(-1, -1);
+  renderTreeGraphic(sharpCtx, false);
+  sharpCtx.restore();
+
+  softCtx.clearRect(0, 0, 360, 360);
+  softCtx.save();
+  softCtx.globalAlpha = 0.08;
+  const preRadius = 11;
+  for (let i = 0; i < 32; i++) {
+    const r = Math.sqrt((i + 0.5) / 32) * preRadius;
+    const a = i * goldenAngle;
+    softCtx.drawImage(sharpTreeCanvas, r * Math.cos(a), r * Math.sin(a));
+  }
+  softCtx.restore();
+}
+initOffscreenCanvases();
+
+function setTargetScreenX(val) {
+  let clamped = Math.max(opt.minScreenX, Math.min(opt.maxScreenX, val));
+  if (Math.abs(clamped - opt.imageX) < 3.5) {
+    clamped = opt.imageX;
+  }
+  state.targetScreenX = clamped;
+  screenSlider.value = Math.round(clamped);
+}
+
+screenSlider.addEventListener('input', (e) => {
+  setTargetScreenX(parseFloat(e.target.value));
+});
+
+cacheSlider.addEventListener('input', (e) => {
+  state.targetCacheHeight = parseFloat(e.target.value);
+});
+
+function getCanvasCoords(e) {
+  const rect = canvas.getBoundingClientRect();
+  const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+  const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+  return {
+    x: (clientX - rect.left) * (canvas.width / rect.width),
+    y: (clientY - rect.top) * (canvas.height / rect.height)
+  };
+}
+
+canvas.addEventListener('pointerdown', (e) => {
+  const pos = getCanvasCoords(e);
+  if (Math.abs(pos.x - state.screenX) < 28 && Math.abs(pos.y - opt.axisY) < opt.screenH / 2 + 25) {
+    state.isDraggingScreen = true;
+    canvas.setPointerCapture(e.pointerId);
+  } else if (pos.x >= opt.minScreenX - 20 && pos.x <= opt.maxScreenX + 20 && Math.abs(pos.y - opt.axisY) < opt.screenH / 2) {
+    state.isDraggingScreen = true;
+    setTargetScreenX(pos.x);
+    canvas.setPointerCapture(e.pointerId);
+  }
+});
+
+canvas.addEventListener('pointermove', (e) => {
+  const pos = getCanvasCoords(e);
+  if (state.isDraggingScreen) {
+    setTargetScreenX(pos.x);
+  } else {
+    state.isHoveringScreen = (
+      Math.abs(pos.x - state.screenX) < 24 &&
+      Math.abs(pos.y - opt.axisY) < opt.screenH / 2 + 25
+    );
+    canvas.style.cursor = state.isHoveringScreen ? 'ew-resize' : 'default';
+  }
+});
+
+canvas.addEventListener('pointerup', (e) => {
+  if (state.isDraggingScreen) {
+    state.isDraggingScreen = false;
+    canvas.releasePointerCapture(e.pointerId);
+  }
+});
+
+function drawTree() {
+  ctx.save();
+  ctx.translate(opt.treeX, opt.axisY);
+  renderTreeGraphic(ctx, true);
+  ctx.restore();
+}
+
+// Tracé des rayons passant par la partie non masquée de la lentille
+function drawRays() {
+  ctx.save();
+  ctx.globalCompositeOperation = 'screen';
+
+  const halfLens = opt.lensDiam / 2;
+  const maxRayRadius = halfLens * 0.94;
+  const lensTopY = opt.axisY - halfLens;
+  const openTopY = lensTopY + state.cacheHeight;
+
+  const numRays = 25;
+
+  for (const src of raySources) {
+    const [r, g, b] = src.color;
+    const dyObj = src.y - opt.axisY;
+    const imgY = opt.axisY + dyObj * gammaFocus;
+
+    for (let i = 0; i < numRays; i++) {
+      const frac = (i / (numRays - 1)) * 2 - 1; // [-1, 1]
+      const yAtLens = opt.axisY + frac * maxRayRadius;
+
+      // Le rayon est bloqué s'il tape dans le cache supérieur
+      if (yAtLens < openTopY) continue;
+
+      // 1. Rayon incident
+      ctx.strokeStyle = `rgba(${r}, ${g}, ${b}, 0.28)`;
+      ctx.lineWidth = 1.3;
+      ctx.beginPath();
+      ctx.moveTo(src.x, src.y);
+      ctx.lineTo(opt.lensX, yAtLens);
+      ctx.stroke();
+
+      // 2. Rayon émergent passant par le point conjugué (opt.imageX, imgY)
+      const slopeAfterLens = (imgY - yAtLens) / (opt.imageX - opt.lensX);
+      const yAtScreen = yAtLens + slopeAfterLens * (state.screenX - opt.lensX);
+
+      ctx.strokeStyle = `rgba(${r}, ${g}, ${b}, 0.36)`;
+      ctx.lineWidth = 1.35;
+      ctx.beginPath();
+      ctx.moveTo(opt.lensX, yAtLens);
+      ctx.lineTo(state.screenX, yAtScreen);
+      ctx.stroke();
+    }
+  }
+
+  ctx.restore();
+}
+
+function drawLensAndCache() {
+  ctx.save();
+  const h = opt.lensDiam / 2;
+  const thickness = 26;
+  const lensTopY = opt.axisY - h;
+  const lensBottomY = opt.axisY + h;
+
+  const grad = ctx.createLinearGradient(opt.lensX - thickness, lensTopY, opt.lensX + thickness, lensBottomY);
+  grad.addColorStop(0, 'rgba(125, 211, 252, 0.20)');
+  grad.addColorStop(0.5, 'rgba(224, 242, 254, 0.45)');
+  grad.addColorStop(1, 'rgba(56, 189, 248, 0.25)');
+
+  ctx.fillStyle = grad;
+  ctx.strokeStyle = 'rgba(186, 230, 253, 0.85)';
+  ctx.lineWidth = 2;
+
+  ctx.beginPath();
+  ctx.moveTo(opt.lensX, lensTopY);
+  ctx.quadraticCurveTo(opt.lensX + thickness, opt.axisY, opt.lensX, lensBottomY);
+  ctx.quadraticCurveTo(opt.lensX - thickness, opt.axisY, opt.lensX, lensTopY);
+  ctx.fill();
+  ctx.stroke();
+
+  ctx.beginPath();
+  ctx.moveTo(opt.lensX - 7, lensTopY + 9);
+  ctx.lineTo(opt.lensX, lensTopY);
+  ctx.lineTo(opt.lensX + 7, lensTopY + 9);
+  ctx.moveTo(opt.lensX - 7, lensBottomY - 9);
+  ctx.lineTo(opt.lensX, lensBottomY);
+  ctx.lineTo(opt.lensX + 7, lensBottomY - 9);
+  ctx.stroke();
+
+  if (state.cacheHeight > 0.5) {
+    ctx.save();
+    ctx.beginPath();
+    ctx.moveTo(opt.lensX, lensTopY);
+    ctx.quadraticCurveTo(opt.lensX + thickness, opt.axisY, opt.lensX, lensBottomY);
+    ctx.quadraticCurveTo(opt.lensX - thickness, opt.axisY, opt.lensX, lensTopY);
+    ctx.clip();
+
+    const cacheH = state.cacheHeight;
+    ctx.fillStyle = '#1e293b';
+    ctx.fillRect(opt.lensX - thickness * 2, lensTopY - 5, thickness * 4, cacheH + 5);
+
+    ctx.strokeStyle = '#64748b';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(opt.lensX - thickness * 1.5, lensTopY + cacheH);
+    ctx.lineTo(opt.lensX + thickness * 1.5, lensTopY + cacheH);
+    ctx.stroke();
+
+    ctx.restore();
+  }
+
+  ctx.restore();
+}
+
+function drawScreenAndPaper() {
+  const halfS = opt.screenH / 2;
+  const halfLens = opt.lensDiam / 2;
+  const maxRayRadius = halfLens * 0.94;
+  const lensTopY = opt.axisY - halfLens;
+  const openTopY = lensTopY + state.cacheHeight;
+
+  // Intervalle vertical [yLensTopOpen, yLensBottomOpen] de la lentille qui laisse effectivement passer les rayons
+  const yLensTopOpen = Math.max(opt.axisY - maxRayRadius, openTopY);
+  const yLensBottomOpen = opt.axisY + maxRayRadius;
+  const hasLight = yLensTopOpen < yLensBottomOpen;
+
+  // Paramètres optiques projectifs :
+  // Un rayon passant par la lentille en (lensX, yL) et visant le point image (imageX, yImg)
+  // coupe l'écran (screenX) à l'ordonnée :
+  // yScreen = yL + (yImg - yL) * (d_screen / d_i) = yImg * projScale + (yL - axisY) * (1 - projScale) + axisY
+  const d_screen = state.screenX - opt.lensX;
+  const projScale = d_screen / d_i;
+
+  // 1. Tranche de l'écran sur le banc optique
+  ctx.save();
+  const activeColor = (state.isDraggingScreen || state.isHoveringScreen) ? '#38bdf8' : '#94a3b8';
+  ctx.fillStyle = activeColor;
+  ctx.beginPath();
+  ctx.roundRect(state.screenX - 7, opt.axisY - halfS - 14, 20, 14, 4);
+  ctx.roundRect(state.screenX - 7, opt.axisY + halfS, 20, 14, 4);
+  ctx.fill();
+
+  ctx.fillStyle = '#f8fafc';
+  ctx.fillRect(state.screenX, opt.axisY - halfS, 6, opt.screenH);
+
+  // Taches lumineuses sur la tranche de l'écran : placées exactement à l'intersection des faisceaux tronqués !
+  if (hasLight) {
+    ctx.save();
+    ctx.beginPath();
+    ctx.rect(state.screenX - 10, opt.axisY - halfS, 20, opt.screenH);
+    ctx.clip();
+
+    for (const src of raySources) {
+      const dyObj = src.y - opt.axisY;
+      const imgY = opt.axisY + dyObj * gammaFocus;
+
+      // Ordonnées sur l'écran du rayon supérieur non bloqué et du rayon inférieur
+      const yScreen1 = yLensTopOpen + (imgY - yLensTopOpen) * projScale;
+      const yScreen2 = yLensBottomOpen + (imgY - yLensBottomOpen) * projScale;
+
+      const spotCenterY = 0.5 * (yScreen1 + yScreen2);
+      const spotHalfH = Math.max(3.5, 0.5 * Math.abs(yScreen2 - yScreen1));
+      const [r, g, b] = src.color;
+
+      const grad = ctx.createRadialGradient(state.screenX, spotCenterY, 1, state.screenX, spotCenterY, spotHalfH + 6);
+      grad.addColorStop(0, `rgba(${r}, ${g}, ${b}, 0.85)`);
+      grad.addColorStop(1, `rgba(${r}, ${g}, ${b}, 0)`);
+
+      ctx.fillStyle = grad;
+      ctx.fillRect(state.screenX - 10, spotCenterY - spotHalfH - 6, 20, (spotHalfH + 6) * 2);
+    }
+    ctx.restore();
+  }
+  ctx.restore();
+
+  // 2. Feuille de papier vue de face (à droite)
+  const paperW = 270;
+  const paperH = 380;
+  const paperX = 890;
+  const paperY = opt.axisY - paperH / 2;
+  const paperCX = paperX + paperW / 2;
+  const paperCY = opt.axisY;
+
+  ctx.save();
+
+  // Pointillés de rappel
+  ctx.strokeStyle = 'rgba(148, 163, 184, 0.25)';
+  ctx.setLineDash([4, 4]);
+  ctx.beginPath();
+  ctx.moveTo(state.screenX + 6, opt.axisY - halfS);
+  ctx.lineTo(paperX, paperY);
+  ctx.moveTo(state.screenX + 6, opt.axisY + halfS);
+  ctx.lineTo(paperX, paperY + paperH);
+  ctx.stroke();
+  ctx.setLineDash([]);
+
+  // Ombre portée
+  ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
+  ctx.fillRect(paperX + 8, paperY + 10, paperW, paperH);
+
+  ctx.beginPath();
+  ctx.rect(paperX, paperY, paperW, paperH);
+  ctx.clip();
+
+  ctx.fillStyle = '#141824';
+  ctx.fillRect(paperX, paperY, paperW, paperH);
+
+  if (hasLight) {
+    // Filtrage des échantillons de la pupille qui passent sous le cache (yL >= openTopY)
+    const openSamples = [];
+    for (let i = 0; i < NUM_PUPIL_SAMPLES; i++) {
+      const p = pupilKernel[i];
+      const yL = opt.axisY + p.uy * maxRayRadius;
+      if (yL >= openTopY) {
+        openSamples.push(p);
+      }
+    }
+
+    if (openSamples.length > 0) {
+      const scaledW = sharpTreeCanvas.width * projScale;
+      const scaledH = sharpTreeCanvas.height * projScale;
+      const baseX = paperCX - scaledW / 2;
+      const baseY = paperCY - scaledH / 2;
+
+      // Facteur de décalage géométrique dû à l'écart par rapport au plan conjugué :
+      // Pour un pinceau passant par (xL, yL) sur la lentille, le décalage sur l'écran vaut :
+      // delta = (pos_lentille) * (1 - d_screen / d_i)
+      const defocusFactor = 1 - projScale;
+      const fullBlurRadius = maxRayRadius * Math.abs(defocusFactor);
+
+      // Taille effective de la tache sur l'écran (réduite quand le cache ne laisse qu'une fine fente)
+      const openHeight = yLensBottomOpen - yLensTopOpen;
+      const effectiveVerticalBlur = (openHeight / 2) * Math.abs(defocusFactor);
+
+      // Choix de la texture source (nette quand la tache effective est petite ou à la mise au point)
+      const sourceCanvas = effectiveVerticalBlur > 12 ? softTreeCanvas : sharpTreeCanvas;
+
+      if (fullBlurRadius < 0.8) {
+        // Sur le plan conjugué : tous les pinceaux convergent exactement au même endroit,
+        // seule la luminosité diminue proportionnellement à la surface ouverte de la lentille
+        const openFraction = openSamples.length / NUM_PUPIL_SAMPLES;
+        ctx.globalAlpha = Math.max(0.06, openFraction);
+        ctx.drawImage(sharpTreeCanvas, baseX, baseY, scaledW, scaledH);
+      } else {
+        // Hors du plan conjugué : chaque échantillon non bloqué de la pupille projette son image
+        // à sa position géométrique exacte (décalée vers le bas si screenX < imageX, vers le haut si screenX > imageX)
+        const energyScale = Math.min(1.15, 1 / Math.pow(projScale, 0.45));
+        const perSampleAlpha = (energyScale / NUM_PUPIL_SAMPLES) * 1.75;
+        ctx.globalAlpha = Math.min(1.0, perSampleAlpha);
+
+        for (let i = 0; i < openSamples.length; i++) {
+          const p = openSamples[i];
+          const shiftX = (p.ux * maxRayRadius) * defocusFactor;
+          const shiftY = (p.uy * maxRayRadius) * defocusFactor;
+
+          ctx.drawImage(
+            sourceCanvas,
+            baseX + shiftX,
+            baseY + shiftY,
+            scaledW,
+            scaledH
+          );
+        }
+      }
+    }
+  }
+
+  // Cadre de la feuille
+  const openHeight = Math.max(0, yLensBottomOpen - yLensTopOpen);
+  const effectiveBlur = (openHeight / 2) * Math.abs(1 - projScale);
+  const isSharpEnough = hasLight && effectiveBlur < 2.2;
+
+  ctx.globalAlpha = 1.0;
+  ctx.strokeStyle = isSharpEnough ? '#38bdf8' : '#cbd5e1';
+  ctx.lineWidth = isSharpEnough ? 2.5 : 2;
+  ctx.strokeRect(paperX, paperY, paperW, paperH);
+
+  ctx.restore();
+}
+
+function animate() {
+  state.screenX += (state.targetScreenX - state.screenX) * 0.22;
+  state.cacheHeight += (state.targetCacheHeight - state.cacheHeight) * 0.22;
+
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  // Axe optique
+  ctx.strokeStyle = 'rgba(148, 163, 184, 0.12)';
+  ctx.lineWidth = 1;
+  ctx.setLineDash([8, 8]);
+  ctx.beginPath();
+  ctx.moveTo(30, opt.axisY);
+  ctx.lineTo(opt.maxScreenX + 30, opt.axisY);
+  ctx.stroke();
+  ctx.setLineDash([]);
+
+  drawTree();
+  drawRays();
+  drawLensAndCache();
+  drawScreenAndPaper();
+
+  requestAnimationFrame(animate);
+}
+
+requestAnimationFrame(animate);
+</script>
+</body>
+</html>

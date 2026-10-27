@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Formation des images — Sténopé et Lentille</title>
+<style>
+  :root {
+    --bg: #0f172a;
+    --panel: #1e293b;
+    --text: #f8fafc;
+    --muted: #94a3b8;
+    --accent: #38bdf8;
+    --border: #334155;
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: 'Avenir Next', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 16px;
+    overflow-x: hidden;
+  }
+
+  .app-container {
+    width: 100%;
+    max-width: 1200px;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .canvas-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #090d16;
+  }
+
+  canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  .controls {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 16px 24px;
+    background: var(--panel);
+    border-top: 1px solid var(--border);
+  }
+
+  .control-group {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .btn-toggle {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #0f172a;
+    color: var(--text);
+    border: 1px solid var(--border);
+    padding: 10px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    user-select: none;
+  }
+
+  .btn-toggle:hover:not(:disabled) {
+    border-color: var(--accent);
+  }
+
+  .btn-toggle.active {
+    background: rgba(56, 189, 248, 0.15);
+    border-color: var(--accent);
+    color: #fff;
+  }
+
+  .indicator {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--muted);
+    transition: background 0.2s ease;
+  }
+
+  .btn-toggle.active .indicator {
+    background: var(--accent);
+    box-shadow: 0 0 8px var(--accent);
+  }
+
+  .slider-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: #0f172a;
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    transition: opacity 0.2s;
+  }
+
+  .slider-container.disabled {
+    opacity: 0.4;
+    pointer-events: none;
+  }
+
+  .slider-container label {
+    font-size: 0.9rem;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+
+  input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 160px;
+    height: 6px;
+    background: #334155;
+    border-radius: 3px;
+    outline: none;
+  }
+
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--accent);
+    cursor: pointer;
+    transition: transform 0.1s;
+  }
+
+  input[type="range"]::-webkit-slider-thumb:hover {
+    transform: scale(1.15);
+  }
+
+  .presets {
+    display: flex;
+    gap: 8px;
+  }
+
+  .btn-preset {
+    background: transparent;
+    color: var(--muted);
+    border: 1px solid var(--border);
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: 0.82rem;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+
+  .btn-preset:hover {
+    color: var(--text);
+    border-color: var(--muted);
+    background: rgba(255, 255, 255, 0.05);
+  }
+</style>
+</head>
+<body>
+
+<div class="app-container">
+  <div class="canvas-wrapper">
+    <canvas id="simCanvas" width="1200" height="675"></canvas>
+  </div>
+
+  <div class="controls">
+    <div class="control-group">
+      <button id="btnDiaphragm" class="btn-toggle">
+        <span class="indicator"></span>
+        Interposer un diaphragme
+      </button>
+
+      <div id="sliderBox" class="slider-container disabled">
+        <label for="apertureSlider">Ouverture :</label>
+        <input type="range" id="apertureSlider" min="4" max="220" value="150">
+      </div>
+
+      <button id="btnLens" class="btn-toggle">
+        <span class="indicator"></span>
+        Placer une lentille convergente
+      </button>
+    </div>
+
+    <div class="presets">
+      <button class="btn-preset" id="preset1">1. Sans obstacle</button>
+      <button class="btn-preset" id="preset2">2. Grand trou</button>
+      <button class="btn-preset" id="preset3">3. Sténopé</button>
+      <button class="btn-preset" id="preset4">4. Lentille</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const canvas = document.getElementById('simCanvas');
+const ctx = canvas.getContext('2d');
+
+const btnDiaphragm = document.getElementById('btnDiaphragm');
+const btnLens = document.getElementById('btnLens');
+const sliderBox = document.getElementById('sliderBox');
+const apertureSlider = document.getElementById('apertureSlider');
+
+// État de la simulation
+const state = {
+  hasDiaphragm: false,
+  hasLens: false,
+  aperture: 150,
+  targetAperture: 150,
+  diaphragmAnim: 0,
+  lensAnim: 0
+};
+
+// Géométrie du banc optique
+const opt = {
+  axisY: 340,
+  treeX: 140,
+  lensX: 460,
+  screenX: 780,
+  screenH: 380,
+  lensMaxDiam: 220
+};
+
+const d_o = opt.lensX - opt.treeX;
+const d_i = opt.screenX - opt.lensX;
+const gamma = -d_i / d_o; // -1
+
+// Bouquets de fleurs du cerisier
+const blossomClusters = [
+  { x: -45, y: 5,   r: 26, color: '#e91e63' },
+  { x: 45,  y: 5,   r: 26, color: '#e91e63' },
+  { x: -58, y: -25, r: 28, color: '#f06292' },
+  { x: 58,  y: -25, r: 28, color: '#f06292' },
+  { x: -25, y: -15, r: 32, color: '#f48fb1' },
+  { x: 25,  y: -15, r: 32, color: '#f48fb1' },
+  { x: -38, y: -58, r: 30, color: '#f06292' },
+  { x: 38,  y: -58, r: 30, color: '#f06292' },
+  { x: 0,   y: -38, r: 36, color: '#f8bbd0' },
+  { x: -18, y: -80, r: 27, color: '#f48fb1' },
+  { x: 18,  y: -80, r: 27, color: '#f48fb1' },
+  { x: 0,   y: -95, r: 25, color: '#ec407a' },
+  { x: -10, y: -52, r: 22, color: '#fce4ec' },
+  { x: 14,  y: -60, r: 20, color: '#fce4ec' }
+];
+
+// Les 3 origines des faisceaux (sans petits cercles)
+const raySources = [
+  { x: opt.treeX, y: opt.axisY - 98, color: [255, 105, 180] }, // Cime
+  { x: opt.treeX, y: opt.axisY - 25, color: [255, 205, 225] }, // Milieu du feuillage
+  { x: opt.treeX, y: opt.axisY + 100, color: [205, 130, 85] }  // Pied du tronc
+];
+
+// Échantillonnage uniforme d'un disque (spirale d'or / Fibonacci) pour la convolution optique
+// Chaque point représente un pinceau lumineux passant par une zone de l'ouverture
+const NUM_KERNEL_SAMPLES = 64;
+const diskKernel = [];
+const goldenAngle = Math.PI * (3 - Math.sqrt(5));
+for (let i = 0; i < NUM_KERNEL_SAMPLES; i++) {
+  const r = Math.sqrt((i + 0.5) / NUM_KERNEL_SAMPLES); // r dans [0, 1]
+  const theta = i * goldenAngle;
+  diskKernel.push({
+    dx: r * Math.cos(theta),
+    dy: r * Math.sin(theta)
+  });
+}
+
+// Dessin vectoriel du cerisier centré en (0, 0)
+function renderTreeGraphic(targetCtx, withShadow = true) {
+  if (withShadow) {
+    targetCtx.fillStyle = 'rgba(0, 0, 0, 0.35)';
+    targetCtx.beginPath();
+    targetCtx.ellipse(0, 125, 36, 7, 0, 0, Math.PI * 2);
+    targetCtx.fill();
+  }
+
+  for (let i = 0; i < 6; i++) {
+    const pt = blossomClusters[i];
+    targetCtx.fillStyle = pt.color;
+    targetCtx.beginPath();
+    targetCtx.arc(pt.x, pt.y, pt.r, 0, Math.PI * 2);
+    targetCtx.fill();
+  }
+
+  targetCtx.fillStyle = '#6d4c41';
+  targetCtx.beginPath();
+  targetCtx.moveTo(-16, 125);
+  targetCtx.quadraticCurveTo(-8, 70, -10, 20);
+  targetCtx.lineTo(-34, -18);
+  targetCtx.lineTo(-26, -22);
+  targetCtx.lineTo(-5, 10);
+  targetCtx.lineTo(3, -32);
+  targetCtx.lineTo(11, -30);
+  targetCtx.lineTo(7, 14);
+  targetCtx.lineTo(32, -12);
+  targetCtx.lineTo(37, -5);
+  targetCtx.lineTo(10, 25);
+  targetCtx.quadraticCurveTo(10, 70, 18, 125);
+  targetCtx.closePath();
+  targetCtx.fill();
+
+  targetCtx.fillStyle = '#8d6e63';
+  targetCtx.beginPath();
+  targetCtx.moveTo(-6, 125);
+  targetCtx.quadraticCurveTo(-2, 70, -3, 18);
+  targetCtx.lineTo(3, 18);
+  targetCtx.quadraticCurveTo(4, 70, 6, 125);
+  targetCtx.closePath();
+  targetCtx.fill();
+
+  for (let i = 6; i < blossomClusters.length; i++) {
+    const pt = blossomClusters[i];
+    targetCtx.fillStyle = pt.color;
+    targetCtx.beginPath();
+    targetCtx.arc(pt.x, pt.y, pt.r, 0, Math.PI * 2);
+    targetCtx.fill();
+  }
+}
+
+// 1. Canvas hors-écran contenant l'image parfaitement nette et renversée (pour le stigmatisme et les petits trous)
+const sharpTreeCanvas = document.createElement('canvas');
+sharpTreeCanvas.width = 360;
+sharpTreeCanvas.height = 360;
+const sharpCtx = sharpTreeCanvas.getContext('2d');
+
+// 2. Canvas hors-écran pré-adouci pour éviter tout effet de "copies multiples" quand le trou est très grand
+const softTreeCanvas = document.createElement('canvas');
+softTreeCanvas.width = 360;
+softTreeCanvas.height = 360;
+const softCtx = softTreeCanvas.getContext('2d');
+
+function initOffscreenCanvases() {
+  // Image renversée parfaitement nette
+  sharpCtx.clearRect(0, 0, 360, 360);
+  sharpCtx.save();
+  sharpCtx.translate(180, 180);
+  sharpCtx.scale(-1, -1);
+  renderTreeGraphic(sharpCtx, false);
+  sharpCtx.restore();
+
+  // Image renversée pré-intégrée sur un petit voisinage (pour lisser les très grands flous sous Safari)
+  softCtx.clearRect(0, 0, 360, 360);
+  softCtx.save();
+  softCtx.globalAlpha = 0.08;
+  const preRadius = 18;
+  for (let i = 0; i < 32; i++) {
+    const r = Math.sqrt((i + 0.5) / 32) * preRadius;
+    const a = i * goldenAngle;
+    softCtx.drawImage(sharpTreeCanvas, r * Math.cos(a), r * Math.sin(a));
+  }
+  softCtx.restore();
+}
+initOffscreenCanvases();
+
+// Contrôles UI
+function updateUI() {
+  btnDiaphragm.classList.toggle('active', state.hasDiaphragm);
+  btnLens.classList.toggle('active', state.hasLens);
+  sliderBox.classList.toggle('disabled', !state.hasDiaphragm);
+  apertureSlider.value = Math.round(state.targetAperture);
+}
+
+btnDiaphragm.addEventListener('click', () => {
+  state.hasDiaphragm = !state.hasDiaphragm;
+  updateUI();
+});
+
+apertureSlider.addEventListener('input', (e) => {
+  state.targetAperture = parseFloat(e.target.value);
+});
+
+btnLens.addEventListener('click', () => {
+  state.hasLens = !state.hasLens;
+  if (state.hasLens) {
+    state.hasDiaphragm = true;
+    if (state.targetAperture < 150) {
+      state.targetAperture = 170;
+    }
+  }
+  updateUI();
+});
+
+document.getElementById('preset1').addEventListener('click', () => {
+  state.hasDiaphragm = false;
+  state.hasLens = false;
+  updateUI();
+});
+
+document.getElementById('preset2').addEventListener('click', () => {
+  state.hasDiaphragm = true;
+  state.hasLens = false;
+  state.targetAperture = 140;
+  updateUI();
+});
+
+document.getElementById('preset3').addEventListener('click', () => {
+  state.hasDiaphragm = true;
+  state.hasLens = false;
+  state.targetAperture = 10;
+  updateUI();
+});
+
+document.getElementById('preset4').addEventListener('click', () => {
+  state.hasDiaphragm = true;
+  state.hasLens = true;
+  state.targetAperture = 180;
+  updateUI();
+});
+
+// Dessin de l'arbre objet à gauche
+function drawTree() {
+  ctx.save();
+  ctx.translate(opt.treeX, opt.axisY);
+  renderTreeGraphic(ctx, true);
+  ctx.restore();
+}
+
+// Tracé des 3 faisceaux de rayons
+function drawRays() {
+  ctx.save();
+  ctx.globalCompositeOperation = 'screen';
+
+  const openHalf = state.hasDiaphragm ? state.aperture / 2 : opt.screenH;
+  const effectiveHalf = state.hasLens
+    ? Math.min(openHalf, opt.lensMaxDiam / 2)
+    : openHalf;
+
+  const numRays = 29;
+  const maxSpreadAtLens = 175;
+
+  for (const src of raySources) {
+    const [r, g, b] = src.color;
+    const dyObj = src.y - opt.axisY;
+    const imgY = opt.axisY + dyObj * gamma;
+
+    for (let i = 0; i < numRays; i++) {
+      const frac = (i / (numRays - 1)) * 2 - 1;
+      const yAtLens = opt.axisY + frac * maxSpreadAtLens;
+      const distFromAxis = Math.abs(yAtLens - opt.axisY);
+      const passes = distFromAxis <= effectiveHalf;
+
+      ctx.strokeStyle = `rgba(${r}, ${g}, ${b}, ${passes ? 0.30 : 0.12})`;
+      ctx.lineWidth = passes ? 1.4 : 1.0;
+
+      ctx.beginPath();
+      ctx.moveTo(src.x, src.y);
+
+      if (!state.hasDiaphragm && !state.hasLens) {
+        const slope = (yAtLens - src.y) / (opt.lensX - src.x);
+        const yAtScreen = src.y + slope * (opt.screenX - src.x);
+        if (Math.abs(yAtScreen - opt.axisY) <= opt.screenH * 0.62) {
+          ctx.lineTo(opt.screenX, yAtScreen);
+        } else {
+          const clampY = opt.axisY + Math.sign(yAtScreen - opt.axisY) * opt.screenH * 0.62;
+          const stopX = src.x + (clampY - src.y) / slope;
+          ctx.lineTo(stopX, clampY);
+        }
+        ctx.stroke();
+        continue;
+      }
+
+      ctx.lineTo(opt.lensX, yAtLens);
+      ctx.stroke();
+
+      if (passes) {
+        const slopeStraight = (yAtLens - src.y) / (opt.lensX - src.x);
+        const yStraight = yAtLens + slopeStraight * (opt.screenX - opt.lensX);
+        const yEnd = yStraight * (1 - state.lensAnim) + imgY * state.lensAnim;
+
+        if (Math.abs(yEnd - opt.axisY) <= opt.screenH * 0.52) {
+          ctx.strokeStyle = `rgba(${r}, ${g}, ${b}, 0.34)`;
+          ctx.lineWidth = 1.4;
+          ctx.beginPath();
+          ctx.moveTo(opt.lensX, yAtLens);
+          ctx.lineTo(opt.screenX, yEnd);
+          ctx.stroke();
+        }
+      }
+    }
+  }
+
+  ctx.restore();
+}
+
+// Dessin de la lentille et du diaphragme
+function drawOptics() {
+  if (state.lensAnim > 0.01) {
+    ctx.save();
+    ctx.globalAlpha = state.lensAnim;
+
+    const h = opt.lensMaxDiam / 2;
+    const thickness = 26 * state.lensAnim;
+
+    const grad = ctx.createLinearGradient(opt.lensX - thickness, opt.axisY - h, opt.lensX + thickness, opt.axisY + h);
+    grad.addColorStop(0, 'rgba(125, 211, 252, 0.20)');
+    grad.addColorStop(0.5, 'rgba(224, 242, 254, 0.45)');
+    grad.addColorStop(1, 'rgba(56, 189, 248, 0.25)');
+
+    ctx.fillStyle = grad;
+    ctx.strokeStyle = 'rgba(186, 230, 253, 0.85)';
+    ctx.lineWidth = 2;
+
+    ctx.beginPath();
+    ctx.moveTo(opt.lensX, opt.axisY - h);
+    ctx.quadraticCurveTo(opt.lensX + thickness, opt.axisY, opt.lensX, opt.axisY + h);
+    ctx.quadraticCurveTo(opt.lensX - thickness, opt.axisY, opt.lensX, opt.axisY - h);
+    ctx.fill();
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.moveTo(opt.lensX - 7, opt.axisY - h + 9);
+    ctx.lineTo(opt.lensX, opt.axisY - h);
+    ctx.lineTo(opt.lensX + 7, opt.axisY - h + 9);
+    ctx.moveTo(opt.lensX - 7, opt.axisY + h - 9);
+    ctx.lineTo(opt.lensX, opt.axisY + h);
+    ctx.lineTo(opt.lensX + 7, opt.axisY + h - 9);
+    ctx.stroke();
+
+    ctx.restore();
+  }
+
+  if (state.diaphragmAnim > 0.01) {
+    ctx.save();
+    ctx.globalAlpha = state.diaphragmAnim;
+
+    const halfGap = state.aperture / 2;
+    const outerH = 240;
+    const plateW = 10;
+
+    ctx.fillStyle = '#334155';
+    ctx.strokeStyle = '#94a3b8';
+    ctx.lineWidth = 1.5;
+
+    ctx.fillRect(opt.lensX - plateW / 2, opt.axisY - outerH, plateW, outerH - halfGap);
+    ctx.strokeRect(opt.lensX - plateW / 2, opt.axisY - outerH, plateW, outerH - halfGap);
+
+    ctx.fillRect(opt.lensX - plateW / 2, opt.axisY + halfGap, plateW, outerH - halfGap);
+    ctx.strokeRect(opt.lensX - plateW / 2, opt.axisY + halfGap, plateW, outerH - halfGap);
+
+    ctx.fillStyle = '#e2e8f0';
+    ctx.fillRect(opt.lensX - plateW / 2, opt.axisY - halfGap - 2, plateW, 2);
+    ctx.fillRect(opt.lensX - plateW / 2, opt.axisY + halfGap, plateW, 2);
+
+    ctx.restore();
+  }
+}
+
+// Dessin de l'écran de profil et de la feuille de papier de face (compatible Safari/Chrome/Firefox)
+function drawScreenAndPaper() {
+  const halfS = opt.screenH / 2;
+
+  // Diamètre d'ouverture effectif
+  const openDiam = state.hasDiaphragm ? state.aperture : 340;
+  const effDiam = state.hasLens ? Math.min(openDiam, opt.lensMaxDiam) : openDiam;
+
+  // Rayon géométrique de la tache de diffusion sur l'écran :
+  // - Sans lentille : proportionnel au diamètre du trou (grand trou ou sans obstacle -> énorme tache)
+  // - Avec lentille : tombe à 0 (stigmatisme)
+  const spreadRadius = effDiam * 0.85 * (1 - state.lensAnim);
+
+  // 1. Tranche de l'écran (profil)
+  ctx.save();
+  ctx.fillStyle = '#f8fafc';
+  ctx.fillRect(opt.screenX, opt.axisY - halfS, 6, opt.screenH);
+
+  const sliceSpot = Math.max(4, spreadRadius);
+  for (const src of raySources) {
+    const dyObj = src.y - opt.axisY;
+    const centerY = opt.axisY + dyObj * gamma;
+    const [r, g, b] = src.color;
+
+    const grad = ctx.createRadialGradient(opt.screenX, centerY, 1, opt.screenX, centerY, sliceSpot + 8);
+    grad.addColorStop(0, `rgba(${r}, ${g}, ${b}, 0.65)`);
+    grad.addColorStop(1, `rgba(${r}, ${g}, ${b}, 0)`);
+
+    ctx.fillStyle = grad;
+    ctx.fillRect(opt.screenX - 8, opt.axisY - halfS, 16, opt.screenH);
+  }
+  ctx.restore();
+
+  // 2. Feuille de papier vue de face
+  const paperW = 270;
+  const paperH = 380;
+  const paperX = 875;
+  const paperY = opt.axisY - paperH / 2;
+  const paperCX = paperX + paperW / 2;
+  const paperCY = opt.axisY;
+
+  ctx.save();
+
+  // Pointillés de correspondance
+  ctx.strokeStyle = 'rgba(148, 163, 184, 0.25)';
+  ctx.setLineDash([4, 4]);
+  ctx.beginPath();
+  ctx.moveTo(opt.screenX + 6, opt.axisY - halfS);
+  ctx.lineTo(paperX, paperY);
+  ctx.moveTo(opt.screenX + 6, opt.axisY + halfS);
+  ctx.lineTo(paperX, paperY + paperH);
+  ctx.stroke();
+  ctx.setLineDash([]);
+
+  // Ombre portée
+  ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
+  ctx.fillRect(paperX + 8, paperY + 10, paperW, paperH);
+
+  // Découpe de la feuille
+  ctx.beginPath();
+  ctx.rect(paperX, paperY, paperW, paperH);
+  ctx.clip();
+
+  // Fond sombre de la feuille
+  ctx.fillStyle = '#141824';
+  ctx.fillRect(paperX, paperY, paperW, paperH);
+
+  // Luminosité globale de l'image selon l'ouverture :
+  // En mode sténopé (petit trou), l'image reste bien visible (plancher 0.42) mais plus sombre qu'avec la lentille (1.0)
+  const totalBrightness = Math.min(1.0, 0.38 + 0.62 * Math.pow(effDiam / 100, 0.8));
+
+  const baseX = paperCX - sharpTreeCanvas.width / 2;
+  const baseY = paperCY - sharpTreeCanvas.height / 2;
+
+  if (spreadRadius < 1.2) {
+    // Cas 1 : Stigmatisme (lentille convergente) -> Image 100% nette !
+    ctx.globalAlpha = totalBrightness;
+    ctx.drawImage(sharpTreeCanvas, baseX, baseY);
+  } else {
+    // Cas 2 : Sans lentille -> Convolution optique sur le disque de diffusion de rayon spreadRadius
+    // Plus le trou est grand (ou absent), plus les projections sont décalées et se brouillent
+    const sourceCanvas = spreadRadius > 16 ? softTreeCanvas : sharpTreeCanvas;
+
+    // Chaque échantillon apporte une fraction de la lumière totale
+    ctx.globalAlpha = (totalBrightness / NUM_KERNEL_SAMPLES) * 1.65;
+
+    for (let i = 0; i < NUM_KERNEL_SAMPLES; i++) {
+      const k = diskKernel[i];
+      ctx.drawImage(
+        sourceCanvas,
+        baseX + k.dx * spreadRadius,
+        baseY + k.dy * spreadRadius
+      );
+    }
+
+    // Lorsque l'ouverture est très grande sans lentille (ou sans diaphragme),
+    // le recouvrement de tous les rayons venant de partout crée un éclairement diffus uniforme
+    const diffuseWash = Math.max(0, (spreadRadius - 35) / 160);
+    if (diffuseWash > 0.01) {
+      const wAlpha = Math.min(0.88, diffuseWash * 0.9);
+      const washGrad = ctx.createRadialGradient(paperCX, paperCY, 10, paperCX, paperCY, 240);
+      washGrad.addColorStop(0, `rgba(245, 200, 216, ${wAlpha})`);
+      washGrad.addColorStop(1, `rgba(215, 165, 182, ${wAlpha * 0.75})`);
+      ctx.globalAlpha = 1.0;
+      ctx.fillStyle = washGrad;
+      ctx.fillRect(paperX, paperY, paperW, paperH);
+    }
+  }
+
+  // Cadre de la feuille
+  ctx.globalAlpha = 1.0;
+  ctx.strokeStyle = '#cbd5e1';
+  ctx.lineWidth = 2;
+  ctx.strokeRect(paperX, paperY, paperW, paperH);
+
+  ctx.restore();
+}
+
+function animate() {
+  state.aperture += (state.targetAperture - state.aperture) * 0.18;
+  const targetDiaph = state.hasDiaphragm ? 1 : 0;
+  const targetLens = state.hasLens ? 1 : 0;
+  state.diaphragmAnim += (targetDiaph - state.diaphragmAnim) * 0.15;
+  state.lensAnim += (targetLens - state.lensAnim) * 0.12;
+
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  // Axe optique
+  ctx.strokeStyle = 'rgba(148, 163, 184, 0.12)';
+  ctx.lineWidth = 1;
+  ctx.setLineDash([8, 8]);
+  ctx.beginPath();
+  ctx.moveTo(40, opt.axisY);
+  ctx.lineTo(opt.screenX + 20, opt.axisY);
+  ctx.stroke();
+  ctx.setLineDash([]);
+
+  drawTree();
+  drawRays();
+  drawOptics();
+  drawScreenAndPaper();
+
+  requestAnimationFrame(animate);
+}
+
+updateUI();
+requestAnimationFrame(animate);
+</script>
+</body>
+</html>
