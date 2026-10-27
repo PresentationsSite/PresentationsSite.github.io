@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Éloignement de la source — Rayons parallèles et point de convergence</title>
+<style>
+  :root {
+    --bg: #0f172a;
+    --panel: #1e293b;
+    --text: #f8fafc;
+    --muted: #94a3b8;
+    --accent: #38bdf8;
+    --border: #334155;
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: 'Avenir Next', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 16px;
+    overflow-x: hidden;
+  }
+
+  .app-container {
+    width: 100%;
+    max-width: 1200px;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .canvas-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #090d16;
+  }
+
+  canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+    touch-action: none;
+  }
+
+  .controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px 24px;
+    background: var(--panel);
+    border-top: 1px solid var(--border);
+  }
+
+  .slider-container {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    background: #0f172a;
+    padding: 10px 24px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    width: 100%;
+    max-width: 640px;
+  }
+
+  .slider-container label {
+    font-size: 0.95rem;
+    color: var(--text);
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    flex: 1;
+    height: 6px;
+    background: #334155;
+    border-radius: 3px;
+    outline: none;
+  }
+
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--accent);
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
+    transition: transform 0.1s;
+  }
+
+  input[type="range"]::-webkit-slider-thumb:hover {
+    transform: scale(1.15);
+  }
+</style>
+</head>
+<body>
+
+<div class="app-container">
+  <div class="canvas-wrapper">
+    <canvas id="simCanvas" width="1200" height="675"></canvas>
+  </div>
+
+  <div class="controls">
+    <div class="slider-container">
+      <label for="distSlider">Éloignement de la source A :</label>
+      <input type="range" id="distSlider" min="0" max="1000" step="1" value="0">
+    </div>
+  </div>
+</div>
+
+<script>
+const canvas = document.getElementById('simCanvas');
+const ctx = canvas.getContext('2d');
+const distSlider = document.getElementById('distSlider');
+
+// Géométrie fixe de la scène (aucun dézoom)
+const opt = {
+  axisY: 337.5,
+  lensX: 520,
+  f: 240,           // Distance focale en pixels (foyer objet à x = 280, foyer image à x = 760)
+  lensDiam: 260
+};
+
+// État de la simulation :
+// sliderNorm dans [0, 1] : 0 = A au foyer objet (d_o = f), 1 = A extrêmement loin (d_o >> f)
+const state = {
+  sliderNorm: 0,
+  targetSliderNorm: 0,
+  isDraggingA: false,
+  isHoveringA: false
+};
+
+// Conversion entre la position normalisée du curseur [0, 1] et la distance objet d_o = x_lentille - x_A
+// Loi polynomiale d'ordre 4 pour :
+// - garder une manipulation douce quand A est encore visible à l'écran (entre x = 280 et x = 0)
+// - envoyer ensuite A jusqu'à plus de 250 fois la focale (~ 65 000 px) à la fin du curseur
+const MAX_EXTRA_DIST = 65000;
+
+function normToDo(u) {
+  return opt.f + MAX_EXTRA_DIST * Math.pow(u, 4);
+}
+
+function doToNorm(d_o) {
+  const extra = Math.max(0, d_o - opt.f);
+  return Math.min(1, Math.pow(extra / MAX_EXTRA_DIST, 0.25));
+}
+
+distSlider.addEventListener('input', (e) => {
+  state.targetSliderNorm = parseFloat(e.target.value) / 1000;
+});
+
+// Permet aussi de glisser directement le point A à la souris tant qu'il est visible sur le canvas
+function getCanvasCoords(e) {
+  const rect = canvas.getBoundingClientRect();
+  const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+  const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+  return {
+    x: (clientX - rect.left) * (canvas.width / rect.width),
+    y: (clientY - rect.top) * (canvas.height / rect.height)
+  };
+}
+
+canvas.addEventListener('pointerdown', (e) => {
+  const pos = getCanvasCoords(e);
+  const currentDo = normToDo(state.sliderNorm);
+  const Ax = opt.lensX - currentDo;
+
+  if (Ax >= -20 && Math.hypot(pos.x - Ax, pos.y - opt.axisY) < 28) {
+    state.isDraggingA = true;
+    canvas.setPointerCapture(e.pointerId);
+  }
+});
+
+canvas.addEventListener('pointermove', (e) => {
+  const pos = getCanvasCoords(e);
+  const currentDo = normToDo(state.sliderNorm);
+  const Ax = opt.lensX - currentDo;
+
+  if (state.isDraggingA) {
+    const maxAx = opt.lensX - opt.f; // Ne dépasse pas le foyer objet vers la droite
+    const clampedAx = Math.min(maxAx, pos.x);
+    const newDo = opt.lensX - clampedAx;
+    state.targetSliderNorm = doToNorm(newDo);
+    distSlider.value = Math.round(state.targetSliderNorm * 1000);
+  } else {
+    state.isHoveringA = (Ax >= 0 && Math.hypot(pos.x - Ax, pos.y - opt.axisY) < 26);
+    canvas.style.cursor = state.isHoveringA ? 'ew-resize' : 'default';
+  }
+});
+
+canvas.addEventListener('pointerup', (e) => {
+  if (state.isDraggingA) {
+    state.isDraggingA = false;
+    canvas.releasePointerCapture(e.pointerId);
+  }
+});
+
+// Dessin d'une flèche directionnelle sur un rayon
+function drawArrowHead(x, y, ux, uy, color) {
+  const size = 6.5;
+  ctx.save();
+  ctx.fillStyle = color;
+  ctx.translate(x, y);
+  ctx.rotate(Math.atan2(uy, ux));
+  ctx.beginPath();
+  ctx.moveTo(2, 0);
+  ctx.lineTo(-size, -size * 0.58);
+  ctx.lineTo(-size * 0.7, 0);
+  ctx.lineTo(-size, size * 0.58);
+  ctx.closePath();
+  ctx.fill();
+  ctx.restore();
+}
+
+// Dessin de la lentille convergente fixe
+function drawLens() {
+  ctx.save();
+  const h = opt.lensDiam / 2;
+  const thickness = 28;
+  const topY = opt.axisY - h;
+  const botY = opt.axisY + h;
+
+  const grad = ctx.createLinearGradient(opt.lensX - thickness, topY, opt.lensX + thickness, botY);
+  grad.addColorStop(0, 'rgba(125, 211, 252, 0.20)');
+  grad.addColorStop(0.5, 'rgba(224, 242, 254, 0.45)');
+  grad.addColorStop(1, 'rgba(56, 189, 248, 0.25)');
+
+  ctx.fillStyle = grad;
+  ctx.strokeStyle = 'rgba(186, 230, 253, 0.85)';
+  ctx.lineWidth = 2;
+
+  // Forme biconvexe
+  ctx.beginPath();
+  ctx.moveTo(opt.lensX, topY);
+  ctx.quadraticCurveTo(opt.lensX + thickness, opt.axisY, opt.lensX, botY);
+  ctx.quadraticCurveTo(opt.lensX - thickness, opt.axisY, opt.lensX, topY);
+  ctx.fill();
+  ctx.stroke();
+
+  // Flèches normalisées aux extrémités
+  ctx.beginPath();
+  ctx.moveTo(opt.lensX - 8, topY + 10);
+  ctx.lineTo(opt.lensX, topY);
+  ctx.lineTo(opt.lensX + 8, topY + 10);
+  ctx.moveTo(opt.lensX - 8, botY - 10);
+  ctx.lineTo(opt.lensX, botY);
+  ctx.lineTo(opt.lensX + 8, botY - 10);
+  ctx.stroke();
+
+  ctx.restore();
+}
+
+// Tracé des rayons incidents et émergents
+function drawRays(d_o, Ax, Apx) {
+  ctx.save();
+
+  const numRays = 9; // 4 au-dessus de l'axe, 1 sur l'axe, 4 en dessous
+  const maxImpactH = (opt.lensDiam / 2) * 0.86;
+  const rayColor = '#fbbf24';
+
+  for (let i = 0; i < numRays; i++) {
+    const frac = (i / (numRays - 1)) * 2 - 1; // [-1, 1]
+    const yLens = opt.axisY + frac * maxImpactH;
+
+    // --- 1. RAYON INCIDENT (de A jusqu'à la lentille en (opt.lensX, yLens)) ---
+    const dx1 = opt.lensX - Ax;
+    const dy1 = yLens - opt.axisY;
+    const len1 = Math.hypot(dx1, dy1);
+    const u1x = dx1 / len1;
+    const u1y = dy1 / len1;
+
+    // Point de départ du tracé à l'écran (soit en A si A >= 0, soit au bord gauche x = 0 si A est sorti)
+    let startX = Ax;
+    let startY = opt.axisY;
+    if (Ax < 0) {
+      startX = 0;
+      // Ordonnée exacte à x = 0 sur la droite reliant (Ax, axisY) à (lensX, yLens)
+      startY = yLens - (opt.lensX / d_o) * (yLens - opt.axisY);
+    }
+
+    ctx.strokeStyle = 'rgba(251, 191, 36, 0.78)';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(startX, startY);
+    ctx.lineTo(opt.lensX, yLens);
+    ctx.stroke();
+
+    // Flèche directionnelle sur la partie visible à gauche de la lentille
+    const arrowX1 = 0.5 * (Math.max(0, Ax) + opt.lensX);
+    const arrowY1 = yLens - ((opt.lensX - arrowX1) / d_o) * (yLens - opt.axisY);
+    drawArrowHead(arrowX1, arrowY1, u1x, u1y, rayColor);
+
+    // --- 2. RAYON ÉMERGENT (de la lentille vers A' puis prolongé un peu au-delà) ---
+    // Pente après la lentille : par la relation de conjugaison de Descartes,
+    // le rayon qui coupe la lentille à la hauteur h = (yLens - axisY) a une pente :
+    // slope = h * (1/d_o - 1/f) = - h / d_i
+    const h = yLens - opt.axisY;
+    const slope2 = h * (1 / d_o - 1 / opt.f);
+    const norm2 = Math.hypot(1, slope2);
+    const u2x = 1 / norm2;
+    const u2y = slope2 / norm2;
+
+    // On trace le rayon émergent jusqu'au bord droit du canvas (x = 1200)
+    // pour bien voir le croisement en A' et la divergence au-delà
+    const endX2 = canvas.width;
+    const endY2 = yLens + slope2 * (endX2 - opt.lensX);
+
+    ctx.strokeStyle = 'rgba(251, 191, 36, 0.85)';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(opt.lensX, yLens);
+    ctx.lineTo(endX2, endY2);
+    ctx.stroke();
+
+    // Flèche directionnelle entre la lentille et A'
+    const visibleTargetX = Math.min(canvas.width, Apx);
+    const arrowX2 = opt.lensX + 0.45 * (visibleTargetX - opt.lensX);
+    const arrowY2 = yLens + slope2 * (arrowX2 - opt.lensX);
+    drawArrowHead(arrowX2, arrowY2, u2x, u2y, rayColor);
+  }
+
+  ctx.restore();
+}
+
+// Dessin des points conjugués A et A' (sans aucune étiquette F ou F')
+function drawConjPoints(Ax, Apx) {
+  ctx.save();
+  ctx.font = '600 22px "Avenir Next", sans-serif';
+  ctx.textAlign = 'center';
+
+  // 1. Point objet A (disparaît naturellement par la gauche sans dézoomer)
+  if (Ax > -30) {
+    const glowA = ctx.createRadialGradient(Ax, opt.axisY, 2, Ax, opt.axisY, 20);
+    glowA.addColorStop(0, '#ffffff');
+    glowA.addColorStop(0.35, '#fbbf24');
+    glowA.addColorStop(1, 'rgba(251, 191, 36, 0)');
+    ctx.fillStyle = glowA;
+    ctx.beginPath();
+    ctx.arc(Ax, opt.axisY, 20, 0, Math.PI * 2);
+    ctx.fill();
+
+    ctx.fillStyle = '#ffffff';
+    ctx.beginPath();
+    ctx.arc(Ax, opt.axisY, 4.5, 0, Math.PI * 2);
+    ctx.fill();
+
+    ctx.fillStyle = '#f8fafc';
+    ctx.fillText('A', Ax, opt.axisY - 18);
+  }
+
+  // 2. Point image A' (non visible au début, puis rentre par la droite et vient converger au foyer image)
+  if (Apx < canvas.width + 30) {
+    const glowAp = ctx.createRadialGradient(Apx, opt.axisY, 2, Apx, opt.axisY, 22);
+    glowAp.addColorStop(0, '#ffffff');
+    glowAp.addColorStop(0.35, '#fbbf24');
+    glowAp.addColorStop(1, 'rgba(251, 191, 36, 0)');
+    ctx.fillStyle = glowAp;
+    ctx.beginPath();
+    ctx.arc(Apx, opt.axisY, 22, 0, Math.PI * 2);
+    ctx.fill();
+
+    ctx.fillStyle = '#ffffff';
+    ctx.beginPath();
+    ctx.arc(Apx, opt.axisY, 4.5, 0, Math.PI * 2);
+    ctx.fill();
+
+    ctx.fillStyle = '#f8fafc';
+    ctx.fillText("A'", Apx, opt.axisY - 18);
+  }
+
+  ctx.restore();
+}
+
+function animate() {
+  // Interpolation fluide du curseur
+  state.sliderNorm += (state.targetSliderNorm - state.sliderNorm) * 0.18;
+
+  // Calcul des positions conjuguées exactes : 1/d_i = 1/f - 1/d_o
+  const d_o = normToDo(state.sliderNorm);
+  const Ax = opt.lensX - d_o;
+
+  // Quand d_o = f, d_i -> +Infinity (A' est rejeté à l'infini à droite)
+  const invDi = (1 / opt.f) - (1 / d_o);
+  const d_i = invDi > 1e-7 ? (1 / invDi) : 1e7;
+  const Apx = opt.lensX + d_i;
+
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  // Axe optique (sans aucun repère sur les foyers)
+  ctx.strokeStyle = 'rgba(148, 163, 184, 0.18)';
+  ctx.lineWidth = 1.2;
+  ctx.setLineDash([8, 8]);
+  ctx.beginPath();
+  ctx.moveTo(0, opt.axisY);
+  ctx.lineTo(canvas.width, opt.axisY);
+  ctx.stroke();
+  ctx.setLineDash([]);
+
+  drawRays(d_o, Ax, Apx);
+  drawLens();
+  drawConjPoints(Ax, Apx);
+
+  requestAnimationFrame(animate);
+}
+
+requestAnimationFrame(animate);
+</script>
+</body>
+</html>

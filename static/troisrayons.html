@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Construction pas à pas d'une image — Les 3 rayons particuliers</title>
+<style>
+  :root {
+    --bg: #0f172a;
+    --panel: #1e293b;
+    --text: #f8fafc;
+    --muted: #94a3b8;
+    --accent: #38bdf8;
+    --border: #334155;
+    --ray1: #f43f5e; /* Rose/Rouge : parallèle à l'axe -> F' */
+    --ray2: #eab308; /* Jaune/Ambre : centre optique O */
+    --ray3: #10b981; /* Vert émeraude : passe par F -> parallèle */
+    --rayExtra: #a855f7; /* Violet : autres rayons du faisceau */
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: 'Avenir Next', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 14px;
+    overflow-x: hidden;
+  }
+
+  .app-container {
+    width: 100%;
+    max-width: 1220px;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .canvas-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #090d16;
+  }
+
+  canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+    touch-action: none;
+  }
+
+  .btn-reset-overlay {
+    position: absolute;
+    top: 14px;
+    right: 16px;
+    z-index: 10;
+    background: rgba(15, 23, 42, 0.78);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    color: var(--muted);
+    border: 1px solid var(--border);
+    padding: 7px 14px;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 0.84rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    user-select: none;
+  }
+
+  .btn-reset-overlay:hover {
+    color: var(--text);
+    border-color: var(--muted);
+    background: rgba(30, 41, 59, 0.92);
+  }
+
+  .controls-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding: 16px 22px;
+    background: var(--panel);
+    border-top: 1px solid var(--border);
+  }
+
+  .rays-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .ray-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .btn-ray {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #0f172a;
+    color: var(--text);
+    border: 1px solid var(--border);
+    padding: 9px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.18s ease;
+    user-select: none;
+  }
+
+  .btn-ray:hover:not(:disabled) {
+    border-color: var(--muted);
+    background: rgba(255, 255, 255, 0.04);
+  }
+
+  .btn-ray:disabled {
+    opacity: 0.38;
+    cursor: not-allowed;
+  }
+
+  .dot {
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .btn-ray[data-ray="1"] .dot { background: var(--ray1); box-shadow: 0 0 8px var(--ray1); }
+  .btn-ray[data-ray="2"] .dot { background: var(--ray2); box-shadow: 0 0 8px var(--ray2); }
+  .btn-ray[data-ray="3"] .dot { background: var(--ray3); box-shadow: 0 0 8px var(--ray3); }
+  .btn-ray[data-ray="extra"] .dot { background: var(--rayExtra); box-shadow: 0 0 8px var(--rayExtra); }
+
+  .btn-ray.step1 {
+    border-color: var(--accent);
+    background: rgba(56, 189, 248, 0.12);
+  }
+
+  .btn-ray.step2 {
+    border-color: rgba(255, 255, 255, 0.35);
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  .step-badge {
+    font-size: 0.78rem;
+    padding: 2px 8px;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--muted);
+    font-weight: 600;
+    margin-left: 2px;
+  }
+
+  .btn-ray.step1 .step-badge {
+    background: var(--accent);
+    color: #090d16;
+  }
+
+  .btn-ray.step2 .step-badge {
+    background: rgba(16, 185, 129, 0.2);
+    color: #34d399;
+  }
+
+  .sliders-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 14px;
+  }
+
+  .slider-box {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: #0f172a;
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+  }
+
+  .slider-box label {
+    font-size: 0.86rem;
+    color: var(--muted);
+    white-space: nowrap;
+    min-width: 115px;
+  }
+
+  input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    flex: 1;
+    height: 6px;
+    background: #334155;
+    border-radius: 3px;
+    outline: none;
+  }
+
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--accent);
+    cursor: pointer;
+    transition: transform 0.1s;
+  }
+
+  input[type="range"]::-webkit-slider-thumb:hover {
+    transform: scale(1.15);
+  }
+</style>
+</head>
+<body>
+
+<div class="app-container">
+  <div class="canvas-wrapper">
+    <canvas id="simCanvas" width="1200" height="675"></canvas>
+    <button class="btn-reset-overlay" id="btnReset">Tout effacer</button>
+  </div>
+
+  <div class="controls-panel">
+    <!-- Ligne 1 : Boutons de tracé pas à pas des rayons -->
+    <div class="rays-toolbar">
+      <div class="ray-buttons">
+        <button class="btn-ray" id="btnRay1" data-ray="1">
+          <span class="dot"></span>
+          <span>Rayon 1 (parallèle à l'axe)</span>
+          <span class="step-badge" id="badgeRay1">Tracer</span>
+        </button>
+
+        <button class="btn-ray" id="btnRay2" data-ray="2">
+          <span class="dot"></span>
+          <span>Rayon 2 (centre optique O)</span>
+          <span class="step-badge" id="badgeRay2">Tracer</span>
+        </button>
+
+        <button class="btn-ray" id="btnRay3" data-ray="3">
+          <span class="dot"></span>
+          <span>Rayon 3 (foyer objet F)</span>
+          <span class="step-badge" id="badgeRay3">Tracer</span>
+        </button>
+
+        <button class="btn-ray" id="btnExtraRays" data-ray="extra" disabled>
+          <span class="dot"></span>
+          <span>+ Autres rayons</span>
+          <span class="step-badge" id="badgeExtraRays">Tracer</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Ligne 2 : Paramètres géométriques -->
+    <div class="sliders-row">
+      <div class="slider-box">
+        <label for="posSlider">Position de A :</label>
+        <input type="range" id="posSlider" min="80" max="530" step="1" value="230">
+      </div>
+
+      <div class="slider-box">
+        <label for="heightSlider">Taille de AB :</label>
+        <input type="range" id="heightSlider" min="-150" max="150" step="1" value="95">
+      </div>
+
+      <div class="slider-box">
+        <label for="focalSlider">Focale <i>f'</i> :</label>
+        <input type="range" id="focalSlider" min="110" max="280" step="1" value="175">
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const canvas = document.getElementById('simCanvas');
+const ctx = canvas.getContext('2d');
+
+// Boutons et badges
+const btnRay1 = document.getElementById('btnRay1');
+const btnRay2 = document.getElementById('btnRay2');
+const btnRay3 = document.getElementById('btnRay3');
+const btnExtraRays = document.getElementById('btnExtraRays');
+const btnReset = document.getElementById('btnReset');
+
+const badgeRay1 = document.getElementById('badgeRay1');
+const badgeRay2 = document.getElementById('badgeRay2');
+const badgeRay3 = document.getElementById('badgeRay3');
+const badgeExtraRays = document.getElementById('badgeExtraRays');
+
+// Curseurs
+const posSlider = document.getElementById('posSlider');
+const heightSlider = document.getElementById('heightSlider');
+const focalSlider = document.getElementById('focalSlider');
+
+// Repères fixes du banc optique
+const opt = {
+  axisY: 337.5,
+  lensX: 580,
+  lensHalfH: 225
+};
+
+// État de la simulation
+const state = {
+  Ax: 230,
+  targetAx: 230,
+  objH: 95,
+  targetObjH: 95,
+  f: 175,
+  targetF: 175,
+
+  rays: {
+    1: { step: 0, anim1: 0, anim2: 0, color: '#f43f5e' },
+    2: { step: 0, anim1: 0, anim2: 0, color: '#eab308' },
+    3: { step: 0, anim1: 0, anim2: 0, color: '#10b981' },
+    extra: { step: 0, anim1: 0, anim2: 0, color: 'rgba(168, 85, 247, 0.72)' }
+  },
+
+  imageAnim: 0,
+  dragTarget: null
+};
+
+// Mise à jour de l'interface des boutons selon l'état des rayons
+function updateButtonsUI() {
+  const allThreeDone = (
+    state.rays[1].step === 2 &&
+    state.rays[2].step === 2 &&
+    state.rays[3].step === 2
+  );
+
+  btnExtraRays.disabled = !allThreeDone;
+  if (!allThreeDone) {
+    state.rays.extra.step = 0;
+    state.rays.extra.anim1 = 0;
+    state.rays.extra.anim2 = 0;
+  }
+
+  const configs = [
+    { id: 1, btn: btnRay1, badge: badgeRay1 },
+    { id: 2, btn: btnRay2, badge: badgeRay2 },
+    { id: 3, btn: btnRay3, badge: badgeRay3 },
+    { id: 'extra', btn: btnExtraRays, badge: badgeExtraRays }
+  ];
+
+  for (const c of configs) {
+    const r = state.rays[c.id];
+    c.btn.classList.remove('step1', 'step2');
+    if (r.step === 0) {
+      c.badge.textContent = 'Tracer';
+    } else if (r.step === 1) {
+      c.btn.classList.add('step1');
+      c.badge.textContent = '▶ Prolonger';
+    } else {
+      c.btn.classList.add('step2');
+      c.badge.textContent = '✓ Tracé';
+    }
+  }
+}
+
+function handleRayButtonClick(rayId) {
+  const r = state.rays[rayId];
+  if (r.step === 0) {
+    r.step = 1;
+    r.anim1 = 0;
+    r.anim2 = 0;
+  } else if (r.step === 1) {
+    r.step = 2;
+    r.anim2 = 0;
+  } else {
+    r.step = 0;
+    r.anim1 = 0;
+    r.anim2 = 0;
+  }
+  updateButtonsUI();
+}
+
+btnRay1.addEventListener('click', () => handleRayButtonClick(1));
+btnRay2.addEventListener('click', () => handleRayButtonClick(2));
+btnRay3.addEventListener('click', () => handleRayButtonClick(3));
+
+btnExtraRays.addEventListener('click', () => {
+  if (btnExtraRays.disabled) return;
+  handleRayButtonClick('extra');
+});
+
+btnReset.addEventListener('click', () => {
+  for (const id of [1, 2, 3, 'extra']) {
+    state.rays[id].step = 0;
+    state.rays[id].anim1 = 0;
+    state.rays[id].anim2 = 0;
+  }
+  updateButtonsUI();
+});
+
+// Événements des curseurs
+posSlider.addEventListener('input', (e) => {
+  state.targetAx = parseFloat(e.target.value);
+});
+
+heightSlider.addEventListener('input', (e) => {
+  let val = parseFloat(e.target.value);
+  if (Math.abs(val) < 12) val = val >= 0 ? 12 : -12;
+  state.targetObjH = val;
+});
+
+focalSlider.addEventListener('input', (e) => {
+  state.targetF = parseFloat(e.target.value);
+});
+
+// Manipulation directe à la souris sur le canvas (points B, A, F, F')
+function getCanvasCoords(e) {
+  const rect = canvas.getBoundingClientRect();
+  const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+  const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+  return {
+    x: (clientX - rect.left) * (canvas.width / rect.width),
+    y: (clientY - rect.top) * (canvas.height / rect.height)
+  };
+}
+
+canvas.addEventListener('pointerdown', (e) => {
+  const pos = getCanvasCoords(e);
+  const Bx = state.Ax;
+  const By = opt.axisY - state.objH;
+  const Fx = opt.lensX - state.f;
+  const Fpx = opt.lensX + state.f;
+
+  if (Math.hypot(pos.x - Bx, pos.y - By) < 24) {
+    state.dragTarget = 'B';
+  } else if (Math.hypot(pos.x - state.Ax, pos.y - opt.axisY) < 24) {
+    state.dragTarget = 'A';
+  } else if (Math.hypot(pos.x - Fx, pos.y - opt.axisY) < 22) {
+    state.dragTarget = 'F';
+  } else if (Math.hypot(pos.x - Fpx, pos.y - opt.axisY) < 22) {
+    state.dragTarget = 'Fp';
+  }
+
+  if (state.dragTarget) {
+    canvas.setPointerCapture(e.pointerId);
+  }
+});
+
+canvas.addEventListener('pointermove', (e) => {
+  const pos = getCanvasCoords(e);
+  const Bx = state.Ax;
+  const By = opt.axisY - state.objH;
+  const Fx = opt.lensX - state.f;
+  const Fpx = opt.lensX + state.f;
+
+  if (state.dragTarget === 'B') {
+    state.targetAx = Math.max(80, Math.min(530, pos.x));
+    let newH = opt.axisY - pos.y;
+    if (Math.abs(newH) < 15) newH = newH >= 0 ? 15 : -15;
+    state.targetObjH = Math.max(-150, Math.min(150, newH));
+    posSlider.value = Math.round(state.targetAx);
+    heightSlider.value = Math.round(state.targetObjH);
+  } else if (state.dragTarget === 'A') {
+    state.targetAx = Math.max(80, Math.min(530, pos.x));
+    posSlider.value = Math.round(state.targetAx);
+  } else if (state.dragTarget === 'F') {
+    const newF = Math.max(110, Math.min(280, opt.lensX - pos.x));
+    state.targetF = newF;
+    focalSlider.value = Math.round(newF);
+  } else if (state.dragTarget === 'Fp') {
+    const newF = Math.max(110, Math.min(280, pos.x - opt.lensX));
+    state.targetF = newF;
+    focalSlider.value = Math.round(newF);
+  } else {
+    const hoverB = Math.hypot(pos.x - Bx, pos.y - By) < 22;
+    const hoverA = Math.hypot(pos.x - state.Ax, pos.y - opt.axisY) < 22;
+    const hoverF = Math.hypot(pos.x - Fx, pos.y - opt.axisY) < 20 || Math.hypot(pos.x - Fpx, pos.y - opt.axisY) < 20;
+    canvas.style.cursor = hoverB ? 'move' : (hoverA || hoverF ? 'ew-resize' : 'default');
+  }
+});
+
+canvas.addEventListener('pointerup', (e) => {
+  if (state.dragTarget) {
+    state.dragTarget = null;
+    canvas.releasePointerCapture(e.pointerId);
+  }
+});
+
+// Utilitaires de dessin géométrique
+function drawArrowHead(x, y, ux, uy, color, size = 7) {
+  ctx.save();
+  ctx.fillStyle = color;
+  ctx.translate(x, y);
+  ctx.rotate(Math.atan2(uy, ux));
+  ctx.beginPath();
+  ctx.moveTo(2, 0);
+  ctx.lineTo(-size, -size * 0.58);
+  ctx.lineTo(-size * 0.7, 0);
+  ctx.lineTo(-size, size * 0.58);
+  ctx.closePath();
+  ctx.fill();
+  ctx.restore();
+}
+
+function drawAnimatedSegment(x1, y1, x2, y2, progress, color, dashed = false, withMidArrow = false, lineWidth = 2.2) {
+  if (progress <= 0.001) return;
+  const p = Math.min(1, progress);
+  const curX = x1 + (x2 - x1) * p;
+  const curY = y1 + (y2 - y1) * p;
+
+  ctx.save();
+  ctx.strokeStyle = color;
+  ctx.lineWidth = lineWidth;
+  if (dashed) {
+    ctx.setLineDash([6, 6]);
+  }
+  ctx.beginPath();
+  ctx.moveTo(x1, y1);
+  ctx.lineTo(curX, curY);
+  ctx.stroke();
+  ctx.restore();
+
+  const len = Math.hypot(x2 - x1, y2 - y1);
+  if (withMidArrow && p > 0.52 && len > 35) {
+    const ux = (x2 - x1) / len;
+    const uy = (y2 - y1) / len;
+    const mx = x1 + (x2 - x1) * 0.5;
+    const my = y1 + (y2 - y1) * 0.5;
+    drawArrowHead(mx, my, ux, uy, color, 7);
+  }
+}
+
+function drawVerticalVector(x, yAxis, yTip, labelBase, labelTip, color, dashed = false, alpha = 1) {
+  if (alpha <= 0.01) return;
+  ctx.save();
+  ctx.globalAlpha = alpha;
+  ctx.strokeStyle = color;
+  ctx.fillStyle = color;
+  ctx.lineWidth = 3;
+
+  if (dashed) {
+    ctx.setLineDash([6, 5]);
+  }
+
+  ctx.beginPath();
+  ctx.moveTo(x, yAxis);
+  ctx.lineTo(x, yTip);
+  ctx.stroke();
+  ctx.setLineDash([]);
+
+  const dirY = yTip < yAxis ? -1 : 1;
+  drawArrowHead(x, yTip, 0, dirY, color, 9);
+
+  ctx.beginPath();
+  ctx.arc(x, yAxis, 3.5, 0, Math.PI * 2);
+  ctx.fill();
+
+  ctx.font = '600 19px "Avenir Next", sans-serif';
+  ctx.textAlign = 'center';
+  const offsetBase = dirY < 0 ? 24 : -10;
+  const offsetTip = dirY < 0 ? -12 : 24;
+
+  ctx.fillText(labelBase, x, yAxis + offsetBase);
+  ctx.fillText(labelTip, x, yTip + offsetTip);
+
+  ctx.restore();
+}
+
+function drawOpticsAndAxis(maxRayImpactY) {
+  ctx.save();
+
+  // 1. Axe optique
+  ctx.strokeStyle = 'rgba(148, 163, 184, 0.25)';
+  ctx.lineWidth = 1.4;
+  ctx.setLineDash([8, 8]);
+  ctx.beginPath();
+  ctx.moveTo(0, opt.axisY);
+  ctx.lineTo(canvas.width, opt.axisY);
+  ctx.stroke();
+  ctx.setLineDash([]);
+
+  // 2. Plan de la lentille (prolongé en pointillés si un rayon tape hors de la monture physique)
+  const reqHalfH = Math.max(opt.lensHalfH, Math.min(325, maxRayImpactY + 15));
+  if (reqHalfH > opt.lensHalfH + 2) {
+    ctx.strokeStyle = 'rgba(186, 230, 253, 0.45)';
+    ctx.lineWidth = 1.5;
+    ctx.setLineDash([5, 5]);
+    ctx.beginPath();
+    ctx.moveTo(opt.lensX, opt.axisY - reqHalfH);
+    ctx.lineTo(opt.lensX, opt.axisY - opt.lensHalfH);
+    ctx.moveTo(opt.lensX, opt.axisY + opt.lensHalfH);
+    ctx.lineTo(opt.lensX, opt.axisY + reqHalfH);
+    ctx.stroke();
+    ctx.setLineDash([]);
+  }
+
+  // 3. Corps de la lentille convergente
+  const halfH = opt.lensHalfH;
+  const t = (280 - state.f) / (280 - 110);
+  const halfThick = 14 + 26 * Math.max(0, Math.min(1, t));
+  const R = (halfH * halfH + halfThick * halfThick) / (2 * halfThick);
+  const C1x = (opt.lensX - halfThick) + R;
+  const C2x = (opt.lensX + halfThick) - R;
+  const maxAngle = Math.asin(halfH / R);
+
+  ctx.beginPath();
+  ctx.arc(C1x, opt.axisY, R, Math.PI + maxAngle, Math.PI - maxAngle, true);
+  ctx.arc(C2x, opt.axisY, R, maxAngle, -maxAngle, true);
+  ctx.closePath();
+
+  const grad = ctx.createLinearGradient(
+    opt.lensX - halfThick, opt.axisY - halfH,
+    opt.lensX + halfThick, opt.axisY + halfH
+  );
+  grad.addColorStop(0, 'rgba(56, 189, 248, 0.14)');
+  grad.addColorStop(0.5, 'rgba(186, 230, 253, 0.30)');
+  grad.addColorStop(1, 'rgba(14, 165, 233, 0.16)');
+  ctx.fillStyle = grad;
+  ctx.fill();
+
+  ctx.strokeStyle = 'rgba(224, 242, 254, 0.85)';
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  ctx.moveTo(opt.lensX, opt.axisY - halfH);
+  ctx.lineTo(opt.lensX, opt.axisY + halfH);
+  ctx.stroke();
+
+  const topY = opt.axisY - halfH;
+  const botY = opt.axisY + halfH;
+  ctx.beginPath();
+  ctx.moveTo(opt.lensX - 8, topY + 10);
+  ctx.lineTo(opt.lensX, topY);
+  ctx.lineTo(opt.lensX + 8, topY + 10);
+  ctx.moveTo(opt.lensX - 8, botY - 10);
+  ctx.lineTo(opt.lensX, botY);
+  ctx.lineTo(opt.lensX + 8, botY - 10);
+  ctx.stroke();
+
+  // 4. Points caractéristiques O, F et F'
+  const Fx = opt.lensX - state.f;
+  const Fpx = opt.lensX + state.f;
+
+  ctx.font = '600 18px "Avenir Next", sans-serif';
+  ctx.textAlign = 'center';
+
+  ctx.fillStyle = '#cbd5e1';
+  ctx.beginPath();
+  ctx.arc(opt.lensX, opt.axisY, 3.5, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.fillText('O', opt.lensX - 15, opt.axisY + 23);
+
+  ctx.strokeStyle = '#38bdf8';
+  ctx.fillStyle = '#38bdf8';
+  ctx.lineWidth = 2;
+
+  for (const [xPos, label] of [[Fx, 'F'], [Fpx, "F'"]]) {
+    ctx.beginPath();
+    ctx.moveTo(xPos, opt.axisY - 6);
+    ctx.lineTo(xPos, opt.axisY + 6);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.arc(xPos, opt.axisY, 3.5, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.fillText(label, xPos, opt.axisY + 25);
+  }
+
+  ctx.restore();
+}
+
+function computeSceneGeometry() {
+  const Bx = state.Ax;
+  const By = opt.axisY - state.objH;
+  const Fx = opt.lensX - state.f;
+  const Fpx = opt.lensX + state.f;
+
+  const d_o = opt.lensX - state.Ax;
+  const invDi = (1 / state.f) - (1 / d_o);
+
+  const isAtInfinity = Math.abs(invDi) < 1e-4;
+  const d_i = isAtInfinity ? 1e6 : 1 / invDi;
+  const gamma = -d_i / d_o;
+
+  const Apx = opt.lensX + d_i;
+  const Bpy = opt.axisY - state.objH * gamma;
+  const isVirtualImage = d_i < 0 && !isAtInfinity;
+
+  const yLens1 = By;
+  const yLens2 = opt.axisY;
+
+  const dxBF = Bx - Fx;
+  const slope3 = Math.abs(dxBF) > 0.5 ? (By - opt.axisY) / dxBF : (By - opt.axisY) * 2;
+  const yLens3 = opt.axisY + slope3 * state.f;
+
+  return {
+    Bx, By, Fx, Fpx,
+    d_o, d_i, gamma,
+    Apx, Bpy,
+    isAtInfinity,
+    isVirtualImage,
+    yLens1, yLens2, yLens3, slope3
+  };
+}
+
+function drawPrincipalRay(id, geom) {
+  const r = state.rays[id];
+  if (r.step === 0) return;
+
+  const { Bx, By, Fx, Apx, isVirtualImage, isAtInfinity } = geom;
+  const color = r.color;
+
+  let yL, mOut;
+  if (id === 1) {
+    yL = geom.yLens1;
+    mOut = (opt.axisY - yL) / state.f;
+  } else if (id === 2) {
+    yL = geom.yLens2;
+    mOut = (By - opt.axisY) / (Bx - opt.lensX);
+  } else {
+    yL = geom.yLens3;
+    mOut = 0;
+  }
+
+  // --- ÉTAPE 1 : Avant la lentille ---
+  if (id === 3 && Bx > Fx + 1) {
+    drawAnimatedSegment(Fx, opt.axisY, Bx, By, r.anim1, color, true, false, 1.8);
+  }
+
+  drawAnimatedSegment(Bx, By, opt.lensX, yL, r.anim1, color, false, true, 2.3);
+
+  if (r.anim1 > 0.95) {
+    ctx.fillStyle = color;
+    ctx.beginPath();
+    ctx.arc(opt.lensX, yL, 3.2, 0, Math.PI * 2);
+    ctx.fill();
+  }
+
+  // --- ÉTAPE 2 : Après la lentille (et prolongements virtuels éventuels) ---
+  if (r.step === 2 && r.anim2 > 0.001) {
+    const endXRight = canvas.width;
+    const endYRight = yL + mOut * (endXRight - opt.lensX);
+    drawAnimatedSegment(opt.lensX, yL, endXRight, endYRight, r.anim2, color, false, true, 2.3);
+
+    if (isVirtualImage && !isAtInfinity) {
+      const extX = Math.max(0, Apx - 45);
+      const extY = yL + mOut * (extX - opt.lensX);
+      drawAnimatedSegment(opt.lensX, yL, extX, extY, r.anim2, color, true, false, 1.9);
+    }
+  }
+}
+
+// Tracé en deux temps des autres rayons du faisceau
+function drawExtraBundleRays(geom) {
+  const r = state.rays.extra;
+  if (r.step === 0) return;
+
+  const { Bx, By, Apx, Bpy, isVirtualImage, isAtInfinity } = geom;
+  const color = r.color;
+  const impactOffsets = [-170, -110, -45, 45, 110, 170];
+
+  for (const offset of impactOffsets) {
+    const yL = opt.axisY + offset;
+
+    if (
+      Math.abs(yL - geom.yLens1) < 12 ||
+      Math.abs(yL - geom.yLens2) < 12 ||
+      Math.abs(yL - geom.yLens3) < 12
+    ) {
+      continue;
+    }
+
+    const mOut = isAtInfinity
+      ? (By - opt.axisY) / (Bx - opt.lensX)
+      : (Bpy - yL) / (Apx - opt.lensX);
+
+    // --- ÉTAPE 1 : Avant la lentille ---
+    drawAnimatedSegment(Bx, By, opt.lensX, yL, r.anim1, color, false, true, 1.6);
+
+    if (r.anim1 > 0.95) {
+      ctx.fillStyle = color;
+      ctx.beginPath();
+      ctx.arc(opt.lensX, yL, 2.6, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    // --- ÉTAPE 2 : Après la lentille ---
+    if (r.step === 2 && r.anim2 > 0.001) {
+      const endXRight = canvas.width;
+      const endYRight = yL + mOut * (endXRight - opt.lensX);
+      drawAnimatedSegment(opt.lensX, yL, endXRight, endYRight, r.anim2, color, false, true, 1.6);
+
+      if (isVirtualImage && !isAtInfinity) {
+        drawAnimatedSegment(opt.lensX, yL, Apx, Bpy, r.anim2, color, true, false, 1.4);
+      }
+    }
+  }
+}
+
+function animate() {
+  state.Ax += (state.targetAx - state.Ax) * 0.22;
+  state.objH += (state.targetObjH - state.objH) * 0.22;
+  state.f += (state.targetF - state.f) * 0.22;
+
+  let completedRaysCount = 0;
+  for (const id of [1, 2, 3, 'extra']) {
+    const r = state.rays[id];
+    if (r.step >= 1) {
+      r.anim1 = Math.min(1, r.anim1 + 0.045);
+    }
+    if (r.step === 2) {
+      r.anim2 = Math.min(1, r.anim2 + 0.04);
+      if (id !== 'extra' && r.anim2 > 0.75) {
+        completedRaysCount++;
+      }
+    }
+  }
+
+  const shouldShowImage = completedRaysCount >= 2;
+  const targetImgAnim = shouldShowImage ? 1 : 0;
+  state.imageAnim += (targetImgAnim - state.imageAnim) * 0.16;
+
+  const geom = computeSceneGeometry();
+
+  let maxImpact = opt.lensHalfH;
+  if (state.rays[1].step >= 1) maxImpact = Math.max(maxImpact, Math.abs(geom.yLens1 - opt.axisY));
+  if (state.rays[3].step >= 1) maxImpact = Math.max(maxImpact, Math.abs(geom.yLens3 - opt.axisY));
+
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  drawOpticsAndAxis(maxImpact);
+  drawExtraBundleRays(geom);
+
+  drawPrincipalRay(1, geom);
+  drawPrincipalRay(2, geom);
+  drawPrincipalRay(3, geom);
+
+  drawVerticalVector(geom.Bx, opt.axisY, geom.By, 'A', 'B', '#f8fafc', false, 1);
+
+  if (state.imageAnim > 0.01 && !geom.isAtInfinity) {
+    drawVerticalVector(
+      geom.Apx,
+      opt.axisY,
+      geom.Bpy,
+      "A'",
+      "B'",
+      '#38bdf8',
+      geom.isVirtualImage,
+      state.imageAnim
+    );
+
+    ctx.save();
+    ctx.globalAlpha = state.imageAnim;
+    ctx.fillStyle = '#ffffff';
+    ctx.beginPath();
+    ctx.arc(geom.Apx, geom.Bpy, 4, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.restore();
+  }
+
+  requestAnimationFrame(animate);
+}
+
+updateButtonsUI();
+requestAnimationFrame(animate);
+</script>
+</body>
+</html>

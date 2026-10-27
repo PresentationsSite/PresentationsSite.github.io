@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Distance focale et plan focal image</title>
+<style>
+  :root {
+    --bg: #0f172a;
+    --panel: #1e293b;
+    --text: #f8fafc;
+    --muted: #94a3b8;
+    --accent: #38bdf8;
+    --border: #334155;
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: 'Avenir Next', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 16px;
+    overflow-x: hidden;
+  }
+
+  .app-container {
+    width: 100%;
+    max-width: 1200px;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .canvas-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #090d16;
+  }
+
+  canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+    touch-action: none;
+  }
+
+  .controls {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    padding: 16px 24px;
+    background: var(--panel);
+    border-top: 1px solid var(--border);
+  }
+
+  .slider-container {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: #0f172a;
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    flex: 1;
+    max-width: 480px;
+  }
+
+  .slider-container label {
+    font-size: 0.92rem;
+    color: var(--text);
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    flex: 1;
+    height: 6px;
+    background: #334155;
+    border-radius: 3px;
+    outline: none;
+  }
+
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--accent);
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
+    transition: transform 0.1s;
+  }
+
+  input[type="range"]::-webkit-slider-thumb:hover {
+    transform: scale(1.15);
+  }
+
+  .btn-reset {
+    background: rgba(56, 189, 248, 0.12);
+    color: var(--accent);
+    border: 1px solid rgba(56, 189, 248, 0.35);
+    padding: 4px 10px;
+    min-width: 62px;
+    text-align: center;
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: 0.82rem;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+
+  .btn-reset:hover {
+    background: rgba(56, 189, 248, 0.25);
+    color: #fff;
+  }
+</style>
+</head>
+<body>
+
+<div class="app-container">
+  <div class="canvas-wrapper">
+    <canvas id="simCanvas" width="1200" height="675"></canvas>
+  </div>
+
+  <div class="controls">
+    <div class="slider-container">
+      <label for="focalSlider">Distance focale <i>f'</i> :</label>
+      <input type="range" id="focalSlider" min="150" max="460" step="1" value="280">
+    </div>
+
+    <div class="slider-container">
+      <label for="angleSlider">Inclinaison des rayons :</label>
+      <input type="range" id="angleSlider" min="-20" max="20" step="0.2" value="0">
+      <button class="btn-reset" id="btnZeroAngle" title="Cliquer pour remettre à 0°">0,0°</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const canvas = document.getElementById('simCanvas');
+const ctx = canvas.getContext('2d');
+const focalSlider = document.getElementById('focalSlider');
+const angleSlider = document.getElementById('angleSlider');
+const btnZeroAngle = document.getElementById('btnZeroAngle');
+
+const opt = {
+  axisY: 337.5,
+  lensX: 460,
+  lensDiam: 280,
+  minF: 150,
+  maxF: 460
+};
+
+const state = {
+  f: 280,
+  targetF: 280,
+  angleDeg: 0,
+  targetAngleDeg: 0,
+  isDraggingFocus: false,
+  isHoveringFocus: false
+};
+
+focalSlider.addEventListener('input', (e) => {
+  state.targetF = parseFloat(e.target.value);
+});
+
+function formatAngle(deg) {
+  const clean = Math.abs(deg) < 0.05 ? 0 : deg;
+  const sign = clean > 0 ? '+' : '';
+  return sign + clean.toFixed(1).replace('.', ',') + '°';
+}
+
+function setTargetAngle(deg) {
+  let clamped = Math.max(-20, Math.min(20, deg));
+  if (Math.abs(clamped) < 0.45) {
+    clamped = 0;
+  }
+  state.targetAngleDeg = clamped;
+  angleSlider.value = clamped;
+  btnZeroAngle.textContent = formatAngle(clamped);
+}
+
+angleSlider.addEventListener('input', (e) => {
+  setTargetAngle(parseFloat(e.target.value));
+});
+
+btnZeroAngle.addEventListener('click', () => {
+  setTargetAngle(0);
+});
+
+function getCanvasCoords(e) {
+  const rect = canvas.getBoundingClientRect();
+  const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+  const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+  return {
+    x: (clientX - rect.left) * (canvas.width / rect.width),
+    y: (clientY - rect.top) * (canvas.height / rect.height)
+  };
+}
+
+canvas.addEventListener('pointerdown', (e) => {
+  const pos = getCanvasCoords(e);
+  const focusX = opt.lensX + state.f;
+  const theta = state.angleDeg * Math.PI / 180;
+  const focusY = opt.axisY + state.f * Math.tan(theta);
+
+  if (Math.hypot(pos.x - focusX, pos.y - focusY) < 32) {
+    state.isDraggingFocus = true;
+    canvas.setPointerCapture(e.pointerId);
+  }
+});
+
+canvas.addEventListener('pointermove', (e) => {
+  const pos = getCanvasCoords(e);
+  const focusX = opt.lensX + state.f;
+  const theta = state.angleDeg * Math.PI / 180;
+  const focusY = opt.axisY + state.f * Math.tan(theta);
+
+  if (state.isDraggingFocus) {
+    const dy = pos.y - opt.axisY;
+    const newThetaRad = Math.atan2(dy, state.f);
+    setTargetAngle(newThetaRad * 180 / Math.PI);
+  } else {
+    state.isHoveringFocus = Math.hypot(pos.x - focusX, pos.y - focusY) < 28;
+    canvas.style.cursor = state.isHoveringFocus ? 'ns-resize' : 'default';
+  }
+});
+
+canvas.addEventListener('pointerup', (e) => {
+  if (state.isDraggingFocus) {
+    state.isDraggingFocus = false;
+    canvas.releasePointerCapture(e.pointerId);
+  }
+});
+
+function drawArrowHead(x, y, ux, uy, color) {
+  const size = 6.5;
+  ctx.save();
+  ctx.fillStyle = color;
+  ctx.translate(x, y);
+  ctx.rotate(Math.atan2(uy, ux));
+  ctx.beginPath();
+  ctx.moveTo(2, 0);
+  ctx.lineTo(-size, -size * 0.58);
+  ctx.lineTo(-size * 0.7, 0);
+  ctx.lineTo(-size, size * 0.58);
+  ctx.closePath();
+  ctx.fill();
+  ctx.restore();
+}
+
+function drawFocalAnnotations() {
+  const focusX = opt.lensX + state.f;
+
+  ctx.save();
+
+  // 1. Plan focal image
+  ctx.strokeStyle = 'rgba(56, 189, 248, 0.5)';
+  ctx.lineWidth = 1.8;
+  ctx.setLineDash([7, 6]);
+  ctx.beginPath();
+  ctx.moveTo(focusX, 32);
+  ctx.lineTo(focusX, canvas.height - 32);
+  ctx.stroke();
+  ctx.setLineDash([]);
+
+  ctx.fillStyle = '#38bdf8';
+  ctx.font = '500 15px "Avenir Next", sans-serif';
+  ctx.textAlign = 'center';
+  ctx.fillText('Plan focal image', focusX, 24);
+
+  // 2. Cote de la distance focale f'
+  const dimY = opt.axisY + opt.lensDiam / 2 + 52;
+
+  ctx.strokeStyle = 'rgba(148, 163, 184, 0.3)';
+  ctx.lineWidth = 1.2;
+  ctx.setLineDash([4, 4]);
+  ctx.beginPath();
+  ctx.moveTo(opt.lensX, opt.axisY + opt.lensDiam / 2 + 8);
+  ctx.lineTo(opt.lensX, dimY + 8);
+  ctx.moveTo(focusX, opt.axisY + 8);
+  ctx.lineTo(focusX, dimY + 8);
+  ctx.stroke();
+  ctx.setLineDash([]);
+
+  ctx.strokeStyle = '#cbd5e1';
+  ctx.fillStyle = '#cbd5e1';
+  ctx.lineWidth = 1.6;
+  ctx.beginPath();
+  ctx.moveTo(opt.lensX + 4, dimY);
+  ctx.lineTo(focusX - 4, dimY);
+  ctx.stroke();
+
+  drawArrowHead(opt.lensX + 4, dimY, -1, 0, '#cbd5e1');
+  drawArrowHead(focusX - 4, dimY, 1, 0, '#cbd5e1');
+
+  const midFocalX = 0.5 * (opt.lensX + focusX);
+  ctx.fillStyle = '#090d16';
+  ctx.fillRect(midFocalX - 18, dimY - 14, 36, 26);
+  ctx.fillStyle = '#f8fafc';
+  ctx.font = 'italic 600 20px "Avenir Next", Georgia, serif';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText("f'", midFocalX, dimY);
+
+  // 3. Centre optique O et Foyer principal image F'
+  ctx.font = '600 18px "Avenir Next", sans-serif';
+  ctx.textBaseline = 'alphabetic';
+
+  ctx.fillStyle = '#94a3b8';
+  ctx.fillText('O', opt.lensX - 16, opt.axisY + 24);
+
+  ctx.strokeStyle = '#38bdf8';
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  ctx.moveTo(focusX, opt.axisY - 6);
+  ctx.lineTo(focusX, opt.axisY + 6);
+  ctx.stroke();
+
+  ctx.fillStyle = '#38bdf8';
+  ctx.beginPath();
+  ctx.arc(focusX, opt.axisY, 4, 0, Math.PI * 2);
+  ctx.fill();
+
+  ctx.font = '600 20px "Avenir Next", sans-serif';
+  ctx.fillText("F'", focusX + 18, opt.axisY + 24);
+
+  ctx.restore();
+}
+
+function drawLens() {
+  ctx.save();
+
+  const halfH = opt.lensDiam / 2;
+  const t = (opt.maxF - state.f) / (opt.maxF - opt.minF);
+  const halfThick = 14 + 40 * Math.pow(t, 1.15);
+
+  const R = (halfH * halfH + halfThick * halfThick) / (2 * halfThick);
+  const C1x = (opt.lensX - halfThick) + R;
+  const C2x = (opt.lensX + halfThick) - R;
+  const maxAngle = Math.asin(halfH / R);
+
+  ctx.beginPath();
+  ctx.arc(C1x, opt.axisY, R, Math.PI + maxAngle, Math.PI - maxAngle, true);
+  ctx.arc(C2x, opt.axisY, R, maxAngle, -maxAngle, true);
+  ctx.closePath();
+
+  const grad = ctx.createLinearGradient(
+    opt.lensX - halfThick, opt.axisY - halfH,
+    opt.lensX + halfThick, opt.axisY + halfH
+  );
+  grad.addColorStop(0, 'rgba(56, 189, 248, 0.18)');
+  grad.addColorStop(0.5, 'rgba(186, 230, 253, 0.36)');
+  grad.addColorStop(1, 'rgba(14, 165, 233, 0.22)');
+  ctx.fillStyle = grad;
+  ctx.fill();
+
+  ctx.strokeStyle = 'rgba(186, 230, 253, 0.85)';
+  ctx.lineWidth = 2.2;
+  ctx.stroke();
+
+  ctx.strokeStyle = 'rgba(224, 242, 254, 0.45)';
+  ctx.lineWidth = 1.2;
+  ctx.beginPath();
+  ctx.moveTo(opt.lensX, opt.axisY - halfH);
+  ctx.lineTo(opt.lensX, opt.axisY + halfH);
+  ctx.stroke();
+
+  const topY = opt.axisY - halfH;
+  const botY = opt.axisY + halfH;
+  ctx.strokeStyle = 'rgba(186, 230, 253, 0.9)';
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  ctx.moveTo(opt.lensX - 8, topY + 10);
+  ctx.lineTo(opt.lensX, topY);
+  ctx.lineTo(opt.lensX + 8, topY + 10);
+  ctx.moveTo(opt.lensX - 8, botY - 10);
+  ctx.lineTo(opt.lensX, botY);
+  ctx.lineTo(opt.lensX + 8, botY - 10);
+  ctx.stroke();
+
+  ctx.restore();
+}
+
+function drawParallelRaysAndImage() {
+  const theta = state.angleDeg * Math.PI / 180;
+  const tanTheta = Math.tan(theta);
+
+  const focusX = opt.lensX + state.f;
+  const focusY = opt.axisY + state.f * tanTheta;
+
+  ctx.save();
+
+  const numRays = 9;
+  const maxImpactH = (opt.lensDiam / 2) * 0.82;
+  const rayColor = '#fbbf24';
+  const centralRayColor = '#fde047';
+
+  const u1x = Math.cos(theta);
+  const u1y = Math.sin(theta);
+
+  for (let i = 0; i < numRays; i++) {
+    const frac = (i / (numRays - 1)) * 2 - 1;
+    const isCentralRay = Math.abs(frac) < 1e-4;
+    const yLens = opt.axisY + frac * maxImpactH;
+
+    // 1. Rayon incident
+    const startX = 0;
+    const startY = yLens - opt.lensX * tanTheta;
+
+    ctx.strokeStyle = isCentralRay ? 'rgba(253, 224, 71, 0.95)' : 'rgba(251, 191, 36, 0.75)';
+    ctx.lineWidth = isCentralRay ? 2.4 : 1.9;
+    ctx.beginPath();
+    ctx.moveTo(startX, startY);
+    ctx.lineTo(opt.lensX, yLens);
+    ctx.stroke();
+
+    const arrowX1 = opt.lensX * 0.45;
+    const arrowY1 = yLens - (opt.lensX - arrowX1) * tanTheta;
+    drawArrowHead(arrowX1, arrowY1, u1x, u1y, isCentralRay ? centralRayColor : rayColor);
+
+    // 2. Rayon émergent
+    const slope2 = (focusY - yLens) / state.f;
+    const norm2 = Math.hypot(1, slope2);
+    const u2x = 1 / norm2;
+    const u2y = slope2 / norm2;
+
+    const endX2 = canvas.width;
+    const endY2 = yLens + slope2 * (endX2 - opt.lensX);
+
+    ctx.strokeStyle = isCentralRay ? 'rgba(253, 224, 71, 0.95)' : 'rgba(251, 191, 36, 0.82)';
+    ctx.lineWidth = isCentralRay ? 2.4 : 1.9;
+    ctx.beginPath();
+    ctx.moveTo(opt.lensX, yLens);
+    ctx.lineTo(endX2, endY2);
+    ctx.stroke();
+
+    const arrowX2 = opt.lensX + state.f * 0.48;
+    const arrowY2 = yLens + slope2 * (arrowX2 - opt.lensX);
+    drawArrowHead(arrowX2, arrowY2, u2x, u2y, isCentralRay ? centralRayColor : rayColor);
+  }
+
+  // Halo lumineux du point image sur le plan focal image
+  const glow = ctx.createRadialGradient(focusX, focusY, 2, focusX, focusY, 22);
+  glow.addColorStop(0, '#ffffff');
+  glow.addColorStop(0.38, '#fbbf24');
+  glow.addColorStop(1, 'rgba(251, 191, 36, 0)');
+  ctx.fillStyle = glow;
+  ctx.beginPath();
+  ctx.arc(focusX, focusY, 22, 0, Math.PI * 2);
+  ctx.fill();
+
+  ctx.fillStyle = '#ffffff';
+  ctx.beginPath();
+  ctx.arc(focusX, focusY, 4.5, 0, Math.PI * 2);
+  ctx.fill();
+
+  if (Math.abs(state.angleDeg) > 1.2) {
+    ctx.fillStyle = '#fde047';
+    ctx.font = '600 19px "Avenir Next", sans-serif';
+    ctx.textAlign = 'left';
+    const labelOffsetY = state.angleDeg > 0 ? 24 : -12;
+    ctx.fillText("A'", focusX + 14, focusY + labelOffsetY);
+  }
+
+  ctx.restore();
+}
+
+function animate() {
+  state.f += (state.targetF - state.f) * 0.2;
+  state.angleDeg += (state.targetAngleDeg - state.angleDeg) * 0.2;
+
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  // Axe optique
+  ctx.strokeStyle = 'rgba(148, 163, 184, 0.22)';
+  ctx.lineWidth = 1.3;
+  ctx.setLineDash([8, 8]);
+  ctx.beginPath();
+  ctx.moveTo(0, opt.axisY);
+  ctx.lineTo(canvas.width, opt.axisY);
+  ctx.stroke();
+  ctx.setLineDash([]);
+
+  drawFocalAnnotations();
+  drawParallelRaysAndImage();
+  drawLens();
+
+  requestAnimationFrame(animate);
+}
+
+requestAnimationFrame(animate);
+</script>
+</body>
+</html>
