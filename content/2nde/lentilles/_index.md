@@ -183,4 +183,48 @@ Conclusion :
 
 ---
 
+{{% section %}}
+
+## Grandissement
+
+---
+
+Un peu de vocabulaires :
+
+<br>
+
+<ul>
+<li class="fragment fade-up">Une image peut être <b style="color:#FFF056">droite</b> ou <b style="color:#00A2FF">renversée</b></li>
+
+<br>
+
+<li class="fragment fade-up">Et elle peut être <b style="color:#FF95CA">réduite</b> ou <b style="color:#61D836">agrandie</b></li>
+</ul>
+
+---
+
+Le <span class="imp">grandissement</span> est le rapport entre la taille<br>de l'image et la taille de l'objet :
+
+<div class="encadre fragment fade-up" style="padding:0 50px;">
+$$\gamma = \frac{A'B'}{AB}$$
+</div>
+
+---
+
+<ul>
+<li>Si l'image est <b style="color:#61D836"> agrandie </b> alors <b 
+style="color:#61D836"> $\gamma$<span class="fragment" style="color:#61D836"> $>$ 1</span> </b></li>
+<br>
+<li class="fragment fade-up">Si l'image est <b style="color:#FF95CA"> réduite </b> alors <b style="color:#FF95CA"> $\gamma$<span class="fragment" style="color:#FF95CA"> $<$ 1</span> </b></li>
+</ul>
+
+---
+
+{{< slide  background-iframe="/avecindic.html" background-size="contain" background-transition="concave" background-interactive="true">}}
+
+
+{{% /section %}}
+
+---
+
 [Retour site](https://coursphychi.github.io/2nde/lentilles/)
