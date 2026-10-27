@@ -35,8 +35,6 @@ text-align: center !important;
 th:not(:last-child), td:not(:last-child) { border-right: 1px solid #00A2FF; }
 </style>
 
-<script src="/js/noir-moderne.js" defer></script>
-
 
 
 
@@ -51,8 +49,6 @@ th:not(:last-child), td:not(:last-child) { border-right: 1px solid #00A2FF; }
 {{< youtube-slide id="W1lkeM6YoqU" ratio="16x9" >}}
 
 ---
-
-{{< slide class="question" >}}
 
 Comment décrire le mouvement de tous les objets qu'il lâche (en les assimilant à des points matériels) ?
 
@@ -71,7 +67,7 @@ Comment décrire le mouvement de tous les objets qu'il lâche (en les assimilant
 <span class="imp" style="color:#FF42A1">Principe d'inertie :</span>
 
 <div style="display: flex;justify-content: center;">
-<div class="retenir" style = "border: solid #FF42A1 5px;padding: 20px 20px 20px 20px;border-radius:10px;">
+<div style = "border: solid #FF42A1 5px;padding: 20px 20px 20px 20px;border-radius:10px;">
 Tout système persévère dans son état de <span class="imp" style="color:#FFD932">repos</span><br>ou de <span class="imp">mouvement rectiligne</span> <span class="imp" style="color:#FFD932">uniforme</span>,<br>à moins qu'il ne soit contraint, par des <span class="imp" style="color:#FF644E">actions</span> s'exerçant sur lui, à changer cet état. 
 </div></div>
 
@@ -190,8 +186,6 @@ La <span class="imp" style="color:#FF42A1">contraposée du principe d'inertie</s
 
 ---
 
-{{< slide class="question" >}}
-
 L'ISS se déplace à 28 000 km/h et pourtant<br>ses moteurs sont quasiment toujours éteints. 
 
 <p class="fragment fade-up">Comment est-ce possible ?</p>
@@ -273,21 +267,14 @@ Maintenant, on va assimiler le système<br>à un <span class="imp">point matéri
 
 ---
 
-{{< slide class="question" >}}
-
-Parachute ouvert, le parachutiste descend<br><b style="color:#FFD932">en ligne droite à vitesse constante</b>.<br>Comparer son poids $P$ et la force $F$ de l'air.
+Parachute ouvert, le parachutiste descend<br><b style="color:#FFD932">en ligne droite à vitesse constante</b>.<br>Que dire de son poids $P$ et de la force $F$ de l'air ?
 
 <ol class="vote">
 <li>$P > F$<br>puisqu'il descend</li>
-<li class="fragment juste" data-fragment-index="3">$P = F$</li>
+<li class="fragment juste">$P = F$</li>
 <li>$P < F$<br>puisqu'il est freiné</li>
 <li>Impossible à dire sans les valeurs</li>
 </ol>
-
-<p class="consigne">🗳️ Votez (1 à 4 doigts) <span class="fragment" data-fragment-index="1">→ 💬 Convainquez votre voisin</span> <span class="fragment" data-fragment-index="2">→ 🗳️ Revotez !</span> <button class="indice-bouton">💡 Indice</button>
-<span class="chrono fragment" data-fragment-index="1"></span></p>
-
-<p class="indice">Que dit le principe d'inertie quand<br>le vecteur vitesse reste constant ?</p>
 
 ---
 
@@ -361,7 +348,7 @@ Le poids (force de la Terre sur le système) est <span class="imp">vertical</spa
 <br>
 
 <div class="fragment fade-up" style="display: flex;justify-content: center;">
-<div style = "border: solid #FF644E 5px;padding: 20px 20px 20px 20px; color: #FF644E; font-size:60px;border-radius:10px;" class="retenir">
+<div style = "border: solid #FF644E 5px;padding: 20px 20px 20px 20px; color: #FF644E; font-size:60px;border-radius:10px;">
 $P=m\times g$
 </div></div>
 
@@ -379,8 +366,6 @@ $P=m\times g$
 ### Principe d'inertie dans la vie<br>de tous les jours
 
 ---
-
-{{< slide class="question" >}}
 
 Pas besoin de vivre dans l'ISS<br>pour observer les effets du principe d'inertie.
 
@@ -417,21 +402,14 @@ Mais si on diminue ces frottements<br>(sur de la glace par exemple ou sur un cou
 
 ---
 
-{{< slide class="question" >}}
-
 Un palet glisse vers la droite sur une glace<br>parfaitement lisse, à vitesse constante.<br>Quelles actions s'exercent sur le palet ?
 
 <ol class="vote">
 <li>Aucune</li>
-<li class="fragment juste" data-fragment-index="3">Poids et action de la glace, qui se compensent</li>
+<li class="fragment juste">Poids et action de la glace, qui se compensent</li>
 <li>Poids, action de la glace et une force vers la droite</li>
 <li>Une force vers la droite seulement</li>
 </ol>
-
-<p class="consigne">🗳️ Votez (1 à 4 doigts) <span class="fragment" data-fragment-index="1">→ 💬 Convainquez votre voisin</span> <span class="fragment" data-fragment-index="2">→ 🗳️ Revotez !</span> <button class="indice-bouton">💡 Indice</button>
-<span class="chrono fragment" data-fragment-index="1"></span></p>
-
-<p class="indice">Si une force vers la droite n'était pas compensée,<br>que deviendrait la vitesse du palet ?</p>
 
 ---
 
@@ -509,23 +487,16 @@ Le principe d'inertie peut aussi<br>se limiter à une direction particulière.
 
 ---
 
-{{< slide class="question" >}}
-
 Une petite voiture percute un gros camion.<br>Pendant le choc, quelle force est la plus grande ?
 
 <ol class="vote">
 <li>Celle du camion sur la voiture</li>
 <li>Celle de la voiture sur le camion</li>
-<li class="fragment juste" data-fragment-index="3">Elles sont égales</li>
+<li class="fragment juste">Elles sont égales</li>
 <li>Ça dépend de leurs vitesses</li>
 </ol>
 
-<p class="consigne">🗳️ Votez (1 à 4 doigts) <span class="fragment" data-fragment-index="1">→ 💬 Convainquez votre voisin</span> <span class="fragment" data-fragment-index="2">→ 🗳️ Revotez !</span>
-<span class="chrono fragment" data-fragment-index="1"></span></p>
-
-<p class="fragment corr" data-fragment-index="4">Surprenant ? La suite va l'expliquer.</p>
-
-
+<p class="fragment corr">Surprenant ! La suite va l'expliquer.</p>
 
 ---
 
@@ -539,7 +510,7 @@ Si un système A agit sur un système B,<br>alors le système B agit sur le syst
 <br>
 
 <div class="fragment fade-up" style="display: flex;justify-content: center;">
-<div style = "border: solid #FF644E 5px;padding: 20px 20px 20px 20px; color: #FF644E; font-size:60px;border-radius:10px;" class="retenir">
+<div style = "border: solid #FF644E 5px;padding: 20px 20px 20px 20px; color: #FF644E; font-size:60px;border-radius:10px;">
 $\vec{F}_{A\rightarrow B} = -\vec{F}_{B\rightarrow A} $
 </div></div>
 
@@ -731,8 +702,6 @@ $\Rightarrow g = 9,81$ <span class="fragment">$\color{#1DB100}\text{N}\!\cdot\!\
 
 ---
 
-{{< slide class="question" >}}
-
 Que vaut la pesanteur $g$ sur l'ISS ?
 
 <br>
@@ -743,22 +712,14 @@ Que vaut la pesanteur $g$ sur l'ISS ?
 
 ---
 
-{{< slide class="question piege" >}}
-
 L'ISS orbite à environ 400 km d'altitude.<br>Que vaut la pesanteur $g$ à cette altitude ?
 
 <ol class="vote">
 <li>$0$ («&nbsp;apesanteur&nbsp;»)</li>
 <li>environ $\pu{1 N*kg-1}$</li>
-<li class="fragment juste" data-fragment-index="3">environ $\pu{9 N*kg-1}$</li>
+<li class="fragment juste">environ $\pu{9 N*kg-1}$</li>
 <li>$\pu{9,8 N*kg-1}$<br>comme au sol</li>
 </ol>
-
-<p class="consigne">🗳️ Votez (1 à 4 doigts) <span class="fragment" data-fragment-index="1">→ 💬 Convainquez votre voisin</span> <span class="fragment" data-fragment-index="2">→ 🗳️ Revotez !</span> <button class="indice-bouton">💡 Indice</button>
-<span class="chrono fragment" data-fragment-index="1"></span></p>
-
-<p class="indice">On peut réutiliser $g = G\dfrac{M_T}{d^2}$<br>avec $d$ la distance au centre de la Terre.</p>
-<p class="indice">$d = R_T + h \approx \pu{6370 km} + \pu{400 km}$</p>
 
 ---
 
@@ -780,8 +741,6 @@ On parle de <span class="imp">chute libre</span> lorsqu'un système n'est soumis
 
 
 ---
-
-{{< slide class="question" >}}
 
 Que peut-on dire du mouvement<br>d'un objet en chute libre ?
 
@@ -843,22 +802,14 @@ Comme le stipule la contraposée du principe d'inertie, si $\color{#FEAE00}\Delt
 
 ---
 
-{{< slide class="question" >}}
-
 La Lune tourne autour de la Terre sur une trajectoire<br>quasi circulaire, à vitesse de valeur constante.<br>Subit-elle une action non compensée ?
 
 <ol class="vote">
 <li>Non : sa vitesse est constante</li>
-<li class="fragment juste" data-fragment-index="3">Oui</li>
+<li class="fragment juste">Oui</li>
 <li>Non : elle est trop loin de la Terre</li>
 <li>Impossible à dire</li>
 </ol>
-
-<p class="consigne">🗳️ Votez (1 à 4 doigts) <span class="fragment" data-fragment-index="1">→ 💬 Convainquez votre voisin</span> <span class="fragment" data-fragment-index="2">→ 🗳️ Revotez !</span> <button class="indice-bouton">💡 Indice</button>
-<span class="chrono fragment" data-fragment-index="1"></span></p>
-
-<p class="indice">Le vecteur vitesse de la Lune<br>garde-t-il toujours la même direction ?</p>
-<p class="indice">Dessinez $\vec v$ en deux points voisins<br>de la trajectoire, puis $\overrightarrow{\Delta v}$.</p>
 
 ---
 

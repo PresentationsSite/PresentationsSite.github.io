@@ -3,3 +3,9 @@
 <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+{{- /* Thème « noir moderne » : script de mise en valeur des questions. */ -}}
+{{- with .Param "reveal_hugo.custom_css" -}}
+{{- if in (printf "%v" .) "noir-moderne" }}
+<script src="{{ "js/noir-moderne.js" | relURL }}" defer></script>
+{{- end -}}
+{{- end }}

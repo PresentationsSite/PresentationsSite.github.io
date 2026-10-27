@@ -316,41 +316,22 @@ body {
 }
 
 /*********************************************
- * OUTILS DE CLASSE
- * Rien ici ne modifie les coupures du texte existant : les badges sont
- * en position absolue, les nouveaux éléments ne servent qu'aux
- * nouvelles diapos.
+ * QUESTIONS
+ * Toute phrase qui se termine par « ? » est surlignée automatiquement
+ * par /js/noir-moderne.js (API CSS Custom Highlight) : aucune balise
+ * ajoutée, aucun mot déplacé. Pour exclure un passage : class="pas-question".
  *********************************************/
-
-/* Diapo-question : {{< slide class="question" >}}
-   Badge au-dessus du contenu (prévu pour des diapos peu remplies). */
-.reveal .slides section.question::before {
-  content: "✋ À vous !";
-  position: absolute;
-  left: 50%;
-  top: -46px;
-  transform: translateX(-50%);
-  font-size: 22px;
-  font-weight: 600;
-  line-height: 1.6;
-  padding: 0 0.9em;
-  border-radius: 999px;
-  white-space: nowrap;
-  color: #9bdcff;
-  background: rgba(0, 162, 255, 0.15);
-  box-shadow: inset 0 0 0 1px rgba(0, 162, 255, 0.6), 0 0 18px rgba(0, 162, 255, 0.25);
+::highlight(nm-question) {
+  background-color: rgba(123, 97, 255, 0.3);
+  text-decoration: underline 3px rgba(165, 148, 255, 0.95);
+  text-underline-offset: 0.2em;
 }
 
-/* Variante : {{< slide class="question piege" >}} */
-.reveal .slides section.question.piege::before {
-  content: "⚠️ Piège ?";
-  color: #ffc78a;
-  background: rgba(255, 154, 46, 0.15);
-  box-shadow: inset 0 0 0 1px rgba(255, 154, 46, 0.65), 0 0 18px rgba(255, 154, 46, 0.25);
-}
-
-/* Vote : <ol class="vote"> avec la bonne réponse en
-   <li class="fragment juste" data-fragment-index="…">. */
+/*********************************************
+ * CARTES DE PROPOSITIONS
+ *********************************************/
+/* Cartes de propositions : <ol class="vote">, la bonne réponse en
+   <li class="fragment juste"> s'illumine à son tour. */
 .reveal ol.vote {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -422,112 +403,6 @@ body {
   opacity: 0.35;
 }
 
-/* Consignes de vote / débat. */
-.reveal .consigne {
-  font-size: 0.6em;
-  color: rgba(255, 255, 255, 0.7);
-}
-
-/* Chrono de débat : <span class="chrono fragment" data-fragment-index="…"></span>
-   Durée réglable : style="--duree: 90s". */
-.reveal .chrono {
-  display: block;
-  width: 50%;
-  height: 6px;
-  margin: 0.4em auto 0;
-  border-radius: 3px;
-  background: rgba(255, 255, 255, 0.1);
-  overflow: hidden;
-}
-
-.reveal .chrono::after {
-  content: "";
-  display: block;
-  height: 100%;
-  border-radius: 3px;
-  background: linear-gradient(90deg, var(--nm-accent), var(--nm-accent-2));
-  transform-origin: left center;
-}
-
-.reveal .chrono.visible::after {
-  animation: nm-chrono var(--duree, 60s) linear forwards;
-}
-
-@keyframes nm-chrono {
-  0%   { transform: scaleX(1); }
-  80%  { background: linear-gradient(90deg, var(--nm-accent), var(--nm-accent-2)); }
-  85%  { background: #ff9a2e; }
-  100% { transform: scaleX(0); background: #ff644e; }
-}
-
-/* Indices cachés : <p class="indice">…</p>, montrés un par un avec la
-   touche « i » ou le bouton <button class="indice-bouton">💡 Indice</button>
-   (« Maj + i » les recache). Ils ne prennent de place qu'une fois montrés
-   (la diapo se recentre). Nécessite /js/noir-moderne.js. */
-.reveal .indice {
-  display: none;
-  margin: 0.4em 0;
-  font-size: 0.65em;
-  color: #FFE46D;
-}
-
-.reveal .indice::before {
-  content: "💡 ";
-}
-
-.reveal .indice.montre {
-  display: block;
-  animation: nm-indice 0.6s var(--nm-ease);
-}
-
-@keyframes nm-indice {
-  from { opacity: 0; transform: translateY(12px); }
-  to   { opacity: 1; transform: none; }
-}
-
-.reveal .indice-bouton {
-  font: inherit;
-  font-size: 0.85em;
-  margin-left: 0.6em;
-  vertical-align: middle;
-  font-weight: 600;
-  padding: 0.2em 0.9em;
-  border: 0;
-  border-radius: 999px;
-  cursor: pointer;
-  color: #FFE46D;
-  background: rgba(255, 228, 109, 0.1);
-  box-shadow: inset 0 0 0 1px rgba(255, 228, 109, 0.5);
-  transition: opacity 0.3s ease;
-}
-
-.reveal .indice-bouton.epuise {
-  opacity: 0.3;
-}
-
-/* À retenir : classe à ajouter sur un encadré existant
-   (le badge se pose sur la bordure, sans rien décaler). */
-.reveal .retenir {
-  position: relative;
-}
-
-.reveal .retenir::before {
-  content: "📌 À retenir";
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translate(-50%, -60%);
-  font-size: 20px;
-  font-weight: 600;
-  line-height: 1.6;
-  padding: 0 0.9em;
-  border-radius: 999px;
-  white-space: nowrap;
-  color: #fff;
-  background: linear-gradient(135deg, var(--nm-accent-3), var(--nm-accent));
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5);
-}
-
 /* Correction / réponse attendue. */
 .reveal .corr {
   color: #61D836;
@@ -570,8 +445,8 @@ body {
   .reveal .slides section.present > h3::after {
     animation: none;
   }
-  .reveal .slides section .fragment.visible.current-fragment:not(.chrono),
-  .reveal .slides section .fragment.visible.current-fragment *:not(.chrono) {
+  .reveal .slides section .fragment.visible.current-fragment,
+  .reveal .slides section .fragment.visible.current-fragment * {
     animation: none !important;
   }
 }
