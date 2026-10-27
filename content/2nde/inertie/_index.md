@@ -61,7 +61,6 @@ Comment décrire le mouvement de tous les objets qu'il lâche (en les assimilant
 {{< slide  background-image="/pingpongspatial.png" background-size="contain" background-transition="concave">}}
 
 
-
 ---
 
 <span class="imp" style="color:#FF42A1">Principe d'inertie :</span>
@@ -232,7 +231,7 @@ Une station spatiale ne peut être<br>considérée comme un référentiel galil�
 Une <span class="imp" style="color:#FF644E">action</span> est donc ce qui permet à un système<br>de modifier le mouvement d'un autre système.
 </div></div>
 
-<p class="fragment fade-up">On modélise une action par une <span class="imp" style="color:#FF644E">force</span> représentée<br>par un <span class="imp" style="color:#FF644E">vecteur</span> ayant  la direction et le sens<br>de la modification du mouvement.</p>
+<p class="fragment fade-up">On modélise une action par une <span class="imp" style="color:#FF644E">force</span> représentée<br>par un <span class="imp" style="color:#FF644E">vecteur</span> ayant  la direction et le sens<br>de la modification du mouvement qu'aurait <br>le système si la force était seule à agir sur lui.</p>
 
 <p class="fragment fade-up">La norme du vecteur (l'intensité<br>de la force), s'exprime en <span class="fragment imp" style="color:#FF644E">newton (N)</span>.</p>
 
