@@ -188,19 +188,19 @@ Données :
 <p style="color:#61D836">Pour l'hydrogénocarbonate de sodium :</p>
 
 <p style="color:#61D836">
-1<sup>re</sup> expérience : $m_{\ce{NaHCO3}} = \pu{2,0 g}$<br><span class="fragment" style="color:#61D836">$ N_{\ce{NaHCO3}}=$ </span><span class="fragment" style="color:#61D836">$\textstyle \frac{\pu{2,0 g}}{\pu{1,4E-22 g}} \approx \pu{1,4E22}$ entités</span><br><span class="fragment" style="color:#61D836">et donc $n_{\ce{NaHCO3}} \approx $</span><span class="fragment" style="color:#61D836">$\frac{\pu{1,4E22}}{\pu{6,02E23}} \approx \pu{24 mmol}$</span></li>
+1<sup>re</sup> expérience : $m_{\ce{NaHCO3}} = \pu{2,0 g}$<br><span class="fragment" style="color:#61D836">$ N_{\ce{NaHCO3}}=$ </span><span class="fragment" style="color:#61D836">$\textstyle \frac{\pu{2,0 g}}{\pu{1,4E-22 g}} \approx \pu{1,4E22}$ entités</span><br><span class="fragment" style="color:#61D836">et donc $n_{\ce{NaHCO3}} \approx $</span><span class="fragment" style="color:#61D836">$\frac{\pu{1,4E22}}{\pu{6,02E23}} \approx \pu{24 mmol}$</span>
 </p>
 
 
 ---
 
 <ul>
-<li style="color:#61D836">$\pu{2,0 g} \rightarrow \pu{24 mmol}$</span></li>
-<li style="color:#61D836">$\pu{4,0 g} \rightarrow \pu{47 mmol}$</span></li>
-<li style="color:#61D836">$\pu{6,0 g} \rightarrow \pu{71 mmol}$</span></li>
-<li style="color:#61D836">$\pu{8,0 g} \rightarrow \pu{95 mmol}$</span></li>
-<li style="color:#61D836">$\pu{10 g} \rightarrow \pu{0,12 mol}$</span></li>
-<li style="color:#61D836">$\pu{12 g} \rightarrow \pu{0,14 mol}$</span></li>
+<li style="color:#61D836">$\pu{2,0 g} \rightarrow \pu{24 mmol}$</li>
+<li style="color:#61D836">$\pu{4,0 g} \rightarrow \pu{47 mmol}$</li>
+<li style="color:#61D836">$\pu{6,0 g} \rightarrow \pu{71 mmol}$</li>
+<li style="color:#61D836">$\pu{8,0 g} \rightarrow \pu{95 mmol}$</li>
+<li style="color:#61D836">$\pu{10 g} \rightarrow \pu{0,12 mol}$</li>
+<li style="color:#61D836">$\pu{12 g} \rightarrow \pu{0,14 mol}$</li>
 </ul>
 
 
@@ -210,7 +210,7 @@ Données :
 
 <p class="fragment fade-up" style="color:#61D836">Comme la masse volumique du vinaigre utilisé est approximativement celle de l'eau, les $\pu{100 mL}$ de l'expérience ont une masse d'environ <span class="fragment" style="color:#61D836">$\pu{100 g}$</span>.</p>
 
-<p class="fragment fade-up" style="color:#61D836">Mais il n'y a que 5% d'acide éthanoïque<br>dans ces $\pu{100 g}$, soit environ <span class="fragment" style="color:#61D836">$\pu{5,0 g}$</span>.<p>
+<p class="fragment fade-up" style="color:#61D836">Mais il n'y a que 5% d'acide éthanoïque<br>dans ces $\pu{100 g}$, soit environ <span class="fragment" style="color:#61D836">$\pu{5,0 g}$</span>.</p>
 
 <p class="fragment fade-up" style="color:#61D836">Cela représente $n_{\ce{CH3COOH}} \approx$ <span class="fragment" style="color:#61D836">$\pu{83 mmol}$</span>.</p>
 
@@ -227,12 +227,12 @@ Comment mesure-t-on la masse de dioxyde de carbone produit dans l'expérience de
 ---
 
 <ul>
-<li style="color:#61D836">1<sup>er</sup> ballon : $\pu{24 mmol}$</span></li>
-<li style="color:#61D836">2<sup>e</sup> ballon : $\pu{47 mmol}$</span></li>
-<li style="color:#61D836">3<sup>e</sup> ballon : $\pu{71 mmol}$</span></li>
-<li style="color:#61D836">4<sup>e</sup>ballon : $\pu{83 mmol}$</span></li>
-<li style="color:#61D836">5<sup>e</sup> ballon : $\pu{83 mmol}$</span></li>
-<li style="color:#61D836">6<sup>e</sup> ballon : $\pu{83 mmol}$</span></li>
+<li style="color:#61D836">1<sup>er</sup> ballon : $\pu{24 mmol}$</li>
+<li style="color:#61D836">2<sup>e</sup> ballon : $\pu{47 mmol}$</li>
+<li style="color:#61D836">3<sup>e</sup> ballon : $\pu{71 mmol}$</li>
+<li style="color:#61D836">4<sup>e</sup> ballon : $\pu{83 mmol}$</li>
+<li style="color:#61D836">5<sup>e</sup> ballon : $\pu{83 mmol}$</li>
+<li style="color:#61D836">6<sup>e</sup> ballon : $\pu{83 mmol}$</li>
 </ul>
 
 ---
@@ -412,7 +412,7 @@ $\ce{H3O+ (aq)}$ dans les expériences 3 et 4
 
 ---
 
-L'expérience 3 est particulière, Pourquoi ?
+L'expérience 3 est particulière. Pourquoi ?
 
 <br>
 
@@ -424,7 +424,7 @@ Ils sont donc tous les deux limitants.</p>
 
 ---
 
-<p class="imp">Détermination de la stœchiométrie :</span>
+<p class="imp">Détermination de la stœchiométrie :</p>
 
 <br><br>
 
@@ -433,8 +433,9 @@ Ils sont donc tous les deux limitants.</p>
 </li>
 <li>Dans le ballon 2, $\pu{25 mmol}$.
 </li>
-<li>Dans les ballon 3 et 4, $\pu{50 mmol}$.
+<li>Dans les ballons 3 et 4, $\pu{50 mmol}$.
 </li>
+</ul>
 
 ---
 
@@ -920,7 +921,7 @@ Une transformation chimique est <span class="imp">endothermique</span><br>si ell
 
 
 Si la masse du réactif limitant <span class="imp">$\nearrow$</span>,<br>
-<span class="fragment">la quantité de produits formés <span class="imp fragment">$\nearrow$</span>,<span><br>
+<span class="fragment">la quantité de produits formés <span class="imp fragment">$\nearrow$</span>,</span><br>
 <span class="fragment">et donc l'énergie absorbée<br>ou libérée par la transformation <span class="imp fragment">$\nearrow$</span>. </span>
 
 <br>

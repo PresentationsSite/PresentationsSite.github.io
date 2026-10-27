@@ -49,7 +49,7 @@ Où sont les "minéraux" ?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
 Une solution est un <b style="color:#FF8596">mélange homogène</b> obtenu<br>par <b style="color:#FF8596">dissolution</b> d'un <b style="color:#FFE46D">soluté</b> dans un <b style="color:#7CADED">solvant</b>.
 
-<p class="fragment fade-up">Le <b style="color:#7CADED">solvant</b> est l'espèce <b>ultra majoritaire</b><br>dans laquelle les <b style="color:#FFE46D">solutés</b> sont dissouts.</p>
+<p class="fragment fade-up">Le <b style="color:#7CADED">solvant</b> est l'espèce <b>ultra majoritaire</b><br>dans laquelle les <b style="color:#FFE46D">solutés</b> sont dissous.</p>
 
 <p class="fragment fade-up">Si le <b style="color:#7CADED">solvant</b> est l'eau, on parle de <b style="color:#7CADED">solution aqueuse</b>.</p>
 
@@ -128,7 +128,7 @@ Exemples :
 ---
 
 <div  style="color:#45B53C">
-$m = \pu{25 g}$ , $V= \pu{500 mL}$ , $C_m$ ?<br> <div>
+$m = \pu{25 g}$ , $V= \pu{500 mL}$ , $C_m$ ?<br> </div>
 
 <div  class="fragment fade-up" style="color:#45B53C">
 $$\begin{align}
@@ -237,7 +237,7 @@ On a $C_{max}= \frac{\pu{1,0 g}}{\pu{300 mL}} = \frac{\pu{1,0 g}}{\pu{0,300 L}} 
 $V = \pu{400 mL}$ et $m = \pu{1,20 g}$.</p>
 
 <div  class="fragment fade-up" style="color:#45B53C">
-Si on dilue les 1,20 g dans les 400 mL,<br>on atteind une concentration $C$ valant :
+Si on dilue les 1,20 g dans les 400 mL,<br>on atteint une concentration $C$ valant :
 $$C =  \frac{\pu{1,2 g}}{\pu{400 mL}} =  \frac{\pu{1,2 g}}{\pu{0,400 L}} = \pu{3,0 g/L}$$
 $C≤ C_{max}$ $\Rightarrow$ toute l'aspirine peut être dissoute.
 </div>
@@ -315,7 +315,7 @@ Et pourquoi récupère-t-on l'eau de rinçage<br>de la coupelle ou du sabot dans
 
 Comment faire pour <span class="imp">diminuer<br>la concentration d'une solution</span> ?
 
-<p class="fragment fade-up">On <span = class="imp">ajoute du solvant</span> = on <span = class="imp">dilue</span>.</p>
+<p class="fragment fade-up">On <span class="imp">ajoute du solvant</span> = on <span class="imp">dilue</span>.</p>
 
 ---
 
@@ -416,8 +416,8 @@ On veut obtenir 250 mL d'une solution diluée 5 fois<br>($F=5$), quel matériel 
 $V_{fille} = \pu{250 mL}$ , $F = 5$<br></div>
 <div  class="fragment fade-up" style="color:#45B53C">
 $$\Rightarrow V_{mère}=\frac{V_{fille}}{F}=\frac{\pu{250 mL}}{5} =\pu{50 mL}$$
-<div>
-<p class="fragment fade-up">Il faut donc une <u>pipette jaugée de 50 mL</u><br>et une <u>fiole jaugée de 250 mL</u>.<p>
+</div>
+<p class="fragment fade-up" style="color:#45B53C">Il faut donc une <u>pipette jaugée de 50 mL</u><br>et une <u>fiole jaugée de 250 mL</u>.</p>
 
 <ul style="color:#45B53C">
 <li class="fragment fade-up">On prélève la solution mère avec la pipette,</li> 

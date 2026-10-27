@@ -61,7 +61,7 @@ DANGER
 <i class="fa-solid fa-triangle-exclamation" style="color:red"></i>
 
 <p class="fragment fade-up">Au moment de placer la propipette sur la pipette,<br>
-il faut que vos deux mains soient proches l'une de l'autre (ne pas tenir la pipette par le bas), cela évitera que le bras de levier entre vos deux mains permettent de casser la pipette et vous blesser 🩸😭.</p>
+il faut que vos deux mains soient proches l'une de l'autre (ne pas tenir la pipette par le bas), cela évitera que le bras de levier entre vos deux mains permette<br>de casser la pipette et vous blesser 🩸😭.</p>
 
 <p class="fragment fade-up">Et il ne faut pas enfoncer trop la propipette<br>sous peine de déplacer la bille de la valve S.</p>
 

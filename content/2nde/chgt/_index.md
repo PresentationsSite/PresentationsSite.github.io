@@ -239,7 +239,7 @@ Qu'ont en commun<br>les 3 changements d'état endothermiques ?
 
 <p class="fragment fade-up">Voyez-vous une explication microscopique ?</p>
 
-<span class="fragment" style="color:#1DB100">Ils correspondent au passage vers un état moins lié<br>(où les énergies de liaison entre entités sont<br>moins grandes) or il faut de l'énergie pour<br>libérer les entités de leurs chaînes.
+<span class="fragment" style="color:#1DB100">Ils correspondent au passage vers un état moins lié<br>(où les énergies de liaison entre entités sont<br>moins grandes) or il faut de l'énergie pour<br>libérer les entités de leurs chaînes.</span>
 
 ---
 

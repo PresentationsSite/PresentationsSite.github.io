@@ -96,21 +96,26 @@ D'autres ordres de grandeur à trouver :
 <td>k</td>
 <td ><span class="fragment">$10^3$</span></td>
 </tr>
+<tr>
 <td ><span class="fragment">méga</span></td>
 <td ><span class="fragment">M</span></td>
 <td>$10^6$</td>
 </tr>
+<tr>
 <td ><span class="fragment">giga</span></td>
 <td ><span class="fragment">G</span></td>
 <td>$10^9$</td>
 </tr>
+<tr>
 <td><span class="fragment">téra</span></td>
 <td ><span class="fragment">T</span></td>
 <td>$10^{12}$</td>
 </tr>
+<tr>
 <td><span class="fragment">péta</span></td>
 <td ><span class="fragment">P</span></td>
 <td>$10^{15}$</td>
+</tr>
 </tbody>
 </table>
 
@@ -134,21 +139,26 @@ D'autres ordres de grandeur à trouver :
 <td>m</td>
 <td ><span class="fragment">$10^{-3}$</span></td>
 </tr>
+<tr>
 <td ><span class="fragment">micro</span></td>
 <td ><span class="fragment">$\mu$</span></td>
 <td>$10^{-6}$</td>
 </tr>
+<tr>
 <td ><span class="fragment">nano</span></td>
 <td ><span class="fragment">n</span></td>
 <td>$10^{-9}$</td>
 </tr>
+<tr>
 <td><span class="fragment">pico</span></td>
 <td ><span class="fragment">p</span></td>
 <td>$10^{-12}$</td>
 </tr>
+<tr>
 <td><span class="fragment">femto</span></td>
 <td ><span class="fragment">f</span></td>
 <td>$10^{-15}$</td>
+</tr>
 </tbody>
 </table>
 

@@ -57,11 +57,11 @@ ul li {
 
 <li> Unité : <span class="imp fragment">ampère (A)</span> </li>
 
-<li>Appareil de mesure : <span class="imp fragment">ampèremètre</span> 
+<li>Appareil de mesure : <span class="imp fragment">ampèremètre</span> </li>
 
 <li>Branchement : <span class="imp fragment">série</span> </li>
 
-<ul>
+</ul>
 
 ---
 
@@ -119,7 +119,7 @@ Quel que soit l'appareil de mesure, on commence toujours par le plus <span class
 
 <p class="fragment fade-up">Et on descend progressivement<br>(lorsque la valeur lue est<br>inférieure au calibre<br>qui précède).</p>
 
-<p class="fragment fade-up">Si un 1 s'affiche seul sur la gauche de l'écran, cela signal que vous êtes hors calibre. C'est mal 💀</p>
+<p class="fragment fade-up">Si un 1 s'affiche seul sur la gauche de l'écran, cela signale que vous êtes hors calibre. C'est mal 💀</p>
 
 ----
 
@@ -160,11 +160,11 @@ Analogie ? <span class="fragment">Débit d'une rivière !</span>
 
 <li> Unité : <span class="imp fragment">volt (V)</span> </li>
 
-<li>Appareil de mesure : <span class="imp fragment">voltmètre</span> 
+<li>Appareil de mesure : <span class="imp fragment">voltmètre</span> </li>
 
 <li>Branchement : <span class="imp fragment">dérivation</span> </li>
 
-<ul>
+</ul>
 
 ---
 
@@ -234,13 +234,13 @@ Elle lie entre elles la tension et l'intensité
 <ul>
 
 <li>Définition : <span class="fragment">c'est le rapport entre la tension et l'intensité</span><br>
-<span class="fragment imp">$\displaystyle R=\frac{U}{I}$</li>
+<span class="fragment imp">$\displaystyle R=\frac{U}{I}$</span></li>
 
 <li> Unité : <span class="imp fragment">ohm ($\Omega$)</span> </li>
 
-<li>Appareil de mesure : <span class="imp fragment">ohmmètre</span> 
+<li>Appareil de mesure : <span class="imp fragment">ohmmètre</span> </li>
 
-<ul>
+</ul>
 
 ---
 
@@ -320,7 +320,7 @@ La <b>caractéristique</b> d’un dipôle électrique<br>est la relation existan
 
 ---
 
-Elle est générallement fournie<br>sous la forme d’un graphique représentant :
+Elle est généralement fournie<br>sous la forme d’un graphique représentant :
 
 <br>
 

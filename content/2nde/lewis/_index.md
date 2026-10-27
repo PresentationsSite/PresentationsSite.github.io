@@ -89,7 +89,7 @@ td {
 L'atome de noyau $\ce{_ZX}$ possède $Z$ électrons.
 
 <p class="fragment fade-up">
-Ces $Z$ électrons forment le cortège électronique.<br>Ils se répartissent en <span class="imp">couches</span> concentriques autour du noyau numéroté par le nombre quantique principal <span class="imp">$n$</span>.
+Ces $Z$ électrons forment le cortège électronique.<br>Ils se répartissent en <span class="imp">couches</span> concentriques autour du noyau repérées par le nombre quantique principal <span class="imp">$n$</span>.
 </p>
 
 
@@ -181,7 +181,7 @@ Les couches de valence correspondent ainsi aux électrons les plus périphériqu
 
 Cela explique la "périodicité" du tableau périodique :
 
-<p class="fragment fade-up">sont placés dans une même colonne des éléments ayant la même configuration électronique<br>de leurs <span class="imp">électrons de valence</imp>.</p>
+<p class="fragment fade-up">sont placés dans une même colonne des éléments ayant la même configuration électronique<br>de leurs <span class="imp">électrons de valence</span>.</p>
 
 ---
 
@@ -206,7 +206,7 @@ On peut condenser l'écriture d'une configuration électronique en écrivant seu
 
 ---
 
-Les <span class="imp">lignes</span> du tableau périodique, appelées <span class="imp">périodes</span>, correspondent au <span class="imp">$n$</span> le plus élevé parmi les sous-couches remplis ou en cours de remplissage.
+Les <span class="imp">lignes</span> du tableau périodique, appelées <span class="imp">périodes</span>, correspondent au <span class="imp">$n$</span> le plus élevé parmi les sous-couches remplies ou en cours de remplissage.
 
 ---
 
@@ -244,12 +244,14 @@ Trouver l'emplacement dans le tableau périodique<br>à partir de la configurati
 <li class="fragment fade-up" style="color:#1DB100">$ns^2$ est sur la 2<sup>e</sup> colonne,<br>sauf si $n=1$ $\rightarrow$ 18<sup>e</sup> colonne (Hélium) </li>
 
 </ul>
+</li>
+</ul>
 
 ---
 
 <table>
 <tr>
-<td class="empty">Colonne 1</a></td><td class="empty">Colonne 2</td><td class="empty">...</td><td class="empty">Colonne 13</td><td class="empty">Colonne 14</td><td class="empty">Colonne 15</td><td class="empty">Colonne 16</td><td class="empty">Colonne 17</td><td class="empty">Colonne 18</td>
+<td class="empty">Colonne 1</td><td class="empty">Colonne 2</td><td class="empty">...</td><td class="empty">Colonne 13</td><td class="empty">Colonne 14</td><td class="empty">Colonne 15</td><td class="empty">Colonne 16</td><td class="empty">Colonne 17</td><td class="empty">Colonne 18</td>
 <tr>
 <td class="caseneutre"></td>
   <td class="empty"></td>
@@ -295,6 +297,8 @@ Trouver l'emplacement dans le tableau périodique<br>à partir de la configurati
 <li class="fragment fade-up" style="color:#1DB100">$i+12$ donne le n° de la colonne</li>
 
 </ul>
+</li>
+</ul>
 
 ---
 
@@ -307,7 +311,7 @@ $\text{s}^{\color{#FEAE00}2}$ $\rightarrow$ $\color{#FEAE00}2$<sup>e</sup> colon
 
 <table class="fragment fade-up">
 <tr>
-<td class="empty">Colonne 1</a></td><td class="empty">Colonne 2</td><td class="empty">...</td><td class="empty">Colonne 13</td><td class="empty">Colonne 14</td><td class="empty">Colonne 15</td><td class="empty">Colonne 16</td><td class="empty">Colonne 17</td><td class="empty">Colonne 18</td>
+<td class="empty">Colonne 1</td><td class="empty">Colonne 2</td><td class="empty">...</td><td class="empty">Colonne 13</td><td class="empty">Colonne 14</td><td class="empty">Colonne 15</td><td class="empty">Colonne 16</td><td class="empty">Colonne 17</td><td class="empty">Colonne 18</td>
 <tr>
 <td class="caseneutre"></td>
   <td class="empty"></td>
@@ -355,7 +359,7 @@ $\text{p}^{\color{#FEAE00}4}$ $\rightarrow$ $12+\color{#FEAE00}4\color{#1DB100}=
 
 <table class="fragment fade-up">
 <tr>
-<td class="empty">Colonne 1</a></td><td class="empty">Colonne 2</td><td class="empty">...</td><td class="empty">Colonne 13</td><td class="empty">Colonne 14</td><td class="empty">Colonne 15</td><td class="empty">Colonne 16</td><td class="empty">Colonne 17</td><td class="empty">Colonne 18</td>
+<td class="empty">Colonne 1</td><td class="empty">Colonne 2</td><td class="empty">...</td><td class="empty">Colonne 13</td><td class="empty">Colonne 14</td><td class="empty">Colonne 15</td><td class="empty">Colonne 16</td><td class="empty">Colonne 17</td><td class="empty">Colonne 18</td>
 <tr>
 <td class="caseneutre"></td>
   <td class="empty"></td>
@@ -406,7 +410,7 @@ Les <span class="imp">configurations électroniques les plus stables sont celles
 
 <table class="fragment fade-up">
 <tr>
-<td class="empty">Colonne 1</a></td><td class="empty">Colonne 2</td><td class="empty">...</td><td class="empty">Colonne 13</td><td class="empty">Colonne 14</td><td class="empty">Colonne 15</td><td class="empty">Colonne 16</td><td class="empty">Colonne 17</td><td class="empty">Colonne 18</td>
+<td class="empty">Colonne 1</td><td class="empty">Colonne 2</td><td class="empty">...</td><td class="empty">Colonne 13</td><td class="empty">Colonne 14</td><td class="empty">Colonne 15</td><td class="empty">Colonne 16</td><td class="empty">Colonne 17</td><td class="empty">Colonne 18</td>
 <tr>
 <td class="caseneutre"></td>
   <td class="empty"></td>
@@ -591,7 +595,7 @@ $2\times 1$ pour les hydrogènes,<br>$4$ pour le carbone et $6\times 2$ pour les
 
 Avec ces 9 doublets,<br>on peut envisager différents édifices.
 
-<p class="fragment fade-up">Choisir parmi les schémas de Lewis suivant celui conférant un gain de stabilité pour chacun des atomes (c'est bien sûr celui que la nature choisit).</p>
+<p class="fragment fade-up">Choisir parmi les schémas de Lewis suivants celui conférant un gain de stabilité pour chacun des atomes (c'est bien sûr celui que la nature choisit).</p>
 
 <br><br><br><br><br><br><br><br><br><br>
 

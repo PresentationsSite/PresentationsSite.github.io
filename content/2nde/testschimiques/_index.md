@@ -45,7 +45,7 @@ left: -0.78em;
 
 
 
-## Les test d'identification chimiques à connaître
+## Les tests d'identification chimiques à connaître
 
 
 
@@ -109,8 +109,8 @@ Pourquoi faut-il aller vite à l'ouverture du tube ?
 ---
 
 <ul>
-<li> test positif :<br><span class="fragment" style="color:#FF968D;">on entend une détonnation aigue (aboiement) lorsqu'on approche une baguette enflammée de l'ouverture du tube à essai contenant le gaz à tester</span></li><br>
-<li> test négatif :<br><span class="fragment" style="color:#56C1FF;">pas de détonnation</span></li>
+<li> test positif :<br><span class="fragment" style="color:#FF968D;">on entend une détonation aiguë (aboiement) lorsqu'on approche une baguette enflammée de l'ouverture du tube à essai contenant le gaz à tester</span></li><br>
+<li> test négatif :<br><span class="fragment" style="color:#56C1FF;">pas de détonation</span></li>
 </ul>
 
 ---

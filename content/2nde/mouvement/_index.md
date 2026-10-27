@@ -52,7 +52,7 @@ th:not(:last-child), td:not(:last-child) { border-right: 1px solid #00A2FF; }
 
 En physique, un <span class="imp">système</span> est l'objet<br>ou l'ensemble d'objets étudiés.
 
-<p class="fragment fade-up">Définir un système correspond donc à tracer<br>une frontière entre ce qui nous intéresse<br>et son environnement.<p>
+<p class="fragment fade-up">Définir un système correspond donc à tracer<br>une frontière entre ce qui nous intéresse<br>et son environnement.</p>
 
 <p class="fragment fade-up">Exemples : une balle, un marteau,<br>une voiture, la Lune, le système solaire...</p>
 
@@ -110,6 +110,7 @@ Exemples de référentiels :
 <li class="fragment fade-up"> le référentiel du train où se trouve la croix verte<br>(ce que voit un passager immobile de ce train).</li>
 <li class="fragment fade-up"> le référentiel de l'autre train (ce que voit un passager immobile dans l'autre train).</li>
 <li class="fragment fade-up"> le référentiel géocentrique<br>(pour étudier le mouvement<br>d'un satellite par exemple).</li>
+</ul>
 
 ---
 
@@ -201,7 +202,7 @@ Deux types de mouvements :
 tous les points du système ont une trajectoire identique (superposable)</li>
 <li class="fragment fade-up"><span class="imp">mouvement de rotation</span> autour d'un axe fixe :<br>
 tous les points du système (sauf ceux situés sur l'axe) ont pour trajectoire un cercle centré sur l'axe</li>
-<ul>
+</ul>
 
 ---
 

@@ -148,31 +148,31 @@ m_{\ce{H2O}} &\approx (2\times 1+16)\times \pu{1,7E-27kg} \\
 &\approx \pu{3,1E-26kg}
 \end{align}
 $$
-<p>
+</p>
 
 <p class="fragment fade-up" style="color:#61D836">
-Puis le nombre $N$ de ces molécules dans 1 kg d'eau :<p>
+Puis le nombre $N$ de ces molécules dans 1 kg d'eau :</p>
 <p class="fragment fade-up" style="color:#61D836">
 $$
 N \approx \frac{\pu{1,0 kg}}{\pu{3,1E-26kg}} \approx \pu{3,2E25}
 $$
-<p>
+</p>
 
 ---
 
 <p style="color:#61D836">
-Enfin, on cherche le nombre $n$ de moles<br>que cela représente :<p>
+Enfin, on cherche le nombre $n$ de moles<br>que cela représente :</p>
 <p class="fragment fade-up" style="color:#61D836">
 $$
 n \approx \frac{\pu{3,2E25}}{\pu{6,02E23}} \approx \pu{53 mol}
 $$
-<p>
+</p>
 
-<p class="fragment fade-up"><u>Rq</u> : moles de symbole mol<p>
+<p class="fragment fade-up"><u>Rq</u> : moles de symbole mol</p>
 
 ---
 
-On appelle le nombre de mole d'une entité<br>sa <span style="font-weight:bold;color:#FEAE00;">quantité de matière $n$</span>.
+On appelle le nombre de moles d'une entité<br>sa <span style="font-weight:bold;color:#FEAE00;">quantité de matière $n$</span>.
 
 {{%/section%}}
 
@@ -198,7 +198,7 @@ On appelle le nombre de mole d'une entité<br>sa <span style="font-weight:bold;c
 </ul>
 
 {{%note%}}
-Sensé savoir maintenant que l'air pèse à peu près 1 kg par mètre cube.
+Censé savoir maintenant que l'air pèse à peu près 1 kg par mètre cube.
 Pourquoi la proportion massique de l'air n'est pas à 80%/20% ?
 {{%/note%}}
 
@@ -338,7 +338,7 @@ $N_A=\pu{6,02E23 mol^-1}$
 
 ---
 
-Vous verrez pour certain l'année prochaine que<br>la détermination du nombre d'entités : 
+Vous verrez pour certains l'année prochaine que<br>la détermination du nombre d'entités : 
 
 $$N=\frac{m}{m_{\text{entité}}}$$
 

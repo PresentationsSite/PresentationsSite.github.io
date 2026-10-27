@@ -61,7 +61,7 @@ En lâchant la balle, le passager peut-il<br>blesser son voisin de derrière ?
 
 <br>
 
-Et s'il la lâche par la fenêtre, y a-il un<br>risque pour un des deux animaux ?
+Et s'il la lâche par la fenêtre, y a-t-il un<br>risque pour un des deux animaux ?
 
 <br><br><br><br><br><br><br><br>
 

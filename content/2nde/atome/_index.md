@@ -108,7 +108,7 @@ Le nuage électronique est constitué <span class="fragment imp">d'électrons</s
 
 <b>Caractéristiques d'un électron :</b>
 
-- charge  : <span class="imp">$\pu{-1,6E-19 C}$</imp>
+- charge  : <span class="imp">$\pu{-1,6E-19 C}$</span>
 - masse : $\pu{9,1E-31 kg}$
 
 ---
@@ -125,14 +125,14 @@ Le noyau est composé <span class="fragment imp" style="color:#FF644E">de proton
 
 <b>Caractéristiques d'un proton :</b>
 
-- charge  : <span class="imp" style="color:#FF644E">$\pu{+1,6E-19 C}$</imp>
+- charge  : <span class="imp" style="color:#FF644E">$\pu{+1,6E-19 C}$</span>
 - masse : $\pu{1,7E-27 kg}$
 
 <br>
 
 <b>Caractéristiques d'un neutron :</b>
 
-- charge  : <span class="imp" style="color:#61D836">$\pu{0 C}$</imp>
+- charge  : <span class="imp" style="color:#61D836">$\pu{0 C}$</span>
 - masse : $\pu{1,7E-27 kg}$
 
 <span class="fragment">Que remarquez-vous ?</span>

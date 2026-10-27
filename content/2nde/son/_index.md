@@ -512,7 +512,7 @@ volumeOutput.innerHTML = this.value;
 
 {{%note%}}
 - piège de bien mesurer entre deux couleurs identiques
-- Permet de parler de comment améliorer la précision lorsque phénomène répétitif :mesurer un nombre n de répétitions puis diviser le résultat par n (l'unique mesure a théoriquement la même précision que l'on mesure 1 ou 10 périodes mais par contre, dans le cas de 10, on divise cette précision d'une mesure unique par 10. Donc la mesure est 10 fois meilleurs !)
+- Permet de parler de comment améliorer la précision lorsque phénomène répétitif :mesurer un nombre n de répétitions puis diviser le résultat par n (l'unique mesure a théoriquement la même précision que l'on mesure 1 ou 10 périodes mais par contre, dans le cas de 10, on divise cette précision d'une mesure unique par 10. Donc la mesure est 10 fois meilleure !)
 {{%/note%}}
 
 ---
@@ -525,14 +525,14 @@ Le domaine des fréquences des sons audibles<br>pour l'oreille humaine est situ�
 
 {{%note%}}
 Tous les animaux pareils ?
-+ Vieillesse où déterioration
++ Vieillesse ou détérioration
 {{%/note%}}
 
 ---
 
 Pour un son musical, la <span class="imp">hauteur</span> désigne la note jouée (plus ou moins grave ou aigüe).
 
-<span style="color:#61D836"><b>La hauteur est liée à la fréquence</b><span> :<br>
+<span style="color:#61D836"><b>La hauteur est liée à la fréquence</b></span> :<br>
 plus la fréquence est grande,<br><span class="fragment">plus la hauteur est <span class="fragment">grande</span></span><br><span class="fragment">et plus la note est <span class="fragment">aigüe.</span></span>
 
 ---
@@ -585,12 +585,12 @@ Si l'<span style="color:#61D836">intensité sonore</span> de la trompette seule 
 
 Mais cette relation de proportionnalité rend mal compte de notre <span class="imp" style="color:#FFD932">sensation auditive</span>.
 
-<p class="fragment fade-up">On peut par exemple mesurer que l'<span style="color:#61D836"><b>intensité sonore</span> du son émis par quelqu'un qui parle fort est environ 10&nbsp;000 fois plus grande que celle d'une personne qui chuchote à la même distance ! Pourtant, on n'a<br>pas la <span class="imp" style="color:#FFD932">sensation</span> d'un son 10&nbsp;000 fois plus fort...</p>
+<p class="fragment fade-up">On peut par exemple mesurer que l'<span style="color:#61D836"><b>intensité sonore</b></span> du son émis par quelqu'un qui parle fort est environ 10&nbsp;000 fois plus grande que celle d'une personne qui chuchote à la même distance ! Pourtant, on n'a<br>pas la <span class="imp" style="color:#FFD932">sensation</span> d'un son 10&nbsp;000 fois plus fort...</p>
 
-<p class="fragment fade-up" style="color:1DB100"><span class="imp" style="color:#61D836">Intensité sonore</span> et <span class="imp" style="color:#FFD932">sensation auditive</span><br>ne sont pas <span class="imp" style="color:#FF644E">proportionnelles</span>&nbsp;!</p>
+<p class="fragment fade-up"><span class="imp" style="color:#61D836">Intensité sonore</span> et <span class="imp" style="color:#FFD932">sensation auditive</span><br>ne sont pas <span class="imp" style="color:#FF644E">proportionnelles</span>&nbsp;!</p>
 
 {{%note%}}
-70dB pour parle fort
+70dB pour parler fort
 30dB pour chuchotement
 {{%/note%}}
 
@@ -612,7 +612,7 @@ Une, deux puis 4 trompettes ensemble.
 
 {{%note%}}
 Testons-le avec l'application Fizziq :
-il faut 3 tel, 1 choisit le capteur "niveau de bruit" (qui moyenne le niveau sonore) et les deux autres joue un bruit de rue passante (choisit dans outils). On règle chacun des émetteurs (distance et volume) pour qu'ils donnent la même valeur de niveau sonore puis on les fait jouer en même temps.
+il faut 3 tel, 1 choisit le capteur "niveau de bruit" (qui moyenne le niveau sonore) et les deux autres jouent un bruit de rue passante (choisi dans outils). On règle chacun des émetteurs (distance et volume) pour qu'ils donnent la même valeur de niveau sonore puis on les fait jouer en même temps.
 {{%/note%}}
 
 ---

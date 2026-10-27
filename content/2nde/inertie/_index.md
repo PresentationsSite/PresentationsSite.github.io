@@ -136,14 +136,14 @@ Et plus schématiquement :
 
 ---
 
-La <span class="imp" style="color:#FF42A1">contraposée du principe d'inertie</span><br>est toute aussi utile :
+La <span class="imp" style="color:#FF42A1">contraposée du principe d'inertie</span><br>est tout aussi utile :
 
 <div style="display: flex;justify-content: center;">
 <div style = "border: solid #FF42A1 5px;padding: 20px 20px 20px 20px;border-radius:10px;">
 
-<pan class="fragment">Si  le <span class="imp" style="color:#FFD932">vecteur vitesse</span> d'un système <span class="imp">n'est pas constant</span> alors <span class="imp" style="color:#FF644E">il y a au moins une action<br>non compensée</span> qui s'exerce sur le système.</span><br>
+<span class="fragment">Si  le <span class="imp" style="color:#FFD932">vecteur vitesse</span> d'un système <span class="imp">n'est pas constant</span> alors <span class="imp" style="color:#FF644E">il y a au moins une action<br>non compensée</span> qui s'exerce sur le système.</span><br>
 
-<pan class="fragment">Et inversement, s'il y a <span class="imp" style="color:#FF644E">une action<br>non compensée</span>, alors le <span class="imp" style="color:#FFD932">vecteur vitesse</span><br>de ce système <span class="imp">n'est pas constant</span>.</span>
+<span class="fragment">Et inversement, s'il y a <span class="imp" style="color:#FF644E">une action<br>non compensée</span>, alors le <span class="imp" style="color:#FFD932">vecteur vitesse</span><br>de ce système <span class="imp">n'est pas constant</span>.</span>
 
 </div></div>
 
@@ -357,7 +357,7 @@ Pas besoin de vivre dans l'ISS<br>pour observer les effets du principe d'inertie
 
 Exemple le plus simple :
 
-un objet au repos à tendance à rester<br>au repos si rien n'agit sur lui...
+un objet au repos a tendance à rester<br>au repos si rien n'agit sur lui...
 
 
 ---
@@ -497,7 +497,7 @@ Justification : le centre de masse du système {Terre+bonhomme} ne doit pas boug
 
 ---
 
-<p>Si la planète avait la même masse, elle bougerait autant. Mais la masse de la Terre<br>vaut environ <shan class="fragment">$\pu{6E24 kg}$ ...</span></p>
+<p>Si la planète avait la même masse, elle bougerait autant. Mais la masse de la Terre<br>vaut environ <span class="fragment">$\pu{6E24 kg}$ ...</span></p>
 
 
 
@@ -526,7 +526,7 @@ masse<br>Terre</td>
 
 
 {{% note %}}
-Et si on faisait sauter tous les humains au même moment (assez facile à faire si on les laisse où ils sont) mais les effets s'annullent. 
+Et si on faisait sauter tous les humains au même moment (assez facile à faire si on les laisse où ils sont) mais les effets s'annulent. 
 Et si on mettait tous les humains au même endroit avant de les faire sauter ?
 $8\text{ milliards} \times \pu{70 kg} \approx \pu{6E11 kg}$.
 

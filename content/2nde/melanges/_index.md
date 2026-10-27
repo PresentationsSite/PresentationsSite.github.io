@@ -80,7 +80,7 @@ L'image des atomes de magnésium a été prise par ce genre de bêtes là : un m
 ---
 
 
-À l'échelle microscopique,<br>on parle d'<span class="imp">entité chimiques</span>.
+À l'échelle microscopique,<br>on parle d'<span class="imp">entités chimiques</span>.
 
 <p class="fragment fade-up">Exemple d'entités chimiques ?</p>
 <ul class="imp">
@@ -165,7 +165,7 @@ Que se passe-t-il quand on fait une vinaigrette ? Comment la stabiliser (moutard
 {{< youtube-slide id="NoMeoMygVy0" ratio="4x3" >}}
 
 {{% note %}}
-La majorité du lait entier vendu en France a été "homogénéisé" procédé consistant à le faire passer à travers des buses à haute pression (de l'ordre de la centaine de bars). Le lait n'est alors toujours pas à proprement parlé homogène mais la taille des globules de graisse a diminué (divisé par 3 environ) rendant l'émulsion plus stable (il n'y a pas de couche de graisse se formant en surface). 
+La majorité du lait entier vendu en France a été "homogénéisé" procédé consistant à le faire passer à travers des buses à haute pression (de l'ordre de la centaine de bars). Le lait n'est alors toujours pas à proprement parler homogène mais la taille des globules de graisse a diminué (divisé par 3 environ) rendant l'émulsion plus stable (il n'y a pas de couche de graisse se formant en surface). 
 {{% /note %}}
 
 ---
@@ -175,7 +175,7 @@ La majorité du lait entier vendu en France a été "homogénéisé" procédé c
 {{% note %}}
 Qu'est-ce que c'est ? 
 Homogène ou hétérogène ?
-Pourquoi on doit agiter vigoureusement ? Plus les goutelettes sont fines et donc la dispersion grande, plus l'huile est longue à remonter à la surface.
+Pourquoi on doit agiter vigoureusement ? Plus les gouttelettes sont fines et donc la dispersion grande, plus l'huile est longue à remonter à la surface.
 Est-ce que c'est stable ? Pourquoi l'huile remonte ?
 Comment stabiliser une vinaigrette ?
 {{% /note %}}
@@ -234,7 +234,7 @@ Les tests chimiques à connaître :
 
 ---
 
-Deux mesures physique permettant<br>d'identifier une espèce chimique :
+Deux mesures physiques permettant<br>d'identifier une espèce chimique :
 
 <ul>
 <li class="fragment fade-up"> mesure de la <span class="imp">température<br>de changement d'état</span></li>
@@ -257,7 +257,7 @@ Les températures de changement d'état comme la <span class="imp">température 
 
 ---
 
-Exemples avec quelques température de fusion :
+Exemples avec quelques températures de fusion :
 
 <ul>
 <li class="fragment fade-up"> eau : <span class="fragment">0°C</span></li>
@@ -289,7 +289,7 @@ Que remarquez-vous ?
 Pour les températures d'ébullition,<br>il faut faire attention à deux choses :
 
 <ul>
-<li class="fragment fade-up">Elles dépendent plus de la pression que les températures de fusion (l'eau bout à 85°C en haut du mont blanc et à plus de 360°C à 2000m de profondeur dans l'océan).
+<li class="fragment fade-up">Elles dépendent plus de la pression que les températures de fusion (l'eau bout à 85°C en haut du mont Blanc et à plus de 360°C à 2000m de profondeur dans l'océan).
 </li>
 </ul>
 
@@ -350,9 +350,9 @@ Conversions :
 
 <div style="margin:auto; background-color:#3E74D1;padding:30px 20px 40px 0px ;width:fit-content; color:white; border-radius:10px; ">
 <ul style="color:white">
-<li class="fragment fade-up"> 1 $\pu{kg/L}$ = <span class="fragment">1</span> $\pu{kg/dm3}$ <span class="fragment">=  <span class="fragment">$10^3$</span> $\pu{kg/m3}$ <span></li><br>
+<li class="fragment fade-up"> 1 $\pu{kg/L}$ = <span class="fragment">1</span> $\pu{kg/dm3}$ <span class="fragment">=  <span class="fragment">$10^3$</span> $\pu{kg/m3}$ </span></li><br>
 <li class="fragment fade-up"> 1 $\pu{kg/L}$ = <span class="fragment">1</span> $\pu{t/m^3}$ </li><br>
-<li class="fragment fade-up"> 1 $\pu{kg/L}$ = <span class="fragment">1</span> $\pu{g/mL}$ <span class="fragment">=  <span class="fragment">1</span> $\pu{g/cm3}$<span></li>
+<li class="fragment fade-up"> 1 $\pu{kg/L}$ = <span class="fragment">1</span> $\pu{g/mL}$ <span class="fragment">=  <span class="fragment">1</span> $\pu{g/cm3}$</span></li>
 </ul>
 </div>
 
@@ -415,7 +415,7 @@ Pour séparer et identifier les constituants<br>d'un mélange en phase homogène
 
 Pour identifier les différents constituants<br>du mélange, on utilise des témoins.
 
-<p class="fragment fade-up">Si la tâche d'un constituant monte à la même hauteur que celle d'un témoin, le constituant est probablement le témoin.</p>
+<p class="fragment fade-up">Si la tache d'un constituant monte à la même hauteur que celle d'un témoin, le constituant est probablement le témoin.</p>
 
 ---
 
