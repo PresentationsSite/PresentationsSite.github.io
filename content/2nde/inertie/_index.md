@@ -278,9 +278,9 @@ Maintenant, on va assimiler le système<br>à un <span class="imp">point matéri
 Parachute ouvert, le parachutiste descend<br><b style="color:#FFD932">en ligne droite à vitesse constante</b>.<br>Comparer son poids $P$ et la force $F$ de l'air.
 
 <ol class="vote">
-<li>$P > F$, puisqu'il descend</li>
+<li>$P > F$<br>puisqu'il descend</li>
 <li class="fragment juste" data-fragment-index="3">$P = F$</li>
-<li>$P < F$, puisqu'il est freiné</li>
+<li>$P < F$<br>puisqu'il est freiné</li>
 <li>Impossible à dire sans les valeurs</li>
 </ol>
 
@@ -751,7 +751,7 @@ L'ISS orbite à environ 400 km d'altitude.<br>Que vaut la pesanteur $g$ à cette
 <li>$0$ («&nbsp;apesanteur&nbsp;»)</li>
 <li>environ $\pu{1 N*kg-1}$</li>
 <li class="fragment juste" data-fragment-index="3">environ $\pu{9 N*kg-1}$</li>
-<li>$\pu{9,8 N*kg-1}$, comme au sol</li>
+<li>$\pu{9,8 N*kg-1}$<br>comme au sol</li>
 </ol>
 
 <p class="consigne">🗳️ Votez (1 à 4 doigts) <span class="fragment" data-fragment-index="1">→ 💬 Convainquez votre voisin</span> <span class="fragment" data-fragment-index="2">→ 🗳️ Revotez !</span> <button class="indice-bouton">💡 Indice</button>
