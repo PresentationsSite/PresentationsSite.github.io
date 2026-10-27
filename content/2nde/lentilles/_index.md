@@ -38,7 +38,7 @@ padding-left: 1em;
 
 {{% section %}}
 
-## Qu'est-ce que<br>former une image ?
+## Former une image
 
 ---
 
@@ -111,7 +111,7 @@ Lorsqu'un objet est très loin de la lentille<br>(on dit «&nbsp;à l'infini&nbs
 
 La distance entre le centre optique O de la lentille<br>et le foyer image est appelée <span class="imp">distance focale f'</span>.
 
-<div class="fragment fade-up" style="position:relative;margin:auto;width:fit-content;border:solid 5px #FF968D;padding:0 50px 0 50px;border-radius:10px">
+<div class="fragment fade-up encadre" style="padding:0 50px;">
 $$f'=OF'$$
 </div>
 
