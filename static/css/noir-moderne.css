@@ -144,18 +144,23 @@ body {
 }
 
 /*********************************************
- * MOTS IMPORTANTS (.imp)
+ * MOTS IMPORTANTS (.imp et gras coloré)
  * Lueur dans la couleur du mot (qu'elle vienne de .imp ou d'un style
  * en ligne), sans changer ni la graisse ni la taille.
+ * Même traitement pour le gras coloré : <b>/<strong> ou <span> en
+ * font-weight:bold portant une couleur en ligne (sauf le blanc).
  *********************************************/
-.reveal .imp {
+.reveal .imp,
+.reveal :is(b, strong, span[style*="bold" i])[style*="color" i]:not([style*="white" i], [style*="#fff;" i], [style$="#fff" i], [style*="#ffffff" i]) {
   text-shadow: 0 0 16px rgba(0, 162, 255, 0.35);
   text-shadow: 0 0 16px color-mix(in srgb, currentColor 45%, transparent);
 }
 
 /* Petit « flash » lumineux quand un mot important apparaît. */
 .reveal .slides section .fragment.imp.visible.current-fragment,
-.reveal .slides section .fragment.visible.current-fragment .imp {
+.reveal .slides section .fragment.visible.current-fragment .imp,
+.reveal .slides section :is(b, strong, span[style*="bold" i]).fragment.visible.current-fragment[style*="color" i]:not([style*="white" i], [style*="#fff;" i], [style$="#fff" i], [style*="#ffffff" i]),
+.reveal .slides section .fragment.visible.current-fragment :is(b, strong, span[style*="bold" i])[style*="color" i]:not([style*="white" i], [style*="#fff;" i], [style$="#fff" i], [style*="#ffffff" i]) {
   animation: nm-eclat 1.1s var(--nm-ease);
 }
 
@@ -344,9 +349,11 @@ body {
   }
   .reveal .slides section.present > h1::after,
   .reveal .slides section.present > h2::after,
-  .reveal .slides section.present > h3::after,
-  .reveal .slides section .fragment.imp.visible.current-fragment,
-  .reveal .slides section .fragment.visible.current-fragment .imp {
+  .reveal .slides section.present > h3::after {
     animation: none;
+  }
+  .reveal .slides section .fragment.visible.current-fragment,
+  .reveal .slides section .fragment.visible.current-fragment * {
+    animation: none !important;
   }
 }
