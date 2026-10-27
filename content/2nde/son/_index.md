@@ -110,6 +110,18 @@ Et la vitesse du signal sonore dépend du milieu.
 
 ---
 
+Dans quel milieu le son se propage-t-il<br>le plus vite ?
+
+<ol class="vote">
+<li class="fragment">le vide</li>
+<li class="fragment">l'air</li>
+<li class="fragment">l'eau</li>
+<li class="fragment juste">l'acier</li>
+</ol>
+<div class="fragment revele"></div>
+
+---
+
 
 {{< youtube-slide id="BYe4x3x35is" ratio="16x9" >}}
 
@@ -342,6 +354,15 @@ Faire mesurer sur une période puis sur 10 périodes.
 
 Quand on "prend son pouls",<br>
 mesure-t-on une période ou une fréquence ?
+
+<ol class="vote">
+<li class="fragment">une période</li>
+<li class="fragment juste">une fréquence</li>
+</ol>
+<div class="fragment revele"></div>
+
+<p class="fragment fade-up">On compte des battements <span class="imp">par minute</span> :<br>c'est une fréquence (environ 70 par minute, soit 1,2&nbsp;Hz).</p>
+
 
 
 {{% /section %}}
@@ -600,6 +621,20 @@ Mais cette relation de proportionnalité rend mal compte de notre <span class="i
 Pour tenir compte de cette échelle non proportionnelle, on utilise une autre grandeur :<br>le <span class="imp" style="color:#FF42A1">niveau d'intensité sonore</span>,<bR>mesuré en décibels (dB).
 
 <p class="fragment fade-up">Lorsque l'<span class="imp" style="color:#61D836">intensité sonore</span> augmente, le <span class="imp" style="color:#FF42A1">niveau d'intensité sonore</span> augmente aussi,<br>mais beaucoup moins vite.</p>
+
+---
+
+Une trompette seule produit un niveau sonore<br>de 80 dB. Et quatre trompettes identiques ensemble ?
+
+<ol class="vote">
+<li class="fragment">80 dB</li>
+<li class="fragment juste">86 dB</li>
+<li class="fragment">160 dB</li>
+<li class="fragment">320 dB</li>
+</ol>
+<div class="fragment revele"></div>
+
+<p class="fragment fade-up">Intensité sonore multipliée par 4…<br>mais niveau sonore augmenté de <span class="imp">6 dB</span> seulement !</p>
 
 ---
 

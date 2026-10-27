@@ -199,6 +199,18 @@ On mesure le temps $t$ et la température<br>de l'eau $T$ pendant le chauffage.<
 {{% fragment %}}<span style="font-weight:normal">À quoi va ressembler la courbe $T=f(t)$&nbsp;?</span>{{% /fragment %}}
 
 ---
+
+Pendant que la glace fond, comment évolue<br>la température de l'eau ?
+
+<ol class="vote">
+<li class="fragment">Elle augmente régulièrement</li>
+<li class="fragment juste">Elle reste à 0&nbsp;°C</li>
+<li class="fragment">Elle diminue</li>
+<li class="fragment">Elle augmente puis diminue</li>
+</ol>
+<div class="fragment revele"></div>
+
+---
 {{< slide  background-image="/evolutionBW.png" background-size="90%" background-transition="concave">}}
 
 ---
@@ -244,6 +256,14 @@ Qu'ont en commun<br>les 3 changements d'état endothermiques ?
 ---
 
 À l'inverse, que se passe-t-il<br>(en terme d'énergie)<br>lors d'une liquéfaction<br>ou d'une solidification ?
+
+<ol class="vote">
+<li class="fragment">De l'énergie thermique est absorbée</li>
+<li class="fragment juste">De l'énergie thermique est libérée</li>
+<li class="fragment">Aucune énergie n'est échangée</li>
+</ol>
+<div class="fragment revele"></div>
+
 
 <p class="fragment fade-up" style="font-weight:normal;color:#1DB100">De l'énergie thermique est libérée&nbsp;!</p>
 

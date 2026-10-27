@@ -269,11 +269,12 @@ Maintenant, on va assimiler le système<br>à un <span class="imp">point matéri
 Parachute ouvert, le parachutiste descend<br><b style="color:#FFD932">en ligne droite à vitesse constante</b>.<br>Que dire de son poids $P$ et de la force $F$ de l'air ?
 
 <ol class="vote">
-<li>$P > F$<br>puisqu'il descend</li>
+<li class="fragment">$P > F$<br>puisqu'il descend</li>
 <li class="fragment juste">$P = F$</li>
-<li>$P < F$<br>puisqu'il est freiné</li>
-<li>Impossible à dire sans les valeurs</li>
+<li class="fragment">$P < F$<br>puisqu'il est freiné</li>
+<li class="fragment">Impossible à dire sans les valeurs</li>
 </ol>
+<div class="fragment revele"></div>
 
 ---
 
@@ -404,11 +405,12 @@ Mais si on diminue ces frottements<br>(sur de la glace par exemple ou sur un cou
 Un palet glisse vers la droite sur une glace<br>parfaitement lisse, à vitesse constante.<br>Quelles actions s'exercent sur le palet ?
 
 <ol class="vote">
-<li>Aucune</li>
+<li class="fragment">Aucune</li>
 <li class="fragment juste">Poids et action de la glace, qui se compensent</li>
-<li>Poids, action de la glace et une force vers la droite</li>
-<li>Une force vers la droite seulement</li>
+<li class="fragment">Poids, action de la glace et une force vers la droite</li>
+<li class="fragment">Une force vers la droite seulement</li>
 </ol>
+<div class="fragment revele"></div>
 
 ---
 
@@ -489,11 +491,12 @@ Le principe d'inertie peut aussi<br>se limiter à une direction particulière.
 Une petite voiture percute un gros camion.<br>Pendant le choc, quelle force est la plus grande ?
 
 <ol class="vote">
-<li>Celle du camion sur la voiture</li>
-<li>Celle de la voiture sur le camion</li>
+<li class="fragment">Celle du camion sur la voiture</li>
+<li class="fragment">Celle de la voiture sur le camion</li>
 <li class="fragment juste">Elles sont égales</li>
-<li>Ça dépend de leurs vitesses</li>
+<li class="fragment">Ça dépend de leurs vitesses</li>
 </ol>
+<div class="fragment revele"></div>
 
 <p class="fragment corr">Surprenant ! La suite va l'expliquer.</p>
 
@@ -714,11 +717,12 @@ Que vaut la pesanteur $g$ sur l'ISS ?
 L'ISS orbite à environ 400 km d'altitude.<br>Que vaut la pesanteur $g$ à cette altitude ?
 
 <ol class="vote">
-<li>$0$ («&nbsp;apesanteur&nbsp;»)</li>
-<li>environ $\pu{1 N*kg-1}$</li>
+<li class="fragment">$0$ («&nbsp;apesanteur&nbsp;»)</li>
+<li class="fragment">environ $\pu{1 N*kg-1}$</li>
 <li class="fragment juste">environ $\pu{9 N*kg-1}$</li>
-<li>$\pu{9,8 N*kg-1}$<br>comme au sol</li>
+<li class="fragment">$\pu{9,8 N*kg-1}$<br>comme au sol</li>
 </ol>
+<div class="fragment revele"></div>
 
 ---
 
@@ -804,11 +808,12 @@ Comme le stipule la contraposée du principe d'inertie, si $\color{#FEAE00}\Delt
 La Lune tourne autour de la Terre sur une trajectoire<br>quasi circulaire, à vitesse de valeur constante.<br>Subit-elle une action non compensée ?
 
 <ol class="vote">
-<li>Non : sa vitesse est constante</li>
+<li class="fragment">Non : sa vitesse est constante</li>
 <li class="fragment juste">Oui</li>
-<li>Non : elle est trop loin de la Terre</li>
-<li>Impossible à dire</li>
+<li class="fragment">Non : elle est trop loin de la Terre</li>
+<li class="fragment">Impossible à dire</li>
 </ol>
+<div class="fragment revele"></div>
 
 ---
 

@@ -65,6 +65,20 @@ ul li {
 
 ---
 
+Dans un circuit en série, on mesure l'intensité<br>$I_1$ avant une lampe et $I_2$ après la lampe.<br>Que peut-on dire ?
+
+<ol class="vote">
+<li class="fragment">$I_1 > I_2$<br>la lampe consomme du courant</li>
+<li class="fragment juste">$I_1 = I_2$</li>
+<li class="fragment">$I_1 < I_2$</li>
+<li class="fragment">Ça dépend de la lampe</li>
+</ol>
+<div class="fragment revele"></div>
+
+<p class="fragment fade-up">Le courant n'est pas « consommé » :<br>en série, l'<span class="imp">intensité est la même partout</span>.</p>
+
+---
+
 {{< slide  background-image="/commentmesi.png" background-size="contain" background-transition="concave-in" transition="zoom">}}
 
 <br><br><br><br><br>
@@ -385,6 +399,20 @@ $$U_R = R\times I_R$$
 <p class="fragment fade-up">$R$ est la <span class="imp" style="color:#FEAE00">résistance</span> (constante) du dipôle.</p>
 
 <p class="fragment fade-up">Unité : <span class="imp" style="color:#FEAE00">le ohm (Ω)</span></p>
+
+---
+
+Un dipôle ohmique de résistance $R = 100~\Omega$<br>est traversé par un courant $I = \pu{20 mA}$.<br>Que vaut la tension $U$ à ses bornes ?
+
+<ol class="vote">
+<li class="fragment">$\pu{2000 V}$</li>
+<li class="fragment">$\pu{5 V}$</li>
+<li class="fragment juste">$\pu{2 V}$</li>
+<li class="fragment">$\pu{0,2 V}$</li>
+</ol>
+<div class="fragment revele"></div>
+
+<p class="fragment fade-up">$U = R\times I = 100\times 0,020 = \pu{2,0 V}$<br>Attention à convertir les mA en A !</p>
 
 ---
 

@@ -127,6 +127,19 @@ Par osmolarité (équilibre des concentrations à l'intérieur et à l'extérieu
 
 ---
 
+À votre avis, combien y a-t-il de moles<br>de molécules d'eau dans un litre d'eau ?
+
+<ol class="vote">
+<li class="fragment">environ 1</li>
+<li class="fragment">environ 18</li>
+<li class="fragment">environ 50</li>
+<li class="fragment">environ $6\times10^{23}$</li>
+</ol>
+
+<p class="fragment fade-up">Vérifions par le calcul…</p>
+
+---
+
 
 <span style="color:#aaa">Données :</span>
 <ul>

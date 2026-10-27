@@ -114,6 +114,17 @@ Exemples de référentiels :
 
 ---
 
+Un passager est assis dans un train qui roule.<br>Est-il en mouvement ?
+
+<ol class="vote">
+<li class="fragment">Oui</li>
+<li class="fragment">Non</li>
+<li class="fragment juste">Ça dépend du référentiel</li>
+</ol>
+<div class="fragment revele"></div>
+
+---
+
 
 <p><u>Remarque</u> : un passager immobile par rapport au train n'est pas immobile dans le référentiel terrestre si le train avance... <span class="imp">Le mouvement est relatif</span> !</p>
 
@@ -164,6 +175,23 @@ Une demi-heure après avoir dépassé le radeau,<br>le bateau fait demi-tour.
 ---
 
 Quelle est la vitesse du courant ?
+
+<ol class="vote">
+<li class="fragment">1,5 km/h</li>
+<li class="fragment juste">3 km/h</li>
+<li class="fragment">6 km/h</li>
+<li class="fragment">Impossible sans la vitesse du bateau</li>
+</ol>
+<div class="fragment revele"></div>
+
+
+---
+
+Plaçons-nous dans le <span class="imp">référentiel de l'eau</span> :<br>le radeau y est immobile et le bateau<br>s'éloigne puis revient à la même vitesse.
+
+<p class="fragment fade-up">30 min aller, donc 30 min retour :<br>le bateau recroise le radeau <span class="imp">1 h</span> après l'avoir dépassé.</p>
+
+<p class="fragment fade-up">Pendant cette heure, le radeau a dérivé de 3 km<br>avec le courant : <span class="imp">$v = \pu{3 km/h}$</span>.</p>
 
 {{%/section%}}
 
@@ -376,6 +404,22 @@ Dans le <span class="imp">Système international d'unités (SI)</span> :
 <li>$\Delta t$ est mesuré en <span class="imp fragment">$\text{s}$</span></li>
 <li>et donc $v_\mathrm{moy}$ est donnée en <span class="imp fragment">$\pu{m*s-1}$</span></li>
 </ul>
+
+---
+
+Une coureuse boucle un tour de piste de 400 m<br>en 80 s et revient à son point de départ.<br>Que vaut la norme de son vecteur vitesse moyenne ?
+
+<ol class="vote">
+<li class="fragment">$\pu{5 m/s}$</li>
+<li class="fragment juste">$\pu{0 m/s}$</li>
+<li class="fragment">$\pu{80 m/s}$</li>
+<li class="fragment">$\pu{400 m/s}$</li>
+</ol>
+<div class="fragment revele"></div>
+
+<p class="fragment fade-up">Son vecteur déplacement $\overrightarrow{\mathrm{MM'}}$ est nul :<br>elle est revenue à son point de départ !</p>
+
+<p class="fragment fade-up">(Sa vitesse moyenne « le long du parcours »,<br>elle, vaut bien 400 / 80 = 5 m/s.)</p>
 
 ---
 

@@ -149,6 +149,17 @@ Exemples ?
 
 ---
 
+Le lait est-il un mélange homogène ?
+
+<ol class="vote">
+<li class="fragment">Oui</li>
+<li class="fragment">Non</li>
+<li class="fragment juste">Ça dépend de l'échelle d'observation</li>
+</ol>
+<div class="fragment revele"></div>
+
+---
+
 La frontière entre mélange hétérogène ou homogène peut dépendre de l'échelle de description.
 
 ---
@@ -198,6 +209,14 @@ L'air est-il un corps pur ?
 <br>
 
 <p class="fragment fade-up">S'agit-il d'un mélange homogène ou hétérogène ?</p>
+
+<ol class="vote">
+<li class="fragment">un corps pur</li>
+<li class="fragment juste">un mélange homogène</li>
+<li class="fragment">un mélange hétérogène</li>
+</ol>
+<div class="fragment revele"></div>
+
 
 <br>
 <br>

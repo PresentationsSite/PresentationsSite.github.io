@@ -109,6 +109,20 @@ Les signes d'une transformation<br>chimique peuvent être :
 
 ---
 
+Lequel de ces phénomènes est<br>une transformation chimique ?
+
+<ol class="vote">
+<li class="fragment">La glace qui fond</li>
+<li class="fragment">Le sucre qui se dissout dans l'eau</li>
+<li class="fragment juste">Le bois qui brûle</li>
+<li class="fragment">L'eau qui s'évapore</li>
+</ol>
+<div class="fragment revele"></div>
+
+<p class="fragment fade-up">Seule la combustion produit de nouvelles espèces<br>chimiques (dioxyde de carbone, eau…).<br>Les autres sont des transformations physiques.</p>
+
+---
+
 La transformation étudiée est-elle<br>une transformation chimique ?
 
 <p  class="fragment fade-up" style="color:#61D836">Oui, les indices sont la disparition totale ou partielle<br>de l'hydrogénocarbonate de sodium,<br>le dégagement gazeux et le changement d'acidité.</p>

@@ -408,6 +408,20 @@ $$\frac{C_{mère}}{C_{fille}}=\frac{V_{fille}}{V_{mère}}=F$$
 
 ---
 
+On dilue 10 fois une solution de concentration<br>en masse $\pu{5,0 g/L}$. Que vaut la concentration<br>en masse de la solution fille ?
+
+<ol class="vote">
+<li class="fragment">$\pu{50 g/L}$</li>
+<li class="fragment">$\pu{5,0 g/L}$</li>
+<li class="fragment juste">$\pu{0,50 g/L}$</li>
+<li class="fragment">$\pu{0,050 g/L}$</li>
+</ol>
+<div class="fragment revele"></div>
+
+<p class="fragment fade-up">$C_{fille} = \dfrac{C_{mère}}{F} = \dfrac{5,0}{10} = \pu{0,50 g/L}$</p>
+
+---
+
 On veut obtenir 250 mL d'une solution diluée 5 fois<br>($F=5$), quel matériel doit-on choisir<br>et comment procède-t-on ?
 
 ---

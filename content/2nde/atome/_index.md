@@ -79,6 +79,20 @@ En utilisant des unités plus adaptées<br>grâce aux bons sous-multiples :
 
 ---
 
+Si le noyau d'un atome avait la taille<br>d'une bille (1 cm), quelle serait<br>la taille de l'atome ?
+
+<ol class="vote">
+<li class="fragment">1 m</li>
+<li class="fragment">100 m</li>
+<li class="fragment juste">1 km</li>
+<li class="fragment">1000 km</li>
+</ol>
+<div class="fragment revele"></div>
+
+<p class="fragment fade-up">L'atome est <span class="imp">100 000 fois</span> plus grand que son noyau :<br>c'est essentiellement du <span class="imp">vide</span> !</p>
+
+---
+
 {{< youtube-slide id="7WhRJV_bAiE" ratio="16x9" >}}
 
 
@@ -180,6 +194,20 @@ Comme les atomes et molécules sont<br>électriquement <span class="fragment imp
 <li class="fragment fade-up"><span class="fragment imp" style="color:#FF644E">positivement</span> pour les <span class="fragment imp" style="color:#FF644E">cations</span><br>qui ont <b class="fragment" style="color:white">perdu</b> des électrons</li>
 </ul>
 
+
+---
+
+Un atome de sodium $\ce{Na}$ perd un électron.<br>Que devient-il ?
+
+<ol class="vote">
+<li class="fragment juste">l'ion $\ce{Na+}$</li>
+<li class="fragment">l'ion $\ce{Na-}$</li>
+<li class="fragment">un atome de néon $\ce{Ne}$</li>
+<li class="fragment">un atome de magnésium $\ce{Mg}$</li>
+</ol>
+<div class="fragment revele"></div>
+
+<p class="fragment fade-up">Il a perdu une charge négative :<br>il devient le <span class="imp" style="color:#FF644E">cation</span> $\ce{Na+}$.</p>
 
 {{%/section%}}
 

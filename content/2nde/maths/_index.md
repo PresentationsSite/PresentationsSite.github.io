@@ -204,6 +204,20 @@ $$
 
 ---
 
+Combien y a-t-il de $\text{mm}^3$ dans $\pu{1 m^3}$ ?
+
+<ol class="vote">
+<li class="fragment">$10^3$</li>
+<li class="fragment">$10^6$</li>
+<li class="fragment juste">$10^9$</li>
+<li class="fragment">$10^{12}$</li>
+</ol>
+<div class="fragment revele"></div>
+
+<p class="fragment fade-up">$\pu{1 m^3} = \left(10^3\ \text{mm}\right)^3 = 10^9\ \text{mm}^3$</p>
+
+---
+
 Convertir 34 m$^3$ en nm$^3$
 
 <div class="fragment fade-up">

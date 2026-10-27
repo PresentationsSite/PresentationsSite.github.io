@@ -175,6 +175,20 @@ Les couches de valence correspondent ainsi aux électrons les plus périphériqu
 
 ---
 
+Le soufre a pour numéro atomique $Z = 16$.<br>Combien possède-t-il d'électrons de valence ?
+
+<ol class="vote">
+<li class="fragment">2</li>
+<li class="fragment">4</li>
+<li class="fragment juste">6</li>
+<li class="fragment">16</li>
+</ol>
+<div class="fragment revele"></div>
+
+<p class="fragment fade-up">$1\text{s}^2\, 2\text{s}^2\, 2\text{p}^6\, \color{red}3\text{s}^2\, 3\text{p}^4$<br>6 électrons sur la couche $n = 3$.</p>
+
+---
+
 {{< slide  background-image="/tabperconfval.png" background-size="contain" background-transition="concave">}}
 
 ---
@@ -479,6 +493,20 @@ Pour former quel type d'ion ?</p>
 ---
 
 {{< slide  background-image="/tabperions.png" background-size="contain" background-transition="concave">}}
+
+---
+
+Quel ion monoatomique le magnésium<br>($Z = 12$) a-t-il tendance à former ?
+
+<ol class="vote">
+<li class="fragment">$\ce{Mg+}$</li>
+<li class="fragment juste">$\ce{Mg^2+}$</li>
+<li class="fragment">$\ce{Mg^2-}$</li>
+<li class="fragment">$\ce{Mg^6-}$</li>
+</ol>
+<div class="fragment revele"></div>
+
+<p class="fragment fade-up">$1\text{s}^2\, 2\text{s}^2\, 2\text{p}^6\, \color{red}3\text{s}^2$ : en perdant ses 2 électrons<br>de valence, il prend la configuration du néon.</p>
 
 ---
 
