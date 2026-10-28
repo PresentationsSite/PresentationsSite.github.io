@@ -238,4 +238,4 @@ style="color:#61D836"> $\gamma$<span class="fragment" style="color:#61D836"> $>$
 
 ---
 
-[Retour site](https://coursphychi.github.io/2nde/lentilles/)
+[Retour site](https://coursphychi.github.io/2nde/lentille/)
