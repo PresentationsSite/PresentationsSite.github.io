@@ -245,6 +245,7 @@
   }
 
   .slider-box {
+    min-width: 0;
     display: flex;
     align-items: center;
     gap: 12px;
@@ -265,6 +266,8 @@
     -webkit-appearance: none;
     appearance: none;
     flex: 1;
+    min-width: 0;            /* Safari / Firefox : sinon le curseur déborde de sa case */
+    width: 100%;
     height: 6px;
     background: #334155;
     border-radius: 3px;
@@ -284,6 +287,15 @@
 
   input[type="range"]::-webkit-slider-thumb:hover {
     transform: scale(1.15);
+  }
+
+  input[type="range"]::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    border: none;
+    border-radius: 50%;
+    background: var(--accent);
+    cursor: pointer;
   }
 </style>
 </head>
@@ -674,10 +686,12 @@ function drawOpticsAndAxis(maxRayImpact, labelsOccupes) {
     ctx.setLineDash([]);
   }
 
-  // 3. Corps de la lentille convergente (plus bombée quand f' est petite)
+  // 3. Corps de la lentille convergente : plus bombée quand f' est petite,
+  //    et plus fine quand on dézoome (épaisseur proportionnelle à l'échelle,
+  //    l'échelle de départ étant 25 px/cm).
   const halfH = opt.lensHalfH;
   const t = Math.log(LIMITES.f.max / state.f) / Math.log(LIMITES.f.max / LIMITES.f.min);
-  const halfThick = 10 + 30 * clamp(t, 0, 1);
+  const halfThick = clamp((10 + 30 * clamp(t, 0, 1)) * state.zoom / 25, 1.5, 45);
   const R = (halfH * halfH + halfThick * halfThick) / (2 * halfThick);
   const C1x = (opt.lensX - halfThick) + R;
   const C2x = (opt.lensX + halfThick) - R;
