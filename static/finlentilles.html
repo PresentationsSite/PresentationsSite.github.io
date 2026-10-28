@@ -143,18 +143,22 @@
     margin: 3px 0;
   }
 
+  /* Nature de l'image : trois étiquettes côte à côte, en bas à droite du banc */
   .tags {
+    position: absolute;
+    right: 16px;
+    bottom: 14px;
+    z-index: 10;
     display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-end;
-    gap: 6px;
-    max-width: 260px;
+    flex-wrap: nowrap;
+    gap: 8px;
+    pointer-events: none;
   }
 
   .tag {
-    font-size: 0.82rem;
+    font-size: 0.95rem;
     font-weight: 600;
-    padding: 3px 9px;
+    padding: 5px 12px;
     border-radius: 6px;
     background: rgba(15, 23, 42, 0.8);
     border: 1px solid var(--border);
@@ -317,11 +321,12 @@
         <span class="name">f'</span>        <span class="val foc" id="valF">–</span>
         <span class="name">γ = A'B' / AB</span> <span class="val gamma" id="valGamma">–</span>
       </div>
-      <div class="tags">
-        <span class="tag" id="tagNature">–</span>
-        <span class="tag" id="tagSens">–</span>
-        <span class="tag" id="tagTaille">–</span>
-      </div>
+    </div>
+
+    <div class="tags">
+      <span class="tag" id="tagNature">–</span>
+      <span class="tag" id="tagSens">–</span>
+      <span class="tag" id="tagTaille">–</span>
     </div>
   </div>
 
@@ -836,7 +841,7 @@ function drawRays(g) {
 function signalerHorsCadre(x, y, texte) {
   if (x >= 0 && x <= canvas.width && y >= 0 && y <= canvas.height) return;
   const xc = clamp(x, 30, canvas.width - 30);
-  const yc = clamp(y, 30, canvas.height - 50);
+  const yc = clamp(y, 30, canvas.height - 70);   // au-dessus des étiquettes du bas
   ctx.save();
   ctx.fillStyle = '#94a3b8';
   ctx.font = '500 16px "Avenir Next", sans-serif';
@@ -944,8 +949,8 @@ function animate() {
     ctx.save();
     ctx.fillStyle = '#10b981';
     ctx.font = '500 16px "Avenir Next", sans-serif';
-    ctx.textAlign = 'right';
-    ctx.fillText('Rayon 3 impossible : B est à la verticale de F', canvas.width - 16, canvas.height - 16);
+    ctx.textAlign = 'center';
+    ctx.fillText('Rayon 3 impossible : B est à la verticale de F', canvas.width / 2, canvas.height - 16);
     ctx.restore();
   }
 
