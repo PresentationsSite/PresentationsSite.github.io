@@ -55,7 +55,7 @@ Former une image, c'est faire <b style="color:#FF968D">correspondre</b><br>
 
 {{% section %}}
 
-## Lentilles convergentes
+## Lentilles convergentes 🔎
 
 ---
 
@@ -222,6 +222,15 @@ style="color:#61D836"> $\gamma$<span class="fragment" style="color:#61D836"> $>$
 
 {{< slide  background-iframe="/finlentilles.html" background-size="contain" background-transition="concave" background-interactive="true">}}
 
+{{% /section %}}
+
+---
+
+{{% section %}}
+
+## L'œil👁️<br>accommodation, défauts<br>et corrections 👓
+
+---
 
 {{% /section %}}
 

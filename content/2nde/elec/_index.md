@@ -142,7 +142,7 @@ Quel que soit l'appareil de mesure, on commence toujours par le plus <span class
 
 
 
-Analogie ? <span class="fragment">Débit d'une rivière !</span>
+Analogie ? &nbsp;<span class="fragment">Débit d'une rivière !</span>
 
 <br><br><br><br><br><br><br><br><br><br><br>
 
@@ -157,6 +157,10 @@ Analogie ? <span class="fragment">Débit d'une rivière !</span>
 <img src="/loidesnoeuds1.png" style="box-shadow:none;background:none;width:40%;">
 <br>
 <img class="fragment fade-up" src="/loidesnoeuds2.png" style="box-shadow:none;background:none;width:25%;">
+
+---
+
+{{< geogebra-slide id="kp2qtnqx" width="919" height="680" maxheight="700" rounded="true" shadow="true" >}}
 
 ---
 
@@ -196,7 +200,7 @@ Si branchement dans la borne A,<br>il y a court-circuit du générateur 💀.
 
 
 
-Analogie ? <span class="fragment">Dénivelé d'une rivière !</span>
+Analogie ? &nbsp;<span class="fragment">Dénivelé d'une rivière !</span>
 
 <br><br><br><br><br><br><br><br><br><br><br>
 
@@ -232,6 +236,27 @@ On peut représenter une tension par une flèche.
 (aussi appelée au collège<br>"loi d'additivité des tensions")
 
 <img src="/loidesmailles2.png" style="box-shadow:none;background:none;width:55%;">
+
+---
+
+<div style="position:relative;margin-left:auto;margin-right:auto;width:500px;max-width:100%;margin-bottom:-1em;margin-top:-1em;">
+<img src="/tensder.png" style="box-shadow:none;background:none;">
+</div>
+<ol class="vote">
+<li class="fragment">$U_2 = 3\times U_1$</li>
+<li class="fragment">$U_2 = U_1/3$</li>
+<li class="fragment">$U_1+U_2=0$</li>
+<li class="fragment juste">$U_2 = U_1$</li>
+</ol>
+<div class="fragment revele"></div>
+
+<p class="fragment fade-up">La tension est <span class="imp">identique aux bornes de<br>deux branches en dérivation</span> (même dénivelé).</p>
+
+
+---
+
+
+{{< geogebra-slide id="w7snw4aw" width="1050" height="809" maxheight="700" rounded="true" shadow="true" >}}
 
 ---
 
