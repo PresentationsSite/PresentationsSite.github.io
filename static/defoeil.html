@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Accommodation de l'œil, défauts de vision et corrections</title>
+<style>
+  :root {
+    --bg: #0f172a;
+    --panel: #1e293b;
+    --text: #f8fafc;
+    --muted: #94a3b8;
+    --accent: #38bdf8;
+    --border: #334155;
+    --success: #10b981;
+    --warning: #f59e0b;
+    --danger: #f43f5e;
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: 'Avenir Next', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 14px;
+    overflow-x: hidden;
+  }
+
+  .app-container {
+    width: 100%;
+    max-width: 1220px;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .canvas-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #090d16;
+  }
+
+  canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+    touch-action: none;
+  }
+
+  .controls-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding: 16px 22px;
+    background: var(--panel);
+    border-top: 1px solid var(--border);
+  }
+
+  .top-controls {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .mode-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .btn-mode {
+    background: #0f172a;
+    color: var(--muted);
+    border: 1px solid var(--border);
+    padding: 9px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.18s ease;
+    user-select: none;
+  }
+
+  .btn-mode:hover {
+    color: var(--text);
+    border-color: var(--muted);
+  }
+
+  .btn-mode.active {
+    background: rgba(56, 189, 248, 0.15);
+    border-color: var(--accent);
+    color: #fff;
+    box-shadow: 0 0 12px rgba(56, 189, 248, 0.2);
+  }
+
+  .btn-glasses {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #0f172a;
+    color: var(--text);
+    border: 1px solid var(--border);
+    padding: 9px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    user-select: none;
+  }
+
+  .btn-glasses:hover:not(:disabled) {
+    border-color: var(--accent);
+  }
+
+  .btn-glasses.active {
+    background: rgba(16, 185, 129, 0.16);
+    border-color: var(--success);
+    color: #fff;
+  }
+
+  .btn-glasses:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+  }
+
+  .indicator {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--muted);
+    transition: all 0.2s;
+  }
+
+  .btn-glasses.active .indicator {
+    background: var(--success);
+    box-shadow: 0 0 8px var(--success);
+  }
+
+  .bottom-controls {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .slider-container {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: #0f172a;
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    flex: 1;
+  }
+
+  .slider-container label {
+    font-size: 0.92rem;
+    color: var(--text);
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  .slider-endpoints {
+    font-size: 0.8rem;
+    color: var(--muted);
+    white-space: nowrap;
+    font-weight: 500;
+  }
+
+  input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    flex: 1;
+    height: 6px;
+    background: #334155;
+    border-radius: 3px;
+    outline: none;
+  }
+
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--accent);
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
+    transition: transform 0.1s;
+  }
+
+  input[type="range"]::-webkit-slider-thumb:hover {
+    transform: scale(1.15);
+  }
+</style>
+</head>
+<body>
+
+<div class="app-container">
+  <div class="canvas-wrapper">
+    <canvas id="simCanvas" width="1200" height="675"></canvas>
+  </div>
+
+  <div class="controls-panel">
+    <div class="top-controls">
+      <div class="mode-group">
+        <button class="btn-mode active" data-mode="emmetrope">Œil normal (emmétrope)</button>
+        <button class="btn-mode" data-mode="myope">Myopie</button>
+        <button class="btn-mode" data-mode="hypermetrope">Hypermétropie</button>
+        <button class="btn-mode" data-mode="presbyte">Presbytie</button>
+      </div>
+
+      <button class="btn-glasses" id="btnGlasses" disabled>
+        <span class="indicator"></span>
+        <span id="glassesLabel">Placer un verre correcteur</span>
+      </button>
+    </div>
+
+    <div class="bottom-controls">
+      <div class="slider-container">
+        <label for="distSlider">Position de l'objet :</label>
+        <span class="slider-endpoints">Très loin (∞)</span>
+        <input type="range" id="distSlider" min="0" max="1000" step="1" value="180">
+        <span class="slider-endpoints">Très près</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const canvas = document.getElementById('simCanvas');
+const ctx = canvas.getContext('2d');
+
+const modeButtons = document.querySelectorAll('.btn-mode');
+const btnGlasses = document.getElementById('btnGlasses');
+const glassesLabel = document.getElementById('glassesLabel');
+const distSlider = document.getElementById('distSlider');
+
+// Géométrie du banc optique et de l'œil réduit
+// Le cristallin (centre optique de l'œil réduit) est en x = 670
+// La rétine de l'œil normal est à D_ret = 250 px derrière le cristallin (x = 920)
+const opt = {
+  axisY: 350,
+  glassesX: 555,
+  lensX: 670,
+  normalRetinaDist: 250,
+  pupilRadius: 68,
+  eyeRadiusY: 132
+};
+
+// Paramètres physiologiques des 4 types d'yeux :
+// La vergence est exprimée en unités 1/px (multipliée par 1000 pour l'affichage en dioptries symboliques)
+// Pour que l'image d'un objet à l'infini se forme sur la rétine normale (d_i = 250 px) : V_repos = 1 / 250 = 0.00400
+// Pour voir net jusqu'au Punctum Proximum normal (d_o_min = 240 px devant l'œil) :
+// V_max = 1/250 + 1/240 = 0.00400 + 0.00417 = 0.00817
+const EYE_PROFILES = {
+  emmetrope: {
+    name: 'Œil emmétrope (normal)',
+    retinaDist: 250,            // Longueur normale
+    vMin: 1 / 250,              // Repos : foyer exactement sur la rétine pour un objet à l'infini
+    vMax: 1 / 250 + 1 / 240,    // Accommodation max : net jusqu'à d_o = 240 px (PP = 25 cm)
+    glassPower: 0,
+    glassType: 'none',
+    desc: 'Accommodation souple de l’infini jusqu’au punctum proximum'
+  },
+  myope: {
+    name: 'Œil myope (trop convergent / trop long)',
+    retinaDist: 274,            // Œil allongé (+24 px) -> la rétine est plus loin que le foyer au repos
+    vMin: 1 / 242,              // Trop convergent au repos (PR situé à ~ 370 px devant l'œil)
+    vMax: 1 / 242 + 1 / 220,    // Voit très bien de très près, mais flou de loin
+    // Le verre divergent forme d'un objet à l'infini une image virtuelle au Punctum Remotum de l'œil myope
+    glassPower: -0.00295,       // Lentille divergente (V < 0)
+    glassType: 'divergent',
+    desc: 'Verre correcteur divergent (biconcave)'
+  },
+  hypermetrope: {
+    name: 'Œil hypermétrope (pas assez convergent / trop court)',
+    retinaDist: 228,            // Œil trop court (-22 px)
+    vMin: 1 / 265,              // Pas assez convergent au repos (doit déjà accommoder pour voir au loin)
+    vMax: 1 / 265 + 1 / 330,    // Épuise son accommodation dès que l'objet s'approche (PP éloigné)
+    glassPower: +0.00245,       // Lentille convergente (V > 0)
+    glassType: 'convergent',
+    desc: 'Verre correcteur convergent (biconvexe)'
+  },
+  presbyte: {
+    name: 'Œil presbyte (cristallin peu élastique)',
+    retinaDist: 250,            // Longueur normale (voit bien de loin au repos)
+    vMin: 1 / 250,              // Repos normal
+    vMax: 1 / 250 + 1 / 950,    // Amplitude d'accommodation très réduite (ne peut plus bomber le cristallin de près)
+    glassPower: +0.00285,       // Verre convergent de lecture / progressif pour la vision de près
+    glassType: 'convergent',
+    desc: 'Verre correcteur convergent (vision de près)'
+  }
+};
+
+// État courant avec interpolations fluides
+const state = {
+  mode: 'emmetrope',
+  hasGlasses: false,
+  sliderNorm: 0.18,       // 0 = Infini, 1 = Très proche (d_o = 175 px)
+  targetSliderNorm: 0.18,
+
+  // Valeurs interpolées pour la fluidité visuelle
+  retinaDist: 250,
+  vEye: 1 / 250,
+  accommRatio: 0,         // 0 = cristallin plat (repos), 1 = cristallin très bombé
+  glassesAnim: 0,
+  isDraggingObj: false,
+  isHoveringObj: false
+};
+
+// Loi de conversion entre le curseur u dans [0, 1] et la distance objet d_o (depuis le cristallin lensX)
+// u = 0 -> objet à l'infini (d_o = 80 000 px, rayons quasi parallèles)
+// u = 1 -> objet très proche (d_o = 175 px, soit en deçà du PP normal pour montrer la limite d'accommodation)
+const MIN_DO = 175;
+const MAX_EXTRA_DO = 80000;
+
+function normToDo(u) {
+  const invU = 1 - u; // 1 à gauche (loin), 0 à droite (près)
+  return MIN_DO + MAX_EXTRA_DO * Math.pow(invU, 4.2);
+}
+
+function doToNorm(d_o) {
+  const extra = Math.max(0, d_o - MIN_DO);
+  const invU = Math.min(1, Math.pow(extra / MAX_EXTRA_DO, 1 / 4.2));
+  return 1 - invU;
+}
+
+// Mise à jour de l'interface des boutons
+function updateUI() {
+  modeButtons.forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.mode === state.mode);
+  });
+
+  const profile = EYE_PROFILES[state.mode];
+  if (state.mode === 'emmetrope') {
+    btnGlasses.disabled = true;
+    btnGlasses.classList.remove('active');
+    glassesLabel.textContent = 'Aucun verre nécessaire';
+  } else {
+    btnGlasses.disabled = false;
+    btnGlasses.classList.toggle('active', state.hasGlasses);
+    glassesLabel.textContent = profile.desc;
+  }
+}
+
+modeButtons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    state.mode = btn.dataset.mode;
+    state.hasGlasses = false;
+    // Place automatiquement l'objet à une distance révélatrice du défaut choisi
+    if (state.mode === 'myope') {
+      state.targetSliderNorm = 0.12; // Objet lointain -> flou pour le myope
+    } else if (state.mode === 'hypermetrope') {
+      state.targetSliderNorm = 0.65; // Objet assez proche -> flou pour l'hypermétrope
+    } else if (state.mode === 'presbyte') {
+      state.targetSliderNorm = 0.78; // Objet proche -> flou pour le presbyte
+    }
+    distSlider.value = Math.round(state.targetSliderNorm * 1000);
+    updateUI();
+  });
+});
+
+btnGlasses.addEventListener('click', () => {
+  if (btnGlasses.disabled) return;
+  state.hasGlasses = !state.hasGlasses;
+  updateUI();
+});
+
+distSlider.addEventListener('input', (e) => {
+  state.targetSliderNorm = parseFloat(e.target.value) / 1000;
+});
+
+// Glisser-déposer direct de l'objet sur le banc optique
+function getCanvasCoords(e) {
+  const rect = canvas.getBoundingClientRect();
+  const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+  const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+  return {
+    x: (clientX - rect.left) * (canvas.width / rect.width),
+    y: (clientY - rect.top) * (canvas.height / rect.height)
+  };
+}
+
+canvas.addEventListener('pointerdown', (e) => {
+  const pos = getCanvasCoords(e);
+  const d_o = normToDo(state.sliderNorm);
+  const objX = opt.lensX - d_o;
+
+  if (objX > 30 && Math.abs(pos.x - objX) < 32 && Math.abs(pos.y - opt.axisY) < 110) {
+    state.isDraggingObj = true;
+    canvas.setPointerCapture(e.pointerId);
+  }
+});
+
+canvas.addEventListener('pointermove', (e) => {
+  const pos = getCanvasCoords(e);
+  const d_o = normToDo(state.sliderNorm);
+  const objX = opt.lensX - d_o;
+
+  if (state.isDraggingObj) {
+    const maxObjX = opt.lensX - MIN_DO;
+    const clampedX = Math.max(20, Math.min(maxObjX, pos.x));
+    const newDo = opt.lensX - clampedX;
+    state.targetSliderNorm = doToNorm(newDo);
+    distSlider.value = Math.round(state.targetSliderNorm * 1000);
+  } else {
+    state.isHoveringObj = (objX > 30 && Math.abs(pos.x - objX) < 28 && Math.abs(pos.y - opt.axisY) < 100);
+    canvas.style.cursor = state.isHoveringObj ? 'ew-resize' : 'default';
+  }
+});
+
+canvas.addEventListener('pointerup', (e) => {
+  if (state.isDraggingObj) {
+    state.isDraggingObj = false;
+    canvas.releasePointerCapture(e.pointerId);
+  }
+});
+
+// Calcul exact du système optique [Objet -> (Verre correcteur éventuel) -> Cristallin -> Rétine]
+function computeOpticalState() {
+  const profile = EYE_PROFILES[state.mode];
+  const d_o = normToDo(state.sliderNorm); // Distance Cristallin <-> Objet (> 0)
+  const objX = opt.lensX - d_o;
+  const retinaX = opt.lensX + state.retinaDist;
+
+  // Hauteur de l'objet AB :
+  // Si l'objet est sur le banc optique, hauteur fixe 68 px ;
+  // S'il s'éloigne très loin hors-champ, il garde un angle apparent non nul (~ 1.8°) pour illustrer l'image d'un objet à l'infini
+  const objH = Math.min(68, 68 + (d_o - 550) * 0.022);
+
+  // Distance entre le verre de lunette et le cristallin
+  const d_glass_lens = opt.lensX - opt.glassesX; // 115 px
+
+  // Puissance effective du verre correcteur (modulée pour le presbyte afin de ne corriger que de près si besoin, ou verre fixe)
+  let V_glass = 0;
+  if (state.hasGlasses && state.mode !== 'emmetrope') {
+    if (state.mode === 'presbyte') {
+      // Pour la presbytie (verre de lecture / progressif), la correction agit quand l'objet se rapproche
+      const nearWeight = Math.min(1, Math.max(0, (950 - d_o) / 620));
+      V_glass = profile.glassPower * nearWeight;
+    } else {
+      V_glass = profile.glassPower;
+    }
+  }
+  V_glass *= state.glassesAnim;
+
+  // 1. Objet vu par le cristallin (après passage éventuel dans le verre correcteur)
+  // Distance de l'objet au verre : d_o_glass = d_o - d_glass_lens
+  const d_o_glass = Math.max(30, d_o - d_glass_lens);
+
+  // Vergence de divergence des rayons arrivant sur le verre : -1 / d_o_glass
+  // Après le verre : 1 / d_i_glass = V_glass - 1 / d_o_glass
+  const inv_di_glass = V_glass - (1 / d_o_glass);
+  // L'image intermédiaire A1B1 est située à d_i_glass à droite du verre,
+  // donc à une distance algébrique d_o_eff devant le cristallin : d_o_eff = d_glass_lens - d_i_glass
+  let d_o_eff;
+  let gamma_glass = 1;
+  if (Math.abs(inv_di_glass) < 1e-7) {
+    d_o_eff = 1e7; // Rayons parallèles entre le verre et l'œil !
+    gamma_glass = 1;
+  } else {
+    const d_i_glass = 1 / inv_di_glass;
+    d_o_eff = d_glass_lens - d_i_glass;
+    gamma_glass = -d_i_glass / d_o_glass;
+  }
+
+  // 2. Accommodation réflexe du cristallin :
+  // Pour former une image nette sur la rétine (située à d_ret = state.retinaDist derrière le cristallin),
+  // la vergence idéale requise par le cristallin est : V_req = 1 / d_ret + 1 / d_o_eff
+  const V_req = (1 / state.retinaDist) + (1 / d_o_eff);
+
+  // Le cristallin accommode autant qu'il le peut dans sa plage physiologique [vMin, vMax]
+  const V_eye_actual = Math.max(profile.vMin, Math.min(profile.vMax, V_req));
+
+  // Ratio d'effort d'accommodation dans [0, 1] (0 = repos, 1 = bombé au maximum)
+  const rangeV = Math.max(1e-5, profile.vMax - profile.vMin);
+  const targetAccommRatio = (V_eye_actual - profile.vMin) / rangeV;
+
+  // 3. Position réelle du point de convergence (foyer conjugué A'B') derrière le cristallin :
+  // 1 / d_i_eye = V_eye - 1 / d_o_eff
+  const inv_di_eye = state.vEye - (1 / d_o_eff);
+  const d_i_eye = inv_di_eye > 1e-6 ? (1 / inv_di_eye) : 2000;
+  const focusX = opt.lensX + d_i_eye;
+
+  // Ordonnée du point image B' :
+  // Le rayon passant par le centre du verre (ou issu de B) et passant par le centre optique du cristallin
+  // donne l'ordonnée exacte de B' dans le plan de convergence (focusX)
+  // Pente d'entrée au centre du cristallin :
+  const yB = opt.axisY - objH;
+  // Un rayon issu de B(objX, yB) qui sort du verre en passant par O_oeil(lensX, axisY)
+  // a frappé le verre en yG_central :
+  // Pente après verre = (0 - yG) / d_glass_lens = Pente avant verre + (- V_glass * yG)
+  // => -yG / L = (yG - (axisY - yB)) / d_o_glass - V_glass * yG
+  const dyB = yB - opt.axisY; // < 0
+  const denomCentral = (1 / d_glass_lens) + (1 / d_o_glass) - V_glass;
+  const dyG_central = (dyB / d_o_glass) / denomCentral;
+  const slopeAtEyeCenter = (0 - dyG_central) / d_glass_lens;
+
+  const focusY = opt.axisY + slopeAtEyeCenter * d_i_eye;
+  const retinaImgY = opt.axisY + slopeAtEyeCenter * state.retinaDist;
+
+  // Cercle de confusion (rayon de flou sur la rétine) :
+  const blurRadius = opt.pupilRadius * Math.abs(state.retinaDist - d_i_eye) / d_i_eye;
+
+  return {
+    profile,
+    d_o,
+    objX,
+    objH,
+    yB,
+    retinaX,
+    V_glass,
+    V_req,
+    V_eye_actual,
+    targetAccommRatio,
+    d_i_eye,
+    focusX,
+    focusY,
+    retinaImgY,
+    blurRadius,
+    slopeAtEyeCenter
+  };
+}
+
+// Dessin d'une flèche directionnelle
+function drawArrowHead(x, y, ux, uy, color, size = 6.5) {
+  ctx.save();
+  ctx.fillStyle = color;
+  ctx.translate(x, y);
+  ctx.rotate(Math.atan2(uy, ux));
+  ctx.beginPath();
+  ctx.moveTo(2, 0);
+  ctx.lineTo(-size, -size * 0.58);
+  ctx.lineTo(-size * 0.7, 0);
+  ctx.lineTo(-size, size * 0.58);
+  ctx.closePath();
+  ctx.fill();
+  ctx.restore();
+}
+
+// Dessin anatomique schématique et propre du globe oculaire, des muscles ciliaires, de l'iris et du cristallin
+function drawEyeAnatomy(sim) {
+  const { retinaX } = sim;
+  const lensX = opt.lensX;
+  const cy = opt.axisY;
+
+  // Demi-axe horizontal du globe oculaire (s'allonge pour le myope, se raccourcit pour l'hypermétrope)
+  const rx = (retinaX - lensX) * 0.58;
+  const ry = opt.eyeRadiusY;
+  const globeCenterX = retinaX - rx;
+
+  ctx.save();
+
+  // 1. Référence en pointillés de la rétine d'un œil emmétrope (si myope ou hypermétrope)
+  const normalRetinaX = lensX + opt.normalRetinaDist;
+  if (Math.abs(retinaX - normalRetinaX) > 2) {
+    ctx.strokeStyle = 'rgba(148, 163, 184, 0.35)';
+    ctx.lineWidth = 1.5;
+    ctx.setLineDash([5, 5]);
+    ctx.beginPath();
+    ctx.arc(normalRetinaX - opt.normalRetinaDist * 0.58, cy, opt.normalRetinaDist * 0.58, -0.55, 0.55);
+    ctx.stroke();
+    ctx.setLineDash([]);
+  }
+
+  // 2. Cavité interne du globe oculaire (humeur vitrée)
+  ctx.beginPath();
+  ctx.ellipse(globeCenterX, cy, rx, ry, 0, 0, Math.PI * 2);
+  const vitreousGrad = ctx.createRadialGradient(globeCenterX, cy, 10, globeCenterX, cy, rx);
+  vitreousGrad.addColorStop(0, 'rgba(15, 23, 42, 0.85)');
+  vitreousGrad.addColorStop(1, 'rgba(30, 41, 59, 0.55)');
+  ctx.fillStyle = vitreousGrad;
+  ctx.fill();
+
+  // Contour de la sclérotique
+  ctx.strokeStyle = '#64748b';
+  ctx.lineWidth = 3.5;
+  ctx.stroke();
+
+  // 3. Rétine sensible (arc orangé/corail au fond de l'œil)
+  ctx.strokeStyle = '#fb7185';
+  ctx.lineWidth = 4.5;
+  ctx.lineCap = 'round';
+  ctx.beginPath();
+  ctx.ellipse(globeCenterX, cy, rx - 3, ry - 3, 0, -0.68 * Math.PI, 0.68 * Math.PI);
+  ctx.stroke();
+
+  // Étiquette "Rétine"
+  ctx.fillStyle = '#fb7185';
+  ctx.font = '600 14px "Avenir Next", sans-serif';
+  ctx.textAlign = 'left';
+  ctx.fillText('Rétine', retinaX + 12, cy - 35);
+
+  // 4. Dôme cornéen antérieur (autour de x = lensX)
+  ctx.fillStyle = 'rgba(15, 23, 42, 0.9)';
+  ctx.strokeStyle = '#94a3b8';
+  ctx.lineWidth = 3;
+  ctx.beginPath();
+  ctx.arc(lensX + 14, cy, 98, 0.65 * Math.PI, 1.35 * Math.PI);
+  ctx.fill();
+  ctx.stroke();
+
+  // 5. Muscles ciliaires et ligaments suspenseurs (en haut et en bas du cristallin)
+  const lensHalfH = 78;
+  ctx.strokeStyle = '#f43f5e';
+  ctx.lineWidth = 3;
+  ctx.beginPath();
+  // Haut
+  ctx.moveTo(lensX, cy - 102);
+  ctx.lineTo(lensX, cy - lensHalfH);
+  // Bas
+  ctx.moveTo(lensX, cy + 102);
+  ctx.lineTo(lensX, cy + lensHalfH);
+  ctx.stroke();
+
+  // 6. Iris (diaphragme délimitant la pupille devant le cristallin)
+  const irisX = lensX - 18;
+  ctx.strokeStyle = '#38bdf8';
+  ctx.lineWidth = 5;
+  ctx.lineCap = 'round';
+  ctx.beginPath();
+  ctx.moveTo(irisX, cy - 94);
+  ctx.lineTo(irisX, cy - opt.pupilRadius);
+  ctx.moveTo(irisX, cy + opt.pupilRadius);
+  ctx.lineTo(irisX, cy + 94);
+  ctx.stroke();
+
+  // 7. Cristallin déformable (se bombe fortement quand state.accommRatio augmente)
+  // Demi-épaisseur au repos = 13 px ; en accommodation maximale = 31 px
+  const halfThick = 13 + 18 * state.accommRatio;
+  const R = (lensHalfH * lensHalfH + halfThick * halfThick) / (2 * halfThick);
+  const C1x = (lensX - halfThick) + R;
+  const C2x = (lensX + halfThick) - R;
+  const maxAngle = Math.asin(lensHalfH / R);
+
+  ctx.beginPath();
+  ctx.arc(C1x, cy, R, Math.PI + maxAngle, Math.PI - maxAngle, true);
+  ctx.arc(C2x, cy, R, maxAngle, -maxAngle, true);
+  ctx.closePath();
+
+  const lensGrad = ctx.createLinearGradient(lensX - halfThick, cy - lensHalfH, lensX + halfThick, cy + lensHalfH);
+  lensGrad.addColorStop(0, 'rgba(56, 189, 248, 0.25)');
+  lensGrad.addColorStop(0.5, 'rgba(224, 242, 254, 0.52)');
+  lensGrad.addColorStop(1, 'rgba(14, 165, 233, 0.30)');
+  ctx.fillStyle = lensGrad;
+  ctx.fill();
+
+  ctx.strokeStyle = '#bae6fd';
+  ctx.lineWidth = 2.2;
+  ctx.stroke();
+
+  ctx.restore();
+}
+
+// Dessin du verre correcteur (biconcave divergent pour myope, biconvexe convergent pour hypermétrope/presbyte)
+function drawCorrectiveGlass(sim) {
+  if (state.glassesAnim <= 0.01 || state.mode === 'emmetrope') return;
+
+  const gx = opt.glassesX;
+  const cy = opt.axisY;
+  const halfH = 92;
+
+  ctx.save();
+  ctx.globalAlpha = state.glassesAnim;
+
+  const isDivergent = sim.profile.glassType === 'divergent';
+
+  const grad = ctx.createLinearGradient(gx - 18, cy - halfH, gx + 18, cy + halfH);
+  grad.addColorStop(0, 'rgba(125, 211, 252, 0.22)');
+  grad.addColorStop(0.5, 'rgba(224, 242, 254, 0.45)');
+  grad.addColorStop(1, 'rgba(56, 189, 248, 0.25)');
+  ctx.fillStyle = grad;
+  ctx.strokeStyle = '#7dd3fc';
+  ctx.lineWidth = 2;
+
+  ctx.beginPath();
+  if (isDivergent) {
+    // Verre biconcave (fin au centre, épais sur les bords, flèches rentrantes)
+    const edgeW = 14;
+    const centerW = 5;
+    ctx.moveTo(gx - edgeW, cy - halfH);
+    ctx.lineTo(gx + edgeW, cy - halfH);
+    ctx.quadraticCurveTo(gx + centerW, cy, gx + edgeW, cy + halfH);
+    ctx.lineTo(gx - edgeW, cy + halfH);
+    ctx.quadraticCurveTo(gx - centerW, cy, gx - edgeW, cy - halfH);
+  } else {
+    // Verre biconvexe (épais au centre, fin sur les bords)
+    const centerW = 16;
+    ctx.moveTo(gx, cy - halfH);
+    ctx.quadraticCurveTo(gx + centerW, cy, gx, cy + halfH);
+    ctx.quadraticCurveTo(gx - centerW, cy, gx, cy - halfH);
+  }
+  ctx.closePath();
+  ctx.fill();
+  ctx.stroke();
+
+  ctx.restore();
+}
+
+// Tracé propre de 2 faisceaux lumineux :
+// - Faisceau 1 (ambre/jaune) issu du pied A sur l'axe optique (montre le stigmatisme axial sur la rétine)
+// - Faisceau 2 (rose/magenta) issu du sommet B de la flèche (montre la formation de l'image inversée B')
+function drawLightBundles(sim) {
+  const { d_o, objX, yB, retinaX, V_glass } = sim;
+  const d_glass_lens = opt.lensX - opt.glassesX;
+  const d_o_glass = Math.max(30, d_o - d_glass_lens);
+
+  // Rayon de l'ouverture pupillaire utile
+  const maxPupil = opt.pupilRadius * 0.86;
+
+  // On trace le faisceau principal issu de A (sur l'axe optique, très lisible)
+  // et les 3 rayons principaux issus de B (sommet de l'objet)
+  const bundles = [
+    {
+      srcY: opt.axisY,
+      colorIncident: 'rgba(251, 191, 36, 0.72)',
+      colorRefracted: 'rgba(253, 224, 71, 0.88)',
+      arrowColor: '#fbbf24',
+      rayFractions: [-1, -0.5, 0, 0.5, 1]
+    },
+    {
+      srcY: yB,
+      colorIncident: 'rgba(244, 63, 94, 0.55)',
+      colorRefracted: 'rgba(251, 113, 133, 0.75)',
+      arrowColor: '#fb7185',
+      rayFractions: [-0.85, 0, 0.85]
+    }
+  ];
+
+  ctx.save();
+
+  // Clip pour le trajet intra-oculaire afin que les rayons s'arrêtent proprement sur la paroi de la rétine
+  const rx = (retinaX - opt.lensX) * 0.58;
+  const ry = opt.eyeRadiusY;
+  const globeCenterX = retinaX - rx;
+
+  for (const b of bundles) {
+    const dySrc = b.srcY - opt.axisY;
+
+    for (const frac of b.rayFractions) {
+      // Ordonnée d'impact sur le cristallin (en x = opt.lensX)
+      const dyLens = frac * maxPupil;
+      const yLens = opt.axisY + dyLens;
+
+      // Calcul exact de l'ordonnée yGlass où ce rayon a traversé le plan du verre correcteur (x = opt.glassesX) :
+      // Le rayon part de (objX, b.srcY), subit la déviation -V_glass * (yGlass - axisY) en x = glassesX,
+      // et atteint (lensX, yLens) :
+      // (dyLens - dyGlass) / d_glass_lens = (dyGlass - dySrc) / d_o_glass - V_glass * dyGlass
+      const num = (dyLens / d_glass_lens) + (dySrc / d_o_glass);
+      const den = (1 / d_glass_lens) + (1 / d_o_glass) - V_glass;
+      const dyGlass = num / den;
+      const yGlass = opt.axisY + dyGlass;
+
+      // Pente du rayon incident avant le verre correcteur
+      const slope1 = (dyGlass - dySrc) / d_o_glass;
+
+      // Point de départ du tracé à gauche (soit sur l'objet s'il est visible, soit au bord gauche x = 0)
+      const startX = Math.max(0, objX);
+      const startY = yGlass - (opt.glassesX - startX) * slope1;
+
+      // --- 1. Segment Objet -> Verre correcteur ---
+      ctx.strokeStyle = b.colorIncident;
+      ctx.lineWidth = 1.8;
+      ctx.beginPath();
+      ctx.moveTo(startX, startY);
+      ctx.lineTo(opt.glassesX, yGlass);
+      ctx.stroke();
+
+      // Flèche directionnelle avant le verre
+      if (opt.glassesX - startX > 80) {
+        const midX1 = startX + 0.55 * (opt.glassesX - startX);
+        const midY1 = startY + 0.55 * (yGlass - startY);
+        const n1 = Math.hypot(1, slope1);
+        drawArrowHead(midX1, midY1, 1 / n1, slope1 / n1, b.arrowColor, 6);
+      }
+
+      // --- 2. Segment Verre correcteur -> Cristallin ---
+      ctx.beginPath();
+      ctx.moveTo(opt.glassesX, yGlass);
+      ctx.lineTo(opt.lensX, yLens);
+      ctx.stroke();
+
+      // --- 3. Segment réfracté par le cristallin -> Rétine (et prolongement si convergence derrière la rétine) ---
+      // Pente à l'entrée du cristallin :
+      const slopeInEye = (yLens - yGlass) / d_glass_lens;
+      // Déviation par la lentille mince équivalente au cristallin de vergence state.vEye :
+      const slopeOutEye = slopeInEye - state.vEye * dyLens;
+
+      // Ordonnée sur le plan de la rétine (x = retinaX)
+      const yAtRetina = yLens + slopeOutEye * (retinaX - opt.lensX);
+
+      ctx.strokeStyle = b.colorRefracted;
+      ctx.lineWidth = 2.0;
+      ctx.beginPath();
+      ctx.moveTo(opt.lensX, yLens);
+      ctx.lineTo(retinaX, yAtRetina);
+      ctx.stroke();
+
+      // Si les rayons convergent EN ARRIÈRE de la rétine (hypermétropie / presbytie non corrigées),
+      // on trace en pointillés le prolongement virtuel derrière la rétine jusqu'au point de convergence !
+      if (sim.focusX > retinaX + 3) {
+        const endVirtX = Math.min(canvas.width - 20, sim.focusX + 15);
+        const endVirtY = yLens + slopeOutEye * (endVirtX - opt.lensX);
+        ctx.save();
+        ctx.strokeStyle = b.colorRefracted;
+        ctx.lineWidth = 1.5;
+        ctx.setLineDash([4, 4]);
+        ctx.beginPath();
+        ctx.moveTo(retinaX, yAtRetina);
+        ctx.lineTo(endVirtX, endVirtY);
+        ctx.stroke();
+        ctx.restore();
+      }
+    }
+  }
+
+  ctx.restore();
+}
+
+// Dessin de l'objet AB (ou de l'indication d'objet très lointain) et de l'image rétinienne
+function drawObjectAndRetinalPreview(sim) {
+  const { objX, objH, yB, retinaX, retinaImgY, blurRadius } = sim;
+
+  ctx.save();
+
+  // 1. Objet lumineux AB (flèche verticale si visible sur le banc, sinon indication d'éloignement à gauche)
+  if (objX >= 25) {
+    ctx.strokeStyle = '#f8fafc';
+    ctx.fillStyle = '#f8fafc';
+    ctx.lineWidth = 3.2;
+    ctx.beginPath();
+    ctx.moveTo(objX, opt.axisY);
+    ctx.lineTo(objX, yB);
+    ctx.stroke();
+
+    drawArrowHead(objX, yB, 0, -1, '#fb7185', 9);
+
+    // Point A sur l'axe
+    ctx.fillStyle = '#fbbf24';
+    ctx.beginPath();
+    ctx.arc(objX, opt.axisY, 4.5, 0, Math.PI * 2);
+    ctx.fill();
+
+    ctx.fillStyle = '#f8fafc';
+    ctx.font = '600 18px "Avenir Next", sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText('A', objX, opt.axisY + 24);
+    ctx.fillStyle = '#fb7185';
+    ctx.fillText('B', objX, yB - 12);
+  } else {
+    // Badge indiquant que l'objet est très loin à gauche (rayons quasi parallèles)
+    ctx.fillStyle = 'rgba(15, 23, 42, 0.85)';
+    ctx.strokeStyle = '#334155';
+    ctx.lineWidth = 1.5;
+    ctx.beginPath();
+    ctx.roundRect(18, opt.axisY + 24, 195, 34, 8);
+    ctx.fill();
+    ctx.stroke();
+
+    ctx.fillStyle = '#cbd5e1';
+    ctx.font = '500 14px "Avenir Next", sans-serif';
+    ctx.textAlign = 'left';
+    ctx.fillText('← Objet très éloigné', 30, opt.axisY + 46);
+  }
+
+  // 2. Flèche image A'B' sur la rétine (renversée)
+  ctx.strokeStyle = '#fb7185';
+  ctx.lineWidth = 2.5;
+  ctx.beginPath();
+  ctx.moveTo(retinaX, opt.axisY);
+  ctx.lineTo(retinaX, retinaImgY);
+  ctx.stroke();
+  drawArrowHead(retinaX, retinaImgY, 0, 1, '#fb7185', 7);
+
+  // 3. Tableau de bord pédagogique et aperçu de l'image rétinienne (en haut à droite)
+  const cardW = 240;
+  const cardH = 215;
+  const cardX = canvas.width - cardW - 22;
+  const cardY = 20;
+
+  ctx.fillStyle = 'rgba(15, 23, 42, 0.88)';
+  ctx.strokeStyle = '#334155';
+  ctx.lineWidth = 1.5;
+  ctx.beginPath();
+  ctx.roundRect(cardX, cardY, cardW, cardH, 12);
+  ctx.fill();
+  ctx.stroke();
+
+  ctx.fillStyle = '#94a3b8';
+  ctx.font = '600 13px "Avenir Next", sans-serif';
+  ctx.textAlign = 'center';
+  ctx.fillText('IMAGE SUR LA RÉTINE', cardX + cardW / 2, cardY + 24);
+
+  // Disque de visualisation rétinienne
+  const viewCX = cardX + cardW / 2;
+  const viewCY = cardY + 95;
+  const viewR = 54;
+
+  ctx.save();
+  ctx.beginPath();
+  ctx.arc(viewCX, viewCY, viewR, 0, Math.PI * 2);
+  ctx.clip();
+
+  ctx.fillStyle = '#090d16';
+  ctx.fillRect(viewCX - viewR, viewCY - viewR, viewR * 2, viewR * 2);
+
+  // Rendu par convolution (compatible Safari/Chrome/Firefox) de la flèche image renversée sur la rétine
+  const numSamples = 28;
+  const goldenAngle = Math.PI * (3 - Math.sqrt(5));
+  const spread = Math.min(26, blurRadius * 1.35);
+
+  const sampleAlpha = spread < 0.8 ? 1.0 : (1.5 / numSamples);
+  for (let i = 0; i < (spread < 0.8 ? 1 : numSamples); i++) {
+    const r = spread < 0.8 ? 0 : Math.sqrt((i + 0.5) / numSamples) * spread;
+    const a = i * goldenAngle;
+    const dx = r * Math.cos(a);
+    const dy = r * Math.sin(a);
+
+    ctx.save();
+    ctx.globalAlpha = sampleAlpha;
+    ctx.translate(viewCX + dx, viewCY + dy);
+
+    // Flèche renversée A'B' vue sur la rétine
+    ctx.strokeStyle = '#f8fafc';
+    ctx.lineWidth = 4;
+    ctx.beginPath();
+    ctx.moveTo(0, -28);
+    ctx.lineTo(0, 26);
+    ctx.stroke();
+
+    drawArrowHead(0, 28, 0, 1, '#fb7185', 10);
+
+    ctx.fillStyle = '#fbbf24';
+    ctx.beginPath();
+    ctx.arc(0, -28, 4.5, 0, Math.PI * 2);
+    ctx.fill();
+
+    ctx.restore();
+  }
+  ctx.restore();
+
+  // Anneau autour du médaillon (vert si net, rouge/orange si flou)
+  const isSharp = blurRadius < 1.1;
+  ctx.strokeStyle = isSharp ? '#10b981' : '#f43f5e';
+  ctx.lineWidth = 2.5;
+  ctx.beginPath();
+  ctx.arc(viewCX, viewCY, viewR, 0, Math.PI * 2);
+  ctx.stroke();
+
+  // Verdict de netteté et état d'accommodation
+  ctx.font = '600 14px "Avenir Next", sans-serif';
+  ctx.fillStyle = isSharp ? '#34d399' : '#fb7185';
+  let statusText = 'Vision nette (sur la rétine)';
+  if (!isSharp) {
+    statusText = sim.focusX < retinaX
+      ? 'Flou (foyer avant la rétine)'
+      : 'Flou (foyer après la rétine)';
+  }
+  ctx.fillText(statusText, cardX + cardW / 2, cardY + 172);
+
+  // Jauge d'effort d'accommodation du cristallin
+  const accommPct = Math.round(state.accommRatio * 100);
+  ctx.fillStyle = '#94a3b8';
+  ctx.font = '500 12.5px "Avenir Next", sans-serif';
+  ctx.fillText(`Bombé du cristallin : ${accommPct} %`, cardX + cardW / 2, cardY + 196);
+
+  ctx.restore();
+}
+
+function animate() {
+  state.sliderNorm += (state.targetSliderNorm - state.sliderNorm) * 0.18;
+
+  const profile = EYE_PROFILES[state.mode];
+  state.retinaDist += (profile.retinaDist - state.retinaDist) * 0.15;
+
+  const targetGlasses = (state.hasGlasses && state.mode !== 'emmetrope') ? 1 : 0;
+  state.glassesAnim += (targetGlasses - state.glassesAnim) * 0.16;
+
+  const sim = computeOpticalState();
+  state.vEye += (sim.V_eye_actual - state.vEye) * 0.22;
+  state.accommRatio += (sim.targetAccommRatio - state.accommRatio) * 0.18;
+
+  // Recalcul avec les valeurs lissées pour une cohérence géométrique parfaite
+  const finalSim = computeOpticalState();
+
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  // Axe optique
+  ctx.strokeStyle = 'rgba(148, 163, 184, 0.2)';
+  ctx.lineWidth = 1.2;
+  ctx.setLineDash([8, 8]);
+  ctx.beginPath();
+  ctx.moveTo(0, opt.axisY);
+  ctx.lineTo(canvas.width, opt.axisY);
+  ctx.stroke();
+  ctx.setLineDash([]);
+
+  drawEyeAnatomy(finalSim);
+  drawCorrectiveGlass(finalSim);
+  drawLightBundles(finalSim);
+  drawObjectAndRetinalPreview(finalSim);
+
+  requestAnimationFrame(animate);
+}
+
+updateUI();
+requestAnimationFrame(animate);
+</script>
+</body>
+</html>
