@@ -122,8 +122,13 @@ $$V = \frac{m}{C_m}$$
 
 Exemples : 
 
-- on dissout 25 g de dichlore gazeux dans 500 mL d'eau. Que vaut la concentration en masse en dichlore ?
+- on dissout 25 g de dichlore gazeux dans 500 mL d'eau. 
 
+<p class="fragment fade-up">Que vaut la concentration en masse en dichlore ?</p>
+
+{{%note%}}
+En réalité, la concentration max du dichlore (solubilité) est de 7 g/L. L'exemple est donc avant tout calculatoire mais non réaliste.
+{{%/note%}}
 
 ---
 
@@ -142,7 +147,9 @@ C_m &= \frac{m}{V}\\
 
 ---
 
-- Une piscine de 50 m<sup>3</sup> doit posséder une concentration en masse en ion hypochlorite $\ce{ClO-}$ de 2 mg/L. Quelle masse d'ions hypochlorite doit-on verser dans la piscine pour obtenir cette concentration (on fera l'hypothèse que l'ajout du soluté ne modifie pas le volume de la piscine) ?
+- Une piscine de 50 m<sup>3</sup> doit posséder une concentration en masse en ion hypochlorite $\ce{ClO-}$ de 2 mg/L. 
+
+<p class="fragment fade-up">Quelle masse d'ions hypochlorite doit-on verser dans la piscine pour obtenir cette concentration<br>(on fera l'hypothèse que l'ajout du soluté<br>ne modifie pas le volume de la piscine) ?</p>
 
 
 ---
@@ -162,7 +169,10 @@ C_m = \frac{m}{V} \Rightarrow m &= C_m\times V\\
 
 ---
 
-- On veut réaliser le plus grand volume possible d'une solution de sérum physiologique (solution aqueuse de chlorure de sodium d'une concentration en masse de 9,0&nbsp;g/L). On a à disposition 4,5&nbsp;kg de sel. Dans quel volume d'eau faut-il le dissoudre ?
+- On veut réaliser le plus grand volume possible<br>d'une solution de sérum physiologique (solution aqueuse de chlorure de sodium d'une<br>concentration en masse de 9,0&nbsp;g/L).<br>
+On a à disposition 4,5&nbsp;kg de sel. 
+
+<p class="fragment fade-up">Dans quel volume d'eau faut-il le dissoudre ?</p>
 
 
 ---
@@ -195,7 +205,7 @@ Pour calculer la masse volumique d'une solution, quelle masse doit-on utiliser ?
 
 ---
 
-Comment faire pour augmenter une concentration ?  (deux solutions)
+Comment faire pour augmenter une concentration ?  (deux possibilités)
 
 <br>
 
@@ -212,7 +222,7 @@ Comment faire pour augmenter une concentration ?  (deux solutions)
 
 Dans tous les bassins de la photo, la concentration<br>en masse du sel est la même.
 
-À votre avis pourquoi ?
+<p class="fragment fade-up">À votre avis pourquoi ?</p>
 
 
 ---
@@ -221,14 +231,19 @@ Dans tous les bassins de la photo, la concentration<br>en masse du sel est la m�
 
 <p class="fragment fade-up">La solution est alors dite <b style="color:#FF8596">saturée</b>. Si on ajoute encore du soluté, il se dépose au fond sans se dissoudre.</p>
 
-<p class="fragment fade-up">Pour le sel, la concentration maximale<br>vaut 359 g/L dans une eau à 20°C.</p>
+<p class="fragment fade-up">Pour le sel, la concentration maximale<br>vaut 320 g/L dans une eau à 20°C.</p>
+
+{{%note%}}
+Avec 1 L d'eau, on peut dissoudre 359 g de sel, mais la solution fait alors plus d'un litre.
+{{%/note%}}
 
 
 ----
 
 - À 25 °C, la solubilité dans l’eau de l’aspirine $\ce{C9H8O4}$ est de $\pu{1,0 g}$ pour $\pu{300 mL}$.<br>
-$\pu{400 mL}$ de solution d’aspirine sont préparés à 25 °C à partir d’$\pu{1,20 g}$ de cristaux d’aspirine pure.<br>
-Est-il possible de dissoudre l'intégralité de l'aspirine&nbsp;?<br>
+$\pu{400 mL}$ de solution d’aspirine sont préparés<br>à 25 °C à partir d’$\pu{1,20 g}$ de cristaux d’aspirine pure.<br>
+
+<p class="fragment fade-up">Est-il possible de dissoudre l'intégralité de l'aspirine&nbsp;?</p>
 
 ---
 
@@ -408,7 +423,9 @@ $$\frac{C_{mère}}{C_{fille}}=\frac{V_{fille}}{V_{mère}}=F$$
 
 ---
 
-On dilue 10 fois une solution de concentration<br>en masse $\pu{5,0 g/L}$. Que vaut la concentration<br>en masse de la solution fille ?
+On dilue 10 fois une solution<br>de concentration en masse $\pu{5,0 g/L}$. 
+
+<p class="fragment fade-up">Que vaut la concentration<br>en masse de la solution fille ?</p>
 
 <ol class="vote">
 <li class="fragment">$\pu{50 g/L}$</li>
@@ -450,13 +467,13 @@ $$\Rightarrow V_{mère}=\frac{V_{fille}}{F}=\frac{\pu{250 mL}}{5} =\pu{50 mL}$$
 
 Utilisation d'une courbe d'étalonnage.
 
-Voir le TP "[Masse de sucre dans une boisson](https://coursphychi.github.io/tpsucre.pdf)".
+<p class="fragment fade-up">Voir le TP <a href="https://coursphychi.github.io/tpsucre.pdf" targer="_blank">"Masse de sucre dans une boisson"</a>.</p>
 
 ---
 
 Utilisation d'une échelle de teinte.
 
-Voir le TP "[Dosage du colorant d'une boisson<br>par échelle de teinte](https://coursphychi.github.io/tpechelle.pdf)".
+<p class="fragment fade-up">Voir le TP <a href="https://coursphychi.github.io/tpechelle.pdf" targer="_blank">"Dosage du colorant<br>d'une boisson par échelle de teinte"</a>.</p>
 
 
 {{% /section %}}
