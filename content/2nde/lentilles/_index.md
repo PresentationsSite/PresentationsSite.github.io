@@ -220,7 +220,7 @@ style="color:#61D836"> $\gamma$<span class="fragment" style="color:#61D836"> $>$
 
 ---
 
-{{< slide  background-iframe="/avecindic.html" background-size="contain" background-transition="concave" background-interactive="true">}}
+{{< slide  background-iframe="/finlentilles.html" background-size="contain" background-transition="concave" background-interactive="true">}}
 
 
 {{% /section %}}
