@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Image donnée par une lentille — Grandissement</title>
+<style>
+  :root {
+    --bg: #0f172a;
+    --panel: #1e293b;
+    --text: #f8fafc;
+    --muted: #94a3b8;
+    --accent: #38bdf8;
+    --border: #334155;
+    --ray1: #f43f5e; /* Rose/Rouge : parallèle à l'axe -> F' */
+    --ray2: #eab308; /* Jaune/Ambre : centre optique O */
+    --ray3: #10b981; /* Vert émeraude : passe par F -> parallèle */
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: 'Avenir Next', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 14px;
+    overflow-x: hidden;
+  }
+
+  .app-container {
+    width: 100%;
+    max-width: 1220px;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .canvas-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #090d16;
+  }
+
+  canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+    touch-action: none;
+  }
+
+  /* Valeurs affichées en surimpression, en haut à droite du banc */
+  .values-overlay {
+    position: absolute;
+    top: 14px;
+    right: 16px;
+    align-items: flex-end;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    pointer-events: none;
+  }
+
+  .values-grid {
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 4px 14px;
+    align-items: baseline;
+    background: rgba(15, 23, 42, 0.8);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px 16px;
+    font-size: 1.15rem;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .values-grid .name {
+    color: var(--muted);
+    font-weight: 600;
+  }
+
+  .values-grid .val {
+    font-weight: 600;
+    text-align: right;
+  }
+
+  .values-grid .val.obj { color: #f8fafc; }
+  .values-grid .val.img { color: var(--accent); }
+  .values-grid .val.foc { color: #7dd3fc; }
+
+  .values-grid .val.gamma {
+    color: #fbbf24;
+    font-size: 1.3rem;
+  }
+
+  .values-grid .sep {
+    grid-column: 1 / -1;
+    height: 1px;
+    background: var(--border);
+    margin: 3px 0;
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 6px;
+    max-width: 260px;
+  }
+
+  .tag {
+    font-size: 0.82rem;
+    font-weight: 600;
+    padding: 3px 9px;
+    border-radius: 6px;
+    background: rgba(15, 23, 42, 0.8);
+    border: 1px solid var(--border);
+    color: var(--muted);
+  }
+
+  .tag.on {
+    color: var(--text);
+    border-color: rgba(56, 189, 248, 0.6);
+    background: rgba(56, 189, 248, 0.14);
+  }
+
+  .controls-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding: 16px 22px;
+    background: var(--panel);
+    border-top: 1px solid var(--border);
+  }
+
+  .rays-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .btn-ray {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #0f172a;
+    color: var(--text);
+    border: 1px solid var(--border);
+    padding: 9px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.18s ease;
+    user-select: none;
+  }
+
+  .btn-ray:hover {
+    border-color: var(--muted);
+    background: rgba(255, 255, 255, 0.04);
+  }
+
+  .btn-ray.off {
+    opacity: 0.45;
+  }
+
+  .dot {
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .btn-ray[data-ray="1"] .dot { background: var(--ray1); box-shadow: 0 0 8px var(--ray1); }
+  .btn-ray[data-ray="2"] .dot { background: var(--ray2); box-shadow: 0 0 8px var(--ray2); }
+  .btn-ray[data-ray="3"] .dot { background: var(--ray3); box-shadow: 0 0 8px var(--ray3); }
+
+  .btn-ray.off .dot { box-shadow: none; }
+
+  .step-badge {
+    font-size: 0.78rem;
+    padding: 2px 8px;
+    border-radius: 5px;
+    background: rgba(16, 185, 129, 0.2);
+    color: #34d399;
+    font-weight: 600;
+    margin-left: 2px;
+  }
+
+  .btn-ray.off .step-badge {
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--muted);
+  }
+
+  .sliders-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 14px;
+  }
+
+  .slider-box {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: #0f172a;
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+  }
+
+  .slider-box label {
+    font-size: 0.86rem;
+    color: var(--muted);
+    white-space: nowrap;
+    min-width: 115px;
+  }
+
+  input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    flex: 1;
+    height: 6px;
+    background: #334155;
+    border-radius: 3px;
+    outline: none;
+  }
+
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--accent);
+    cursor: pointer;
+    transition: transform 0.1s;
+  }
+
+  input[type="range"]::-webkit-slider-thumb:hover {
+    transform: scale(1.15);
+  }
+</style>
+</head>
+<body>
+
+<div class="app-container">
+  <div class="canvas-wrapper">
+    <canvas id="simCanvas" width="1200" height="675"></canvas>
+
+    <div class="values-overlay">
+      <div class="values-grid">
+        <span class="name">AB</span>        <span class="val obj" id="valAB">–</span>
+        <span class="name">A'B'</span>      <span class="val img" id="valApBp">–</span>
+        <span class="name">f'</span>        <span class="val foc" id="valF">–</span>
+        <span class="sep"></span>
+        <span class="name">γ = A'B' / AB</span> <span class="val gamma" id="valGamma">–</span>
+      </div>
+      <div class="tags">
+        <span class="tag" id="tagNature">–</span>
+        <span class="tag" id="tagSens">–</span>
+        <span class="tag" id="tagTaille">–</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="controls-panel">
+    <!-- Ligne 1 : affichage des rayons -->
+    <div class="rays-toolbar">
+      <button class="btn-ray" id="btnRay1" data-ray="1">
+        <span class="dot"></span>
+        <span>Rayon 1 (parallèle à l'axe)</span>
+        <span class="step-badge">Affiché</span>
+      </button>
+
+      <button class="btn-ray" id="btnRay2" data-ray="2">
+        <span class="dot"></span>
+        <span>Rayon 2 (centre optique O)</span>
+        <span class="step-badge">Affiché</span>
+      </button>
+
+      <button class="btn-ray" id="btnRay3" data-ray="3">
+        <span class="dot"></span>
+        <span>Rayon 3 (foyer objet F)</span>
+        <span class="step-badge">Affiché</span>
+      </button>
+    </div>
+
+    <!-- Ligne 2 : paramètres (en cm) -->
+    <div class="sliders-row">
+      <div class="slider-box">
+        <label for="posSlider">Position de A :</label>
+        <input type="range" id="posSlider" min="1.5" max="19" step="0.1" value="10">
+      </div>
+
+      <div class="slider-box">
+        <label for="heightSlider">Taille de AB :</label>
+        <input type="range" id="heightSlider" min="0.5" max="5" step="0.1" value="3">
+      </div>
+
+      <div class="slider-box">
+        <label for="focalSlider">Focale <i>f'</i> :</label>
+        <input type="range" id="focalSlider" min="3" max="9" step="0.1" value="6">
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const canvas = document.getElementById('simCanvas');
+const ctx = canvas.getContext('2d');
+
+const posSlider = document.getElementById('posSlider');
+const heightSlider = document.getElementById('heightSlider');
+const focalSlider = document.getElementById('focalSlider');
+
+const valAB = document.getElementById('valAB');
+const valApBp = document.getElementById('valApBp');
+const valF = document.getElementById('valF');
+const valGamma = document.getElementById('valGamma');
+const tagNature = document.getElementById('tagNature');
+const tagSens = document.getElementById('tagSens');
+const tagTaille = document.getElementById('tagTaille');
+
+// Repères fixes du banc optique (1 cm = PX_CM pixels)
+const PX_CM = 25;
+const opt = {
+  axisY: 337.5,
+  lensX: 540,
+  lensHalfH: 225
+};
+
+const LIMITES = {
+  posMin: 1.5, posMax: 19,     // OA en cm (objet à gauche de la lentille)
+  hMin: 0.5, hMax: 5,          // AB en cm
+  fMin: 3, fMax: 9             // f' en cm
+};
+
+// État (en cm), avec lissage vers les valeurs cibles
+const state = {
+  dA: 10, targetDA: 10,        // distance OA
+  h: 3, targetH: 3,            // taille AB
+  f: 6, targetF: 6,            // distance focale f'
+  show: { 1: true, 2: true, 3: true },
+  dragTarget: null
+};
+
+const COLORS = { 1: '#f43f5e', 2: '#eab308', 3: '#10b981' };
+
+/* ---------- Boutons des rayons ---------- */
+
+for (const id of [1, 2, 3]) {
+  const btn = document.getElementById('btnRay' + id);
+  btn.addEventListener('click', () => {
+    state.show[id] = !state.show[id];
+    btn.classList.toggle('off', !state.show[id]);
+    btn.querySelector('.step-badge').textContent = state.show[id] ? 'Affiché' : 'Masqué';
+  });
+}
+
+/* ---------- Curseurs ---------- */
+
+posSlider.addEventListener('input', (e) => { state.targetDA = parseFloat(e.target.value); });
+heightSlider.addEventListener('input', (e) => { state.targetH = parseFloat(e.target.value); });
+focalSlider.addEventListener('input', (e) => { state.targetF = parseFloat(e.target.value); });
+
+/* ---------- Manipulation directe (points B, A, F, F') ---------- */
+
+function getCanvasCoords(e) {
+  const rect = canvas.getBoundingClientRect();
+  return {
+    x: (e.clientX - rect.left) * (canvas.width / rect.width),
+    y: (e.clientY - rect.top) * (canvas.height / rect.height)
+  };
+}
+
+const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+const xA = () => opt.lensX - state.dA * PX_CM;
+const yB = () => opt.axisY - state.h * PX_CM;
+
+canvas.addEventListener('pointerdown', (e) => {
+  const pos = getCanvasCoords(e);
+  const Fx = opt.lensX - state.f * PX_CM;
+  const Fpx = opt.lensX + state.f * PX_CM;
+
+  if (Math.hypot(pos.x - xA(), pos.y - yB()) < 24) state.dragTarget = 'B';
+  else if (Math.hypot(pos.x - xA(), pos.y - opt.axisY) < 24) state.dragTarget = 'A';
+  else if (Math.hypot(pos.x - Fx, pos.y - opt.axisY) < 22) state.dragTarget = 'F';
+  else if (Math.hypot(pos.x - Fpx, pos.y - opt.axisY) < 22) state.dragTarget = 'Fp';
+
+  if (state.dragTarget) canvas.setPointerCapture(e.pointerId);
+});
+
+canvas.addEventListener('pointermove', (e) => {
+  const pos = getCanvasCoords(e);
+  const Fx = opt.lensX - state.f * PX_CM;
+  const Fpx = opt.lensX + state.f * PX_CM;
+  const arrondi = (v) => Math.round(v * 10) / 10;
+
+  if (state.dragTarget === 'B' || state.dragTarget === 'A') {
+    state.targetDA = arrondi(clamp((opt.lensX - pos.x) / PX_CM, LIMITES.posMin, LIMITES.posMax));
+    posSlider.value = state.targetDA;
+    if (state.dragTarget === 'B') {
+      state.targetH = arrondi(clamp((opt.axisY - pos.y) / PX_CM, LIMITES.hMin, LIMITES.hMax));
+      heightSlider.value = state.targetH;
+    }
+  } else if (state.dragTarget === 'F' || state.dragTarget === 'Fp') {
+    const d = state.dragTarget === 'F' ? opt.lensX - pos.x : pos.x - opt.lensX;
+    state.targetF = arrondi(clamp(d / PX_CM, LIMITES.fMin, LIMITES.fMax));
+    focalSlider.value = state.targetF;
+  } else {
+    const surB = Math.hypot(pos.x - xA(), pos.y - yB()) < 22;
+    const surA = Math.hypot(pos.x - xA(), pos.y - opt.axisY) < 22;
+    const surF = Math.hypot(pos.x - Fx, pos.y - opt.axisY) < 20 || Math.hypot(pos.x - Fpx, pos.y - opt.axisY) < 20;
+    canvas.style.cursor = surB ? 'move' : (surA || surF ? 'ew-resize' : 'default');
+  }
+});
+
+canvas.addEventListener('pointerup', (e) => {
+  if (state.dragTarget) {
+    state.dragTarget = null;
+    canvas.releasePointerCapture(e.pointerId);
+  }
+});
+
+/* ---------- Utilitaires de dessin ---------- */
+
+function drawArrowHead(x, y, ux, uy, color, size = 7) {
+  ctx.save();
+  ctx.fillStyle = color;
+  ctx.translate(x, y);
+  ctx.rotate(Math.atan2(uy, ux));
+  ctx.beginPath();
+  ctx.moveTo(2, 0);
+  ctx.lineTo(-size, -size * 0.58);
+  ctx.lineTo(-size * 0.7, 0);
+  ctx.lineTo(-size, size * 0.58);
+  ctx.closePath();
+  ctx.fill();
+  ctx.restore();
+}
+
+function drawSegment(x1, y1, x2, y2, color, dashed = false, withMidArrow = false, lineWidth = 2.3) {
+  ctx.save();
+  ctx.strokeStyle = color;
+  ctx.lineWidth = lineWidth;
+  if (dashed) ctx.setLineDash([6, 6]);
+  ctx.beginPath();
+  ctx.moveTo(x1, y1);
+  ctx.lineTo(x2, y2);
+  ctx.stroke();
+  ctx.restore();
+
+  const len = Math.hypot(x2 - x1, y2 - y1);
+  if (withMidArrow && len > 35) {
+    drawArrowHead((x1 + x2) / 2, (y1 + y2) / 2, (x2 - x1) / len, (y2 - y1) / len, color, 7);
+  }
+}
+
+function drawVerticalVector(x, yAxis, yTip, labelBase, labelTip, color, dashed = false) {
+  ctx.save();
+  ctx.strokeStyle = color;
+  ctx.fillStyle = color;
+  ctx.lineWidth = 3;
+  if (dashed) ctx.setLineDash([6, 5]);
+  ctx.beginPath();
+  ctx.moveTo(x, yAxis);
+  ctx.lineTo(x, yTip);
+  ctx.stroke();
+  ctx.setLineDash([]);
+
+  const dirY = yTip < yAxis ? -1 : 1;
+  drawArrowHead(x, yTip, 0, dirY, color, 9);
+
+  ctx.beginPath();
+  ctx.arc(x, yAxis, 3.5, 0, Math.PI * 2);
+  ctx.fill();
+
+  ctx.font = '600 19px "Avenir Next", sans-serif';
+  ctx.textAlign = 'center';
+  ctx.fillText(labelBase, x, yAxis + (dirY < 0 ? 24 : -10));
+  ctx.fillText(labelTip, x, yTip + (dirY < 0 ? -12 : 24));
+  ctx.restore();
+}
+
+// labelsOccupes : abscisses où une étiquette (A, A') est déjà écrite sous l'axe
+function drawOpticsAndAxis(maxRayImpact, labelsOccupes) {
+  ctx.save();
+
+  // 1. Axe optique gradué (1 graduation par cm, plus marquée tous les 5 cm)
+  ctx.strokeStyle = 'rgba(148, 163, 184, 0.25)';
+  ctx.lineWidth = 1.4;
+  ctx.setLineDash([8, 8]);
+  ctx.beginPath();
+  ctx.moveTo(0, opt.axisY);
+  ctx.lineTo(canvas.width, opt.axisY);
+  ctx.stroke();
+  ctx.setLineDash([]);
+
+  ctx.lineWidth = 1;
+  for (let k = -Math.floor(opt.lensX / PX_CM); opt.lensX + k * PX_CM <= canvas.width; k++) {
+    const x = opt.lensX + k * PX_CM;
+    const grand = k % 5 === 0;
+    ctx.strokeStyle = grand ? 'rgba(148, 163, 184, 0.45)' : 'rgba(148, 163, 184, 0.22)';
+    ctx.beginPath();
+    ctx.moveTo(x, opt.axisY - (grand ? 6 : 3));
+    ctx.lineTo(x, opt.axisY + (grand ? 6 : 3));
+    ctx.stroke();
+  }
+
+  // 2. Plan de la lentille prolongé en pointillés si un rayon passe hors de la monture
+  const reqHalfH = Math.max(opt.lensHalfH, Math.min(330, maxRayImpact + 15));
+  if (reqHalfH > opt.lensHalfH + 2) {
+    ctx.strokeStyle = 'rgba(186, 230, 253, 0.45)';
+    ctx.lineWidth = 1.5;
+    ctx.setLineDash([5, 5]);
+    ctx.beginPath();
+    ctx.moveTo(opt.lensX, opt.axisY - reqHalfH);
+    ctx.lineTo(opt.lensX, opt.axisY - opt.lensHalfH);
+    ctx.moveTo(opt.lensX, opt.axisY + opt.lensHalfH);
+    ctx.lineTo(opt.lensX, opt.axisY + reqHalfH);
+    ctx.stroke();
+    ctx.setLineDash([]);
+  }
+
+  // 3. Corps de la lentille convergente (plus bombée quand f' est petite)
+  const halfH = opt.lensHalfH;
+  const t = (LIMITES.fMax - state.f) / (LIMITES.fMax - LIMITES.fMin);
+  const halfThick = 14 + 26 * clamp(t, 0, 1);
+  const R = (halfH * halfH + halfThick * halfThick) / (2 * halfThick);
+  const C1x = (opt.lensX - halfThick) + R;
+  const C2x = (opt.lensX + halfThick) - R;
+  const maxAngle = Math.asin(halfH / R);
+
+  ctx.beginPath();
+  ctx.arc(C1x, opt.axisY, R, Math.PI + maxAngle, Math.PI - maxAngle, true);
+  ctx.arc(C2x, opt.axisY, R, maxAngle, -maxAngle, true);
+  ctx.closePath();
+  const grad = ctx.createLinearGradient(opt.lensX - halfThick, opt.axisY - halfH, opt.lensX + halfThick, opt.axisY + halfH);
+  grad.addColorStop(0, 'rgba(56, 189, 248, 0.14)');
+  grad.addColorStop(0.5, 'rgba(186, 230, 253, 0.30)');
+  grad.addColorStop(1, 'rgba(14, 165, 233, 0.16)');
+  ctx.fillStyle = grad;
+  ctx.fill();
+
+  ctx.strokeStyle = 'rgba(224, 242, 254, 0.85)';
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  ctx.moveTo(opt.lensX, opt.axisY - halfH);
+  ctx.lineTo(opt.lensX, opt.axisY + halfH);
+  ctx.stroke();
+
+  const topY = opt.axisY - halfH;
+  const botY = opt.axisY + halfH;
+  ctx.beginPath();
+  ctx.moveTo(opt.lensX - 8, topY + 10);
+  ctx.lineTo(opt.lensX, topY);
+  ctx.lineTo(opt.lensX + 8, topY + 10);
+  ctx.moveTo(opt.lensX - 8, botY - 10);
+  ctx.lineTo(opt.lensX, botY);
+  ctx.lineTo(opt.lensX + 8, botY - 10);
+  ctx.stroke();
+
+  // 4. Points O, F et F'
+  const Fx = opt.lensX - state.f * PX_CM;
+  const Fpx = opt.lensX + state.f * PX_CM;
+  ctx.font = '600 18px "Avenir Next", sans-serif';
+  ctx.textAlign = 'center';
+
+  ctx.fillStyle = '#cbd5e1';
+  ctx.beginPath();
+  ctx.arc(opt.lensX, opt.axisY, 3.5, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.fillText('O', opt.lensX - 15, opt.axisY + 23);
+
+  ctx.strokeStyle = '#38bdf8';
+  ctx.fillStyle = '#38bdf8';
+  ctx.lineWidth = 2;
+  for (const [x, label] of [[Fx, 'F'], [Fpx, "F'"]]) {
+    ctx.beginPath();
+    ctx.moveTo(x, opt.axisY - 6);
+    ctx.lineTo(x, opt.axisY + 6);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.arc(x, opt.axisY, 3.5, 0, Math.PI * 2);
+    ctx.fill();
+    // Étiquette décalée si elle tomberait sur celle de A ou de A'
+    const voisin = labelsOccupes.find((xo) => Math.abs(xo - x) < 24);
+    const dx = voisin === undefined ? 0 : (x <= voisin ? -20 : 20);
+    ctx.fillText(label, x + dx, opt.axisY + 25);
+  }
+
+  ctx.restore();
+}
+
+/* ---------- Géométrie (en pixels, à partir des valeurs en cm) ---------- */
+
+function computeGeometry() {
+  const dO = state.dA * PX_CM;            // OA (> 0, objet à gauche)
+  const fPx = state.f * PX_CM;
+  const Ax = opt.lensX - dO;
+  const Bx = Ax;
+  const By = opt.axisY - state.h * PX_CM;
+  const Fx = opt.lensX - fPx;
+
+  // Relation de conjugaison (distances algébriques) : 1/OA' - 1/OA = 1/f'
+  const inv = 1 / fPx - 1 / dO;
+  const aLInfini = Math.abs(inv) < 1e-5;
+  const dI = aLInfini ? Infinity : 1 / inv;   // OA' (< 0 : image virtuelle)
+  const gammaAlg = aLInfini ? -Infinity : -dI / dO;   // > 0 : image droite
+
+  return {
+    Ax, Bx, By, Fx, fPx, dO, dI, gammaAlg, aLInfini,
+    virtuelle: !aLInfini && dI < 0,
+    Apx: opt.lensX + dI,
+    Bpy: opt.axisY - state.h * PX_CM * gammaAlg
+  };
+}
+
+/* ---------- Les trois rayons particuliers ---------- */
+
+function drawRays(g) {
+  const { Bx, By, Fx, fPx, Apx, Bpy, virtuelle, aLInfini } = g;
+  const right = canvas.width;
+
+  // Prolongement virtuel en pointillés jusqu'à B' (image virtuelle)
+  const prolonger = (yL, mOut, color) => {
+    if (!virtuelle) return;
+    const xEnd = Math.max(0, Apx - 40);
+    drawSegment(opt.lensX, yL, xEnd, yL + mOut * (xEnd - opt.lensX), color, true, false, 1.8);
+  };
+
+  // Rayon 1 : parallèle à l'axe, ressort en passant par F'
+  if (state.show[1]) {
+    const c = COLORS[1];
+    const yL = By;
+    const mOut = (opt.axisY - yL) / fPx;
+    drawSegment(Bx, By, opt.lensX, yL, c, false, true);
+    drawSegment(opt.lensX, yL, right, yL + mOut * (right - opt.lensX), c, false, true);
+    prolonger(yL, mOut, c);
+  }
+
+  // Rayon 2 : passe par O sans être dévié
+  if (state.show[2]) {
+    const c = COLORS[2];
+    const m = (opt.axisY - By) / (opt.lensX - Bx);
+    drawSegment(Bx, By, opt.lensX, opt.axisY, c, false, true);
+    drawSegment(opt.lensX, opt.axisY, right, opt.axisY + m * (right - opt.lensX), c, false, true);
+    prolonger(opt.axisY, m, c);
+  }
+
+  // Rayon 3 : passe (ou semble passer) par F, ressort parallèle à l'axe.
+  // Impossible si B est à la verticale de F (objet dans le plan focal).
+  if (state.show[3] && Math.abs(Bx - Fx) > 2) {
+    const c = COLORS[3];
+    const slope = (By - opt.axisY) / (Bx - Fx);
+    const yL = opt.axisY + slope * fPx;
+    if (Bx > Fx) {
+      // B entre F et la lentille : le rayon semble venir de F (trait de construction)
+      drawSegment(Fx, opt.axisY, Bx, By, c, true, false, 1.8);
+    }
+    drawSegment(Bx, By, opt.lensX, yL, c, false, true);
+    drawSegment(opt.lensX, yL, right, yL, c, false, true);
+    prolonger(yL, 0, c);
+  }
+}
+
+/* ---------- Valeurs affichées ---------- */
+
+const fmt = (v, n = 1) => v.toFixed(n).replace('.', ',');
+
+function setTag(el, texte, actif) {
+  el.textContent = texte;
+  el.classList.toggle('on', actif);
+  el.style.display = texte === '–' ? 'none' : '';
+}
+
+function updateValues(g) {
+  valAB.textContent = fmt(state.h) + ' cm';
+  valF.textContent = fmt(state.f) + ' cm';
+
+  if (g.aLInfini || Math.abs(g.dI) > 1e4) {
+    valApBp.textContent = '∞';
+    valGamma.textContent = '∞';
+    setTag(tagNature, 'Image à l\'infini', true);
+    setTag(tagSens, '–', false);
+    setTag(tagTaille, '–', false);
+    return;
+  }
+
+  const gamma = Math.abs(g.gammaAlg);          // γ = A'B' / AB (tailles)
+  const ApBp = gamma * state.h;
+  valApBp.textContent = (ApBp >= 100 ? fmt(ApBp, 0) : fmt(ApBp)) + ' cm';
+  valGamma.textContent = gamma >= 100 ? fmt(gamma, 0) : fmt(gamma, 2);
+
+  setTag(tagNature, g.virtuelle ? 'Image virtuelle' : 'Image réelle', true);
+  setTag(tagSens, g.gammaAlg > 0 ? 'Droite' : 'Renversée', true);
+  if (Math.abs(gamma - 1) < 0.005) setTag(tagTaille, 'Même taille', true);
+  else setTag(tagTaille, gamma > 1 ? 'Agrandie' : 'Réduite', true);
+}
+
+/* ---------- Boucle d'animation ---------- */
+
+function animate() {
+  state.dA += (state.targetDA - state.dA) * 0.22;
+  state.h += (state.targetH - state.h) * 0.22;
+  state.f += (state.targetF - state.f) * 0.22;
+
+  const g = computeGeometry();
+
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  // Hauteur d'impact maximale des rayons 1 et 3 sur la lentille
+  // (pour prolonger le plan de la lentille en pointillés si besoin).
+  const maxImpact = Math.max(
+    state.show[1] ? state.h * PX_CM : 0,
+    state.show[3] && Math.abs(g.Bx - g.Fx) > 2
+      ? Math.abs((g.By - opt.axisY) / (g.Bx - g.Fx) * g.fPx) : 0
+  );
+
+  const imageVisible = !g.aLInfini && Math.abs(g.dI) < 1e4;
+  const labelsOccupes = [g.Ax];
+  if (imageVisible && g.gammaAlg > 0) labelsOccupes.push(g.Apx);   // image droite : A' sous l'axe
+
+  drawOpticsAndAxis(maxImpact, labelsOccupes);
+  drawRays(g);
+
+  // Objet dans le plan focal objet : le rayon 3 ne peut pas être tracé
+  if (state.show[3] && Math.abs(g.Bx - g.Fx) <= 2) {
+    ctx.save();
+    ctx.fillStyle = '#10b981';
+    ctx.font = '500 16px "Avenir Next", sans-serif';
+    ctx.textAlign = 'left';
+    ctx.fillText('Rayon 3 impossible : B est à la verticale de F', 16, canvas.height - 16);
+    ctx.restore();
+  }
+
+  drawVerticalVector(g.Bx, opt.axisY, g.By, 'A', 'B', '#f8fafc');
+
+  if (imageVisible) {
+    drawVerticalVector(g.Apx, opt.axisY, g.Bpy, "A'", "B'", '#38bdf8', g.virtuelle);
+    ctx.save();
+    ctx.fillStyle = '#ffffff';
+    ctx.beginPath();
+    ctx.arc(g.Apx, g.Bpy, 4, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.restore();
+
+    // Image hors du cadre : petite indication
+    if (g.Apx > canvas.width - 10 || g.Apx < 10 || g.Bpy < 0 || g.Bpy > canvas.height) {
+      ctx.save();
+      ctx.fillStyle = '#94a3b8';
+      ctx.font = '500 16px "Avenir Next", sans-serif';
+      ctx.textAlign = 'right';
+      ctx.fillText('Image hors du cadre', canvas.width - 16, canvas.height - 16);
+      ctx.restore();
+    }
+  }
+
+  updateValues(g);
+  requestAnimationFrame(animate);
+}
+
+requestAnimationFrame(animate);
+</script>
+</body>
+</html>
