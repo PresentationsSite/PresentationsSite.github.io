@@ -301,7 +301,44 @@
     background: var(--accent);
     cursor: pointer;
   }
+  /* Smartphone en paysage : les valeurs et la nature de l'image passent
+     en tête de la colonne de commandes (voir placerInfos) pour ne pas
+     masquer le schéma. */
+  .controls-panel .values-overlay {
+    position: static;
+    align-items: stretch;
+    gap: 6px;
+  }
+
+  .controls-panel .values-grid {
+    grid-template-columns: auto 1fr auto 1fr;
+    gap: 2px 5px;
+    padding: 6px 8px;
+    font-size: 0.72rem;
+    white-space: nowrap;
+  }
+
+  .controls-panel .values-grid .val.gamma { font-size: 0.86rem; }
+  .controls-panel .values-grid .def { display: none; }
+
+  .controls-panel .tags {
+    position: static;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 4px;
+  }
+
+  .controls-panel .tag {
+    font-size: 0.7rem;
+    padding: 2px 7px;
+  }
+
+  @media (orientation: landscape) and (max-height: 520px) {
+    .btn-ray .step-badge { display: none; }
+  }
 </style>
+<link rel="stylesheet" href="css/anim-mobile.css">
+<script src="js/anim-mobile.js"></script>
 </head>
 <body>
 
@@ -319,7 +356,7 @@
         <span class="name">A'B'</span>      <span class="val img" id="valApBp">–</span>
         <span class="sep"></span>
         <span class="name">f'</span>        <span class="val foc" id="valF">–</span>
-        <span class="name">γ = A'B' / AB</span> <span class="val gamma" id="valGamma">–</span>
+        <span class="name">γ<span class="def"> = A'B' / AB</span></span> <span class="val gamma" id="valGamma">–</span>
       </div>
     </div>
 
@@ -335,19 +372,19 @@
     <div class="rays-toolbar">
       <button class="btn-ray" id="btnRay1" data-ray="1">
         <span class="dot"></span>
-        <span>Rayon 1 (parallèle à l'axe)</span>
+        <span>Rayon 1<span class="precision"> (parallèle à l'axe)</span></span>
         <span class="step-badge">Affiché</span>
       </button>
 
       <button class="btn-ray" id="btnRay2" data-ray="2">
         <span class="dot"></span>
-        <span>Rayon 2 (centre optique O)</span>
+        <span>Rayon 2<span class="precision"> (centre optique O)</span></span>
         <span class="step-badge">Affiché</span>
       </button>
 
       <button class="btn-ray" id="btnRay3" data-ray="3">
         <span class="dot"></span>
-        <span>Rayon 3 (foyer objet F)</span>
+        <span>Rayon 3<span class="precision"> (foyer objet F)</span></span>
         <span class="step-badge">Affiché</span>
       </button>
     </div>
@@ -392,6 +429,23 @@ const valOA = champ('valOA'), valAB = champ('valAB');
 const valOAp = champ('valOAp'), valApBp = champ('valApBp');
 const valF = champ('valF'), valGamma = champ('valGamma');
 const tagNature = champ('tagNature'), tagSens = champ('tagSens'), tagTaille = champ('tagTaille');
+
+// Smartphone en paysage : valeurs et nature de l'image vont dans la
+// colonne de commandes, sinon elles cacheraient presque tout le schéma.
+const canvasWrapper = document.querySelector('.canvas-wrapper');
+const controlsPanel = document.querySelector('.controls-panel');
+const valuesOverlay = document.querySelector('.values-overlay');
+const tagsBox = document.querySelector('.tags');
+const paysageCourt = window.matchMedia('(orientation: landscape) and (max-height: 520px)');
+
+function placerInfos() {
+  if (paysageCourt.matches) controlsPanel.prepend(valuesOverlay, tagsBox);
+  else canvasWrapper.append(valuesOverlay, tagsBox);
+}
+
+if (paysageCourt.addEventListener) paysageCourt.addEventListener('change', placerInfos);
+else paysageCourt.addListener(placerInfos);
+placerInfos();
 
 // Repères fixes du banc optique (en pixels)
 const opt = {

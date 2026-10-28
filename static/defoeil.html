@@ -238,7 +238,18 @@
     background: var(--warning);
     box-shadow: 0 0 8px var(--warning);
   }
+  /* Smartphone en paysage (colonne de commandes à droite) : le curseur
+     prend toute la largeur, ses deux extrémités sont notées en dessous. */
+  @media (orientation: landscape) and (max-height: 520px) {
+    .controls-panel .btn-mode { padding: 6px 9px; }
+    .controls-panel .slider-container label { flex-basis: 100%; }
+    .controls-panel .slider-container input { order: 1; flex-basis: 100%; margin: 6px 0 2px; }
+    .controls-panel .slider-endpoints { order: 2; font-size: 0.7rem; }
+    .controls-panel .slider-endpoints:last-child { margin-left: auto; }
+  }
 </style>
+<link rel="stylesheet" href="css/anim-mobile.css">
+<script src="js/anim-mobile.js"></script>
 </head>
 <body>
 
@@ -779,7 +790,8 @@ function drawEyeAnatomy(sim) {
   ctx.font = '500 14px "Avenir Next", sans-serif';
   ctx.fillStyle = '#94a3b8';
   ctx.fillText('La cornée (fixe) assure environ 2/3 de la convergence ;', lensX + 110, cy + 168);
-  ctx.fillText('le cristallin (réglable) fait la mise au point : c\'est l\'accommodation.', lensX + 110, cy + 188);
+  const interligne = 20 * (window.facteurTexte ? window.facteurTexte(canvas) : 1);
+  ctx.fillText('le cristallin (réglable) fait la mise au point : c\'est l\'accommodation.', lensX + 110, cy + 168 + interligne);
 
   ctx.restore();
 }
@@ -1040,7 +1052,7 @@ function drawObjectAndRetinalPreview(sim) {
     ctx.fillStyle = '#cbd5e1';
     ctx.font = '500 14px "Avenir Next", sans-serif';
     ctx.textAlign = 'left';
-    ctx.fillText(sim.d_o > 50000 ? '← Objet à l\'infini' : '← Objet très éloigné', 30, opt.axisY + 46);
+    ctx.fillText(sim.d_o > 50000 ? '← Objet à l\'infini' : '← Objet très éloigné', 30, opt.axisY + 46, 195);
   }
 
   // 2. Tableau de bord (à droite de l'œil)
@@ -1048,6 +1060,11 @@ function drawObjectAndRetinalPreview(sim) {
   const cardH = 262;
   const cardX = canvas.width - cardW - 16;
   const cardY = 16;
+  const largeurTexte = cardW - 16;
+  // Textes agrandis sur petit écran (js/anim-mobile.js) : on resserre un
+  // peu le haut de l'encadré pour que les lignes ne se chevauchent pas.
+  const kTexte = window.facteurTexte ? window.facteurTexte(canvas) : 1;
+  const resserre = 10 * (kTexte - 1);
 
   ctx.fillStyle = 'rgba(15, 23, 42, 0.88)';
   ctx.strokeStyle = '#334155';
@@ -1060,7 +1077,7 @@ function drawObjectAndRetinalPreview(sim) {
   ctx.fillStyle = '#94a3b8';
   ctx.font = '600 13px "Avenir Next", sans-serif';
   ctx.textAlign = 'center';
-  ctx.fillText('IMAGE SUR LA RÉTINE', cardX + cardW / 2, cardY + 22);
+  ctx.fillText('IMAGE SUR LA RÉTINE', cardX + cardW / 2, cardY + 22, largeurTexte);
 
   // Médaillon : ce que « voit » la rétine (flèche renversée, floutée)
   const viewCX = cardX + cardW / 2;
@@ -1110,7 +1127,7 @@ function drawObjectAndRetinalPreview(sim) {
   ctx.fillStyle = sim.isSharp ? '#34d399' : '#fb7185';
   const statut = sim.isSharp ? 'Vision nette'
     : (sim.imageAvant ? 'Flou : image avant la rétine' : 'Flou : image après la rétine');
-  ctx.fillText(statut, cardX + cardW / 2, cardY + 156);
+  ctx.fillText(statut, cardX + cardW / 2, cardY + 156 - resserre, largeurTexte);
 
   // Message complémentaire
   const loin = sim.d_o > 5000;
@@ -1129,8 +1146,8 @@ function drawObjectAndRetinalPreview(sim) {
   if (message) {
     ctx.font = '500 12.5px "Avenir Next", sans-serif';
     ctx.fillStyle = '#fbbf24';
-    ctx.fillText(message[0], cardX + cardW / 2, cardY + 178);
-    ctx.fillText(message[1], cardX + cardW / 2, cardY + 194);
+    ctx.fillText(message[0], cardX + cardW / 2, cardY + 178 - resserre, largeurTexte);
+    ctx.fillText(message[1], cardX + cardW / 2, cardY + 194, largeurTexte);
   }
 
   // Jauge d'effort d'accommodation
@@ -1139,7 +1156,7 @@ function drawObjectAndRetinalPreview(sim) {
   ctx.fillStyle = '#cbd5e1';
   ctx.font = '600 13px "Avenir Next", sans-serif';
   ctx.fillText(state.repos ? 'Accommodation bloquée (repos)' : `Effort d'accommodation : ${pct} %`,
-               cardX + cardW / 2, cardY + 222);
+               cardX + cardW / 2, cardY + 222, largeurTexte);
 
   const gx = cardX + 18, gw = cardW - 36, gy = cardY + 232, gh = 12;
   ctx.fillStyle = '#334155';
