@@ -301,7 +301,7 @@
     background: var(--accent);
     cursor: pointer;
   }
-  /* Smartphone en paysage : les valeurs et la nature de l'image passent
+  /* Smartphone : les valeurs et la nature de l'image passent
      en tête de la colonne de commandes (voir placerInfos) pour ne pas
      masquer le schéma. */
   .controls-panel .values-overlay {
@@ -333,7 +333,8 @@
     padding: 2px 7px;
   }
 
-  @media (orientation: landscape) and (max-height: 520px) {
+  @media (orientation: portrait) and (max-width: 600px),
+         (orientation: landscape) and (max-height: 520px) {
     .btn-ray .step-badge { display: none; }
   }
 </style>
@@ -430,21 +431,21 @@ const valOAp = champ('valOAp'), valApBp = champ('valApBp');
 const valF = champ('valF'), valGamma = champ('valGamma');
 const tagNature = champ('tagNature'), tagSens = champ('tagSens'), tagTaille = champ('tagTaille');
 
-// Smartphone en paysage : valeurs et nature de l'image vont dans la
+// Smartphone : valeurs et nature de l'image vont dans la
 // colonne de commandes, sinon elles cacheraient presque tout le schéma.
 const canvasWrapper = document.querySelector('.canvas-wrapper');
 const controlsPanel = document.querySelector('.controls-panel');
 const valuesOverlay = document.querySelector('.values-overlay');
 const tagsBox = document.querySelector('.tags');
-const paysageCourt = window.matchMedia('(orientation: landscape) and (max-height: 520px)');
+const petitEcran = window.matchMedia('(orientation: portrait) and (max-width: 600px), (orientation: landscape) and (max-height: 520px)');
 
 function placerInfos() {
-  if (paysageCourt.matches) controlsPanel.prepend(valuesOverlay, tagsBox);
+  if (petitEcran.matches) controlsPanel.prepend(valuesOverlay, tagsBox);
   else canvasWrapper.append(valuesOverlay, tagsBox);
 }
 
-if (paysageCourt.addEventListener) paysageCourt.addEventListener('change', placerInfos);
-else paysageCourt.addListener(placerInfos);
+if (petitEcran.addEventListener) petitEcran.addEventListener('change', placerInfos);
+else petitEcran.addListener(placerInfos);
 placerInfos();
 
 // Repères fixes du banc optique (en pixels)

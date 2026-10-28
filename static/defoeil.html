@@ -238,9 +238,10 @@
     background: var(--warning);
     box-shadow: 0 0 8px var(--warning);
   }
-  /* Smartphone en paysage (colonne de commandes à droite) : le curseur
-     prend toute la largeur, ses deux extrémités sont notées en dessous. */
-  @media (orientation: landscape) and (max-height: 520px) {
+  /* Smartphone (commandes empilées) : le curseur prend toute la
+     largeur, ses deux extrémités sont notées en dessous. */
+  @media (orientation: portrait) and (max-width: 600px),
+         (orientation: landscape) and (max-height: 520px) {
     .controls-panel .btn-mode { padding: 6px 9px; }
     .controls-panel .slider-container label { flex-basis: 100%; }
     .controls-panel .slider-container input { order: 1; flex-basis: 100%; margin: 6px 0 2px; }
