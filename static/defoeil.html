@@ -499,9 +499,13 @@ canvas.addEventListener('pointerup', (e) => {
 
 /* ---------- Optique ---------- */
 
-// Hauteur de l'objet : 40 px sur le banc, avec un diamètre apparent minimal
-// (tan α = 0,09) pour qu'un objet lointain ait toujours une image visible.
-const objHeight = (d) => Math.max(40, 0.09 * d);
+// Hauteur de l'objet : constante (50 px) tant qu'il est sur le banc. Hors de
+// l'écran, il garde le diamètre apparent qu'il avait au bord (tan α = 50/660) :
+// c'est un objet lointain mais grand (immeuble, montagne…), dont l'image sur
+// la rétine reste visible et dont les rayons issus de A et de B arrivent
+// avec des directions différentes.
+const OBJ_H = 50;
+const objHeight = (d) => d <= ECRAN_DO ? OBJ_H : OBJ_H * d / ECRAN_DO;
 
 // Vergence effective du verre (animée à la pose / au retrait)
 function vergenceVerre() {
