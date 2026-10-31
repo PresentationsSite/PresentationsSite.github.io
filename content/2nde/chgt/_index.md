@@ -118,8 +118,8 @@ Exemples :
 
 <ul style="color:white;">
 
-<li>L'état solide est <span class="fragment imp">condensé</span> et <span class="fragment imp">organisé</span>.<br>
-<span class="fragment">Les entités ont des positions figées les unes par rapport aux autres (mais peuvent remuer autour de ces positions).</span><br>
+<li>L'état solide est <span class="fragment imp">condensé</span> et <span class="fragment imp">ordonné</span>.<br>
+<span class="fragment">Les entités ont des positions figées les unes par rapport aux autres (mais peuvent remuer autour<br>de ces positions).</span><br>
 <span class="fragment">L'énergie de liaison entre entités est <span class="fragment imp">grande</span>.</span></li>
 
 </ul>
@@ -129,7 +129,7 @@ Exemples :
 <ul style="color:white;">
 
 <li>
-L'état liquide est <span class="fragment imp">condensé</span> et <span class="fragment imp">désorganisé</span>. <br><span class="fragment">Les entités n'ont plus de positions figées.</span><br>
+L'état liquide est <span class="fragment imp">condensé</span> et <span class="fragment imp">désordonné</span>. <br><span class="fragment">Les entités n'ont plus de positions figées.</span><br>
 <span class="fragment">L'énergie de liaison entre entités est <span class="fragment imp">toujours grande mais moins que pour l'état solide</span>.</span>
 </li>
 
@@ -344,8 +344,9 @@ Pour l'eau :
 
 <br>
 
-<span class="fragment">Que vaut $L_{sol}$ ?</span>
-<span class="fragment" style="color:#1DB100">$\pu{-334 kJ*kg-1}$</span>
+<p class="fragment">Que vaut $L_{sol}$ ?</p>
+
+<p class="fragment" style="color:#1DB100">$\pu{-334 kJ*kg-1}$</p>
 
 ---
 
