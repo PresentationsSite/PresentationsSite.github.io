@@ -14,6 +14,12 @@
             font-family: sans-serif; font-size: 12px;
         }
         .legend i { width: 12px; height: 12px; float: left; margin-right: 8px; border-radius: 50%; margin-top: 3px;}
+        .leaflet-tile-pane,
+        .leaflet-control-zoom-in,
+        .leaflet-control-zoom-out,
+        .leaflet-control-attribution {
+            filter: invert(100%) hue-rotate(180deg) brightness(95%) contrast(90%);
+        }
     </style>
 </head>
 <body>
@@ -24,7 +30,8 @@
 <script>
     const map = L.map('map', { preferCanvas: true }).setView([20, 10], 3);
 
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
         attribution: '© OpenStreetMap'
     }).addTo(map);
 
@@ -37,6 +44,23 @@
         }
     }
 
+    function getSiteName(name) {
+        const base = name.split('(')[0].trim();
+        // Retire les suffixes de tranche (-1, -2, -A1, -B2, -A, -2-1...) tout en gardant les noms composés (ex: Super-Phenix)
+        const match = base.match(/^(.{3,}?)-(?:[A-Z]?\d+|[A-Z])(?:-\d+)?$/);
+        if (match) return match[1].trim();
+        const paren = name.match(/\(([^)]+)\)/);
+        if (paren && base.length <= 4) return paren[1].trim();
+        return base;
+    }
+
+    function getStatusPriority(statusId) {
+        if (statusId === 3) return 4; // Opérationnel
+        if (statusId === 2) return 3; // En construction
+        if (statusId === 5) return 2; // Arrêté / Déclassé
+        return 1;                     // Autre / Planifié
+    }
+
     fetch('/data/reactors.json')
         .then(res => res.json())
         .then(data => {
@@ -46,33 +70,35 @@
             data.forEach(r => {
                 if (!r.Latitude || !r.Longitude) return;
 
-                // On extrait le nom de la centrale (ex: "Civaux-1" -> "Civaux")
-                // On sépare au tiret et on prend la première partie
-                const siteName = r.Name.split('-')[0].split('(')[0].trim();
+                const siteName = getSiteName(r.Name);
+                const siteKey = `${r.CountryCode || ''}_${siteName}`;
                 
-                if (!sites[siteName]) {
-                    sites[siteName] = {
+                if (!sites[siteKey]) {
+                    sites[siteKey] = {
                         name: siteName,
                         lat: r.Latitude,
                         lng: r.Longitude,
-                        totalCapacity: 0,
-                        unitCount: 0,
                         statusId: r.StatusId,
-                        model: r.ReactorModel
+                        reactors: []
                     };
                 }
 
-                sites[siteName].totalCapacity += r.Capacity;
-                sites[siteName].unitCount += 1;
-                
-                // Si au moins un réacteur est opérationnel (Id 3), le site est considéré opérationnel pour la couleur
-                if (r.StatusId === 3) sites[siteName].statusId = 3;
+                sites[siteKey].reactors.push(r);
+
+                if (getStatusPriority(r.StatusId) > getStatusPriority(sites[siteKey].statusId)) {
+                    sites[siteKey].statusId = r.StatusId;
+                }
             });
 
-            // Étape 2 : Affichage des sites sur la carte
+            // Étape 2 : Affichage des sites sur la carte (en ne comptant que les réacteurs du statut dominant du site)
             Object.values(sites).forEach(site => {
+                const relevantReactors = site.reactors.filter(r => r.StatusId === site.statusId);
+                const unitCount = relevantReactors.length;
+                const totalCapacity = relevantReactors.reduce((sum, r) => sum + (r.Capacity || 0), 0);
+                const model = relevantReactors.find(r => r.ReactorModel)?.ReactorModel;
+
                 L.circleMarker([site.lat, site.lng], {
-                    radius: 6 + (site.unitCount * 0.5), // Le cercle est légèrement plus gros s'il y a beaucoup de réacteurs
+                    radius: 6 + (unitCount * 0.5), // Le cercle est légèrement plus gros s'il y a beaucoup de réacteurs
                     fillColor: getStatusColor(site.statusId),
                     color: "#000",
                     weight: 1,
@@ -81,9 +107,9 @@
                   .bindPopup(`
                     <div style="color:#333; font-family: sans-serif;">
                         <h3 style="margin:0 0 5px 0">${site.name}</h3>
-                        <b>Nombre de réacteurs :</b> ${site.unitCount}<br>
-                        <b>Capacité totale :</b> ${site.totalCapacity.toLocaleString()} MW<br>
-                        <b>Type dominant :</b> ${site.model || 'N/A'}
+                        <b>Nombre de réacteurs :</b> ${unitCount}<br>
+                        <b>Capacité totale :</b> ${totalCapacity.toLocaleString()} MW<br>
+                        <b>Type dominant :</b> ${model || 'N/A'}
                     </div>
                   `);
             });

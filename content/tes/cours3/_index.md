@@ -120,7 +120,7 @@ En France, la centrale hydroélectrique la plus puissante est celle de Grand'Mai
 
 {{< slide  background-image="/fla.png" background-size="contain" background-transition="concave">}}
 
-Les centrales thermiques à flamme les plus puissantes (à gaz ou à charbon) peuvent fournir jusqu'à $\pu{5,5 GW}$, mais leur puissance est le plus souvent comprise<br>entre $0,5$ et $\pu{2 GW}$. 
+Les centrales thermiques à flamme les plus puissantes (à gaz ou à charbon) peuvent fournir jusqu'à $\pu{6,7 GW}$, mais leur puissance est le plus souvent comprise<br>entre $0,5$ et $\pu{2 GW}$. 
 
 
 ---
@@ -133,13 +133,13 @@ Les centrales thermiques à flamme les plus puissantes (à gaz ou à charbon) pe
 
 {{< slide  background-image="/eol.png" background-size="contain" background-transition="concave">}}
 
-Une éolienne onshore peut fournir $2$-$\pu{3 MW}$,<br>ce qui pourrait théoriquement alimenté un village comme L'Houmeau (si elle tournait tout le temps).
+Les dernières éolienne onshore peut fournir $3$-$\pu{6 MW}$,<br>ce qui pourrait théoriquement alimenter une ville comme Marans (si elle tournait tout le temps).
 
 <p class="fragment fade-up" style="font-weight:normal;color:#93a1a1">
-La puissance typique d'une éolienne offshore est plus grande : de $10$ à $\pu{15 MW}$ pour les modernes.</p>
+La puissance typique d'une éolienne offshore est plus grande : de $10$ à $\pu{16 MW}$ pour les modernes.</p>
 
 <p class="fragment fade-up" style="font-weight:normal;color:#93a1a1">
-Le plus grand parc éolien est en Chine.<br>Il peut produire jusqu'à $\pu{6 GW}$.</p>
+Le plus grand parc éolien est en Chine.<br>Il peut produire jusqu'à $\pu{10 GW}$.</p>
 
 ---
 
@@ -155,7 +155,7 @@ Le plus grand parc éolien est en Chine.<br>Il peut produire jusqu'à $\pu{6 GW}
 
 {{< slide  background-image="/sol.png" background-size="contain" background-transition="concave">}}
 
-La plus grande centrale solaire photovoltaïque est en Inde et peut fournir jusqu'à $\pu{2,2 GW}$ alors que la plus grande centrale solaire thermique est au Maroc et la puissance installée du complexe est de $\pu{590 MW}$.
+La plus grande centrale solaire photovoltaïque est en Chine et peut fournir jusqu'à $\pu{3,5 GW}$ alors que la plus grande centrale solaire thermique est à Dubaï et la puissance installée du complexe est de $\pu{700 MW}$.
 
 <p class="fragment fade-up" style="font-weight:normal;color:#93a1a1">
 Le Soleil envoie environ $\pu{1 kW/m2}$ au niveau du sol<br>et les rendements des panneaux photovoltaïques sont d'environ 20%. Il faut donc au moins $\pu{5000000 m2}$,<br>soit $\pu{500 ha}$ pour produire $\pu{1 GW}$.</p>

@@ -3711,15 +3711,15 @@
     "Latitude": 49.537000,
     "Longitude": -1.881000,
     "CountryCode": "FR",
-    "StatusId": 2,
+    "StatusId": 3,
     "ReactorTypeId": 21,
     "ReactorModel": "EPR",
     "ConstructionStartAt": "2007-12-03",
-    "OperationalFrom": null,
+    "OperationalFrom": "2024-12-21",
     "OperationalTo": null,
     "Capacity": 1630,
     "Source": "WNA/IAEA",
-    "LastUpdatedAt": "2015-05-24T04:51:51+03:00",
+    "LastUpdatedAt": "2024-12-21T00:00:00+01:00",
     "IAEAId": 873
   },
   {
