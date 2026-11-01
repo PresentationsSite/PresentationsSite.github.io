@@ -33,6 +33,14 @@ span {
 font-weight:normal;
 }
 
+.pile {
+  display: grid;          /* tous les enfants dans la même cellule… */
+  justify-items: center;
+}
+.pile > * {
+  grid-area: 1 / 1;       /* …donc superposés */
+  width: 70%;
+}
 </style>
 
 
@@ -249,19 +257,12 @@ On trace les deux droites obtenues en excluant<br>les points trop près de la ru
 
 ---
 
-{{< slide  background-image="/extitcond.png" background-size="60%" background-transition="slide-in fade-out" data-transition="fade-in fade-out" >}}
-
-
 Exemple d'une courbe donnée à l'exercice<br>"Eau de Quinton" tombé en 2025
 
-<br><br><br><br><br><br><br><br><br><br><br><br>
-
-
----
-
-{{< slide  background-image="/extitcond-corr.png" background-size="60%" background-transition="fade-in concave-out" >}}
-
-<br><br><br><br><br><br><br><br><br><br><br><br>
+<div class="pile">
+  <img src="/extitcond.png"      class="fragment current-visible" data-fragment-index="0">
+  <img src="/extitcond-corr.png" class="fragment current-visible" data-fragment-index="1">
+</div>
 
 {{%note%}}
 V_E = 18,0 mL
