@@ -249,7 +249,7 @@ On trace les deux droites obtenues en excluant<br>les points trop près de la ru
 
 ---
 
-{{< slide  background-image="/extitcond.png" background-size="60%" background-transition="slide-in fade-out" transition="fade-in fade-out" >}}
+{{< slide  background-image="/extitcond.png" background-size="60%" background-transition="slide-in fade-out" data-transition="fade-in fade-out" >}}
 
 
 Exemple d'une courbe donnée à l'exercice<br>"Eau de Quinton" tombé en 2025
@@ -259,7 +259,7 @@ Exemple d'une courbe donnée à l'exercice<br>"Eau de Quinton" tombé en 2025
 
 ---
 
-{{< slide  background-image="/extitcond-corr.png" background-size="60%" background-transition="fade-in concave-out" transition="fade-in concave-out" >}}
+{{< slide  background-image="/extitcond-corr.png" background-size="60%" background-transition="fade-in concave-out" >}}
 
 <br><br><br><br><br><br><br><br><br><br><br><br>
 
