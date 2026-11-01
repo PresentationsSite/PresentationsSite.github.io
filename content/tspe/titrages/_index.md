@@ -249,11 +249,19 @@ On trace les deux droites obtenues en excluant<br>les points trop près de la ru
 
 ---
 
+{{< slide  background-image="/extitcond.png" background-size="60%" background-transition="slide-in fade-out" data-transition="fade-in fade-out" >}}
+
+
 Exemple d'une courbe donnée à l'exercice<br>"Eau de Quinton" tombé en 2025
 
-<div style="position:relative;margin-left:auto;margin-right:auto;width:700px;max-width:100%;">
-<img src="/extitcond.png" style="box-shadow:none;background:none;">
-</div>
+<br><br><br><br><br><br><br><br><br><br><br><br>
+
+
+---
+
+{{< slide  background-image="/extitcond-corr.png" background-size="60%" background-transition="fade-in concave-out" >}}
+
+<br><br><br><br><br><br><br><br><br><br><br><br>
 
 {{%note%}}
 V_E = 18,0 mL
@@ -263,7 +271,11 @@ V_E = 18,0 mL
 
 ⚠️
 
-On ajoute de l'eau à la solution titrée pour atténuer l'effet de la dilution due à l'ajout du volume de titrant.
+L'ajout du volume de titrant dilue la solution,<br>ce qui influe sur la conductivité. 
+
+<p class="fragment fade-up">Pour atténuer l'impact, <span class="imp">on ajoute une large<br>quantité d'eau à la solution titrée</span>.</p>
+
+<p class="fragment fade-up">La petite dilution due au titrant devient moins sensible.</p>
 
 ---
 
@@ -273,7 +285,7 @@ On ajoute de l'eau à la solution titrée pour atténuer l'effet de la dilution 
 
 Exemple du titrage d'une solution<br>de chlorure de sodium $\ce{(Na+ + Cl^-)}$<br>par une solution de nitrate d'argent $\ce{(Ag+ + NO3^-)}$.
 
-<br>
+$$\ce{Ag+ + Cl- -> AgCl}$$
 
 <p style="color:#aaa;">
 Données :
@@ -375,11 +387,45 @@ $$
 
 On exprime souvent le titre en pourcentage.
 
-On l'appelle d'ailleurs parfois<br>pourcentage massique<br>mais il peut aussi être<br>appelé teneur massique.
+<p class="fragment fade-up">On l'appelle d'ailleurs parfois<br>pourcentage massique<br>mais il peut aussi être<br>appelé teneur massique.</p>
 
 {{%note%}}
 Souvent exprimé en pourcentage ou défini comme la masse de X pour 100 g de solution (mais attention, pas une masse !!)
 {{%/note%}}
+
+---
+
+Comment passe-t-on de la concentration en<br>quantité de matière $C$ au titre massique $w$ ?
+
+<span style="font-size:2em;">🤔</span>
+
+---
+
+<p style="color: #16E7CF;">
+Pour un volume $V$ de solution, la masse de soluté vaut :
+</p>
+
+<p class="fragment fade-up" style="color: #16E7CF;">
+$m_\text{soluté} = C\times V\times M$ 
+</p>
+
+<p class="fragment fade-up" style="color: #16E7CF;">
+Et le volume $V$ de solution a une masse :
+</p>
+
+<p class="fragment fade-up" style="color: #16E7CF;">
+$m_\text{solution} = V\times \rho_\text{solution} = V\times d_\text{solution} \times \rho_\text{eau}$  
+</p>
+
+<div class="fragment fade-up" style="color: #16E7CF;">
+$$
+\begin{aligned}
+\Rightarrow w=\frac{m_\text{soluté}}{m_\text{solution}}&=\frac{C\times \cancel{V}\times M}{\cancel{V}\times d_\text{solution} \times \rho_\text{eau}}\\
+&=\frac{C \times M}{ d_\text{solution} \times \rho_\text{eau}}\\
+&=\frac{C \times M}{ \rho_\text{solution} }
+\end{aligned}
+$$
+</div>
 
 {{% /section %}}
 
