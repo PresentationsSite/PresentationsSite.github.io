@@ -119,7 +119,7 @@ Comment évoluent les quantités de matière<br>dans le mélange réactionnel en
 <div class="fragment fade-up" style="position:relative;margin:auto;padding:10px 50px 0px 50px;border: solid 5px #FF968D; border-radius: 15px;font-size:1.5em;width:fit-content;">
 <div>
 $$
-\frac{n_\ce{A}}{a}=\frac{n_{\ce{B},E}}{b}
+\frac{n_\ce{A_\text{initial}}}{a}=\frac{n_{\ce{B}_\text{versé à l'équivalence}}}{b}
 $$
 </div>
 </div>
@@ -253,7 +253,7 @@ Exemple d'une courbe donnée à l'exercice<br>"Eau de Quinton" tombé en 2025
 
 <div class="r-stack">
   <img src="/extitcond.png"      style="width:70%">
-  <img src="/extitcond-corr.png" class="fragment fade-in" style="width:70%; transition-duration:1.5s">
+  <img src="/extitcond-corr.png" class="fragment fade-in" style="width:70%; transition-duration:0.5s">
 </div>
 
 {{%note%}}
