@@ -33,14 +33,6 @@ span {
 font-weight:normal;
 }
 
-.pile {
-  display: grid;          /* tous les enfants dans la même cellule… */
-  justify-items: center;
-}
-.pile > * {
-  grid-area: 1 / 1;       /* …donc superposés */
-  width: 70%;
-}
 </style>
 
 
@@ -259,9 +251,9 @@ On trace les deux droites obtenues en excluant<br>les points trop près de la ru
 
 Exemple d'une courbe donnée à l'exercice<br>"Eau de Quinton" tombé en 2025
 
-<div class="pile">
-  <img src="/extitcond.png"      class="fragment fade-out" data-fragment-index="0">
-  <img src="/extitcond-corr.png" class="fragment fade-in"  data-fragment-index="0">
+<div class="r-stack">
+  <img src="/extitcond.png"      class="fragment fade-out" data-fragment-index="0" style="width:70%">
+  <img src="/extitcond-corr.png" class="fragment fade-in"  data-fragment-index="0" style="width:70%">
 </div>
 
 {{%note%}}
