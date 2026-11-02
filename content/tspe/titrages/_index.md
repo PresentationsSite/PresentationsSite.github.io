@@ -413,7 +413,7 @@ $m_\text{solution} = V\times \rho_\text{solution} = V\times d_\text{solution} \t
 <div class="fragment fade-up" style="color: #16E7CF;">
 $$
 \begin{aligned}
-\Rightarrow w=\frac{m_\text{soluté}}{m_\text{solution}}&=\frac{C\times \cancel{V}\times M}{\cancel{V}\times d_\text{solution} \times \rho_\text{eau}}\\
+\Rightarrow w=\frac{m_\text{soluté}}{m_\text{solution}}&=\frac{C\times \bcancel{V}\times M}{\bcancel{V}\times d_\text{solution} \times \rho_\text{eau}}\\
 &=\frac{C \times M}{ d_\text{solution} \times \rho_\text{eau}}\\
 &=\frac{C \times M}{ \rho_\text{solution} }
 \end{aligned}
