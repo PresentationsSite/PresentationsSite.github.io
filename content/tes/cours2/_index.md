@@ -178,11 +178,6 @@ Les cellules photovoltaïques sont faites<br>d'un <span class="imp">matériau se
 <p class="fragment fade-up">Exemple d'un tel matériau : <span class="imp fragment">le silicium</span></p>
 
 
-
----
-
-{{< youtube-slide id="23i-_v_tWTA" ratio="16x9" >}}
-
 ---
 
 Pour qu'un matériau semi-conducteur convertisse efficacement l'énergie solaire, il faut que son spectre d'absorption recouvre le mieux possible<br>le spectre reçu du Soleil.
