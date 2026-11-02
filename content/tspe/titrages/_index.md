@@ -204,7 +204,7 @@ La dérivée de $\mathrm{pH}(V_B)$ passe par un maximum<br>au niveau du saut (po
 
 ---
 
-{{< slide  background-video="/tangentes.mp4" background-size="contain" background-transition="concave">}}
+{{< slide  background-video="/tangentes.mp4" background-size="contain" background-transition="concave" background-color="#091F34">}}
 
 
 {{% /section %}}
