@@ -33,6 +33,20 @@ span {
 font-weight:normal;
 }
 
+
+/* Auto-animate : démonstration du titre massique */
+.aa { color: #16E7CF; }
+.disparu { font-size: 0; opacity: 0; margin: 0; }
+.rappel { color: #aaa; font-size: 0.8em; margin: 0.2em 0; }
+.ligne-w {
+  position: relative;          /* les enfants se placent par rapport à la ligne */
+  display: flex; align-items: center; justify-content: center; gap: 0.3em;
+  width: fit-content; margin: 0.8em auto 0;
+  padding: 10px 40px;
+  font-size: 1.4em; color: #16E7CF;
+  border: solid 5px transparent; border-radius: 15px;
+}
+.ligne-w.final { border-color: #16E7CF; }
 </style>
 
 
@@ -394,30 +408,92 @@ Comment passe-t-on de la concentration en<br>quantité de matière $C$ au titre 
 
 ---
 
-<p style="color: #16E7CF;">
-Pour un volume $V$ de solution, la masse de soluté vaut :
-</p>
+{{< slide auto-animate="true" >}}
 
-<p class="fragment fade-up" style="color: #16E7CF;">
-$m_\text{soluté} = C\times V\times M$ 
-</p>
+<p data-id="t1" class="aa">Pour un volume $V$ de solution, la masse de soluté vaut :</p>
 
-<p class="fragment fade-up" style="color: #16E7CF;">
-Et le volume $V$ de solution a une masse :
-</p>
+<p data-id="e1" class="aa">$m_\text{soluté} = C\times V\times M$</p>
 
-<p class="fragment fade-up" style="color: #16E7CF;">
-$m_\text{solution} = V\times \rho_\text{solution} = V\times d_\text{solution} \times \rho_\text{eau}$  
-</p>
+---
 
-<div class="fragment fade-up" style="color: #16E7CF;">
-$$
-\begin{aligned}
-\Rightarrow w=\frac{m_\text{soluté}}{m_\text{solution}}&=\frac{C\times \cancel{V}\times M}{\cancel{V}\times d_\text{solution} \times \rho_\text{eau}}\\
-&=\frac{C \times M}{ d_\text{solution} \times \rho_\text{eau}}\\
-&=\frac{C \times M}{ \rho_\text{solution} }
-\end{aligned}
-$$
+{{< slide auto-animate="true" >}}
+
+<p data-id="t1" class="aa">Pour un volume $V$ de solution, la masse de soluté vaut :</p>
+
+<p data-id="e1" class="aa">$m_\text{soluté} = C\times V\times M$</p>
+
+<p data-id="t2" class="aa">Et le volume $V$ de solution a une masse :</p>
+
+<p data-id="e2" class="aa">$m_\text{solution} = V\times \rho_\text{solution} = V\times d_\text{solution} \times \rho_\text{eau}$</p>
+
+---
+
+{{< slide auto-animate="true" >}}
+
+<p data-id="t1" class="aa disparu">Pour un volume $V$ de solution, la masse de soluté vaut :</p>
+<p data-id="e1" class="rappel">$m_\text{soluté} = C\times V\times M$</p>
+<p data-id="t2" class="aa disparu">Et le volume $V$ de solution a une masse :</p>
+<p data-id="e2" class="rappel">$m_\text{solution} = V\times \rho_\text{solution} = V\times d_\text{solution} \times \rho_\text{eau}$</p>
+
+<div data-id="ligne" class="ligne-w">
+<span data-id="wg">$w=$</span>
+<span data-id="wd">$\dfrac{m_\text{soluté}}{m_\text{solution}}$</span>
+</div>
+
+---
+
+{{< slide auto-animate="true" >}}
+
+<p data-id="t1" class="aa disparu">Pour un volume $V$ de solution, la masse de soluté vaut :</p>
+<p data-id="e1" class="rappel">$m_\text{soluté} = C\times V\times M$</p>
+<p data-id="t2" class="aa disparu">Et le volume $V$ de solution a une masse :</p>
+<p data-id="e2" class="rappel">$m_\text{solution} = V\times \rho_\text{solution} = V\times d_\text{solution} \times \rho_\text{eau}$</p>
+
+<div data-id="ligne" class="ligne-w">
+<span data-id="wg">$w=$</span>
+<span data-id="wd">$\dfrac{C\times V\times M}{V\times d_\text{solution} \times \rho_\text{eau}}$</span>
+</div>
+
+---
+
+{{< slide auto-animate="true" >}}
+
+<p data-id="t1" class="aa disparu">Pour un volume $V$ de solution, la masse de soluté vaut :</p>
+<p data-id="e1" class="rappel">$m_\text{soluté} = C\times V\times M$</p>
+<p data-id="t2" class="aa disparu">Et le volume $V$ de solution a une masse :</p>
+<p data-id="e2" class="rappel">$m_\text{solution} = V\times \rho_\text{solution} = V\times d_\text{solution} \times \rho_\text{eau}$</p>
+
+<div data-id="ligne" class="ligne-w">
+<span data-id="wg">$w=$</span>
+<span data-id="wd">$\dfrac{C\times \cancel{V}\times M}{\cancel{V}\times d_\text{solution} \times \rho_\text{eau}}$</span>
+</div>
+
+---
+
+{{< slide auto-animate="true" >}}
+
+<p data-id="t1" class="aa disparu">Pour un volume $V$ de solution, la masse de soluté vaut :</p>
+<p data-id="e1" class="rappel">$m_\text{soluté} = C\times V\times M$</p>
+<p data-id="t2" class="aa disparu">Et le volume $V$ de solution a une masse :</p>
+<p data-id="e2" class="rappel">$m_\text{solution} = V\times \rho_\text{solution} = V\times d_\text{solution} \times \rho_\text{eau}$</p>
+
+<div data-id="ligne" class="ligne-w">
+<span data-id="wg">$w=$</span>
+<span data-id="wd">$\dfrac{C \times M}{d_\text{solution} \times \rho_\text{eau}}$</span>
+</div>
+
+---
+
+{{< slide auto-animate="true" >}}
+
+<p data-id="t1" class="aa disparu">Pour un volume $V$ de solution, la masse de soluté vaut :</p>
+<p data-id="e1" class="rappel">$m_\text{soluté} = C\times V\times M$</p>
+<p data-id="t2" class="aa disparu">Et le volume $V$ de solution a une masse :</p>
+<p data-id="e2" class="rappel">$m_\text{solution} = V\times \rho_\text{solution} = V\times d_\text{solution} \times \rho_\text{eau}$</p>
+
+<div data-id="ligne" class="ligne-w final">
+<span data-id="wg">$w=$</span>
+<span data-id="wd">$\dfrac{C \times M}{\rho_\text{solution}}$</span>
 </div>
 
 {{% /section %}}
