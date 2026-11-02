@@ -293,6 +293,7 @@ Données :
 
 {{%note%}}
 1 mS m2 mol−1 = 10 mS cm−1 L mol−1
+Ce n'est pas une réaction acide-base mais une réaction de précipitation (mais ça peut arriver si données).
 {{%/note%}}
 
 ---
