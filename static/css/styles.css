@@ -54,3 +54,13 @@ span {
 .reveal .slides section .fragment.strike.visible::after {
   width: 100%;           /* La ligne s'étend sur toute la largeur du mot */
 }
+
+/* Marge verticale des slides, comme dans reveal.js 3.
+   reveal.js 5 centre chaque slide d'après sa hauteur, en comptant ce qui dépasse :
+   un fragment fade-up encore caché (décalé de 40 px vers le bas) faisait donc
+   remonter la slide, qui « sautait » de quelques pixels au fragment suivant.
+   Cette marge absorbe le dépassement ; elle est symétrique, donc ne déplace rien. */
+.reveal .slides > section,
+.reveal .slides > section > section {
+  padding: 20px 0;
+}
