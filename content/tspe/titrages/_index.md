@@ -272,7 +272,8 @@ L'ajout du volume de titrant dilue la solution,<br>ce qui influe sur la conducti
 
 ---
 
-{{< slide  background-image="/conductdilu.png" background-size="contain" background-transition="concave">}}
+<div class="anim-dilution"></div>
+<script src="/js/titrage-dilution.js" defer></script>
 
 ---
 
