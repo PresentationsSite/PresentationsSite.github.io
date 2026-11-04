@@ -476,24 +476,16 @@ Un mouvement rectiligne avec un vecteur accélération constant est dit <span cl
 
 ---
 
-{{< slide transition="concave-in none-out" >}}
-
 Tracer les évolutions de la position <b style="color:#00A2FF">$x(t)$</b>, <br>de la vitesse <b style="color:#FFD932">$v(t)$</b> et de l'accélération <b style="color:#61D836">$a(t)$</b><br>dans le cas où ${\color{#00A2FF}x(0)}>0$, ${\color{#FFD932}v(0)}>0$ et ${\color{#61D836}a}<0$.
 
 
-<div style="position:relative;margin-left:auto;margin-right:auto;width:600px;max-width:100%;">
-<img src="/graphexvavide.png" style="box-shadow:none;background:none;">
-</div>
-
----
-
-{{< slide transition="none-in concave-out" >}}
-
-Tracer les évolutions de la position <b style="color:#00A2FF">$x(t)$</b>, <br>de la vitesse <b style="color:#FFD932">$v(t)$</b> et de l'accélération <b style="color:#61D836">$a(t)$</b><br>dans le cas où ${\color{#00A2FF}x(0)}>0$, ${\color{#FFD932}v(0)}>0$ et ${\color{#61D836}a}<0$.
-
-
-<div style="position:relative;margin-left:auto;margin-right:auto;width:600px;max-width:100%;">
-<img src="/graphexva2.png" style="box-shadow:none;background:none;">
+<div style="position:relative;margin:40px auto 20px;width:570px;max-width:95%;">
+<img src="/graphexvavide.png" style="box-shadow:none;background:none;display:block;width:100%;max-width:100%;max-height:none;margin:0;">
+<svg class="courbes-xva" viewBox="0 0 880 826" style="position:absolute;inset:0;width:100%;height:100%;overflow:visible;">
+<line class="fragment trace" x1="57" y1="525.5" x2="812" y2="525.5" stroke="#80D754" stroke-width="4" pathLength="1"/>
+<line class="fragment trace" x1="57" y1="280.4" x2="810" y2="633.6" stroke="#F8DC57" stroke-width="4" pathLength="1"/>
+<path class="fragment trace" d="M57 380.6 L65 370.4 L69 365.3 L73 360.6 L77 355.6 L81 351.2 L85 346.7 L89 342.3 L93 337.5 L97 333.3 L101 329.1 L105 325.0 L109 320.8 L113 317.0 L117 313.0 L121 308.2 L125 304.7 L129 301.0 L133 297.6 L137 293.7 L141 290.5 L145 286.9 L149 283.4 L153 280.2 L157 276.9 L161 273.7 L165 270.7 L169 267.7 L173 264.8 L177 261.7 L181 258.9 L185 256.2 L189 253.7 L193 251.0 L197 248.2 L201 245.5 L205 243.2 L209 240.8 L213 238.4 L217 235.9 L221 233.9 L225 231.7 L229 229.6 L233 227.6 L237 225.7 L241 223.8 L245 221.9 L249 220.1 L253 218.3 L257 216.5 L261 214.9 L265 213.4 L269 212.0 L273 210.5 L277 209.1 L281 207.7 L285 206.4 L289 205.1 L293 203.9 L297 202.7 L301 201.6 L305 200.7 L309 199.7 L313 198.7 L317 197.8 L321 196.9 L325 196.1 L329 195.4 L333 194.9 L337 194.1 L341 193.5 L345 193.0 L349 192.5 L353 192.0 L357 191.8 L361 191.0 L365 191.0 L369 191.0 L373 190.7 L377 190.0 L381 190.0 L385 190.0 L389 190.0 L393 190.0 L397 190.0 L401 190.0 L405 190.7 L409 191.0 L413 191.0 L417 191.1 L421 191.9 L425 192.0 L429 192.5 L433 193.0 L437 193.4 L441 194.0 L445 194.6 L449 195.3 L453 196.0 L457 196.7 L461 197.4 L465 198.3 L469 199.3 L473 200.2 L477 201.1 L481 202.0 L485 203.2 L489 204.3 L493 205.3 L497 206.5 L501 207.7 L505 208.8 L509 210.2 L513 211.5 L517 212.9 L521 214.4 L525 215.8 L529 217.3 L533 218.9 L537 220.4 L541 222.0 L545 223.7 L549 225.3 L553 227.1 L557 228.9 L561 230.7 L565 232.6 L569 234.5 L573 236.5 L577 238.5 L581 240.5 L585 242.6 L589 244.7 L593 246.7 L597 249.0 L601 251.3 L605 253.5 L609 255.7 L613 258.1 L617 260.7 L621 263.0 L625 265.5 L629 268.0 L633 270.6 L637 273.2 L641 275.8 L645 278.7 L649 281.2 L653 284.0 L657 286.9 L661 289.7 L665 292.6 L669 295.6 L673 298.3 L677 301.6 L681 304.6 L685 307.7 L689 310.9 L693 314.1 L697 317.3 L701 320.6 L705 323.9 L709 327.2 L713 330.8 L717 334.0 L721 337.7 L725 341.2 L729 345.0 L733 348.7 L737 352.0 L741 355.9 L745 359.9 L749 364.0 L753 367.7 L757 371.5 L761 375.5 L765 379.5 L769 383.7 L773 388.0 L777 392.1 L781 396.5 L785 400.7 L789 405.3 L793 409.6 L797 414.3 L801 418.5 L805 423.3 L809 427.9 L818 438.2" fill="none" stroke="#48A0F5" stroke-width="4" stroke-linejoin="round" pathLength="1"/>
+</svg>
 </div>
 
 ---
