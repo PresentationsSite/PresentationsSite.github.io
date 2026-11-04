@@ -33,6 +33,18 @@ span {
 font-weight:normal;
 }
 
+/* Courbes tracées de gauche à droite, une par fragment */
+.reveal .courbes-xva .trace {
+  opacity: 1;
+  visibility: visible;
+  stroke-dasharray: 1 1;
+  stroke-dashoffset: 1;
+  transition: stroke-dashoffset 1.5s ease-in-out;
+}
+.reveal .courbes-xva .trace.visible {
+  stroke-dashoffset: 0;
+}
+
 .video-container {
   height: 60vh; /* limite la hauteur à 80% de la fenêtre */
   width: calc(60vh * 9 / 16); /* largeur en fonction du ratio portrait */
@@ -444,24 +456,16 @@ MRU $\Leftrightarrow$ $\vec{a}=\vec{0}$
 
 ---
 
-{{< slide transition="concave-in none-out" >}}
-
 Tracer les évolutions de la position <b style="color:#00A2FF">$x(t)$</b>, <br>de la vitesse <b style="color:#FFD932">$v(t)$</b> et de l'accélération <b style="color:#61D836">$a(t)$</b><br>dans le cas où ${\color{#00A2FF}x(0)}<0$ et ${\color{#FFD932}v(0)}>0$.
 
 
-<div style="position:relative;margin-left:auto;margin-right:auto;width:600px;max-width:100%;">
-<img src="/graphexvavide.png" style="box-shadow:none;background:none;">
-</div>
-
----
-
-{{< slide transition="none-in concave-out" >}}
-
-Tracer les évolutions de la position <b style="color:#00A2FF">$x(t)$</b>, <br>de la vitesse <b style="color:#FFD932">$v(t)$</b> et de l'accélération <b style="color:#61D836">$a(t)$</b><br>dans le cas où ${\color{#00A2FF}x(0)}<0$ et ${\color{#FFD932}v(0)}>0$.
-
-
-<div style="position:relative;margin-left:auto;margin-right:auto;width:600px;max-width:100%;">
-<img src="/graphexva.png" style="box-shadow:none;background:none;">
+<div style="position:relative;margin:40px auto 20px;width:570px;max-width:95%;">
+<img src="/graphexvavide.png" style="box-shadow:none;background:none;display:block;width:100%;max-width:100%;max-height:none;margin:0;">
+<svg class="courbes-xva" viewBox="0 0 880 826" style="position:absolute;inset:0;width:100%;height:100%;overflow:visible;">
+<line class="fragment trace" x1="57" y1="443.5" x2="812" y2="443.5" stroke="#7FD653" stroke-width="4" pathLength="1"/>
+<line class="fragment trace" x1="57" y1="315.5" x2="812" y2="315.5" stroke="#F9DB59" stroke-width="4" pathLength="1"/>
+<line class="fragment trace" x1="57" y1="630.8" x2="797" y2="160.3" stroke="#48A0F5" stroke-width="4" pathLength="1"/>
+</svg>
 </div>
 
 ---
