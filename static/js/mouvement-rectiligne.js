@@ -6,7 +6,9 @@
  * Trois curseurs (x(0), v(0), a) déforment les courbes en direct ; sous le
  * graphe, une chronophotographie montre 10 positions régulièrement espacées
  * dans le temps sur l'axe du mouvement. Les deux échelles s'adaptent : les
- * courbes sont toujours entières et les 10 positions toujours sur l'axe. Le bouton « Lecture » lance le
+ * courbes sont toujours entières et occupent toute la hauteur (l'axe des t
+ * se place en conséquence : en bas si tout est positif…), et les 10 positions
+ * sont toujours sur l'axe x. Le bouton « Lecture » lance le
  * mobile M sur cet axe et, en même temps, un point parcourt chaque courbe ;
  * une ligne pointillée verticale les relie à l'instant t sur l'axe des t.
  *
@@ -29,7 +31,6 @@
   // Géométrie (unités du viewBox)
   var W = 640, H = 590;
   var G = { x0: 60, x1: 600, yh: 75, yb: 405 };          // zone du graphe
-  var Y0 = (G.yh + G.yb) / 2;                          // ordonnée de l'axe des t
   var C = { y: 500, x0: 30, x1: 610 };                 // axe de la chronophotographie
   var CX0 = C.x0 + 25, CX1 = C.x1 - 30;                // zone où placer les positions
 
@@ -82,14 +83,13 @@
     el('rect', { x: G.x0, y: G.yh - 6, width: G.x1 - G.x0 + 6, height: G.yb - G.yh + 12 }, clip);
 
     fleche(svg, G.x0, G.yb + 12, G.x0, G.yh - 22);            // axe vertical
-    fleche(svg, G.x0, Y0, G.x1 + 18, Y0);                      // axe des t
     // légende « x v a » centrée sur l'axe des ordonnées, au-dessus de la flèche
     var leg = texte(svg, G.x0, G.yh - 46, '', { 'text-anchor': 'middle' });
     [['x', COUL.x], ['v', COUL.v], ['a', COUL.a]].forEach(function (c, i) {
       el('tspan', { fill: c[1], dx: i ? 10 : 0 }, leg).textContent = c[0];
     });
-    texte(svg, G.x0 - 30, Y0 + 10, '0', { fill: COUL.axe, 'font-style': 'normal' });
-    texte(svg, G.x1 + 36, Y0 + 10, 't', { fill: COUL.axe });
+    // axe des t : redessiné à chaque réglage, à la hauteur de la valeur 0
+    var gAxeT = el('g', {}, svg);
 
     var gCourbes = el('g', { 'clip-path': 'url(#' + clip.id + ')' }, svg);
     var cA = el('path', { fill: 'none', stroke: COUL.a, 'stroke-width': 3 }, gCourbes);
@@ -118,9 +118,9 @@
     var ctrl = html('div', { class: 'ctrl' }, conteneur);
     var p = { x0: 2, v0: 5, a: -3 };
     var defs = [
-      { cle: 'x0', nom: 'x(0)', coul: COUL.x, min: -8, max: 8, pas: 0.5 },
-      { cle: 'v0', nom: 'v(0)', coul: COUL.v, min: -6, max: 6, pas: 0.5 },
-      { cle: 'a', nom: 'a', coul: COUL.a, min: -5, max: 5, pas: 0.5 }
+      { cle: 'x0', nom: 'x(0)', coul: COUL.x, min: -8, max: 8, pas: 0.1 },
+      { cle: 'v0', nom: 'v(0)', coul: COUL.v, min: -6, max: 6, pas: 0.1 },
+      { cle: 'a', nom: 'a', coul: COUL.a, min: -5, max: 5, pas: 0.1 }
     ];
     defs.forEach(function (d) {
       var lab = html('label', {}, ctrl);
@@ -139,19 +139,23 @@
     function V(t) { return p.v0 + p.a * t; }
     function gx(t) { return G.x0 + t / T * (G.x1 - G.x0); }
     // Échelles adaptatives
-    var YMAX = 10, XLO = -10, XHI = 10;
+    var YLO = -10, YHI = 10, XLO = -10, XHI = 10;
     function echelles() {
-      var m = Math.abs(p.a);
-      for (var i = 0; i <= 200; i++) { var t = T * i / 200; m = Math.max(m, Math.abs(X(t)), Math.abs(V(t))); }
-      YMAX = Math.max(m * 1.08, 0.5);                    // courbes toujours entières
+      // vertical : de la plus petite à la plus grande valeur des trois courbes,
+      // en incluant 0 (l'axe des t) ; marge seulement du côté où il y a des courbes
+      var lo = Math.min(0, p.a), hi = Math.max(0, p.a);
+      for (var i = 0; i <= 200; i++) { var t = T * i / 200, x = X(t), v = V(t); lo = Math.min(lo, x, v); hi = Math.max(hi, x, v); }
+      if (hi - lo < 1e-9) { lo = -1; hi = 1; }
+      var m = (hi - lo) * 0.06;
+      YLO = lo < 0 ? lo - m : 0; YHI = hi > 0 ? hi + m : 0;
       // axe x : tout le trajet de M (départ, arrivée, demi-tour éventuel) et l'origine O
       var xs = [0, X(0), X(T)], td = tDemiTour();
       if (td !== null) xs.push(X(td));
-      var lo = Math.min.apply(null, xs), hi = Math.max.apply(null, xs);
+      lo = Math.min.apply(null, xs); hi = Math.max.apply(null, xs);
       if (hi - lo < 1) { var c = (hi + lo) / 2; lo = c - 0.5; hi = c + 0.5; }
       var marge = (hi - lo) * 0.04; XLO = lo - marge; XHI = hi + marge;
     }
-    function gy(y) { return Y0 - y / YMAX * (Y0 - G.yh); }
+    function gy(y) { return G.yb - (y - YLO) / (YHI - YLO) * (G.yb - G.yh); }
     function cx(x) { return CX0 + (x - XLO) / (XHI - XLO) * (CX1 - CX0); }
     function chemin(f) {
       var d = '';
@@ -164,6 +168,11 @@
     var tCour = null;      // instant affiché (null : pas de repère)
     function dessiner() {
       echelles();
+      var y0 = gy(0);
+      while (gAxeT.firstChild) gAxeT.removeChild(gAxeT.firstChild);
+      fleche(gAxeT, G.x0, y0, G.x1 + 18, y0);
+      texte(gAxeT, G.x0 - 30, y0 + 10, '0', { fill: COUL.axe, 'font-style': 'normal' });
+      texte(gAxeT, G.x1 + 36, y0 + 10, 't', { fill: COUL.axe });
       cA.setAttribute('d', chemin(function () { return p.a; }));
       cV.setAttribute('d', chemin(V));
       cX.setAttribute('d', chemin(X));
@@ -185,14 +194,14 @@
     }
     function placerRepere() {
       if (tCour === null) { gRep.setAttribute('opacity', 0); gM.setAttribute('opacity', 0); return; }
-      var t = tCour, xs = gx(t), vals = [[pX, X(t)], [pV, V(t)], [pA, p.a]], ys = [Y0];
+      var t = tCour, xs = gx(t), vals = [[pX, X(t)], [pV, V(t)], [pA, p.a]], ys = [gy(0)];
       vals.forEach(function (c) {
         c[0].setAttribute('cx', xs); c[0].setAttribute('cy', gy(c[1]));
         ys.push(gy(c[1]));
       });
       ligne.setAttribute('x1', xs); ligne.setAttribute('x2', xs);
       ligne.setAttribute('y1', Math.min.apply(null, ys)); ligne.setAttribute('y2', Math.max.apply(null, ys));
-      pT.setAttribute('cx', xs); pT.setAttribute('cy', Y0);
+      pT.setAttribute('cx', xs); pT.setAttribute('cy', gy(0));
       gRep.setAttribute('opacity', 1);
       var x = X(t);
       gM.setAttribute('opacity', 1);
