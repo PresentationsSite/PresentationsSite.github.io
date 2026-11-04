@@ -111,9 +111,6 @@
       'aria-label': 'Construction du vecteur variation de vitesse : v(t+Δt) est translaté en M(t), on lui ajoute −v(t), et Δv relie M(t) à l\'extrémité obtenue.' });
     svg.style.cssText = 'width:100%;height:auto;display:block;overflow:visible;';
     conteneur.appendChild(svg);
-    // Halo couleur du fond autour des étiquettes (lisibles même sur la trajectoire)
-    el('style', {}, svg).textContent =
-      '.anim-dv svg svg g { stroke: rgba(43,43,43,0.9); stroke-width: 90px; paint-order: stroke; stroke-linejoin: round; }';
 
     // Trajectoire
     var d = '';
