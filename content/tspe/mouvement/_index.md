@@ -488,9 +488,10 @@ Tracer les évolutions de la position <b style="color:#00A2FF">$x(t)$</b>, <br>d
 </svg>
 </div>
 
----
-
+{{%note%}}
 <iframe scrolling="no" title="xva" src="https://www.geogebra.org/material/iframe/id/dpm6zhuu/width/720/height/506/border/888888/sfsb/true/smb/false/stb/false/stbh/false/ai/false/asb/false/sri/true/rc/true/ld/false/sdz/false/ctl/false" width="720px" height="506px" style="border:0px;border-radius:10px;"> </iframe>
+
+{{%/note%}}
 
 
 ---
