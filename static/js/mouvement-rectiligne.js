@@ -5,8 +5,8 @@
  *
  * Trois curseurs (x(0), v(0), a) déforment les courbes en direct ; sous le
  * graphe, une chronophotographie montre 10 positions régulièrement espacées
- * dans le temps sur l'axe du mouvement (après un demi-tour, les positions du
- * retour sont décalées sur une seconde ligne pour ne pas masquer l'aller). Le bouton « Lecture » lance le
+ * dans le temps sur l'axe du mouvement. Les deux échelles s'adaptent : les
+ * courbes sont toujours entières et les 10 positions toujours sur l'axe. Le bouton « Lecture » lance le
  * mobile M sur cet axe et, en même temps, un point parcourt chaque courbe ;
  * une ligne pointillée verticale les relie à l'instant t sur l'axe des t.
  *
@@ -23,18 +23,15 @@
   var COUL = { axe: '#D5D5D5', x: '#48A0F5', v: '#F8DC57', a: '#80D754', m: '#EB53A0', point: '#D5D5D5', texte2: '#aaa' };
   var SERIF = '"Times New Roman", Times, "STIX Two Text", serif';
   var T = 4;            // durée représentée (unités arbitraires)
-  var YMAX = 10;        // échelle verticale : de −10 à +10
-  var XMAX = 10;        // axe de la chronophotographie : de −10 à +10
   var DUREE = 5000;     // durée de la lecture (ms)
   var N = 10;           // nombre de positions de la chronophotographie
 
   // Géométrie (unités du viewBox)
-  var W = 640, H = 600;
-  var G = { x0: 60, x1: 600, yh: 50, yb: 400 };          // zone du graphe
+  var W = 640, H = 590;
+  var G = { x0: 60, x1: 600, yh: 75, yb: 405 };          // zone du graphe
   var Y0 = (G.yh + G.yb) / 2;                          // ordonnée de l'axe des t
-  var C = { y: 490, x0: 50, x1: 610 };                 // axe de la chronophotographie
-  var DY_RETOUR = 52;                                  // décalage de la ligne du retour
-  var CX0 = C.x0 + 15, CX1 = C.x1 - 25;                // graduation −10 … +10
+  var C = { y: 500, x0: 30, x1: 610 };                 // axe de la chronophotographie
+  var CX0 = C.x0 + 25, CX1 = C.x1 - 30;                // zone où placer les positions
 
   var SVGNS = 'http://www.w3.org/2000/svg';
   function el(nom, attrs, parent) {
@@ -84,11 +81,13 @@
     var clip = el('clipPath', { id: 'mru-clip-' + Math.random().toString(36).slice(2) }, el('defs', {}, svg));
     el('rect', { x: G.x0, y: G.yh - 6, width: G.x1 - G.x0 + 6, height: G.yb - G.yh + 12 }, clip);
 
-    fleche(svg, G.x0, G.yb + 30, G.x0, G.yh - 22);            // axe vertical
+    fleche(svg, G.x0, G.yb + 12, G.x0, G.yh - 22);            // axe vertical
     fleche(svg, G.x0, Y0, G.x1 + 18, Y0);                      // axe des t
-    texte(svg, G.x0 - 52, G.yh - 30, 'x', { fill: COUL.x });
-    texte(svg, G.x0 - 32, G.yh - 30, 'v', { fill: COUL.v });
-    texte(svg, G.x0 - 12, G.yh - 30, 'a', { fill: COUL.a });
+    // légende « x v a » centrée sur l'axe des ordonnées, au-dessus de la flèche
+    var leg = texte(svg, G.x0, G.yh - 46, '', { 'text-anchor': 'middle' });
+    [['x', COUL.x], ['v', COUL.v], ['a', COUL.a]].forEach(function (c, i) {
+      el('tspan', { fill: c[1], dx: i ? 10 : 0 }, leg).textContent = c[0];
+    });
     texte(svg, G.x0 - 30, Y0 + 10, '0', { fill: COUL.axe, 'font-style': 'normal' });
     texte(svg, G.x1 + 36, Y0 + 10, 't', { fill: COUL.axe });
 
@@ -107,9 +106,8 @@
 
     // ---------- Chronophotographie ----------
     fleche(svg, C.x0, C.y, C.x1, C.y);
-    var xO = (CX0 + CX1) / 2;
-    el('line', { x1: xO, y1: C.y - 10, x2: xO, y2: C.y + 10, stroke: COUL.axe, 'stroke-width': 3 }, svg);
-    texte(svg, xO - 10, C.y + 34, 'O', { fill: COUL.axe, 'font-style': 'normal', 'font-size': 26 });
+    var tickO = el('line', { y1: C.y - 10, y2: C.y + 10, stroke: COUL.axe, 'stroke-width': 3 }, svg);
+    var labO = texte(svg, 0, C.y + 60, 'O', { fill: COUL.axe, 'font-style': 'normal', 'font-size': 26, 'text-anchor': 'middle' });
     texte(svg, C.x1 + 18, C.y + 10, 'x', { fill: COUL.x });
     var gChrono = el('g', {}, svg);
     var gM = el('g', { opacity: 0 }, svg);
@@ -140,35 +138,47 @@
     function X(t) { return p.x0 + p.v0 * t + 0.5 * p.a * t * t; }
     function V(t) { return p.v0 + p.a * t; }
     function gx(t) { return G.x0 + t / T * (G.x1 - G.x0); }
+    // Échelles adaptatives
+    var YMAX = 10, XLO = -10, XHI = 10;
+    function echelles() {
+      var m = Math.abs(p.a);
+      for (var i = 0; i <= 200; i++) { var t = T * i / 200; m = Math.max(m, Math.abs(X(t)), Math.abs(V(t))); }
+      YMAX = Math.max(m * 1.08, 0.5);                    // courbes toujours entières
+      // axe x : tout le trajet de M (départ, arrivée, demi-tour éventuel) et l'origine O
+      var xs = [0, X(0), X(T)], td = tDemiTour();
+      if (td !== null) xs.push(X(td));
+      var lo = Math.min.apply(null, xs), hi = Math.max.apply(null, xs);
+      if (hi - lo < 1) { var c = (hi + lo) / 2; lo = c - 0.5; hi = c + 0.5; }
+      var marge = (hi - lo) * 0.04; XLO = lo - marge; XHI = hi + marge;
+    }
     function gy(y) { return Y0 - y / YMAX * (Y0 - G.yh); }
-    function cx(x) { return xO + x / XMAX * (CX1 - CX0) / 2; }
+    function cx(x) { return CX0 + (x - XLO) / (XHI - XLO) * (CX1 - CX0); }
     function chemin(f) {
       var d = '';
-      for (var i = 0; i <= 200; i++) { var t = T * i / 200, y = Math.max(-3 * YMAX, Math.min(3 * YMAX, f(t))); d += (i ? 'L' : 'M') + gx(t).toFixed(1) + ' ' + gy(y).toFixed(1); }
+      for (var i = 0; i <= 200; i++) { var t = T * i / 200; d += (i ? 'L' : 'M') + gx(t).toFixed(1) + ' ' + gy(f(t)).toFixed(1); }
       return d;
     }
-    function dedans(y) { return Math.abs(y) <= YMAX; }
     // Instant du demi-tour (v change de signe dans ]0, T[), sinon null
     function tDemiTour() { if (p.a === 0) return null; var t = -p.v0 / p.a; return t > 0 && t < T ? t : null; }
-    function ligneDe(t) { var td = tDemiTour(); return td !== null && t > td ? 1 : 0; }
 
     var tCour = null;      // instant affiché (null : pas de repère)
     function dessiner() {
+      echelles();
       cA.setAttribute('d', chemin(function () { return p.a; }));
       cV.setAttribute('d', chemin(V));
       cX.setAttribute('d', chemin(X));
 
       // chronophotographie : N positions à intervalles de temps égaux
       while (gChrono.firstChild) gChrono.removeChild(gChrono.firstChild);
-      if (tDemiTour() !== null) el('line', { x1: C.x0, y1: C.y + DY_RETOUR, x2: C.x1, y2: C.y + DY_RETOUR, stroke: COUL.axe, 'stroke-width': 1.5, 'stroke-dasharray': '4 8', opacity: 0.6 }, gChrono);
-      var dernier = [-1e9, -1e9];                       // abscisse du dernier numéro écrit, par ligne
+      var xO = cx(0);
+      tickO.setAttribute('x1', xO); tickO.setAttribute('x2', xO); labO.setAttribute('x', xO);
+      var dernier = [-1e9, -1e9];                       // dernier numéro écrit, au-dessus / en dessous
       for (var k = 0; k < N; k++) {
-        var t = T * k / (N - 1), x = X(t), l = ligneDe(t), y = C.y + l * DY_RETOUR;
-        if (Math.abs(x) > XMAX) continue;
-        el('circle', { cx: cx(x), cy: y, r: 7, fill: 'none', stroke: COUL.point, 'stroke-width': 2.5 }, gChrono);
-        if (Math.abs(cx(x) - dernier[l]) >= 16) {
-          texte(gChrono, cx(x), l ? y + 30 : y - 16, String(k), { fill: COUL.texte2, 'font-size': 20, 'font-style': 'normal', 'text-anchor': 'middle' });
-          dernier[l] = cx(x);
+        var t = T * k / (N - 1), xk = cx(X(t)), cote = k % 2;
+        el('circle', { cx: xk, cy: C.y, r: 9, fill: COUL.m, 'fill-opacity': 0.5 }, gChrono);
+        if (Math.abs(xk - dernier[cote]) >= 16) {        // numéros alternés, sans chevauchement
+          texte(gChrono, xk, cote ? C.y + 34 : C.y - 18, String(k), { fill: COUL.texte2, 'font-size': 20, 'font-style': 'normal', 'text-anchor': 'middle' });
+          dernier[cote] = xk;
         }
       }
       placerRepere();
@@ -177,20 +187,17 @@
       if (tCour === null) { gRep.setAttribute('opacity', 0); gM.setAttribute('opacity', 0); return; }
       var t = tCour, xs = gx(t), vals = [[pX, X(t)], [pV, V(t)], [pA, p.a]], ys = [Y0];
       vals.forEach(function (c) {
-        var ok = dedans(c[1]);
-        c[0].setAttribute('opacity', ok ? 1 : 0);
         c[0].setAttribute('cx', xs); c[0].setAttribute('cy', gy(c[1]));
-        if (ok) ys.push(gy(c[1]));
+        ys.push(gy(c[1]));
       });
       ligne.setAttribute('x1', xs); ligne.setAttribute('x2', xs);
       ligne.setAttribute('y1', Math.min.apply(null, ys)); ligne.setAttribute('y2', Math.max.apply(null, ys));
       pT.setAttribute('cx', xs); pT.setAttribute('cy', Y0);
       gRep.setAttribute('opacity', 1);
-      var x = X(t), dans = Math.abs(x) <= XMAX;
-      gM.setAttribute('opacity', dans ? 1 : 0);
-      var yM = C.y + ligneDe(t) * DY_RETOUR;
-      mPt.setAttribute('cx', cx(x)); mPt.setAttribute('cy', yM);
-      mTx.setAttribute('x', cx(x)); mTx.setAttribute('y', yM - 20);
+      var x = X(t);
+      gM.setAttribute('opacity', 1);
+      mPt.setAttribute('cx', cx(x)); mPt.setAttribute('cy', C.y);
+      mTx.setAttribute('x', cx(x)); mTx.setAttribute('y', C.y - 42);
     }
 
     // ---------- Lecture ----------
