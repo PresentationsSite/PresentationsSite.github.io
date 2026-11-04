@@ -21,8 +21,13 @@
     Le taux de remplissage se règle globalement via --yt-fill dans votre CSS.
 
   Lecture :
-    L'iframe est déclarée en data-src : reveal.js ne la charge qu'à l'arrivée sur
-    la diapo et la détruit en la quittant, ce qui coupe la vidéo à coup sûr.
+    L'iframe est déclarée en data-src avec data-preload : reveal.js la charge dès
+    que la diapo est à portée (viewDistance : 3 diapos, 2 sur mobile), si bien que
+    la vidéo est déjà affichée quand la diapo apparaît.
+    Une iframe préchargée n'est plus vidée par reveal.js quand on quitte la diapo,
+    et reveal.js ne met en pause que les adresses youtube.com (pas
+    youtube-nocookie.com) : le script ci-dessous envoie donc lui-même la commande
+    pauseVideo au lecteur (d'où enablejsapi=1 dans l'adresse).
 
   Note :
     max-width:none et max-height:none sont indispensables. Tous les thèmes
@@ -78,11 +83,11 @@
 {{- end -}}
 
 {{- /* ---------- 4. URL ---------- */ -}}
-{{- $params := slice -}}
+{{- $params := slice "enablejsapi=1" -}}
 {{- with $times.Get "start" -}}{{- $params = $params | append (printf "start=%s" .) -}}{{- end -}}
 {{- with $times.Get "end"   -}}{{- $params = $params | append (printf "end=%s"   .) -}}{{- end -}}
 {{- $src := printf "https://www.youtube-nocookie.com/embed/%s" $id -}}
-{{- if $params -}}{{- $src = printf "%s?%s" $src (delimit $params "&") -}}{{- end -}}
+{{- $src = printf "%s?%s" $src (delimit $params "&") -}}
 
 {{- /* ---------- 5. Styles ---------- */ -}}
 {{- $style := printf `--yt-fill:0.8;display:block;margin:0 auto;aspect-ratio:%d / %d;width:min(calc(var(--yt-fill) * 100%%),calc(var(--slide-height, 700px) * var(--yt-fill) * %d / %d));border-radius:12px;overflow:hidden;` $num $den $num $den -}}
@@ -97,12 +102,14 @@
   ligne et sans indentation.
 
   Logique :
-    - une iframe n'est considérée comme chargée que si son src pointe vers un
-      embed : reveal.js la vide en passant par about:blank, dont l'évènement
-      load ne doit pas déclencher le fondu ;
-    - la classe is-loaded est retirée sur slidechanged pour la diapo quittée ;
-    - filet de sécurité : si reveal n'a pas déchargé l'iframe, aucun load ne
-      viendra, donc on la réaffiche dès l'arrivée sur la diapo.
+    - fondu au premier chargement seulement : une iframe n'est considérée comme
+      chargée que si son src pointe vers un embed (pas about:blank) ; grâce au
+      préchargement, elle est en général déjà visible à l'arrivée sur la diapo ;
+    - en quittant une diapo, ses vidéos reçoivent la commande pauseVideo ;
+    - une iframe déchargée par reveal.js (diapo hors de portée) perd sa classe
+      is-loaded, pour retrouver le fondu à son prochain chargement ;
+    - filet de sécurité : à l'arrivée sur une diapo, ses iframes déjà chargées
+      sont rendues visibles même si l'évènement load a été manqué.
 */ -}}
 {{- if not (.Page.Scratch.Get "ytSlideFadeAssets") -}}
 {{- .Page.Scratch.Set "ytSlideFadeAssets" true }}
@@ -118,6 +125,7 @@ window.__ytSlideFade = true;
 var SEL = '.yt-slide iframe';
 function loaded(f) { return (f.getAttribute('src') || '').indexOf('/embed/') > -1; }
 function reveal(f) { if (loaded(f)) f.classList.add('is-loaded'); }
+function pause(f) { if (loaded(f) && f.contentWindow) f.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*'); }
 function init() {
 document.querySelectorAll(SEL).forEach(function (f) {
 f.addEventListener('load', function () { reveal(f); });
@@ -125,7 +133,8 @@ reveal(f);
 });
 if (window.Reveal && Reveal.on) {
 Reveal.on('slidechanged', function (e) {
-if (e.previousSlide) e.previousSlide.querySelectorAll(SEL).forEach(function (f) { f.classList.remove('is-loaded'); });
+document.querySelectorAll(SEL).forEach(function (f) { if (!loaded(f)) f.classList.remove('is-loaded'); });
+if (e.previousSlide) e.previousSlide.querySelectorAll(SEL).forEach(pause);
 if (e.currentSlide) e.currentSlide.querySelectorAll(SEL).forEach(reveal);
 });
 }
@@ -137,5 +146,5 @@ else init();
 {{- end }}
 {{/* ---------- 7. Rendu ---------- */ -}}
 <div class="yt-slide" style="{{ $style | safeCSS }}">
-<iframe data-src="{{ $src }}" style="display:block;width:100%;height:100%;max-width:none;max-height:none;border:0;border-radius:inherit;" title="Lecteur vidéo YouTube" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe data-src="{{ $src }}" data-preload style="display:block;width:100%;height:100%;max-width:none;max-height:none;border:0;border-radius:inherit;" title="Lecteur vidéo YouTube" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 </div>
