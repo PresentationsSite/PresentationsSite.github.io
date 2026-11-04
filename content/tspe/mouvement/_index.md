@@ -446,7 +446,7 @@ MRU $\Leftrightarrow$ $\vec{a}=\vec{0}$
 
 {{< slide transition="concave-in none-out" >}}
 
-Tracer les évolutions de la position <b style="color:#00A2FF">$x(t)$</b>, <br>de la vitesse <b style="color:#FFD932">$v(t)$</b> et de l'accélération <b style="color:#61D836">$a(t)$</b>.
+Tracer les évolutions de la position <b style="color:#00A2FF">$x(t)$</b>, <br>de la vitesse <b style="color:#FFD932">$v(t)$</b> et de l'accélération <b style="color:#61D836">$a(t)$</b><br>dans le cas où ${\color{#00A2FF}x(0)}<0$ et ${\color{#FFD932}v(0)}>0$.
 
 
 <div style="position:relative;margin-left:auto;margin-right:auto;width:600px;max-width:100%;">
@@ -457,7 +457,7 @@ Tracer les évolutions de la position <b style="color:#00A2FF">$x(t)$</b>, <br>d
 
 {{< slide transition="none-in concave-out" >}}
 
-Tracer les évolutions de la position <b style="color:#00A2FF">$x(t)$</b>, <br>de la vitesse <b style="color:#FFD932">$v(t)$</b> et de l'accélération <b style="color:#61D836">$a(t)$</b>.
+Tracer les évolutions de la position <b style="color:#00A2FF">$x(t)$</b>, <br>de la vitesse <b style="color:#FFD932">$v(t)$</b> et de l'accélération <b style="color:#61D836">$a(t)$</b><br>dans le cas où ${\color{#00A2FF}x(0)}<0$ et ${\color{#FFD932}v(0)}>0$.
 
 
 <div style="position:relative;margin-left:auto;margin-right:auto;width:600px;max-width:100%;">
@@ -474,7 +474,7 @@ Un mouvement rectiligne avec un vecteur accélération constant est dit <span cl
 
 {{< slide transition="concave-in none-out" >}}
 
-Tracer les évolutions de la position <b style="color:#00A2FF">$x(t)$</b>, <br>de la vitesse <b style="color:#FFD932">$v(t)$</b> et de l'accélération <b style="color:#61D836">$a(t)$</b>.
+Tracer les évolutions de la position <b style="color:#00A2FF">$x(t)$</b>, <br>de la vitesse <b style="color:#FFD932">$v(t)$</b> et de l'accélération <b style="color:#61D836">$a(t)$</b><br>dans le cas où ${\color{#00A2FF}x(0)}>0$, ${\color{#FFD932}v(0)}>0$ et ${\color{#61D836}a}<0$.
 
 
 <div style="position:relative;margin-left:auto;margin-right:auto;width:600px;max-width:100%;">
@@ -485,7 +485,7 @@ Tracer les évolutions de la position <b style="color:#00A2FF">$x(t)$</b>, <br>d
 
 {{< slide transition="none-in concave-out" >}}
 
-Tracer les évolutions de la position <b style="color:#00A2FF">$x(t)$</b>, <br>de la vitesse <b style="color:#FFD932">$v(t)$</b> et de l'accélération <b style="color:#61D836">$a(t)$</b>.
+Tracer les évolutions de la position <b style="color:#00A2FF">$x(t)$</b>, <br>de la vitesse <b style="color:#FFD932">$v(t)$</b> et de l'accélération <b style="color:#61D836">$a(t)$</b><br>dans le cas où ${\color{#00A2FF}x(0)}>0$, ${\color{#FFD932}v(0)}>0$ et ${\color{#61D836}a}<0$.
 
 
 <div style="position:relative;margin-left:auto;margin-right:auto;width:600px;max-width:100%;">
@@ -500,9 +500,7 @@ Tracer les évolutions de la position <b style="color:#00A2FF">$x(t)$</b>, <br>d
 
 Petit exercice :
 
-<div style="position:relative;margin-left:auto;margin-right:auto;width:700px;max-width:100%;">
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/2022_F1_CourseLayout_Belgium.svg/2539px-2022_F1_CourseLayout_Belgium.svg.png" style="box-shadow:none;background:none;">
-</div>
+<a href="https://commons.wikimedia.org/wiki/File:2022_F1_CourseLayout_Belgium.svg" title="ごひょううべこ, CC BY-SA 4.0, via Wikimedia Commons"><img width="600" height="484" src="https://thumb.wikimedia.org/wikipedia/commons/thumb/6/69/2022_F1_CourseLayout_Belgium.svg/960px-2022_F1_CourseLayout_Belgium.svg.png?utm_source=commons.wikimedia.org&amp;utm_campaign=index&amp;utm_content=thumbnail" srcset="https://thumb.wikimedia.org/wikipedia/commons/thumb/6/69/2022_F1_CourseLayout_Belgium.svg/330px-2022_F1_CourseLayout_Belgium.svg.png?utm_source=commons.wikimedia.org&amp;utm_campaign=index&amp;utm_content=thumbnail 330w, https://thumb.wikimedia.org/wikipedia/commons/thumb/6/69/2022_F1_CourseLayout_Belgium.svg/960px-2022_F1_CourseLayout_Belgium.svg.png?utm_source=commons.wikimedia.org&amp;utm_campaign=index&amp;utm_content=thumbnail 960w, https://thumb.wikimedia.org/wikipedia/commons/thumb/6/69/2022_F1_CourseLayout_Belgium.svg/1280px-2022_F1_CourseLayout_Belgium.svg.png?utm_source=commons.wikimedia.org&amp;utm_campaign=index&amp;utm_content=thumbnail 1280w, https://thumb.wikimedia.org/wikipedia/commons/thumb/6/69/2022_F1_CourseLayout_Belgium.svg/3840px-2022_F1_CourseLayout_Belgium.svg.png?utm_source=commons.wikimedia.org&amp;utm_campaign=index&amp;utm_content=thumbnail 3840w" sizes="auto" loading="lazy" alt="2022 F1 CourseLayout Belgium"></a>
 
 ---
 
