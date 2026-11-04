@@ -283,6 +283,19 @@ La <span class="imp">norme</span> $v$(t) du vecteur vitesse vaut :
 
 ---
 
+<div class="anim-dv"></div>
+
+<div hidden>
+<span class="fragment"></span>
+<span class="fragment"></span>
+<span class="fragment"></span>
+<span class="fragment"></span>
+</div>
+
+<script src="/js/vecteur-variation-vitesse.js" defer></script>
+
+---
+
 Le vecteur accélération moyenne d'un point $\mathrm{M}$<br>entre deux instants $t$ et $t+\Delta t$ est défini<br>à partir du vecteur variation de vitesse :
 
 $
