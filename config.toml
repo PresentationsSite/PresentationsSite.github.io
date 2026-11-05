@@ -23,6 +23,10 @@ transition = "concave"
 transition_speed  = "fast"
 highlight_theme = "github-dark"
 line-numbers = true
+# reveal.js 5 passe en « scroll view » (défilement vertical des slides)
+# sous 435 px de large, donc sur téléphone en portrait. 0 désactive ce mode :
+# même navigation bidirectionnelle (gauche/droite, haut/bas) partout.
+scroll_activation_width = 0
 
 [security]
   allowContent = ['.*']
