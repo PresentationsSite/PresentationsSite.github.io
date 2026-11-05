@@ -15,3 +15,20 @@ MathJax = {
 <script type="text/javascript" id="MathJax-script" async
   src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
 </script>
+
+{{- /* Centrage vertical stable (reveal.js 5).
+       reveal.js recentre la slide à chaque fragment d'après son scrollHeight, qui
+       compte aussi les fragments encore décalés (fade-up : 40 px, davantage s'ils
+       sont imbriqués) : la slide sautait de quelques pixels au fragment suivant.
+       On lui fait utiliser la hauteur réelle du contenu (offsetHeight).
+       Désactivé pour l'export PDF (?print-pdf), qui mesure les slides autrement. */ -}}
+<script>
+(function () {
+  if (!window.Reveal || /print-pdf/.test(location.search)) return;
+  document.querySelectorAll('.reveal .slides section').forEach(function (s) {
+    Object.defineProperty(s, 'scrollHeight', { configurable: true, get: function () { return this.offsetHeight; } });
+  });
+  if (Reveal.isReady && Reveal.isReady()) Reveal.layout();
+  else Reveal.on('ready', function () { Reveal.layout(); });
+})();
+</script>
