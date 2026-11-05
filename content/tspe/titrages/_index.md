@@ -252,8 +252,8 @@ On trace les deux droites obtenues en excluant<br>les points trop près de la ru
 Exemple d'une courbe donnée à l'exercice<br>"Eau de Quinton" tombé en 2025
 
 <div class="r-stack">
-  <img src="/extitcond.png"      style="width:70%">
-  <img src="/extitcond-corr.png" class="fragment fade-in" style="width:70%; transition-duration:0.5s">
+  <img src="/extitcond.png"      style="width:70%;max-height:none;">
+  <img src="/extitcond-corr.png" class="fragment fade-in" style="width:70%; transition-duration:0.5s;max-height:none;">
 </div>
 
 {{%note%}}

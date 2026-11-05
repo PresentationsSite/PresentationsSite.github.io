@@ -219,23 +219,14 @@ On peut représenter une tension par une flèche.
 
 ---
 
-{{%slide transition="concave-in fade-out"%}}
-
 <span class="imp">Loi des mailles :</span>
 
 (aussi appelée au collège<br>"loi d'additivité des tensions")
 
-<img src="/loidesmailles1.png" style="box-shadow:none;background:none;width:55%;">
-
----
-
-{{%slide transition="fade-in concave-out"%}}
-
-<span class="imp">Loi des mailles :</span>
-
-(aussi appelée au collège<br>"loi d'additivité des tensions")
-
-<img src="/loidesmailles2.png" style="box-shadow:none;background:none;width:55%;">
+<div class="r-stack">
+<img src="/loidesmailles1.png" style="box-shadow:none;background:none;width:55%;max-height:none;">
+<img src="/loidesmailles2-formule.png" class="fragment fade-in" style="box-shadow:none;background:none;width:55%;transition-duration:0.8s;transition-timing-function:ease-in-out;max-height:none;">
+</div>
 
 ---
 
