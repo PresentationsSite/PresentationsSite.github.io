@@ -98,11 +98,13 @@ En termes d'énergie électrique :
 
 <iframe src="https://ourworldindata.org/grapher/share-elec-by-source?facet=none" loading="lazy" style="width: 100%; height: 600px; border: 0px none;"></iframe>
 
+Que nous apporte ce graphe<br>par rapport au camembert ?
 
 ---
 
 <iframe src="https://ourworldindata.org/grapher/electricity-prod-source-stacked" loading="lazy" style="width: 100%; height: 600px; border: 0px none;"></iframe>
 
+Que nous apporte ce graphe<br>par rapport au précédent ?
 
 ---
 
@@ -114,7 +116,15 @@ En termes d'énergie électrique :
 
 ---
 
+Citer un pays où le charbon représente<br>plus de 50% de la production d'électricité.
+
+---
+
 <iframe src="https://ourworldindata.org/grapher/share-electricity-coal" loading="lazy" style="width: 100%; height: 600px; border: 0px none;"></iframe>
+
+---
+
+Citer un pays où le gaz représente<br>plus de 50% de la production d'électricité.
 
 ---
 
@@ -122,7 +132,16 @@ En termes d'énergie électrique :
 
 ---
 
+Citer un pays où le nucléaire représente<br>plus de 50% de la production d'électricité.
+
+---
+
 <iframe src="https://ourworldindata.org/grapher/share-electricity-nuclear" loading="lazy" style="width: 100%; height: 600px; border: 0px none;"></iframe>
+
+---
+
+Citer un pays où les renouvelables représentent<br>plus de 50% de la production d'électricité.
+
 
 ---
 
@@ -130,7 +149,15 @@ En termes d'énergie électrique :
 
 ---
 
+Citer un pays où l'hydraulique représente<br>plus de 50% de la production d'électricité.
+
+---
+
 <iframe src="https://ourworldindata.org/grapher/share-electricity-hydro" loading="lazy" style="width: 100%; height: 600px; border: 0px none;"></iframe>
+
+---
+
+Citer un pays où le solaire représente<br>plus de 20% de la production d'électricité.
 
 ---
 
@@ -138,6 +165,9 @@ En termes d'énergie électrique :
 
 ---
 
+Citer un pays où l'éolien représente<br>plus de 25% de la production d'électricité.
+
+---
 
 <iframe src="https://ourworldindata.org/grapher/share-electricity-wind" loading="lazy" style="width: 100%; height: 600px; border: 0px none;"></iframe>
 
