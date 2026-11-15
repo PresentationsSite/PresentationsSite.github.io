@@ -166,20 +166,12 @@ Avec sa température de surface de $\pu{5778 K}$,<br>le spectre du Soleil est ce
 
 Au fait, de quelle couleur est le Soleil ?
 
----
-
-{{< slide  background-video="/pixels.mp4" background-size="contain" background-transition="concave" background-video-muted="true">}}
-
 
 ---
 
-{{< slide  background-image="/3cou.png" background-size="contain" background-transition="concave">}}
+Blanc (mélange des longueurs d'onde visibles).
 
----
-
-Le Soleil nous apparaît donc blanc (résultat du mélange des longueurs d'onde visibles).
-
-Est-ce un heureux hasard ?
+<p class="fragment fade-up">Il apparaît légèrement jaune (jusqu'à rouge) le matin et le soir à cause du filtre atmosphérique.</p>
 
 ---
 
@@ -187,7 +179,7 @@ La Terre, elle, rayonne dans l'infrarouge,<br>à une longueur d'onde maximale d'
 
 ---
 
-On apprend plein de choses en analysant la lumière des étoiles :
+On apprend plein de choses en<br>analysant la lumière des étoiles :
 
 <br>
 
