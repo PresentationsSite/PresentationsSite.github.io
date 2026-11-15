@@ -396,6 +396,15 @@ $$
 
 ---
 
+<!-- Version interactive 3D du vecteur accélération et de sa décomposition (voir la slide du vecteur position pour l'importmap) -->
+<link rel="stylesheet" href="/css/vecteur-position-3d.css">
+
+<div class="vecpos3d" data-mode="acceleration"></div>
+
+<script type="module" src="/js/vecteur-position-3d.js"></script>
+
+---
+
 <div style="position:relative;margin-left:auto;margin-right:auto;width:700px;max-width:100%;">
 <img src="/vecacc.png" style="box-shadow:none;background:none;">
 </div>
