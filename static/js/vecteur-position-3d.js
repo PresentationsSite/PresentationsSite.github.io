@@ -394,11 +394,12 @@ function montageAcceleration(c) {
     ],
     maj: function (p, etat, t) {
       c.om.obj.visible = etat.om; c.eOM.visible = etat.om;
-      fv.obj.visible = etat.v; eV.visible = etat.v;
       const v = vitesse(t), a = acceleration(t);
       Vbout.copy(P.M).add(V(v[0], v[1], v[2]).multiplyScalar(ECH_V));
       Vmil.copy(P.M).lerp(Vbout, 0.5);
       fv.set(P.M, Vbout);
+      // après set() : Fleche.set remet la visibilité à jour, donc le bouton doit passer en dernier
+      fv.obj.visible = fv.obj.visible && etat.v; eV.visible = etat.v;
       About.copy(P.M).add(V(a[0], a[1], a[2]).multiplyScalar(ECH_A));
       Amil.copy(P.M).lerp(About, 0.5);
       fa.set(P.M, About);
