@@ -132,6 +132,23 @@ Référentiels usuels :
 
 ---
 
+<!-- Version interactive 3D du schéma précédent (three.js) : voir static/js/vecteur-position-3d.js -->
+<link rel="stylesheet" href="/css/vecteur-position-3d.css">
+
+<div class="vecpos3d"></div>
+
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
+  }
+}
+</script>
+<script type="module" src="/js/vecteur-position-3d.js"></script>
+
+---
+
 Dans un repère orthonormé $(0;\vec{i},\vec{j},\vec{k})$, la position d'un point $\mathrm{M}$ à la date $t$ est donnée par son <b style="color:#56C1FF;">vecteur position
 
 

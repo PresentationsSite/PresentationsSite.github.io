@@ -1,0 +1,230 @@
+/*
+ * Slide « vecteur position » interactive en 3D (voir /js/vecteur-position-3d.js).
+ *
+ * Le conteneur occupe toute la hauteur de la slide (700) : les marges négatives
+ * compensent le padding vertical de 20 px que styles.css donne aux sections, de
+ * sorte que la slide mesure exactement 700 px et reste centrée en haut à 0.
+ * La scène (.v3d-scene) est ensuite dimensionnée en JS pour couvrir toute la
+ * fenêtre, au-delà des bords de la slide.
+ */
+.reveal .vecpos3d {
+  position: relative;
+  height: 700px;
+  margin: -20px 0;
+  padding: 0;
+  text-align: left;
+  font-size: 22px;
+  line-height: 1.2;
+}
+
+.reveal .vecpos3d .v3d-scene {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  touch-action: none;          /* le glissement fait tourner la scène, pas défiler */
+  -webkit-user-select: none;
+  user-select: none;
+  cursor: grab;
+}
+.reveal .vecpos3d .v3d-scene.v3d-drag { cursor: grabbing; }
+
+.reveal .vecpos3d canvas {
+  display: block;
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  max-width: none;
+  max-height: none;
+  border: 0;
+  box-shadow: none;
+  background: none;
+  outline: none;
+}
+
+/* Étiquettes MathJax projetées sur la scène */
+.reveal .vecpos3d .v3d-labels {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.reveal .vecpos3d .v3d-label {
+  position: absolute;
+  left: 0;
+  top: 0;
+  white-space: nowrap;
+  line-height: 1;
+  font-family: "Times New Roman", serif;
+  font-style: italic;
+  transform-origin: 0 0;
+  will-change: transform;
+  /* halo sombre : l'étiquette reste lisible au-dessus d'un trait ou d'un vecteur */
+  filter: drop-shadow(0 0 3px rgba(20, 22, 24, 0.95)) drop-shadow(0 0 6px rgba(20, 22, 24, 0.8));
+}
+.reveal .vecpos3d .v3d-label > svg {
+  display: block;
+  margin: 0;
+  max-width: none;
+}
+
+/* Consigne discrète en haut à gauche */
+.reveal .vecpos3d .v3d-aide {
+  position: absolute;
+  left: 18px;
+  top: 14px;
+  transform: scale(var(--k, 1));
+  transform-origin: 0 0;
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 16px;
+  pointer-events: none;
+}
+
+/* Barre de commandes en bas */
+.reveal .vecpos3d .v3d-barre {
+  position: absolute;
+  left: 50%;
+  bottom: var(--bas, 22px);
+  /* --k : facteur de compensation posé par le JS quand la slide est très
+     réduite (téléphone), pour que les commandes restent lisibles */
+  transform: translateX(-50%) scale(var(--k, 1));
+  transform-origin: 50% 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 10px 16px;
+  width: max-content;
+  /* on laisse libre le coin inférieur droit (flèches de navigation de reveal.js) */
+  max-width: calc((100% - var(--marge, 250px)) / var(--k, 1));
+  box-sizing: border-box;
+  padding: 10px 16px;
+  border-radius: 14px;
+  background: rgba(20, 22, 24, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  cursor: default;
+  z-index: 2;
+}
+.reveal .vecpos3d .v3d-groupe {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.reveal .vecpos3d .v3d-titre {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 17px;
+}
+
+.reveal .vecpos3d button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin: 0;
+  padding: 7px 14px;
+  min-height: 38px;
+  box-sizing: border-box;
+  border: 1.5px solid rgba(255, 255, 255, 0.35);
+  border-radius: 10px;
+  background: transparent;
+  color: #fff;
+  font: inherit;
+  font-size: 19px;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+.reveal .vecpos3d button:hover { background: rgba(255, 255, 255, 0.12); }
+.reveal .vecpos3d button:focus-visible { outline: 2px solid #56C1FF; outline-offset: 2px; }
+.reveal .vecpos3d button svg { width: 17px; height: 17px; fill: currentColor; flex: none; }
+
+.reveal .vecpos3d .v3d-lancer {
+  min-width: 8.6em;           /* largeur fixe : la barre ne bouge pas quand le texte change */
+  background: #FF5E99;
+  border-color: #FF5E99;
+  font-weight: bold;
+}
+.reveal .vecpos3d .v3d-lancer:hover { background: #ff7aad; }
+
+/* « Vue initiale » : en haut à droite */
+.reveal .vecpos3d .v3d-vue {
+  position: absolute;
+  right: 18px;
+  top: 12px;
+  z-index: 2;
+  transform: scale(var(--k, 1));
+  transform-origin: 100% 0;
+  min-height: 34px;
+  padding: 5px 12px;
+  font-size: 17px;
+  background: rgba(20, 22, 24, 0.6);
+}
+
+/* Boutons à bascule : projections x(t), y(t), z(t) et plan */
+.reveal .vecpos3d .v3d-bascule {
+  font-family: "Times New Roman", serif;
+  font-size: 21px;
+  letter-spacing: 0;
+  padding: 7px 12px;
+}
+.reveal .vecpos3d .v3d-bascule i { font-style: italic; }
+.reveal .vecpos3d .v3d-bascule[aria-pressed="true"] {
+  background: rgba(143, 209, 138, 0.22);
+  border-color: #8FD18A;
+  color: #bff0ba;
+}
+.reveal .vecpos3d .v3d-bascule[aria-pressed="false"] {
+  color: rgba(255, 255, 255, 0.55);
+  border-style: dashed;
+}
+
+/* Curseur de temps */
+.reveal .vecpos3d .v3d-temps {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.reveal .vecpos3d input[type="range"] {
+  width: 170px;
+  margin: 0;
+  accent-color: #FF5E99;
+  cursor: pointer;
+}
+.reveal .vecpos3d .v3d-valeur {
+  min-width: 5.2em;
+  color: #fff;
+  font-variant-numeric: tabular-nums;
+  font-size: 19px;
+}
+
+/* Repli : image fixe si WebGL est indisponible ou à l'impression */
+.reveal .vecpos3d .v3d-repli {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 18px;
+}
+.reveal .vecpos3d .v3d-repli img {
+  max-height: 600px;
+  width: auto;
+  max-width: 90%;
+  border: none;
+  box-shadow: none;
+  background: none;
+  margin: 0;
+}
+
+/* Petits écrans : barre plus compacte */
+@media (max-width: 700px) {
+  .reveal .vecpos3d .v3d-aide { display: none; }
+  .reveal .vecpos3d input[type="range"] { width: 130px; }
+}
