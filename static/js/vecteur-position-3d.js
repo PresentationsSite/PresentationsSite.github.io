@@ -42,10 +42,12 @@ const COUL = {
   guide: 0xC8C8C8,    // pointillés
   plan: 0xFFFFFF,     // plan vertical (O, M, k)
   vit: 0xF9DB57,      // vecteur vitesse (jaune des schémas du cours)
-  comp: 0xF2A93B      // composantes de la vitesse
+  comp: 0xF2A93B,     // composantes de la vitesse
+  acc: 0x61D836,      // vecteur accélération (vert des schémas du cours)
+  compA: 0x2FC9A5     // composantes de l'accélération
 };
 const CSS = {
-  traj: '#EB53A0', om: '#74C0FF', base: '#4DA3FF', origine: '#4D9DE8', proj: '#8FD18A', vit: '#F9DB57', comp: '#F2A93B'
+  traj: '#EB53A0', om: '#74C0FF', base: '#4DA3FF', origine: '#4D9DE8', proj: '#8FD18A', vit: '#F9DB57', comp: '#F2A93B', acc: '#61D836', compA: '#2FC9A5'
 };
 
 const DUREE = 12;          // durée de l'animation (s)
@@ -78,6 +80,16 @@ function vitesse(t) {
     1.25 * 1.5 * w * Math.cos(1.5 * a + 0.4)
   ];
 }
+/** Accélération a(t) = dv/dt, dérivée seconde exacte de phys(t). */
+function acceleration(t) {
+  const w2 = Math.pow(2 * Math.PI / DUREE, 2), a = 2 * Math.PI / DUREE * t;
+  return [
+    -1.5 * w2 * Math.sin(a + 0.6),
+    -0.45 * 4 * w2 * Math.sin(2 * a),
+    -1.25 * 2.25 * w2 * Math.sin(1.5 * a + 0.4)
+  ];
+}
+const ECH_A = 3.0;   // 1 m·s⁻² ↔ 3 unités de longueur
 const ECH_V = 2.0;   // échelle de représentation : 1 m·s⁻¹ ↔ 2 unités de longueur
 
 const V = (x, y, z) => new THREE.Vector3(y, z, x);   // repère physique → three.js
@@ -253,13 +265,12 @@ function montagePosition(c) {
   };
 
   return {
-    titre: 'Projections',
-    bascules: [
+    groupes: [{ titre: 'Projections', bascules: [
       { cle: 'x', html: '<span><i>x</i>(<i>t</i>)</span>', titre: 'Afficher / masquer la projection x(t)' },
       { cle: 'y', html: '<span><i>y</i>(<i>t</i>)</span>', titre: 'Afficher / masquer la projection y(t)' },
       { cle: 'z', html: '<span><i>z</i>(<i>t</i>)</span>', titre: 'Afficher / masquer la projection z(t)' },
       { cle: 'plan', html: 'plan', titre: 'Afficher / masquer le plan vertical contenant OM et k' }
-    ],
+    ] }],
     maj: function (p, etat) {
       const x = p[0], y = p[1], z = p[2];
       Mxy.copy(V(x, y, 0)); F.x.copy(V(x, 0, 0)); F.y.copy(V(0, y, 0)); F.z.copy(V(0, 0, z));
@@ -318,12 +329,11 @@ function montageVitesse(c) {
   });
 
   return {
-    titre: 'Décomposition',
-    bascules: [
+    groupes: [{ titre: 'Décomposition', bascules: [
       { cle: 'x', html: '<span><i>v</i><sub><i>x</i></sub></span>', titre: 'Afficher / masquer la composante v_x(t) i' },
       { cle: 'y', html: '<span><i>v</i><sub><i>y</i></sub></span>', titre: 'Afficher / masquer la composante v_y(t) j' },
       { cle: 'z', html: '<span><i>v</i><sub><i>z</i></sub></span>', titre: 'Afficher / masquer la composante v_z(t) k' }
-    ],
+    ] }],
     maj: function (p, etat, t) {
       const v = vitesse(t);
       Vbout.copy(P.M).add(V(v[0], v[1], v[2]).multiplyScalar(ECH_V));
@@ -337,6 +347,68 @@ function montageVitesse(c) {
         cp.milieu.copy(P.M).lerp(cp.bout, 0.5);
         cp.f.set(P.M, cp.bout);
         cp.d.set(Vbout, cp.bout);
+      });
+    }
+  };
+}
+
+
+/**
+ * Slide « accélération » : OM et v sont conservés, sans décomposition, et peuvent être masqués ;
+ * le vecteur accélération a(t), tracé en M, est décomposé en ax·i + ay·j + az·k.
+ */
+function montageAcceleration(c) {
+  const monde = c.monde, P = c.P;
+  const fv = new Fleche(COUL.vit, 0.05, 0.32, 0.13);
+  const fa = new Fleche(COUL.acc, 0.055, 0.34, 0.14);
+  monde.add(fv.obj, fa.obj);
+  const comp = [0, 1, 2].map(function () {
+    const f = new Fleche(COUL.compA, 0.034, 0.22, 0.09), d = new Pointille(COUL.guide, 2, T_PT, T_TR);
+    monde.add(f.obj, d.obj);
+    return { f: f, d: d, bout: V(0, 0, 0) };
+  });
+  const Vmil = V(0, 0, 0), Vbout = V(0, 0, 0), Amil = V(0, 0, 0), About = V(0, 0, 0);
+
+  const eV = c.ajouter('\\vec{v}(t)', CSS.vit, 'v(t)', () => Vmil, 'perp', -40);
+  eV.origine = () => P.M;
+  const eA = c.ajouter('\\vec{a}(t)', CSS.acc, 'a(t)', () => Amil, 'perp', 42);
+  eA.origine = () => P.M;
+  const cles = ['x', 'y', 'z'], tex = ['a_x\\,\\vec{i}', 'a_y\\,\\vec{j}', 'a_z\\,\\vec{k}'], repli = ['ax i', 'ay j', 'az k'];
+  const et = comp.map(function (cp, i) {
+    const e = c.ajouter(tex[i], CSS.compA, repli[i], () => cp.bout, 'bout', 46);
+    e.origine = () => P.M;
+    return e;
+  });
+
+  return {
+    groupes: [
+      { titre: 'Afficher', bascules: [
+        { cle: 'om', html: '<span><i>OM</i></span>', titre: 'Afficher / masquer le vecteur OM' },
+        { cle: 'v', html: '<span><i>v</i></span>', titre: 'Afficher / masquer le vecteur vitesse' }
+      ] },
+      { titre: 'Décomposition de a', bascules: [
+        { cle: 'x', html: '<span><i>a</i><sub><i>x</i></sub></span>', titre: 'Afficher / masquer la composante a_x(t) i' },
+        { cle: 'y', html: '<span><i>a</i><sub><i>y</i></sub></span>', titre: 'Afficher / masquer la composante a_y(t) j' },
+        { cle: 'z', html: '<span><i>a</i><sub><i>z</i></sub></span>', titre: 'Afficher / masquer la composante a_z(t) k' }
+      ] }
+    ],
+    maj: function (p, etat, t) {
+      c.om.obj.visible = etat.om; c.eOM.visible = etat.om;
+      fv.obj.visible = etat.v; eV.visible = etat.v;
+      const v = vitesse(t), a = acceleration(t);
+      Vbout.copy(P.M).add(V(v[0], v[1], v[2]).multiplyScalar(ECH_V));
+      Vmil.copy(P.M).lerp(Vbout, 0.5);
+      fv.set(P.M, Vbout);
+      About.copy(P.M).add(V(a[0], a[1], a[2]).multiplyScalar(ECH_A));
+      Amil.copy(P.M).lerp(About, 0.5);
+      fa.set(P.M, About);
+      [V(a[0], 0, 0), V(0, a[1], 0), V(0, 0, a[2])].forEach(function (u, i) {
+        const cp = comp[i], on = etat[cles[i]];
+        cp.f.obj.visible = on; cp.d.obj.visible = on; et[i].visible = on;
+        if (!on) return;
+        cp.bout.copy(P.M).addScaledVector(u, ECH_A);
+        cp.f.set(P.M, cp.bout);
+        cp.d.set(About, cp.bout);
       });
     }
   };
@@ -364,20 +436,23 @@ function creer(tag, classe, parent, html) {
 function init(hote) {
   if (hote.dataset.pret) return;
   hote.dataset.pret = '1';
-  const VIT = hote.dataset.mode === 'vitesse';
+  const MODE = hote.dataset.mode || 'position';   // 'position' | 'vitesse' | 'acceleration'
+  const SUIVI = MODE !== 'position';
   const section = hote.closest('section');
   const scene = creer('div', 'v3d-scene', hote);
   scene.setAttribute('data-prevent-swipe', '');          // reveal.js : pas de changement de slide au toucher
   scene.setAttribute('role', 'img');
-  scene.setAttribute('aria-label', VIT
-    ? 'Repère orthonormé en 3D : le point M(t) se déplace en laissant une trace ; le vecteur vitesse, tangent à la trace, est décomposé selon i, j et k.'
-    : 'Repère orthonormé en 3D : le point M(t) se déplace en laissant une trace, le vecteur OM relie l\'origine O à M.');
+  scene.setAttribute('aria-label', {
+    position: 'Repère orthonormé en 3D : le point M(t) se déplace en laissant une trace, le vecteur OM relie l\'origine O à M.',
+    vitesse: 'Repère orthonormé en 3D : le point M(t) se déplace en laissant une trace ; le vecteur vitesse, tangent à la trace, est décomposé selon i, j et k.',
+    acceleration: 'Repère orthonormé en 3D : le point M(t) se déplace en laissant une trace ; le vecteur accélération est décomposé selon i, j et k.'
+  }[MODE]);
 
   // Export PDF (?print-pdf) ou WebGL indisponible : on retombe sur l'image fixe.
   function repli(message) {
     scene.replaceChildren();
     const r = creer('div', 'v3d-repli', scene);
-    creer('img', '', r).src = VIT ? '/vecvit.png' : '/vecposition.png';
+    creer('img', '', r).src = { position: '/vecposition.png', vitesse: '/vecvit.png', acceleration: '/vecacc.png' }[MODE];
     if (message) creer('div', '', r, message);
   }
   if (/print-pdf/.test(location.search)) { repli(); return; }
@@ -462,12 +537,13 @@ function init(hote) {
   ajouter('\\vec{i}', CSS.base, 'i', () => unites[0], 'perp', -30);
   ajouter('\\vec{j}', CSS.base, 'j', () => unites[1], 'perp', 30);
   ajouter('\\vec{k}', CSS.base, 'k', () => unites[2], 'perp', 30);
-  // M(t) : au-delà de M sur la slide « position » ; sous OM sur la slide « vitesse », où v part de M
-  if (VIT) ajouter('\\mathrm{M}(t)', CSS.traj, 'M(t)', () => P.M, 'perp', -40);
+  // M(t) : au-delà de M sur la slide « position » ; sous OM sur les slides « vitesse » et « accélération », où v et a partent de M
+  if (SUIVI) ajouter('\\mathrm{M}(t)', CSS.traj, 'M(t)', () => P.M, 'perp', -40);
   else ajouter('\\mathrm{M}(t)', CSS.traj, 'M(t)', () => P.M, 'bout', 48);
-  ajouter('\\overrightarrow{\\mathrm{OM}}', CSS.om, 'OM', () => P.M.clone().multiplyScalar(0.5), 'perp', 38);
+  const eOM = ajouter('\\overrightarrow{\\mathrm{OM}}', CSS.om, 'OM', () => P.M.clone().multiplyScalar(0.5), 'perp', 38);
   // Éléments propres à chaque slide : projections de OM (mode « position ») ou vecteur vitesse (mode « vitesse »)
-  const extras = (VIT ? montageVitesse : montagePosition)({ monde: monde, O: O, P: P, ajouter: ajouter });
+  const extras = { position: montagePosition, vitesse: montageVitesse, acceleration: montageAcceleration }[MODE](
+    { monde: monde, O: O, P: P, ajouter: ajouter, om: om, eOM: eOM });
 
   /* --- commandes --- */
   const barre = creer('div', 'v3d-barre', scene);
@@ -485,21 +561,23 @@ function init(hote) {
   curseur.setAttribute('aria-label', 'Date t');
   const lecture = creer('span', 'v3d-valeur', gTemps);
 
-  const gProj = creer('div', 'v3d-groupe', barre);
-  creer('span', 'v3d-titre', gProj, extras.titre);
   const etat = {};
   const bascules = {};
-  extras.bascules.forEach(function (b) {
-    etat[b.cle] = true;
-    const bt = creer('button', 'v3d-bascule', gProj, b.html);
-    bt.type = 'button'; bt.title = b.titre;
-    bt.setAttribute('aria-pressed', 'true');
-    bt.addEventListener('click', function () {
-      etat[b.cle] = !etat[b.cle];
-      bt.setAttribute('aria-pressed', String(etat[b.cle]));
-      dirty = true;
+  extras.groupes.forEach(function (g) {
+    const gProj = creer('div', 'v3d-groupe', barre);
+    creer('span', 'v3d-titre', gProj, g.titre);
+    g.bascules.forEach(function (b) {
+      etat[b.cle] = true;
+      const bt = creer('button', 'v3d-bascule', gProj, b.html);
+      bt.type = 'button'; bt.title = b.titre;
+      bt.setAttribute('aria-pressed', 'true');
+      bt.addEventListener('click', function () {
+        etat[b.cle] = !etat[b.cle];
+        bt.setAttribute('aria-pressed', String(etat[b.cle]));
+        dirty = true;
+      });
+      bascules[b.cle] = bt;
     });
-    bascules[b.cle] = bt;
   });
   const bVue = creer('button', 'v3d-vue', scene, 'Vue initiale');
   bVue.type = 'button';
