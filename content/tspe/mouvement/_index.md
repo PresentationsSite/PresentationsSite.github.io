@@ -280,6 +280,16 @@ La notation physique $\frac{\mathrm{d}x}{\mathrm{d}t}$ correspond<br>à la notat
 
 ---
 
+<!-- Version interactive 3D du vecteur vitesse et de sa décomposition (même module que la slide du vecteur position,
+     dont l'importmap, déclaré plus haut dans cette page, fournit three.js) -->
+<link rel="stylesheet" href="/css/vecteur-position-3d.css">
+
+<div class="vecpos3d" data-mode="vitesse"></div>
+
+<script type="module" src="/js/vecteur-position-3d.js"></script>
+
+---
+
 <div style="position:relative;margin-left:auto;margin-right:auto;width:700px;max-width:100%;">
 <img src="/vecvit.png" style="box-shadow:none;background:none;">
 </div>

@@ -40,10 +40,12 @@ const COUL = {
   axes: 0xD3D3D3,     // axes du repère
   proj: 0x8FD18A,     // projections x(t), y(t), z(t) (vert des angles droits du schéma)
   guide: 0xC8C8C8,    // pointillés
-  plan: 0xFFFFFF      // plan vertical (O, M, k)
+  plan: 0xFFFFFF,     // plan vertical (O, M, k)
+  vit: 0xF9DB57,      // vecteur vitesse (jaune des schémas du cours)
+  comp: 0xF2A93B      // composantes de la vitesse
 };
 const CSS = {
-  traj: '#EB53A0', om: '#74C0FF', base: '#4DA3FF', origine: '#4D9DE8', proj: '#8FD18A'
+  traj: '#EB53A0', om: '#74C0FF', base: '#4DA3FF', origine: '#4D9DE8', proj: '#8FD18A', vit: '#F9DB57', comp: '#F2A93B'
 };
 
 const DUREE = 12;          // durée de l'animation (s)
@@ -66,6 +68,17 @@ function phys(t) {
     2.0 + 1.25 * Math.sin(1.5 * w + 0.4)
   ];
 }
+
+/** Vitesse v(t) = dM/dt, dérivée exacte de phys(t). */
+function vitesse(t) {
+  const w = 2 * Math.PI / DUREE, a = w * t;
+  return [
+    1.5 * w * Math.cos(a + 0.6),
+    4.6 / DUREE + 0.45 * 2 * w * Math.cos(2 * a),
+    1.25 * 1.5 * w * Math.cos(1.5 * a + 0.4)
+  ];
+}
+const ECH_V = 2.0;   // échelle de représentation : 1 m·s⁻¹ ↔ 2 unités de longueur
 
 const V = (x, y, z) => new THREE.Vector3(y, z, x);   // repère physique → three.js
 const fmt = (t) => t.toFixed(1).replace('.', ',') + ' s';
@@ -171,8 +184,8 @@ class Etiquette {
    * @param repli    texte simple affiché tant que MathJax n'a pas répondu
    * @param ancre    () => Vector3 : point 3D auquel l'étiquette est accrochée
    * @param mode     'fixe'  : décalage (a, b) en pixels de slide ;
-   *                 'bout'  : à la distance a au-delà de l'ancre, dans la direction O → ancre à l'écran ;
-   *                 'perp'  : à la distance a de l'ancre, perpendiculairement à la direction O → ancre
+   *                 'bout'  : à la distance a au-delà de l'ancre, dans la direction origine → ancre à l'écran ;
+   *                 'perp'  : à la distance a de l'ancre, perpendiculairement à la direction origine → ancre
    *                           (côté « haut » de l'écran ; côté « bas » si a < 0).
    *                 Ces placements suivent la rotation : l'étiquette ne recouvre pas le vecteur ou l'axe.
    */
@@ -186,6 +199,7 @@ class Etiquette {
     this.tex = tex; this.taille = taille; this.ancre = ancre;
     this.mode = mode; this.a = a; this.b = b || 0;
     this.visible = true;
+    this.origine = null;   // () => Vector3 : origine de la direction (O par défaut)
   }
   rendre() {
     return MathJax.tex2svgPromise(this.tex, { display: false }).then((noeud) => {
@@ -199,6 +213,135 @@ class Etiquette {
   }
 }
 
+
+/* ---------- Éléments propres à chaque slide ---------- */
+
+const T_PT = 0.13, T_TR = 0.1;   // pointillés : longueur d'un tiret et d'un trou
+
+/** Slide « position » : projections x(t), y(t), z(t) de OM sur les axes, et plan vertical (O, M, k). */
+function montagePosition(c) {
+  const monde = c.monde, O = c.O, P = c.P;
+  // Plan vertical (O, M_xy, M, Z) comme sur le schéma
+  const gPlan = new THREE.BufferGeometry();
+  const posPlan = new Float32Array(12);
+  gPlan.setAttribute('position', new THREE.BufferAttribute(posPlan, 3));
+  gPlan.setIndex([0, 1, 2, 0, 2, 3]);
+  const plan = new THREE.Mesh(gPlan, new THREE.MeshBasicMaterial({
+    color: COUL.plan, transparent: true, opacity: 0.13, side: THREE.DoubleSide, depthWrite: false }));
+  plan.frustumCulled = false;
+  monde.add(plan);
+
+  // Pointillés de construction et projections sur les axes
+  const dVert = new Pointille(COUL.guide, 2, T_PT, T_TR);   // M → M_xy
+  const dDiag = new Pointille(COUL.guide, 2, T_PT, T_TR);   // O → M_xy
+  const dZ = new Pointille(COUL.guide, 2, T_PT, T_TR);      // M → pied sur (Oz)
+  const dX = new Pointille(COUL.guide, 2, T_PT, T_TR);      // M_xy → pied sur (Ox)
+  const dY = new Pointille(COUL.guide, 2, T_PT, T_TR);      // M_xy → pied sur (Oy)
+  [dVert, dDiag, dZ, dX, dY].forEach(function (d) { monde.add(d.obj); });
+
+  const proj = ['x', 'y', 'z'].map(function () {
+    const seg = new Cylindre(COUL.proj, 0.03), pt = sphere(COUL.proj, 0.08);
+    monde.add(seg.mesh, pt);
+    return { seg: seg, pt: pt };
+  });
+  const F = { x: V(0, 0, 0), y: V(0, 0, 0), z: V(0, 0, 0) }, Mxy = V(0, 0, 0);   // pieds des projections, M_xy
+
+  const et = {
+    x: c.ajouter('x(t)', CSS.proj, 'x(t)', () => F.x, 'bout', 42),
+    y: c.ajouter('y(t)', CSS.proj, 'y(t)', () => F.y, 'bout', 42),
+    z: c.ajouter('z(t)', CSS.proj, 'z(t)', () => F.z, 'bout', 44)
+  };
+
+  return {
+    titre: 'Projections',
+    bascules: [
+      { cle: 'x', html: '<span><i>x</i>(<i>t</i>)</span>', titre: 'Afficher / masquer la projection x(t)' },
+      { cle: 'y', html: '<span><i>y</i>(<i>t</i>)</span>', titre: 'Afficher / masquer la projection y(t)' },
+      { cle: 'z', html: '<span><i>z</i>(<i>t</i>)</span>', titre: 'Afficher / masquer la projection z(t)' },
+      { cle: 'plan', html: 'plan', titre: 'Afficher / masquer le plan vertical contenant OM et k' }
+    ],
+    maj: function (p, etat) {
+      const x = p[0], y = p[1], z = p[2];
+      Mxy.copy(V(x, y, 0)); F.x.copy(V(x, 0, 0)); F.y.copy(V(0, y, 0)); F.z.copy(V(0, 0, z));
+      const M = P.M;
+
+      plan.visible = etat.plan;
+      if (etat.plan) {
+        posPlan.set([O.x, O.y, O.z, Mxy.x, Mxy.y, Mxy.z, M.x, M.y, M.z, F.z.x, F.z.y, F.z.z]);
+        gPlan.attributes.position.needsUpdate = true;
+      }
+      dVert.obj.visible = etat.plan || etat.x || etat.y;
+      dDiag.obj.visible = etat.plan;
+      dZ.obj.visible = etat.plan || etat.z;
+      dX.obj.visible = etat.x;
+      dY.obj.visible = etat.y;
+      dVert.set(M, Mxy);
+      dDiag.set(O, Mxy);
+      dZ.set(M, F.z);
+      dX.set(Mxy, F.x);
+      dY.set(Mxy, F.y);
+
+      ['x', 'y', 'z'].forEach(function (k, i) {
+        const on = etat[k];
+        proj[i].seg.mesh.visible = on;
+        proj[i].pt.visible = on;
+        et[k].visible = on;
+        if (on) { proj[i].seg.set(O, F[k]); proj[i].pt.position.copy(F[k]); }
+      });
+    }
+  };
+}
+
+/**
+ * Slide « vitesse » : vecteur vitesse tracé en M (tangent à la trace) et sa décomposition
+ * vx·i + vy·j + vz·k. Chaque composante part de M ; un pointillé la relie à l'extrémité de v
+ * (projection orthogonale de l'extrémité de v sur la droite portant la composante).
+ */
+function montageVitesse(c) {
+  const monde = c.monde, P = c.P;
+  const fv = new Fleche(COUL.vit, 0.055, 0.34, 0.14);
+  monde.add(fv.obj);
+  const comp = [0, 1, 2].map(function () {
+    const f = new Fleche(COUL.comp, 0.034, 0.22, 0.09), d = new Pointille(COUL.guide, 2, T_PT, T_TR);
+    monde.add(f.obj, d.obj);
+    return { f: f, d: d, bout: V(0, 0, 0), milieu: V(0, 0, 0) };
+  });
+  const Vmil = V(0, 0, 0), Vbout = V(0, 0, 0);
+
+  const eV = c.ajouter('\\vec{v}(t)', CSS.vit, 'v(t)', () => Vmil, 'perp', 42);
+  eV.origine = () => P.M;
+  const cles = ['x', 'y', 'z'], tex = ['v_x\\,\\vec{i}', 'v_y\\,\\vec{j}', 'v_z\\,\\vec{k}'], repli = ['vx i', 'vy j', 'vz k'];
+  const et = comp.map(function (cp, i) {
+    const e = c.ajouter(tex[i], CSS.comp, repli[i], () => cp.bout, 'bout', 46);
+    e.origine = () => P.M;
+    return e;
+  });
+
+  return {
+    titre: 'Décomposition',
+    bascules: [
+      { cle: 'x', html: '<span><i>v</i><sub><i>x</i></sub></span>', titre: 'Afficher / masquer la composante v_x(t) i' },
+      { cle: 'y', html: '<span><i>v</i><sub><i>y</i></sub></span>', titre: 'Afficher / masquer la composante v_y(t) j' },
+      { cle: 'z', html: '<span><i>v</i><sub><i>z</i></sub></span>', titre: 'Afficher / masquer la composante v_z(t) k' }
+    ],
+    maj: function (p, etat, t) {
+      const v = vitesse(t);
+      Vbout.copy(P.M).add(V(v[0], v[1], v[2]).multiplyScalar(ECH_V));
+      Vmil.copy(P.M).lerp(Vbout, 0.5);
+      fv.set(P.M, Vbout);
+      [V(v[0], 0, 0), V(0, v[1], 0), V(0, 0, v[2])].forEach(function (u, i) {
+        const cp = comp[i], on = etat[cles[i]];
+        cp.f.obj.visible = on; cp.d.obj.visible = on; et[i].visible = on;
+        if (!on) return;
+        cp.bout.copy(P.M).addScaledVector(u, ECH_V);
+        cp.milieu.copy(P.M).lerp(cp.bout, 0.5);
+        cp.f.set(P.M, cp.bout);
+        cp.d.set(Vbout, cp.bout);
+      });
+    }
+  };
+}
+
 /* ---------- Interface ---------- */
 
 const ICONES = {
@@ -207,13 +350,6 @@ const ICONES = {
   debut: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4.5" y="4.5" width="3.2" height="15" rx="1"/><path d="M19.5 5.6v12.8a1 1 0 0 1-1.55.84l-9.2-6.4a1 1 0 0 1 0-1.68l9.2-6.4a1 1 0 0 1 1.55.84z"/></svg>',
   rejouer: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4a8 8 0 1 0 7.75 10h-2.1A6 6 0 1 1 12 6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35A7.96 7.96 0 0 0 12 4z"/></svg>'
 };
-
-const BASCULES = [
-  { cle: 'x', html: '<span><i>x</i>(<i>t</i>)</span>', titre: 'Afficher / masquer la projection x(t)' },
-  { cle: 'y', html: '<span><i>y</i>(<i>t</i>)</span>', titre: 'Afficher / masquer la projection y(t)' },
-  { cle: 'z', html: '<span><i>z</i>(<i>t</i>)</span>', titre: 'Afficher / masquer la projection z(t)' },
-  { cle: 'plan', html: 'plan', titre: 'Afficher / masquer le plan vertical contenant OM et k' }
-];
 
 function creer(tag, classe, parent, html) {
   const e = document.createElement(tag);
@@ -228,17 +364,20 @@ function creer(tag, classe, parent, html) {
 function init(hote) {
   if (hote.dataset.pret) return;
   hote.dataset.pret = '1';
+  const VIT = hote.dataset.mode === 'vitesse';
   const section = hote.closest('section');
   const scene = creer('div', 'v3d-scene', hote);
   scene.setAttribute('data-prevent-swipe', '');          // reveal.js : pas de changement de slide au toucher
   scene.setAttribute('role', 'img');
-  scene.setAttribute('aria-label', 'Repère orthonormé en 3D : le point M(t) se déplace en laissant une trace, le vecteur OM relie l\'origine O à M.');
+  scene.setAttribute('aria-label', VIT
+    ? 'Repère orthonormé en 3D : le point M(t) se déplace en laissant une trace ; le vecteur vitesse, tangent à la trace, est décomposé selon i, j et k.'
+    : 'Repère orthonormé en 3D : le point M(t) se déplace en laissant une trace, le vecteur OM relie l\'origine O à M.');
 
   // Export PDF (?print-pdf) ou WebGL indisponible : on retombe sur l'image fixe.
   function repli(message) {
     scene.replaceChildren();
     const r = creer('div', 'v3d-repli', scene);
-    creer('img', '', r).src = '/vecposition.png';
+    creer('img', '', r).src = VIT ? '/vecvit.png' : '/vecposition.png';
     if (message) creer('div', '', r, message);
   }
   if (/print-pdf/.test(location.search)) { repli(); return; }
@@ -307,33 +446,8 @@ function init(hote) {
   const pM = sphere(COUL.point, 0.115);
   monde.add(pM);
 
-  // Plan vertical (O, M_xy, M, Z) comme sur le schéma
-  const gPlan = new THREE.BufferGeometry();
-  const posPlan = new Float32Array(12);
-  gPlan.setAttribute('position', new THREE.BufferAttribute(posPlan, 3));
-  gPlan.setIndex([0, 1, 2, 0, 2, 3]);
-  const plan = new THREE.Mesh(gPlan, new THREE.MeshBasicMaterial({
-    color: COUL.plan, transparent: true, opacity: 0.13, side: THREE.DoubleSide, depthWrite: false }));
-  plan.frustumCulled = false;
-  monde.add(plan);
-
-  // Pointillés de construction et projections sur les axes
-  const T_PT = 0.13, T_TR = 0.1;
-  const dVert = new Pointille(COUL.guide, 2, T_PT, T_TR);   // M → M_xy
-  const dDiag = new Pointille(COUL.guide, 2, T_PT, T_TR);   // O → M_xy
-  const dZ = new Pointille(COUL.guide, 2, T_PT, T_TR);      // M → pied sur (Oz)
-  const dX = new Pointille(COUL.guide, 2, T_PT, T_TR);      // M_xy → pied sur (Ox)
-  const dY = new Pointille(COUL.guide, 2, T_PT, T_TR);      // M_xy → pied sur (Oy)
-  [dVert, dDiag, dZ, dX, dY].forEach(function (d) { monde.add(d.obj); });
-
-  const proj = ['x', 'y', 'z'].map(function () {
-    const seg = new Cylindre(COUL.proj, 0.03), pt = sphere(COUL.proj, 0.08);
-    monde.add(seg.mesh, pt);
-    return { seg: seg, pt: pt };
-  });
-
   // Positions courantes (mises à jour à chaque date)
-  const P = { M: V(0, 0, 0), Mxy: V(0, 0, 0), Fx: V(0, 0, 0), Fy: V(0, 0, 0), Fz: V(0, 0, 0) };
+  const P = { M: V(0, 0, 0) };
 
   /* --- étiquettes --- */
   const T_ET = 34;
@@ -348,13 +462,12 @@ function init(hote) {
   ajouter('\\vec{i}', CSS.base, 'i', () => unites[0], 'perp', -30);
   ajouter('\\vec{j}', CSS.base, 'j', () => unites[1], 'perp', 30);
   ajouter('\\vec{k}', CSS.base, 'k', () => unites[2], 'perp', 30);
-  ajouter('\\mathrm{M}(t)', CSS.traj, 'M(t)', () => P.M, 'bout', 48);
+  // M(t) : au-delà de M sur la slide « position » ; sous OM sur la slide « vitesse », où v part de M
+  if (VIT) ajouter('\\mathrm{M}(t)', CSS.traj, 'M(t)', () => P.M, 'perp', -40);
+  else ajouter('\\mathrm{M}(t)', CSS.traj, 'M(t)', () => P.M, 'bout', 48);
   ajouter('\\overrightarrow{\\mathrm{OM}}', CSS.om, 'OM', () => P.M.clone().multiplyScalar(0.5), 'perp', 38);
-  const etProj = {
-    x: ajouter('x(t)', CSS.proj, 'x(t)', () => P.Fx, 'bout', 42),
-    y: ajouter('y(t)', CSS.proj, 'y(t)', () => P.Fy, 'bout', 42),
-    z: ajouter('z(t)', CSS.proj, 'z(t)', () => P.Fz, 'bout', 44)
-  };
+  // Éléments propres à chaque slide : projections de OM (mode « position ») ou vecteur vitesse (mode « vitesse »)
+  const extras = (VIT ? montageVitesse : montagePosition)({ monde: monde, O: O, P: P, ajouter: ajouter });
 
   /* --- commandes --- */
   const barre = creer('div', 'v3d-barre', scene);
@@ -373,10 +486,11 @@ function init(hote) {
   const lecture = creer('span', 'v3d-valeur', gTemps);
 
   const gProj = creer('div', 'v3d-groupe', barre);
-  creer('span', 'v3d-titre', gProj, 'Projections');
-  const etat = { x: true, y: true, z: true, plan: true };
+  creer('span', 'v3d-titre', gProj, extras.titre);
+  const etat = {};
   const bascules = {};
-  BASCULES.forEach(function (b) {
+  extras.bascules.forEach(function (b) {
+    etat[b.cle] = true;
     const bt = creer('button', 'v3d-bascule', gProj, b.html);
     bt.type = 'button'; bt.title = b.titre;
     bt.setAttribute('aria-pressed', 'true');
@@ -454,39 +568,14 @@ function init(hote) {
 
   /** Place tous les objets 3D pour la date courante. */
   function majScene() {
-    const p = phys(t), x = p[0], y = p[1], z = p[2];
-    P.M.copy(V(x, y, z)); P.Mxy.copy(V(x, y, 0));
-    P.Fx.copy(V(x, 0, 0)); P.Fy.copy(V(0, y, 0)); P.Fz.copy(V(0, 0, z));
+    const p = phys(t);
+    P.M.copy(V(p[0], p[1], p[2]));
 
     om.set(O, P.M);
     pM.position.copy(P.M);
     gTrace.instanceCount = Math.floor(t / DUREE * NB_ECH);
 
-    const montrerX = etat.x, montrerY = etat.y, montrerZ = etat.z, montrerPlan = etat.plan;
-    plan.visible = montrerPlan;
-    if (montrerPlan) {
-      const Fz = P.Fz, Mxy = P.Mxy, M = P.M;
-      posPlan.set([O.x, O.y, O.z, Mxy.x, Mxy.y, Mxy.z, M.x, M.y, M.z, Fz.x, Fz.y, Fz.z]);
-      gPlan.attributes.position.needsUpdate = true;
-    }
-    dVert.obj.visible = montrerPlan || montrerX || montrerY;
-    dDiag.obj.visible = montrerPlan;
-    dZ.obj.visible = montrerPlan || montrerZ;
-    dX.obj.visible = montrerX;
-    dY.obj.visible = montrerY;
-    dVert.set(P.M, P.Mxy);
-    dDiag.set(O, P.Mxy);
-    dZ.set(P.M, P.Fz);
-    dX.set(P.Mxy, P.Fx);
-    dY.set(P.Mxy, P.Fy);
-
-    [['x', P.Fx], ['y', P.Fy], ['z', P.Fz]].forEach(function (c, i) {
-      const on = etat[c[0]];
-      proj[i].seg.mesh.visible = on;
-      proj[i].pt.visible = on;
-      etProj[c[0]].visible = on;
-      if (on) { proj[i].seg.set(O, c[1]); proj[i].pt.position.copy(c[1]); }
-    });
+    extras.maj(p, etat, t);
   }
 
   /* --- taille, mise à l'échelle reveal.js --- */
@@ -531,8 +620,6 @@ function init(hote) {
   const v = new THREE.Vector3(), vo = new THREE.Vector3();
   function placerEtiquettes() {
     const k = parseFloat(scene.style.getPropertyValue('--k')) || 1;
-    vo.copy(O).project(camera);
-    const ox = (vo.x + 1) / 2 * largeur, oy = (1 - vo.y) / 2 * hauteur;   // O à l'écran
     etiquettes.forEach(function (e) {
       if (!e.visible) { e.el.style.display = 'none'; return; }
       v.copy(e.ancre()).project(camera);
@@ -542,8 +629,9 @@ function init(hote) {
       let px = ax, py = ay;
       if (e.mode === 'fixe') { px += e.a * k; py += e.b * k; }
       else {
-        // direction O → ancre à l'écran (vers le haut si l'ancre est en O)
-        let dx = ax - ox, dy = ay - oy;
+        // direction origine → ancre à l'écran (O par défaut ; vers le haut si les deux coïncident)
+        vo.copy(e.origine ? e.origine() : O).project(camera);
+        let dx = ax - (vo.x + 1) / 2 * largeur, dy = ay - (1 - vo.y) / 2 * hauteur;
         const n = Math.hypot(dx, dy);
         if (n < 1e-3) { dx = 0; dy = -1; } else { dx /= n; dy /= n; }
         if (e.mode === 'bout') { px += dx * e.a * k; py += dy * e.a * k; }
