@@ -166,8 +166,13 @@ Avec sa température de surface de $\pu{5778 K}$,<br>le spectre du Soleil est ce
 
 Au fait, de quelle couleur est le Soleil ?
 
+<!--
+---
+
+{{< slide  background-video="/pixels.mp4" background-size="contain" background-transition="concave" background-video-muted="true">}}
 
 ---
+-->
 
 Blanc (mélange des longueurs d'onde visibles).
 
