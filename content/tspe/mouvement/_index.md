@@ -433,7 +433,7 @@ La <span class="imp">norme</span> $a$(t) du vecteur accélération vaut :
 ---
 
 
-{{< geogebra-slide id="uk5ujj5u" width="650" height="650" maxheight="600" rounded="true" shadow="true" zoombuttons="true">}}
+{{< geogebra-slide id="uk5ujj5u" width="650" height="650" maxheight="600" rounded="true" shadow="true" zoombuttons="true" rightclick="true">}}
 
 ---
 
