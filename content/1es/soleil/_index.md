@@ -43,7 +43,7 @@ L'**énergie** $E$ mesure la capacité<br>
 
 <br>
 
-La **puissance** $P$, c'est le taux de conversion<br>de l'énergie $E$, sa vitesse de variation.
+<p class="fragment fade-up">La <b>puissance</b> $P$, c'est le taux de conversion<br>de l'énergie $E$, sa vitesse de variation.</p>
 
 
 
@@ -55,13 +55,13 @@ On passe de l'une à l'autre grâce à la formule :
 
 <br>
 
-<div style="background-color:rgb(255,0,0,0.2);border:solid red 5px;padding:10px 10px 15px 10px;border-radius:10px;width:40%;margin-left:auto;margin-right:auto">
+<div class="fragment fade-up" style="background-color:rgb(255,0,0,0.2);border:solid red 5px;padding:10px 10px 15px 10px;border-radius:10px;width:40%;margin-left:auto;margin-right:auto">
 $E=P\times t$
 </div>
 
 <br>
 
-où $E$ est en joules (J)<br>si $P$ est en watts (W)<br>et $t$ en secondes (s).
+<p class="fragment fade-up">où $E$ est en joules (J)<br>si $P$ est en watts (W)<br>et $t$ en secondes (s).</p>
 
 ---
 
@@ -149,10 +149,7 @@ $$T(\text{en K}) = \frac{2,89\times10^6}{\lambda_{max}(\text{en nm})}$$
 
 ---
 
-Avec sa température de surface de $\pu{5778 K}$,<br>le spectre du Soleil est centré<br>sur le rayonnement visible.
-
-<p class="fragment fade-up">Et la Terre rayonne dans l'infrarouge, à une longueur d'onde maximale d'environ 10 μm.</p>
-
+Avec sa température de surface de $\pu{5778 K}$,<br>le spectre du Soleil est centré<br>sur le rayonnement visible (sur le vert).
 
 ---
 
@@ -164,23 +161,17 @@ Avec sa température de surface de $\pu{5778 K}$,<br>le spectre du Soleil est ce
 
 ---
 
-Au fait, de quelle couleur est le Soleil ?
-
-<!--
----
-
-{{< slide  background-video="/pixels.mp4" background-size="contain" background-transition="concave" background-video-muted="true">}}
-
----
--->
-
-Blanc (mélange des longueurs d'onde visibles).
+Le blanc du Soleil correspond au mélange des radiations visibles (toutes les couleurs du spectre).
 
 <p class="fragment fade-up">Il apparaît légèrement jaune (jusqu'à rouge) le matin et le soir à cause du filtre atmosphérique.</p>
 
 ---
 
 La Terre, elle, rayonne dans l'infrarouge,<br>à une longueur d'onde maximale d'environ 10 μm.
+
+---
+
+{{< slide  background-image="/planckterresoleil.png" background-size="contain" background-transition="concave">}}
 
 ---
 
@@ -238,13 +229,15 @@ L'énergie avec laquelle le Soleil arrose la Terre
 
 La puissance solaire totale arrivant<br>sur le sol terrestre vaut alors :
 
-$\displaystyle 70\\% \times K \times\pi R_T^2 \approx \pu{1,2E17 W}$
+<p class="fragment fade-up">
+$\displaystyle 70\% \times K \times\pi R_T^2 \approx \pu{1,2E17 W}$
+</p>
 
-En un an, on peut donc récupérer une énergie de :
+<p class="fragment fade-up">En un an, on peut donc récupérer une énergie de :</p>
 
-$\pu{3,8E24  J} = \pu{3,8 YJ}$
+<p class="fragment fade-up">$\pu{3,8E24  J} = \pu{3,8 YJ}$</p>
 
-Comparons aux autres sources d'énergie.
+<p class="fragment fade-up">Comparons aux autres sources d'énergie.</p>
 
 ---
 
@@ -258,11 +251,11 @@ Comparons aux autres sources d'énergie.
 
 ### Irradiance et distance
 
-L'irradiance du soleil (la puissance du rayonnement reçue sur un panneau d'un mètre carré orienté face à lui) varie en raison inverse<br>du carré de la distance au Soleil.
+<p class="fragment fade-up">L'irradiance du soleil (la puissance du rayonnement reçue sur un panneau d'un mètre carré orienté face à lui) varie en raison inverse<br>du carré de la distance au Soleil.</p>
 
 <br>
 
-<div style="background-color:rgb(255,0,0,0.2);border:solid red 5px;padding:0px 0px 0px 0px;border-radius:10px;width:40%;margin-left:auto;margin-right:auto">
+<div class="fragment fade-up" style="background-color:rgb(255,0,0,0.2);border:solid red 5px;padding:0px 0px 0px 0px;border-radius:10px;width:40%;margin-left:auto;margin-right:auto">
 $$I\propto \frac{1}{d^2}$$
 </div>
 
@@ -276,7 +269,7 @@ $$I\propto \frac{1}{d^2}$$
 
 La trajectoire de la Terre autour du Soleil n'est pas tout à fait circulaire ; elle est elliptique.
 
-L'eccentricité de cette ellipse<br>est néanmoins très faible.
+<p class="fragment fade-up">L'eccentricité de cette ellipse<br>est néanmoins très faible.</p>
 
 ---
 
@@ -291,16 +284,16 @@ Dans l'image suivante, on exagère très fortement l'eccentricité. Que peut-on 
 
 **On ne peut pas expliquer les saisons par la variation de la distance Terre-Soleil !**
 
-Comment les expliquer alors ?
+<p class="fragment fade-up">Comment les expliquer alors ?</p>
 
-<span class="fragment"> Les saisons sont dues à l'inclinaison de la Terre !</span>
+<p class="fragment fade-up">Les saisons sont dues à l'inclinaison de la Terre !</p>
 
 ---
 
 
 ### Irradiance et inclinaison
 
-Le rayonnement solaire ne touche pas aussi efficacement toute la surface terrestre car l'inclinaison des rayons par rapport à la surface modifie la puissance par m<sup>2</sup> reçue.
+<p class="fragment fade-up">Le rayonnement solaire ne touche pas aussi efficacement toute la surface terrestre car l'inclinaison des rayons par rapport à la surface modifie la puissance par m<sup>2</sup> reçue.</p>
 
 ---
 
@@ -401,7 +394,7 @@ Ce qui repart dans l'espace
 
 La vidéo précédente montre l'irradiation<br>solaire au niveau du sol. 
 
-Comme expliquer la différence par rapport à l'irradiation au niveau des hautes couches atmosphériques (beaucoup plus symétrique) ?
+<p class="fragment fade-up">Comme expliquer la différence par rapport à l'irradiation au niveau des hautes couches atmosphériques (beaucoup plus symétrique) ?</p>
 
 ---
 
@@ -418,7 +411,7 @@ L'albédo est la proportion de rayonnement renvoyée par une surface.
 
 <br>
 
-<div style="background-color:rgb(255,0,0,0.2);border:solid red 5px;padding:0px 0px 0px 0px;border-radius:10px;width:40%;margin-left:auto;margin-right:auto">
+<div class="fragment fade-up" style="background-color:rgb(255,0,0,0.2);border:solid red 5px;padding:0px 0px 0px 0px;border-radius:10px;width:40%;margin-left:auto;margin-right:auto">
 $$A = \frac{P_{diff}}{P_{inc}}$$
 </div>
 

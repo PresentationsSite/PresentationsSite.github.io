@@ -169,18 +169,27 @@ $${\color{#FF968D}\sum \vec{F}_\mathrm{ext}} =  m\color{#FFF056}{\vec{a}}$$
 
 ---
 
-Qu'obtient-on dans le cas d'un MRU ?
+Qu'obtient-on dans le cas d'un <b style="color:#FFF056">MRU</b> ?
 
-<p class="fragment fade-up">$\sum \vec{F}_\mathrm{ext} = \vec{0}$</p>
+<p class="fragment fade-up">${\color{#FF968D} \sum \vec{F}_\mathrm{ext}} = \color{#FFF056}\vec{0}$</p>
 
-<p class="fragment fade-up">On pourrait croire alors que la 2<sup>e</sup> loi rend la 1<sup>re</sup> inutile. Mais la 1<sup>re</sup> affirme surtout l'existence de référentiels galiléens or la 2<sup>e</sup> n'est valide que dans ceux-ci !
-</p>
+<p class="fragment fade-up">On pourrait croire alors que la 2<sup>e</sup> loi rend la 1<sup>re</sup> inutile...</p> 
+
+<p class="fragment fade-up">Mais la 1<sup>re</sup> loi définit le cadre<br>dans lequel la 2<sup>e</sup> loi est valide&nbsp;:<br>les <b style="color:#56C1FF">référentiels galiléens</b>.</p>
+
+---
+
+💡Conseil pour le bac💡
+
+<p class="fragment fade-up">Si on vous demande de déterminer<br>le <b style="color:#FFF056">mouvement</b> d'un système <span class="imp">pseudo-isolé</span> ou,<br>à l'inverse, de déterminer la <span class="imp">résultante des forces</span><br>sur un système en <b style="color:#FFF056">MRU</b>,</p>
+
+<p class="fragment fade-up">il vaut mieux invoquer la première loi de Newton<br>que la deuxième (bien que logiquement,<br>il faudrait faire l'inverse...).</p>
 
 ---
 
 <u>Rq</u> :
 
-On appelle aussi la 2<sup>e</sup> loi de Newton, le <span class="imp">principe fondamental de la dynamique (PFD)</span>.
+On appelle aussi la 2<sup>e</sup> loi de Newton,<br>le <span class="imp">principe fondamental de la dynamique (PFD)</span>.
 
 {{%/section%}}
 
