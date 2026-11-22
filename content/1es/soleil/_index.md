@@ -83,7 +83,7 @@ highlight_theme = "atom-one-dark-reasonable"
 
 <div style="display:flex;align-items:center;justify-content:center;gap:40px;max-width:900px;margin:0 auto">
 <img src="/einstein.png" alt="Albert Einstein" style="height:260px;flex:none;filter:invert(1);mix-blend-mode:screen;-webkit-mask-image:radial-gradient(ellipse at center,#000 55%,transparent 100%);mask-image:radial-gradient(ellipse at center,#000 55%,transparent 100%);border:none;background:none;box-shadow:none;margin:0">
-<div style="text-align:left;font-size:.78em;width:540px;flex:none">Grâce à la fameuse formule d’Einstein<br><span class="imp">$E=mc^2$</span> qui lie la masse à l’énergie,<br>on déduit que l’énergie libérée par le Soleil pendant une microseconde correspond à une <span class="imp">perte de masse</span> de $E/c^2=\ldots$</div>
+<div style="text-align:left;font-size:.78em;width:540px;flex:none">Grâce à la fameuse formule d’Einstein<br><span class="imp">$E=mc^2$</span> qui lie la masse à l’énergie,<br>on déduit que l’énergie libérée par le Soleil pendant une microseconde correspond à une <span class="imp">perte de masse</span><br>de $E/c^2=\ldots$</div>
 </div>
 
 ---
@@ -173,7 +173,7 @@ Pour Rigel, le maximum du spectre mesuré (≈ 385 nm) n'est que le bord de la f
 
 ---
 
-<p>Trouver la température de ces deux étoiles, sachant que :</p>
+<p>Trouver la température de ces deux étoiles,<br>sachant que :</p>
 <div class="formule">$$T(\text{en K}) = \frac{2{,}89\times10^6}{\lambda_{max}(\text{en nm})}$$</div>
 
 ---
@@ -219,7 +219,7 @@ Pour Rigel, le maximum du spectre mesuré (≈ 385 nm) n'est que le bord de la f
 
 <p>On apprend plein de choses en<br>analysant la <span class="imp">lumière des étoiles</span> :</p>
 <ul class="liste">
-<li class="fragment fade-up">leur <span class="imp">température</span> de surface, comme on l’a vu</li>
+<li class="fragment fade-up">leur <span class="imp">température</span> de surface,<br>comme on l’a vu</li>
 <li class="fragment fade-up">leur <span class="imp">composition chimique</span><br>(raies d’absorption dans le spectre)</li>
 <li class="fragment fade-up">leur <span class="imp">mouvement</span> par rapport à la Terre<br>(décalage Doppler)</li>
 <li class="fragment fade-up">la présence d’<span class="imp">exoplanètes</span><br>(transit ou effet Doppler)</li>
@@ -325,7 +325,7 @@ Pour Rigel, le maximum du spectre mesuré (≈ 385 nm) n'est que le bord de la f
 ---
 
 <h3>Irradiance et distance</h3>
-<p class="fragment fade-up" style="font-size:.7em">L’<span class="imp">irradiance</span> du Soleil (la puissance du rayonnement reçue sur un panneau d’un mètre carré orienté face à lui) varie en raison inverse du carré de la distance au Soleil.</p>
+<p class="fragment fade-up" style="font-size:.7em">L’<span class="imp">irradiance</span> du Soleil (la puissance du rayonnement reçue sur un panneau d’un mètre carré orienté face à lui) varie en raison inverse du carré<br>de la distance au Soleil.</p>
 <div class="formule fragment fade-up">$$I\propto \frac{1}{d^2}$$</div>
 
 ---
@@ -374,7 +374,7 @@ Pour Rigel, le maximum du spectre mesuré (≈ 385 nm) n'est que le bord de la f
 ---
 
 <h3>Irradiance et inclinaison</h3>
-<p class="fragment fade-up" style="font-size:.7em">Le rayonnement solaire ne touche pas aussi efficacement toute la surface terrestre : l’<span class="imp">inclinaison des rayons</span> par rapport à la surface modifie la puissance par m² reçue.</p>
+<p class="fragment fade-up" style="font-size:.7em">Le rayonnement solaire ne touche pas aussi efficacement toute la surface terrestre : l’<span class="imp">inclinaison des rayons</span> par rapport à la surface<br>modifie la puissance par m² reçue.</p>
 
 ---
 
@@ -408,7 +408,7 @@ Pour Rigel, le maximum du spectre mesuré (≈ 385 nm) n'est que le bord de la f
 
 ---
 
-<p>Regardons maintenant comment évolue l’irradiation<br>au cours de <span class="imp">l’année</span>.</p>
+<p>Regardons maintenant comment évolue l’irradiation au cours de <span class="imp">l’année</span>.</p>
 
 ---
 
@@ -531,7 +531,7 @@ Pour Rigel, le maximum du spectre mesuré (≈ 385 nm) n'est que le bord de la f
 ---
 
 <h3>Effet de serre</h3>
-<p style="font-size:.75em">Il se trouve que certains gaz atmosphériques,<br>les <span class="imp">gaz à effet de serre</span> (comme le dioxyde de carbone, le méthane ou la vapeur d’eau),<br>sont opaques à ces longueurs d’onde.</p>
+<p style="font-size:.75em">Il se trouve que certains gaz atmosphériques,<br>les <span class="imp">gaz à effet de serre</span> (comme le dioxyde de carbone, le méthane ou la vapeur d’eau), sont opaques à ces longueurs d’onde.</p>
 
 ---
 
@@ -578,10 +578,6 @@ Pour Rigel, le maximum du spectre mesuré (≈ 385 nm) n'est que le bord de la f
 
 <h3>Un modèle d’effet de serre</h3>
 <div class="sw" data-w="serre" data-prevent-swipe></div>
-
----
-
-{{< youtube-slide id="ewc8FBtEKPs" ratio="16x9" >}}
 
 {{% /section %}}
 
