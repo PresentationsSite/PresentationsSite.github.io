@@ -135,6 +135,35 @@ $${\color{#FF968D}\sum \vec{F}_\mathrm{ext} = \vec{0}} \Leftrightarrow \color{#F
 
 <script type="module" src="/js/anim-newton.js"></script>
 
+---
+
+En toute rigueur, la première loi ne donne pas<br>une équivalence mais seulement<br>l'implication directe&nbsp;:
+
+<div class="fragment fade-up">
+$$
+\begin{aligned}
+&\exists\,\mathcal{R}_g,\ \forall\,\mathrm{M}\ : \\
+ &\big(\textstyle\sum\vec{F}_\mathrm{ext}(\mathrm{M})=\vec{0}\big)\ \Longrightarrow\ \big(\vec{v}_{\mathrm{M}/\mathcal{R}_g}=\overrightarrow{\text{cte}}\big)
+ \end{aligned}
+ $$
+ </div>
+ 
+ <p class="fragment fade-up">La réciproque est apportée par la 2<sup>e</sup> loi de Newton.</p>
+ 
+ {{%note%}}
+ La première loi définit les référentiels galiléens et stipule l'existence d'au moins un.
+
+  {{%/note%}}
+ 
+ ---
+ 
+ 💡Conseil pour le bac💡
+
+<p class="fragment fade-up">Faites comme si s'était bien une équivalence. </p>
+
+<p class="fragment fade-up">La 1<sup>re</sup> loi devient alors identique<br>au <span class="imp">principe d'inertie</span> appris en seconde.</p>
+
+
 {{%/section%}}
 
 ---
@@ -159,7 +188,7 @@ Dans un <b style="color:#56C1FF">référentiel galiléen</b> :
 
 
 <div class="fragment fade-up" style="position:relative;margin:auto;width:fit-content;border:solid 5px #FF968D;padding:0px 50px 0px 50px;border-radius:10px">
-$${\color{#FF968D}\sum \vec{F}_\mathrm{ext}} =  m\color{#FFF056}{\vec{a}}$$
+$${\color{#FF968D}\sum \vec{F}_\mathrm{ext}} =  m\,\color{#FFF056}{\vec{a}}$$
 </div>
 
 <br>
@@ -189,17 +218,24 @@ $${\color{#FF968D}\sum \vec{F}_\mathrm{ext}} =  m\color{#FFF056}{\vec{a}}$$
 
 Qu'obtient-on dans le cas d'un <b style="color:#FFF056">MRU</b> ?
 
-<p class="fragment fade-up">${\color{#FF968D} \sum \vec{F}_\mathrm{ext}} = \color{#FFF056}\vec{0}$</p>
+<p class="fragment fade-up" style="font-size:1.2em;">${\color{#FF968D} \sum \vec{F}_\mathrm{ext}} = \color{#FFF056}\vec{0}$</p>
 
-<p class="fragment fade-up">On pourrait croire alors que la 2<sup>e</sup> loi rend la 1<sup>re</sup> inutile...</p> 
+---
+
+On pourrait croire alors que la 2<sup>e</sup> loi rend la 1<sup>re</sup> inutile...
 
 <p class="fragment fade-up">Mais la 1<sup>re</sup> loi définit le cadre<br>dans lequel la 2<sup>e</sup> loi est valide&nbsp;:<br>les <b style="color:#56C1FF">référentiels galiléens</b>.</p>
+
+<p class="fragment fade-up">Et elle ne donnait que l'implication ${\color{#FF968D} \sum \vec{F}_\mathrm{ext}} \Rightarrow \color{#FFF056}\mathrm{MRU}$
+
+
+<p class="fragment fade-up">La 2<sup>e</sup> loi apporte la réciproque ${\color{#FF968D} \sum \vec{F}_\mathrm{ext}} \Leftarrow \color{#FFF056}\mathrm{MRU}$.</p>
 
 ---
 
 💡Conseil pour le bac💡
 
-<p class="fragment fade-up">Si on vous demande de déterminer<br>le <b style="color:#FFF056">mouvement</b> d'un système <span class="imp">pseudo-isolé</span> ou,<br>à l'inverse, de déterminer la <span class="imp">résultante des forces</span><br>sur un système en <b style="color:#FFF056">MRU</b>,</p>
+<p class="fragment fade-up">Si on vous demande de déterminer<br>la <span class="imp">résultante des forces</span> sur un système en <b style="color:#FFF056">MRU</b>,</p>
 
 <p class="fragment fade-up">il vaut mieux invoquer la première loi de Newton<br>que la deuxième (bien que logiquement,<br>il faudrait faire l'inverse...).</p>
 
