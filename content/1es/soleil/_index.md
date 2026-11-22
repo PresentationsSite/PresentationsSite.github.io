@@ -65,7 +65,7 @@ highlight_theme = "atom-one-dark-reasonable"
 ---
 
 <p>On passe de l’une à l’autre grâce à la formule :</p>
-<div class="formule">$E=P\times t$</div>
+<div class="formule fragment fade-up">$E=P\times t$</div>
 <p class="fragment fade-up">où $E$ est en joules (J)<br>si $P$ est en watts (W)<br>et $t$ en secondes (s).</p>
 
 ---
@@ -189,13 +189,12 @@ Pour Rigel, le maximum du spectre mesuré (≈ 385 nm) n'est que le bord de la f
 
 ---
 
-<p>Avec sa température de surface de $5778\ \text{K}$,<br>le spectre du Soleil est centré<br>sur le rayonnement <span class="imp">visible</span>.</p>
-<p class="fragment fade-up">Et la Terre rayonne dans l’<span class="imp">infrarouge</span>,<br>à une longueur d’onde maximale d’environ 10 μm.</p>
+<p>Avec sa température de surface de $5778\ \text{K}$,<br>le spectre du Soleil est centré<br>sur le rayonnement <span class="imp">visible</span> (sur le <span class="imp">vert</span>).</p>
 
 ---
 
-<h3>Soleil et Terre : deux corps noirs</h3>
-<div class="sw" data-w="planck2" data-prevent-swipe></div>
+<h3>Le spectre du Soleil</h3>
+<div class="sw" data-w="planck2" data-show="sun" data-prevent-swipe></div>
 
 ---
 
@@ -204,14 +203,17 @@ Pour Rigel, le maximum du spectre mesuré (≈ 385 nm) n'est que le bord de la f
 
 ---
 
-{{< qcm
-    q=`Au fait, de quelle couleur est le <b>Soleil</b> vu depuis l’espace ?`
-    a1=`Jaune`
-    a2=`Orange`
-    a3=`Blanc`
-    a4=`Rouge`
-    bonne="3"
-    expl=`<b>Blanc</b> : c’est le mélange de toutes les longueurs d’onde visibles. Il apparaît légèrement jaune (jusqu’à rouge) le matin et le soir à cause du filtre atmosphérique.` >}}
+<p>Le <span class="imp">blanc</span> du Soleil correspond au mélange des radiations visibles (toutes les couleurs du spectre).</p>
+<p class="fragment fade-up">Il apparaît légèrement jaune (jusqu’à rouge) le matin et le soir à cause du filtre atmosphérique.</p>
+
+---
+
+<p>La Terre, elle, rayonne dans l’<span class="imp">infrarouge</span>,<br>à une longueur d’onde maximale d’environ 10 μm.</p>
+
+---
+
+<h3>Soleil et Terre : deux corps noirs</h3>
+<div class="sw" data-w="planck2" data-prevent-swipe></div>
 
 ---
 
@@ -295,7 +297,7 @@ Pour Rigel, le maximum du spectre mesuré (≈ 385 nm) n'est que le bord de la f
 ---
 
 <p>La puissance solaire totale arrivant<br>sur le sol terrestre vaut alors :</p>
-<div class="formule">$\displaystyle 70\%\times K\times\pi R_T^2\approx \pu{1,2E17 W}$</div>
+<div class="formule fragment fade-up">$\displaystyle 70\%\times K\times\pi R_T^2\approx \pu{1,2E17 W}$</div>
 <p class="fragment fade-up">En un an, on peut donc récupérer une énergie de :</p>
 <div class="fragment fade-up formule">$\pu{3,8E24 J}=\pu{3,8 YJ}$</div>
 <p class="fragment fade-up" style="font-size:.7em">Comparons aux autres sources d’énergie.</p>
@@ -323,8 +325,8 @@ Pour Rigel, le maximum du spectre mesuré (≈ 385 nm) n'est que le bord de la f
 ---
 
 <h3>Irradiance et distance</h3>
-<p style="font-size:.7em">L’<span class="imp">irradiance</span> du Soleil (la puissance du rayonnement reçue sur un panneau d’un mètre carré orienté face à lui) varie en raison inverse du carré de la distance au Soleil.</p>
-<div class="formule">$$I\propto \frac{1}{d^2}$$</div>
+<p class="fragment fade-up" style="font-size:.7em">L’<span class="imp">irradiance</span> du Soleil (la puissance du rayonnement reçue sur un panneau d’un mètre carré orienté face à lui) varie en raison inverse du carré de la distance au Soleil.</p>
+<div class="formule fragment fade-up">$$I\propto \frac{1}{d^2}$$</div>
 
 ---
 
@@ -366,13 +368,13 @@ Pour Rigel, le maximum du spectre mesuré (≈ 385 nm) n'est que le bord de la f
 ---
 
 <p><b class="imp">On ne peut pas expliquer les saisons par la variation de la distance Terre-Soleil !</b></p>
-<p>Comment les expliquer alors ?</p>
+<p class="fragment fade-up">Comment les expliquer alors ?</p>
 <p class="fragment fade-up">Les saisons sont dues à l’<span class="imp">inclinaison de la Terre</span> !</p>
 
 ---
 
 <h3>Irradiance et inclinaison</h3>
-<p style="font-size:.7em">Le rayonnement solaire ne touche pas aussi efficacement toute la surface terrestre : l’<span class="imp">inclinaison des rayons</span> par rapport à la surface modifie la puissance par m² reçue.</p>
+<p class="fragment fade-up" style="font-size:.7em">Le rayonnement solaire ne touche pas aussi efficacement toute la surface terrestre : l’<span class="imp">inclinaison des rayons</span> par rapport à la surface modifie la puissance par m² reçue.</p>
 
 ---
 
@@ -491,7 +493,7 @@ Pour Rigel, le maximum du spectre mesuré (≈ 385 nm) n'est que le bord de la f
 ---
 
 <p>L’<span class="imp">albédo</span> est la proportion de rayonnement renvoyée par une surface.</p>
-<div class="formule">$$A = \frac{P_{diff}}{P_{inc}}$$</div>
+<div class="formule fragment fade-up">$$A = \frac{P_{diff}}{P_{inc}}$$</div>
 
 ---
 

@@ -78,10 +78,11 @@
   S.register('planck2', function (root) {
     var W = 900, Hh = 430, st = S.stage(root, W, Hh), g = st.g;
     var X0 = 70, X1 = 860, Y0 = 34, Y1 = 310, LA = Math.log10(0.1), LB = Math.log10(100);
-    var absMode = false, cur = null, show = { sun: true, earth: true };
+    var sunOnly = root.getAttribute('data-show') === 'sun';
+    var absMode = false, cur = null, show = { sun: true, earth: !sunOnly };
     var TS = 5778, TE = 288;
     var ctrl = UI.row(root);
-    UI.chips(ctrl, [{ id: 'sun', label: '☀ Soleil (5 778 K)', color: '#ffb938' }, { id: 'earth', label: '🌍 Terre (288 K)', color: '#5cc8ff' }], { multi: true, value: ['sun', 'earth'], onchange: function (id, all) { show.sun = all.indexOf('sun') >= 0; show.earth = all.indexOf('earth') >= 0; } });
+    UI.chips(ctrl, [{ id: 'sun', label: '☀ Soleil (5 778 K)', color: '#ffb938' }, { id: 'earth', label: '🌍 Terre (288 K)', color: '#5cc8ff' }], { multi: true, value: sunOnly ? ['sun'] : ['sun', 'earth'], onchange: function (id, all) { show.sun = all.indexOf('sun') >= 0; show.earth = all.indexOf('earth') >= 0; } });
     UI.chips(ctrl, [{ id: 'rel', label: 'Normalisé (même hauteur)' }, { id: 'abs', label: 'Valeurs absolues (échelle log)' }], { value: 'rel', onchange: function (id) { absMode = id === 'abs'; } });
     var read = UI.readout(root);
     function xOf(um) { return X0 + (Math.log10(um) - LA) / (LB - LA) * (X1 - X0); }
