@@ -1,0 +1,253 @@
+/*
+ * Animations 2D « pleine slide » (voir /js/anim-newton.js) : mêmes habillage et commandes
+ * que les scènes 3D de vecteur-position-3d.css, sans les éléments propres à la 3D.
+ * Le conteneur occupe toute la hauteur de la slide (700) ; la scène est ensuite
+ * dimensionnée en JS pour couvrir toute la fenêtre.
+ */
+.reveal .anim-pe {
+  position: relative;
+  height: 700px;
+  margin: -20px 0;
+  padding: 0;
+  text-align: left;
+  font-size: 22px;
+  line-height: 1.2;
+}
+
+.reveal .anim-pe .pe-scene {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.reveal .anim-pe canvas {
+  display: block;
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  max-width: none;
+  max-height: none;
+  border: 0;
+  box-shadow: none;
+  background: none;
+  outline: none;
+}
+
+/* Étiquettes MathJax projetées sur la scène */
+.reveal .anim-pe .pe-labels {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.reveal .anim-pe .pe-label {
+  position: absolute;
+  left: 0;
+  top: 0;
+  white-space: nowrap;
+  line-height: 1;
+  font-family: "Times New Roman", serif;
+  font-style: italic;
+  transform-origin: 0 0;
+  will-change: transform;
+  /* halo sombre : l'étiquette reste lisible au-dessus d'un trait ou d'un vecteur */
+  filter: drop-shadow(0 0 3px rgba(20, 22, 24, 0.95)) drop-shadow(0 0 6px rgba(20, 22, 24, 0.8));
+}
+.reveal .anim-pe .pe-label > svg {
+  display: block;
+  margin: 0;
+  max-width: none;
+}
+
+/* Consigne discrète en haut à gauche */
+.reveal .anim-pe .pe-aide {
+  /* légende : une ligne, centrée sous la scène (top posé par le JS) */
+  position: absolute;
+  left: 0;
+  right: 0;
+  text-align: center;
+  white-space: nowrap;
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 17px;
+  pointer-events: none;
+  transform: scale(var(--k, 1));
+  transform-origin: 50% 0;
+}
+
+/* Barre de commandes en bas */
+.reveal .anim-pe .pe-barre {
+  position: absolute;
+  left: 50%;
+  bottom: var(--bas, 22px);
+  /* --k : facteur de compensation posé par le JS quand la slide est très
+     réduite (téléphone), pour que les commandes restent lisibles */
+  transform: translateX(-50%) scale(var(--k, 1));
+  transform-origin: 50% 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 10px 16px;
+  width: max-content;
+  /* on laisse libre le coin inférieur droit (flèches de navigation de reveal.js) */
+  max-width: calc((100% - var(--marge, 250px)) / var(--k, 1));
+  box-sizing: border-box;
+  padding: 10px 16px;
+  border-radius: 14px;
+  background: rgba(20, 22, 24, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  cursor: default;
+  z-index: 2;
+}
+.reveal .anim-pe .pe-groupe {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.reveal .anim-pe .pe-titre {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 17px;
+}
+
+.reveal .anim-pe button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin: 0;
+  padding: 7px 14px;
+  min-height: 38px;
+  box-sizing: border-box;
+  border: 1.5px solid rgba(255, 255, 255, 0.35);
+  border-radius: 10px;
+  background: transparent;
+  color: #fff;
+  font: inherit;
+  font-size: 19px;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+.reveal .anim-pe button:hover { background: rgba(255, 255, 255, 0.12); }
+.reveal .anim-pe button:focus-visible { outline: 2px solid #56C1FF; outline-offset: 2px; }
+.reveal .anim-pe button svg { width: 17px; height: 17px; fill: currentColor; flex: none; }
+
+.reveal .anim-pe .pe-lancer {
+  min-width: 8.6em;           /* largeur fixe : la barre ne bouge pas quand le texte change */
+  background: #FF5E99;
+  border-color: #FF5E99;
+  font-weight: bold;
+}
+.reveal .anim-pe .pe-lancer:hover { background: #ff7aad; }
+
+/* Boutons à bascule : projections x(t), y(t), z(t) et plan */
+.reveal .anim-pe .pe-bascule {
+  font-family: "Times New Roman", serif;
+  font-size: 21px;
+  letter-spacing: 0;
+  padding: 7px 12px;
+}
+.reveal .anim-pe .pe-bascule i { font-style: italic; }
+.reveal .anim-pe .pe-bascule[aria-pressed="true"] {
+  background: rgba(143, 209, 138, 0.22);
+  border-color: #8FD18A;
+  color: #bff0ba;
+}
+.reveal .anim-pe .pe-bascule[aria-pressed="false"] {
+  color: rgba(255, 255, 255, 0.55);
+  border-style: dashed;
+}
+
+/* Curseur de temps */
+.reveal .anim-pe .pe-temps {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.reveal .anim-pe input[type="range"] {
+  width: 170px;
+  margin: 0;
+  accent-color: #FF5E99;
+  cursor: pointer;
+}
+.reveal .anim-pe .pe-valeur {
+  min-width: 5.2em;
+  color: #fff;
+  font-variant-numeric: tabular-nums;
+  font-size: 19px;
+}
+
+/* Repli : image fixe si WebGL est indisponible ou à l'impression */
+.reveal .anim-pe .pe-repli {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 18px;
+}
+.reveal .anim-pe .pe-repli img {
+  max-height: 600px;
+  width: auto;
+  max-width: 90%;
+  border: none;
+  box-shadow: none;
+  background: none;
+  margin: 0;
+}
+
+/* Petits écrans : barre plus compacte */
+@media (max-width: 700px) {
+  .reveal .anim-pe .pe-aide { display: none; }
+  .reveal .anim-pe input[type="range"] { width: 130px; }
+}
+
+/* ---------- Éléments propres aux animations 2D ---------- */
+
+/* Curseur étiqueté : « Force F  ——o——  3,0 N » */
+.reveal .anim-pe .pe-curseur {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 19px;
+}
+.reveal .anim-pe .pe-curseur .pe-titre { color: rgba(255, 255, 255, 0.85); }
+.reveal .anim-pe .pe-curseur input[type="range"] { width: 150px; }
+.reveal .anim-pe .pe-curseur .pe-valeur { min-width: 4.6em; }
+
+/* Résultat chiffré, en lecture seule */
+.reveal .anim-pe .pe-sortie {
+  color: #fff;
+  font-size: 19px;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+/* Boutons « choix » : une seule situation active à la fois */
+.reveal .anim-pe .pe-choix {
+  font-family: inherit;
+  font-size: 18px;
+  letter-spacing: 0;
+}
+.reveal .anim-pe .pe-choix[aria-pressed="true"] {
+  background: rgba(86, 193, 255, 0.22);
+  border-color: #56C1FF;
+  color: #d4efff;
+}
+.reveal .anim-pe .pe-choix[aria-pressed="false"] {
+  color: rgba(255, 255, 255, 0.6);
+  border-style: solid;
+}
+

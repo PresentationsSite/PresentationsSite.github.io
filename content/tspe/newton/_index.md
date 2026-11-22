@@ -117,6 +117,15 @@ La détermination d'un bon référentiel galiléen est expérimentale, seule la 
 
 ---
 
+<!-- Animation : référentiel galiléen ou non (train qui accélère) (static/js/anim-newton.js) -->
+<link rel="stylesheet" href="/css/anim-plein-ecran.css">
+
+<div class="anim-pe" data-anim="train"></div>
+
+<script type="module" src="/js/anim-newton.js"></script>
+
+---
+
 
 Dans un <b style="color:#56C1FF">référentiel galiléen</b> :
 
@@ -125,6 +134,15 @@ $${\color{#FF968D}\sum \vec{F}_\mathrm{ext} = \vec{0}} \Leftrightarrow \color{#F
 </div>
 
 <p class="fragment fade-up">où $\vec{F}_\mathrm{ext}$ est une force extérieure<br>agissant sur le système.</p>
+
+---
+
+<!-- Animation : palet sur coussin d'air, ΣF = 0 donne un MRU (static/js/anim-newton.js) -->
+<link rel="stylesheet" href="/css/anim-plein-ecran.css">
+
+<div class="anim-pe" data-anim="inertie"></div>
+
+<script type="module" src="/js/anim-newton.js"></script>
 
 {{%/section%}}
 
@@ -160,6 +178,15 @@ $${\color{#FF968D}\sum \vec{F}_\mathrm{ext}} =  m\color{#FFF056}{\vec{a}}$$
 <li class="fragment fade-up">$m$ en <span class="fragment fade-up imp">$\pu{kg}$</span></li>
 <li class="fragment fade-up">$a$ en <span class="fragment fade-up imp">$\pu{m*s-2}$</span></li>
 </ul>
+
+---
+
+<!-- Animation : ΣF = m a, graphe v(t) (static/js/anim-newton.js) -->
+<link rel="stylesheet" href="/css/anim-plein-ecran.css">
+
+<div class="anim-pe" data-anim="pfd"></div>
+
+<script type="module" src="/js/anim-newton.js"></script>
 
 ---
 
@@ -216,6 +243,15 @@ $$\vec{F}_{B/A} = -\vec{F}_{A/B}$$
 Pour déduire la 3ᵉ loi à partir de la 2ᵉ, il faut ajouter au moins une hypothèse globale : la conservation de la quantité de mouvement pour un système isolé entier, ou l’homogénéité de l’espace (principe de Noether).
 Les trois lois forment ainsi un triptyque minimal : cadre, outil, symétrie.  Supprimer l’une ou prétendre la déduire des deux autres ferait perdre soit la définition du référentiel, soit la conservation de \vec p, deux piliers de la mécanique classique.
 {{%/note%}}
+
+---
+
+<!-- Animation : actions réciproques entre deux mobiles (static/js/anim-newton.js) -->
+<link rel="stylesheet" href="/css/anim-plein-ecran.css">
+
+<div class="anim-pe" data-anim="actionreaction"></div>
+
+<script type="module" src="/js/anim-newton.js"></script>
 
 ---
 
