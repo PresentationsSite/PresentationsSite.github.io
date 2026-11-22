@@ -113,7 +113,7 @@ Sur des <span class="imp">durées suffisamment courtes</span> pour pouvoir négl
 
 ---
 
-La détermination d'un bon référentiel galiléen est expérimentale, seule la cohérence entre la théorie (première loi de Newton) et la mesure (mouvement rectiligne uniforme) valide le choix a posteriori.
+La détermination d'un bon référentiel galiléen est expérimentale&nbsp;; seule la cohérence entre la théorie (première loi de Newton) et la mesure (mouvement rectiligne uniforme) valide le choix a posteriori.
 
 ---
 
