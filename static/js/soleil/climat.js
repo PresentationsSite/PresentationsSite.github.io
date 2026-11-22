@@ -53,9 +53,6 @@
         for (i = 0; i < 14; i++) { g.fillStyle = 'rgba(255,255,255,.55)'; g.beginPath(); g.arc(20 + i * 46, GY + 20 + (i % 3) * 22, 30 + (i % 4) * 6, 0, TAU); g.fill(); }
       } else if (cur.t === 'lune') {
         for (i = 0; i < 9; i++) { x = 40 + i * 70; y = GY + 22 + (i * 31) % 60; g.strokeStyle = 'rgba(70,70,80,.6)'; g.fillStyle = 'rgba(100,100,110,.5)'; g.lineWidth = 2; g.beginPath(); g.arc(x, y, 12 + (i % 3) * 7, 0, TAU); g.fill(); g.stroke(); }
-      } else if (cur.t === 'terre') {
-        for (i = 0; i < 9; i++) { g.fillStyle = 'rgba(70,170,80,.8)'; g.beginPath(); g.ellipse(50 + i * 70, GY + 30 + (i * 29) % 50, 28, 14, .3, 0, TAU); g.fill(); }
-        for (i = 0; i < 9; i++) { g.fillStyle = 'rgba(255,255,255,.35)'; g.beginPath(); g.ellipse(20 + i * 72, GY + 14 + (i * 41) % 60, 34, 8, 0, 0, TAU); g.fill(); }
       }
       g.restore();
     }
@@ -75,10 +72,13 @@
         var sx = HX - di[0] * 300, sy = GY - di[1] * 300;
         var sg = g.createRadialGradient(sx, sy, 4, sx, sy, 80); sg.addColorStop(0, 'rgba(255,250,200,1)'); sg.addColorStop(.25, 'rgba(255,210,90,.8)'); sg.addColorStop(1, 'rgba(255,170,60,0)');
         g.fillStyle = sg; g.beginPath(); g.arc(sx, sy, 80, 0, TAU); g.fill();
+        // faisceaux : coupés au niveau du sol (ils s'arrêtent sur la surface)
+        g.save(); g.beginPath(); g.rect(0, 0, 620, GY); g.clip();
         // faisceau incident
         var bw = 56, nn = [-di[1], di[0]], p0 = [HX, GY], Lb = 290;
         var gi = g.createLinearGradient(p0[0] - di[0] * Lb, p0[1] - di[1] * Lb, p0[0], p0[1]); gi.addColorStop(0, 'rgba(255,214,90,.05)'); gi.addColorStop(1, 'rgba(255,236,150,.8)');
-        g.fillStyle = gi; g.beginPath(); g.moveTo(p0[0] - nn[0] * bw / 2, p0[1] - nn[1] * bw / 2); g.lineTo(p0[0] + nn[0] * bw / 2, p0[1] + nn[1] * bw / 2);
+        var pE = [p0[0] + di[0] * 90, p0[1] + di[1] * 90];
+        g.fillStyle = gi; g.beginPath(); g.moveTo(pE[0] - nn[0] * bw / 2, pE[1] - nn[1] * bw / 2); g.lineTo(pE[0] + nn[0] * bw / 2, pE[1] + nn[1] * bw / 2);
         g.lineTo(p0[0] + nn[0] * bw / 2 - di[0] * Lb, p0[1] + nn[1] * bw / 2 - di[1] * Lb); g.lineTo(p0[0] - nn[0] * bw / 2 - di[0] * Lb, p0[1] - nn[1] * bw / 2 - di[1] * Lb); g.closePath(); g.fill();
         g.strokeStyle = 'rgba(255,248,200,.9)'; g.lineWidth = 2; g.setLineDash([12, 12]); g.lineDashOffset = -t * 70;
         for (var k = -2; k <= 2; k++) { g.beginPath(); g.moveTo(p0[0] + nn[0] * bw / 2.6 * k / 2 - di[0] * 270, p0[1] + nn[1] * bw / 2.6 * k / 2 - di[1] * 270); g.lineTo(p0[0] + nn[0] * bw / 2.6 * k / 2, p0[1] + nn[1] * bw / 2.6 * k / 2); g.stroke(); }
@@ -87,16 +87,24 @@
         var wr = bw * A_;
         if (wr > 1) {
           var nr = [-dr[1], dr[0]], Lr = 250, g2 = g.createLinearGradient(p0[0], p0[1], p0[0] + dr[0] * Lr, p0[1] + dr[1] * Lr); g2.addColorStop(0, 'rgba(180,230,255,.9)'); g2.addColorStop(1, 'rgba(180,230,255,0)');
-          g.fillStyle = g2; g.beginPath(); g.moveTo(p0[0] - nr[0] * wr / 2, p0[1] - nr[1] * wr / 2); g.lineTo(p0[0] + nr[0] * wr / 2, p0[1] + nr[1] * wr / 2);
+          var pS = [p0[0] - dr[0] * 90, p0[1] - dr[1] * 90];
+          g.fillStyle = g2; g.beginPath(); g.moveTo(pS[0] - nr[0] * wr / 2, pS[1] - nr[1] * wr / 2); g.lineTo(pS[0] + nr[0] * wr / 2, pS[1] + nr[1] * wr / 2);
           g.lineTo(p0[0] + nr[0] * wr / 2 + dr[0] * Lr, p0[1] + nr[1] * wr / 2 + dr[1] * Lr); g.lineTo(p0[0] - nr[0] * wr / 2 + dr[0] * Lr, p0[1] - nr[1] * wr / 2 + dr[1] * Lr); g.closePath(); g.fill();
           g.strokeStyle = 'rgba(225,245,255,.95)'; g.lineWidth = 2; g.setLineDash([12, 12]); g.lineDashOffset = -t * 60; g.beginPath(); g.moveTo(p0[0], p0[1]); g.lineTo(p0[0] + dr[0] * 230, p0[1] + dr[1] * 230); g.stroke(); g.setLineDash([]);
         }
-        // absorption : lueur + ondes de chaleur ∝ (1 − A)
-        var ab = 1 - A_, gl = g.createRadialGradient(p0[0], GY + 6, 4, p0[0], GY + 6, 110);
-        gl.addColorStop(0, 'rgba(255,90,40,' + (0.8 * ab) + ')'); gl.addColorStop(1, 'rgba(255,90,40,0)');
-        g.save(); g.beginPath(); g.rect(0, GY - 70, 620, 140); g.clip(); g.fillStyle = gl; g.beginPath(); g.ellipse(p0[0], GY + 6, 150, 46, 0, 0, TAU); g.fill(); g.restore();
-        g.strokeStyle = 'rgba(255,130,90,' + (0.25 + 0.7 * ab) + ')'; g.lineWidth = 1.5 + 3 * ab; g.lineCap = 'round';
-        for (var q = 0; q < 5; q++) { var x = p0[0] - 60 + q * 30 + 22 * 0, hgt = (26 + 56 * ab) * (.6 + .4 * Math.sin(t * 2 + q)); g.beginPath(); for (var y = 0; y <= hgt; y += 4) { var xx = x + 5 * Math.sin(y * .25 - t * 5 + q); y ? g.lineTo(xx, GY - y) : g.moveTo(xx, GY); } g.stroke(); }
+        g.restore();
+        // absorption : empreinte chauffée sur le sol, léger voile de chaleur au-dessus, ondulations de part et d'autre des faisceaux
+        var ab = 1 - A_, half = bw / (2 * Math.sin(th));
+        g.save(); g.beginPath(); g.rect(0, GY - 50, 620, 50); g.clip();
+        var hz = g.createRadialGradient(HX, GY, 8, HX, GY, 150); hz.addColorStop(0, 'rgba(255,120,60,' + (0.45 * ab) + ')'); hz.addColorStop(1, 'rgba(255,120,60,0)');
+        g.fillStyle = hz; g.fillRect(HX - 150, GY - 50, 300, 50); g.restore();
+        g.save(); g.shadowColor = 'rgba(255,120,60,' + ab + ')'; g.shadowBlur = 16; g.fillStyle = 'rgba(255,' + Math.round(150 + 60 * A_) + ',90,' + (0.35 + 0.65 * ab) + ')';
+        g.fillRect(HX - half, GY - 4, 2 * half, 6); g.restore();
+        g.strokeStyle = 'rgba(255,140,100,' + (0.3 + 0.65 * ab) + ')'; g.lineWidth = 1.6 + 2.2 * ab; g.lineCap = 'round';
+        [-185, -150, -115, 105, 140, 175].forEach(function (dx, q) {
+          var x = HX + dx, hgt = (18 + 46 * ab) * (.65 + .35 * Math.sin(t * 2 + q));
+          g.beginPath(); for (var y = 0; y <= hgt; y += 3) { var xx = x + 4 * Math.sin(y * .22 - t * 4 + q * 1.3); y ? g.lineTo(xx, GY - 6 - y) : g.moveTo(xx, GY - 6); } g.stroke();
+        });
         // étiquettes de la scène
         U.rich(g, 'P_{inc} = ' + U.fr(Pinc, 0) + ' W/m²', 18, 34, '#ffe9a6', 19, 'left', 600, 'rgba(5,7,24,.8)');
         U.rich(g, 'P_{diff} = A × P_{inc} = ' + U.fr(A_ * Pinc, 0) + ' W/m²', 600, 40, '#bfe6ff', 17, 'right', 600, 'rgba(5,7,24,.8)');
@@ -104,8 +112,8 @@
         U.rich(g, name, 18, Hh - 30, '#ffffff', 21, 'left', 700, 'rgba(5,7,24,.75)');
         if (range) U.rich(g, 'albédo de ' + range, 18, Hh - 10, '#e3e9ff', 14, 'left', 400, 'rgba(5,7,24,.75)');
         // panneau de bilan (à droite)
-        var bx = 668, by = 50, bwid = 70, bh = 280;
-        U.rich(g, 'Que devient la puissance incidente ?', 780, 30, '#c9d1f5', 14, 'center', 600);
+        var bx = 684, by = 56, bwid = 70, bh = 276;
+        U.rich(g, 'Que devient la puissance incidente ?', 760, 32, '#c9d1f5', 14, 'center', 600);
         var hr = bh * A_, ha = bh - hr;
         g.fillStyle = 'rgba(160,220,255,.9)'; g.shadowColor = 'rgba(160,220,255,.7)'; g.shadowBlur = 12; g.fillRect(bx, by, bwid, hr); g.shadowBlur = 0;
         g.fillStyle = 'rgba(255,120,70,.92)'; g.shadowColor = 'rgba(255,120,70,.7)'; g.shadowBlur = 12; g.fillRect(bx, by + hr, bwid, ha); g.shadowBlur = 0;

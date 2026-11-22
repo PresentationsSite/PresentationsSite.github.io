@@ -305,7 +305,7 @@
     var offA = mkOff(), offB = mkOff();
     var sinE = Math.sin(A.EPS), cosE = Math.cos(A.EPS), sEl = Math.sin(EL), cEl = Math.cos(EL);
     // la caméra est tournée de PSI autour de l'axe de l'écliptique : l'inclinaison de l'axe de la Terre est alors visible
-    var PSI = 38 * D2R, sPs = Math.sin(PSI), cPs = Math.cos(PSI);
+    var PSI = 90 * D2R, sPs = Math.sin(PSI), cPs = Math.cos(PSI);
     var CAM_MAIN = { R: [cPs, sPs, 0], U: [-sPs * sEl, cPs * sEl, cEl], B: [sPs * cEl, -cPs * cEl, sEl] };
     /* globe ombré pixel par pixel : s = direction Terre→Soleil (plan de l'écliptique), cam = repère de la caméra */
     function globe(off, s, latObs, cam) {
@@ -412,7 +412,7 @@
     var read = UI.readout(root);
     // chips « villes » : set(null) efface la sélection quand on déplace le curseur de latitude
     var origSet = cities.set; cities.set = function (id) { if (id == null) { cities.el.querySelectorAll('.sw-chip').forEach(function (b) { b.classList.remove('on'); }); } else origSet(id); };
-    var PX0 = 20, PX1 = 640, HY = 360, SCY = 3.55, SCX = (PX1 - PX0) / 340;
+    var PX0 = 20, PX1 = 640, HY = 360, SCY = 3.55, SCX = (PX1 - PX0) / 360;
     function wrap(a) { while (a > 180) a -= 360; while (a <= -180) a += 360; return a; }
     /* azimut « de vue » : on regarde vers le sud dans l'hémisphère nord, vers le nord dans l'hémisphère sud */
     function view(azS) { return lat >= 0 ? azS : wrap(azS + 180); }
@@ -450,10 +450,19 @@
         [[-90, north ? 'O' : 'E'], [0, north ? 'N' : 'S'], [90, north ? 'E' : 'O']].forEach(function (c) { txt(g, c[1], sx(c[0]), HY + 24, '#eef1ff', 18, 'center', 700); });
         txt(g, north ? 'S' : 'N', sx(-168), HY + 24, '#a9b2d6', 16, 'center', 700); txt(g, north ? 'S' : 'N', sx(168), HY + 24, '#a9b2d6', 16, 'center', 700);
         arc(172, '#ffd166', 2.5, [2, 6]); arc(80, '#ffffff', 2.5, [2, 6]); arc(355, '#7fd2ff', 2.5, [2, 6]);
+        // étiquettes au sommet de chaque arc de référence (avec son vrai azimut), décalées si elles se chevauchent
+        var labs = [];
         [[172, '21 juin', '#ffd166'], [80, 'équinoxe', '#ffffff'], [355, '21 déc.', '#7fd2ff']].forEach(function (a) {
-          var de = A.dec(a[0]), em = A.elev(lat0, de, 0) / D2R; if (em > 3) txt(g, a[1], sx(north ? 0 : 0), HY - em * SCY - 8, a[2], 14, 'center', 600);
+          var de = A.dec(a[0]), em = A.elev(lat0, de, 0) / D2R; if (em < 3) return;
+          labs.push({ t: a[1], c: a[2], x: U.clamp(sx(view(A.azim(lat0, de, 0) / D2R)), PX0 + 46, PX1 - 46), y: Math.max(HY - em * SCY - 12, 62) });
         });
-        arc(day, 'rgba(255,255,255,.6)', 2, null);
+        labs.sort(function (p, q) { return p.x - q.x; });
+        labs.forEach(function (l, i) { for (var j = 0; j < i; j++) if (Math.abs(l.x - labs[j].x) < 80 && Math.abs(l.y - labs[j].y) < 20) l.y += 20; });
+        labs.forEach(function (l) { U.rich(g, l.t, l.x, l.y, l.c, 14, 'center', 700, 'rgba(5,7,24,.55)'); });
+        // légende
+        [['21 juin', '#ffd166'], ['équinoxe', '#ffffff'], ['21 déc.', '#7fd2ff']].forEach(function (l, i) { var lx = PX0 + 44 + i * 92; g.strokeStyle = l[1]; g.lineWidth = 2.5; g.setLineDash([2, 5]); g.beginPath(); g.moveTo(lx, 24); g.lineTo(lx + 22, 24); g.stroke(); g.setLineDash([]); txt(g, l[0], lx + 28, 29, '#dfe5ff', 13, 'left'); });
+        g.strokeStyle = '#ff6fb5'; g.lineWidth = 3; g.beginPath(); g.moveTo(PX0 + 326, 24); g.lineTo(PX0 + 348, 24); g.stroke(); txt(g, 'date choisie : ' + A.dateStr(day), PX0 + 354, 29, '#ffb3d9', 13, 'left', 600);
+        arc(day, '#ff6fb5', 3, null);
         if (eD > -4) {
           var X = sx(azV), Y = HY - eD * SCY, hr = 52;
           var gl = g.createRadialGradient(X, Y, 0, X, Y, hr * 2.2); gl.addColorStop(0, 'rgba(255,245,200,1)'); gl.addColorStop(.18, 'rgba(255,220,120,.9)'); gl.addColorStop(.45, 'rgba(255,170,60,.25)'); gl.addColorStop(1, 'rgba(255,140,40,0)');
