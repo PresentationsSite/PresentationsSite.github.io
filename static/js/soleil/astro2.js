@@ -391,7 +391,7 @@
           g.fillStyle = '#eef1ff'; g.font = '600 17px Outfit, sans-serif'; g.fillText('Courbe de lumière', (X0 + X1) / 2, 36);
           read.innerHTML = 'Profondeur du transit ≈ (R<sub>p</sub>/R<sub>★</sub>)² = <b>' + U.fr(k * k * 100, k * k * 100 < 0.1 ? 4 : 2) + ' %</b> de la lumière de l’étoile en moins.';
         } else {
-          var cx2 = 215, cy2 = 215, orb = 140, ang = ph * TAU * 1.0;
+          var uc = t / T, cx2 = 215, cy2 = 215, orb = 140, ang = uc * TAU;
           g.strokeStyle = 'rgba(255,255,255,.22)'; g.setLineDash([4, 6]); g.lineWidth = 1.5; g.beginPath(); g.arc(cx2, cy2, orb, 0, TAU); g.stroke(); g.setLineDash([]);
           var eps = 0.11, sx = cx2 - eps * orb * Math.cos(ang), sy = cy2 - eps * orb * Math.sin(ang);
           var plx = cx2 + orb * Math.cos(ang) * (1 - eps), ply = cy2 + orb * Math.sin(ang) * (1 - eps);
@@ -408,7 +408,7 @@
           g.fillText('↓ vers la Terre (observateur)', cx2, 410);
           g.fillStyle = '#a9b2d6'; g.font = '14px Outfit, sans-serif'; g.fillText('(oscillation de l’étoile très exagérée)', cx2, 386);
           // courbes v_r(t) des trois systèmes, superposées (échelle commune en m/s)
-          var X0 = 470, X1 = 870, Y0 = 72, Y1 = 330, ym = (Y0 + Y1) / 2, VM = 60, sc = (Y1 - Y0) / 2 / VM;
+          var X0 = 470, X1 = 870, Y0 = 72, Y1 = 330, ym = (Y0 + Y1) / 2, VM = 60, sc = (Y1 - Y0) / 2 / VM, xd = X0 + .72 * (X1 - X0), Wp = (X1 - X0) / 2;
           plotBox(X0, Y0, X1, Y1);
           [-50, -25, 0, 25, 50].forEach(function (v) {
             var y = ym - v * sc; g.strokeStyle = v === 0 ? 'rgba(255,255,255,.3)' : 'rgba(255,255,255,.07)'; g.setLineDash(v === 0 ? [4, 5] : []); g.lineWidth = 1;
@@ -417,14 +417,15 @@
           });
           // précision des meilleurs spectrographes (≈ 1 m/s)
           g.fillStyle = 'rgba(255,255,255,.16)'; g.fillRect(X0, ym - 1 * sc, X1 - X0, 2 * sc);
-          g.fillStyle = 'rgba(255,255,255,.7)'; g.font = '12px Outfit, sans-serif'; g.textAlign = 'left'; g.textAlign = 'right'; g.fillText('précision d’un bon spectrographe ≈ 1 m/s', X1 - 8, ym - 1 * sc - 5);
+          g.fillStyle = 'rgba(255,255,255,.7)'; g.font = '12px Outfit, sans-serif'; g.textAlign = 'left'; g.textAlign = 'left'; g.fillText('bande claire : précision d’un bon spectrographe ≈ 1 m/s', X0 + 8, Y1 - 8);
           var order = ['j', 'p', 'e'].filter(function (id) { return id !== rv.id; }).concat([rv.id]);
           order.forEach(function (id) {
             var P = PL[id], sel = id === rv.id;
             g.save(); g.globalAlpha = sel ? 1 : .3; g.strokeStyle = P.col; g.lineWidth = sel ? 3.4 : 2.2; if (sel) { g.shadowColor = P.col; g.shadowBlur = 10; }
-            g.beginPath(); for (var q = 0; q <= 200; q++) { var X = X0 + q / 200 * (X1 - X0), Y = ym - P.K * Math.cos(q / 200 * 2 * TAU) * sc; q ? g.lineTo(X, Y) : g.moveTo(X, Y); } g.stroke(); g.restore();
+            g.beginPath(); for (var q = 0; q <= 200; q++) { var X = X0 + q / 200 * (X1 - X0), Y = ym - P.K * Math.cos(TAU * (uc + (X - xd) / Wp)) * sc; q ? g.lineTo(X, Y) : g.moveTo(X, Y); } g.stroke(); g.restore();
           });
-          g.fillStyle = '#fff'; g.beginPath(); g.arc(X0 + ph / 2 * (X1 - X0), ym - rv.K * Math.cos(ang) * sc, 5.5, 0, TAU); g.fill();
+          g.strokeStyle = 'rgba(255,255,255,.35)'; g.lineWidth = 1; g.beginPath(); g.moveTo(xd, Y0); g.lineTo(xd, Y1); g.stroke();
+          g.fillStyle = '#fff'; g.beginPath(); g.arc(xd, ym - rv.K * Math.cos(ang) * sc, 5.5, 0, TAU); g.fill();
           // légende
           ['j', 'p', 'e'].forEach(function (id, i) {
             var P = PL[id], sel = id === rv.id, lx = X0 + 4 + i * 134;
@@ -432,7 +433,7 @@
             g.fillStyle = '#eef1ff'; g.font = (sel ? '600 ' : '400 ') + '12.5px Outfit, sans-serif'; g.textAlign = 'left'; g.fillText(P.short + ' ' + U.fr(P.K, P.K < 1 ? 2 : 1) + ' m/s', lx + 19, 57); g.globalAlpha = 1;
           });
           g.fillStyle = '#c9d1f5'; g.font = '14px Outfit, sans-serif'; g.textAlign = 'center';
-          g.fillText('temps (2 périodes orbitales de chaque système) →', (X0 + X1) / 2, Y1 + 26);
+          g.fillText('temps → (le point blanc marque l’instant présent)', (X0 + X1) / 2, Y1 + 26);
           g.save(); g.translate(X0 - 44, (Y0 + Y1) / 2); g.rotate(-Math.PI / 2); g.fillText('vitesse radiale de l’étoile (m/s) · + = s’éloigne', 0, 0); g.restore();
           g.fillStyle = '#eef1ff'; g.font = '600 17px Outfit, sans-serif'; g.textAlign = 'center'; g.fillText('Vitesse radiale de l’étoile', (X0 + X1) / 2, 32);
           var dl = 656.28e-9 * rv.K / U.c;

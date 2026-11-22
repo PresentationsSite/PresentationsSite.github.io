@@ -159,7 +159,7 @@ $$
  
  💡Conseil pour le bac💡
 
-<p class="fragment fade-up">Faites comme si s'était bien une équivalence. </p>
+<p class="fragment fade-up">Faites comme si c'était bien une équivalence.</p>
 
 <p class="fragment fade-up">La 1<sup>re</sup> loi devient alors identique<br>au <span class="imp">principe d'inertie</span> appris en seconde.</p>
 
@@ -226,10 +226,10 @@ On pourrait croire alors que la 2<sup>e</sup> loi rend la 1<sup>re</sup> inutile
 
 <p class="fragment fade-up">Mais la 1<sup>re</sup> loi définit le cadre<br>dans lequel la 2<sup>e</sup> loi est valide&nbsp;:<br>les <b style="color:#56C1FF">référentiels galiléens</b>.</p>
 
-<p class="fragment fade-up">Et elle ne donnait que l'implication ${\color{#FF968D} \sum \vec{F}_\mathrm{ext}} \Rightarrow \color{#FFF056}\mathrm{MRU}$
+<p class="fragment fade-up">Et elle ne donne que l'implication ${\color{#FF968D} \sum \vec{F}_\mathrm{ext} = \vec{0}} \Rightarrow \color{#FFF056}\mathrm{MRU}$.</p>
 
 
-<p class="fragment fade-up">La 2<sup>e</sup> loi apporte la réciproque ${\color{#FF968D} \sum \vec{F}_\mathrm{ext}} \Leftarrow \color{#FFF056}\mathrm{MRU}$.</p>
+<p class="fragment fade-up">La 2<sup>e</sup> loi apporte la réciproque ${\color{#FFF056}\mathrm{MRU}} \Rightarrow {\color{#FF968D} \sum \vec{F}_\mathrm{ext} = \vec{0}}$.</p>
 
 ---
 

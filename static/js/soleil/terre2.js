@@ -133,7 +133,7 @@
     var pb = UI.btn(ctrl, '▶ Une année', function (e, b) { play = !play; b.textContent = play ? '❚❚ Pause' : '▶ Une année'; }, 'main');
     UI.chips(ctrl, DATES.map(function (d) { return { id: d[0], label: d[1] }; }), { onchange: function (id) { day = parseFloat(id); sd.set(day); play = false; pb.textContent = '▶ Une année'; dirty = true; } });
     var read = UI.readout(root);
-    var MX0 = 46, MY0 = 12, MW = 780, MH = 395, MR = 360, MC = 720;
+    var MX0 = 46, MY0 = 12, MW = 756, MH = 395, MR = 360, MC = 720;
     var off = document.createElement('canvas'); off.width = MC; off.height = MR; var og = off.getContext('2d'), img = og.createImageData(MC, MR);
     var mask = null, coast = null, dayDone = -1, dl = new Float32Array(MR);
     function build() {
@@ -183,8 +183,8 @@
         var lr = xy(LAROCHELLE.lat, LAROCHELLE.lon), dec = A.dec(day), dLR = A.dayLen(LAROCHELLE.lat * D2R, dec);
         g.fillStyle = '#ff5f6d'; g.strokeStyle = '#fff'; g.lineWidth = 2; g.beginPath(); g.arc(lr[0], lr[1], 5, 0, TAU); g.fill(); g.stroke();
         U.rich(g, 'La Rochelle : ' + hm(dLR), lr[0] + 10, lr[1] - 8, '#fff', 14, 'left', 700, 'rgba(5,7,24,.85)');
-        colorbar(g, 850, 44, 18, 340, PAL_D, [0, 6, 12, 18, 24], 24, function (v) { return v + ' h'; });
-        txt(g, 'durée du jour', 859, 30, '#c9d1f5', 12, 'center', 600);
+        colorbar(g, 828, 52, 16, 332, PAL_D, [0, 6, 12, 18, 24], 24, function (v) { return v + ' h'; });
+        txt(g, 'durée', 836, 24, '#c9d1f5', 12, 'center', 600); txt(g, 'du jour', 836, 39, '#c9d1f5', 12, 'center', 600);
         var txtD = 'Le ' + A.dateStr(day) + ' : La Rochelle <b>' + hm(dLR) + '</b> · équateur <b>' + hm(A.dayLen(0, dec)) + '</b> · 66,6° N <b>' + hm(A.dayLen(66.56 * D2R, dec)) + '</b> · 66,6° S <b>' + hm(A.dayLen(-66.56 * D2R, dec)) + '</b>';
         if (hov) { var dd = A.dayLen(U.clamp(hov[0], -89.9, 89.9) * D2R, dec); txtD = 'Latitude ' + U.fr(Math.abs(hov[0]), 1) + '° ' + (hov[0] >= 0 ? 'N' : 'S') + ' le ' + A.dateStr(day) + ' : jour de <b>' + hm(dd) + '</b>'; g.strokeStyle = 'rgba(255,255,255,.9)'; g.lineWidth = 1; var hy = xy(hov[0], 0)[1]; g.beginPath(); g.moveTo(MX0, hy); g.lineTo(MX0 + MW, hy); g.stroke(); }
         read.innerHTML = txtD;
