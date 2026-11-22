@@ -113,16 +113,7 @@ Sur des <span class="imp">durées suffisamment courtes</span> pour pouvoir négl
 
 ---
 
-La détermination d'un bon référentiel galiléen est expérimentale, seule la cohérence entre la théorie (première loi de Newton) et la mesure (mouvement rectiligne uniforme) valide le choix a posteriori.
-
----
-
-<!-- Animation : référentiel galiléen ou non (train qui accélère) (static/js/anim-newton.js) -->
-<link rel="stylesheet" href="/css/anim-plein-ecran.css">
-
-<div class="anim-pe" data-anim="train"></div>
-
-<script type="module" src="/js/anim-newton.js"></script>
+La détermination d'un bon référentiel galiléen est expérimentale&nbsp;; seule la cohérence entre la théorie (première loi de Newton) et la mesure (mouvement rectiligne uniforme) valide le choix a posteriori.
 
 ---
 
@@ -243,15 +234,6 @@ $$\vec{F}_{B/A} = -\vec{F}_{A/B}$$
 Pour déduire la 3ᵉ loi à partir de la 2ᵉ, il faut ajouter au moins une hypothèse globale : la conservation de la quantité de mouvement pour un système isolé entier, ou l’homogénéité de l’espace (principe de Noether).
 Les trois lois forment ainsi un triptyque minimal : cadre, outil, symétrie.  Supprimer l’une ou prétendre la déduire des deux autres ferait perdre soit la définition du référentiel, soit la conservation de \vec p, deux piliers de la mécanique classique.
 {{%/note%}}
-
----
-
-<!-- Animation : actions réciproques entre deux mobiles (static/js/anim-newton.js) -->
-<link rel="stylesheet" href="/css/anim-plein-ecran.css">
-
-<div class="anim-pe" data-anim="actionreaction"></div>
-
-<script type="module" src="/js/anim-newton.js"></script>
 
 ---
 
