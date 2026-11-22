@@ -206,7 +206,8 @@ body::after {
 .reveal .sw canvas { display: block; width: 100%; height: auto; max-width: none; max-height: none; margin: 0; border: 0; border-radius: 14px; box-shadow: none; background: none; }
 .reveal .sw .sw-stage { position: relative; }
 .reveal .sw .sw-ctrl { display: flex; flex-wrap: wrap; gap: 8px 18px; align-items: center; justify-content: center; padding: 9px 4px 2px; }
-.reveal .sw .sw-sl { display: flex; align-items: center; gap: 9px; margin: 0; font-size: 15px; white-space: nowrap; }
+.reveal .sw .sw-sl input[type=range] { flex: none; }
+.reveal .sw .sw-sl { flex: none; display: flex; align-items: center; gap: 9px; margin: 0; font-size: 15px; white-space: nowrap; }
 .reveal .sw .sw-sl-t { color: var(--mut); }
 .reveal .sw .sw-sl-o { min-width: 4.6em; text-align: right; white-space: nowrap; color: var(--sw-c, var(--acc)); font-weight: 600; font-variant-numeric: tabular-nums; text-shadow: 0 0 12px color-mix(in srgb, var(--sw-c, var(--acc)) 60%, transparent); }
 .reveal .sw input[type=range] {

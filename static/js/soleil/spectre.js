@@ -225,11 +225,11 @@
     function smooth(a, b, x) { var t = U.clamp((x - a) / (b - a), 0, 1); return t * t * (3 - 2 * t); }
     // bandes : [λ centre µm, force au centre, demi-largeur µm] ; tau = c·S·exp(-|λ-λ0|/w) (les ailes s'élargissent avec la concentration)
     var GAS = {
-      h2o: { label: 'H₂O', col: '#37d6ff', bands: [[.94, 8, .03], [1.13, 15, .04], [1.38, 300, .05], [1.87, 400, .07], [2.7, 5000, .12], [6.3, 3000, .35]],
-        extra: function (l) { return 40 * smooth(13.5, 24, l) + 0.45 * smooth(7, 8.5, l) * (1 - smooth(12.5, 14.5, l)); } },
+      h2o: { label: 'H₂O', col: '#37d6ff', bands: [[.94, 8, .03], [1.13, 15, .04], [1.38, 300, .05], [1.87, 400, .07], [2.7, 5000, .12], [6.3, 300, .30]],
+        extra: function (l) { return 40 * smooth(13.5, 24, l) + 0.6 * smooth(7, 8.5, l) * (1 - smooth(12.5, 14.5, l)); } },
       co2: { label: 'CO₂', col: '#ffc43a', bands: [[2.0, 6, .03], [2.7, 40, .04], [4.3, 2000, .1], [15, 1000, .35]] },
       ch4: { label: 'CH₄', col: '#7dffb0', bands: [[3.3, 40, .08], [7.66, 200, .2]] },
-      o3: { label: 'O₃', col: '#ff6fb5', bands: [[9.6, 15, .25], [0.26, 5000, .05], [0.6, .15, .06]], extra: function (l) { return 80 * (1 - smooth(0.27, 0.34, l)); } },
+      o3: { label: 'O₃', col: '#ff6fb5', bands: [[9.6, 15, .25]], extra: function (l) { return 60 * (1 - smooth(0.29, 0.32, l)) + 0.4 * (1 - smooth(0.32, 0.36, l)) + 0.05 * Math.exp(-Math.pow((l - 0.6) / 0.07, 2)); } },
       n2o: { label: 'N₂O', col: '#c3a6ff', bands: [[4.5, 100, .06], [7.8, 40, .15], [17, 40, .3]] }
     };
     var ids = Object.keys(GAS), ppm = 420;
@@ -298,7 +298,7 @@
           txt(g, GAS[k].label, X0 - 8, y + 16, on ? GAS[k].col : '#6b7399', 15, 'right', 600);
         });
         var frac = tot > 0 ? esc / tot : 1;
-        read.innerHTML = 'Part du rayonnement terrestre qui <b>s’échappe directement</b> vers l’espace : <b>' + U.fr(frac * 100, 0) + ' %</b>. Le reste est absorbé puis réémis, en partie vers le sol. <span style="opacity:.7">(modèle qualitatif : positions des bandes réelles, intensités indicatives)</span>';
+        read.innerHTML = 'Part du rayonnement terrestre qui <b>s’échappe directement</b> vers l’espace : <b>' + U.fr(frac * 100, 0) + ' %</b>. Le reste est absorbé puis réémis, en partie vers le sol. <span style="opacity:.7">(modèle qualitatif : positions des bandes réelles, intensités indicatives ; l’ozone absorbe l’UV et très peu le visible)</span>';
       }
     };
   });

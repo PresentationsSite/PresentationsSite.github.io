@@ -180,7 +180,7 @@
     var W = 900, Hh = 430, st = S.stage(root, W, Hh), g = st.g;
     var day = 3, k = 1, play = false, K = A.K;
     var ctrl = UI.row(root);
-    var sd = UI.slider(ctrl, { label: 'date', min: 1, max: 365, step: 1, value: 3, color: '#5cc8ff', fmt: function (v) { return A.dateStr(v); }, oninput: function (v) { day = v; play = false; } });
+    var sd = UI.slider(ctrl, { label: 'date', min: 1, max: 365, step: 1, value: 3, color: '#5cc8ff', w: 7.5, fmt: function (v) { return A.dateStr(v); }, oninput: function (v) { day = v; play = false; } });
     var se = UI.slider(ctrl, { label: 'excentricité', min: 1, max: 40, step: 'any', value: 1, color: '#ff8a5c', fmt: function (v) { return v < 1.5 ? 'réelle (0,017)' : '× ' + U.fr(v, 0) + ' (e = ' + U.fr(Math.min(.0167 * v, .8), 2) + ')'; }, oninput: function (v) { k = v; } });
     var c2 = UI.row(root);
     UI.btn(c2, '▶ Une année', function (e, b) { play = !play; b.textContent = play ? '❚❚ Pause' : '▶ Une année'; }, 'main');
@@ -294,8 +294,8 @@
     var W = 900, Hh = 430, st = S.stage(root, W, Hh), g = st.g;
     var day = 172, lat = 48.85, play = false, last = 0, EL = 26 * D2R;
     var ctrl = UI.row(root);
-    var sd = UI.slider(ctrl, { label: 'date', min: 1, max: 365, step: 1, value: 172, color: '#5cc8ff', fmt: function (v) { return A.dateStr(v); }, oninput: function (v) { day = v; play = false; } });
-    var sl = UI.slider(ctrl, { label: 'latitude', min: -90, max: 90, step: 1, value: 48.85, color: '#ffd166', fmt: function (v) { return U.fr(Math.abs(v), 0) + '° ' + (v >= 0 ? 'N' : 'S'); }, oninput: function (v) { lat = v; } });
+    var sd = UI.slider(ctrl, { label: 'date', min: 1, max: 365, step: 1, value: 172, color: '#5cc8ff', w: 7.5, fmt: function (v) { return A.dateStr(v); }, oninput: function (v) { day = v; play = false; } });
+    var sl = UI.slider(ctrl, { label: 'latitude', min: -90, max: 90, step: 1, value: 48.85, color: '#ffd166', w: 4.2, fmt: function (v) { return U.fr(Math.abs(v), 0) + '° ' + (v >= 0 ? 'N' : 'S'); }, oninput: function (v) { lat = v; } });
     var c2 = UI.row(root);
     UI.btn(c2, '▶ Une année', function (e, b) { play = !play; b.textContent = play ? '❚❚ Pause' : '▶ Une année'; }, 'main');
     UI.chips(c2, [{ id: 80, label: 'Équinoxe de mars' }, { id: 172, label: 'Solstice de juin' }, { id: 265, label: 'Équinoxe de sept.' }, { id: 355, label: 'Solstice de déc.' }], { onchange: function (id) { day = parseFloat(id); sd.set(day); play = false; } });
@@ -343,7 +343,7 @@
         if (!st.fit()) return;
         if (play) { day += dt * 25; if (day > 365) day -= 365; sd.set(day); }
         g.clearRect(0, 0, W, Hh);
-        var cx = 370, cy = 222, Ao = 285;
+        var cx = 385, cy = 222, Ao = 240;
         var s0 = A.state(day), lamE = s0.lamS + Math.PI, rr = s0.r0;
         var P = [rr * Math.cos(lamE), rr * Math.sin(lamE)];
         function proj(px, py) { return [cx + Ao * (px * cPs + py * sPs), cy - Ao * sEl * (-px * sPs + py * cPs)]; }
@@ -353,8 +353,10 @@
         [[80, 'équinoxe de mars'], [172, 'solstice de juin'], [265, 'équinoxe de sept.'], [355, 'solstice de déc.']].forEach(function (m) {
           var s = A.state(m[0]), l = s.lamS + Math.PI, pp = proj(Math.cos(l), Math.sin(l)), x = pp[0], y = pp[1];
           g.fillStyle = 'rgba(255,255,255,.7)'; g.beginPath(); g.arc(x, y, 3.4, 0, TAU); g.fill();
-          var nx = (x - cx) / (Ao * Ao), ny = (y - cy) / (Ao * sEl * Ao * sEl), nl = Math.hypot(nx, ny) || 1; nx /= nl; ny /= nl;
-          txt(g, m[1], x + nx * 14, y + ny * 14 + (ny > .45 ? 11 : ny < -.45 ? -2 : 5), 'rgba(255,255,255,.7)', 13, nx > .45 ? 'left' : nx < -.45 ? 'right' : 'center');
+          // étiquette hors du disque de la Terre (rayon 36 px) : sur le côté pour les solstices, au-dessus/au-dessous pour les équinoxes
+          var side = x - cx;
+          if (Math.abs(side) > Ao * .5) txt(g, m[1], x + (side > 0 ? 48 : -48), y + 5, 'rgba(255,255,255,.8)', 12.5, side > 0 ? 'left' : 'right');
+          else txt(g, m[1], x, (y - cy) > 0 ? y + 60 : y - 48, 'rgba(255,255,255,.8)', 12.5, 'center');
         });
         var farFirst = (P[0] * sPs - P[1] * cPs) < 0;
         function earthMain() {
@@ -368,7 +370,7 @@
         // --- vue de côté : le Soleil est à droite
         var camS = { R: [sdir[0], sdir[1], 0], U: [0, 0, 1], B: [sdir[1], -sdir[0], 0] };
         globe(offB, sdir, lat, camS);
-        var ix = 790, iy = 160, IR = 70;
+        var ix = 800, iy = 160, IR = 70;
         txt(g, 'vue de côté (Soleil à droite)', ix, 30, '#c9d1f5', 14, 'center');
         var gl = g.createRadialGradient(ix + IR, iy, IR, ix + IR * 2.2, iy, IR * 3); gl.addColorStop(0, 'rgba(255,200,80,.30)'); gl.addColorStop(1, 'rgba(255,200,80,0)');
         g.fillStyle = gl; g.beginPath(); g.arc(ix + IR * 1.2, iy, IR * 2.6, 0, TAU); g.fill();

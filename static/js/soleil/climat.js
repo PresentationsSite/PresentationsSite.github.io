@@ -95,10 +95,7 @@
         g.restore();
         // absorption : empreinte chauffée sur le sol, léger voile de chaleur au-dessus, ondulations de part et d'autre des faisceaux
         var ab = 1 - A_, half = bw / (2 * Math.sin(th));
-        g.save(); g.beginPath(); g.rect(0, GY - 50, 620, 50); g.clip();
-        var hz = g.createRadialGradient(HX, GY, 8, HX, GY, 150); hz.addColorStop(0, 'rgba(255,120,60,' + (0.45 * ab) + ')'); hz.addColorStop(1, 'rgba(255,120,60,0)');
-        g.fillStyle = hz; g.fillRect(HX - 150, GY - 50, 300, 50); g.restore();
-        g.save(); g.shadowColor = 'rgba(255,120,60,' + ab + ')'; g.shadowBlur = 16; g.fillStyle = 'rgba(255,' + Math.round(150 + 60 * A_) + ',90,' + (0.35 + 0.65 * ab) + ')';
+        g.save(); g.fillStyle = 'rgba(255,' + Math.round(150 + 60 * A_) + ',90,' + (0.35 + 0.65 * ab) + ')';
         g.fillRect(HX - half, GY - 4, 2 * half, 6); g.restore();
         g.strokeStyle = 'rgba(255,140,100,' + (0.3 + 0.65 * ab) + ')'; g.lineWidth = 1.6 + 2.2 * ab; g.lineCap = 'round';
         [-185, -150, -115, 105, 140, 175].forEach(function (dx, q) {
