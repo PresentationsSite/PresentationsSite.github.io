@@ -76,7 +76,7 @@ highlight_theme = "atom-one-dark-reasonable"
 
 <div style="display:flex;align-items:center;justify-content:center;gap:40px;max-width:900px;margin:0 auto">
 <img src="/einstein.png" alt="Albert Einstein" style="height:260px;flex:none;filter:invert(1);mix-blend-mode:screen;-webkit-mask-image:radial-gradient(ellipse at center,#000 55%,transparent 100%);mask-image:radial-gradient(ellipse at center,#000 55%,transparent 100%);border:none;background:none;box-shadow:none;margin:0">
-<div style="text-align:left;font-size:.78em;width:540px;flex:none">Grâce à la fameuse formule d’Einstein<br><span class="imp">$E=mc^2$</span> qui lie la masse à l’énergie,<br>on déduit que l’énergie libérée par le Soleil pendant une microseconde correspond à une <span class="imp">perte de masse</span><br>de $E/c^2=\ldots$</div>
+<div style="text-align:left;font-size:.78em;width:540px;flex:none">Grâce à la fameuse formule d’Einstein <span class="imp">$E=mc^2$</span> qui lie la masse<br>à l’énergie, on déduit que l’énergie libérée par le Soleil pendant une microseconde correspond à une <span class="imp">perte de masse</span> de $E/c^2=\ldots$</div>
 </div>
 
 ---
@@ -153,13 +153,13 @@ Le bouton « Fenêtre 350–850 nm » reproduit cette situation. Le maximum vers
 
 ---
 
-<p>Trouver la température de ces deux étoiles,<br>sachant que :</p>
+<p>La loi de Wien sera toujours donnée&nbsp;:</p>
 <div class="formule">$$T(\text{en K}) = \frac{2{,}89\times10^6}{\lambda_{max}(\text{en nm})}$$</div>
 
 ---
 
 {{< qcm
-    q=`D'après la loi de Wien, quelle est approximativement la température de surface de Rigel ?`
+    q=`D'après la loi de Wien, quelle est approximativement la température<br>de surface de Rigel ?`
     a1=`750 K`
     a2=`3 900 K`
     a3=`7 500 K`
@@ -485,7 +485,7 @@ Le bouton « Fenêtre 350–850 nm » reproduit cette situation. Le maximum vers
 ---
 
 <h3>Effet de serre</h3>
-<p style="font-size:.75em">La Terre, chauffée par le Soleil, rayonne dans l’infrarouge.<br>Il se trouve que certains gaz atmosphériques,<br>les <span class="imp">gaz à effet de serre</span> (comme le dioxyde de carbone, le méthane ou la vapeur d’eau), sont opaques à ces longueurs d’onde.</p>
+<p style="font-size:.75em">La Terre, chauffée par le Soleil, rayonne dans l’infrarouge.<br>Il se trouve que certains gaz atmosphériques,<br>les <span class="imp">gaz à effet de serre</span> (comme le dioxyde de carbone,<br>le méthane ou la vapeur d’eau), sont opaques<br>à ces longueurs d’onde.</p>
 
 ---
 
