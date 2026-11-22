@@ -105,7 +105,8 @@ highlight_theme = "atom-one-dark-reasonable"
 ---
 
 <p>Dans l’espace, deux corps peuvent<br>échanger de l’énergie à distance<br>via un <span class="imp">transfert thermique radiatif</span>.</p>
-<p class="fragment fade-up">Tout corps ayant une température supérieure au zéro absolu<br>(0 K = −273,15 °C) <span class="imp">rayonne</span> : c’est le rayonnement de <span class="imp">corps noir</span>.</p>
+<p class="fragment fade-up">Tout corps ayant une température supérieure au zéro absolu (0 K = −273,15 °C) <span class="imp">rayonne</span> :<br>
+c’est le rayonnement de <span class="imp">corps noir</span>.</p>
 
 ---
 
@@ -158,7 +159,7 @@ Le bouton « Fenêtre 350–850 nm » reproduit cette situation. Le maximum vers
 ---
 
 {{< qcm
-    q=`Le spectre de <b>Rigel</b> passe par un maximum vers $\lambda_{max}\approx385$ nm.<br>Avec la loi de Wien, on trouve une température d’environ…`
+    q=`D'après la loi de Wien, quelle est approximativement la température de surface de Rigel ?`
     a1=`750 K`
     a2=`3 900 K`
     a3=`7 500 K`
@@ -526,10 +527,9 @@ Le bouton « Fenêtre 350–850 nm » reproduit cette situation. Le maximum vers
 ---
 
 <h3>Un modèle simple d’effet de serre</h3>
-<p style="font-size:.7em">L’atmosphère absorbe une fraction <span class="imp">$\varepsilon$</span> du rayonnement infrarouge émis par la surface, puis réémet l’énergie absorbée : moitié vers l’espace, moitié vers le sol.</p>
+<p style="font-size:.8em">L’atmosphère absorbe une fraction <span class="imp">$\varepsilon$</span> du rayonnement infrarouge<br>émis par la surface, puis réémet l’énergie absorbée :<br>moitié vers l’espace, moitié vers le sol.</p>
 <div class="formule fragment fade-up">$\varepsilon=\dfrac{\text{puissance IR absorbée par l’atmosphère}}{\text{puissance IR émise par la surface}}$</div>
-<p class="fragment fade-up" style="font-size:.7em">Valeur actuelle : <span class="imp">$\varepsilon\approx0{,}78$</span>, celle qui redonne la température moyenne de <span class="imp">288 K</span> (15 °C).<br>Sans effet de serre ($\varepsilon=0$) : 255 K (−18 °C).</p>
-<p class="fragment fade-up" style="font-size:.7em">À l’équilibre : $\sigma T_s^4=\dfrac{(1-A)\,K/4}{1-\varepsilon/2}$</p>
+<p class="fragment fade-up" style="font-size:.8em">Valeur actuelle : <span class="imp">$\varepsilon\approx0{,}78$</span>,<br>celle qui redonne la température moyenne de <span class="imp">288 K</span> (15 °C).<br>Sans effet de serre ($\varepsilon=0$) : 255 K (−18 °C).</p>
 
 ---
 
