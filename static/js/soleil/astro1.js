@@ -228,13 +228,14 @@
     var W = 900, Hh = 440, st = S.stage(root, W, Hh), g = st.g;
     var cap = S.el('div', 'sw-cap'); cap.style.minHeight = '3.4em'; cap.style.fontSize = '17px'; cap.style.color = '#eef1ff'; root.insertBefore(cap, st.wrap);
     var CX = [215, 685], RN = 14;
-    var step = 0, nodes = [], fx = [];
+    var step = 0, nodes = [], fx = [], diagT0 = -1;
     var captions = [
       'Au cœur du Soleil (15 millions de kelvins), des <b>protons</b> (noyaux d’hydrogène) sont agités à très grande vitesse.',
       '<b>①</b> Deux protons fusionnent : <b>p + p → ²H + e⁺ + νₑ</b>. L’un devient un neutron (émission d’un positron et d’un neutrino).',
       '<b>②</b> Le deutérium capture un proton : <b>²H + p → ³He + γ</b> (un rayon gamma est émis).',
       '<b>③</b> Deux noyaux ³He fusionnent : <b>³He + ³He → ⁴He + 2 p</b>. Deux protons sont libérés et repartent fusionner.',
-      '<b>Bilan : 4 p → ⁴He + 2 e⁺ + 2 νₑ + 2 γ</b>. La masse de l’hélium est inférieure de <b>0,7 %</b> à celle de 4 protons : cette masse devient de l’énergie (E = Δm·c², soit 26,7 MeV par noyau d’hélium).'
+      '<b>Bilan : 4 p → ⁴He + 2 e⁺ + 2 νₑ + 2 γ</b>. La masse de l’hélium est inférieure de <b>0,7 %</b> à celle de 4 protons : cette masse devient de l’énergie (E = Δm·c², soit 26,7 MeV par noyau d’hélium).',
+      '<b>La chaîne proton-proton complète.</b> Dans le Soleil, l’hélium est fabriqué par trois branches : pp I (≈ 86 %, ce qu’on vient de voir), pp II (≈ 14 %) et pp III (≈ 0,1 %). Toutes aboutissent au même bilan : 4 p → ⁴He.'
     ];
     function mk(c, nm) { return { c: c, nm: nm, x: CX[c], y: 70, tx: CX[c], ty: 70, mix: 0, tmix: 0 }; }
     function reset() {
@@ -271,15 +272,65 @@
       if (s === 4) { fx.push({ k: 'g', x: 450, y: 386, vx: 0, vy: -150, t: 0, life: 2.6 }); fx.push({ k: 'g', x: 450, y: 386, vx: 140, vy: -90, t: 0, life: 2.6 }); fx.push({ k: 'g', x: 450, y: 386, vx: -140, vy: -90, t: 0, life: 2.6 }); }
     }
     function go(s) {
-      s = U.clamp(s, 0, 4);
+      s = U.clamp(s, 0, 5);
       if (s === 0) reset();
-      step = s; targets(s === 4 ? 3 : s); spawn(s); cap.innerHTML = captions[s];
+      if (s === 5) diagT0 = -1;
+      step = s; targets(s >= 4 ? 3 : s); if (s < 5) spawn(s); cap.innerHTML = captions[s];
     }
     var ctrl = UI.row(root);
     UI.btn(ctrl, '◀', function () { go(step - 1); });
     UI.btn(ctrl, 'Étape suivante ▶', function () { go(step + 1); }, 'main');
     UI.btn(ctrl, '↻ Recommencer', function () { go(0); });
     reset(); go(0);
+    /* --- diagramme de la chaîne complète --- */
+    var DB = [
+      ['a', 450, 34, 440, 'p + p → ²H + e⁺ + νₑ', '#ffe066'],
+      ['b', 450, 98, 340, '²H + p → ³He + γ', '#ffe066'],
+      ['c1', 205, 212, 300, '³He + ³He → ⁴He + 2 p', '#ffd166'],
+      ['d1', 205, 280, 140, '⁴He', '#ffd166'],
+      ['c2', 640, 212, 300, '³He + ⁴He → ⁷Be + γ', '#ff9f43'],
+      ['e1', 530, 296, 210, '⁷Be + e⁻ → ⁷Li + νₑ', '#ff9f43'],
+      ['f1', 530, 352, 190, '⁷Li + p → 2 ⁴He', '#ff9f43'],
+      ['e2', 782, 296, 200, '⁷Be + p → ⁸B + γ', '#ff6fb5'],
+      ['f2', 782, 350, 200, '⁸B → ⁸Be + e⁺ + νₑ', '#ff6fb5'],
+      ['g2', 782, 404, 200, '⁸Be → 2 ⁴He', '#ff6fb5']
+    ];
+    var DA = [['a', 'b', ''], ['b', 'c1', 'pp I · ≈ 86 %'], ['b', 'c2', '≈ 14 %'], ['c1', 'd1', ''], ['c2', 'e1', 'pp II · ≈ 14 %'], ['c2', 'e2', 'pp III · ≈ 0,1 %'], ['e1', 'f1', ''], ['e2', 'f2', ''], ['f2', 'g2', '']];
+    var DI = {}; DB.forEach(function (b, i) { DI[b[0]] = b; b.idx = i; });
+    function rr(x, y, w, h, r) { g.beginPath(); g.moveTo(x + r, y); g.arcTo(x + w, y, x + w, y + h, r); g.arcTo(x + w, y + h, x, y + h, r); g.arcTo(x, y + h, x, y, r); g.arcTo(x, y, x + w, y, r); g.closePath(); }
+    function drawDiagram(t) {
+      if (diagT0 < 0) diagT0 = t;
+      var el = t - diagT0;
+      DA.forEach(function (a, i) {
+        var A = DI[a[0]], B = DI[a[1]], al = U.smooth(0.25 + B.idx * 0.22, 0.7 + B.idx * 0.22, el);
+        if (al <= 0) return;
+        var x0 = A[1], y0 = A[2] + 14, x1 = B[1], y1 = B[2] - 15, col = B[5];
+        g.save(); g.globalAlpha = al; g.strokeStyle = col; g.fillStyle = col; g.lineWidth = 2.4; g.shadowColor = col; g.shadowBlur = 8;
+        g.beginPath(); g.moveTo(x0, y0); g.lineTo(x0 + (x1 - x0) * al, y0 + (y1 - y0) * al); g.stroke();
+        var ang = Math.atan2(y1 - y0, x1 - x0); g.beginPath(); g.moveTo(x1, y1); g.lineTo(x1 - 10 * Math.cos(ang - .45), y1 - 10 * Math.sin(ang - .45)); g.lineTo(x1 - 10 * Math.cos(ang + .45), y1 - 10 * Math.sin(ang + .45)); g.closePath(); g.fill(); g.shadowBlur = 0;
+        for (var k = 0; k < 2; k++) { var f = ((t * .35 + k / 2 + i * .13) % 1); g.fillStyle = '#fff'; g.beginPath(); g.arc(x0 + (x1 - x0) * f, y0 + (y1 - y0) * f, 2.4, 0, TAU); g.fill(); }
+        g.restore();
+        if (a[2] && al > .5) {
+          var mx = (x0 + x1) / 2 + (x1 < x0 ? -8 : x1 > x0 ? 8 : 0), my = (y0 + y1) / 2;
+          g.globalAlpha = al; g.font = '600 14px Outfit, sans-serif'; g.textAlign = x1 < x0 ? 'right' : 'left'; g.lineWidth = 4; g.lineJoin = 'round'; g.strokeStyle = 'rgba(5,7,24,.9)'; g.strokeText(a[2], mx, my + 4); g.fillStyle = col; g.fillText(a[2], mx, my + 4); g.globalAlpha = 1;
+        }
+      });
+      DB.forEach(function (b) {
+        var al = U.smooth(0.05 + b.idx * 0.22, 0.45 + b.idx * 0.22, el); if (al <= 0) return;
+        var x = b[1] - b[3] / 2, y = b[2] - 14;
+        g.save(); g.globalAlpha = al; g.shadowColor = b[5]; g.shadowBlur = 16;
+        rr(x, y, b[3], 28, 10); g.fillStyle = 'rgba(10,14,40,.92)'; g.fill(); g.shadowBlur = 0; g.strokeStyle = b[5]; g.lineWidth = 1.8; g.stroke();
+        g.fillStyle = '#f4f6ff'; g.font = '600 15.5px Outfit, sans-serif'; g.textAlign = 'center'; g.fillText(b[4], b[1], b[2] + 5); g.restore();
+      });
+      var al2 = U.smooth(1.6, 2.3, el);
+      g.save(); g.globalAlpha = al2; g.textAlign = 'center'; g.fillStyle = '#a9b2d6'; g.font = '400 13.5px Outfit, sans-serif';
+      g.fillText('(ou, dans 0,25 % des cas : p + e⁻ + p → ²H + νₑ)', 450, 64);
+      g.textAlign = 'left'; g.fillStyle = '#ffd166'; g.font = '600 15px Outfit, sans-serif'; g.fillText('Bilan commun aux trois branches', 18, 350);
+      g.fillStyle = '#f4f6ff'; g.font = '600 17px Outfit, sans-serif'; g.fillText('4 p → ⁴He + 2 e⁺ + 2 νₑ + 2 γ', 18, 376);
+      g.fillStyle = '#a9b2d6'; g.font = '400 13.5px Outfit, sans-serif'; g.fillText('26,7 MeV libérés par noyau d’hélium', 18, 398);
+      g.fillText('(le cycle CNO ne fournit que ≈ 1 % de l’énergie du Soleil)', 18, 420);
+      g.restore();
+    }
     var lastT = 0;
     function drawNuc(n, t) {
       var r = RN, c0 = [255, 96, 120], c1 = [196, 202, 222];
@@ -294,6 +345,7 @@
         var dt = Math.min(0.1, t - lastT); lastT = t;
         if (!st.fit()) return;
         g.clearRect(0, 0, W, Hh);
+        if (step === 5) { drawDiagram(t); return; }
         var k = 1 - Math.exp(-dt * 4.2);
         nodes.forEach(function (n) { n.x += (n.tx - n.x) * k; n.y += (n.ty - n.y) * k; n.mix += (n.tmix - n.mix) * k; });
         // étiquettes de noyaux

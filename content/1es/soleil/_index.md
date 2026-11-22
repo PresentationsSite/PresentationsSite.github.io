@@ -21,6 +21,7 @@ highlight_theme = "atom-one-dark-reasonable"
 <p class="sub">Rayonnement, couleur des étoiles<br>et bilan radiatif de la Terre</p>
 <p class="hint">→ avancer &nbsp;·&nbsp; ↓ sous-parties</p>
 </div>
+<svg width="0" height="0" style="position:absolute;color:var(--acc)" aria-hidden="true"><filter id="num-outline" x="-10%" y="-10%" width="120%" height="120%" color-interpolation-filters="sRGB"><feMorphology in="SourceAlpha" operator="dilate" radius="1.6" result="d"/><feMorphology in="SourceAlpha" operator="erode" radius="1.6" result="e"/><feComposite in="d" in2="e" operator="out" result="ring"/><feFlood flood-color="currentColor"/><feComposite in2="ring" operator="in"/></filter></svg>
 <i data-part="intro" hidden></i>
 
 ---
@@ -45,10 +46,6 @@ highlight_theme = "atom-one-dark-reasonable"
 
 ---
 
-<p>Le Soleil, grâce à la <span class="imp">fusion nucléaire</span> de l’hydrogène<br>au sein de son cœur, délivre une<br>puissance phénoménale.</p>
-
----
-
 <h3>La fusion de l’hydrogène</h3>
 <div class="sw" data-w="ppchain" data-prevent-swipe></div>
 
@@ -61,12 +58,8 @@ highlight_theme = "atom-one-dark-reasonable"
 
 <p>L’<span class="imp">énergie</span> $E$ mesure la capacité<br>à chauffer et à bouger un objet.</p>
 <p class="fragment fade-up">La <span class="imp">puissance</span> $P$, c’est le taux de conversion<br>de l’énergie $E$, sa vitesse de variation.</p>
-
----
-
-<p>On passe de l’une à l’autre grâce à la formule :</p>
 <div class="formule fragment fade-up">$E=P\times t$</div>
-<p class="fragment fade-up">où $E$ est en joules (J)<br>si $P$ est en watts (W)<br>et $t$ en secondes (s).</p>
+<p class="fragment fade-up" style="font-size:.7em">où $E$ est en joules (J) si $P$ est en watts (W)<br>et $t$ en secondes (s).</p>
 
 ---
 
@@ -112,12 +105,7 @@ highlight_theme = "atom-one-dark-reasonable"
 ---
 
 <p>Dans l’espace, deux corps peuvent<br>échanger de l’énergie à distance<br>via un <span class="imp">transfert thermique radiatif</span>.</p>
-<p class="fragment fade-up">Le corps émet alors un rayonnement électromagnétique lié à sa température<br>(rayonnement de <span class="imp">corps noir</span>).</p>
-
----
-
-<p>En effet, tout corps ayant une température<br>supérieure au zéro absolu <span class="imp">rayonne</span>.</p>
-<p class="fragment fade-up">zéro absolu : 0 K = −273,15 °C</p>
+<p class="fragment fade-up">Tout corps ayant une température supérieure au zéro absolu<br>(0 K = −273,15 °C) <span class="imp">rayonne</span> : c’est le rayonnement de <span class="imp">corps noir</span>.</p>
 
 ---
 
@@ -143,17 +131,6 @@ highlight_theme = "atom-one-dark-reasonable"
 
 ---
 
-{{< qcm
-    q=`D’après la loi de Wien, si on <b>double</b> la température d’une étoile, $\lambda_{max}$…`
-    a1=`double`
-    a2=`est divisée par 2`
-    a3=`est divisée par 4`
-    a4=`ne change pas`
-    bonne="2"
-    expl=`$\lambda_{max}\propto\dfrac1T$ : si $T$ est multipliée par 2, $\lambda_{max}$ est <b>divisée par 2</b>.` >}}
-
----
-
 <h3>La constellation d’Orion</h3>
 <div class="sw" data-w="orion" data-prevent-swipe></div>
 
@@ -164,11 +141,13 @@ Betelgeuse est une des plus grandes étoiles connues. Son rayon s'étendrait ent
 
 ---
 
-<div class="photo white"><img src="/exwien.png" alt="Spectres d’Aldébaran et de Rigel" style="max-height:520px"></div>
+<h3>Rigel et Bételgeuse : spectres observés</h3>
+<div class="sw" data-w="spectres-etoiles" data-prevent-swipe></div>
 
 {{%note%}}
-Aldébaran est une étoile géante orangée située dans la constellation du Taureau. Comme Bételgeuse, elle a fini de brûler son hydrogène et maintenant elle brûle son hélium.<br>
-Pour Rigel, le maximum du spectre mesuré (≈ 385 nm) n'est que le bord de la fenêtre d'observation : le vrai maximum est dans l'ultraviolet (T ≈ 12 000 K, λmax ≈ 240 nm). On n'obtient ici qu'une température minimale.
+Données : spectres observés de supergéantes de même type spectral que Rigel (B8 I) et Bételgeuse (M2 I), bibliothèque stellaire de Pickles (1998), flux de l'UV à 2,5 µm.<br>
+Activité des élèves (spectre de Rigel tronqué, ≈ 360-780 nm) : on lit un maximum vers 385 nm, ce qui donne T = 2,89×10⁶ / 385 ≈ 7 500 K par la loi de Wien. La température de surface réelle de Rigel est plus élevée (≈ 12 100 K).<br>
+Le bouton « Fenêtre 350–850 nm » reproduit cette situation. Le maximum vers 380 nm est bien réel (il apparaît aussi sur le spectre complet) : juste après le saut de Balmer (365 nm), le flux UV est fortement absorbé dans l'atmosphère de l'étoile (hydrogène, raies métalliques). Rigel n'est donc pas un corps noir parfait : appliquée au maximum du spectre observé, la loi de Wien sous-estime sa température (de même pour Bételgeuse : ≈ 3 200 K trouvés pour ≈ 3 600 K réels).
 {{%/note%}}
 
 ---
@@ -179,22 +158,17 @@ Pour Rigel, le maximum du spectre mesuré (≈ 385 nm) n'est que le bord de la f
 ---
 
 {{< qcm
-    q=`Le spectre d’<b>Aldébaran</b> passe par un maximum vers $\lambda_{max}\approx745$ nm.<br>Sa température de surface est d’environ…`
-    a1=`390 K`
+    q=`Le spectre de <b>Rigel</b> passe par un maximum vers $\lambda_{max}\approx385$ nm.<br>Avec la loi de Wien, on trouve une température d’environ…`
+    a1=`750 K`
     a2=`3 900 K`
-    a3=`7 700 K`
-    a4=`39 000 K`
-    bonne="2"
-    expl=`$T=\dfrac{2{,}89\times10^{6}}{745}\approx3\,900$ K : Aldébaran est plus froide que le Soleil, ce qui explique sa couleur <b>orangée</b>.` >}}
+    a3=`7 500 K`
+    a4=`75 000 K`
+    bonne="3"
+    expl=`$T=\dfrac{2{,}89\times10^{6}}{385}\approx7\,500$ K. C’est une <b>estimation</b> : la température réelle de Rigel (≈ 12 000 K) est plus élevée, car l’étoile n’est pas un corps noir parfait (absorption dans l’UV). Bételgeuse, avec un maximum vers 900 nm, est bien plus froide (≈ 3 200 K trouvés pour ≈ 3 600 K réels).` >}}
 
 ---
 
 <p>Avec sa température de surface de $5778\ \text{K}$,<br>le spectre du Soleil est centré<br>sur le rayonnement <span class="imp">visible</span> (sur le <span class="imp">vert</span>).</p>
-
----
-
-<h3>Le spectre du Soleil</h3>
-<div class="sw" data-w="planck2" data-show="sun" data-prevent-swipe></div>
 
 ---
 
@@ -309,6 +283,10 @@ Pour Rigel, le maximum du spectre mesuré (≈ 385 nm) n'est que le bord de la f
 
 ---
 
+{{< slide  background-image="/compsol.png" background-size="100%" background-transition="concave">}}
+
+---
+
 {{< qcm
     q=`L’énergie solaire reçue par la Terre en un an ($3{,}8\times10^{24}$ J) est, par rapport à la consommation énergétique mondiale annuelle ($6\times10^{20}$ J), environ…`
     a1=`6 fois plus grande`
@@ -332,17 +310,6 @@ Pour Rigel, le maximum du spectre mesuré (≈ 385 nm) n'est que le bord de la f
 
 <h3>Pourquoi 1/d² ?</h3>
 <div class="sw" data-w="carre-inverse" data-prevent-swipe></div>
-
----
-
-{{< qcm
-    q=`Mars est 1,5 fois plus éloignée du Soleil que la Terre. L’irradiance qu’elle reçoit est…`
-    a1=`1,5 fois plus faible`
-    a2=`2,3 fois plus faible`
-    a3=`3,4 fois plus faible`
-    a4=`1,5 fois plus forte`
-    bonne="2"
-    expl=`$I\propto\dfrac1{d^2}$ et $1{,}5^2\approx2{,}3$ : Mars reçoit $\dfrac{1\,361}{2{,}3}\approx590$ W/m².` >}}
 
 ---
 
@@ -394,8 +361,8 @@ Pour Rigel, le maximum du spectre mesuré (≈ 385 nm) n'est que le bord de la f
 
 ---
 
-<h3>Éclairement selon la latitude</h3>
-<div class="sw" data-w="insolation" data-prevent-swipe></div>
+<h3>Éclairement moyen selon la latitude</h3>
+<div class="sw" data-w="globe-insol" data-mode="annuel" data-prevent-swipe></div>
 
 ---
 
@@ -408,12 +375,8 @@ Pour Rigel, le maximum du spectre mesuré (≈ 385 nm) n'est que le bord de la f
 
 ---
 
-<p>Regardons maintenant comment évolue l’irradiation au cours de <span class="imp">l’année</span>.</p>
-
----
-
 <h3>L’éclairement au fil de l’année</h3>
-<div class="sw" data-w="insolation" data-play="1" data-prevent-swipe></div>
+<div class="sw" data-w="globe-insol" data-play="1" data-prevent-swipe></div>
 
 ---
 
@@ -447,13 +410,13 @@ Pour Rigel, le maximum du spectre mesuré (≈ 385 nm) n'est que le bord de la f
 ---
 
 {{< qcm
-    q=`À <b>Paris</b> (latitude ≈ 49° N), quelle est l’élévation maximale du Soleil le <b>21 juin</b> ?<br><span class="mut">(le 21 juin, le Soleil est à 23,4° au-dessus de l’équateur céleste)</span>`
+    q=`À <b>La Rochelle</b> (latitude ≈ 46° N), quelle est l’élévation maximale du Soleil le <b>21 juin</b> ?<br><span class="mut">(le 21 juin, le Soleil est à 23,4° au-dessus de l’équateur céleste)</span>`
     a1=`23°`
-    a2=`41°`
-    a3=`65°`
+    a2=`44°`
+    a3=`67°`
     a4=`90°`
     bonne="3"
-    expl=`$h_{max}=90^\circ-\text{latitude}+\delta=90-49+23{,}4\approx65^\circ$. Le 21 décembre, ce serait $90-49-23{,}4\approx18^\circ$ seulement.` >}}
+    expl=`$h_{max}=90^\circ-\text{latitude}+\delta=90-46+23{,}4\approx67^\circ$. Le 21 décembre, ce serait $90-46-23{,}4\approx20^\circ$ seulement.` >}}
 
 ---
 
@@ -462,7 +425,7 @@ Pour Rigel, le maximum du spectre mesuré (≈ 385 nm) n'est que le bord de la f
 ---
 
 <h3>Durée du jour selon la latitude et la date</h3>
-<div class="sw" data-w="insolation" data-mode="duree" data-prevent-swipe></div>
+<div class="sw" data-w="duree-carte" data-prevent-swipe></div>
 
 {{% /section %}}
 
@@ -484,11 +447,6 @@ Pour Rigel, le maximum du spectre mesuré (≈ 385 nm) n'est que le bord de la f
 
 <p>La vidéo précédente montre l’irradiation<br>solaire <span class="imp">au niveau du sol</span>.</p>
 <p class="fragment fade-up">Comment expliquer la différence par rapport à l’irradiation au niveau des hautes couches atmosphériques (beaucoup plus symétrique) ?</p>
-
----
-
-<h3>Irradiation au sommet de l’atmosphère</h3>
-<div class="sw" data-w="insolation" data-play="1" data-prevent-swipe></div>
 
 ---
 
@@ -525,13 +483,8 @@ Pour Rigel, le maximum du spectre mesuré (≈ 385 nm) n'est que le bord de la f
 
 ---
 
-<p>La Terre étant chauffée par le Soleil, elle émet, comme on l’a vu, un rayonnement de <span class="imp">corps noir</span> déterminé par sa température de surface moyenne.</p>
-<p class="fragment fade-up">Ce rayonnement est situé<br>dans <span class="imp">l’infrarouge</span><br>(autour de 10 μm).</p>
-
----
-
 <h3>Effet de serre</h3>
-<p style="font-size:.75em">Il se trouve que certains gaz atmosphériques,<br>les <span class="imp">gaz à effet de serre</span> (comme le dioxyde de carbone, le méthane ou la vapeur d’eau), sont opaques à ces longueurs d’onde.</p>
+<p style="font-size:.75em">La Terre, chauffée par le Soleil, rayonne dans l’infrarouge.<br>Il se trouve que certains gaz atmosphériques,<br>les <span class="imp">gaz à effet de serre</span> (comme le dioxyde de carbone, le méthane ou la vapeur d’eau), sont opaques à ces longueurs d’onde.</p>
 
 ---
 
@@ -545,10 +498,6 @@ Pour Rigel, le maximum du spectre mesuré (≈ 385 nm) n'est que le bord de la f
 
 ---
 
-<p>Les gaz à effet de serre <span class="imp">renvoient vers la surface</span> une partie du rayonnement infrarouge<br>émis par la Terre.</p>
-
----
-
 {{< qcm
     q=`L’effet de serre est dû à des gaz qui…`
     a1=`absorbent le rayonnement solaire visible`
@@ -556,12 +505,7 @@ Pour Rigel, le maximum du spectre mesuré (≈ 385 nm) n'est que le bord de la f
     a3=`réfléchissent tout le rayonnement solaire`
     a4=`produisent eux-mêmes de la chaleur`
     bonne="2"
-    expl=`Les gaz à effet de serre sont <b>transparents au visible</b> mais <b>opaques à l’infrarouge</b> : ils réémettent une partie de ce rayonnement vers la surface (le « contre-rayonnement », 333 W/m²).` >}}
-
----
-
-<p>Si la quantité de gaz à effet de serre augmente,<br>une partie du budget radiatif est déséquilibré<br>(il y a plus d’énergie entrante que sortante).<br>On parle de <span class="imp">forçage radiatif</span>.</p>
-<p class="fragment fade-up">La température de surface augmente alors (entraînant un plus fort flux sortant)<br>jusqu’à ce que l’équilibre soit rétabli.</p>
+    expl=`Les gaz à effet de serre sont <b>transparents au visible</b> mais <b>opaques à l’infrarouge</b> : ils <span class="imp">renvoient vers la surface</span> une partie du rayonnement infrarouge émis par la Terre (le « contre-rayonnement », 333 W/m²).` >}}
 
 ---
 
@@ -572,7 +516,20 @@ Pour Rigel, le maximum du spectre mesuré (≈ 385 nm) n'est que le bord de la f
     a3=`augmente jusqu’à un nouvel équilibre`
     a4=`augmente indéfiniment`
     bonne="3"
-    expl=`Le déséquilibre ($N>0$) réchauffe la surface ; comme elle émet alors davantage ($\sigma T^4$), le déséquilibre diminue jusqu’à s’annuler : un <b>nouvel équilibre</b>, plus chaud. Vérifions avec le modèle.` >}}
+    expl=`Le déséquilibre ($N>0$) réchauffe la surface ; comme elle émet alors davantage ($\sigma T^4$), le déséquilibre diminue jusqu’à s’annuler : un <b>nouvel équilibre</b>, plus chaud.` >}}
+
+---
+
+<p>Si la quantité de gaz à effet de serre augmente,<br>une partie du budget radiatif est déséquilibré<br>(il y a plus d’énergie entrante que sortante).<br>On parle de <span class="imp">forçage radiatif</span>.</p>
+<p class="fragment fade-up">La température de surface augmente alors (entraînant un plus fort flux sortant)<br>jusqu’à ce que l’équilibre soit rétabli.</p>
+
+---
+
+<h3>Un modèle simple d’effet de serre</h3>
+<p style="font-size:.7em">L’atmosphère absorbe une fraction <span class="imp">$\varepsilon$</span> du rayonnement infrarouge émis par la surface, puis réémet l’énergie absorbée : moitié vers l’espace, moitié vers le sol.</p>
+<div class="formule fragment fade-up">$\varepsilon=\dfrac{\text{puissance IR absorbée par l’atmosphère}}{\text{puissance IR émise par la surface}}$</div>
+<p class="fragment fade-up" style="font-size:.7em">Valeur actuelle : <span class="imp">$\varepsilon\approx0{,}78$</span>, celle qui redonne la température moyenne de <span class="imp">288 K</span> (15 °C).<br>Sans effet de serre ($\varepsilon=0$) : 255 K (−18 °C).</p>
+<p class="fragment fade-up" style="font-size:.7em">À l’équilibre : $\sigma T_s^4=\dfrac{(1-A)\,K/4}{1-\varepsilon/2}$</p>
 
 ---
 
@@ -586,8 +543,11 @@ Pour Rigel, le maximum du spectre mesuré (≈ 385 nm) n'est que le bord de la f
 <p><a href="https://coursphychi.github.io/1es/soleil/">↩ Retour au site</a></p>
 
 <script src="/js/soleil/core.js"></script>
+<script src="/js/soleil/geo.js"></script>
+<script src="/js/soleil/data-spectres.js"></script>
 <script src="/js/soleil/astro1.js"></script>
 <script src="/js/soleil/astro2.js"></script>
 <script src="/js/soleil/spectre.js"></script>
 <script src="/js/soleil/terre.js"></script>
+<script src="/js/soleil/terre2.js"></script>
 <script src="/js/soleil/climat.js"></script>

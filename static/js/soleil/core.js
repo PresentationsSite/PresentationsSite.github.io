@@ -43,6 +43,31 @@
       : 'rgba(' + (c[0] | 0) + ',' + (c[1] | 0) + ',' + (c[2] | 0) + ',' + a + ')';
   };
 
+  /**
+   * Texte avec indices et exposants dans un canvas : « R_T », « P_{diff} », « T^{4} ».
+   * Syntaxe : _x ou _{...} pour un indice, ^x ou ^{...} pour un exposant.
+   * halo : couleur d'un contour sombre derrière le texte (lisibilité sur fond chargé).
+   */
+  U.rich = function (g, str, x, y, col, size, al, w, halo) {
+    var segs = [], re = /([_^])(\{[^}]*\}|[A-Za-z0-9λπσεδΔαβγ])|([^_^]+)/g, m;
+    while ((m = re.exec(str))) {
+      if (m[3] != null) segs.push([m[3], 0]);
+      else segs.push([m[2].charAt(0) === '{' ? m[2].slice(1, -1) : m[2], m[1] === '_' ? 1 : 2]);
+    }
+    var wt = w || 400, fs = function (k) { return wt + ' ' + (k ? size * 0.68 : size) + 'px Outfit, sans-serif'; };
+    var tot = 0;
+    segs.forEach(function (sg) { g.font = fs(sg[1]); sg.w = g.measureText(sg[0]).width; tot += sg.w; });
+    var cx = al === 'center' ? x - tot / 2 : al === 'right' ? x - tot : x;
+    g.textAlign = 'left';
+    segs.forEach(function (sg) {
+      g.font = fs(sg[1]);
+      var yy = y + (sg[1] === 1 ? size * 0.22 : sg[1] === 2 ? -size * 0.38 : 0);
+      if (halo) { g.lineWidth = Math.max(3, size * 0.28); g.lineJoin = 'round'; g.strokeStyle = halo; g.strokeText(sg[0], cx, yy); }
+      g.fillStyle = col; g.fillText(sg[0], cx, yy); cx += sg.w;
+    });
+    return tot;
+  };
+
   /* Longueur d'onde (nm) -> couleur approximative (algorithme de Bruton), [r,g,b] 0-255 */
   U.wl2rgb = function (nm) {
     var r = 0, g = 0, b = 0, f;
@@ -222,6 +247,7 @@
     var inp = document.createElement('input');
     inp.type = 'range'; inp.min = o.min; inp.max = o.max; inp.step = o.step || 'any'; inp.value = o.value;
     var out = el('output', 'sw-sl-o');
+    if (o.w) out.style.minWidth = o.w + 'em';
     var fmt = o.fmt || function (v) { return U.fr(v, o.dec || 0); };
     var api = {
       el: lab, input: inp,

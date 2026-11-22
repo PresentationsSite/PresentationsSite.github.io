@@ -2,6 +2,7 @@
 (function () {
   'use strict';
   var S = window.Soleil, U = S.util, UI = S.ui, TAU = U.TAU;
+  function txt2(g, s, x, y, col, size, al, w) { U.rich(g, s, x, y, col, size, al, w); }
 
   /* ======================================================= Orion : température et couleur des étoiles */
   S.register('orion', function (root) {
@@ -61,7 +62,7 @@
         });
         // tableau
         g.textAlign = 'left'; g.fillStyle = '#a9b2d6'; g.font = '600 14px Outfit, sans-serif';
-        g.fillText('ÉTOILE', 590, 78); g.textAlign = 'right'; g.fillText('T (K)', 745, 78); g.fillText('λ_max', 860, 78);
+        g.fillText('ÉTOILE', 590, 78); g.textAlign = 'right'; g.fillText('T (K)', 745, 78); g.fillText('λmax', 860, 78);
         g.strokeStyle = 'rgba(255,255,255,.15)'; g.beginPath(); g.moveTo(560, 88); g.lineTo(870, 88); g.stroke();
         order.forEach(function (s, i) {
           var y = 98 + i * 38, on = hov === s;
@@ -77,6 +78,90 @@
           var lam = U.wien / hov.T * 1e9;
           cap.innerHTML = '<b>' + hov.n + '</b> : T ≈ ' + U.fr(hov.T, 0) + ' K → λ<sub>max</sub> = 2,898×10⁶ / T ≈ <b>' + U.fr(lam, 0) + ' nm</b> (' + (lam > 750 ? 'infrarouge : l’étoile paraît rouge-orangé' : lam < 380 ? 'ultraviolet : l’étoile paraît bleue' : 'visible') + ')';
         } else cap.innerHTML = 'Survole une étoile ou une ligne du tableau : plus l’étoile est chaude, plus elle est <b>bleue</b>.';
+      }
+    };
+  });
+
+  /* ======================================================= Spectres réels de Rigel et Bételgeuse */
+  S.register('spectres-etoiles', function (root) {
+    var D = S.data && S.data.spectres, W = 900, Hh = 420, st = S.stage(root, W, Hh), g = st.g;
+    if (!D) { root.textContent = 'Données spectrales absentes (static/js/soleil/data-spectres.js).'; return {}; }
+    var X0 = 70, X1 = 860, Y0 = 34, Y1 = 330;
+    var ST = {
+      rigel: { n: 'Rigel', t: 'B8 I', col: [120, 175, 255], Treal: 12100 },
+      betel: { n: 'Bételgeuse', t: 'M2 I', col: [255, 128, 70], Treal: 3600 }
+    };
+    Object.keys(ST).forEach(function (k) {
+      var f = D[k].f, im = 0; for (var i = 0; i < f.length; i++) if (f[i] > f[im]) im = i;
+      ST[k].lmax = D.lam[im];
+    });
+    var on = { rigel: true, betel: true }, view = 'full', showT = false, cur = null;
+    var ctrl = UI.row(root);
+    UI.chips(ctrl, [{ id: 'rigel', label: 'Rigel (B8 I)', color: '#7fb4ff' }, { id: 'betel', label: 'Bételgeuse (M2 I)', color: '#ff8046' }], {
+      multi: true, value: ['rigel', 'betel'], onchange: function (id, all) { on.rigel = all.indexOf('rigel') >= 0; on.betel = all.indexOf('betel') >= 0; }
+    });
+    UI.chips(ctrl, [{ id: 'full', label: 'UV → IR' }, { id: 'win', label: 'Fenêtre 350–850 nm' }], { value: 'full', onchange: function (id) { view = id; } });
+    UI.btn(ctrl, 'T d’après Wien', function (e, b) { showT = !showT; b.classList.toggle('main', showT); });
+    var read = UI.readout(root);
+    function xr() { return view === 'full' ? [100, 2500] : [350, 850]; }
+    function fAt(arr, x) {
+      var L = D.lam, lo = 0, hi = L.length - 1;
+      if (x <= L[0]) return arr[0]; if (x >= L[hi]) return arr[hi];
+      while (hi - lo > 1) { var m = (lo + hi) >> 1; if (L[m] <= x) lo = m; else hi = m; }
+      return arr[lo] + (arr[hi] - arr[lo]) * (x - L[lo]) / (L[hi] - L[lo]);
+    }
+    S.pointer(st, { move: function (x) { var r = xr(); cur = U.clamp(r[0] + (x - X0) / (X1 - X0) * (r[1] - r[0]), r[0], r[1]); }, leave: function () { cur = null; } });
+    return {
+      frame: function (t) {
+        if (!st.fit()) return;
+        g.clearRect(0, 0, W, Hh);
+        var r = xr(), a = r[0], b = r[1];
+        function xo(l) { return X0 + (l - a) / (b - a) * (X1 - X0); }
+        function yo(v) { return Y1 - v * (Y1 - Y0 - 26); }
+        // bande visible
+        var vx0 = xo(380), vx1 = xo(750), gv = g.createLinearGradient(vx0, 0, vx1, 0);
+        for (var l = 380; l <= 750; l += 10) gv.addColorStop((l - 380) / 370, U.rgb(U.wl2rgb(l)));
+        g.save(); g.globalAlpha = .2; g.fillStyle = gv; g.fillRect(Math.max(vx0, X0), Y0, Math.min(vx1, X1) - Math.max(vx0, X0), Y1 - Y0); g.restore();
+        g.strokeStyle = 'rgba(255,255,255,.55)'; g.lineWidth = 1.5; g.beginPath(); g.moveTo(X0, Y0); g.lineTo(X0, Y1); g.lineTo(X1, Y1); g.stroke();
+        var stp = view === 'full' ? 200 : 50;
+        g.fillStyle = '#c9d1f5'; g.font = '14px Outfit, sans-serif'; g.textAlign = 'center';
+        for (var nm = Math.ceil(a / stp) * stp; nm <= b; nm += stp) { g.strokeStyle = 'rgba(255,255,255,.07)'; g.lineWidth = 1; g.beginPath(); g.moveTo(xo(nm), Y0); g.lineTo(xo(nm), Y1); g.stroke(); g.fillText(nm, xo(nm), Y1 + 19); }
+        txt2(g, 'λ (nm)', X1, Y1 + 40, '#c9d1f5', 14, 'right');
+        g.save(); g.translate(24, (Y0 + Y1) / 2); g.rotate(-Math.PI / 2); txt2(g, 'intensité relative', 0, 0, '#c9d1f5', 14, 'center'); g.restore();
+        function lab(str, x, col) { U.rich(g, str, x, Y1 - 8, col, 13, 'center', 600, 'rgba(5,7,24,.8)'); }
+        if (view === 'full') { lab('UV', xo(250), '#b69cff'); lab('visible', (vx0 + vx1) / 2, '#eef1ff'); lab('infrarouge', xo(1500), '#ff8a8a'); }
+        else lab('visible', (Math.max(vx0, X0) + Math.min(vx1, X1)) / 2, '#eef1ff');
+        Object.keys(ST).forEach(function (k) {
+          if (!on[k]) return;
+          var c = ST[k].col, f = D[k].f, L = D.lam, first = true;
+          g.save(); g.beginPath(); g.rect(X0, Y0 - 6, X1 - X0, Y1 - Y0 + 8); g.clip();
+          g.beginPath(); g.moveTo(xo(Math.max(a, L[0])), Y1);
+          for (var i = 0; i < L.length; i++) { if (L[i] < a - 5 || L[i] > b + 5) continue; g.lineTo(xo(L[i]), yo(f[i])); }
+          g.lineTo(xo(Math.min(b, L[L.length - 1])), Y1); g.closePath();
+          var gr = g.createLinearGradient(0, Y0, 0, Y1); gr.addColorStop(0, U.rgb(c, .38)); gr.addColorStop(1, U.rgb(c, .03)); g.fillStyle = gr; g.fill();
+          g.beginPath(); first = true;
+          for (var j = 0; j < L.length; j++) { if (L[j] < a - 5 || L[j] > b + 5) continue; if (first) { g.moveTo(xo(L[j]), yo(f[j])); first = false; } else g.lineTo(xo(L[j]), yo(f[j])); }
+          g.strokeStyle = U.rgb(c); g.lineWidth = 3; g.shadowColor = U.rgb(c); g.shadowBlur = 10; g.stroke(); g.restore();
+          // maximum
+          var lm = ST[k].lmax;
+          if (lm >= a && lm <= b) {
+            var xm = xo(lm), ym = yo(1);
+            g.strokeStyle = U.rgb(c, .8); g.setLineDash([5, 5]); g.lineWidth = 1.4; g.beginPath(); g.moveTo(xm, ym + 6); g.lineTo(xm, Y1); g.stroke(); g.setLineDash([]);
+            g.fillStyle = '#fff'; g.beginPath(); g.arc(xm, ym, 5, 0, TAU); g.fill();
+            U.rich(g, ST[k].n, xm + 12, ym - 2, U.rgb(c), 16, 'left', 700, 'rgba(5,7,24,.8)');
+            U.rich(g, 'λ_{max} ≈ ' + U.fr(lm, 0) + ' nm', xm + 12, ym + 16, '#eef1ff', 14, 'left', 600, 'rgba(5,7,24,.8)');
+          } else if (view === 'win') {
+            U.rich(g, ST[k].n + ' : maximum au-delà de 850 nm →', X1 - 8, Y0 + 40, U.rgb(c), 14, 'right', 600, 'rgba(5,7,24,.8)');
+          }
+        });
+        if (cur != null) {
+          var xc = xo(cur); g.strokeStyle = 'rgba(255,255,255,.8)'; g.lineWidth = 1.2; g.beginPath(); g.moveTo(xc, Y0); g.lineTo(xc, Y1); g.stroke();
+        }
+        txt2(g, 'Spectres observés de supergéantes de même type que Rigel et Bételgeuse (bibliothèque de Pickles, 1998)', X0, Y1 + 62, '#7f89b3', 12.5, 'left');
+        var rd = [];
+        if (cur != null) { var s0 = 'λ = ' + U.fr(cur, 0) + ' nm'; Object.keys(ST).forEach(function (k) { if (on[k]) s0 += ' · ' + ST[k].n + ' : ' + U.fr(fAt(D[k].f, cur) * 100, 0) + ' %'; }); rd.push(s0); }
+        else { Object.keys(ST).forEach(function (k) { if (!on[k]) return; var T = U.wien / (ST[k].lmax * 1e-9); rd.push('<b style="color:' + U.rgb(ST[k].col) + '">' + ST[k].n + '</b> : maximum vers <b>' + U.fr(ST[k].lmax, 0) + ' nm</b>' + (showT ? ' → loi de Wien : <b>' + U.fr(Math.round(T / 100) * 100, 0) + ' K</b>' : '')); }); if (!rd.length) rd.push('Coche au moins une étoile.'); if (!showT) rd.push('Survole le graphe pour lire λ ; le bouton « T d’après Wien » affiche la température déduite.'); }
+        read.innerHTML = rd.join('<br>');
       }
     };
   });
@@ -230,7 +315,12 @@
   S.register('transit', function (root) {
     var W = 900, Hh = 440, st = S.stage(root, W, Hh), g = st.g;
     var mode = 'transit', k = 0.1, bImp = 0.3, T = 8, period = 8;
-    var rv = { K: 12.5, label: 'Jupiter autour du Soleil', P: '11,9 ans' };
+    var PL = {
+      j: { id: 'j', K: 12.5, label: 'Jupiter autour du Soleil', n: 'Jupiter / Soleil', short: 'Jupiter', P: '11,9 ans', col: '#ffb347' },
+      p: { id: 'p', K: 56, label: '51 Pegasi b (1ʳᵉ exoplanète, 1995)', n: '51 Pegasi b', short: '51 Peg b', P: '4,2 jours', col: '#4fd8ff' },
+      e: { id: 'e', K: 0.09, label: 'Terre autour du Soleil', n: 'Terre / Soleil', short: 'Terre', P: '1 an', col: '#7dffb0' }
+    };
+    var rv = PL.j;
     var SAMP = [], N = 220;
     for (var i = 0; i < N; i++) { var rr = Math.sqrt((i + .5) / N), th = i * 2.399963; SAMP.push([rr * Math.cos(th), rr * Math.sin(th)]); }
     var LD = 0.6;
@@ -256,9 +346,7 @@
     var sk = UI.slider(cT, { label: 'rayon planète / rayon étoile', min: Math.log(0.005), max: Math.log(0.2), step: 0.01, value: Math.log(0.1), fmt: function (v) { return U.fr(Math.exp(v), 3); }, oninput: function (v) { k = Math.exp(v); recompute(); } });
     UI.chips(cT, [{ id: .0092, label: 'Terre' }, { id: .0354, label: 'Neptune' }, { id: .1005, label: 'Jupiter' }], { onchange: function (id) { k = parseFloat(id); sk.set(Math.log(k)); recompute(); } });
     UI.chips(cV, [{ id: 'j', label: 'Jupiter / Soleil' }, { id: 'p', label: '51 Pegasi b' }, { id: 'e', label: 'Terre / Soleil' }], {
-      value: 'j', onchange: function (id) {
-        rv = id === 'j' ? { K: 12.5, label: 'Jupiter autour du Soleil', P: '11,9 ans' } : id === 'p' ? { K: 56, label: '51 Pegasi b (1ʳᵉ exoplanète, 1995)', P: '4,2 jours' } : { K: 0.09, label: 'Terre autour du Soleil', P: '1 an' };
-      }
+      value: 'j', onchange: function (id) { rv = PL[id]; }
     });
     function showCtrl() { cT.style.display = mode === 'transit' ? '' : 'none'; cV.style.display = mode === 'vr' ? '' : 'none'; }
     showCtrl();
@@ -315,27 +403,38 @@
           sg2.addColorStop(0, U.rgb(col)); sg2.addColorStop(.35, U.rgb(col, .55)); sg2.addColorStop(1, U.rgb(col, 0));
           g.fillStyle = sg2; g.beginPath(); g.arc(sx, sy, 38, 0, TAU); g.fill();
           g.fillStyle = '#fff4cf'; g.beginPath(); g.arc(sx, sy, 15, 0, TAU); g.fill();
-          g.strokeStyle = 'rgba(255,255,255,.35)'; g.beginPath(); g.arc(cx2, cy2, 3, 0, TAU); g.stroke();
           g.fillStyle = '#5cc8ff'; g.shadowColor = '#5cc8ff'; g.shadowBlur = 10; g.beginPath(); g.arc(plx, ply, 7, 0, TAU); g.fill(); g.shadowBlur = 0;
           g.fillStyle = '#9fe0ff'; g.font = '600 16px Outfit, sans-serif'; g.textAlign = 'center';
           g.fillText('↓ vers la Terre (observateur)', cx2, 410);
           g.fillStyle = '#a9b2d6'; g.font = '14px Outfit, sans-serif'; g.fillText('(oscillation de l’étoile très exagérée)', cx2, 386);
-          // courbe v_r(t)
-          var X0 = 470, X1 = 870, Y0 = 50, Y1 = 330, ym = (Y0 + Y1) / 2;
+          // courbes v_r(t) des trois systèmes, superposées (échelle commune en m/s)
+          var X0 = 470, X1 = 870, Y0 = 72, Y1 = 330, ym = (Y0 + Y1) / 2, VM = 60, sc = (Y1 - Y0) / 2 / VM;
           plotBox(X0, Y0, X1, Y1);
-          g.strokeStyle = 'rgba(255,255,255,.2)'; g.setLineDash([4, 5]); g.beginPath(); g.moveTo(X0, ym); g.lineTo(X1, ym); g.stroke(); g.setLineDash([]);
-          g.strokeStyle = 'rgba(255,209,102,.4)'; g.lineWidth = 2; g.beginPath();
-          for (var q = 0; q <= 200; q++) { var a = q / 200 * 2 * TAU, X = X0 + q / 200 * (X1 - X0), Y = ym - Math.cos(a) * (Y1 - Y0) * .42; q ? g.lineTo(X, Y) : g.moveTo(X, Y); }
-          g.stroke();
-          g.strokeStyle = '#ffd166'; g.lineWidth = 3; g.shadowColor = '#ffd166'; g.shadowBlur = 8; g.beginPath();
-          var pc = (ph % 1) * 0.5 * 2; // une période sur la moitié gauche puis seconde période
-          for (var q2 = 0; q2 <= Math.floor(ph * 100); q2++) { var a2 = q2 / 100 * TAU, X2 = X0 + (q2 / 100 / 2) * (X1 - X0), Y2 = ym - Math.cos(a2) * (Y1 - Y0) * .42; q2 ? g.lineTo(X2, Y2) : g.moveTo(X2, Y2); }
-          g.stroke(); g.shadowBlur = 0;
-          g.fillStyle = '#fff'; g.beginPath(); g.arc(X0 + ph / 2 * (X1 - X0), ym - Math.cos(ang) * (Y1 - Y0) * .42, 5, 0, TAU); g.fill();
-          g.fillStyle = '#c9d1f5'; g.font = '14px Outfit, sans-serif'; g.textAlign = 'right';
-          g.fillText('+' + U.fr(rv.K, rv.K < 1 ? 2 : 1) + ' m/s', X0 - 8, Y0 + 30); g.fillText('0', X0 - 8, ym + 5); g.fillText('−' + U.fr(rv.K, rv.K < 1 ? 2 : 1), X0 - 8, Y1 - 24);
-          g.textAlign = 'center'; g.fillText('s’éloigne ↑   ·   s’approche ↓', (X0 + X1) / 2, Y1 + 26);
-          g.fillStyle = '#eef1ff'; g.font = '600 17px Outfit, sans-serif'; g.fillText('Vitesse radiale de l’étoile', (X0 + X1) / 2, 36);
+          [-50, -25, 0, 25, 50].forEach(function (v) {
+            var y = ym - v * sc; g.strokeStyle = v === 0 ? 'rgba(255,255,255,.3)' : 'rgba(255,255,255,.07)'; g.setLineDash(v === 0 ? [4, 5] : []); g.lineWidth = 1;
+            g.beginPath(); g.moveTo(X0, y); g.lineTo(X1, y); g.stroke(); g.setLineDash([]);
+            g.fillStyle = '#c9d1f5'; g.font = '13px Outfit, sans-serif'; g.textAlign = 'right'; g.fillText((v > 0 ? '+' : v < 0 ? '−' : '') + Math.abs(v), X0 - 8, y + 5);
+          });
+          // précision des meilleurs spectrographes (≈ 1 m/s)
+          g.fillStyle = 'rgba(255,255,255,.16)'; g.fillRect(X0, ym - 1 * sc, X1 - X0, 2 * sc);
+          g.fillStyle = 'rgba(255,255,255,.7)'; g.font = '12px Outfit, sans-serif'; g.textAlign = 'left'; g.textAlign = 'right'; g.fillText('précision d’un bon spectrographe ≈ 1 m/s', X1 - 8, ym - 1 * sc - 5);
+          var order = ['j', 'p', 'e'].filter(function (id) { return id !== rv.id; }).concat([rv.id]);
+          order.forEach(function (id) {
+            var P = PL[id], sel = id === rv.id;
+            g.save(); g.globalAlpha = sel ? 1 : .3; g.strokeStyle = P.col; g.lineWidth = sel ? 3.4 : 2.2; if (sel) { g.shadowColor = P.col; g.shadowBlur = 10; }
+            g.beginPath(); for (var q = 0; q <= 200; q++) { var X = X0 + q / 200 * (X1 - X0), Y = ym - P.K * Math.cos(q / 200 * 2 * TAU) * sc; q ? g.lineTo(X, Y) : g.moveTo(X, Y); } g.stroke(); g.restore();
+          });
+          g.fillStyle = '#fff'; g.beginPath(); g.arc(X0 + ph / 2 * (X1 - X0), ym - rv.K * Math.cos(ang) * sc, 5.5, 0, TAU); g.fill();
+          // légende
+          ['j', 'p', 'e'].forEach(function (id, i) {
+            var P = PL[id], sel = id === rv.id, lx = X0 + 4 + i * 134;
+            g.globalAlpha = sel ? 1 : .5; g.fillStyle = P.col; g.fillRect(lx, 52, 14, 4);
+            g.fillStyle = '#eef1ff'; g.font = (sel ? '600 ' : '400 ') + '12.5px Outfit, sans-serif'; g.textAlign = 'left'; g.fillText(P.short + ' ' + U.fr(P.K, P.K < 1 ? 2 : 1) + ' m/s', lx + 19, 57); g.globalAlpha = 1;
+          });
+          g.fillStyle = '#c9d1f5'; g.font = '14px Outfit, sans-serif'; g.textAlign = 'center';
+          g.fillText('temps (2 périodes orbitales de chaque système) →', (X0 + X1) / 2, Y1 + 26);
+          g.save(); g.translate(X0 - 44, (Y0 + Y1) / 2); g.rotate(-Math.PI / 2); g.fillText('vitesse radiale de l’étoile (m/s) · + = s’éloigne', 0, 0); g.restore();
+          g.fillStyle = '#eef1ff'; g.font = '600 17px Outfit, sans-serif'; g.textAlign = 'center'; g.fillText('Vitesse radiale de l’étoile', (X0 + X1) / 2, 32);
           var dl = 656.28e-9 * rv.K / U.c;
           read.innerHTML = '<b>' + rv.label + '</b> : période ' + rv.P + ', K = <b>' + U.fr(rv.K, rv.K < 1 ? 2 : 1) + ' m/s</b>. La raie Hα (656 nm) ne se décale que de <b>' + U.fr(dl * 1e12, 3) + ' pm</b> !';
         }

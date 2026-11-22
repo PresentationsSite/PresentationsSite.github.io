@@ -3,7 +3,7 @@
   'use strict';
   var S = window.Soleil, U = S.util, UI = S.ui, TAU = U.TAU;
   var FONT = 'Outfit, sans-serif';
-  function txt(g, s, x, y, col, size, al, w) { g.fillStyle = col; g.font = (w || 400) + ' ' + size + 'px ' + FONT; g.textAlign = al || 'left'; g.fillText(s, x, y); }
+  function txt(g, s, x, y, col, size, al, w) { U.rich(g, s, x, y, col, size, al, w); }
 
   /* ======================================================= Corps noir et loi de Wien */
   S.register('planck', function (root) {
@@ -59,7 +59,7 @@
         if (xm > X0 && xm < X1) {
           g.strokeStyle = '#ff5f6d'; g.lineWidth = 2; g.setLineDash([6, 5]);
           g.beginPath(); g.moveTo(xm, Y1); g.lineTo(xm, Y0 + 30); g.stroke(); g.setLineDash([]);
-          var lab = 'λ_max = ' + U.fr(lmax, 0) + ' nm', tw = 130, lx = U.clamp(xm, X0 + tw / 2, X1 - tw / 2);
+          var lab = 'λ_{max} = ' + U.fr(lmax, 0) + ' nm', tw = 130, lx = U.clamp(xm, X0 + tw / 2, X1 - tw / 2);
           g.fillStyle = 'rgba(255,95,109,.2)'; g.fillRect(lx - tw / 2, Y0 + 6, tw, 26); g.strokeStyle = '#ff5f6d'; g.lineWidth = 1; g.strokeRect(lx - tw / 2, Y0 + 6, tw, 26);
           txt(g, lab, lx, Y0 + 25, '#ffb3ba', 16, 'center', 600);
         }
@@ -78,12 +78,11 @@
   S.register('planck2', function (root) {
     var W = 900, Hh = 430, st = S.stage(root, W, Hh), g = st.g;
     var X0 = 70, X1 = 860, Y0 = 34, Y1 = 310, LA = Math.log10(0.1), LB = Math.log10(100);
-    var sunOnly = root.getAttribute('data-show') === 'sun';
-    var absMode = false, cur = null, show = { sun: true, earth: !sunOnly };
+    var absMode = true, cur = null, show = { sun: true, earth: true };
     var TS = 5778, TE = 288;
     var ctrl = UI.row(root);
-    UI.chips(ctrl, [{ id: 'sun', label: '☀ Soleil (5 778 K)', color: '#ffb938' }, { id: 'earth', label: '🌍 Terre (288 K)', color: '#5cc8ff' }], { multi: true, value: sunOnly ? ['sun'] : ['sun', 'earth'], onchange: function (id, all) { show.sun = all.indexOf('sun') >= 0; show.earth = all.indexOf('earth') >= 0; } });
-    UI.chips(ctrl, [{ id: 'rel', label: 'Normalisé (même hauteur)' }, { id: 'abs', label: 'Valeurs absolues (échelle log)' }], { value: 'rel', onchange: function (id) { absMode = id === 'abs'; } });
+    UI.chips(ctrl, [{ id: 'sun', label: '☀ Soleil (5 778 K)', color: '#ffb938' }, { id: 'earth', label: '🌍 Terre (288 K)', color: '#5cc8ff' }], { multi: true, value: ['sun', 'earth'], onchange: function (id, all) { show.sun = all.indexOf('sun') >= 0; show.earth = all.indexOf('earth') >= 0; } });
+    UI.chips(ctrl, [{ id: 'rel', label: 'Normalisé (même hauteur)' }, { id: 'abs', label: 'Valeurs absolues (échelle log)' }], { value: 'abs', onchange: function (id) { absMode = id === 'abs'; } });
     var read = UI.readout(root);
     function xOf(um) { return X0 + (Math.log10(um) - LA) / (LB - LA) * (X1 - X0); }
     function M(lam, T) { return Math.PI * U.planck(lam, T); }
@@ -135,7 +134,7 @@
           var lm = U.wien / c.T * 1e6, xm = xOf(lm), ym = yOf(c.T, lm * 1e-6);
           g.fillStyle = '#fff'; g.beginPath(); g.arc(xm, ym, 5, 0, TAU); g.fill();
           g.strokeStyle = 'rgba(255,255,255,.6)'; g.setLineDash([4, 4]); g.lineWidth = 1.2; g.beginPath(); g.moveTo(xm, ym + 6); g.lineTo(xm, Y1); g.stroke(); g.setLineDash([]);
-          txt(g, c.n + ' : λ_max ≈ ' + U.fr(lm, lm < 1 ? 2 : 0) + ' µm', xm + (c.T > 1000 ? -10 : 12), ym - 12, U.rgb(c.col), 16, c.T > 1000 ? 'right' : 'left', 600);
+          txt(g, c.n + ' : λ_{max} ≈ ' + U.fr(lm, lm < 1 ? 2 : 0) + ' µm', xm + (c.T > 1000 ? -10 : 12), ym - 12, U.rgb(c.col), 16, c.T > 1000 ? 'right' : 'left', 600);
         });
         g.save(); g.translate(24, (Y0 + Y1) / 2); g.rotate(-Math.PI / 2);
         txt(g, absMode ? 'M_λ en W·m⁻³ (échelle log)' : 'intensité spectrale (relative)', 0, 0, '#c9d1f5', 14, 'center'); g.restore();

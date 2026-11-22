@@ -3,7 +3,7 @@
   'use strict';
   var S = window.Soleil, U = S.util, UI = S.ui, A = S.astro, TAU = U.TAU, D2R = U.D2R;
   var FONT = 'Outfit, sans-serif';
-  function txt(g, s, x, y, col, size, al, w) { g.fillStyle = col; g.font = (w || 400) + ' ' + size + 'px ' + FONT; g.textAlign = al || 'left'; g.fillText(s, x, y); }
+  function txt(g, s, x, y, col, size, al, w) { U.rich(g, s, x, y, col, size, al, w); }
   function arrow(g, x0, y0, x1, y1, col, lw, head) {
     var a = Math.atan2(y1 - y0, x1 - x0); head = head || 10;
     g.strokeStyle = col; g.fillStyle = col; g.lineWidth = lw || 2; g.lineCap = 'round';
@@ -25,7 +25,7 @@
         g.clearRect(0, 0, W, Hh);
         var cx = 560, cy = 190, R = 130;
         // faisceau parallèle
-        var N = 11;
+        var N = 11, lblX = null, lblY = 0;
         for (var i = 0; i < N; i++) {
           var y = (i - (N - 1) / 2) * (2 * R / (N - 1)) * 0.96, hx = cx - Math.sqrt(Math.max(0, R * R - y * y));
           var gr = g.createLinearGradient(20, 0, hx, 0); gr.addColorStop(0, 'rgba(255,214,90,0)'); gr.addColorStop(.25, 'rgba(255,214,90,.9)'); gr.addColorStop(1, 'rgba(255,230,140,1)');
@@ -34,7 +34,10 @@
           // réflexion
           var nx = (hx - cx) / R, ny = y / R, dx = 1, dy = 0, dn = dx * nx + dy * ny;
           var rx = dx - 2 * dn * nx, ry = dy - 2 * dn * ny;
-          if (alb > 0.01) { arrow(g, hx, cy + y, hx + rx * 70, cy + y + ry * 70, 'rgba(160,220,255,' + (0.25 + 0.75 * alb) + ')', 1 + 4 * alb, 8); }
+          if (alb > 0.01) {
+            arrow(g, hx, cy + y, hx + rx * 70, cy + y + ry * 70, 'rgba(160,220,255,' + (0.25 + 0.75 * alb) + ')', 1 + 4 * alb, 8);
+            if (i === 3) { lblX = hx + rx * 70; lblY = cy + y + ry * 70; }
+          }
           g.fillStyle = 'rgba(255,120,60,' + (1 - alb) * 0.9 + ')'; g.beginPath(); g.arc(hx, cy + y, 3 + 3 * (1 - alb), 0, TAU); g.fill();
         }
         S.drawEarth(g, cx, cy, R, t * .1);
@@ -42,12 +45,12 @@
         g.strokeStyle = '#ffffff'; g.lineWidth = 2; g.setLineDash([5, 5]);
         g.beginPath(); g.moveTo(cx, cy - R); g.lineTo(cx, cy + R); g.stroke(); g.setLineDash([]);
         g.fillStyle = 'rgba(255,255,255,.18)'; g.fillRect(cx - 4, cy - R, 8, 2 * R);
-        txt(g, 'disque de rayon R_T', cx + 12, cy - R - 8, '#ffffff', 16, 'left', 600);
-        txt(g, 'surface πR_T²', cx + 12, cy - R + 12, '#c9d1f5', 15, 'left');
+        txt(g, 'disque de rayon R_T', cx, cy - R - 32, '#ffffff', 16, 'center', 600);
+        txt(g, 'surface πR_T²', cx, cy - R - 12, '#c9d1f5', 15, 'center');
         // soleil à gauche
-        txt(g, 'rayons parallèles du Soleil', 30, 60, '#ffd166', 16, 'left', 600);
-        txt(g, 'K = 1 361 W/m²', 30, 84, '#ffe9a6', 16);
-        txt(g, 'rayonnement réfléchi', 705, 120, '#9fe0ff', 15, 'left');
+        txt(g, 'rayons parallèles du Soleil', 30, 330, '#ffd166', 16, 'left', 600);
+        txt(g, 'K = 1 361 W/m²', 30, 354, '#ffe9a6', 16);
+        if (lblX != null) U.rich(g, 'rayonnement réfléchi', lblX - 6, lblY - 6, '#9fe0ff', 15, 'right', 600, 'rgba(5,7,24,.85)');
         var Pint = K * Math.PI * RT * RT, Pabs = (1 - alb) * Pint;
         read.innerHTML = 'Puissance interceptée : K × πR<sub>T</sub>² = <b>' + U.sci(Pint, 2) + ' W</b> · absorbée : (1 − A) × K × πR<sub>T</sub>² = <b>' + U.sci(Pabs, 2) + ' W</b><br>La sphère a une surface 4× plus grande que ce disque : moyenne ≈ (1 − A) K / 4 = <b>' + U.fr((1 - alb) * K / 4, 0) + ' W/m²</b> au sol.';
       }
@@ -113,24 +116,41 @@
         if (!st.fit()) return;
         g.clearRect(0, 0, W, Hh);
         if (mode === 'cases') {
-          var sx = 60, sy = 205, unit = 58;
-          S.drawSun(g, sx, sy, 24, t, { halo: 2.6, noProm: true });
+          // panneaux de 1, 4 et 9 m² placés face aux rayons (perpendiculaires au faisceau), vus en perspective oblique
+          var sx = 62, sy = 200, DX = 150, U1 = 58, KZ = [0.62, 0.36];
+          function pr(X, Y, Z) { return [sx + X * DX + Z * KZ[0], sy - Y + Z * KZ[1]]; }
+          S.drawSun(g, sx, sy, 22, t, { halo: 2.6, noProm: true });
+          // cône de lumière : du Soleil aux quatre coins du plus grand panneau
+          var s3 = U1 * 3, cn = [[-1, -1], [1, -1], [1, 1], [-1, 1]];
+          g.strokeStyle = 'rgba(255,214,90,.45)'; g.lineWidth = 1.3; g.setLineDash([6, 6]); g.lineDashOffset = -t * 30;
+          cn.forEach(function (c) { var q = pr(3, c[0] * s3 / 2, c[1] * s3 / 2); g.beginPath(); g.moveTo(sx + 14, sy); g.lineTo(q[0], q[1]); g.stroke(); });
+          g.setLineDash([]);
+          // rayon central animé
+          var cq = pr(3, 0, 0); g.strokeStyle = 'rgba(255,240,170,.8)'; g.lineWidth = 2; g.setLineDash([10, 12]); g.lineDashOffset = -t * 60; g.beginPath(); g.moveTo(sx + 24, sy); g.lineTo(cq[0], cq[1]); g.stroke(); g.setLineDash([]);
           [1, 2, 3].forEach(function (n) {
-            var xl = sx + 120 * n + 10, side = unit * n, top = sy - side / 2;
-            // cône
-            g.strokeStyle = 'rgba(255,214,90,.35)'; g.lineWidth = 1.2; g.setLineDash([5, 5]);
-            g.beginPath(); g.moveTo(sx + 20, sy); g.lineTo(xl, top); g.moveTo(sx + 20, sy); g.lineTo(xl, top + side); g.stroke(); g.setLineDash([]);
-            var cell = unit;
+            var s1 = U1 * n, bright = .95 / (n * n) * (1 + .1 * Math.sin(t * 3));
             for (var i = 0; i < n; i++) for (var j = 0; j < n; j++) {
-              var a = .95 / (n * n) * (1 + .12 * Math.sin(t * 3 + i + j));
-              g.fillStyle = 'rgba(255,214,90,' + a + ')'; g.fillRect(xl + i * cell, top + j * cell, cell - 2, cell - 2);
-              g.strokeStyle = 'rgba(255,230,160,.5)'; g.lineWidth = 1; g.strokeRect(xl + i * cell, top + j * cell, cell - 2, cell - 2);
+              var y0 = -s1 / 2 + i * U1, z0 = -s1 / 2 + j * U1, c = [pr(n, y0, z0), pr(n, y0 + U1, z0), pr(n, y0 + U1, z0 + U1), pr(n, y0, z0 + U1)];
+              g.beginPath(); g.moveTo(c[0][0], c[0][1]); for (var k = 1; k < 4; k++) g.lineTo(c[k][0], c[k][1]); g.closePath();
+              g.fillStyle = 'rgba(255,214,90,' + bright + ')'; g.fill(); g.strokeStyle = 'rgba(255,236,170,.7)'; g.lineWidth = 1.2; g.stroke();
             }
-            txt(g, 'distance ' + n + ' d', xl + side / 2, top + side + 24, '#c9d1f5', 15, 'center');
-            txt(g, n * n + ' m² éclairés', xl + side / 2, top - 12, '#ffe9a6', 15, 'center', 600);
-            txt(g, 'I = K' + (n > 1 ? ' / ' + n * n : ''), xl + side / 2, top + side + 46, '#ffd166', 18, 'center', 600);
+            var cc = [pr(n, -s1 / 2, -s1 / 2), pr(n, s1 / 2, -s1 / 2), pr(n, s1 / 2, s1 / 2), pr(n, -s1 / 2, s1 / 2)];
+            g.beginPath(); g.moveTo(cc[0][0], cc[0][1]); for (var m = 1; m < 4; m++) g.lineTo(cc[m][0], cc[m][1]); g.closePath(); g.strokeStyle = '#ffe9a6'; g.lineWidth = 2; g.stroke();
+            var lowY = Math.max(cc[0][1], cc[1][1], cc[2][1], cc[3][1]), topY = Math.min(cc[0][1], cc[1][1], cc[2][1], cc[3][1]), mx = (cc[0][0] + cc[1][0] + cc[2][0] + cc[3][0]) / 4;
+            txt(g, n * n + ' m² éclairés', mx, topY - 10, '#ffe9a6', 15, 'center', 600);
+            txt(g, 'à ' + n + ' d', mx, lowY + 20, '#c9d1f5', 14, 'center');
           });
-          read.innerHTML = 'La même puissance traverse des surfaces de plus en plus grandes : à distance <b>n·d</b>, elle se répartit sur <b>n²</b> fois plus de surface, donc <b>I ∝ 1/d²</b>.';
+          // histogramme de l'éclairement par m²
+          var hx = 700, hy = 330, hw = 52;
+          txt(g, 'éclairement par m²', hx + 80, 58, '#c9d1f5', 15, 'center', 600);
+          [1, 2, 3].forEach(function (n, i) {
+            var hgt = 200 / (n * n), x = hx + i * (hw + 20);
+            g.fillStyle = 'rgba(255,214,90,.15)'; g.fillRect(x, hy - 200, hw, 200);
+            g.fillStyle = '#ffc43a'; g.shadowColor = '#ffc43a'; g.shadowBlur = 12; g.fillRect(x, hy - hgt, hw, hgt); g.shadowBlur = 0;
+            txt(g, n === 1 ? 'K' : 'K/' + n * n, x + hw / 2, hy + 22, '#ffd166', 17, 'center', 700);
+            txt(g, 'd' + (n > 1 ? '×' + n : ''), x + hw / 2, hy + 42, '#a9b2d6', 13, 'center');
+          });
+          read.innerHTML = 'La même puissance traverse des surfaces de plus en plus grandes : à la distance <b>n·d</b>, elle se répartit sur <b>n²</b> fois plus de surface, donc <b>I ∝ 1/d²</b>.';
         } else {
           var X0 = 80, X1 = 840, Y0 = 20, Y1 = 330, dm = 5.5, Imax = 9500;
           g.strokeStyle = 'rgba(255,255,255,.5)'; g.lineWidth = 1.5; g.beginPath(); g.moveTo(X0, Y0); g.lineTo(X0, Y1); g.lineTo(X1, Y1); g.stroke();
@@ -157,7 +177,7 @@
 
   /* ======================================================= Orbite elliptique : l'excentricité n'explique pas les saisons */
   S.register('excentricite', function (root) {
-    var W = 900, Hh = 410, st = S.stage(root, W, Hh), g = st.g;
+    var W = 900, Hh = 430, st = S.stage(root, W, Hh), g = st.g;
     var day = 3, k = 1, play = false, K = A.K;
     var ctrl = UI.row(root);
     var sd = UI.slider(ctrl, { label: 'date', min: 1, max: 365, step: 1, value: 3, color: '#5cc8ff', fmt: function (v) { return A.dateStr(v); }, oninput: function (v) { day = v; play = false; } });
@@ -173,7 +193,7 @@
         if (!st.fit()) return;
         if (play) { day += dt * 30; if (day > 365) day -= 365; sd.set(day); }
         g.clearRect(0, 0, W, Hh);
-        var e = Math.min(.0167 * k, .8), a = 205, b = a * Math.sqrt(1 - e * e), cx = 380, cy = 195, fx = cx + a * e;
+        var e = Math.min(.0167 * k, .8), a = 168, b = a * Math.sqrt(1 - e * e), cx = 330, cy = 215, fx = cx + a * e;
         function pos(n) { var s = A.state(n, e), r = s.r * a; return [fx + r * Math.cos(s.nu), cy - r * Math.sin(s.nu), s.r]; }
         // orbite colorée par saisons
         SEAS.forEach(function (s) {
@@ -185,12 +205,14 @@
         g.strokeStyle = 'rgba(255,255,255,.18)'; g.setLineDash([4, 6]); g.lineWidth = 1; g.beginPath(); g.moveTo(cx - a, cy); g.lineTo(cx + a, cy); g.stroke(); g.setLineDash([]);
         S.drawSun(g, fx, cy, 22, t, { halo: 3, noProm: true });
         // repères
-        function mark(n, label, col, dx, dy, al) {
+        function mark(n, label, col) {
           var p = pos(n); g.fillStyle = col; g.beginPath(); g.arc(p[0], p[1], 5, 0, TAU); g.fill();
-          txt(g, label, p[0] + dx, p[1] + dy, col, 14, al || 'left', 600);
+          var nx = (p[0] - cx) / (a * a), ny = (p[1] - cy) / (b * b), nl = Math.hypot(nx, ny) || 1; nx /= nl; ny /= nl;
+          var al = nx > .45 ? 'left' : nx < -.45 ? 'right' : 'center';
+          txt(g, label, p[0] + nx * 17, p[1] + ny * 17 + (ny > .45 ? 12 : ny < -.45 ? -3 : 5), col, 14, al, 600);
         }
-        mark(3, 'périhélie', '#ffffff', 10, -10); mark(185, 'aphélie', '#ffffff', -10, -10, 'right');
-        mark(79, '20 mars', '#7dffb0', 8, 22); mark(172, '21 juin', '#ffd166', 0, -12, 'center'); mark(265, '22 sept.', '#ff8a5c', -8, -12, 'right'); mark(355, '21 déc.', '#7fd2ff', 0, 24, 'center');
+        mark(3, 'périhélie', '#ffffff'); mark(185, 'aphélie', '#ffffff');
+        mark(79, '20 mars', '#7dffb0'); mark(172, '21 juin', '#ffd166'); mark(265, '22 sept.', '#ff8a5c'); mark(355, '21 déc.', '#7fd2ff');
         // Terre
         var p = pos(day), s = A.state(day, e);
         g.save(); g.shadowColor = '#5cc8ff'; g.shadowBlur = 16; S.drawEarth(g, p[0], p[1], 11, day / 365 * 40); g.restore();
@@ -282,7 +304,9 @@
     function mkOff() { var c = document.createElement('canvas'); c.width = c.height = N; var o = c.getContext('2d'); return { c: c, g: o, img: o.createImageData(N, N) }; }
     var offA = mkOff(), offB = mkOff();
     var sinE = Math.sin(A.EPS), cosE = Math.cos(A.EPS), sEl = Math.sin(EL), cEl = Math.cos(EL);
-    var CAM_MAIN = { R: [1, 0, 0], U: [0, sEl, cEl], B: [0, -cEl, sEl] };
+    // la caméra est tournée de PSI autour de l'axe de l'écliptique : l'inclinaison de l'axe de la Terre est alors visible
+    var PSI = 38 * D2R, sPs = Math.sin(PSI), cPs = Math.cos(PSI);
+    var CAM_MAIN = { R: [cPs, sPs, 0], U: [-sPs * sEl, cPs * sEl, cEl], B: [sPs * cEl, -cPs * cEl, sEl] };
     /* globe ombré pixel par pixel : s = direction Terre→Soleil (plan de l'écliptique), cam = repère de la caméra */
     function globe(off, s, latObs, cam) {
       var d = off.img.data, R = N / 2 - 2, c = N / 2;
@@ -322,16 +346,17 @@
         var cx = 370, cy = 222, Ao = 285;
         var s0 = A.state(day), lamE = s0.lamS + Math.PI, rr = s0.r0;
         var P = [rr * Math.cos(lamE), rr * Math.sin(lamE)];
-        var ex = cx + Ao * P[0], ey = cy - Ao * P[1] * sEl, sdir = [-P[0] / rr, -P[1] / rr];
-        g.strokeStyle = 'rgba(255,255,255,.28)'; g.lineWidth = 1.5; g.beginPath(); g.ellipse(cx, cy, Ao, Ao * sEl, 0, 0, TAU); g.stroke();
+        function proj(px, py) { return [cx + Ao * (px * cPs + py * sPs), cy - Ao * sEl * (-px * sPs + py * cPs)]; }
+        var pe = proj(P[0], P[1]), ex = pe[0], ey = pe[1], sdir = [-P[0] / rr, -P[1] / rr];
+        g.strokeStyle = 'rgba(255,255,255,.28)'; g.lineWidth = 1.5; g.beginPath();
+        for (var q = 0; q <= 120; q++) { var qa = q / 120 * TAU, pq = proj(Math.cos(qa), Math.sin(qa)); q ? g.lineTo(pq[0], pq[1]) : g.moveTo(pq[0], pq[1]); } g.closePath(); g.stroke();
         [[80, 'équinoxe de mars'], [172, 'solstice de juin'], [265, 'équinoxe de sept.'], [355, 'solstice de déc.']].forEach(function (m) {
-          var s = A.state(m[0]), l = s.lamS + Math.PI, x = cx + Ao * Math.cos(l), y = cy - Ao * Math.sin(l) * sEl;
-          g.fillStyle = 'rgba(255,255,255,.55)'; g.beginPath(); g.arc(x, y, 3.2, 0, TAU); g.fill();
-          var front = Math.sin(l) < 0, c = Math.cos(l);
-          if (Math.abs(c) > .5) txt(g, m[1], x, y - 50, 'rgba(255,255,255,.55)', 13, 'center');
-          else txt(g, m[1], x, y + (front ? 60 : -52), 'rgba(255,255,255,.55)', 13, 'center');
+          var s = A.state(m[0]), l = s.lamS + Math.PI, pp = proj(Math.cos(l), Math.sin(l)), x = pp[0], y = pp[1];
+          g.fillStyle = 'rgba(255,255,255,.7)'; g.beginPath(); g.arc(x, y, 3.4, 0, TAU); g.fill();
+          var nx = (x - cx) / (Ao * Ao), ny = (y - cy) / (Ao * sEl * Ao * sEl), nl = Math.hypot(nx, ny) || 1; nx /= nl; ny /= nl;
+          txt(g, m[1], x + nx * 14, y + ny * 14 + (ny > .45 ? 11 : ny < -.45 ? -2 : 5), 'rgba(255,255,255,.7)', 13, nx > .45 ? 'left' : nx < -.45 ? 'right' : 'center');
         });
-        var farFirst = P[1] > 0;
+        var farFirst = (P[0] * sPs - P[1] * cPs) < 0;
         function earthMain() {
           globe(offA, sdir, lat, CAM_MAIN);
           var R = 36;
@@ -372,26 +397,35 @@
   /* ======================================================= Trajectoire du Soleil dans le ciel, élévation */
   S.register('trajectoire', function (root) {
     var W = 900, Hh = 430, st = S.stage(root, W, Hh), g = st.g;
-    var day = 172, hour = 12, lat = 48.85, play = false, last = 0;
+    var day = 172, hour = 12, lat = 46.16, play = false, last = 0;
     var ctrl = UI.row(root);
-    var sdy = UI.slider(ctrl, { label: 'date', min: 1, max: 365, step: 1, value: 172, color: '#ffd166', fmt: function (v) { return A.dateStr(v); }, oninput: function (v) { day = v; } });
-    var shr = UI.slider(ctrl, { label: 'heure solaire', min: 0, max: 24, step: .05, value: 12, color: '#ff9f6b', fmt: function (v) { var h = Math.floor(v), m = Math.round((v - h) * 60); if (m === 60) { h++; m = 0; } return h + ' h ' + (m < 10 ? '0' : '') + m; }, oninput: function (v) { hour = v; play = false; } });
-    var sl = UI.slider(ctrl, { label: 'latitude', min: -80, max: 80, step: 1, value: 48.85, color: '#7dffb0', fmt: function (v) { return U.fr(Math.abs(v), 0) + '° ' + (v >= 0 ? 'N' : 'S'); }, oninput: function (v) { lat = v; } });
+    var sdy = UI.slider(ctrl, { label: 'date', min: 1, max: 365, step: 1, value: 172, color: '#ffd166', w: 7.5, fmt: function (v) { return A.dateStr(v); }, oninput: function (v) { day = v; } });
+    var shr = UI.slider(ctrl, { label: 'heure solaire', min: 0, max: 24, step: .05, value: 12, color: '#ff9f6b', w: 4.2, fmt: function (v) { var h = Math.floor(v), m = Math.round((v - h) * 60); if (m === 60) { h++; m = 0; } return h + ' h ' + (m < 10 ? '0' : '') + m; }, oninput: function (v) { hour = v; play = false; } });
     var c2 = UI.row(root);
-    UI.btn(c2, '▶ Une journée', function (e, b) { play = !play; b.textContent = play ? '❚❚ Pause' : '▶ Une journée'; }, 'main');
-    UI.chips(c2, [{ id: 172, label: '21 juin' }, { id: 80, label: 'Équinoxe' }, { id: 355, label: '21 déc.' }], { onchange: function (id) { day = parseFloat(id); sdy.set(day); } });
+    var sl = UI.slider(c2, { label: 'latitude du lieu', min: -80, max: 80, step: 1, value: Math.round(lat), color: '#7dffb0', w: 4.2, fmt: function (v) { return U.fr(Math.abs(v), 0) + '° ' + (v >= 0 ? 'N' : 'S'); }, oninput: function (v) { lat = v; cities.set(null); } });
+    var cities = UI.chips(c2, [{ id: 46.16, label: 'La Rochelle' }, { id: 0, label: 'Équateur' }, { id: 66.56, label: 'Cercle polaire' }, { id: -33.92, label: 'Le Cap' }], {
+      value: 46.16, onchange: function (id) { lat = parseFloat(id); sl.set(lat); }
+    });
+    var c3 = UI.row(root);
+    UI.btn(c3, '▶ Une journée', function (e, b) { play = !play; b.textContent = play ? '❚❚ Pause' : '▶ Une journée'; }, 'main');
+    UI.chips(c3, [{ id: 172, label: '21 juin' }, { id: 80, label: 'Équinoxe' }, { id: 355, label: '21 déc.' }], { onchange: function (id) { day = parseFloat(id); sdy.set(day); } });
     var read = UI.readout(root);
+    // chips « villes » : set(null) efface la sélection quand on déplace le curseur de latitude
+    var origSet = cities.set; cities.set = function (id) { if (id == null) { cities.el.querySelectorAll('.sw-chip').forEach(function (b) { b.classList.remove('on'); }); } else origSet(id); };
     var PX0 = 20, PX1 = 640, HY = 360, SCY = 3.55, SCX = (PX1 - PX0) / 340;
-    function sx(azDeg) { return (PX0 + PX1) / 2 + azDeg * SCX; }
-    function arc(n, col, lw, dash, label) {
-      var dec = A.dec(n), pts = [];
-      g.strokeStyle = col; g.lineWidth = lw; g.setLineDash(dash || []); g.beginPath(); var on = false;
-      for (var H = -180; H <= 180; H += 2) {
-        var e = A.elev(lat * D2R, dec, H * D2R) / D2R, az = A.azim(lat * D2R, dec, H * D2R) / D2R;
-        if (e < 0) { on = false; continue; }
-        var X = sx(az), Y = HY - e * SCY;
-        if (!on) { g.moveTo(X, Y); on = true; } else if (Math.abs(az - (pts.last || az)) > 90) g.moveTo(X, Y); else g.lineTo(X, Y);
-        pts.last = az;
+    function wrap(a) { while (a > 180) a -= 360; while (a <= -180) a += 360; return a; }
+    /* azimut « de vue » : on regarde vers le sud dans l'hémisphère nord, vers le nord dans l'hémisphère sud */
+    function view(azS) { return lat >= 0 ? azS : wrap(azS + 180); }
+    function sx(v) { return (PX0 + PX1) / 2 + v * SCX; }
+    function arc(n, col, lw, dash) {
+      var dec = A.dec(n), prev = null;
+      g.strokeStyle = col; g.lineWidth = lw; g.setLineDash(dash || []); g.beginPath();
+      for (var H = -180; H <= 180; H += 1) {
+        var e = A.elev(lat * D2R, dec, H * D2R) / D2R;
+        if (e < 0) { prev = null; continue; }
+        var v = view(A.azim(lat * D2R, dec, H * D2R) / D2R), X = sx(v), Y = HY - e * SCY;
+        if (prev == null || Math.abs(v - prev) > 120) g.moveTo(X, Y); else g.lineTo(X, Y);
+        prev = v;
       }
       g.stroke(); g.setLineDash([]);
     }
@@ -401,32 +435,27 @@
         if (!st.fit()) return;
         if (play) { hour += dt * 1.6; if (hour > 24) hour -= 24; shr.set(hour); }
         g.clearRect(0, 0, W, Hh);
-        var dec = A.dec(day), H = (hour - 12) * 15 * D2R, e = A.elev(lat * D2R, dec, H), az = A.azim(lat * D2R, dec, H);
-        var eD = e / D2R, azD = az / D2R;
-        // ciel
+        var lat0 = lat * D2R, dec = A.dec(day), H = (hour - 12) * 15 * D2R, e = A.elev(lat0, dec, H), az = A.azim(lat0, dec, H);
+        var eD = e / D2R, azV = view(az / D2R);
         var k = U.smooth(-6, 12, eD);
         var sky = g.createLinearGradient(0, 40, 0, HY);
         sky.addColorStop(0, U.rgb([U.lerp(6, 40, k), U.lerp(10, 110, k), U.lerp(34, 210, k)])); sky.addColorStop(1, U.rgb([U.lerp(20, 150, k), U.lerp(24, 200, k), U.lerp(60, 245, k)]));
-        g.fillStyle = sky; g.beginPath(); g.roundRect ? g.roundRect(PX0, 40, PX1 - PX0, HY - 40, 14) : g.rect(PX0, 40, PX1 - PX0, HY - 40); g.fill();
+        g.fillStyle = sky; g.beginPath(); if (g.roundRect) g.roundRect(PX0, 40, PX1 - PX0, HY - 40, 14); else g.rect(PX0, 40, PX1 - PX0, HY - 40); g.fill();
         if (k < .7) { for (var i = 0; i < 40; i++) { g.fillStyle = 'rgba(255,255,255,' + (0.7 - k) * .9 + ')'; g.fillRect(PX0 + ((i * 97) % 620), 46 + ((i * 53) % 280), 1.6, 1.6); } }
-        // sol
         var gg = g.createLinearGradient(0, HY, 0, 410); gg.addColorStop(0, U.rgb([U.lerp(10, 60, k), U.lerp(30, 130, k), U.lerp(20, 70, k)])); gg.addColorStop(1, U.rgb([U.lerp(4, 30, k), U.lerp(12, 80, k), U.lerp(10, 40, k)]));
         g.fillStyle = gg; g.fillRect(PX0, HY, PX1 - PX0, 50);
-        // grille d'élévation
         g.strokeStyle = 'rgba(255,255,255,.18)'; g.lineWidth = 1; g.fillStyle = 'rgba(255,255,255,.7)'; g.font = '13px ' + FONT; g.textAlign = 'left';
         [30, 60, 90].forEach(function (a) { g.beginPath(); g.moveTo(PX0, HY - a * SCY); g.lineTo(PX1, HY - a * SCY); g.stroke(); g.fillText(a + '°', PX0 + 6, HY - a * SCY - 4); });
-        [[-90, 'E'], [0, 'S'], [90, 'O']].forEach(function (c) { txt(g, c[1], sx(c[0]), HY + 24, '#eef1ff', 18, 'center', 700); });
-        txt(g, 'N', sx(-168), HY + 24, '#a9b2d6', 16, 'center', 700); txt(g, 'N', sx(168), HY + 24, '#a9b2d6', 16, 'center', 700);
-        // arcs de référence
+        var north = lat < 0;
+        [[-90, north ? 'O' : 'E'], [0, north ? 'N' : 'S'], [90, north ? 'E' : 'O']].forEach(function (c) { txt(g, c[1], sx(c[0]), HY + 24, '#eef1ff', 18, 'center', 700); });
+        txt(g, north ? 'S' : 'N', sx(-168), HY + 24, '#a9b2d6', 16, 'center', 700); txt(g, north ? 'S' : 'N', sx(168), HY + 24, '#a9b2d6', 16, 'center', 700);
         arc(172, '#ffd166', 2.5, [2, 6]); arc(80, '#ffffff', 2.5, [2, 6]); arc(355, '#7fd2ff', 2.5, [2, 6]);
-        var lat0 = lat * D2R;
         [[172, '21 juin', '#ffd166'], [80, 'équinoxe', '#ffffff'], [355, '21 déc.', '#7fd2ff']].forEach(function (a) {
-          var de = A.dec(a[0]), em = A.elev(lat0, de, 0) / D2R; if (em > 3) txt(g, a[1], sx(0), HY - em * SCY - 8, a[2], 14, 'center', 600);
+          var de = A.dec(a[0]), em = A.elev(lat0, de, 0) / D2R; if (em > 3) txt(g, a[1], sx(north ? 0 : 0), HY - em * SCY - 8, a[2], 14, 'center', 600);
         });
-        g.strokeStyle = 'rgba(255,255,255,.9)'; g.lineWidth = 3; arc(day, 'rgba(255,255,255,.55)', 2, null);
-        // Soleil
+        arc(day, 'rgba(255,255,255,.6)', 2, null);
         if (eD > -4) {
-          var X = sx(azD), Y = HY - eD * SCY, hr = 52;
+          var X = sx(azV), Y = HY - eD * SCY, hr = 52;
           var gl = g.createRadialGradient(X, Y, 0, X, Y, hr * 2.2); gl.addColorStop(0, 'rgba(255,245,200,1)'); gl.addColorStop(.18, 'rgba(255,220,120,.9)'); gl.addColorStop(.45, 'rgba(255,170,60,.25)'); gl.addColorStop(1, 'rgba(255,140,40,0)');
           g.save(); g.beginPath(); g.rect(PX0, 40, PX1 - PX0, HY - 40); g.clip(); g.fillStyle = gl; g.beginPath(); g.arc(X, Y, hr * 2.2, 0, TAU); g.fill();
           g.fillStyle = '#fffbe0'; g.beginPath(); g.arc(X, Y, 15, 0, TAU); g.fill(); g.restore();
@@ -446,79 +475,8 @@
           txt(g, U.fr(eD, 0) + '°', ox + 60, oy - 6 - ee * 12, '#ff9fd0', 20, 'left', 700);
         } else txt(g, 'Soleil sous l’horizon', bx + bw / 2, by - 120, '#a9b2d6', 15, 'center');
         txt(g, 'sol', bx + bw / 2, by - 8, '#cfeedd', 13, 'center');
-        // lecture
         var em = A.elev(lat0, dec, 0) / D2R, dl = A.dayLen(lat0, dec), hh = Math.floor(dl), mm = Math.round((dl - hh) * 60); if (mm === 60) { hh++; mm = 0; }
-        read.innerHTML = 'Élévation maximale à midi solaire le ' + A.dateStr(day) + ' : <b>' + U.fr(em, 1) + '°</b> (= 90° − |latitude − δ| avec δ = ' + U.fr(dec / D2R, 1) + '°) · durée du jour : <b>' + hh + ' h ' + (mm < 10 ? '0' : '') + mm + '</b>';
-      }
-    };
-  });
-
-  /* ======================================================= Insolation et durée du jour au fil de l'année */
-  S.register('insolation', function (root) {
-    var W = 900, Hh = 430, st = S.stage(root, W, Hh), g = st.g;
-    var mode = root.getAttribute('data-mode') === 'duree' ? 'duree' : 'Q', day = 172, play = root.getAttribute('data-play') === '1', last = 0, hov = null;
-    if (play) day = 1;
-    var ctrl = UI.row(root);
-    var sd = UI.slider(ctrl, { label: 'date', min: 1, max: 365, step: 1, value: day, color: '#ffc43a', fmt: function (v) { return A.dateStr(v); }, oninput: function (v) { day = v; play = false; pb.textContent = '▶ Une année'; } });
-    var pb = UI.btn(ctrl, play ? '❚❚ Pause' : '▶ Une année', function (e, b) { play = !play; b.textContent = play ? '❚❚ Pause' : '▶ Une année'; }, 'main');
-    var chm = UI.chips(ctrl, [{ id: 'Q', label: 'Éclairement (W/m²)' }, { id: 'duree', label: 'Durée du jour (h)' }], { value: mode, onchange: function (id) { mode = id; dirty = true; } });
-    var read = UI.readout(root);
-    var HX0 = 74, HX1 = 590, HY0 = 28, HY1 = 372, dirty = true;
-    var imgs = {}, LAT = []; for (var la = 90; la >= -90; la -= 2) LAT.push(la);
-    function stops(m) { return m === 'Q' ? [[0, [8, 6, 22]], [.18, [88, 18, 72]], [.4, [190, 40, 60]], [.62, [250, 110, 30]], [.82, [255, 190, 60]], [1, [255, 250, 200]]]
-      : [[0, [10, 12, 40]], [.25, [40, 60, 150]], [.5, [90, 150, 210]], [.75, [255, 200, 90]], [1, [255, 245, 190]]]; }
-    function colorOf(m, f) { var s = stops(m); f = U.clamp(f, 0, 1); for (var i = 1; i < s.length; i++) if (f <= s[i][0]) { var a = s[i - 1], b = s[i], u = (f - a[0]) / (b[0] - a[0]); return [U.lerp(a[1][0], b[1][0], u), U.lerp(a[1][1], b[1][1], u), U.lerp(a[1][2], b[1][2], u)]; } return s[s.length - 1][1]; }
-    function val(m, la, n) { return m === 'Q' ? A.Q(la * D2R, n) : A.dayLen(U.clamp(la, -89.99, 89.99) * D2R, A.dec(n)); }
-    function build(m) {
-      var c = document.createElement('canvas'); c.width = 365; c.height = LAT.length; var cg = c.getContext('2d'), im = cg.createImageData(365, LAT.length);
-      var vmax = m === 'Q' ? 560 : 24;
-      for (var j = 0; j < LAT.length; j++) for (var i = 0; i < 365; i++) {
-        var col = colorOf(m, val(m, LAT[j], i + 1) / vmax), o = (j * 365 + i) * 4; im.data[o] = col[0]; im.data[o + 1] = col[1]; im.data[o + 2] = col[2]; im.data[o + 3] = 255;
-      }
-      cg.putImageData(im, 0, 0); imgs[m] = c;
-    }
-    function xOf(n) { return HX0 + (n - 1) / 364 * (HX1 - HX0); }
-    function yOf(la) { return HY0 + (90 - la) / 180 * (HY1 - HY0); }
-    S.pointer(st, { move: function (x, y) { hov = (x > HX0 && x < HX1 && y > HY0 && y < HY1) ? [Math.round(1 + (x - HX0) / (HX1 - HX0) * 364), 90 - (y - HY0) / (HY1 - HY0) * 180] : null; },
-      down: function (x, y) { if (x > HX0 && x < HX1) { day = Math.round(1 + (U.clamp(x, HX0, HX1) - HX0) / (HX1 - HX0) * 364); sd.set(day); play = false; } },
-      drag: function (x) { day = Math.round(1 + (U.clamp(x, HX0, HX1) - HX0) / (HX1 - HX0) * 364); sd.set(day); }, leave: function () { hov = null; } });
-    var ann = {};
-    function annual(m) { if (ann[m]) return ann[m]; var a = LAT.map(function (la) { var s = 0; for (var n = 1; n <= 365; n += 5) s += val(m, la, n); return s / 73; }); return (ann[m] = a); }
-    return {
-      frame: function (t) {
-        var dt = Math.min(.1, t - last); last = t;
-        if (!st.fit()) return;
-        if (!imgs[mode]) build(mode);
-        if (play) { day += dt * 30; if (day > 365) day -= 365; sd.set(day); }
-        g.clearRect(0, 0, W, Hh);
-        var vmax = mode === 'Q' ? 560 : 24;
-        g.imageSmoothingEnabled = true; g.drawImage(imgs[mode], HX0, HY0, HX1 - HX0, HY1 - HY0);
-        g.strokeStyle = 'rgba(255,255,255,.5)'; g.lineWidth = 1; g.strokeRect(HX0, HY0, HX1 - HX0, HY1 - HY0);
-        // mois
-        for (var m = 0; m < 12; m++) { var n0 = A.dayOf(m, 1); txt(g, A.MOIS[m].slice(0, 1).toUpperCase(), xOf(n0 + 15), HY1 + 18, '#c9d1f5', 14, 'center'); g.strokeStyle = 'rgba(255,255,255,.08)'; g.beginPath(); g.moveTo(xOf(n0), HY0); g.lineTo(xOf(n0), HY1); g.stroke(); }
-        [90, 66.56, 23.44, 0, -23.44, -66.56, -90].forEach(function (la) {
-          var y = yOf(la), sp = Math.abs(la) === 23.44 || Math.abs(la) === 66.56;
-          g.strokeStyle = sp ? 'rgba(255,255,255,.35)' : 'rgba(255,255,255,.2)'; g.setLineDash(sp ? [4, 5] : []); g.beginPath(); g.moveTo(HX0 - 4, y); g.lineTo(HX1, y); g.stroke(); g.setLineDash([]);
-          txt(g, la === 0 ? '0°' : U.fr(Math.abs(la), Math.abs(la) % 1 ? 1 : 0) + '°' + (la > 0 ? ' N' : ' S'), HX0 - 8, y + 4, sp ? '#ffd9a8' : '#c9d1f5', 12, 'right');
-        });
-        // curseur de date
-        var cx = xOf(day);
-        g.strokeStyle = '#fff'; g.lineWidth = 2; g.shadowColor = '#fff'; g.shadowBlur = 10; g.beginPath(); g.moveTo(cx, HY0 - 6); g.lineTo(cx, HY1); g.stroke(); g.shadowBlur = 0;
-        // profil du jour
-        var PX0 = 640, PX1 = 880;
-        txt(g, mode === 'Q' ? 'Éclairement moyen (W/m²)' : 'Durée du jour (h)', (PX0 + PX1) / 2, 18, '#c9d1f5', 14, 'center');
-        g.strokeStyle = 'rgba(255,255,255,.4)'; g.beginPath(); g.moveTo(PX0, HY0); g.lineTo(PX0, HY1); g.lineTo(PX1, HY1); g.stroke();
-        var ticks = mode === 'Q' ? [0, 200, 400] : [0, 12, 24];
-        ticks.forEach(function (v) { var x = PX0 + v / vmax * (PX1 - PX0); txt(g, v, x, HY1 + 18, '#c9d1f5', 13, 'center'); g.strokeStyle = 'rgba(255,255,255,.08)'; g.beginPath(); g.moveTo(x, HY0); g.lineTo(x, HY1); g.stroke(); });
-        var an = annual(mode);
-        g.strokeStyle = 'rgba(255,255,255,.45)'; g.setLineDash([4, 4]); g.lineWidth = 1.6; g.beginPath(); LAT.forEach(function (la, i) { var x = PX0 + an[i] / vmax * (PX1 - PX0), y = yOf(la); i ? g.lineTo(x, y) : g.moveTo(x, y); }); g.stroke(); g.setLineDash([]);
-        g.beginPath(); LAT.forEach(function (la, i) { var x = PX0 + val(mode, la, day) / vmax * (PX1 - PX0), y = yOf(la); i ? g.lineTo(x, y) : g.moveTo(x, y); });
-        g.strokeStyle = '#ffc43a'; g.lineWidth = 3; g.shadowColor = '#ffc43a'; g.shadowBlur = 10; g.stroke(); g.shadowBlur = 0;
-        txt(g, 'ce jour', PX1, HY1 + 38, '#ffc43a', 13, 'right', 600); txt(g, 'moyenne annuelle', PX0, HY1 + 38, 'rgba(255,255,255,.7)', 13, 'left');
-        var rd = 'Le <b>' + A.dateStr(day) + '</b> : ';
-        if (hov) { var v = val(mode, hov[1], hov[0]); rd = A.dateStr(hov[0]) + ', latitude ' + U.fr(Math.abs(hov[1]), 0) + '°' + (hov[1] >= 0 ? 'N' : 'S') + ' : <b>' + (mode === 'Q' ? U.fr(v, 0) + ' W/m²' : U.fr(v, 1) + ' h de jour') + '</b>'; g.strokeStyle = 'rgba(255,255,255,.7)'; g.lineWidth = 1; g.beginPath(); g.moveTo(HX0, yOf(hov[1])); g.lineTo(HX1, yOf(hov[1])); g.stroke(); }
-        else rd = mode === 'Q' ? 'Éclairement solaire moyen reçu en haut de l’atmosphère, selon la <b>latitude</b> et la <b>date</b>. Survole la carte.' : 'Durée du jour selon la <b>latitude</b> et la <b>date</b> : 24 h près du pôle l’été, 0 h l’hiver. Survole la carte.';
-        read.innerHTML = rd;
+        read.innerHTML = 'Élévation maximale à midi solaire le ' + A.dateStr(day) + ' à ' + U.fr(Math.abs(lat), 1) + '° ' + (lat >= 0 ? 'N' : 'S') + ' : <b>' + U.fr(em, 1) + '°</b> (= 90° − |latitude − δ| avec δ = ' + U.fr(dec / D2R, 1) + '°) · durée du jour : <b>' + hh + ' h ' + (mm < 10 ? '0' : '') + mm + '</b>';
       }
     };
   });

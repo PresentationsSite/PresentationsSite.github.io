@@ -164,7 +164,8 @@ body::after {
 .part-title { text-align: left; max-width: 760px; margin: 0 auto; }
 .part-title .num {
   display: inline-block; font-size: 3.6em; font-weight: 800; line-height: 1; margin-right: .2em; vertical-align: middle;
-  -webkit-text-stroke: 2px var(--acc); color: transparent; filter: drop-shadow(0 0 16px var(--acc));
+  /* contour de la seule silhouette (le filtre SVG #num-outline efface les contours intérieurs des chiffres) */
+  color: var(--acc); -webkit-text-stroke: 0; filter: url(#num-outline) drop-shadow(0 0 14px var(--acc));
 }
 .part-title h2 { display: inline-block; vertical-align: middle; margin: 0; }
 .part-title p { margin-top: 1em; font-size: .7em; color: var(--mut); }
@@ -207,7 +208,7 @@ body::after {
 .reveal .sw .sw-ctrl { display: flex; flex-wrap: wrap; gap: 8px 18px; align-items: center; justify-content: center; padding: 9px 4px 2px; }
 .reveal .sw .sw-sl { display: flex; align-items: center; gap: 9px; margin: 0; font-size: 15px; white-space: nowrap; }
 .reveal .sw .sw-sl-t { color: var(--mut); }
-.reveal .sw .sw-sl-o { min-width: 4.6em; color: var(--sw-c, var(--acc)); font-weight: 600; font-variant-numeric: tabular-nums; text-shadow: 0 0 12px color-mix(in srgb, var(--sw-c, var(--acc)) 60%, transparent); }
+.reveal .sw .sw-sl-o { min-width: 4.6em; text-align: right; white-space: nowrap; color: var(--sw-c, var(--acc)); font-weight: 600; font-variant-numeric: tabular-nums; text-shadow: 0 0 12px color-mix(in srgb, var(--sw-c, var(--acc)) 60%, transparent); }
 .reveal .sw input[type=range] {
   -webkit-appearance: none; appearance: none; width: 190px; height: 6px; margin: 0; padding: 0; border-radius: 6px; outline: none; border: 0;
   background: linear-gradient(90deg, var(--sw-c, var(--acc)) var(--p, 50%), rgba(255, 255, 255, .2) var(--p, 50%));
@@ -232,7 +233,7 @@ body::after {
   box-shadow: 0 0 20px color-mix(in srgb, var(--sw-c, var(--acc)) 80%, transparent);
 }
 .reveal .sw .sw-chips { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
-.reveal .sw .sw-read { font-size: 16px; text-align: center; padding: 2px 6px 0; color: var(--mut); }
+.reveal .sw .sw-read { font-size: 16px; text-align: center; padding: 2px 6px 0; color: var(--mut); min-height: 2.7em; }
 .reveal .sw .sw-read b { color: var(--acc); font-weight: 600; }
 .reveal .sw .sw-cap { text-align: center; font-size: 14px; color: var(--mut); padding-top: 4px; }
 
