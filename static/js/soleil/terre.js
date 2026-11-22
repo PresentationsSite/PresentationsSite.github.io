@@ -333,7 +333,11 @@
     function axisDraw(ex, ey, R, cam) {
       var ax = [0, sinE, cosE];
       var sx = ax[0] * cam.R[0] + ax[1] * cam.R[1] + ax[2] * cam.R[2], sy = ax[0] * cam.U[0] + ax[1] * cam.U[1] + ax[2] * cam.U[2];
-      g.strokeStyle = '#ffe066'; g.lineWidth = 2.4; g.beginPath(); g.moveTo(ex - sx * R * 1.3, ey + sy * R * 1.3); g.lineTo(ex + sx * R * 1.45, ey - sy * R * 1.45); g.stroke();
+      // axe : trait plein à l'extérieur de la Terre, pointillé là où il la traverse
+      var hyp = Math.hypot(sx, sy) || 1, tIn = Math.min(R / hyp, R * 1.3), t0 = -R * 1.3, t1 = R * 1.45;
+      function seg(a, b, dash) { g.setLineDash(dash || []); g.beginPath(); g.moveTo(ex + sx * a, ey - sy * a); g.lineTo(ex + sx * b, ey - sy * b); g.stroke(); }
+      g.strokeStyle = '#ffe066'; g.lineWidth = 2.4;
+      seg(t0, -tIn); seg(tIn, t1); g.lineWidth = 2; seg(-tIn, tIn, [4, 4]); g.setLineDash([]);
       txt(g, 'N', ex + sx * R * 1.45 + 6, ey - sy * R * 1.45 - 2, '#ffe066', 16, 'left', 700);
       return [sx, sy];
     }
