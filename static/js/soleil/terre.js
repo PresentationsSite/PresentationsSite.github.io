@@ -1,0 +1,525 @@
+/* Soleil — animations « bilan radiatif 1 » : irradiance, distance, inclinaison, saisons, insolation */
+(function () {
+  'use strict';
+  var S = window.Soleil, U = S.util, UI = S.ui, A = S.astro, TAU = U.TAU, D2R = U.D2R;
+  var FONT = 'Outfit, sans-serif';
+  function txt(g, s, x, y, col, size, al, w) { g.fillStyle = col; g.font = (w || 400) + ' ' + size + 'px ' + FONT; g.textAlign = al || 'left'; g.fillText(s, x, y); }
+  function arrow(g, x0, y0, x1, y1, col, lw, head) {
+    var a = Math.atan2(y1 - y0, x1 - x0); head = head || 10;
+    g.strokeStyle = col; g.fillStyle = col; g.lineWidth = lw || 2; g.lineCap = 'round';
+    g.beginPath(); g.moveTo(x0, y0); g.lineTo(x1 - Math.cos(a) * head * .6, y1 - Math.sin(a) * head * .6); g.stroke();
+    g.beginPath(); g.moveTo(x1, y1); g.lineTo(x1 - head * Math.cos(a - .45), y1 - head * Math.sin(a - .45)); g.lineTo(x1 - head * Math.cos(a + .45), y1 - head * Math.sin(a + .45)); g.closePath(); g.fill();
+  }
+  S.arrow = arrow;
+
+  /* ======================================================= La Terre intercepte un disque de rayons solaires */
+  S.register('disque', function (root) {
+    var W = 900, Hh = 380, st = S.stage(root, W, Hh), g = st.g;
+    var alb = 0.3, RT = 6.371e6, K = A.K;
+    var ctrl = UI.row(root);
+    UI.slider(ctrl, { label: 'albédo de la Terre', min: 0, max: 0.9, step: 0.01, value: 0.3, color: '#7fd2ff', fmt: function (v) { return U.fr(v, 2); }, oninput: function (v) { alb = v; } });
+    var read = UI.readout(root);
+    return {
+      frame: function (t) {
+        if (!st.fit()) return;
+        g.clearRect(0, 0, W, Hh);
+        var cx = 560, cy = 190, R = 130;
+        // faisceau parallèle
+        var N = 11;
+        for (var i = 0; i < N; i++) {
+          var y = (i - (N - 1) / 2) * (2 * R / (N - 1)) * 0.96, hx = cx - Math.sqrt(Math.max(0, R * R - y * y));
+          var gr = g.createLinearGradient(20, 0, hx, 0); gr.addColorStop(0, 'rgba(255,214,90,0)'); gr.addColorStop(.25, 'rgba(255,214,90,.9)'); gr.addColorStop(1, 'rgba(255,230,140,1)');
+          g.strokeStyle = gr; g.lineWidth = 3; g.setLineDash([14, 10]); g.lineDashOffset = -t * 60;
+          g.beginPath(); g.moveTo(20, cy + y); g.lineTo(hx, cy + y); g.stroke(); g.setLineDash([]);
+          // réflexion
+          var nx = (hx - cx) / R, ny = y / R, dx = 1, dy = 0, dn = dx * nx + dy * ny;
+          var rx = dx - 2 * dn * nx, ry = dy - 2 * dn * ny;
+          if (alb > 0.01) { arrow(g, hx, cy + y, hx + rx * 70, cy + y + ry * 70, 'rgba(160,220,255,' + (0.25 + 0.75 * alb) + ')', 1 + 4 * alb, 8); }
+          g.fillStyle = 'rgba(255,120,60,' + (1 - alb) * 0.9 + ')'; g.beginPath(); g.arc(hx, cy + y, 3 + 3 * (1 - alb), 0, TAU); g.fill();
+        }
+        S.drawEarth(g, cx, cy, R, t * .1);
+        // disque de la section (vu par la tranche)
+        g.strokeStyle = '#ffffff'; g.lineWidth = 2; g.setLineDash([5, 5]);
+        g.beginPath(); g.moveTo(cx, cy - R); g.lineTo(cx, cy + R); g.stroke(); g.setLineDash([]);
+        g.fillStyle = 'rgba(255,255,255,.18)'; g.fillRect(cx - 4, cy - R, 8, 2 * R);
+        txt(g, 'disque de rayon R_T', cx + 12, cy - R - 8, '#ffffff', 16, 'left', 600);
+        txt(g, 'surface πR_T²', cx + 12, cy - R + 12, '#c9d1f5', 15, 'left');
+        // soleil à gauche
+        txt(g, 'rayons parallèles du Soleil', 30, 60, '#ffd166', 16, 'left', 600);
+        txt(g, 'K = 1 361 W/m²', 30, 84, '#ffe9a6', 16);
+        txt(g, 'rayonnement réfléchi', 705, 120, '#9fe0ff', 15, 'left');
+        var Pint = K * Math.PI * RT * RT, Pabs = (1 - alb) * Pint;
+        read.innerHTML = 'Puissance interceptée : K × πR<sub>T</sub>² = <b>' + U.sci(Pint, 2) + ' W</b> · absorbée : (1 − A) × K × πR<sub>T</sub>² = <b>' + U.sci(Pabs, 2) + ' W</b><br>La sphère a une surface 4× plus grande que ce disque : moyenne ≈ (1 − A) K / 4 = <b>' + U.fr((1 - alb) * K / 4, 0) + ' W/m²</b> au sol.';
+      }
+    };
+  });
+
+  /* ======================================================= Énergie solaire reçue vs autres sources */
+  S.register('energies', function (root) {
+    var W = 900, Hh = 410, st = S.stage(root, W, Hh), g = st.g;
+    var rows = [
+      { n: 'Énergie solaire reçue en 1 an', v: 3800, c: '#ffc43a' },
+      { n: 'Charbon*', v: 26, c: '#aab3c9' }, { n: 'Pétrole*', v: 11, c: '#8d97b3' }, { n: 'Gaz naturel*', v: 6.9, c: '#c9d0e4' },
+      { n: 'Uranium*', v: 5.8, c: '#ff5fa2' }, { n: 'Vent (potentiel annuel)', v: 3.2, c: '#4fd8c4' },
+      { n: 'Consommation mondiale annuelle', v: 0.6, c: '#5cc8ff' }, { n: 'Biomasse', v: 0.13, c: '#7dffb0' }, { n: 'Hydro', v: 0.11, c: '#5c9dff' }, { n: 'Marées', v: 0.09, c: '#a794ff' }
+    ];
+    var LMAXV = Math.log(4000), LMINV = Math.log(0.12), lm = LMAXV, play = false, tgt = null;
+    var ctrl = UI.row(root);
+    var sl = UI.slider(ctrl, { label: 'zoom : l’axe va de 0 à', min: LMINV, max: LMAXV, step: 'any', value: LMAXV, color: '#ffc43a', fmt: function (v) { return U.fr(Math.exp(v), Math.exp(v) < 10 ? 1 : 0) + ' ZJ'; }, oninput: function (v) { lm = v; play = false; } });
+    UI.btn(ctrl, '🔍 Zoom automatique', function () { lm = LMAXV; play = true; }, 'main');
+    UI.btn(ctrl, '↺', function () { lm = LMAXV; sl.set(lm); play = false; });
+    var read = UI.readout(root);
+    var last = 0;
+    return {
+      frame: function (t) {
+        var dt = Math.min(.1, t - last); last = t;
+        if (!st.fit()) return;
+        if (play) { lm -= dt * (LMAXV - LMINV) / 9; if (lm <= LMINV) { lm = LMINV; play = false; } sl.set(lm); }
+        g.clearRect(0, 0, W, Hh);
+        var max = Math.exp(lm), X0 = 290, X1 = 840, y0 = 18, rh = 34;
+        g.strokeStyle = 'rgba(255,255,255,.4)'; g.lineWidth = 1.5; g.beginPath(); g.moveTo(X0, y0 - 4); g.lineTo(X0, y0 + rows.length * rh); g.stroke();
+        rows.forEach(function (r, i) {
+          var y = y0 + i * rh, w = r.v / max * (X1 - X0), over = w > X1 - X0;
+          txt(g, r.n, X0 - 12, y + 21, '#e6eaff', 15, 'right', i === 0 || i === 6 ? 600 : 400);
+          g.fillStyle = 'rgba(255,255,255,.05)'; g.fillRect(X0, y + 4, X1 - X0, 22);
+          var bw = Math.min(w, X1 - X0);
+          g.save(); g.shadowColor = r.c; g.shadowBlur = 14; g.fillStyle = r.c; g.fillRect(X0, y + 4, Math.max(bw, w > 0 ? 1.5 : 0), 22); g.restore();
+          if (over) { g.fillStyle = '#fff'; g.beginPath(); g.moveTo(X1 + 2, y + 6); g.lineTo(X1 + 16, y + 15); g.lineTo(X1 + 2, y + 24); g.fill(); }
+          txt(g, U.fr(r.v, r.v < 10 ? (r.v < 1 ? 2 : 1) : 0) + ' ZJ', Math.min(X0 + bw + 8, X1 - 6), y + 21, over ? '#0a0c20' : r.c, 15, over ? 'right' : 'left', 600);
+        });
+        txt(g, '* réserves totales estimées', X0, Hh - 14, '#a9b2d6', 14, 'left');
+        txt(g, '1 ZJ (zettajoule) = 10²¹ J', X1, Hh - 14, '#a9b2d6', 14, 'right');
+        var ratio = 3800 / 0.6;
+        read.innerHTML = 'En une année, la Terre reçoit du Soleil <b>≈ ' + U.fr(ratio, 0) + ' fois</b> l’énergie que l’humanité consomme. Réduis l’échelle pour voir apparaître les autres sources.';
+      }
+    };
+  });
+
+  /* ======================================================= Irradiance en 1/d² */
+  S.register('carre-inverse', function (root) {
+    var W = 900, Hh = 400, st = S.stage(root, W, Hh), g = st.g;
+    var mode = 'cases', d = 1, K = A.K;
+    var ctrl = UI.row(root);
+    UI.chips(ctrl, [{ id: 'cases', label: '1 · 2 · 3 : la lumière se répartit' }, { id: 'planetes', label: 'Les planètes' }], { value: 'cases', onchange: function (id) { mode = id; showC(); } });
+    var c2 = UI.row(root);
+    var pl = [[.387, 'Mercure'], [.723, 'Vénus'], [1, 'Terre'], [1.524, 'Mars'], [5.203, 'Jupiter']];
+    var sl = UI.slider(c2, { label: 'distance au Soleil', min: .3, max: 5.5, step: .01, value: 1, color: '#ffe066', fmt: function (v) { return U.fr(v, 2) + ' u.a.'; }, oninput: function (v) { d = v; } });
+    UI.chips(c2, pl.map(function (p) { return { id: p[0], label: p[1] }; }), { onchange: function (id) { d = parseFloat(id); sl.set(d); } });
+    function showC() { c2.style.display = mode === 'planetes' ? '' : 'none'; }
+    showC();
+    var read = UI.readout(root);
+    return {
+      frame: function (t) {
+        if (!st.fit()) return;
+        g.clearRect(0, 0, W, Hh);
+        if (mode === 'cases') {
+          var sx = 60, sy = 205, unit = 58;
+          S.drawSun(g, sx, sy, 24, t, { halo: 2.6, noProm: true });
+          [1, 2, 3].forEach(function (n) {
+            var xl = sx + 120 * n + 10, side = unit * n, top = sy - side / 2;
+            // cône
+            g.strokeStyle = 'rgba(255,214,90,.35)'; g.lineWidth = 1.2; g.setLineDash([5, 5]);
+            g.beginPath(); g.moveTo(sx + 20, sy); g.lineTo(xl, top); g.moveTo(sx + 20, sy); g.lineTo(xl, top + side); g.stroke(); g.setLineDash([]);
+            var cell = unit;
+            for (var i = 0; i < n; i++) for (var j = 0; j < n; j++) {
+              var a = .95 / (n * n) * (1 + .12 * Math.sin(t * 3 + i + j));
+              g.fillStyle = 'rgba(255,214,90,' + a + ')'; g.fillRect(xl + i * cell, top + j * cell, cell - 2, cell - 2);
+              g.strokeStyle = 'rgba(255,230,160,.5)'; g.lineWidth = 1; g.strokeRect(xl + i * cell, top + j * cell, cell - 2, cell - 2);
+            }
+            txt(g, 'distance ' + n + ' d', xl + side / 2, top + side + 24, '#c9d1f5', 15, 'center');
+            txt(g, n * n + ' m² éclairés', xl + side / 2, top - 12, '#ffe9a6', 15, 'center', 600);
+            txt(g, 'I = K' + (n > 1 ? ' / ' + n * n : ''), xl + side / 2, top + side + 46, '#ffd166', 18, 'center', 600);
+          });
+          read.innerHTML = 'La même puissance traverse des surfaces de plus en plus grandes : à distance <b>n·d</b>, elle se répartit sur <b>n²</b> fois plus de surface, donc <b>I ∝ 1/d²</b>.';
+        } else {
+          var X0 = 80, X1 = 840, Y0 = 20, Y1 = 330, dm = 5.5, Imax = 9500;
+          g.strokeStyle = 'rgba(255,255,255,.5)'; g.lineWidth = 1.5; g.beginPath(); g.moveTo(X0, Y0); g.lineTo(X0, Y1); g.lineTo(X1, Y1); g.stroke();
+          function xo(v) { return X0 + v / dm * (X1 - X0); } function yo(v) { return Y1 - v / Imax * (Y1 - Y0); }
+          for (var q = 0; q <= 5; q++) { txt(g, q, xo(q), Y1 + 20, '#c9d1f5', 14, 'center'); }
+          txt(g, 'distance au Soleil (u.a.)', X1, Y1 + 42, '#c9d1f5', 14, 'right');
+          [0, 2000, 4000, 6000, 8000].forEach(function (v) { txt(g, U.fr(v, 0), X0 - 8, yo(v) + 5, '#c9d1f5', 13, 'right'); g.strokeStyle = 'rgba(255,255,255,.06)'; g.beginPath(); g.moveTo(X0, yo(v)); g.lineTo(X1, yo(v)); g.stroke(); });
+          txt(g, 'I (W/m²)', X0 + 8, Y0 + 12, '#c9d1f5', 14, 'left');
+          var gr = g.createLinearGradient(0, Y0, 0, Y1); gr.addColorStop(0, 'rgba(255,196,58,.45)'); gr.addColorStop(1, 'rgba(255,196,58,.02)');
+          g.beginPath(); g.moveTo(xo(.38), Y1);
+          for (var x = .38; x <= dm; x += .02) g.lineTo(xo(x), yo(K / (x * x)));
+          g.lineTo(xo(dm), Y1); g.closePath(); g.fillStyle = gr; g.fill();
+          g.strokeStyle = '#ffc43a'; g.lineWidth = 3; g.shadowColor = '#ffc43a'; g.shadowBlur = 10; g.beginPath();
+          for (var x2 = .38; x2 <= dm; x2 += .02) { x2 === .38 ? g.moveTo(xo(x2), yo(K / (x2 * x2))) : g.lineTo(xo(x2), yo(K / (x2 * x2))); } g.stroke(); g.shadowBlur = 0;
+          pl.forEach(function (p) { g.fillStyle = '#9fe0ff'; g.beginPath(); g.arc(xo(p[0]), yo(K / (p[0] * p[0])), 5, 0, TAU); g.fill(); txt(g, p[1], xo(p[0]) + 8, yo(K / (p[0] * p[0])) - 8, '#9fe0ff', 14, 'left'); });
+          var Id = K / (d * d), cx = xo(d), cy = yo(Id);
+          g.strokeStyle = 'rgba(255,255,255,.7)'; g.setLineDash([4, 4]); g.lineWidth = 1.3; g.beginPath(); g.moveTo(cx, Y1); g.lineTo(cx, cy); g.lineTo(X0, cy); g.stroke(); g.setLineDash([]);
+          g.fillStyle = '#fff'; g.shadowColor = '#fff'; g.shadowBlur = 14; g.beginPath(); g.arc(cx, cy, 7, 0, TAU); g.fill(); g.shadowBlur = 0;
+          read.innerHTML = 'À <b>' + U.fr(d, 2) + ' u.a.</b> : I = K / d² = 1 361 / ' + U.fr(d * d, 2) + ' = <b>' + U.fr(Id, 0) + ' W/m²</b> (' + U.fr(Id / K * 100, 0) + ' % de la valeur à la distance de la Terre)';
+        }
+      }
+    };
+  });
+
+  /* ======================================================= Orbite elliptique : l'excentricité n'explique pas les saisons */
+  S.register('excentricite', function (root) {
+    var W = 900, Hh = 410, st = S.stage(root, W, Hh), g = st.g;
+    var day = 3, k = 1, play = false, K = A.K;
+    var ctrl = UI.row(root);
+    var sd = UI.slider(ctrl, { label: 'date', min: 1, max: 365, step: 1, value: 3, color: '#5cc8ff', fmt: function (v) { return A.dateStr(v); }, oninput: function (v) { day = v; play = false; } });
+    var se = UI.slider(ctrl, { label: 'excentricité', min: 1, max: 40, step: 'any', value: 1, color: '#ff8a5c', fmt: function (v) { return v < 1.5 ? 'réelle (0,017)' : '× ' + U.fr(v, 0) + ' (e = ' + U.fr(Math.min(.0167 * v, .8), 2) + ')'; }, oninput: function (v) { k = v; } });
+    var c2 = UI.row(root);
+    UI.btn(c2, '▶ Une année', function (e, b) { play = !play; b.textContent = play ? '❚❚ Pause' : '▶ Une année'; }, 'main');
+    UI.chips(c2, [{ id: 3, label: 'Périhélie (3 janv.)' }, { id: 185, label: 'Aphélie (4 juil.)' }, { id: 172, label: 'Solstice d’été (N)' }, { id: 355, label: 'Solstice d’hiver (N)' }], { onchange: function (id) { day = parseFloat(id); sd.set(day); play = false; } });
+    var read = UI.readout(root);
+    var last = 0, SEAS = [[79, 172, '#7dffb0', 'printemps'], [172, 265, '#ffd166', 'été'], [265, 355, '#ff8a5c', 'automne'], [355, 444, '#7fd2ff', 'hiver']];
+    return {
+      frame: function (t) {
+        var dt = Math.min(.1, t - last); last = t;
+        if (!st.fit()) return;
+        if (play) { day += dt * 30; if (day > 365) day -= 365; sd.set(day); }
+        g.clearRect(0, 0, W, Hh);
+        var e = Math.min(.0167 * k, .8), a = 205, b = a * Math.sqrt(1 - e * e), cx = 380, cy = 195, fx = cx + a * e;
+        function pos(n) { var s = A.state(n, e), r = s.r * a; return [fx + r * Math.cos(s.nu), cy - r * Math.sin(s.nu), s.r]; }
+        // orbite colorée par saisons
+        SEAS.forEach(function (s) {
+          g.strokeStyle = s[2]; g.lineWidth = 5; g.globalAlpha = .75; g.beginPath();
+          for (var n = s[0]; n <= s[1]; n += 1) { var p = pos(n > 365 ? n - 365 : n); n === s[0] ? g.moveTo(p[0], p[1]) : g.lineTo(p[0], p[1]); }
+          g.stroke(); g.globalAlpha = 1;
+        });
+        // axe périhélie-aphélie
+        g.strokeStyle = 'rgba(255,255,255,.18)'; g.setLineDash([4, 6]); g.lineWidth = 1; g.beginPath(); g.moveTo(cx - a, cy); g.lineTo(cx + a, cy); g.stroke(); g.setLineDash([]);
+        S.drawSun(g, fx, cy, 22, t, { halo: 3, noProm: true });
+        // repères
+        function mark(n, label, col, dx, dy, al) {
+          var p = pos(n); g.fillStyle = col; g.beginPath(); g.arc(p[0], p[1], 5, 0, TAU); g.fill();
+          txt(g, label, p[0] + dx, p[1] + dy, col, 14, al || 'left', 600);
+        }
+        mark(3, 'périhélie', '#ffffff', 10, -10); mark(185, 'aphélie', '#ffffff', -10, -10, 'right');
+        mark(79, '20 mars', '#7dffb0', 8, 22); mark(172, '21 juin', '#ffd166', 0, -12, 'center'); mark(265, '22 sept.', '#ff8a5c', -8, -12, 'right'); mark(355, '21 déc.', '#7fd2ff', 0, 24, 'center');
+        // Terre
+        var p = pos(day), s = A.state(day, e);
+        g.save(); g.shadowColor = '#5cc8ff'; g.shadowBlur = 16; S.drawEarth(g, p[0], p[1], 11, day / 365 * 40); g.restore();
+        g.strokeStyle = 'rgba(255,255,255,.5)'; g.lineWidth = 1.2; g.setLineDash([3, 4]); g.beginPath(); g.moveTo(fx, cy); g.lineTo(p[0], p[1]); g.stroke(); g.setLineDash([]);
+        // panneau
+        var I = K / (s.r * s.r), d0 = 149.6 * s.r, season = A.dec(day) > 0 ? '' : '';
+        var dec = A.dec(day) / D2R, N = '';
+        var sn = dec > 0 ? (A.state(day).lamS < Math.PI / 2 ? 'printemps' : 'été') : '';
+        var nm = A.season(Math.round(day))[0];
+        var bx = 650;
+        g.fillStyle = 'rgba(255,255,255,.06)'; g.fillRect(bx, 40, 235, 300); g.strokeStyle = 'rgba(255,255,255,.15)'; g.strokeRect(bx, 40, 235, 300);
+        txt(g, A.dateStr(day), bx + 117, 74, '#ffd166', 24, 'center', 600);
+        txt(g, 'distance Terre–Soleil', bx + 117, 110, '#a9b2d6', 14, 'center'); txt(g, U.fr(s.r, 3) + ' u.a.', bx + 117, 138, '#eef1ff', 24, 'center', 600);
+        txt(g, '≈ ' + U.fr(d0, 1) + ' millions de km', bx + 117, 160, '#c9d1f5', 14, 'center');
+        txt(g, 'irradiance au sommet', bx + 117, 196, '#a9b2d6', 14, 'center'); txt(g, U.fr(I, 0) + ' W/m²', bx + 117, 224, '#ffc43a', 26, 'center', 600);
+        txt(g, (I / K * 100 - 100 >= 0 ? '+' : '−') + U.fr(Math.abs(I / K * 100 - 100), 1) + ' % par rapport à 1 u.a.', bx + 117, 246, '#c9d1f5', 14, 'center');
+        txt(g, 'hémisphère nord', bx + 117, 286, '#a9b2d6', 14, 'center'); txt(g, nm.toUpperCase(), bx + 117, 316, '#7dffb0', 22, 'center', 700);
+        read.innerHTML = k < 1.5 ? 'Avec l’excentricité <b>réelle</b>, l’orbite est presque un cercle : la distance ne varie que de <b>±1,7 %</b> et l’irradiance de <b>±3,4 %</b>. La Terre est au plus près en <b>janvier</b>, en plein hiver boréal !' : 'Excentricité volontairement <b>exagérée</b> (× ' + U.fr(k, 0) + ') : même ainsi, la saison ne dépend pas de la distance — l’hiver boréal a lieu au plus près du Soleil dans la réalité.';
+      }
+    };
+  });
+
+  /* ======================================================= Inclinaison des rayons */
+  S.register('inclinaison', function (root) {
+    var W = 900, Hh = 400, st = S.stage(root, W, Hh), g = st.g;
+    var h = 41, K = A.K;
+    var ctrl = UI.row(root);
+    var sl = UI.slider(ctrl, { label: 'élévation du Soleil h', min: 6, max: 90, step: 1, value: 41, color: '#ffd166', fmt: function (v) { return U.fr(v, 0) + '°'; }, oninput: function (v) { h = v; } });
+    UI.chips(ctrl, [{ id: 90, label: 'Équateur' }, { id: 60, label: 'Lat. 30°' }, { id: 41, label: 'Paris (49°)' }, { id: 24, label: 'Cercle polaire (66°)' }], { onchange: function (id) { h = parseFloat(id); sl.set(h); } });
+    var read = UI.readout(root);
+    return {
+      frame: function (t) {
+        if (!st.fit()) return;
+        g.clearRect(0, 0, W, Hh);
+        var gy = 330, w = 80, hr = h * D2R, L = w / Math.sin(hr), gx = 430 - L / 2;
+        // sol
+        var gr = g.createLinearGradient(0, gy, 0, Hh); gr.addColorStop(0, '#2f8f4e'); gr.addColorStop(1, '#134228');
+        g.fillStyle = gr; g.fillRect(0, gy, W, Hh - gy);
+        var dx = -Math.cos(hr), dy = -Math.sin(hr), len = 420;
+        // faisceau
+        var p0 = [gx, gy], p1 = [gx + L, gy], q0 = [p0[0] + dx * len, p0[1] + dy * len], q1 = [p1[0] + dx * len, p1[1] + dy * len];
+        var bg = g.createLinearGradient(q0[0], q0[1], p0[0], p0[1]); bg.addColorStop(0, 'rgba(255,214,90,.0)'); bg.addColorStop(.35, 'rgba(255,214,90,.38)'); bg.addColorStop(1, 'rgba(255,230,140,.55)');
+        g.fillStyle = bg; g.beginPath(); g.moveTo(p0[0], p0[1]); g.lineTo(p1[0], p1[1]); g.lineTo(q1[0], q1[1]); g.lineTo(q0[0], q0[1]); g.closePath(); g.fill();
+        // rayons animés
+        g.strokeStyle = 'rgba(255,240,170,.95)'; g.lineWidth = 2.5; g.setLineDash([16, 12]); g.lineDashOffset = t * 70;
+        for (var i = 0; i <= 4; i++) { var f = i / 4, sx = p0[0] + (p1[0] - p0[0]) * f, sy = gy; g.beginPath(); g.moveTo(sx + dx * len, sy + dy * len); g.lineTo(sx, sy); g.stroke(); }
+        g.setLineDash([]);
+        // sol éclairé
+        g.fillStyle = '#ff6a3d'; g.shadowColor = '#ff6a3d'; g.shadowBlur = 16; g.fillRect(gx, gy - 3, L, 8); g.shadowBlur = 0;
+        g.strokeStyle = 'rgba(255,255,255,.8)'; g.lineWidth = 1.5; g.beginPath(); g.moveTo(gx, gy + 24); g.lineTo(gx + L, gy + 24); g.moveTo(gx, gy + 18); g.lineTo(gx, gy + 30); g.moveTo(gx + L, gy + 18); g.lineTo(gx + L, gy + 30); g.stroke();
+        txt(g, U.fr(1 / Math.sin(hr), 2) + ' m² éclairés', gx + L / 2, gy + 52, '#ffb09a', 18, 'center', 600);
+        // section droite du faisceau (1 m de large, perpendiculaire aux rayons)
+        var nx = -dy, ny = dx;
+        var t0 = [p0[0] + dx * 200, p0[1] + dy * 200];
+        var perp = [Math.sin(hr), -Math.cos(hr)]; // direction perpendiculaire aux rayons (vers le bord p1)
+        var t1 = [t0[0] + perp[0] * w, t0[1] + perp[1] * w];
+        g.strokeStyle = '#ffffff'; g.lineWidth = 3.5; g.beginPath(); g.moveTo(t0[0], t0[1]); g.lineTo(t1[0], t1[1]); g.stroke();
+        g.lineWidth = 5; g.strokeStyle = 'rgba(8,10,30,.9)'; g.font = '600 17px ' + FONT; g.textAlign = 'right'; g.strokeText('1 m²', (t0[0] + t1[0]) / 2 - 12, (t0[1] + t1[1]) / 2 - 4); g.fillStyle = '#fff'; g.fillText('1 m²', (t0[0] + t1[0]) / 2 - 12, (t0[1] + t1[1]) / 2 - 4);
+        // angle d'élévation
+        g.strokeStyle = '#ff6fb5'; g.lineWidth = 3; g.beginPath(); g.arc(gx, gy, 62, Math.PI, Math.PI + hr); g.stroke();
+        g.fillStyle = 'rgba(255,111,181,.22)'; g.beginPath(); g.moveTo(gx, gy); g.arc(gx, gy, 62, Math.PI, Math.PI + hr); g.closePath(); g.fill();
+        txt(g, 'h = ' + U.fr(h, 0) + '°', gx - 70, gy - 12, '#ff9fd0', 19, 'right', 600);
+        // sommet de l'atmosphère / soleil
+        txt(g, 'rayons du Soleil', 30, 30, '#ffd166', 16, 'left', 600);
+        arrow(g, 30, 42, 30 + 60 * Math.cos(hr), 42 + 60 * Math.sin(hr), '#ffd166', 3, 12);
+        // barre d'irradiance
+        var I = K * Math.sin(hr), bxx = 740, byy = 70, bh = 200;
+        g.fillStyle = 'rgba(255,255,255,.08)'; g.fillRect(bxx, byy, 34, bh);
+        g.fillStyle = '#ffc43a'; g.shadowColor = '#ffc43a'; g.shadowBlur = 12; g.fillRect(bxx, byy + bh * (1 - I / K), 34, bh * I / K); g.shadowBlur = 0;
+        txt(g, 'I = K·sin h', bxx + 17, byy - 14, '#c9d1f5', 15, 'center');
+        txt(g, U.fr(I, 0) + ' W/m²', bxx + 17, byy + bh + 24, '#ffd166', 18, 'center', 600);
+        read.innerHTML = 'Le même faisceau (1 m² de section) s’étale sur <b>1 / sin h = ' + U.fr(1 / Math.sin(hr), 2) + ' m²</b> de sol : l’irradiance est divisée d’autant, <b>I = K · sin h = ' + U.fr(I, 0) + ' W/m²</b>.';
+      }
+    };
+  });
+
+  /* ======================================================= Orbite, inclinaison de l'axe et saisons (3D) */
+  S.register('saisons', function (root) {
+    var W = 900, Hh = 430, st = S.stage(root, W, Hh), g = st.g;
+    var day = 172, lat = 48.85, play = false, last = 0, EL = 26 * D2R;
+    var ctrl = UI.row(root);
+    var sd = UI.slider(ctrl, { label: 'date', min: 1, max: 365, step: 1, value: 172, color: '#5cc8ff', fmt: function (v) { return A.dateStr(v); }, oninput: function (v) { day = v; play = false; } });
+    var sl = UI.slider(ctrl, { label: 'latitude', min: -90, max: 90, step: 1, value: 48.85, color: '#ffd166', fmt: function (v) { return U.fr(Math.abs(v), 0) + '° ' + (v >= 0 ? 'N' : 'S'); }, oninput: function (v) { lat = v; } });
+    var c2 = UI.row(root);
+    UI.btn(c2, '▶ Une année', function (e, b) { play = !play; b.textContent = play ? '❚❚ Pause' : '▶ Une année'; }, 'main');
+    UI.chips(c2, [{ id: 80, label: 'Équinoxe de mars' }, { id: 172, label: 'Solstice de juin' }, { id: 265, label: 'Équinoxe de sept.' }, { id: 355, label: 'Solstice de déc.' }], { onchange: function (id) { day = parseFloat(id); sd.set(day); play = false; } });
+    var read = UI.readout(root);
+    var N = 128;
+    function mkOff() { var c = document.createElement('canvas'); c.width = c.height = N; var o = c.getContext('2d'); return { c: c, g: o, img: o.createImageData(N, N) }; }
+    var offA = mkOff(), offB = mkOff();
+    var sinE = Math.sin(A.EPS), cosE = Math.cos(A.EPS), sEl = Math.sin(EL), cEl = Math.cos(EL);
+    var CAM_MAIN = { R: [1, 0, 0], U: [0, sEl, cEl], B: [0, -cEl, sEl] };
+    /* globe ombré pixel par pixel : s = direction Terre→Soleil (plan de l'écliptique), cam = repère de la caméra */
+    function globe(off, s, latObs, cam) {
+      var d = off.img.data, R = N / 2 - 2, c = N / 2;
+      for (var j = 0; j < N; j++) for (var i = 0; i < N; i++) {
+        var u = (i + .5 - c) / R, v = -(j + .5 - c) / R, r2 = u * u + v * v, o = (j * N + i) * 4;
+        if (r2 > 1) { d[o + 3] = 0; continue; }
+        var w = Math.sqrt(1 - r2);
+        var nx = u * cam.R[0] + v * cam.U[0] + w * cam.B[0], ny = u * cam.R[1] + v * cam.U[1] + w * cam.B[1], nz = u * cam.R[2] + v * cam.U[2] + w * cam.B[2];
+        var lamb = nx * s[0] + ny * s[1];
+        var sinLat = ny * sinE + nz * cosE, la = Math.asin(U.clamp(sinLat, -1, 1)) / D2R;
+        var dayk = U.smooth(-.05, .14, lamb), amb = .24, lum = amb + (1 - amb) * dayk;
+        var q = 1 - Math.abs(la) / 90, rr = 26 + 40 * q, gg = 96 + 74 * q, bb = 186 + 44 * q;
+        if (Math.abs(la) > 72) { rr = 235; gg = 245; bb = 255; }
+        var line = 0, lc = null;
+        function near(x0, wd, col) { if (Math.abs(la - x0) < wd) { line = 1; lc = col; } }
+        near(0, .8, [255, 255, 255]); near(23.44, .7, [255, 165, 60]); near(-23.44, .7, [255, 165, 60]); near(66.56, .7, [90, 220, 255]); near(-66.56, .7, [90, 220, 255]);
+        near(latObs, .95, [255, 230, 80]);
+        if (line) { rr = lc[0]; gg = lc[1]; bb = lc[2]; lum = Math.max(lum, .6); }
+        var rim = 1 - .22 * Math.pow(1 - w, 2);
+        d[o] = rr * lum * rim; d[o + 1] = gg * lum * rim; d[o + 2] = bb * lum * rim; d[o + 3] = 255;
+      }
+      off.g.putImageData(off.img, 0, 0);
+    }
+    function axisDraw(ex, ey, R, cam) {
+      var ax = [0, sinE, cosE];
+      var sx = ax[0] * cam.R[0] + ax[1] * cam.R[1] + ax[2] * cam.R[2], sy = ax[0] * cam.U[0] + ax[1] * cam.U[1] + ax[2] * cam.U[2];
+      g.strokeStyle = '#ffe066'; g.lineWidth = 2.4; g.beginPath(); g.moveTo(ex - sx * R * 1.3, ey + sy * R * 1.3); g.lineTo(ex + sx * R * 1.45, ey - sy * R * 1.45); g.stroke();
+      txt(g, 'N', ex + sx * R * 1.45 + 6, ey - sy * R * 1.45 - 2, '#ffe066', 16, 'left', 700);
+      return [sx, sy];
+    }
+    return {
+      frame: function (t) {
+        var dt = Math.min(.1, t - last); last = t;
+        if (!st.fit()) return;
+        if (play) { day += dt * 25; if (day > 365) day -= 365; sd.set(day); }
+        g.clearRect(0, 0, W, Hh);
+        var cx = 370, cy = 222, Ao = 285;
+        var s0 = A.state(day), lamE = s0.lamS + Math.PI, rr = s0.r0;
+        var P = [rr * Math.cos(lamE), rr * Math.sin(lamE)];
+        var ex = cx + Ao * P[0], ey = cy - Ao * P[1] * sEl, sdir = [-P[0] / rr, -P[1] / rr];
+        g.strokeStyle = 'rgba(255,255,255,.28)'; g.lineWidth = 1.5; g.beginPath(); g.ellipse(cx, cy, Ao, Ao * sEl, 0, 0, TAU); g.stroke();
+        [[80, 'équinoxe de mars'], [172, 'solstice de juin'], [265, 'équinoxe de sept.'], [355, 'solstice de déc.']].forEach(function (m) {
+          var s = A.state(m[0]), l = s.lamS + Math.PI, x = cx + Ao * Math.cos(l), y = cy - Ao * Math.sin(l) * sEl;
+          g.fillStyle = 'rgba(255,255,255,.55)'; g.beginPath(); g.arc(x, y, 3.2, 0, TAU); g.fill();
+          var front = Math.sin(l) < 0, c = Math.cos(l);
+          if (Math.abs(c) > .5) txt(g, m[1], x, y - 50, 'rgba(255,255,255,.55)', 13, 'center');
+          else txt(g, m[1], x, y + (front ? 60 : -52), 'rgba(255,255,255,.55)', 13, 'center');
+        });
+        var farFirst = P[1] > 0;
+        function earthMain() {
+          globe(offA, sdir, lat, CAM_MAIN);
+          var R = 36;
+          g.save(); g.shadowColor = 'rgba(92,200,255,.5)'; g.shadowBlur = 20; g.drawImage(offA.c, ex - R - 1.5, ey - R - 1.5, 2 * R + 3, 2 * R + 3); g.restore();
+          axisDraw(ex, ey, R, CAM_MAIN);
+        }
+        function sunMain() { S.drawSun(g, cx, cy, 28, t, { halo: 3.2, noProm: true }); }
+        if (farFirst) { earthMain(); sunMain(); } else { sunMain(); earthMain(); }
+        // --- vue de côté : le Soleil est à droite
+        var camS = { R: [sdir[0], sdir[1], 0], U: [0, 0, 1], B: [sdir[1], -sdir[0], 0] };
+        globe(offB, sdir, lat, camS);
+        var ix = 790, iy = 160, IR = 70;
+        txt(g, 'vue de côté (Soleil à droite)', ix, 30, '#c9d1f5', 14, 'center');
+        var gl = g.createRadialGradient(ix + IR, iy, IR, ix + IR * 2.2, iy, IR * 3); gl.addColorStop(0, 'rgba(255,200,80,.30)'); gl.addColorStop(1, 'rgba(255,200,80,0)');
+        g.fillStyle = gl; g.beginPath(); g.arc(ix + IR * 1.2, iy, IR * 2.6, 0, TAU); g.fill();
+        g.save(); g.shadowColor = 'rgba(92,200,255,.45)'; g.shadowBlur = 22; g.drawImage(offB.c, ix - IR - 2, iy - IR - 2, 2 * IR + 4, 2 * IR + 4); g.restore();
+        axisDraw(ix, iy, IR, camS);
+        arrow(g, ix + IR + 32, iy, ix + IR + 8, iy, 'rgba(255,214,90,.9)', 2.5, 10);
+        txt(g, '☀', ix + IR + 36, iy + 8, '#ffd166', 20, 'left');
+        // légende
+        var ly = 262;
+        [['équateur', '#ffffff'], ['tropiques', '#ffa53c'], ['cercles polaires', '#5adcff'], ['latitude choisie', '#ffe650']].forEach(function (l, i) {
+          g.fillStyle = l[1]; g.fillRect(742, ly + i * 20 - 9, 16, 3); txt(g, l[0], 766, ly + i * 20 - 3, l[1], 13, 'left');
+        });
+        // lecture
+        var dec = s0.dec, hn = 90 - Math.abs(lat - dec / D2R), dl = A.dayLen(lat * D2R, dec), Q = A.Q(lat * D2R, day);
+        var ss = A.season(Math.round(day)), nm = ss[0], sm = ss[1];
+        var hh = Math.floor(dl), mm = Math.round((dl - hh) * 60); if (mm === 60) { hh++; mm = 0; }
+        txt(g, A.dateStr(day), 20, 34, '#ffd166', 26, 'left', 600);
+        txt(g, 'hémisphère nord : ' + nm, 20, 60, '#7dffb0', 17, 'left', 600);
+        txt(g, 'hémisphère sud : ' + sm, 20, 82, '#9fe0ff', 17, 'left', 600);
+        txt(g, 'L’axe reste incliné de 23,4° dans la même direction', 20, 106, '#c9d1f5', 14, 'left');
+        read.innerHTML = 'Déclinaison du Soleil δ = <b>' + U.fr(dec / D2R, 1) + '°</b> · élévation à midi à ' + U.fr(Math.abs(lat), 0) + '°' + (lat >= 0 ? 'N' : 'S') + ' : <b>' + U.fr(hn, 0) + '°</b> · durée du jour : <b>' + hh + ' h ' + (mm < 10 ? '0' : '') + mm + '</b> · éclairement moyen au sommet : <b>' + U.fr(Q, 0) + ' W/m²</b>';
+      }
+    };
+  });
+
+  /* ======================================================= Trajectoire du Soleil dans le ciel, élévation */
+  S.register('trajectoire', function (root) {
+    var W = 900, Hh = 430, st = S.stage(root, W, Hh), g = st.g;
+    var day = 172, hour = 12, lat = 48.85, play = false, last = 0;
+    var ctrl = UI.row(root);
+    var sdy = UI.slider(ctrl, { label: 'date', min: 1, max: 365, step: 1, value: 172, color: '#ffd166', fmt: function (v) { return A.dateStr(v); }, oninput: function (v) { day = v; } });
+    var shr = UI.slider(ctrl, { label: 'heure solaire', min: 0, max: 24, step: .05, value: 12, color: '#ff9f6b', fmt: function (v) { var h = Math.floor(v), m = Math.round((v - h) * 60); if (m === 60) { h++; m = 0; } return h + ' h ' + (m < 10 ? '0' : '') + m; }, oninput: function (v) { hour = v; play = false; } });
+    var sl = UI.slider(ctrl, { label: 'latitude', min: -80, max: 80, step: 1, value: 48.85, color: '#7dffb0', fmt: function (v) { return U.fr(Math.abs(v), 0) + '° ' + (v >= 0 ? 'N' : 'S'); }, oninput: function (v) { lat = v; } });
+    var c2 = UI.row(root);
+    UI.btn(c2, '▶ Une journée', function (e, b) { play = !play; b.textContent = play ? '❚❚ Pause' : '▶ Une journée'; }, 'main');
+    UI.chips(c2, [{ id: 172, label: '21 juin' }, { id: 80, label: 'Équinoxe' }, { id: 355, label: '21 déc.' }], { onchange: function (id) { day = parseFloat(id); sdy.set(day); } });
+    var read = UI.readout(root);
+    var PX0 = 20, PX1 = 640, HY = 360, SCY = 3.55, SCX = (PX1 - PX0) / 340;
+    function sx(azDeg) { return (PX0 + PX1) / 2 + azDeg * SCX; }
+    function arc(n, col, lw, dash, label) {
+      var dec = A.dec(n), pts = [];
+      g.strokeStyle = col; g.lineWidth = lw; g.setLineDash(dash || []); g.beginPath(); var on = false;
+      for (var H = -180; H <= 180; H += 2) {
+        var e = A.elev(lat * D2R, dec, H * D2R) / D2R, az = A.azim(lat * D2R, dec, H * D2R) / D2R;
+        if (e < 0) { on = false; continue; }
+        var X = sx(az), Y = HY - e * SCY;
+        if (!on) { g.moveTo(X, Y); on = true; } else if (Math.abs(az - (pts.last || az)) > 90) g.moveTo(X, Y); else g.lineTo(X, Y);
+        pts.last = az;
+      }
+      g.stroke(); g.setLineDash([]);
+    }
+    return {
+      frame: function (t) {
+        var dt = Math.min(.1, t - last); last = t;
+        if (!st.fit()) return;
+        if (play) { hour += dt * 1.6; if (hour > 24) hour -= 24; shr.set(hour); }
+        g.clearRect(0, 0, W, Hh);
+        var dec = A.dec(day), H = (hour - 12) * 15 * D2R, e = A.elev(lat * D2R, dec, H), az = A.azim(lat * D2R, dec, H);
+        var eD = e / D2R, azD = az / D2R;
+        // ciel
+        var k = U.smooth(-6, 12, eD);
+        var sky = g.createLinearGradient(0, 40, 0, HY);
+        sky.addColorStop(0, U.rgb([U.lerp(6, 40, k), U.lerp(10, 110, k), U.lerp(34, 210, k)])); sky.addColorStop(1, U.rgb([U.lerp(20, 150, k), U.lerp(24, 200, k), U.lerp(60, 245, k)]));
+        g.fillStyle = sky; g.beginPath(); g.roundRect ? g.roundRect(PX0, 40, PX1 - PX0, HY - 40, 14) : g.rect(PX0, 40, PX1 - PX0, HY - 40); g.fill();
+        if (k < .7) { for (var i = 0; i < 40; i++) { g.fillStyle = 'rgba(255,255,255,' + (0.7 - k) * .9 + ')'; g.fillRect(PX0 + ((i * 97) % 620), 46 + ((i * 53) % 280), 1.6, 1.6); } }
+        // sol
+        var gg = g.createLinearGradient(0, HY, 0, 410); gg.addColorStop(0, U.rgb([U.lerp(10, 60, k), U.lerp(30, 130, k), U.lerp(20, 70, k)])); gg.addColorStop(1, U.rgb([U.lerp(4, 30, k), U.lerp(12, 80, k), U.lerp(10, 40, k)]));
+        g.fillStyle = gg; g.fillRect(PX0, HY, PX1 - PX0, 50);
+        // grille d'élévation
+        g.strokeStyle = 'rgba(255,255,255,.18)'; g.lineWidth = 1; g.fillStyle = 'rgba(255,255,255,.7)'; g.font = '13px ' + FONT; g.textAlign = 'left';
+        [30, 60, 90].forEach(function (a) { g.beginPath(); g.moveTo(PX0, HY - a * SCY); g.lineTo(PX1, HY - a * SCY); g.stroke(); g.fillText(a + '°', PX0 + 6, HY - a * SCY - 4); });
+        [[-90, 'E'], [0, 'S'], [90, 'O']].forEach(function (c) { txt(g, c[1], sx(c[0]), HY + 24, '#eef1ff', 18, 'center', 700); });
+        txt(g, 'N', sx(-168), HY + 24, '#a9b2d6', 16, 'center', 700); txt(g, 'N', sx(168), HY + 24, '#a9b2d6', 16, 'center', 700);
+        // arcs de référence
+        arc(172, '#ffd166', 2.5, [2, 6]); arc(80, '#ffffff', 2.5, [2, 6]); arc(355, '#7fd2ff', 2.5, [2, 6]);
+        var lat0 = lat * D2R;
+        [[172, '21 juin', '#ffd166'], [80, 'équinoxe', '#ffffff'], [355, '21 déc.', '#7fd2ff']].forEach(function (a) {
+          var de = A.dec(a[0]), em = A.elev(lat0, de, 0) / D2R; if (em > 3) txt(g, a[1], sx(0), HY - em * SCY - 8, a[2], 14, 'center', 600);
+        });
+        g.strokeStyle = 'rgba(255,255,255,.9)'; g.lineWidth = 3; arc(day, 'rgba(255,255,255,.55)', 2, null);
+        // Soleil
+        if (eD > -4) {
+          var X = sx(azD), Y = HY - eD * SCY, hr = 52;
+          var gl = g.createRadialGradient(X, Y, 0, X, Y, hr * 2.2); gl.addColorStop(0, 'rgba(255,245,200,1)'); gl.addColorStop(.18, 'rgba(255,220,120,.9)'); gl.addColorStop(.45, 'rgba(255,170,60,.25)'); gl.addColorStop(1, 'rgba(255,140,40,0)');
+          g.save(); g.beginPath(); g.rect(PX0, 40, PX1 - PX0, HY - 40); g.clip(); g.fillStyle = gl; g.beginPath(); g.arc(X, Y, hr * 2.2, 0, TAU); g.fill();
+          g.fillStyle = '#fffbe0'; g.beginPath(); g.arc(X, Y, 15, 0, TAU); g.fill(); g.restore();
+        }
+        // vue de profil : définition de l'élévation
+        var bx = 668, by = 360, bw = 216;
+        g.fillStyle = 'rgba(255,255,255,.05)'; g.fillRect(bx, 40, bw, 320); g.strokeStyle = 'rgba(255,255,255,.14)'; g.strokeRect(bx, 40, bw, 320);
+        g.fillStyle = '#2f8f4e'; g.fillRect(bx, by - 30, bw, 30);
+        var ox = bx + 60, oy = by - 30, ee = Math.max(eD, 0) * D2R;
+        txt(g, 'vue de profil', bx + bw / 2, 62, '#c9d1f5', 14, 'center');
+        if (eD > 0) {
+          var L = 190, tx = ox + Math.cos(ee) * L, ty = oy - Math.sin(ee) * L;
+          g.strokeStyle = 'rgba(255,214,90,.9)'; g.lineWidth = 5; g.beginPath(); g.moveTo(tx, ty); g.lineTo(ox, oy); g.stroke();
+          g.fillStyle = '#fffbe0'; g.shadowColor = '#ffd166'; g.shadowBlur = 16; g.beginPath(); g.arc(tx, ty, 11, 0, TAU); g.fill(); g.shadowBlur = 0;
+          g.strokeStyle = '#ff6fb5'; g.lineWidth = 3; g.beginPath(); g.arc(ox, oy, 52, -ee, 0); g.stroke();
+          g.fillStyle = 'rgba(255,111,181,.25)'; g.beginPath(); g.moveTo(ox, oy); g.arc(ox, oy, 52, -ee, 0); g.closePath(); g.fill();
+          txt(g, U.fr(eD, 0) + '°', ox + 60, oy - 6 - ee * 12, '#ff9fd0', 20, 'left', 700);
+        } else txt(g, 'Soleil sous l’horizon', bx + bw / 2, by - 120, '#a9b2d6', 15, 'center');
+        txt(g, 'sol', bx + bw / 2, by - 8, '#cfeedd', 13, 'center');
+        // lecture
+        var em = A.elev(lat0, dec, 0) / D2R, dl = A.dayLen(lat0, dec), hh = Math.floor(dl), mm = Math.round((dl - hh) * 60); if (mm === 60) { hh++; mm = 0; }
+        read.innerHTML = 'Élévation maximale à midi solaire le ' + A.dateStr(day) + ' : <b>' + U.fr(em, 1) + '°</b> (= 90° − |latitude − δ| avec δ = ' + U.fr(dec / D2R, 1) + '°) · durée du jour : <b>' + hh + ' h ' + (mm < 10 ? '0' : '') + mm + '</b>';
+      }
+    };
+  });
+
+  /* ======================================================= Insolation et durée du jour au fil de l'année */
+  S.register('insolation', function (root) {
+    var W = 900, Hh = 430, st = S.stage(root, W, Hh), g = st.g;
+    var mode = root.getAttribute('data-mode') === 'duree' ? 'duree' : 'Q', day = 172, play = root.getAttribute('data-play') === '1', last = 0, hov = null;
+    if (play) day = 1;
+    var ctrl = UI.row(root);
+    var sd = UI.slider(ctrl, { label: 'date', min: 1, max: 365, step: 1, value: day, color: '#ffc43a', fmt: function (v) { return A.dateStr(v); }, oninput: function (v) { day = v; play = false; pb.textContent = '▶ Une année'; } });
+    var pb = UI.btn(ctrl, play ? '❚❚ Pause' : '▶ Une année', function (e, b) { play = !play; b.textContent = play ? '❚❚ Pause' : '▶ Une année'; }, 'main');
+    var chm = UI.chips(ctrl, [{ id: 'Q', label: 'Éclairement (W/m²)' }, { id: 'duree', label: 'Durée du jour (h)' }], { value: mode, onchange: function (id) { mode = id; dirty = true; } });
+    var read = UI.readout(root);
+    var HX0 = 74, HX1 = 590, HY0 = 28, HY1 = 372, dirty = true;
+    var imgs = {}, LAT = []; for (var la = 90; la >= -90; la -= 2) LAT.push(la);
+    function stops(m) { return m === 'Q' ? [[0, [8, 6, 22]], [.18, [88, 18, 72]], [.4, [190, 40, 60]], [.62, [250, 110, 30]], [.82, [255, 190, 60]], [1, [255, 250, 200]]]
+      : [[0, [10, 12, 40]], [.25, [40, 60, 150]], [.5, [90, 150, 210]], [.75, [255, 200, 90]], [1, [255, 245, 190]]]; }
+    function colorOf(m, f) { var s = stops(m); f = U.clamp(f, 0, 1); for (var i = 1; i < s.length; i++) if (f <= s[i][0]) { var a = s[i - 1], b = s[i], u = (f - a[0]) / (b[0] - a[0]); return [U.lerp(a[1][0], b[1][0], u), U.lerp(a[1][1], b[1][1], u), U.lerp(a[1][2], b[1][2], u)]; } return s[s.length - 1][1]; }
+    function val(m, la, n) { return m === 'Q' ? A.Q(la * D2R, n) : A.dayLen(U.clamp(la, -89.99, 89.99) * D2R, A.dec(n)); }
+    function build(m) {
+      var c = document.createElement('canvas'); c.width = 365; c.height = LAT.length; var cg = c.getContext('2d'), im = cg.createImageData(365, LAT.length);
+      var vmax = m === 'Q' ? 560 : 24;
+      for (var j = 0; j < LAT.length; j++) for (var i = 0; i < 365; i++) {
+        var col = colorOf(m, val(m, LAT[j], i + 1) / vmax), o = (j * 365 + i) * 4; im.data[o] = col[0]; im.data[o + 1] = col[1]; im.data[o + 2] = col[2]; im.data[o + 3] = 255;
+      }
+      cg.putImageData(im, 0, 0); imgs[m] = c;
+    }
+    function xOf(n) { return HX0 + (n - 1) / 364 * (HX1 - HX0); }
+    function yOf(la) { return HY0 + (90 - la) / 180 * (HY1 - HY0); }
+    S.pointer(st, { move: function (x, y) { hov = (x > HX0 && x < HX1 && y > HY0 && y < HY1) ? [Math.round(1 + (x - HX0) / (HX1 - HX0) * 364), 90 - (y - HY0) / (HY1 - HY0) * 180] : null; },
+      down: function (x, y) { if (x > HX0 && x < HX1) { day = Math.round(1 + (U.clamp(x, HX0, HX1) - HX0) / (HX1 - HX0) * 364); sd.set(day); play = false; } },
+      drag: function (x) { day = Math.round(1 + (U.clamp(x, HX0, HX1) - HX0) / (HX1 - HX0) * 364); sd.set(day); }, leave: function () { hov = null; } });
+    var ann = {};
+    function annual(m) { if (ann[m]) return ann[m]; var a = LAT.map(function (la) { var s = 0; for (var n = 1; n <= 365; n += 5) s += val(m, la, n); return s / 73; }); return (ann[m] = a); }
+    return {
+      frame: function (t) {
+        var dt = Math.min(.1, t - last); last = t;
+        if (!st.fit()) return;
+        if (!imgs[mode]) build(mode);
+        if (play) { day += dt * 30; if (day > 365) day -= 365; sd.set(day); }
+        g.clearRect(0, 0, W, Hh);
+        var vmax = mode === 'Q' ? 560 : 24;
+        g.imageSmoothingEnabled = true; g.drawImage(imgs[mode], HX0, HY0, HX1 - HX0, HY1 - HY0);
+        g.strokeStyle = 'rgba(255,255,255,.5)'; g.lineWidth = 1; g.strokeRect(HX0, HY0, HX1 - HX0, HY1 - HY0);
+        // mois
+        for (var m = 0; m < 12; m++) { var n0 = A.dayOf(m, 1); txt(g, A.MOIS[m].slice(0, 1).toUpperCase(), xOf(n0 + 15), HY1 + 18, '#c9d1f5', 14, 'center'); g.strokeStyle = 'rgba(255,255,255,.08)'; g.beginPath(); g.moveTo(xOf(n0), HY0); g.lineTo(xOf(n0), HY1); g.stroke(); }
+        [90, 66.56, 23.44, 0, -23.44, -66.56, -90].forEach(function (la) {
+          var y = yOf(la), sp = Math.abs(la) === 23.44 || Math.abs(la) === 66.56;
+          g.strokeStyle = sp ? 'rgba(255,255,255,.35)' : 'rgba(255,255,255,.2)'; g.setLineDash(sp ? [4, 5] : []); g.beginPath(); g.moveTo(HX0 - 4, y); g.lineTo(HX1, y); g.stroke(); g.setLineDash([]);
+          txt(g, la === 0 ? '0°' : U.fr(Math.abs(la), Math.abs(la) % 1 ? 1 : 0) + '°' + (la > 0 ? ' N' : ' S'), HX0 - 8, y + 4, sp ? '#ffd9a8' : '#c9d1f5', 12, 'right');
+        });
+        // curseur de date
+        var cx = xOf(day);
+        g.strokeStyle = '#fff'; g.lineWidth = 2; g.shadowColor = '#fff'; g.shadowBlur = 10; g.beginPath(); g.moveTo(cx, HY0 - 6); g.lineTo(cx, HY1); g.stroke(); g.shadowBlur = 0;
+        // profil du jour
+        var PX0 = 640, PX1 = 880;
+        txt(g, mode === 'Q' ? 'Éclairement moyen (W/m²)' : 'Durée du jour (h)', (PX0 + PX1) / 2, 18, '#c9d1f5', 14, 'center');
+        g.strokeStyle = 'rgba(255,255,255,.4)'; g.beginPath(); g.moveTo(PX0, HY0); g.lineTo(PX0, HY1); g.lineTo(PX1, HY1); g.stroke();
+        var ticks = mode === 'Q' ? [0, 200, 400] : [0, 12, 24];
+        ticks.forEach(function (v) { var x = PX0 + v / vmax * (PX1 - PX0); txt(g, v, x, HY1 + 18, '#c9d1f5', 13, 'center'); g.strokeStyle = 'rgba(255,255,255,.08)'; g.beginPath(); g.moveTo(x, HY0); g.lineTo(x, HY1); g.stroke(); });
+        var an = annual(mode);
+        g.strokeStyle = 'rgba(255,255,255,.45)'; g.setLineDash([4, 4]); g.lineWidth = 1.6; g.beginPath(); LAT.forEach(function (la, i) { var x = PX0 + an[i] / vmax * (PX1 - PX0), y = yOf(la); i ? g.lineTo(x, y) : g.moveTo(x, y); }); g.stroke(); g.setLineDash([]);
+        g.beginPath(); LAT.forEach(function (la, i) { var x = PX0 + val(mode, la, day) / vmax * (PX1 - PX0), y = yOf(la); i ? g.lineTo(x, y) : g.moveTo(x, y); });
+        g.strokeStyle = '#ffc43a'; g.lineWidth = 3; g.shadowColor = '#ffc43a'; g.shadowBlur = 10; g.stroke(); g.shadowBlur = 0;
+        txt(g, 'ce jour', PX1, HY1 + 38, '#ffc43a', 13, 'right', 600); txt(g, 'moyenne annuelle', PX0, HY1 + 38, 'rgba(255,255,255,.7)', 13, 'left');
+        var rd = 'Le <b>' + A.dateStr(day) + '</b> : ';
+        if (hov) { var v = val(mode, hov[1], hov[0]); rd = A.dateStr(hov[0]) + ', latitude ' + U.fr(Math.abs(hov[1]), 0) + '°' + (hov[1] >= 0 ? 'N' : 'S') + ' : <b>' + (mode === 'Q' ? U.fr(v, 0) + ' W/m²' : U.fr(v, 1) + ' h de jour') + '</b>'; g.strokeStyle = 'rgba(255,255,255,.7)'; g.lineWidth = 1; g.beginPath(); g.moveTo(HX0, yOf(hov[1])); g.lineTo(HX1, yOf(hov[1])); g.stroke(); }
+        else rd = mode === 'Q' ? 'Éclairement solaire moyen reçu en haut de l’atmosphère, selon la <b>latitude</b> et la <b>date</b>. Survole la carte.' : 'Durée du jour selon la <b>latitude</b> et la <b>date</b> : 24 h près du pôle l’été, 0 h l’hiver. Survole la carte.';
+        read.innerHTML = rd;
+      }
+    };
+  });
+})();

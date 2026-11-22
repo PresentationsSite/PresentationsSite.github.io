@@ -1,0 +1,28 @@
+{{- /*
+  Shortcode : qcm  (pour reveal-hugo)
+  -----------------------------------
+  QCM à quatre propositions numérotées 1 à 4, pour voter aux doigts.
+  Une pression sur → (ou le bouton « Réponse ») révèle la bonne réponse et l'explication.
+  Les touches 1 à 4 surlignent une proposition (pratique pour marquer le vote majoritaire).
+
+    {{< qcm
+        q=`Question (HTML et formules $...$ acceptés)`
+        a1=`Proposition 1` a2=`Proposition 2` a3=`Proposition 3` a4=`Proposition 4`
+        bonne="3"
+        expl=`Explication affichée avec la réponse` >}}
+
+  Le comportement (touches, révélation) est dans static/js/soleil/core.js ; le style dans static/css/soleil.css.
+*/ -}}
+{{- $b := int (.Get "bonne") -}}
+<div class="qcm" data-bonne="{{ $b }}">
+<div class="qcm-tag"><span class="qcm-hand">☝</span> QCM · vote aux doigts</div>
+<div class="qcm-q">{{ .Get "q" | safeHTML }}</div>
+<div class="qcm-grid">
+{{- range $i, $k := slice "a1" "a2" "a3" "a4" }}
+{{- $n := add $i 1 }}
+<div class="qcm-opt{{ if eq $n $b }} ok{{ end }}" data-n="{{ $n }}"><span class="qcm-n">{{ $n }}</span><span class="qcm-t">{{ $.Get $k | safeHTML }}</span></div>
+{{- end }}
+</div>
+<div class="qcm-expl fragment">{{ with .Get "expl" }}{{ . | safeHTML }}{{ else }}Bonne réponse : {{ $b }}.{{ end }}</div>
+<button type="button" class="qcm-go">Voir la réponse ▸</button>
+</div>
