@@ -6,22 +6,24 @@
  *   <script type="module" src="/js/anim-newton.js"></script>
  *
  * Scènes (data-anim) :
- *   inertie         palet sur coussin d'air : ΣF = 0 donne un MRU, sinon non (1re loi)
- *   train           bille sur un plateau sans frottement dans un train qui accélère :
- *                   référentiel galiléen / non galiléen (1re loi)
- *   pfd             bloc tiré par une force F : ΣF = m a, avec le graphe v(t) (2e loi)
- *   actionreaction  deux mobiles se repoussent : F_B/A = −F_A/B, accélérations inverses
- *                   des masses (3e loi)
+ *   inertie  palet sur coussin d'air : ΣF = 0 donne un MRU, sinon non (1re loi)
+ *   pfd      bloc tiré par une force F : ΣF = m a, avec le graphe v(t) (2e loi)
  *
- * Toutes les scènes sont des fonctions pures du temps t : le curseur de temps permet
- * de se placer à n'importe quelle date, en avant comme en arrière.
+ * Les scènes sont des fonctions pures du temps t : le curseur de temps permet de
+ * se placer à n'importe quelle date, en avant comme en arrière.
  * Code couleur du cours : forces en rose-rouge (#FF968D), vitesse en jaune,
- * accélération en vert, référentiel galiléen en bleu.
+ * accélération en vert.
+ *
+ * Mise en page : la scène couvre toute la fenêtre (dimensionnée en JS, au-delà des
+ * bords de la slide reveal.js). Les tailles s'expriment en « px de slide » ; sur un
+ * petit écran la slide est très réduite, d'où un facteur de compensation k (≥ 1)
+ * appliqué aux textes, traits et commandes. Chaque scène peut réserver de la place
+ * (spec.reserve) et choisir la taille du monde représenté (spec.monde) d'après la
+ * zone de dessin disponible.
  */
 
 const COUL = {
-  force: '#FF968D', vit: '#FFF056', acc: '#61D836', galil: '#56C1FF',
-  point: '#EB53A0', A: '#56C1FF', B: '#C792EA', texte: '#FFFFFF'
+  force: '#FF968D', vit: '#FFF056', acc: '#61D836', point: '#EB53A0', texte: '#FFFFFF'
 };
 
 const ICONES = {
@@ -32,7 +34,7 @@ const ICONES = {
 };
 
 const fmt = (x, n) => x.toFixed(n === undefined ? 1 : n).replace('.', ',').replace('-', '−');
-const carre = (x) => x * x;
+const borne = (x, a, b) => Math.max(a, Math.min(b, x));
 
 function creer(tag, classe, parent, html) {
   const e = document.createElement(tag);
@@ -104,8 +106,8 @@ function creerScene(hote, fabrique) {
 
   /* Contexte passé à la scène */
   const S = {
-    ctx: ctx, v: {}, t: 0, W: 0, H: 0, k: 1, s: 1, ox: 0, oy: 0, zone: { y: 0, h: 0 },
-    X: null, Y: null, L: null, sortie: null
+    ctx: ctx, v: {}, t: 0, W: 0, H: 0, k: 1, s: 1, ox: 0, oy: 0,
+    zone: { x: 0, y: 0, w: 0, h: 0 }, monde: null, X: null, Y: null, L: null
   };
   let spec, dirty = true, enCours = false, derniere = 0, raf = 0, actif = false;
   const etiquettes = [];
@@ -124,6 +126,7 @@ function creerScene(hote, fabrique) {
   curseurT.setAttribute('aria-label', 'Date t');
   const lectureT = creer('span', 'pe-valeur', gTemps);
 
+  // Après un clic, on rend le clavier à reveal.js (flèches, espace…)
   const rendreFocus = (b) => b.addEventListener('pointerup', function () { setTimeout(function () { b.blur(); }, 0); });
   [bLancer, bReinit, curseurT].forEach(rendreFocus);
 
@@ -167,22 +170,28 @@ function creerScene(hote, fabrique) {
     etiquettes.push(e);
     return e;
   };
-  /** Pose une étiquette en (px, py) (px de slide, repère de la scène), ancrée en 'c' (centre), 'l', 'r', 'b' ou 't'. */
-  S.place = function (e, px, py, ancre) {
+  /**
+   * Pose une étiquette en (px, py) (px de slide, repère de la scène), ancrée en
+   * 'c' (centre), 'l', 'r', 'b' ou 't'. Avec ajuster = true, elle est réduite si
+   * elle dépasse de la fenêtre (cas d'un bandeau de formule sur un écran étroit).
+   */
+  S.place = function (e, px, py, ancre, ajuster) {
     e.vu = true;
-    e.el.style.transform = 'translate(' + px.toFixed(1) + 'px,' + py.toFixed(1) + 'px) scale(' + S.k +
+    let echelle = S.k;
+    if (ajuster) echelle = Math.min(S.k, S.W * 0.94 / Math.max(1, e.el.offsetWidth));
+    e.el.style.transform = 'translate(' + px.toFixed(1) + 'px,' + py.toFixed(1) + 'px) scale(' + echelle.toFixed(3) +
       ') translate(' + ANCRES[ancre || 'c'] + ')';
   };
   S.aide = function (html) { aide.innerHTML = html; };
 
-  /* --- dessin : outils --- */
-  /** Flèche de (x1, y1) à (x2, y2), en px ; ep = épaisseur (px de slide). */
+  /* --- dessin : outils (tout en px de slide ; les épaisseurs et tailles sont multipliées par k) --- */
   S.fleche = function (x1, y1, x2, y2, couleur, ep) {
     const dx = x2 - x1, dy = y2 - y1, L = Math.hypot(dx, dy);
     if (L < 2) return;
     const e = ep * S.k, tete = Math.min(L * 0.8, (11 + 2.4 * ep) * S.k), ux = dx / L, uy = dy / L;
     ctx.save();
     ctx.strokeStyle = couleur; ctx.fillStyle = couleur; ctx.lineWidth = e; ctx.lineCap = 'butt';
+    ctx.shadowColor = couleur; ctx.shadowBlur = 7 * S.k;
     ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2 - ux * tete * 0.6, y2 - uy * tete * 0.6); ctx.stroke();
     ctx.beginPath();
     ctx.moveTo(x2, y2);
@@ -191,21 +200,25 @@ function creerScene(hote, fabrique) {
     ctx.closePath(); ctx.fill();
     ctx.restore();
   };
-  S.disque = function (x, y, r, remplissage, contour, alpha) {
+  S.disque = function (x, y, r, remplissage, contour, alpha, epContour) {
     ctx.save();
     ctx.globalAlpha = alpha === undefined ? 1 : alpha;
     ctx.beginPath(); ctx.arc(x, y, Math.max(r, 0.5), 0, 2 * Math.PI);
     if (remplissage) { ctx.fillStyle = remplissage; ctx.fill(); }
-    if (contour) { ctx.strokeStyle = contour; ctx.lineWidth = 2 * S.k; ctx.stroke(); }
+    if (contour) { ctx.strokeStyle = contour; ctx.lineWidth = (epContour || 2) * S.k; ctx.stroke(); }
     ctx.restore();
   };
-  S.rect = function (x, y, w, h, remplissage, contour, rayon, alpha) {
+  S.rect = function (x, y, w, h, remplissage, contour, rayon, alpha, pointille) {
     ctx.save();
     ctx.globalAlpha = alpha === undefined ? 1 : alpha;
     ctx.beginPath();
     if (ctx.roundRect) ctx.roundRect(x, y, w, h, rayon || 0); else ctx.rect(x, y, w, h);
     if (remplissage) { ctx.fillStyle = remplissage; ctx.fill(); }
-    if (contour) { ctx.strokeStyle = contour; ctx.lineWidth = 2 * S.k; ctx.stroke(); }
+    if (contour) {
+      ctx.strokeStyle = contour; ctx.lineWidth = 2 * S.k;
+      if (pointille) ctx.setLineDash([pointille * S.k, pointille * 0.7 * S.k]);
+      ctx.stroke();
+    }
     ctx.restore();
   };
   S.ligne = function (x1, y1, x2, y2, couleur, ep, alpha, pointille) {
@@ -216,7 +229,17 @@ function creerScene(hote, fabrique) {
     ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2, y2); ctx.stroke();
     ctx.restore();
   };
-  /** Texte en px de slide (taille compensée par k), police à empattements italique par défaut. */
+  /** Ombre portée douce : ellipse de demi-axes rx, ry centrée en (x, y). */
+  S.ombre = function (x, y, rx, ry, alpha) {
+    ctx.save();
+    ctx.translate(x, y); ctx.scale(1, Math.max(ry, 0.1) / Math.max(rx, 0.1));
+    const g = ctx.createRadialGradient(0, 0, 0, 0, 0, rx);
+    g.addColorStop(0, 'rgba(0,0,0,' + alpha + ')'); g.addColorStop(1, 'rgba(0,0,0,0)');
+    ctx.fillStyle = g;
+    ctx.beginPath(); ctx.arc(0, 0, rx, 0, 2 * Math.PI); ctx.fill();
+    ctx.restore();
+  };
+  /** Texte en px de slide ; police à empattements, italique par défaut. */
   S.texte = function (txt, x, y, taille, couleur, ancre, italique) {
     ctx.save();
     ctx.font = (italique === false ? '' : 'italic ') + (taille * S.k) + 'px "Times New Roman", serif';
@@ -257,6 +280,7 @@ function creerScene(hote, fabrique) {
     const reveal = hote.closest('.reveal'), slides = reveal && reveal.querySelector('.slides');
     if (!slides || !section || !section.offsetParent) return;   // slide masquée : on attend
     echelle = (window.Reveal && Reveal.getScale && Reveal.getScale()) || 1;
+    // .reveal n'est jamais transformé : son rectangle est fiable en cours de transition
     const R = reveal.getBoundingClientRect();
     const W = Math.round(R.width / echelle), H = Math.round(R.height / echelle);
     if (W < 10 || H < 10) return;
@@ -276,16 +300,22 @@ function creerScene(hote, fabrique) {
     canvas.width = Math.round(W * pr); canvas.height = Math.round(H * pr);
     canvas.style.width = W + 'px'; canvas.style.height = H + 'px';
     S.W = W; S.H = H; S.k = k;
-    // zone de dessin : sous le bandeau de formule, au-dessus de la barre de commandes
-    const hb = barre.getBoundingClientRect().height / echelle;
-    const haut = 64 * k;
+    // Hauteur de la barre : offsetHeight ignore les transformations CSS, contrairement à
+    // getBoundingClientRect() qui, pendant la transition 3D de reveal.js, renvoie une valeur faussée.
+    const hb = barre.offsetHeight * k;
+    const haut = 78 * k;                                       // bandeau de formule
     const hAide = 30 * k;                                      // légende sous la scène
-    S.zone = { y: haut, h: Math.max(50, H - haut - hb - bas - 14 * k - hAide) };
+    S.zone = { x: 0, y: haut, w: W, h: Math.max(50, H - haut - hb - bas - 14 * k - hAide) };
     aide.style.top = (S.zone.y + S.zone.h + 6 * k) + 'px';
-    const m = spec.monde, x0 = m.x0 || 0;
-    S.s = Math.min(W * 0.96 / m.w, S.zone.h * 0.96 / m.h);
-    S.ox = (W - m.w * S.s) / 2 - x0 * S.s;                    // abscisse écran de x = 0
-    S.oy = S.zone.y + (S.zone.h + m.h * S.s) / 2;             // ordonnée écran de y = 0 (bas du monde)
+    if (spec.reserve) {                                        // place réservée par la scène (graphe, etc.)
+      const r = Math.min(spec.reserve(S), S.zone.h * 0.5);
+      S.zone.y += r; S.zone.h -= r;
+    }
+    const m = typeof spec.monde === 'function' ? spec.monde(S) : spec.monde, x0 = m.x0 || 0;
+    S.monde = m;
+    S.s = Math.min(S.zone.w * 0.96 / m.w, S.zone.h * 0.96 / m.h);
+    S.ox = (W - m.w * S.s) / 2 - x0 * S.s;                     // abscisse écran de x = 0
+    S.oy = S.zone.y + (S.zone.h + m.h * S.s) / 2;              // ordonnée écran de y = 0 (bas du monde)
     S.X = (x) => S.ox + x * S.s;
     S.Y = (y) => S.oy - y * S.s;
     S.L = (l) => l * S.s;
@@ -329,6 +359,8 @@ function creerScene(hote, fabrique) {
   }
   function brancher() {
     Reveal.on('slidechanged', majVisibilite);
+    // à la fin de la transition, on recalcule la mise en page une dernière fois (par sécurité)
+    Reveal.on('slidetransitionend', function () { if (actif) mettreALaTaille(); });
     Reveal.on('resize', function () { if (actif) mettreALaTaille(); });
     majVisibilite();
   }
@@ -343,24 +375,26 @@ function creerScene(hote, fabrique) {
  *  Scène 1 — Inertie : palet sur coussin d'air (1re loi)
  * ===================================================================== */
 
-function sceneInertie(S) {
-  const X0 = 1.2, Y0 = 4.2, V0 = 1.6, R = 0.38;
-  const KAPPA = 0.3, F_LAT = 0.1, F_AVANT = 0.15;          // masse du palet : 1 kg
+function sceneInertie() {
+  const X0 = 1.3, V0 = 1.4, R = 0.38, LARGEUR = 16;
+  const KAPPA = 0.3, F_LAT = 0.2, F_AVANT = 0.2;          // masse du palet : 1 kg
   const PAS = 0.5;                                         // chronophotographie : un point toutes les 0,5 s
+  let hTable = 9;                                          // hauteur de la table, adaptée à la fenêtre
 
   /** Mouvement du palet (m = 1 kg) dans chaque situation. */
   function etat(sit, t) {
+    const y0 = hTable * (sit === 'lat' ? 0.27 : 0.42);       // la déviation latérale monte : on part plus bas
     switch (sit) {
       case 'frott': {                                      // force de frottement −κ v
         const e = Math.exp(-KAPPA * t), vx = V0 * e;
-        return { x: X0 + V0 / KAPPA * (1 - e), y: Y0, vx: vx, vy: 0, Fx: -KAPPA * vx, Fy: 0 };
+        return { x: X0 + V0 / KAPPA * (1 - e), y: y0, vx: vx, vy: 0, Fx: -KAPPA * vx, Fy: 0 };
       }
       case 'lat':                                          // force constante perpendiculaire au mouvement
-        return { x: X0 + V0 * t, y: Y0 + 0.5 * F_LAT * t * t, vx: V0, vy: F_LAT * t, Fx: 0, Fy: F_LAT };
+        return { x: X0 + V0 * t, y: y0 + 0.5 * F_LAT * t * t, vx: V0, vy: F_LAT * t, Fx: 0, Fy: F_LAT };
       case 'avant':                                        // force constante dans le sens du mouvement
-        return { x: X0 + V0 * t + 0.5 * F_AVANT * t * t, y: Y0, vx: V0 + F_AVANT * t, vy: 0, Fx: F_AVANT, Fy: 0 };
+        return { x: X0 + V0 * t + 0.5 * F_AVANT * t * t, y: y0, vx: V0 + F_AVANT * t, vy: 0, Fx: F_AVANT, Fy: 0 };
       default:                                             // pseudo-isolé : poids et réaction se compensent
-        return { x: X0 + V0 * t, y: Y0, vx: V0, vy: 0, Fx: 0, Fy: 0 };
+        return { x: X0 + V0 * t, y: y0, vx: V0, vy: 0, Fx: 0, Fy: 0 };
     }
   }
 
@@ -370,7 +404,11 @@ function sceneInertie(S) {
   return {
     alt: 'Palet sur une table à coussin d\'air vu de dessus, avec sa chronophotographie : mouvement rectiligne uniforme quand la somme des forces est nulle, mouvement modifié sinon.',
     duree: 6.5,
-    monde: { w: 16, h: 9 },
+    // table 16 m de large ; plus haute que large/16:9 sur un écran étroit, pour remplir la fenêtre
+    monde: function (S) {
+      hTable = borne(LARGEUR * S.zone.h / S.zone.w, 9, 13);
+      return { w: LARGEUR, h: hTable };
+    },
     construire: function (S) {
       S.aide('Vue de dessus d\'un palet sur coussin d\'air · chronophotographie : un point toutes les 0,5 s');
       const g = S.groupe('Situation');
@@ -386,291 +424,208 @@ function sceneInertie(S) {
       L.autre = S.etiquette('{' + C_F + '\\sum\\vec{F}_{\\mathrm{ext}}\\neq\\vec{0}}\\;\\Leftrightarrow\\;{' + C_V + '\\vec{v}\\text{ varie : pas de MRU}}', COUL.texte, 40, 'ΣF ≠ 0 : pas de MRU');
     },
     dessiner: function (S, t) {
-      const sit = S.v.sit, X = S.X, Y = S.Y, e = etat(sit, t);
-      // table à coussin d'air
-      S.rect(X(0), Y(9), S.L(16), S.L(9), 'rgba(255,255,255,0.05)', 'rgba(255,255,255,0.22)', 10 * S.k);
-      for (let i = 1; i < 16; i++) S.ligne(X(i), Y(9), X(i), Y(0), '#fff', 1, 0.05);
-      for (let j = 1; j < 9; j++) S.ligne(X(0), Y(j), X(16), Y(j), '#fff', 1, 0.05);
-      // chronophotographie : positions aux dates multiples de 0,5 s
-      for (let tau = 0; tau <= t + 1e-9; tau += PAS) {
+      const ctx = S.ctx, k = S.k, sit = S.v.sit, X = S.X, Y = S.Y, e = etat(sit, t), h = S.monde.h;
+
+      /* --- table à coussin d'air : plateau en dégradé, rebord, quadrillage au mètre, échelle --- */
+      const tx = X(0), ty = Y(h), tw = S.L(LARGEUR), th = S.L(h), rayon = 16 * k;
+      ctx.save();
+      ctx.shadowColor = 'rgba(0,0,0,0.5)'; ctx.shadowBlur = 34 * k; ctx.shadowOffsetY = 12 * k;
+      S.rect(tx, ty, tw, th, '#243344', null, rayon);
+      ctx.restore();
+      const gT = ctx.createLinearGradient(0, ty, 0, ty + th);
+      gT.addColorStop(0, '#3d5169'); gT.addColorStop(1, '#2b3b4e');
+      S.rect(tx, ty, tw, th, gT, 'rgba(255,255,255,0.30)', rayon);
+      S.rect(tx - 7 * k, ty - 7 * k, tw + 14 * k, th + 14 * k, null, 'rgba(255,255,255,0.10)', rayon + 7 * k);
+      for (let i = 1; i < LARGEUR; i++) S.ligne(X(i), ty + 6 * k, X(i), ty + th - 6 * k, '#fff', 1, i % 4 === 0 ? 0.10 : 0.05);
+      for (let j = 1; j < h; j++) S.ligne(tx + 6 * k, Y(j), tx + tw - 6 * k, Y(j), '#fff', 1, j % 4 === 0 ? 0.10 : 0.05);
+      // barre d'échelle : 2 m
+      const ex = X(LARGEUR - 3.2), ey = Y(0.8);
+      S.ligne(ex, ey, ex + S.L(2), ey, '#fff', 2, 0.7);
+      S.ligne(ex, ey - 5 * k, ex, ey + 5 * k, '#fff', 2, 0.7);
+      S.ligne(ex + S.L(2), ey - 5 * k, ex + S.L(2), ey + 5 * k, '#fff', 2, 0.7);
+      S.texte('2 m', ex + S.L(1), ey - 14 * k, 17, 'rgba(255,255,255,0.7)', 'center', false);
+
+      /* --- trajectoire (pointillés) et chronophotographie : un point toutes les 0,5 s --- */
+      ctx.save();
+      ctx.strokeStyle = 'rgba(255,255,255,0.30)'; ctx.lineWidth = 2 * k; ctx.setLineDash([4 * k, 7 * k]);
+      ctx.beginPath();
+      for (let tau = 0; tau <= t + 1e-9; tau += 0.05) {
         const p = etat(sit, tau);
-        S.disque(X(p.x), Y(p.y), S.L(R), COUL.point, null, 0.28);
-        S.disque(X(p.x), Y(p.y), 3 * S.k, '#fff', null, 0.8);
+        if (tau === 0) ctx.moveTo(X(p.x), Y(p.y)); else ctx.lineTo(X(p.x), Y(p.y));
       }
-      // palet
-      S.disque(X(e.x), Y(e.y), S.L(R), COUL.point, '#fff');
-      S.disque(X(e.x), Y(e.y), S.L(R) * 0.45, null, 'rgba(255,255,255,0.7)');
-      // vecteur vitesse (au-dessus de l'axe du palet) et résultante des forces (en dessous)
+      ctx.lineTo(X(e.x), Y(e.y));
+      ctx.stroke();
+      ctx.restore();
+      for (let n = 0; n * PAS <= t + 1e-9; n++) {
+        const tau = n * PAS, p = etat(sit, tau), px = X(p.x), py = Y(p.y);
+        S.disque(px, py, S.L(R), COUL.point, null, 0.20);
+        S.disque(px, py, S.L(R), null, 'rgba(255,143,200,0.55)', 1, 1.5);
+        S.disque(px, py, 2.6 * k, '#fff', null, 0.9);
+        if (n % 2 === 0 && n > 0) {
+          const q = etat(sit, tau - 2 * PAS);                  // un repère seulement si les points ne sont pas tassés
+          if (Math.hypot(px - X(q.x), py - Y(q.y)) > 46 * k) S.texte(fmt(tau, 0) + ' s', px, py + S.L(R) + 15 * k, 15, 'rgba(255,255,255,0.55)', 'center', false);
+        }
+      }
+
+      /* --- palet : coussin d'air, ombre, corps en dégradé --- */
+      const cx = X(e.x), cy = Y(e.y), r = S.L(R);
+      const gA = ctx.createRadialGradient(cx, cy, r * 0.8, cx, cy, r * 1.9);
+      gA.addColorStop(0, 'rgba(120,210,255,0.28)'); gA.addColorStop(1, 'rgba(120,210,255,0)');
+      S.disque(cx, cy, r * 1.9, gA);
+      S.ombre(cx + 3 * k, cy + 6 * k, r * 1.15, r * 0.7, 0.45);
+      const gP = ctx.createRadialGradient(cx - r * 0.35, cy - r * 0.4, r * 0.1, cx, cy, r);
+      gP.addColorStop(0, '#ff9ccd'); gP.addColorStop(0.55, COUL.point); gP.addColorStop(1, '#b02f78');
+      S.disque(cx, cy, r, gP, '#fff', 1, 2.2);
+      S.disque(cx, cy, r * 0.5, null, 'rgba(255,255,255,0.55)', 1, 1.5);
+
+      /* --- vecteurs : vitesse (fin, dessous) et résultante des forces (épaisse, dessus),
+             tous deux tracés depuis le centre du palet --- */
       const v = Math.hypot(e.vx, e.vy), F = Math.hypot(e.Fx, e.Fy);
       if (v > 1e-3) {
-        const bx = X(e.x), by = Y(e.y) - S.L(0.5), kx = S.L(1.2) * e.vx, ky = -S.L(1.2) * e.vy;
-        S.fleche(bx, by, bx + kx, by + ky, COUL.vit, 5);
-        S.place(L.v, bx + kx + 18 * S.k, by + ky - 20 * S.k);
+        const dx = S.L(1.2) * e.vx, dy = -S.L(1.2) * e.vy;
+        S.fleche(cx, cy, cx + dx, cy + dy, COUL.vit, 4);
+        const n = Math.hypot(dx, dy);
+        S.place(L.v, cx + dx + dx / n * 26 * k, cy + dy + dy / n * 26 * k - 8 * k);
       }
       if (F > 1e-4) {
-        const bx = X(e.x), by = Y(e.y) + S.L(0.5), kx = S.L(6) * e.Fx, ky = -S.L(6) * e.Fy;
-        S.fleche(bx, by, bx + kx, by + ky, COUL.force, 5);
-        S.place(L.F, bx + kx * 0.5, by + ky * 0.5 + 34 * S.k);
+        const dx = S.L(6) * e.Fx, dy = -S.L(6) * e.Fy, n = Math.hypot(dx, dy);
+        S.fleche(cx, cy, cx + dx, cy + dy, COUL.force, 7);
+        // Étiquette : au-delà de la pointe ; au-dessus de la pointe si F est (presque) colinéaire à v,
+        // pour ne recouvrir ni la flèche de v ni les repères de temps
+        const colineaire = v > 1e-3 && Math.abs((dx * e.vx - dy * -e.vy) / (n * v)) > 0.8;
+        if (colineaire) S.place(L.F, cx + dx, cy + dy - 40 * k, 'c');
+        else S.place(L.F, cx + dx + dx / n * 34 * k, cy + dy + dy / n * 34 * k, 'c');
       }
-      S.place(sit === 'aucune' ? L.aucune : L.autre, S.W / 2, S.zone.y / 2 + 6 * S.k);
+      S.disque(cx, cy, 3.2 * k, '#fff');                       // origine commune des vecteurs : le centre
+
+      S.place(sit === 'aucune' ? L.aucune : L.autre, S.W / 2, 42 * k, 'c', true);
     }
   };
 }
 
 /* =====================================================================
- *  Scène 2 — Train qui accélère : référentiel galiléen ou non (1re loi)
+ *  Scène 2 — Deuxième loi : ΣF = m a, avec le graphe v(t)
  * ===================================================================== */
 
-function sceneTrain(S) {
-  const A_T = 1.0, T1 = 1.5, T2 = 3.5;           // le train accélère entre T1 et T2 (puis reste en MRU)
-  const LW = 8, XB0 = 6.4, WAGON0 = 0.8, WAGON_FIXE = 4;
-  const R = 0.32, Y_PLATEAU = 2.2;
-
-  const XT = (t) => t < T1 ? 0 : (t < T2 ? 0.5 * A_T * carre(t - T1) : 0.5 * A_T * carre(T2 - T1) + A_T * (T2 - T1) * (t - T2));
-  const VT = (t) => t < T1 ? 0 : (t < T2 ? A_T * (t - T1) : A_T * (T2 - T1));
-  const AT = (t) => (t >= T1 && t < T2) ? A_T : 0;
-  const PAS = 0.5;
-
+function scenePFD() {
   const L = {};
-  return {
-    alt: 'Wagon vu de côté avec une bille sur un plateau sans frottement : vue depuis le sol (référentiel galiléen) ou depuis le train, qui accélère puis roule à vitesse constante.',
-    duree: 5.4,
-    monde: { w: 16, h: 6.2 },
-    construire: function (S) {
-      S.aide('Plateau sans frottement : poids et réaction se compensent, donc ΣF = 0 sur la bille · un point toutes les 0,5 s');
-      const g = S.groupe('Référentiel');
-      S.choix(g, 'ref', [
-        { cle: 'sol', html: 'Sol', titre: 'Observer depuis le sol' },
-        { cle: 'train', html: 'Train', titre: 'Observer depuis le train' }
-      ], 'sol');
-      L.v = S.etiquette('\\vec{v}', COUL.vit, 34, 'v');
-      L.a = S.etiquette('\\vec{a}', COUL.acc, 34, 'a');
-      L.aT = S.etiquette('\\vec{a}_{\\mathrm{train}}', COUL.acc, 32, 'a train');
-      const B = '\\color{#56C1FF}', F0 = '\\color{#FF968D}', V = '\\color{#FFF056}', RED = '\\color{#FF6B6B}';
-      L.sol = S.etiquette('{' + B + '\\text{Référentiel du sol (galiléen)}}\\;:\\;{' + F0 + '\\sum\\vec{F}=\\vec{0}}\\Rightarrow{' + V + '\\vec{a}=\\vec{0}}', COUL.texte, 38, 'Référentiel du sol');
-      L.trainAcc = S.etiquette('{' + B + '\\text{Référentiel du train}}\\;:\\;{' + F0 + '\\sum\\vec{F}=\\vec{0}}\\text{ mais }{' + RED + '\\vec{a}\\neq\\vec{0}}\\Rightarrow\\text{ non galiléen}', COUL.texte, 38, 'Référentiel du train');
-      L.trainMru = S.etiquette('{' + B + '\\text{Référentiel du train}}\\;:\\;{' + F0 + '\\sum\\vec{F}=\\vec{0}}\\Rightarrow{' + V + '\\vec{a}=\\vec{0}}\\text{ (train en MRU : galiléen)}', COUL.texte, 38, 'Référentiel du train');
-    },
-    dessiner: function (S, t) {
-      const ref = S.v.ref, X = S.X, Y = S.Y, xt = XT(t), dessineTrain = ref === 'train';
-      // position du fond (sol) et du wagon dans la vue choisie
-      const decal = dessineTrain ? (WAGON_FIXE - WAGON0) - xt : 0;       // décalage appliqué au sol
-      const dos = dessineTrain ? WAGON_FIXE : WAGON0 + xt;               // abscisse de l'arrière du wagon
-      const xBille = dessineTrain ? WAGON_FIXE + XB0 - xt : WAGON0 + XB0;
-      // sol, rail et poteaux
-      S.ligne(X(-2), Y(0.85), X(18), Y(0.85), '#fff', 3, 0.55);
-      for (let k = -10; k < 20; k++) {
-        const x = 2 * k + decal;
-        if (x < -1 || x > 17) continue;
-        S.ligne(X(x), Y(0.85), X(x), Y(0.1), '#fff', 2, 0.35);
-        S.ligne(X(x - 0.25), Y(0.1), X(x + 0.25), Y(0.1), '#fff', 2, 0.35);
-      }
-      // wagon : roues, caisse, plateau
-      [0.9, LW - 0.9].forEach(function (dx) {
-        S.disque(X(dos + dx), Y(1.25), S.L(0.4), '#4a4f55', '#fff');
-      });
-      S.rect(X(dos), Y(4.6), S.L(LW), S.L(3.1), 'rgba(86,193,255,0.08)', COUL.galil, 8 * S.k);
-      S.ligne(X(dos + 0.2), Y(Y_PLATEAU), X(dos + LW - 0.2), Y(Y_PLATEAU), '#fff', 5, 0.9);
-      // chronophotographie de la bille dans la vue choisie
-      const yb = Y_PLATEAU + R;
-      for (let tau = 0; tau <= t + 1e-9; tau += PAS) {
-        const xb = dessineTrain ? WAGON_FIXE + XB0 - XT(tau) : WAGON0 + XB0;
-        S.disque(X(xb), Y(yb), S.L(R), COUL.point, null, 0.3);
-        S.disque(X(xb), Y(yb), 2.5 * S.k, '#fff', null, 0.8);
-      }
-      S.disque(X(xBille), Y(yb), S.L(R), COUL.point, '#fff');
-      // vecteurs : vitesse et accélération de la bille dans la vue choisie
-      const vb = dessineTrain ? -VT(t) : 0, ab = dessineTrain ? -AT(t) : 0;
-      if (Math.abs(vb) > 1e-3) {
-        const y = Y(yb + 0.75);
-        S.fleche(X(xBille), y, X(xBille + vb * 0.9), y, COUL.vit, 5);
-        S.place(L.v, X(xBille + vb * 0.9) - 20 * S.k, y - 22 * S.k);
-      }
-      if (Math.abs(ab) > 1e-3) {
-        const y = Y(yb + 1.35);
-        S.fleche(X(xBille), y, X(xBille + ab * 1.8), y, COUL.acc, 5);
-        S.place(L.a, X(xBille + ab * 1.8) - 20 * S.k, y - 22 * S.k);
-      }
-      // accélération du train, vue du sol
-      if (!dessineTrain && AT(t) > 0) {
-        const y = Y(5.2), xc = dos + LW / 2;
-        S.fleche(X(xc), y, X(xc + A_T * 1.8), y, COUL.acc, 5);
-        S.place(L.aT, X(xc + A_T * 1.8) + 14 * S.k, y - 24 * S.k, 'l');
-      }
-      // bandeau
-      const bandeau = !dessineTrain ? L.sol : (AT(t) > 0 ? L.trainAcc : L.trainMru);
-      S.place(bandeau, S.W / 2, S.zone.y / 2 + 6 * S.k);
-    }
-  };
-}
-
-/* =====================================================================
- *  Scène 3 — Deuxième loi : ΣF = m a, avec le graphe v(t)
- * ===================================================================== */
-
-function scenePFD(S) {
-  const L = {};
-  const PAS = 0.5, SUIVI = 7.5;                   // la caméra suit le bloc au-delà de x = 7,5 m
+  const PAS = 0.5, X_DEPART = 1.4, H_MONDE = 6.6, SOL = 1.5, ECH = 0.7;   // ECH : mètres par unité (N ou m·s⁻²)
+  const T_MAX = 3, V_MAX = 15;
   let sortie;
+
+  /** Dimensions du panneau du graphe, en unités k (indépendantes de l'échelle de la slide). */
+  function panneau(S) {
+    const Wk = S.W / S.k, large = Wk >= 760 && S.W / S.H >= 1.15;     // côte à côte seulement en format paysage
+    const w = large ? borne(0.26 * Wk, 250, 340) : borne(Wk - 40, 220, 360);
+    return { large: large, w: w, h: Math.round(w * 0.68) };
+  }
 
   return {
     alt: 'Bloc posé sur un support sans frottement et tiré par une force : l\'accélération est proportionnelle à la force et inversement proportionnelle à la masse. Un graphe donne v en fonction de t.',
-    duree: 3,
-    monde: { w: 22, h: 9 },
+    duree: T_MAX,
+    // Sur un écran étroit, le graphe passe au-dessus de la scène : on lui réserve la place.
+    reserve: function (S) { const p = panneau(S); return p.large ? 0 : (p.h + 12) * S.k; },
+    // La largeur de monde représentée suit les proportions de la zone de dessin.
+    monde: function (S) {
+      return { w: borne(H_MONDE * S.zone.w / S.zone.h, 11, 26), h: H_MONDE };
+    },
     construire: function (S) {
       S.aide('Support sans frottement : la résultante des forces est la force de traction · un point toutes les 0,5 s');
       S.curseur(S.groupe(), { cle: 'F', label: 'Force ΣF', nom: 'Force F en newtons', min: 0, max: 5, pas: 0.5, val: 3, fmt: (x) => fmt(x) + ' N' });
       S.curseur(S.groupe(), { cle: 'm', label: 'Masse m', nom: 'Masse m en kilogrammes', min: 1, max: 10, pas: 0.5, val: 2, fmt: (x) => fmt(x) + ' kg' });
       sortie = S.sortie(S.groupe());
+      sortie.textContent = 'a = ΣF/m = 0,00 m·s⁻²  ·  v = 0,0 m·s⁻¹';   // rempli dès le départ : la barre a sa hauteur définitive
       L.F = S.etiquette('\\sum\\vec{F}_{\\mathrm{ext}}', COUL.force, 32, 'ΣF');
       L.a = S.etiquette('\\vec{a}', COUL.acc, 34, 'a');
       L.eq = S.etiquette('{\\color{#FF968D}\\sum\\vec{F}_{\\mathrm{ext}}}=m\\,{\\color{#61D836}\\vec{a}}', COUL.texte, 44, 'ΣF = m a');
     },
     dessiner: function (S, t) {
-      const F = S.v.F, m = S.v.m, a = F / m, X = S.X, Y = S.Y;
-      const xb = (tau) => 2 + 0.5 * a * tau * tau;
-      const cam = Math.max(0, xb(t) - SUIVI);        // la vue défile pour suivre le bloc
+      const ctx = S.ctx, k = S.k, F = S.v.F, m = S.v.m, a = F / m, X = S.X, Y = S.Y, w = S.monde.w;
+      const xb = (tau) => X_DEPART + 0.5 * a * tau * tau;
+      const cam = Math.max(0, xb(t) - 0.3 * w);                // la vue défile pour suivre le bloc
       const XX = (x) => X(x - cam);
-      const cote = 1.4 + 0.14 * m, sol = 2.0;        // le côté du bloc grandit avec la masse
-      const yc = sol + cote / 2;
-      // sol gradué tous les mètres
-      S.ligne(X(-1), Y(sol), X(23), Y(sol), '#fff', 3, 0.6);
-      for (let x = Math.floor(cam) - 1; x <= cam + 23; x++) {
+      const cote = 1.4 + 0.14 * m;                             // le côté du bloc grandit avec la masse
+      const yc = SOL + cote / 2, haut = SOL + cote;
+
+      /* --- sol : bande en dégradé, règle graduée au mètre, repères tous les 5 m --- */
+      const ySol = Y(SOL), yBas = S.zone.y + S.zone.h + 4 * k;
+      const gS = ctx.createLinearGradient(0, ySol, 0, yBas);
+      gS.addColorStop(0, 'rgba(90,110,135,0.55)'); gS.addColorStop(1, 'rgba(40,52,68,0.15)');
+      S.rect(0, ySol, S.W, Math.max(0, yBas - ySol), gS, null, 0);
+      S.ligne(0, ySol, S.W, ySol, '#fff', 3, 0.75);
+      const xmin = Math.floor((0 - S.ox) / S.s + cam) - 1, xmax = Math.ceil((S.W - S.ox) / S.s + cam) + 1;
+      for (let x = xmin; x <= xmax; x++) {
         const long = x % 5 === 0, px = XX(x);
-        if (px < X(-1) || px > X(23)) continue;
-        S.ligne(px, Y(sol), px, Y(sol - (long ? 0.5 : 0.25)), '#fff', long ? 2.5 : 1.5, 0.5);
-        if (long) S.texte(x + ' m', px, Y(sol - 0.95), 20, 'rgba(255,255,255,0.65)', 'center', false);
+        S.ligne(px, ySol, px, ySol + (long ? 17 : 9) * k, '#fff', long ? 2.5 : 1.5, long ? 0.8 : 0.5);
+        if (long && x >= 0) S.texte(x + ' m', px, ySol + 36 * k, 19, 'rgba(255,255,255,0.78)', 'center', false);
       }
-      // chronophotographie
-      for (let tau = 0; tau <= t + 1e-9; tau += PAS) {
-        S.rect(XX(xb(tau)) - S.L(cote) / 2, Y(sol + cote), S.L(cote), S.L(cote), null, 'rgba(235,83,160,0.45)', 4 * S.k);
-        S.disque(XX(xb(tau)), Y(yc), 3 * S.k, '#fff', null, 0.8);
+
+      /* --- chronophotographie : positions aux dates multiples de 0,5 s --- */
+      for (let n = 0; n * PAS <= t + 1e-9; n++) {
+        const px = XX(xb(n * PAS));
+        S.rect(px - S.L(cote) / 2, Y(haut), S.L(cote), S.L(cote), 'rgba(90,170,235,0.10)', 'rgba(150,205,250,0.55)', 6 * k, 1, 6);
+        S.disque(px, Y(yc), 2.6 * k, '#fff', null, 0.85);
       }
-      // bloc
-      const bx = XX(xb(t));
-      S.rect(bx - S.L(cote) / 2, Y(sol + cote), S.L(cote), S.L(cote), 'rgba(235,83,160,0.85)', '#fff', 4 * S.k);
-      S.texte(fmt(m) + ' kg', bx, Y(yc), 24, '#fff', 'center', false);
-      // ΣF et a, tracés à la verticale du centre du bloc, à la même échelle (0,5 m par unité)
-      const haut = sol + cote;
+
+      /* --- bloc : ombre, corps en dégradé, masse inscrite --- */
+      const bx = XX(xb(t)), bw = S.L(cote);
+      S.ombre(bx, ySol + 3 * k, bw * 0.62, 7 * k, 0.5);
+      const gB = ctx.createLinearGradient(0, Y(haut), 0, Y(SOL));
+      gB.addColorStop(0, '#6db4ee'); gB.addColorStop(1, '#3a74ad');
+      S.rect(bx - bw / 2, Y(haut), bw, bw, gB, '#fff', 7 * k);
+      S.rect(bx - bw / 2 + 5 * k, Y(haut) + 5 * k, bw - 10 * k, bw * 0.28, 'rgba(255,255,255,0.14)', null, 4 * k);   // reflet
+      S.texte(fmt(m) + ' kg', bx, Y(SOL + cote * 0.2), Math.min(24, bw / k * 0.3), '#fff', 'center', false);
+
+      /* --- ΣF : depuis le centre du bloc ; a : au-dessus du bloc, à la même échelle --- */
+      const bord = bx + bw / 2;
       if (F > 1e-6) {
-        const y1 = Y(haut + 0.5), x2 = bx + S.L(0.5 * F);
-        S.fleche(bx, y1, x2, y1, COUL.force, 6);
-        S.place(L.F, x2 + 20 * S.k, y1 - 2 * S.k, 'l');
-        const y2 = Y(haut + 1.2), x3 = bx + S.L(0.5 * a);
+        const y1 = Y(yc), x2 = bx + S.L(ECH * F);
+        S.fleche(bx, y1, x2, y1, COUL.force, 7);
+        S.place(L.F, Math.max(x2, bord) + 22 * k, y1, 'l');
+        const y2 = Y(haut + 0.65), x3 = bx + S.L(ECH * a);
         S.fleche(bx, y2, x3, y2, COUL.acc, 6);
-        S.place(L.a, x3 + 20 * S.k, y2 - 2 * S.k, 'l');
+        S.place(L.a, x3 + 22 * k, y2, 'l');
       }
-      // graphe v(t) : v = a t
-      const gw = 300 * S.k, gh = 170 * S.k, gx = S.W - gw - 30 * S.k, gy = S.zone.y + 14 * S.k;
-      S.rect(gx - 46 * S.k, gy - 12 * S.k, gw + 66 * S.k, gh + 56 * S.k, 'rgba(0,0,0,0.25)', 'rgba(255,255,255,0.18)', 8 * S.k);
-      const vmax = 15, gX = (tt) => gx + gw * tt / 3, gY = (v) => gy + gh * (1 - v / vmax);
-      for (let tt = 0; tt <= 3; tt++) {
-        S.ligne(gX(tt), gY(0), gX(tt), gY(vmax), '#fff', 1, 0.15);
-        S.texte(String(tt), gX(tt), gY(0) + 17 * S.k, 18, 'rgba(255,255,255,0.7)', 'center', false);
+      S.disque(bx, Y(yc), 3.4 * k, '#fff');                    // origine de ΣF : le centre du bloc
+
+      /* --- graphe v(t) : v = a t, avec marges internes pour que rien ne soit tronqué --- */
+      const p = panneau(S), pw = p.w * k, ph = p.h * k;
+      const px = p.large ? S.W - pw - 20 * k : (S.W - pw) / 2;
+      const py = p.large ? S.zone.y + 6 * k : S.zone.y - ph - 10 * k;
+      const gP = ctx.createLinearGradient(0, py, 0, py + ph);
+      gP.addColorStop(0, 'rgba(20,28,38,0.78)'); gP.addColorStop(1, 'rgba(20,28,38,0.55)');
+      S.rect(px, py, pw, ph, gP, 'rgba(255,255,255,0.22)', 12 * k);
+      const ml = 44 * k, mt = 42 * k, mr = 26 * k, mb = 48 * k;
+      const gx = px + ml, gy = py + mt, gw = pw - ml - mr, gh = ph - mt - mb;
+      const GX = (tt) => gx + gw * tt / T_MAX, GY = (v) => gy + gh * (1 - v / V_MAX);
+      for (let tt = 0; tt <= T_MAX; tt++) {
+        S.ligne(GX(tt), GY(0), GX(tt), GY(V_MAX), '#fff', 1, 0.13);
+        S.texte(String(tt), GX(tt), GY(0) + 17 * k, 18, 'rgba(255,255,255,0.8)', 'center', false);
       }
-      for (let v = 0; v <= vmax; v += 5) {
-        S.ligne(gX(0), gY(v), gX(3), gY(v), '#fff', 1, 0.15);
-        S.texte(String(v), gX(0) - 8 * S.k, gY(v), 18, 'rgba(255,255,255,0.7)', 'right', false);
+      for (let v = 0; v <= V_MAX; v += 5) {
+        S.ligne(GX(0), GY(v), GX(T_MAX), GY(v), '#fff', 1, 0.13);
+        S.texte(String(v), GX(0) - 9 * k, GY(v), 18, 'rgba(255,255,255,0.8)', 'right', false);
       }
-      S.ligne(gX(0), gY(0), gX(3), gY(0), '#fff', 2, 0.7);
-      S.ligne(gX(0), gY(0), gX(0), gY(vmax), '#fff', 2, 0.7);
-      S.texte('t (s)', gX(3), gY(0) + 38 * S.k, 18, 'rgba(255,255,255,0.8)', 'right');
-      S.texte('v (m·s⁻¹)', gX(0) + 8 * S.k, gy - 2 * S.k, 18, COUL.vit, 'left');
-      S.ligne(gX(0), gY(0), gX(3), gY(Math.min(vmax, 3 * a)), COUL.vit, 2, 0.35, 7);     // droite complète
-      S.ligne(gX(0), gY(0), gX(t), gY(Math.min(vmax, a * t)), COUL.vit, 4);                // déjà parcourue
-      S.disque(gX(t), gY(Math.min(vmax, a * t)), 5 * S.k, COUL.vit, '#fff');
-      S.place(L.eq, S.W / 2, S.zone.y / 2 + 6 * S.k);
+      S.ligne(GX(0), GY(0), GX(T_MAX), GY(0), '#fff', 2, 0.8);
+      S.ligne(GX(0), GY(0), GX(0), GY(V_MAX), '#fff', 2, 0.8);
+      S.texte('t (s)', GX(T_MAX), GY(0) + 37 * k, 19, 'rgba(255,255,255,0.85)', 'right');
+      S.texte('v (m·s⁻¹)', px + 14 * k, py + 20 * k, 19, COUL.vit, 'left');
+      const vFin = Math.min(V_MAX, a * T_MAX), vNow = Math.min(V_MAX, a * t);
+      S.ligne(GX(0), GY(0), GX(T_MAX), GY(vFin), COUL.vit, 2, 0.35, 7);          // droite complète
+      S.ligne(GX(0), GY(0), GX(t), GY(vNow), COUL.vit, 4);                        // déjà parcourue
+      S.ligne(GX(t), GY(0), GX(t), GY(vNow), COUL.vit, 1.5, 0.5, 4);              // repères sur les axes
+      S.ligne(GX(0), GY(vNow), GX(t), GY(vNow), COUL.vit, 1.5, 0.5, 4);
+      S.disque(GX(t), GY(vNow), 5.5 * k, COUL.vit, '#fff');
+
+      S.place(L.eq, S.W / 2, 42 * k, 'c', true);
       sortie.textContent = 'a = ΣF/m = ' + fmt(a, 2) + ' m·s⁻²  ·  v = ' + fmt(a * t, 1) + ' m·s⁻¹';
-    }
-  };
-}
-
-/* =====================================================================
- *  Scène 4 — Actions réciproques : deux mobiles se repoussent (3e loi)
- * ===================================================================== */
-
-function sceneActionReaction(S) {
-  const F0 = 120, T_ON = 1.0, T_OFF = 1.5, DT = T_OFF - T_ON;       // poussée de 120 N pendant 0,5 s
-  const PAS = 0.5, SOL = 2.4;
-  const L = {};
-  const rayon = (m) => 0.5 * Math.cbrt(m / 60);
-
-  /** Abscisse du centre du mobile de masse m, poussé dans le sens s (−1 pour A, +1 pour B). */
-  function pos(x0, m, s, t) {
-    const a = F0 / m;
-    if (t < T_ON) return x0;
-    if (t < T_OFF) return x0 + s * 0.5 * a * carre(t - T_ON);
-    return x0 + s * (0.5 * a * DT * DT + a * DT * (t - T_OFF));
-  }
-  const vit = (m, s, t) => t < T_ON ? 0 : s * (F0 / m) * Math.min(t - T_ON, DT);
-  const acc = (m, s, t) => (t >= T_ON && t < T_OFF) ? s * F0 / m : 0;
-
-  let sortie;
-  return {
-    alt: 'Deux mobiles A et B de masses réglables, au contact sur la glace. Pendant la poussée, les forces qu\'ils exercent l\'un sur l\'autre sont opposées ; le plus léger acquiert la plus grande vitesse.',
-    duree: 7,
-    monde: { x0: -11, w: 22, h: 9 },
-    construire: function (S) {
-      S.aide('Sur la glace, les frottements sont négligeables · un point toutes les 0,5 s');
-      S.curseur(S.groupe(), { cle: 'mA', label: 'Masse de A', nom: 'Masse de A en kilogrammes', min: 40, max: 120, pas: 5, val: 60, fmt: (x) => fmt(x, 0) + ' kg' });
-      S.curseur(S.groupe(), { cle: 'mB', label: 'Masse de B', nom: 'Masse de B en kilogrammes', min: 40, max: 120, pas: 5, val: 90, fmt: (x) => fmt(x, 0) + ' kg' });
-      sortie = S.sortie(S.groupe());
-      L.FBA = S.etiquette('\\vec{F}_{\\mathrm{B/A}}', COUL.force, 34, 'F B/A');
-      L.FAB = S.etiquette('\\vec{F}_{\\mathrm{A/B}}', COUL.force, 34, 'F A/B');
-      L.aA = S.etiquette('\\vec{a}_{\\mathrm{A}}', COUL.acc, 32, 'aA');
-      L.aB = S.etiquette('\\vec{a}_{\\mathrm{B}}', COUL.acc, 32, 'aB');
-      L.vA = S.etiquette('\\vec{v}_{\\mathrm{A}}', COUL.vit, 32, 'vA');
-      L.vB = S.etiquette('\\vec{v}_{\\mathrm{B}}', COUL.vit, 32, 'vB');
-      L.loi = S.etiquette('{\\color{#FF968D}\\vec{F}_{\\mathrm{B/A}}=-\\vec{F}_{\\mathrm{A/B}}}', COUL.texte, 46, 'F B/A = − F A/B');
-    },
-    dessiner: function (S, t) {
-      const mA = S.v.mA, mB = S.v.mB, rA = rayon(mA), rB = rayon(mB), X = S.X, Y = S.Y;
-      const xA = (tau) => pos(-rA, mA, -1, tau), xB = (tau) => pos(rB, mB, +1, tau);
-      // glace
-      S.rect(X(-11), Y(SOL), S.L(22), S.L(SOL), 'rgba(86,193,255,0.10)', null, 0);
-      S.ligne(X(-11), Y(SOL), X(11), Y(SOL), '#fff', 3, 0.6);
-      S.ligne(X(0), Y(SOL), X(0), Y(SOL - 0.5), '#fff', 2, 0.4);
-      // chronophotographie et mobiles
-      for (let tau = 0; tau <= t + 1e-9; tau += PAS) {
-        S.disque(X(xA(tau)), Y(SOL + rA), S.L(rA), COUL.A, null, 0.22);
-        S.disque(X(xB(tau)), Y(SOL + rB), S.L(rB), COUL.B, null, 0.22);
-      }
-      const ax = X(xA(t)), bx = X(xB(t)), ay = Y(SOL + rA), by = Y(SOL + rB);
-      S.disque(ax, ay, S.L(rA), COUL.A, '#fff');
-      S.disque(bx, by, S.L(rB), COUL.B, '#fff');
-      S.texte('A', ax, ay, 34, '#10212e', 'center');
-      S.texte('B', bx, by, 34, '#241533', 'center');
-      S.texte(fmt(mA, 0) + ' kg', ax, Y(SOL - 0.9), 22, COUL.A, 'center', false);
-      S.texte(fmt(mB, 0) + ' kg', bx, Y(SOL - 0.9), 22, COUL.B, 'center', false);
-      // vecteurs, tracés depuis le centre de chaque mobile
-      const hF = Math.min(ay, by) - S.L(Math.max(rA, rB) + 0.75), hA = hF - S.L(1.1);
-      if (t >= T_ON && t < T_OFF) {
-        S.fleche(ax, hF, ax - S.L(0.025 * F0), hF, COUL.force, 6);        // F_B/A sur A : vers la gauche
-        S.fleche(bx, hF, bx + S.L(0.025 * F0), hF, COUL.force, 6);        // F_A/B sur B : vers la droite
-        S.place(L.FBA, ax - S.L(0.025 * F0) - 22 * S.k, hF, 'r');
-        S.place(L.FAB, bx + S.L(0.025 * F0) + 22 * S.k, hF, 'l');
-        const sA = S.L(1.2 * F0 / mA), sB = S.L(1.2 * F0 / mB);
-        S.fleche(ax, hA, ax - sA, hA, COUL.acc, 6);
-        S.fleche(bx, hA, bx + sB, hA, COUL.acc, 6);
-        S.place(L.aA, ax - sA - 22 * S.k, hA, 'r');
-        S.place(L.aB, bx + sB + 22 * S.k, hA, 'l');
-      } else if (t >= T_OFF) {                                              // après la séparation : ΣF = 0, MRU
-        const sA = S.L(2 * Math.abs(vit(mA, -1, t))), sB = S.L(2 * Math.abs(vit(mB, +1, t)));
-        S.fleche(ax, hF, ax - sA, hF, COUL.vit, 6);
-        S.fleche(bx, hF, bx + sB, hF, COUL.vit, 6);
-        S.place(L.vA, ax - sA - 22 * S.k, hF, 'r');
-        S.place(L.vB, bx + sB + 22 * S.k, hF, 'l');
-      }
-      S.place(L.loi, S.W / 2, S.zone.y / 2 + 6 * S.k);
-      const J = F0 * DT;
-      sortie.innerHTML = '|<i>v</i><sub>A</sub>| = ' + fmt(J / mA, 2) + ' m·s⁻¹  ·  |<i>v</i><sub>B</sub>| = ' + fmt(J / mB, 2) + ' m·s⁻¹';
     }
   };
 }
 
 /* ---------- Lancement ---------- */
 
-const SCENES = { inertie: sceneInertie, train: sceneTrain, pfd: scenePFD, actionreaction: sceneActionReaction };
+const SCENES = { inertie: sceneInertie, pfd: scenePFD };
 
 function lancer() {
   document.querySelectorAll('.anim-pe').forEach(function (h) {

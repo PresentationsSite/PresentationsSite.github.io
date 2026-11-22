@@ -251,3 +251,12 @@
   border-style: solid;
 }
 
+
+/* Boutons : jamais coupés sur plusieurs lignes ; les groupes passent à la ligne si besoin */
+.reveal .anim-pe .pe-bascule,
+.reveal .anim-pe .pe-lancer { white-space: nowrap; }
+.reveal .anim-pe .pe-groupe { flex-wrap: wrap; justify-content: center; }
+.reveal .anim-pe .pe-sortie { display: inline-block; min-width: 36ch; text-align: center; }
+@media (max-width: 700px) {
+  .reveal .anim-pe .pe-sortie { min-width: 0; }
+}
