@@ -439,7 +439,7 @@ La <span class="imp">norme</span> $a$(t) du vecteur accélération vaut :
 
 {{%section%}}
 
-## Vidéos
+## Vidéo
 
 ---
 
@@ -448,11 +448,6 @@ La <span class="imp">norme</span> $a$(t) du vecteur accélération vaut :
 
 Jusqu'à 3'22'' (la méthode d'Euler est introduite après, utile pour le supérieur mais pas au programme de Tspé)
 
----
-
-{{< youtube-slide id="9W6zhF1cdso" ratio="16x9" >}}
-
-Jusqu'à 4'51'' (mouvement circulaire uniforme décrit dans un repère orthonormé fixe = pas au programme)
 
 {{%/section%}}
 
