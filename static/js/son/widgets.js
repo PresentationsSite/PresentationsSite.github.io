@@ -34,8 +34,20 @@
       var cv = mk(880, 250), s = I.s;
       s.cv = cv; s.mil = 'air'; s.clock = 0; s.t0 = 0; s.f = 2; s.A = 9;
       s.cols = 70; s.rows = 8; s.x0 = 70; s.dx = 11; s.y0 = 38; s.dy = 25; s.trac = 30;
+      // positions de repos tirées au hasard (avec une distance minimale pour éviter les recouvrements)
       s.parts = [];
-      for (var i = 0; i < s.cols; i++) for (var j = 0; j < s.rows; j++) s.parts.push({ i: i, j: j, r: Math.random(), jx: (Math.random() - .5) * 4, jy: (Math.random() - .5) * 6 });
+      var xmin = s.x0, xmax = s.x0 + (s.cols - 1) * s.dx, ymin = s.y0 - 10, ymax = s.y0 + (s.rows - 1) * s.dy + 10, essais = 0;
+      while (s.parts.length < 620 && essais++ < 14000) {
+        var px = xmin + Math.random() * (xmax - xmin), py = ymin + Math.random() * (ymax - ymin), ok = true;
+        for (var q = 0; q < s.parts.length; q++) {
+          var ddx = s.parts[q].x - px, ddy = s.parts[q].y - py;
+          if (ddx * ddx + ddy * ddy < 42) { ok = false; break; }
+        }
+        if (ok) s.parts.push({ x: px, y: py, r: Math.random() });
+      }
+      // particules suivies (colonne rouge), elles aussi à des hauteurs aléatoires
+      s.trace = [];
+      for (var j = 0; j < 8; j++) s.trace.push({ x: s.x0 + s.trac * s.dx, y: ymin + (j + 0.5 + (Math.random() - .5) * .7) * (ymax - ymin) / 8 });
       el.innerHTML = '<div class="w-box"></div>';
       var box = $('.w-box', el);
       box.appendChild(cv.c);
@@ -70,20 +82,16 @@
         x.strokeStyle = 'rgba(255,100,78,.45)'; x.setLineDash([4, 5]); x.lineWidth = 1.5;
         x.beginPath(); x.moveTo(xt, 14); x.lineTo(xt, H - 52); x.stroke(); x.setLineDash([]);
       }
-      // particules
-      for (var k = 0; k < s.parts.length; k++) {
-        var p = s.parts[k];
-        var suivi = p.i === s.trac;
-        if (!suivi && p.r > m.dens) continue;
-        if (m.dens === 0 && !suivi) continue;
-        if (m.dens === 0) continue;
-        var x0 = s.x0 + p.i * s.dx, tau = tt - (x0 - s.x0) / m.c, u = 0;
+      // particules (chacune oscille autour de sa position de repos)
+      function point(p, col, r, flou) {
+        var tau = tt - (p.x - s.x0) / m.c, u = 0;
         if (tau > 0) u = s.A * Math.min(1, tau * f * 2) * Math.sin(2 * Math.PI * f * tau);
-        var px = x0 + (suivi ? 0 : p.jx) + u, py = s.y0 + p.j * s.dy + (suivi ? 0 : p.jy);
-        x.beginPath();
-        x.fillStyle = suivi ? C.red : m.col;
-        x.shadowColor = suivi ? C.red : m.col; x.shadowBlur = suivi ? 10 : 4;
-        x.arc(px, py, m.r + (suivi ? 1.6 : 0), 0, 6.2832); x.fill();
+        x.beginPath(); x.fillStyle = col; x.shadowColor = col; x.shadowBlur = flou;
+        x.arc(p.x + u, p.y, r, 0, 6.2832); x.fill();
+      }
+      if (m.dens > 0) {
+        for (var k = 0; k < s.parts.length; k++) if (s.parts[k].r < m.dens) point(s.parts[k], m.col, m.r, 4);
+        for (k = 0; k < s.trace.length; k++) point(s.trace[k], C.red, m.r + 1.6, 10);
       }
       x.shadowBlur = 0;
       if (m.dens === 0) {
@@ -176,6 +184,7 @@
       rng.addEventListener('input', reset);
       $('.go', el).addEventListener('click', function () {
         reset(); s.run = true; s.t0 = performance.now(); s.dt = s.d * 1000 / 340; s.sonne = false;
+        SonW.preload('/tonnerre.mp3');
         var fl = $('.ecl-flash', el); fl.classList.remove('on'); void fl.offsetWidth; fl.classList.add('on');
         $('.w-res', el).innerHTML = 'Comptez à voix haute : « 1… 2… 3… »';
         SonW.audio();
@@ -189,8 +198,7 @@
       $('.ecl-chrono', el).textContent = fmt(Math.min(e, s.dt), 2) + ' s';
       if (e >= s.dt && !s.sonne) {
         s.sonne = true; s.run = false;
-        var a = new Audio('/tonnerre.mp3'); a.volume = 0.8;
-        var p = a.play(); if (p && p.catch) p.catch(function () { SonW.bip(70, 1.2, 0.35); });
+        SonW.play('/tonnerre.mp3', 0.8);
         var r = $('.w-res', el);
         r.innerHTML = '$\\Delta t=\\dfrac{d}{v}=\\dfrac{' + (s.d * 1000) + '}{340}\\approx ' + fmt(s.dt, 1).replace(',', '{,}') + '\\ \\mathrm{s}$ soit environ <b style="color:#ffc43a">3 s par km</b>.';
         if (window.MathJax && MathJax.typesetPromise) MathJax.typesetPromise([r]).catch(function () { });
@@ -216,20 +224,20 @@
   }
   SonW.def('generateur', {
     build: function (el, I) {
-      var s = I.s, cv = mk(860, 220);
+      var s = I.s, cv = mk(860, 170);
       s.cv = cv; s.forme = 'sine'; s.f = 440; s.vol = 50; s.on = false; s.scroll = 0;
       s.minv = Math.log(20); s.maxv = Math.log(20000);
       el.innerHTML = '<div class="w-box"></div>';
       var box = $('.w-box', el);
       box.appendChild(cv.c);
       box.insertAdjacentHTML('beforeend',
-        '<div class="w-row"><span class="gen-big"><span class="g-f" style="color:#ffc43a"></span></span>' +
+        '<div class="w-row"><button type="button" class="gen-play" aria-label="Écouter ou arrêter le son"><span class="gp-ico"></span><span class="gp-lab">Écouter</span><span class="gp-eq"><b></b><b></b><b></b><b></b><b></b></span></button>' +
+        '<span class="gen-big" style="margin-left:.8em"><span class="g-f" style="color:#ffc43a"></span></span>' +
         '<span class="w-lab">$T=\\dfrac{1}{f}=$</span><span class="gen-big g-t" style="color:#ff6fb5"></span><span class="w-lab g-n"></span></div>' +
-        '<div class="w-ctrl"><span class="w-lab">Fréquence</span><input class="w-range g-fr" type="range" min="0" max="1000" value="500"></div>' +
+        '<div class="w-ctrl long"><span class="w-lab">20 Hz</span><input class="w-range g-fr" type="range" min="0" max="1000" value="500" aria-label="Fréquence"><span class="w-lab">20 kHz</span></div>' +
         '<div class="w-row">' + [100, 440, 1000, 5000, 10000, 15000].map(function (f) { return btn(f >= 1000 ? fmt(f / 1000) + '\u202fkHz' : f + '\u202fHz', '', 'data-f="' + f + '"'); }).join('') + '</div>' +
-        '<div class="w-ctrl"><span class="w-lab">Volume</span><input class="w-range pink g-vo" type="range" min="0" max="100" value="50"><span class="w-val g-v"></span>' +
-        '<button type="button" class="gen-play" aria-label="Lecture">►</button></div>' +
-        '<div class="w-row"><span class="w-lab">Forme du signal :</span>' +
+        '<div class="w-ctrl long"><span class="w-lab">Volume</span><input class="w-range pink g-vo" type="range" min="0" max="100" value="50" aria-label="Volume"><span class="w-val g-v"></span></div>' +
+        '<div class="w-row"><span class="w-lab">Forme du signal&nbsp;:</span>' +
         Object.keys(FORMES).map(function (k) { return btn(FORMES[k].nom, k === 'sine' ? 'on' : '', 'data-s="' + k + '"'); }).join('') + '</div>');
       var fr = $('.g-fr', box), vo = $('.g-vo', box), play = $('.gen-play', box);
       function setF(f) {
@@ -256,7 +264,7 @@
         var ac = SonW.audio(), o = s.osc, g = s.gain;
         g.gain.setTargetAtTime(0, ac.currentTime, 0.02);
         setTimeout(function () { try { o.stop(); o.disconnect(); g.disconnect(); } catch (e) { } }, 200);
-        s.osc = null; s.on = false; play.classList.remove('on'); play.textContent = '►';
+        s.osc = null; s.on = false; play.classList.remove('on'); $('.gp-lab', play).textContent = 'Écouter';
       }
       s.stop = stop;
       fr.addEventListener('input', function () { s.f = Math.exp(s.minv + (s.maxv - s.minv) * fr.value / 1000); aff(); audio(); });
@@ -266,7 +274,7 @@
         var ac = SonW.audio(); if (!ac) return;
         s.osc = ac.createOscillator(); s.gain = ac.createGain(); s.gain.gain.value = 0;
         s.osc.connect(s.gain); s.gain.connect(ac.destination); s.osc.start();
-        s.on = true; play.classList.add('on'); play.textContent = '❚❚'; audio();
+        s.on = true; play.classList.add('on'); $('.gp-lab', play).textContent = 'Arrêter'; audio();
       });
       box.addEventListener('click', function (e) {
         var b = e.target.closest('button'); if (!b) return;
@@ -296,7 +304,7 @@
       for (var k = 0; k <= nP; k++) { var xx = 30 + (k - ph0) * per; if (xx > 34 && xx < W - 10) { x.beginPath(); x.moveTo(xx, 30); x.lineTo(xx, H - 34); x.stroke(); } }
       x.setLineDash([]);
       // signal
-      var A = 88 * s.vol / 100, F = FORMES[s.forme].f;
+      var A = 66 * s.vol / 100, F = FORMES[s.forme].f;
       x.beginPath(); x.lineWidth = 3.2; x.strokeStyle = C.amber; x.shadowColor = C.amber; x.shadowBlur = 12; x.lineJoin = 'round';
       for (var px = 32; px <= W - 14; px += 1) {
         var ph = (px - 30) / per + ph0, y = mid - A * F(ph);
@@ -320,32 +328,55 @@
   /* =================================================================== */
   SonW.def('chrono', {
     build: function (el, I) {
-      var s = I.s; s.tops = [];
-      el.innerHTML = '<div class="w-box" style="width:360px"><div class="chrono-digits">0,00 s</div>' +
-        '<div class="w-row">' + btn('⏱ Top !', 'go big') + btn('↺', '', 'data-r="1"') + '</div>' +
-        '<div class="chrono-list">Cliquez à chaque fois que le cercle redevient rose.</div>' +
-        '<div class="w-res"></div></div>';
-      var box = $('.w-box', el);
+      var s = I.s; s.etat = 'attente'; s.t0 = 0; s.dt = 0; s.N = 1; s.hist = [];
+      el.innerHTML = '<div class="w-box" style="width:440px"><div class="chrono-digits">0,00 s</div>' +
+        '<div class="chrono-zone"></div><div class="chrono-hist"></div></div>';
+      var box = $('.w-box', el), zone = $('.chrono-zone', box), hist = $('.chrono-hist', box);
+      function typeset(n) { if (window.MathJax && MathJax.typesetPromise) MathJax.typesetPromise([n]).catch(function () { }); }
+      var d2 = function (x) { return fmt(x, 2).replace(',', '{,}'); };
       function aff() {
-        var l = $('.chrono-list', box), r = $('.w-res', box);
-        if (!s.tops.length) { l.textContent = 'Cliquez à chaque fois que le cercle redevient rose.'; r.innerHTML = ''; return; }
-        l.innerHTML = s.tops.map(function (t, i) { return 'Top ' + (i + 1) + '\u202f: ' + fmt((t - s.tops[0]) / 1000, 2) + '\u202fs'; }).join(' · ');
-        var N = s.tops.length - 1;
-        if (N >= 1) {
-          var T = (s.tops[N] - s.tops[0]) / N / 1000;
-          r.innerHTML = 'Sur ' + N + ' période' + (N > 1 ? 's' : '') + '\u202f: $T\\approx ' + fmt(T, 2).replace(',', '{,}') + '\\ \\mathrm{s}$<br>$f=\\dfrac{1}{T}\\approx ' + fmt(1 / T, 2).replace(',', '{,}') + '\\ \\mathrm{Hz}$';
-          if (window.MathJax && MathJax.typesetPromise) MathJax.typesetPromise([r]).catch(function () { });
-        } else r.innerHTML = '';
+        if (s.etat === 'attente') zone.innerHTML = '<div class="w-row">' + btn('▶ Top !', 'go big', 'data-a="top"') + '</div>';
+        else if (s.etat === 'marche') zone.innerHTML = '<div class="w-row">' + btn('⏹ Top !', 'go big', 'data-a="top"') + '</div>';
+        else if (s.etat === 'question') {
+          zone.innerHTML = '<div class="w-res">Combien de <b style="color:#ffc43a">périodes</b> se sont écoulées&nbsp;?</div>' +
+            '<div class="w-row chrono-step">' + btn('−', '', 'data-a="moins"') + '<span class="chrono-n">' + s.N + '</span>' + btn('+', '', 'data-a="plus"') + '</div>' +
+            '<div class="w-row">' + btn('✓ Valider', 'go', 'data-a="ok"') + '</div>';
+        } else {
+          var T = s.dt / s.N, inc = 0.2 / s.N;
+          zone.innerHTML = '<div class="w-res">$T=\\tfrac{\\Delta t}{N}=\\tfrac{' + d2(s.dt) + '}{' + s.N + '}\\approx ' + d2(T) + '\\ \\mathrm{s}$ &nbsp; $f=\\tfrac{1}{T}\\approx ' + d2(1 / T) + '\\ \\mathrm{Hz}$</div>' +
+            '<div class="w-row">' + btn('↺ Nouvelle mesure', 'go', 'data-a="nouv"') + '</div>';
+          typeset(zone);
+        }
+        histo();
+      }
+      function histo() {
+        if (!s.hist.length) { hist.innerHTML = ''; return; }
+        var best = Math.max.apply(null, s.hist.map(function (h) { return h.N; }));
+        hist.innerHTML = '<table class="chrono-tab"><tr><th>N</th><th>T mesurée</th><th>incertitude sur T</th></tr>' +
+          s.hist.slice(-3).map(function (h) { return '<tr' + (s.hist.length > 1 && h.N === best ? ' class="best"' : '') + '><td>' + h.N + '</td><td>' + fmt(h.T, 2) + ' s</td><td>± ' + fmt(0.2 / h.N, 2) + ' s</td></tr>'; }).join('') + '</table>' +
+          (s.hist.length > 1 ? '<div class="w-note">Plus $N$ est grand, plus <b>T</b> est précise.</div>' : '');
+        typeset(hist);
       }
       box.addEventListener('click', function (e) {
         var b = e.target.closest('button'); if (!b) return;
-        if (b.getAttribute('data-r')) s.tops = []; else s.tops.push(performance.now());
+        var a = b.getAttribute('data-a');
+        if (a === 'top') {
+          if (s.etat === 'attente') { s.etat = 'marche'; s.t0 = performance.now(); }
+          else if (s.etat === 'marche') { s.dt = (performance.now() - s.t0) / 1000; s.etat = 'question'; s.N = 1; }
+        } else if (a === 'moins') s.N = Math.max(1, s.N - 1);
+        else if (a === 'plus') s.N = Math.min(99, s.N + 1);
+        else if (a === 'ok') { s.etat = 'fini'; s.hist.push({ N: s.N, T: s.dt / s.N }); }
+        else if (a === 'nouv') { s.etat = 'attente'; s.dt = 0; }
+        if (a === 'moins' || a === 'plus') { $('.chrono-n', zone).textContent = s.N; return; }
         aff();
       });
+      aff();
     },
+    leave: function (el, I) { if (I.s.etat === 'marche') { I.s.etat = 'attente'; $('.chrono-zone', el).innerHTML = '<div class="w-row">' + btn('▶ Top !', 'go big', 'data-a="top"') + '</div>'; } },
     tick: function (el, I) {
       var s = I.s, d = $('.chrono-digits', el);
-      d.textContent = fmt(s.tops.length ? (s.tops[s.tops.length - 1] - s.tops[0]) / 1000 : 0, 2) + ' s';
+      var v = s.etat === 'marche' ? (performance.now() - s.t0) / 1000 : s.dt;
+      d.textContent = fmt(v, 2) + ' s';
     }
   });
 
@@ -411,4 +442,279 @@
       aff();
     }
   });
+
+  /* =================================================================== */
+  /* Découpage d'un signal en périodes (reproduction fidèle du gif)       */
+  /* =================================================================== */
+  // Une période du signal (relevée sur la figure d'origine) : suite de (u, v) en unités de la figure 1080 × 608.
+  var PER_T = 189.44, PER_X0 = 156.77, PER_Y0 = 303.71;
+  var PER_PTS = [0,-0.1,3.9,1.2,8.2,5.2,11.2,9.7,11.5,9.6,11.5,10.8,12.1,10.6,12.4,12.3,12.4,11,12.9,13.4,12.9,12,13.2,12.6,13.5,14.5,13.5,13.1,14.1,15.7,14.1,14.2,14.3,14.8,14.6,16.9,14.6,15.3,14.9,15.9,15.2,18.2,15.2,16.5,15.4,17.1,15.7,19.5,15.7,17.7,16,18.3,16.3,20.8,16.3,19,16.6,19.7,16.9,22.2,16.9,20.3,17.1,21,17.4,23.6,17.4,21.6,17.7,22.3,17.7,24.3,18,25.1,18,23,18.3,23.7,18.5,26.6,18.5,24.4,18.8,25.1,19.1,28.1,19.1,25.8,19.7,29.6,19.7,27.4,19.9,28.1,20.2,31.2,20.2,28.9,20.5,29.6,20.8,32.9,20.8,30.4,21.1,31.2,21.4,34.6,21.4,32.1,21.6,32.9,21.9,36.2,21.9,33.7,22.2,34.5,22.5,37.9,22.5,35.3,22.8,36.2,23,39.8,23,37.1,23.3,37.9,23.6,41.5,23.6,38.8,23.9,39.7,24.2,43.3,24.2,40.6,24.4,41.4,24.7,45.2,24.7,42.4,25,43.3,25.3,47.1,25.3,44.2,25.6,45,25.6,48,25.9,48.9,25.9,46.1,26.1,47,26.4,51,26.4,47.9,26.7,51.9,27,52.9,27,49.8,27.2,50.8,27.5,54.8,27.5,51.7,28.1,56.8,28.1,53.7,28.4,54.6,28.4,57.8,28.7,58.8,28.7,55.6,28.9,59.8,29.2,60.7,29.2,57.6,29.5,58.5,29.8,62.9,29.8,59.6,30.1,63.8,30.3,64.8,30.3,61.6,30.9,66.9,30.9,63.6,31.2,67.9,31.5,68.9,31.5,65.7,31.8,69.9,32,71,32,67.7,32.3,68.7,32.3,72,32.6,73,32.6,69.8,32.9,74,33.1,75.1,33.1,71.7,33.4,76.1,33.7,77,33.7,73.8,34,74.8,34,78.1,34.3,79.2,34.3,75.8,34.6,80.1,34.8,81.1,34.8,77.9,35.1,82.1,35.4,83.1,35.4,79.9,35.7,84.2,36,85.2,36,82,36.2,86.2,36.5,87.1,36.5,84,36.8,85,36.8,88.2,37.1,89.1,37.1,86,37.4,90,37.6,91,37.6,87.9,38.2,92.9,38.2,89.9,38.5,93.8,38.8,94.7,38.8,91.9,39,95.7,39.3,96.6,39.3,93.7,39.6,94.7,39.6,97.5,39.9,98.3,39.9,95.6,40.2,99.2,40.5,100.1,40.5,97.4,41,101.8,41,99.2,41.3,102.6,41.6,103.4,41.6,100.9,42.1,105.1,42.1,102.6,42.4,105.8,42.7,106.6,42.7,104.3,43,107.3,43.3,108,43.3,105.9,43.5,108.8,43.8,109.4,43.8,107.4,44.1,110.1,44.4,110.8,44.4,108.8,44.7,111.4,45,112,45,110.2,45.2,112.6,45.5,113.2,45.5,111.5,45.8,113.7,46.1,114.2,46.1,112.8,46.4,113.4,46.4,114.8,46.6,115.2,46.6,114,48,116.9,50.3,119.1,52.8,120.1,55.4,119.8,57.6,118.1,60.1,114.4,60.4,114.6,60.4,113.3,60.7,112.8,60.7,114.1,61,113.6,61.2,111.7,61.2,113.1,61.8,110.7,61.8,112.1,62.1,111.5,62.1,110.2,62.4,109.7,62.4,111,62.6,110.5,62.6,109.2,62.9,108.7,62.9,109.9,63.5,107.7,63.5,109,63.8,108.4,63.8,107.2,64.1,107.3,66.9,103,70.8,98.9,73.9,96.7,79,94.6,83.7,93.7,90.2,94,95.2,96.2,97.5,98,101.1,103.1,101.4,102.9,101.4,104.2,101.7,104.8,101.7,103.4,102,103.9,102.3,106.1,102.3,104.5,102.5,105,102.5,106.8,102.8,107.5,102.8,105.6,103.1,106.3,103.4,109.2,103.4,107,103.7,107.7,104,110.9,104,108.4,104.2,109.1,104.5,112.9,104.5,109.9,104.8,110.8,105.1,115.3,105.1,111.8,105.4,112.7,105.6,118.1,105.6,113.8,106.2,121.5,106.2,116.1,106.5,117.5,106.8,125.6,106.8,118.9,107,120.4,107.3,131.1,107.3,122.1,107.6,124.1,107.9,139.2,107.9,126.2,108.2,128.7,108.5,149.1,108.5,131.6,108.7,135,109,155.5,109,139.4,109.3,157.3,109.6,158.6,109.6,149.4,109.8,159.5,110.1,160.1,110.1,156.2,110.4,160.6,110.7,160.9,110.7,159.4,111.5,161.3,112.1,160.7,112.4,161,112.7,157.8,112.7,160.7,112.9,160.2,113.2,154.5,113.2,159.4,113.5,158.4,113.8,150.4,113.8,157.1,114.3,145.7,114.3,153.8,114.9,140.4,114.9,149.8,115.2,147.5,115.5,134.6,115.5,145.2,116,128.4,116,139.9,116.3,137.1,116.6,121.8,116.6,134.2,116.9,131.1,117.2,114.8,117.2,128,117.4,124.8,117.7,107.7,117.7,121.4,118,118,118,103.9,118.3,100.1,118.3,114.5,118.6,110.9,118.8,92.2,118.8,107.3,119.1,103.5,119.4,84.4,119.4,99.8,119.7,95.8,120,76.2,120,92,120.2,88,120.5,67.8,120.5,84,120.8,80,121.1,59.3,121.1,75.9,121.4,71.7,121.7,50.7,121.7,67.6,121.9,63.4,122.2,42,122.2,59.1,122.5,54.8,122.8,33.2,122.8,50.5,123.1,46.2,123.3,24.4,123.3,41.8,123.6,37.4,123.9,15.5,123.9,33,124.2,28.6,124.5,6.5,124.5,24.1,124.8,19.7,125,-2.4,125,15.2,125.3,10.8,125.6,-11.2,125.6,6.4,125.9,1.9,126.2,-20.2,126.2,-2.5,126.4,-7,126.7,-29,126.7,-11.5,127,-16,127.3,-37.9,127.3,-20.3,127.5,-24.8,127.8,-46.6,127.8,-29.2,128.1,-33.7,128.4,-55.2,128.4,-38,128.7,-42.5,128.7,-59.5,129,-63.7,129,-46.8,129.2,-51.2,129.5,-71.8,129.5,-55.4,129.8,-75.8,130.1,-79.7,130.1,-63.9,130.4,-83.5,130.7,-87.3,130.7,-72.2,130.9,-91.1,131.2,-94.8,131.2,-80,131.5,-83.9,131.5,-98.4,131.8,-101.8,131.8,-87.6,132.1,-105.1,132.3,-108.3,132.3,-95.1,132.6,-111.5,132.9,-114.4,132.9,-102.2,133.2,-117.1,133.4,-119.7,133.4,-108.8,133.7,-122.2,134,-124.3,134,-114.9,134.3,-126.2,134.6,-127.9,134.6,-120.3,134.9,-129.2,135.1,-130.2,135.1,-125,135.4,-130.8,135.7,-131,135.7,-128.6,136,-130.5,136.6,-131,136.6,-129.1,136.8,-130.7,137.1,-125.4,137.1,-130.3,137.4,-129.5,137.7,-120.5,137.7,-128.4,137.9,-126.8,138.2,-114,138.2,-124.8,138.8,-106.3,138.8,-119.9,139.3,-97.5,139.3,-113.6,139.6,-109.9,139.9,-87.6,139.9,-106,140.5,-76.9,140.5,-97.3,140.8,-92.5,141,-65.5,141,-87.5,141.3,-82.3,141.6,-53.6,141.6,-76.9,141.9,-71.3,142.2,-41.3,142.2,-65.6,142.4,-59.7,142.7,-28.8,142.7,-53.7,143,-47.7,143.3,-16.4,143.3,-41.5,143.6,-35.2,143.8,-4,143.8,-29,144.1,-22.8,144.4,8,144.4,-16.5,144.7,-10.3,144.7,13.9,145,19.5,145,-4.3,145.2,1.8,145.2,25.1,145.5,30.4,145.5,7.9,146.1,40.4,146.1,19.6,146.4,45,146.7,49.4,146.7,30.4,146.9,53.6,147.2,57.5,147.2,40.5,147.5,61.2,147.8,64.6,147.8,49.7,148.1,67.6,148.3,70.4,148.3,57.8,148.6,72.7,148.9,74.9,148.9,65,149.2,76.7,149.5,78,149.5,70.9,149.8,79.1,150,79.8,150,75.5,150.3,80.3,150.6,80.6,150.6,78.8,151.2,80.7,152.3,80.1,152.8,79.2,153.1,79.5,153.4,76.5,153.4,79.1,153.7,78.5,154,73.4,154,77.8,154.5,69.5,154.5,75.8,154.8,74.4,155.1,66,155.1,72.7,155.4,64.7,155.7,63.5,155.7,68.9,155.9,62.4,156.2,61.5,156.2,65.3,156.5,60.8,156.8,60.2,156.8,62.6,157.3,59.1,157.3,60.8,157.6,58.7,159.9,56.7,161.6,56.1,163.5,56.5,164.9,58.1,165.2,57.9,165.5,60.2,165.5,58.4,165.8,58.9,166.1,62.7,166.1,59.5,166.3,60.2,166.6,67.1,166.6,61.1,166.9,62.1,166.9,72.5,167.2,63.4,167.4,88.6,167.4,65.1,168,92.1,168,72,168.3,93,168.6,93.5,168.6,89,168.9,93.9,169.1,94.2,169.1,93,169.7,94.4,170.5,93.9,170.8,94.2,170.8,92.3,171.1,93.9,171.4,88.5,171.4,93.4,171.9,82.8,171.9,91.5,172.2,90.1,172.5,74.7,172.5,88.2,172.8,85.6,173.1,65.5,173.1,82.5,173.3,78.7,173.6,56.6,173.6,74.4,173.9,52.6,174.2,48.8,174.2,65.3,174.5,60.7,174.5,45.4,174.8,42.2,174.8,56.3,175,39.3,175.3,36.6,175.3,48.5,175.6,34.1,175.9,31.8,175.9,41.8,176.2,29.6,176.4,27.7,176.4,36,176.7,25.7,177,23.9,177,31.2,177.6,20.8,177.6,26.8,177.8,19.3,178.1,18,178.1,23.2,178.7,15.5,178.7,20,179,14.4,179.2,13.4,179.2,17.2,179.5,12.4,179.8,11.5,179.8,14.7,180.1,10.5,180.4,9.7,180.4,12.5,180.7,8.9,180.9,8.2,180.9,10.6,181.2,7.5,181.5,6.8,181.5,8.9,181.8,6.2,182.1,5.7,182.1,7.4,182.6,4.6,182.6,6,182.9,4,183.2,4.3,185.2,1.5,187.4,-0,189.1,-0.3];
+
+  // interpolation monotone par morceaux (Fritsch-Carlson) : pas de dépassement entre deux mesures
+  function pchip(tab) {
+    var n = tab.length, h = [], dl = [], m = [], i;
+    for (i = 0; i < n - 1; i++) { h[i] = tab[i + 1][0] - tab[i][0]; dl[i] = (tab[i + 1][1] - tab[i][1]) / h[i]; }
+    m[0] = dl[0]; m[n - 1] = dl[n - 2];
+    for (i = 1; i < n - 1; i++) {
+      if (dl[i - 1] * dl[i] <= 0) m[i] = 0;
+      else { var w1 = 2 * h[i] + h[i - 1], w2 = h[i] + 2 * h[i - 1]; m[i] = (w1 + w2) / (w1 / dl[i - 1] + w2 / dl[i]); }
+    }
+    return function (x) {
+      if (x <= tab[0][0]) return tab[0][1];
+      if (x >= tab[n - 1][0]) return tab[n - 1][1];
+      var j = 0; while (x > tab[j + 1][0]) j++;
+      var t = (x - tab[j][0]) / h[j], t2 = t * t, t3 = t2 * t;
+      return (2 * t3 - 3 * t2 + 1) * tab[j][1] + (t3 - 2 * t2 + t) * h[j] * m[j] + (-2 * t3 + 3 * t2) * tab[j + 1][1] + (t3 - t2) * h[j] * m[j + 1];
+    };
+  }
+  // Chronologie relevée image par image sur le gif d'origine (377 images de 30 ms)
+  var PER_NF = 377;
+  var XRED = pchip([[0, 458], [8, 467], [16, 494], [24, 539], [32, 594], [40, 644], [48, 681], [56, 698], [60, 699.5], [64, 697], [72, 672], [80, 619], [88, 545], [96, 466], [104, 401], [112, 361], [120, 348], [328, 348], [336, 351], [344, 368], [352, 397], [360, 430], [368, 451], [376, 458], [377, 458]]);
+  var WOB = pchip([[-1, 0], [0, 0], [2, 40], [5, 74], [8, 91], [11, 84], [14, 64], [17, 37], [20, 4], [23, -24], [26, -22], [29, -2], [32, 0], [33, 0]]);
+  var SCOP = pchip([[213, 0], [216, .016], [219, .042], [222, .074], [225, .121], [228, .176], [231, .242], [234, .316], [237, .4], [240, .484], [243, .568], [246, .653], [249, .732], [252, .8], [255, .858], [258, .911], [261, .947], [264, 1]]);
+  var BEXIT = pchip([[287, 0], [288, 3], [296, 59], [304, 185], [312, 346], [320, 474], [328, 600]]);
+  var BAND_TOP = 91.5, BAND_H = 384, BAND_X0 = 158.8;
+  var COL_ROUGE = 'rgba(254,100,78,.25)', COL_BLEU = 'rgba(85,193,253,.25)';
+
+  SonW.def('periode', {
+    build: function (el, I) {
+      var s = I.s, cv = mk(1080, 608);
+      s.cv = cv; s.clock = 0; s.pause = false;
+      cv.c.className = 'plein'; cv.c.style.cursor = 'pointer';
+      cv.c.title = 'Cliquer pour mettre en pause / relancer';
+      el.appendChild(cv.c);
+      s.fit = function () { var d = plein(1080 / 608); cv.c.style.width = d.w + 'px'; cv.c.style.height = d.h + 'px'; };
+      s.fit(); if (window.Reveal && Reveal.on) Reveal.on('resize', s.fit);
+      cv.c.addEventListener('click', function () { s.pause = !s.pause; });
+      if (document.fonts && document.fonts.load) { document.fonts.load('30px "Gochi Hand"'); document.fonts.load('17px "Gochi Hand"'); }
+    },
+    enter: function (el, I) { I.s.clock = 0; I.s.fit(); },
+    tick: function (el, I, t, dt) {
+      var s = I.s; if (!s.pause) s.clock += dt;
+      var f = (s.clock / 0.03) % PER_NF, X = s.cv.x;
+      X.clearRect(0, 0, 1080, 608);
+      var xr = XRED(f);
+
+      // --- bandes (une période chacune)
+      function bande(x, dy, h, col, ombre) {
+        if (h <= 0) return;
+        var y = BAND_TOP + dy;
+        if (h < BAND_H) { // bord inférieur adouci pendant le déploiement
+          var g = X.createLinearGradient(0, y, 0, y + h);
+          g.addColorStop(0, col); g.addColorStop(Math.max(0, 1 - 16 / h), col); g.addColorStop(1, ombre);
+          X.fillStyle = g;
+        } else X.fillStyle = col;
+        X.fillRect(x, y, PER_T, h);
+      }
+      var ROUGE0 = 'rgba(254,100,78,0)', BLEU0 = 'rgba(85,193,253,0)';
+      var hb1 = Math.max(0, Math.min(BAND_H, (f - 122) * 13.9)), hb3 = Math.max(0, Math.min(BAND_H, (f - 128) * 13.9)), hr4 = Math.max(0, Math.min(BAND_H, (f - 134) * 13.9));
+      var sortie = f >= 287 && f < 328, dyb = sortie ? BEXIT(f) : 0;
+      if (f >= 122 && f < 328) {
+        bande(BAND_X0, dyb, hb1, COL_BLEU, BLEU0);
+        bande(BAND_X0 + 2 * PER_T, dyb, hb3, COL_BLEU, BLEU0);
+        bande(BAND_X0 + 3 * PER_T, -0.97 * dyb, hr4, COL_ROUGE, ROUGE0);
+      }
+      bande(xr, 0, BAND_H, COL_ROUGE, ROUGE0);
+
+      // --- axes
+      var g1 = X.createLinearGradient(128, 0, 1020, 0);
+      g1.addColorStop(0, 'rgba(213,213,213,0)'); g1.addColorStop(.06, 'rgba(213,213,213,.95)'); g1.addColorStop(.9, 'rgba(213,213,213,.95)'); g1.addColorStop(1, 'rgba(213,213,213,0)');
+      X.strokeStyle = g1; X.lineWidth = 2.2; X.lineCap = 'round';
+      X.beginPath(); X.moveTo(128, PER_Y0); X.lineTo(1022, PER_Y0); X.stroke();
+      var g2 = X.createLinearGradient(0, 98, 0, 487);
+      g2.addColorStop(0, 'rgba(213,213,213,.35)'); g2.addColorStop(.25, 'rgba(213,213,213,.95)'); g2.addColorStop(.85, 'rgba(213,213,213,.95)'); g2.addColorStop(1, 'rgba(213,213,213,.15)');
+      X.strokeStyle = g2; X.lineWidth = 2;
+      X.beginPath(); X.moveTo(184, 98); X.lineTo(184, 487); X.stroke();
+      X.fillStyle = '#d5d5d5'; X.lineJoin = 'round';
+      X.beginPath(); X.moveTo(1030, PER_Y0); X.lineTo(1019.5, PER_Y0 - 5); X.lineTo(1019.5, PER_Y0 + 5); X.closePath(); X.fill();
+      X.beginPath(); X.moveTo(184, 88.5); X.lineTo(178.8, 98.5); X.lineTo(189.2, 98.5); X.closePath(); X.fill();
+      X.font = '17px "Gochi Hand", "Patrick Hand", cursive'; X.textAlign = 'center'; X.textBaseline = 'alphabetic';
+      X.fillText('amplitude', 183.8, 77); X.fillText('temps', 987.5, 326);
+
+      // --- signal : 4 périodes, avec « vague » de décalage, copies qui se superposent
+      function courbe(k, dx, dy, alpha, lw) {
+        X.globalAlpha = alpha; X.strokeStyle = '#5dcb34'; X.lineWidth = lw; X.lineJoin = 'round'; X.lineCap = 'round';
+        X.beginPath();
+        var ox = PER_X0 + k * PER_T + dx, oy = PER_Y0 + dy;
+        for (var i = 0; i < PER_PTS.length; i += 2) {
+          var px = ox + PER_PTS[i], py = oy - PER_PTS[i + 1];
+          if (i === 0) X.moveTo(px, py); else X.lineTo(px, py);
+        }
+        X.stroke(); X.globalAlpha = 1;
+      }
+      var ghost = f < 212 ? 1 : f < 220 ? 1 - 0.68 * (f - 212) / 8 : f < 273 ? 0.32 : f < 288 ? 0.32 + 0.68 * (f - 273) / 15 : 1;
+      for (var k = 0; k < 4; k++) {
+        var off = WOB(f - 163 - 6 * k);
+        courbe(k, 0, -off, k === 1 ? 1 : ghost, 1.7);
+      }
+      if (f >= 213 && f < 274) {
+        var sc = SCOP(f);
+        [0, 2, 3].forEach(function (k) { courbe(k, (1 - k) * PER_T * sc, 0, 1, 1.7); });
+      }
+
+      // --- flèche de la période et lettre T (suivent la bande rouge mobile)
+      X.strokeStyle = '#fe644e'; X.fillStyle = '#fe644e'; X.lineWidth = 2.4; X.lineCap = 'butt';
+      var ya = 130.8, xa = xr + 1, xb = xr + PER_T - 1;
+      X.beginPath(); X.moveTo(xa + 8, ya); X.lineTo(xb - 8, ya); X.stroke();
+      X.beginPath(); X.moveTo(xa, ya); X.lineTo(xa + 12, ya - 5.8); X.lineTo(xa + 12, ya + 5.8); X.closePath(); X.fill();
+      X.beginPath(); X.moveTo(xb, ya); X.lineTo(xb - 12, ya - 5.8); X.lineTo(xb - 12, ya + 5.8); X.closePath(); X.fill();
+      X.font = '30px "Gochi Hand", "Patrick Hand", cursive'; X.textAlign = 'center';
+      X.fillText('T', xr + PER_T / 2, 124);
+    }
+  });
+
+  /* =================================================================== */
+  /* Oscillation : balle, signal sinusoïdal et lampe (remplace GeoGebra)  */
+  /* =================================================================== */
+  SonW.def('oscillation', {
+    build: function (el, I) {
+      var s = I.s, cv = mk(900, 350);
+      s.cv = cv; s.f = 0.5; s.phi = 0; s.play = true; s.TW = 4;
+      el.innerHTML = '<div class="w-box"></div>';
+      var box = $('.w-box', el);
+      box.appendChild(cv.c);
+      box.insertAdjacentHTML('beforeend',
+        '<div class="w-ctrl long"><span class="w-lab">Fréquence</span><input class="w-range osc-f" type="range" min="0.2" max="2" step="0.05" value="0.5"><span class="w-val osc-v"></span></div>' +
+        '<div class="w-row"><span class="w-lab">$T=\\dfrac{1}{f}=$</span><span class="w-val osc-t"></span>' + btn('⏸ Pause', '', 'data-p="1"') + '</div>');
+      var rng = $('.osc-f', box);
+      function aff() { s.f = +rng.value; $('.osc-v', box).textContent = fmt(s.f, 2) + ' Hz'; $('.osc-t', box).textContent = fmt(1 / s.f, 2) + ' s'; }
+      rng.addEventListener('input', aff); aff();
+      box.addEventListener('click', function (e) {
+        var b = e.target.closest('button[data-p]'); if (!b) return;
+        s.play = !s.play; b.textContent = s.play ? '⏸ Pause' : '▶ Lecture';
+      });
+      if (window.MathJax && MathJax.startup && MathJax.startup.promise) MathJax.startup.promise.then(function () { MathJax.typesetPromise([box]).catch(function () { }); });
+    },
+    tick: function (el, I, t, dt) {
+      var s = I.s, X = s.cv.x, W = s.cv.w, H = s.cv.h;
+      if (s.play) s.phi += s.f * dt;
+      var f = s.f, TW = s.TW, mid = 165, A = 110, px0 = 250, pw = 610;
+      var cyc = TW * f, tt = (s.phi % cyc) / f;            // instant affiché dans la fenêtre [0, TW]
+      var y = Math.sin(2 * Math.PI * s.phi);
+      var xt = function (tm) { return px0 + tm / TW * pw; };
+      X.clearRect(0, 0, W, H);
+      X.lineCap = 'round'; X.lineJoin = 'round';
+
+      // axe « amplitude » avec la balle
+      X.strokeStyle = 'rgba(255,255,255,.6)'; X.lineWidth = 2;
+      X.beginPath(); X.moveTo(110, 28); X.lineTo(110, 302); X.stroke();
+      X.fillStyle = 'rgba(255,255,255,.7)'; X.beginPath(); X.moveTo(110, 20); X.lineTo(104, 32); X.lineTo(116, 32); X.closePath(); X.fill();
+      X.font = '300 16px Outfit, sans-serif'; X.textAlign = 'center'; X.fillText('amplitude', 110, 14);
+      X.strokeStyle = 'rgba(255,255,255,.25)'; X.lineWidth = 1.5;
+      X.beginPath(); X.moveTo(96, mid); X.lineTo(124, mid); X.stroke();
+
+      // axe du temps et graduations
+      X.strokeStyle = 'rgba(255,255,255,.55)'; X.lineWidth = 2;
+      X.beginPath(); X.moveTo(px0 - 10, mid); X.lineTo(px0 + pw + 20, mid); X.stroke();
+      X.fillStyle = 'rgba(255,255,255,.7)'; X.beginPath(); X.moveTo(px0 + pw + 30, mid); X.lineTo(px0 + pw + 18, mid - 6); X.lineTo(px0 + pw + 18, mid + 6); X.closePath(); X.fill();
+      X.fillStyle = 'rgba(255,255,255,.65)'; X.font = '300 15px Outfit, sans-serif';
+      for (var k = 1; k <= TW; k++) {
+        X.strokeStyle = 'rgba(255,255,255,.4)'; X.lineWidth = 1.5; X.beginPath(); X.moveTo(xt(k), mid - 5); X.lineTo(xt(k), mid + 5); X.stroke();
+        X.fillText(k + ' s', xt(k), mid + 22);
+      }
+      X.textAlign = 'left'; X.fillText('temps', px0 + pw - 40, mid - 12); X.textAlign = 'center';
+
+      // courbe y = sin(2πft) sur la fenêtre
+      X.beginPath(); X.lineWidth = 3; X.strokeStyle = C.violet; X.shadowColor = C.violet; X.shadowBlur = 10;
+      for (var i = 0; i <= 300; i++) { var tm = i / 300 * TW, yy = mid - A * Math.sin(2 * Math.PI * f * tm); if (i === 0) X.moveTo(xt(tm), yy); else X.lineTo(xt(tm), yy); }
+      X.stroke(); X.shadowBlur = 0;
+
+      // période T (accolade rose sous la courbe)
+      var T = 1 / f;
+      if (T <= TW) {
+        var yb = 318;
+        X.strokeStyle = C.pink; X.fillStyle = C.pink; X.lineWidth = 2.5;
+        X.beginPath(); X.moveTo(xt(0), yb); X.lineTo(xt(T), yb); X.moveTo(xt(0), yb - 6); X.lineTo(xt(0), yb + 6); X.moveTo(xt(T), yb - 6); X.lineTo(xt(T), yb + 6); X.stroke();
+        X.setLineDash([3, 6]); X.lineWidth = 1.2; X.strokeStyle = 'rgba(255,111,181,.5)';
+        X.beginPath(); X.moveTo(xt(0), mid); X.lineTo(xt(0), yb); X.moveTo(xt(T), mid); X.lineTo(xt(T), yb); X.stroke(); X.setLineDash([]);
+        X.font = '800 18px Outfit, sans-serif'; X.fillText('T', (xt(0) + xt(T)) / 2, yb - 9);
+      }
+
+      // point sur la courbe, balle sur l'axe, liaison pointillée
+      var py = mid - A * y, bx = 110, by = mid - A * y;
+      X.setLineDash([5, 6]); X.strokeStyle = 'rgba(255,196,58,.55)'; X.lineWidth = 1.5;
+      X.beginPath(); X.moveTo(bx, by); X.lineTo(xt(tt), py); X.stroke(); X.setLineDash([]);
+      X.fillStyle = C.amber; X.shadowColor = C.amber; X.shadowBlur = 16;
+      X.beginPath(); X.arc(bx, by, 15, 0, 6.2832); X.fill();
+      X.beginPath(); X.arc(xt(tt), py, 8, 0, 6.2832); X.fill(); X.shadowBlur = 0;
+
+      // lampe : bleue quand le signal est positif, rouge quand il est négatif
+      var pos = y >= 0, lc = pos ? '#3a8dff' : '#ff3b3b', lx = 110, ly = 332;
+      X.fillStyle = lc; X.shadowColor = lc; X.shadowBlur = 26;
+      X.beginPath(); X.arc(lx, ly, 13, 0, 6.2832); X.fill(); X.shadowBlur = 0;
+      X.fillStyle = 'rgba(255,255,255,.75)'; X.font = '300 15px Outfit, sans-serif'; X.textAlign = 'left';
+      X.fillText(pos ? 'signal positif' : 'signal négatif', lx + 24, ly + 5); X.textAlign = 'center';
+    }
+  });
+
+  /* =================================================================== */
+  /* Gif lu une seule fois, puis son (tonnerre) retentissant seul          */
+  /* =================================================================== */
+  // Taille « plein écran » en unités de diapo (équivalent d'un fond d'écran en background-size: contain)
+  function plein(ratio) {
+    var sc = (window.Reveal && Reveal.getScale && Reveal.getScale()) || 1, vw = window.innerWidth / sc, vh = window.innerHeight / sc;
+    var w = Math.min(vw, vh * ratio);
+    return { w: w, h: w / ratio, vw: vw, vh: vh };
+  }
+  function dormir(ms) { return new Promise(function (r) { setTimeout(r, Math.max(0, ms)); }); }
+  SonW.def('gifonce', {
+    build: function (el, I) {
+      var s = I.s;
+      s.src = el.getAttribute('data-src'); s.snd = el.getAttribute('data-sound');
+      s.delay = parseFloat(el.getAttribute('data-delay') || '2');        // pause entre la fin du gif et le son (s)
+      s.dur = parseFloat(el.getAttribute('data-duration') || '3');       // durée supposée si elle ne peut pas être lue (s)
+      s.jeton = 0; s.timers = [];
+      el.innerHTML = '<div class="gifonce"><img alt="" style="display:none"><canvas style="display:none"></canvas></div>';
+      s.img = $('img', el); s.cvs = $('canvas', el); s.box = $('.gifonce', el);
+      s.fit = function () { var d = plein(1); s.box.style.width = d.vw + 'px'; s.box.style.height = d.vh + 'px'; };
+      s.fit(); if (window.Reveal && Reveal.on) Reveal.on('resize', s.fit);
+      if (s.snd) SonW.preload(s.snd);
+    },
+    enter: function (el, I) { var s = I.s, j = ++s.jeton; s.fit(); stopTimers(s); start(el, s, j); },
+    leave: function (el, I) { var s = I.s; s.jeton++; stopTimers(s); }
+  });
+  function stopTimers(s) { s.timers.forEach(clearTimeout); s.timers = []; }
+  function apres(s, j, ms, fn) { s.timers.push(setTimeout(function () { if (j === s.jeton) fn(); }, ms)); }
+  function fin(s, j) { if (s.snd) apres(s, j, s.delay * 1000, function () { SonW.play(s.snd, 0.9); }); }
+  function start(el, s, j) {
+    s.img.style.display = 'none'; s.cvs.style.display = 'none';
+    // 1) lecture image par image (WebCodecs) : le gif ne boucle pas et se fige sur sa dernière image
+    if (window.ImageDecoder) {
+      fetch(s.src, { mode: 'cors' }).then(function (r) { if (!r.ok) throw new Error('http'); return r.arrayBuffer(); }).then(function (buf) {
+        if (j !== s.jeton) return;
+        var dec = new ImageDecoder({ data: buf, type: 'image/gif' });
+        return dec.tracks.ready.then(function () {
+          var n = dec.tracks.selectedTrack.frameCount, t0 = performance.now(), cum = 0, i = 0, c = s.cvs, x = c.getContext('2d');
+          function suivant() {
+            if (j !== s.jeton) { dec.close(); return; }
+            if (i >= n) { dec.close(); fin(s, j); return; }
+            dec.decode({ frameIndex: i }).then(function (res) {
+              var im = res.image;
+              if (j !== s.jeton) { im.close(); return; }
+              if (c.width !== im.displayWidth) { c.width = im.displayWidth; c.height = im.displayHeight; }
+              x.drawImage(im, 0, 0); c.style.display = 'block';
+              cum += (im.duration || 30000) / 1000; im.close(); i++;
+              dormir(t0 + cum - performance.now()).then(suivant);
+            }).catch(function () { dec.close(); fin(s, j); });
+          }
+          suivant();
+        });
+      }).catch(function () { if (j === s.jeton) secours(el, s, j); });
+    } else secours(el, s, j);
+  }
+  // 2) repli : on redémarre le gif et on fige l'image au bout de la durée supposée
+  function secours(el, s, j) {
+    var im = s.img;
+    im.onload = function () {
+      if (j !== s.jeton) return;
+      im.style.display = 'block';
+      apres(s, j, s.dur * 1000, function () {
+        try { s.cvs.width = im.naturalWidth; s.cvs.height = im.naturalHeight; s.cvs.getContext('2d').drawImage(im, 0, 0); s.cvs.style.display = 'block'; im.style.display = 'none'; } catch (e) { }
+        fin(s, j);
+      });
+    };
+    im.onerror = function () { fin(s, j); };
+    im.src = s.src + (s.src.indexOf('?') < 0 ? '?' : '&') + 'r=' + Date.now();
+  }
+
 })();

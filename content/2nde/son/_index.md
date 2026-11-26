@@ -12,7 +12,7 @@ highlight_theme = "atom-one-dark-reasonable"
   Style    : static/css/son.css
   Scripts  : static/js/son/core.js (ambiance par partie, votes, boîte à outils)
              static/js/son/widgets.js (animations interactives)
-  Widgets  : <div class="sw" data-w="onde|course|eclair|generateur|chrono|pouls|trompettes"></div>
+  Widgets  : <div class="sw" data-w="onde|course|eclair|gifonce|periode|oscillation|generateur|chrono|pouls|trompettes"></div>
   Votes    : shortcode qcm (2 à 4 propositions). Touches 1 à 4 ou clic sur une carte = un vote
              (Maj + touche = retirer un vote) ; → ou « Voir la réponse » = correction.
   Cellule à révéler au clic : <td class="rv" data-v="réponse">?</td>
@@ -133,7 +133,26 @@ Il faut donc <span class="imp">diviser par 3,6</span><br>pour passer <span class
 <p class="fragment fade-up"><span class="ask">Que doit-on alors faire pour passer des m/s aux km/h&nbsp;?</span></p>
 
 
-<img class="fragment" src="/convkmhms.png" style="background: none;width:60%">
+<div class="conv">
+<svg viewBox="0 -20 760 380" role="img" aria-label="Pour passer des km/h aux m/s on divise par 3,6, pour passer des m/s aux km/h on multiplie par 3,6">
+<defs>
+<linearGradient id="gb" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2aa6ee"/><stop offset="1" stop-color="#0063a0"/></linearGradient>
+<linearGradient id="gg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3fdc22"/><stop offset="1" stop-color="#138a00"/></linearGradient>
+</defs>
+<g class="pill"><rect x="20" y="130" width="230" height="90" rx="45" fill="url(#gb)"/><text x="135" y="191">km/h</text></g>
+<g class="pill"><rect x="510" y="130" width="230" height="90" rx="45" fill="url(#gg)"/><text x="625" y="191">m/s</text></g>
+<g class="top">
+<path class="arc" pathLength="1" d="M135 126 C135 -10 625 -10 625 100"/>
+<polygon class="head" points="625,128 610,100 640,100" fill="#ff644e"/>
+<g class="lab"><rect x="305" y="-6" width="150" height="56" rx="28" fill="#ff644e"/><text x="380" y="33">÷ 3,6</text></g>
+</g>
+<g class="bot fragment">
+<path class="arc" pathLength="1" d="M625 224 C625 358 135 358 135 252"/>
+<polygon class="head" points="135,222 120,252 150,252" fill="#ffc43a"/>
+<g class="lab"><rect x="305" y="300" width="150" height="56" rx="28" fill="#ffc43a"/><text x="380" y="339" style="fill:#1b1300">× 3,6</text></g>
+</g>
+</svg>
+</div>
 
 ---
 
@@ -192,7 +211,12 @@ Laisser les élèves estimer Δt avant l'arrivée de chaque point (distance au c
 
 ---
 
-{{< slide  background-image="https://media1.giphy.com/media/lkimn0qpby38zMJMY/giphy.gif" background-size="contain" background-transition="concave">}}
+<div class="sw" data-w="gifonce" data-src="https://media1.giphy.com/media/lkimn0qpby38zMJMY/giphy.gif" data-sound="/tonnerre.mp3" data-delay="2" data-duration="3"></div>
+
+{{%note%}}
+Le gif ne se joue qu'une fois puis reste figé sur sa dernière image ; le tonnerre retentit seul 2 secondes après la fin du gif.
+Réglages dans la balise ci-dessus : data-delay (secondes avant le tonnerre), data-duration (durée supposée du gif si elle ne peut pas être lue automatiquement).
+{{%/note%}}
 
 ---
 
@@ -218,23 +242,6 @@ Régler la distance de l'orage, cliquer sur « Éclair ! » et faire compter les
 
 {{< slide  background-video="/murduson.mp4" background-size="contain" background-transition="fade-in concave-out">}}
 
----
-
-<div class="glass">
-<p>Pour augmenter l'intensité du son émis,<br>beaucoup d’instruments et d’êtres vivants<br>sont dotés d’une <span class="imp">caisse de résonance</span> <br> qui amplifie et sélectionne les sons.</p>
-</div>
-
----
-
-{{< slide  background-image="/caisseres.jpg" background-size="contain" background-transition="concave">}}
-
----
-
-{{< slide  background-image="/vocalresonance.gif" background-size="contain" background-transition="concave">}}
-
----
-
-{{< slide  background-video="/timbreeducoupe.mp4" background-size="contain" background-transition="concave" background-video-loop="true">}}
 
 {{% /section %}}
 
@@ -278,23 +285,31 @@ Les sons musicaux sont des signaux <span class="imp">périodiques</span>.
 
 ---
 
-{{< slide  background-image="/periode.gif" background-size="contain" background-transition="none">}}
+{{< slide transition="none" >}}
+
+<div class="sw" data-w="periode"></div>
+
+{{%note%}}
+Reproduction animée du gif : la bande rouge (une période) glisse le long du signal, on découpe le signal en 4 périodes identiques, puis on les superpose : elles coïncident exactement. Cliquer sur l'animation pour la mettre en pause.
+{{%/note%}}
 
 ---
 
-{{< slide  background-image="/exoper1.png" background-size="contain" background-transition="concave-in fade-out">}}
+<p><span class="ask">Que vaut la période de ce signal&nbsp;?</span></p>
+
+<div class="fig">
+<img class="fragment fade-out" data-fragment-index="0" src="/exoper1.png" alt="Signal périodique">
+<img class="corr-img fragment" data-fragment-index="0" src="/exoper1corr.png" alt="Correction : une période du signal">
+</div>
 
 ---
 
-{{< slide  background-image="/exoper1corr.png" background-size="contain" background-transition="none">}}
+<p><span class="ask">Que vaut la période de ce signal&nbsp;?</span></p>
 
----
-
-{{< slide  background-image="/exoper2.png" background-size="contain" background-transition="concave-in fade-out">}}
-
----
-
-{{< slide  background-image="/exoper2corr.png" background-size="contain" background-transition="none">}}
+<div class="fig">
+<img class="fragment fade-out" data-fragment-index="0" src="/exoper2.png" alt="Signal périodique">
+<img class="corr-img fragment" data-fragment-index="0" src="/exoper2corr.png" alt="Correction : une période du signal">
+</div>
 
 ---
 
@@ -309,7 +324,9 @@ $$f = \frac{1}{T}$$
 
 ---
 
-<a href="https://www.geogebra.org/m/AFykFRzs"><img src="/appletfreq.png" width=500px></a>
+<h3>Une oscillation et son signal</h3>
+
+<div class="sw" data-w="oscillation"></div>
 
 
 ---
@@ -331,7 +348,7 @@ $$f = \frac{1}{T}$$
 {{%note%}}
 5,3 secondes théoriquement
 Faire mesurer sur une période puis sur 10 périodes.
-Le chronomètre calcule la moyenne sur le nombre de périodes mesurées : comparer 1 période et 10 périodes pour discuter de la précision.
+Le chronomètre démarre au premier « Top » et s'arrête au second ; l'animation demande alors combien de périodes se sont écoulées et calcule T = Δt / N. Comparer une mesure sur 1 période et sur 10 périodes : l'incertitude affichée (≈ 0,2 s de temps de réaction, divisée par N) montre qu'un grand nombre de périodes donne une mesure plus précise.
 {{%/note%}}
 
 
@@ -380,7 +397,7 @@ Le chronomètre calcule la moyenne sur le nombre de périodes mesurées : compar
 
 {{< slide  background-image="/freqaudibles.png" background-size="contain" background-transition="concave">}}
 
-Le domaine des fréquences des sons audibles<br>pour l'oreille humaine est situé entre 20 et 20000 Hz.
+Le domaine des fréquences des sons audibles<br>pour l'oreille humaine est situé<br>entre&nbsp;20&nbsp;et&nbsp;20000&nbsp;Hz.
 
 <br><br><br><br><br><br><br>
 
@@ -425,6 +442,24 @@ Enfin, la troisième caractéristique<br>d'un son est son <span class="imp" styl
 ---
 
 {{< slide  background-image="/amplitude.png" background-size="contain" background-transition="concave" >}}
+
+---
+
+<div class="glass">
+<p>Pour augmenter l'intensité du son émis,<br>beaucoup d’instruments et d’êtres vivants<br>sont dotés d’une <span class="imp">caisse de résonance</span> <br> qui amplifie et sélectionne les sons.</p>
+</div>
+
+---
+
+{{< slide  background-image="/caisseres.jpg" background-size="contain" background-transition="concave">}}
+
+---
+
+{{< slide  background-image="/vocalresonance.gif" background-size="contain" background-transition="concave">}}
+
+---
+
+{{< slide  background-video="/timbreeducoupe.mp4" background-size="contain" background-transition="concave" background-video-loop="true">}}
 
 
 ---

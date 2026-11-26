@@ -31,10 +31,60 @@
     }
   };
 
+  // Lecture d'un fichier son par Web Audio : une fois le contexte débloqué par un
+  // premier geste (touche, clic ou toucher), le son peut retentir seul plus tard
+  // (nécessaire sur iPhone/iPad, qui refusent sinon un son lancé par un minuteur).
+  SonW._buf = {};
+  SonW.preload = function (url) {
+    var ac = SonW.audio(); if (!ac) return null;
+    if (!SonW._buf[url]) {
+      SonW._buf[url] = fetch(url).then(function (r) { return r.arrayBuffer(); }).then(function (b) {
+        return new Promise(function (ok, ko) { ac.decodeAudioData(b, ok, ko); });
+      });
+    }
+    return SonW._buf[url];
+  };
+  SonW.play = function (url, vol) {
+    var p = SonW.preload(url);
+    if (!p) { try { new Audio(url).play(); } catch (e) { } return; }
+    p.then(function (buf) {
+      var ac = SonW.audio(), src = ac.createBufferSource(), g = ac.createGain();
+      g.gain.value = vol == null ? 0.8 : vol; src.buffer = buf; src.connect(g); g.connect(ac.destination); src.start();
+    }).catch(function () { SonW.bip(70, 1.2, 0.35); });
+  };
+  ['pointerdown', 'keydown', 'touchend'].forEach(function (ev) {
+    document.addEventListener(ev, function () { SonW.audio(); }, { capture: true, passive: true });
+  });
+
   function $(s, r) { return (r || document).querySelector(s); }
   function $$(s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); }
   function ready(fn) { if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', fn); else fn(); }
   function relayout() { if (window.Reveal && Reveal.layout) { try { Reveal.layout(); } catch (e) { } } }
+
+  /* --------------------------------------------------------- typographie */
+  // Le dernier espace de chaque ligne de texte (avant un <br> ou en fin de bloc) devient
+  // insécable : plus de mot, d'unité ou de signe isolé sur la dernière ligne (« … 20 000 / Hz. »).
+  function typographie() {
+    var BLOCS = '.reveal .slides p, .reveal .slides li, .reveal .slides h1, .reveal .slides h2, .reveal .slides h3, ' +
+                '.reveal .slides .qcm-q, .reveal .slides .qcm-expl, .reveal .slides .qcm-t, .reveal .slides .w-note';
+    $$(BLOCS).forEach(function (b) {
+      var fins = [], cur = null;
+      (function marche(n) {
+        for (var c = n.firstChild; c; c = c.nextSibling) {
+          if (c.nodeType === 3) { if (/\S/.test(c.data)) cur = c; }
+          else if (c.nodeName === 'BR') { if (cur) fins.push(cur); cur = null; }
+          else if (c.nodeType === 1 && !/^(SCRIPT|STYLE|SVG|MJX-CONTAINER|CANVAS|BUTTON|ASIDE)$/i.test(c.nodeName) && !(c.classList && c.classList.contains('sw'))) marche(c);
+        }
+      })(b);
+      if (cur) fins.push(cur);
+      fins.forEach(function (t) {
+        var d = t.data;
+        if (d.indexOf('$') >= 0 || d.indexOf('\\(') >= 0) return;          // on ne touche pas aux formules
+        var m = d.replace(/\s+$/, ''), i = m.lastIndexOf(' ');
+        if (i > 0 && /\S/.test(m.slice(0, i))) t.data = d.slice(0, i) + ' ' + d.slice(i + 1);
+      });
+    });
+  }
 
   /* ------------------------------------------------------------ ambiance */
   var partDe = {};
@@ -265,6 +315,7 @@
   /* --------------------------------------------------------------- démarrage */
   function demarrer() {
     if (!window.Reveal) { setTimeout(demarrer, 100); return; }
+    typographie();
     indexerParties();
     initVotes();
     initDock();
