@@ -3,65 +3,40 @@ title = "Son"
 outputs = ["Reveal"]
 [reveal_hugo]
 theme = "black"
-custom_css = "css/noir-moderne.css"
+custom_css = "css/son.css"
 highlight_theme = "atom-one-dark-reasonable"
-
 +++
 
+<!--
+  Présentation « Son » (2nde).
+  Style    : static/css/son.css
+  Scripts  : static/js/son/core.js (ambiance par partie, votes, boîte à outils)
+             static/js/son/widgets.js (animations interactives)
+  Widgets  : <div class="sw" data-w="onde|course|eclair|generateur|chrono|pouls|trompettes"></div>
+  Votes    : shortcode qcm (2 à 4 propositions). Touches 1 à 4 ou clic sur une carte = un vote
+             (Maj + touche = retirer un vote) ; → ou « Voir la réponse » = correction.
+  Cellule à révéler au clic : <td class="rv" data-v="réponse">?</td>
+  Question posée à la classe : <span class="ask">…</span>
+  Boîte à outils (bas à gauche) : 🎲 tirage au sort · ⏱️ minuteur · 🔴 pointeur laser
+-->
 
-<style>
-img {border: none !important}
-
-.imp {font-weight:bold;color:#00A2FF;}
-
-span {font-weight:normal;color:white;}
-
-ul {
-margin-left: auto;
-margin-right: auto;
-text-align: left;
-width: fit-content;
-list-style-position: inside;
-}
-
-ul li {
-text-indent: -1em;
-padding-left: 1em;
-}
-
-@keyframes pulse {
-0% {
-transform: scale(1);
-}
-50% {
-transform: scale(1.2);
-}
-100% {
-transform: scale(1);
-}
-}
-
-.coeurquibat {
-display: inline-block;
-animation: pulse 0.75s infinite;
-}
-
-</style>
-
-
-
-
-
-
-# Le Son
-
+<div class="hero">
+<div class="eq"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+<h1>Le Son</h1>
+<p class="sub">Émission, propagation et perception</p>
+<p class="hint">↓ sous-parties &nbsp;·&nbsp; 🎲 ⏱️ 🔴 boîte à outils en bas à gauche</p>
+</div>
 
 ---
 
 {{% section %}}
 
-## Émission et perception<br>d'un son
-
+<div class="part-title">
+<i data-part="emission" hidden></i>
+<span class="num">01</span>
+<h2>Émission et perception<br>d'un son</h2>
+<p>Comment naît un son et comment voyage-t-il ?</p>
+</div>
 
 ---
 
@@ -69,28 +44,25 @@ animation: pulse 0.75s infinite;
 
 ---
 
-Le son est produit par une vibration<br>qui se propage de proche en proche<br>dans un milieu matériel.
-
+<div class="glass">
+<p>Le son est produit par une vibration<br>qui se propage de proche en proche<br>dans un milieu matériel.</p>
 <p class="fragment fade-up">Les particules du milieu lui-même<br>
     ne font qu'osciller sur place.</p>
-
+</div>
 
 ---
-
 
 {{< slide  background-image="/animsonrond.gif" background-size="contain" background-transition="concave">}}
 
-
 ---
 
-
-On est en présence d'une <span class="imp">onde</span> (l'onde sonore) caractérisée par un  <span class="imp" style="color:#FFD932">transport d'énergie et d'information</span> <span class="imp" style="color:#1DB100">sans qu'il y ait transport de matière</span>.
+<div class="glass">
+<p>On est en présence d'une <span class="imp">onde</span> (l'onde sonore) caractérisée par un  <span class="imp" style="color:#FFD932">transport d'énergie et d'information</span> <span class="imp" style="color:#1DB100">sans qu'il y ait transport de matière</span>.</p>
+</div>
 
 ---
-
 
 {{< youtube-slide id="aDrs6EieFCM" ratio="16x9" >}}
-
 
 ---
 
@@ -106,32 +78,45 @@ Pas de feu non plus d'ailleurs...
 
 ---
 
-Et la vitesse du signal sonore dépend du milieu.
+Et la vitesse du signal sonore <span class="imp">dépend du milieu</span>.
 
 ---
 
-Dans quel milieu le son se propage-t-il<br>le plus vite ?
+{{< qcm
+    q=`Dans quel milieu le son se propage-t-il <b>le plus vite</b>&nbsp;?`
+    a1=`le vide`
+    a2=`l’air`
+    a3=`l’eau`
+    a4=`l’acier`
+    bonne="4"
+    expl=`Réponse&nbsp;: <b>l’acier</b>. Vérifions-le avec les vitesses mesurées.` >}}
 
-<ol class="vote">
-<li class="fragment">le vide</li>
-<li class="fragment">l'air</li>
-<li class="fragment">l'eau</li>
-<li class="fragment juste">l'acier</li>
-</ol>
-<div class="fragment revele"></div>
+{{%note%}}
+Vote aux doigts : les élèves lèvent 1, 2, 3 ou 4 doigts. Appuyer sur 1-4 (ou cliquer sur une carte) pour compter les votes, puis → pour la correction.
+{{%/note%}}
 
 ---
-
 
 {{< youtube-slide id="BYe4x3x35is" ratio="16x9" >}}
 
+---
+
+<h3>Voyons-le à l'échelle des particules</h3>
+
+<div class="sw" data-w="onde"></div>
+
+{{%note%}}
+Changer de milieu : la particule rouge ne fait qu'osciller sur place, c'est l'onde (le front en pointillés) qui avance. Dans le vide, il n'y a rien pour transmettre la vibration. Les vitesses affichées sont à l'échelle (rapport 1 : 4,4 : 17) mais la fréquence de la source est très basse pour que l'on voie le mouvement.
+{{%/note%}}
 
 ---
 
-<style type="text/css">@media screen and (max-width: 767px) {.tg {width: auto !important;}.tg col {width: auto !important;}.tg-wrap {overflow-x: auto;-webkit-overflow-scrolling: touch;margin: auto 0px;}}</style><div class="tg-wrap"><table style="border-collapse:collapse;border-spacing:0;margin:0px auto" class="tg"><tbody><tr><td style="background-color:#1e1bb2;border-color:#c0c0c0;border-style:solid;border-width:1px;color:#ffffff;font-family:Arial, sans-serif;font-size:32px;overflow:hidden;padding:10px 20px;text-align:center;vertical-align:top;word-break:normal">milieu</td><td style="border-color:#c0c0c0;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:32px;overflow:hidden;padding:10px 20px;text-align:center;vertical-align:top;word-break:normal">air</td><td style="border-color:#c0c0c0;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:32px;overflow:hidden;padding:10px 20px;text-align:center;vertical-align:top;word-break:normal">eau</td><td style="border-color:#c0c0c0;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:32px;overflow:hidden;padding:10px 20px;text-align:left;vertical-align:top;word-break:normal">acier</td></tr><tr><td style="background-color:#11575a;border-color:#c0c0c0;border-style:solid;border-width:1px;color:#ffffff;font-family:Arial, sans-serif;font-size:32px;overflow:hidden;padding:10px 20px;text-align:center;vertical-align:top;word-break:normal">vitesse du son (m/s)</td><td style="border-color:#c0c0c0;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:32px;overflow:hidden;padding:10px 20px;text-align:center;vertical-align:top;word-break:normal">340</td><td style="border-color:#c0c0c0;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:32px;overflow:hidden;padding:10px 20px;text-align:center;vertical-align:top;word-break:normal">1500</td><td style="border-color:#c0c0c0;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:32px;overflow:hidden;padding:10px 20px;text-align:left;vertical-align:top;word-break:normal">5800</td></tr></tbody></table></div>
+<table class="vit">
+<tr><th>milieu</th><td>air</td><td>eau</td><td>acier</td></tr>
+<tr class="v"><th>vitesse du son (m/s)</th><td>340</td><td>1500</td><td>5800</td></tr>
+</table>
 
-
-<p class="fragment fade-up">Comment convertir ces vitesses en km/h ?</p>
+<p class="fragment fade-up"><span class="ask">Comment convertir ces vitesses en km/h&nbsp;?</span></p>
 
 ---
 
@@ -145,11 +130,20 @@ Commençons par convertir des km/h en m/s<br>en prenant l'exemple de $\pu{72 km/
 
 Il faut donc <span class="imp">diviser par 3,6</span><br>pour passer <span class="imp">des km/h aux m/s</span>.
 
-<p class="fragment fade-up">Que doit-on alors faire pour passer des m/s aux km/h ?</p>
+<p class="fragment fade-up"><span class="ask">Que doit-on alors faire pour passer des m/s aux km/h&nbsp;?</span></p>
 
 
 <img class="fragment" src="/convkmhms.png" style="background: none;width:60%">
 
+---
+
+<table class="vit">
+<tr><th>milieu</th><td>air</td><td>eau</td><td>acier</td></tr>
+<tr class="v"><th>vitesse du son (m/s)</th><td>340</td><td>1500</td><td>5800</td></tr>
+<tr class="kmh"><th>vitesse du son (km/h)</th><td class="rv" data-v="1&#8239;224">?</td><td class="rv" data-v="5&#8239;400">?</td><td class="rv" data-v="20&#8239;880">?</td></tr>
+</table>
+
+<p class="mut"><span class="ask">À vous&nbsp;!</span> Convertissez, puis cliquez sur chaque «&nbsp;?&nbsp;» pour vérifier.</p>
 
 ---
 
@@ -157,12 +151,8 @@ Rappel :
 
 En appelant $d$ la distance parcourue (en m)<br>et $\Delta t$ la durée écoulée (en s),<br>la vitesse $v$ d'un signal est<br>donnée par la relation :
 
-<br>
-
-<div class="fragment fade-up" style="display: flex; justify-content: center; align-items: center; height: 100%;">
-<div style="background-color:#FF644E;padding:0px 50px 0px 50px;width:fit-content;color:white;border-radius:10px;">
+<div class="fcard r fragment fade-up">
 $$v = \frac{d}{\Delta t}$$
-</div>
 </div>
 
 ---
@@ -176,25 +166,29 @@ On écrit $\Delta t$ car une durée est l'écart entre deux instants et le symbo
 
 ---
 
+<span class="ask">Si on connaît la vitesse et la durée,<br>comment obtient-on la distance&nbsp;?</span>
 
-Si on connaît la vitesse et la durée,<br>comment obtient-on la distance ?
-
-<div class="fragment fade-up" style="display: flex; justify-content: center; align-items: center; height: 100%;">
-<div style="background-color:#0076BA;padding:0px 50px 0px 50px;width:fit-content;color:white;border-radius:10px;">
+<div class="fcard b fragment fade-up">
 $$d=v\times \Delta t$$
-</div>
 </div>
 
 ---
 
-Et si on connaît la distance et la vitesse,<br>comment obtient-on la durée ?
+<span class="ask">Et si on connaît la distance et la vitesse,<br>comment obtient-on la durée&nbsp;?</span>
 
-<div class="fragment fade-up" style="display: flex; justify-content: center; align-items: center; height: 100%;">
-<div style="background-color:#1DB100;padding:0px 50px 0px 50px;width:fit-content;color:white;border-radius:10px;">
+<div class="fcard g fragment fade-up">
 $$\Delta t = \frac{d}{v}$$
 </div>
-</div>
 
+---
+
+<h3>La course du son</h3>
+
+<div class="sw" data-w="course"></div>
+
+{{%note%}}
+Laisser les élèves estimer Δt avant l'arrivée de chaque point (distance au choix avec le curseur). La durée du trajet de l'air est affichée en accéléré (7 s), les autres milieux gardent les bons rapports de vitesse.
+{{%/note%}}
 
 ---
 
@@ -202,43 +196,33 @@ $$\Delta t = \frac{d}{v}$$
 
 ---
 
+<p><span class="ask">Pourquoi doit-on compter approximativement 3 s<br>par km entre l'éclair et le tonnerre&nbsp;?</span></p>
 
-<p id="jouerSon" style="cursor: pointer;">Pourquoi doit-on compter approximativement 3 s<br>par km entre l'éclair et le tonnerre ?</p>
-<audio id="sontonnerre">
-  <source src="/tonnerre.mp3" type="audio/mpeg">
-</audio>
+<div class="sw" data-w="eclair"></div>
 
-
-<script>
-document.getElementById('jouerSon').addEventListener('click', function() {
-  var audio = document.getElementById('sontonnerre');
-  audio.play();
-});
-</script>
-
+{{%note%}}
+Régler la distance de l'orage, cliquer sur « Éclair ! » et faire compter les élèves à voix haute jusqu'au tonnerre. Le chronomètre affiche ensuite la valeur calculée avec Δt = d / v.
+{{%/note%}}
 
 ---
-
 
 {{< youtube-slide id="_BgJEXQkjNQ" ratio="16x9" start="65" >}}
 
-Qu'est-ce que cette vidéo<br>nous permet de déterminer&nbsp;?
-
+<span class="ask">Qu'est-ce que cette vidéo<br>nous permet de déterminer&nbsp;?</span>
 
 ---
 
-
 <iframe src="https://podeduc.apps.education.fr/video/20160-eruption-du-volcan-tavurvur-en-papouasie-nouvelle-guinee/?is_iframe=true" width="640" height="360" style="padding: 0; margin: 0; border:0;border-radius:10px;" allowfullscreen title="Eruption du volcan Tavurvur en Papouasie Nouvelle Guinée" ></iframe>
-
 
 ---
 
 {{< slide  background-video="/murduson.mp4" background-size="contain" background-transition="fade-in concave-out">}}
 
-
 ---
 
-Pour augmenter l'intensité du son émis,<br>beaucoup d’instruments et d’êtres vivants<br>sont dotés d’une <span class="imp">caisse de résonance</span> <br> qui amplifie et sélectionne les sons.
+<div class="glass">
+<p>Pour augmenter l'intensité du son émis,<br>beaucoup d’instruments et d’êtres vivants<br>sont dotés d’une <span class="imp">caisse de résonance</span> <br> qui amplifie et sélectionne les sons.</p>
+</div>
 
 ---
 
@@ -246,39 +230,43 @@ Pour augmenter l'intensité du son émis,<br>beaucoup d’instruments et d’êt
 
 ---
 
-
 {{< slide  background-image="/vocalresonance.gif" background-size="contain" background-transition="concave">}}
-
 
 ---
 
 {{< slide  background-video="/timbreeducoupe.mp4" background-size="contain" background-transition="concave" background-video-loop="true">}}
 
-
 {{% /section %}}
-
 
 ---
 
 {{< slide background-video="/note.mp4" background-size="contain" background-transition="concave">}}
 
+<i data-part="periode" hidden></i>
+
 ---
 
 {{%section%}}
 
-## Signal sonore périodique
-
+<div class="part-title">
+<i data-part="periode" hidden></i>
+<span class="num">02</span>
+<h2>Signal sonore périodique</h2>
+<p>Comment décrire les sons musicaux&nbsp;?</p>
+</div>
 
 ---
 
 Les sons musicaux sont des signaux <span class="imp">périodiques</span>.
 
-<p class="fragment fade-up">Un <span class="imp">signal périodique</span> est un signal<br>qui se <span class="imp" style="color:#FFD932">répète à l'identique dans le temps</span>.</p>
+<div class="glass fragment fade-up">
+<p>Un <span class="imp">signal périodique</span> est un signal<br>qui se <span class="imp" style="color:#FFD932">répète à l'identique dans le temps</span>.</p>
+</div>
 
-<p class="fragment fade-up">La <span class="imp">période $T$</span> d'un signal périodique<br>est la <span class="imp" style="color:#FFD932">durée d'une répétition</span> (d'un motif).</p>
-
-<p class="fragment fade-up">Unité : <span class="fragment">la seconde</span></p>
-
+<div class="glass fragment fade-up">
+<p>La <span class="imp">période $T$</span> d'un signal périodique<br>est la <span class="imp" style="color:#FFD932">durée d'une répétition</span> (d'un motif).</p>
+<p>Unité : <span class="fragment">la seconde</span></p>
+</div>
 
 ---
 
@@ -293,7 +281,6 @@ Les sons musicaux sont des signaux <span class="imp">périodiques</span>.
 {{< slide  background-image="/periode.gif" background-size="contain" background-transition="none">}}
 
 ---
-
 
 {{< slide  background-image="/exoper1.png" background-size="contain" background-transition="concave-in fade-out">}}
 
@@ -313,17 +300,14 @@ Les sons musicaux sont des signaux <span class="imp">périodiques</span>.
 
 Pour des sons musicaux, la période est souvent très petite, de l'ordre de la cs ou ms. On lui préfère alors<br>le <span class="imp" style="color:#FFD932">nombre de répétitions (de motifs) par seconde</span><br>qui est l'inverse de la période et qu'on appelle<br>la <span class="imp">fréquence $f$</span>.
 
-<div class="fragment fade-up" style="display: flex; justify-content: center; align-items: center; height: 100%;">
-<div style="background-color:#ED220D;padding:0px 50px 0px 50px;width:fit-content;color:white;border-radius:15px;">
+<div class="fcard r fragment fade-up">
 $$f = \frac{1}{T}$$
-</div>
 </div>
 
 <p class="fragment fade-up">Unité : le <span class="imp">hertz (Hz)</span></p>
 
 
 ---
-
 
 <a href="https://www.geogebra.org/m/AFykFRzs"><img src="/appletfreq.png" width=500px></a>
 
@@ -334,10 +318,12 @@ $$f = \frac{1}{T}$$
 
 ---
 
+<p><span class="ask">Quelle est la période et la fréquence de ce signal&nbsp;?</span></p>
 
-Quelle est la période et la fréquence de ce signal ?
-
-<canvas id="myCanvas" width="500" height="500"></canvas>
+<div style="display:flex;align-items:center;justify-content:center;gap:40px;">
+<canvas id="myCanvas" width="500" height="500" style="width:340px;height:340px;flex:none;"></canvas>
+<div class="sw" data-w="chrono"></div>
+</div>
 
 <script src="/js/2son.js"></script>
 
@@ -345,195 +331,49 @@ Quelle est la période et la fréquence de ce signal ?
 {{%note%}}
 5,3 secondes théoriquement
 Faire mesurer sur une période puis sur 10 périodes.
+Le chronomètre calcule la moyenne sur le nombre de périodes mesurées : comparer 1 période et 10 périodes pour discuter de la précision.
 {{%/note%}}
 
 
 ---
 
-<span class="coeurquibat" style="font-size:160px">🫀</span>
+{{< qcm
+    q=`<span class="coeurquibat" style="font-size:2.2em">🫀</span><br>Quand on «&nbsp;prend son pouls&nbsp;», mesure-t-on une <b>période</b> ou une <b>fréquence</b>&nbsp;?`
+    a1=`une période`
+    a2=`une fréquence`
+    bonne="2"
+    expl=`On compte des battements <span class="imp">par minute</span>&nbsp;: c’est une fréquence (environ 70 par minute, soit 1,2&nbsp;Hz).` >}}
 
-Quand on "prend son pouls",<br>
-mesure-t-on une période ou une fréquence ?
+---
 
-<ol class="vote">
-<li class="fragment">une période</li>
-<li class="fragment juste">une fréquence</li>
-</ol>
-<div class="fragment revele"></div>
+<h3>Mesurons notre fréquence cardiaque</h3>
 
-<p class="fragment fade-up">On compte des battements <span class="imp">par minute</span> :<br>c'est une fréquence (environ 70 par minute, soit 1,2&nbsp;Hz).</p>
-
-
+<div class="sw" data-w="pouls"></div>
 
 {{% /section %}}
-
 
 ---
 
 {{% section %}}
 
-## Perception d'un son
+<div class="part-title">
+<i data-part="perception" hidden></i>
+<span class="num">03</span>
+<h2>Perception d'un son</h2>
+<p>Hauteur, timbre, intensité&nbsp;: que perçoit-on&nbsp;?</p>
+</div>
 
 ---
 
+<h3>Générateur de sons</h3>
 
-
-<p>Fréquence : <span id="demo"></span> Hz</p>
-
-<input type="range" min="1" max="1000" value="" class="slider" id="myRange">
-
-<br>
-<p>Volume : <span id="volume"></span></p><br>
-<input type="range" min="0" max="100" value="50" class="slider" id="volumeSlider" >
-<br><br>
-<button id="stopButton"><div style="display: flex; align-items: center; justify-content: center; height: 100%;">
-<span id="symbole" style="font-size: 40px; color: white;">&nbsp;►</span></div></button>
-
-
-<style>
-.slider {
-  -webkit-appearance: none;
-  width: 80%;
-  height: 30px;
-  background: #0076BA;
-  outline: none;
-  border-radius: 20px;
-  opacity: 0.7;
-  transition: opacity .2s;
-}
-
-.slider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 50px;
-  height: 50px;
-  background: #00A2FF;
-  border-radius: 50%;
-  cursor: pointer;
-}
-
-	#stopButton {
-  background-color: #61D836;
-  color: white;
-  border: none;
-  border-radius: 50%;
-  cursor: pointer;
-  font-size: 20px;
-  width: 80px; 
-  height: 80px; 
-  transition: transform 0.1s;
-}
-
-	#stopButton:active {
-  transform: scale(0.9);
-}
-
-
-	#volumeSlider{
-	position: absolute;
-   width: 150px;
-   transform:  translate(-75px) rotate(270deg);
-   background: #D41876;
-}
-
-	#volumeSlider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 50px;
-  height: 50px;
-  background: #FF95CA;
-  border-radius: 50%;
-  cursor: pointer;
-}
-
-</style>
-
-<script>
-    // Créer un contexte audio
-    let audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-
-    // Créer l'oscillateur
-    let oscillator;
-    
-    // Créer le curseur
-    let slider = document.getElementById("myRange");
-    let output = document.getElementById("demo");
-    
-    let minp = 1;
-    let maxp = 1000;
-    
-    let minv = Math.log(20);
-    let maxv = Math.log(20000);
-    
-    let scale = (maxv-minv) / (maxp-minp);
-    
-    // Mettre à jour le curseur chaque fois que l'utilisateur change la valeur
-    slider.oninput = function() {
-        let freq = Math.exp(minv + scale*(this.value-minp));
-        output.innerHTML = freq.toFixed(0);
-        if (!oscillator) {
-            oscillator = audioCtx.createOscillator();
-            oscillator.connect(audioCtx.destination);
-            //oscillator.start();
-        }
-        oscillator.frequency.value = freq;
-    }
-
-  let testdebut = true;
-  let bascule = true;
-  // Arrêter le son
-let bouton = document.getElementById("stopButton");
-let symbole = document.getElementById("symbole");
-bouton.onclick = function() {
-if (testdebut) {
-oscillator.start();
-testdebut = !testdebut;
-bouton.style.background = "red";
-symbole.innerHTML = "&#10073;&#10073;"
-}
-else if (bascule) {
-audioCtx.suspend();
-bascule = !bascule;
-bouton.style.background = "#61D836";
-symbole.innerHTML = "&nbsp;►"
-}
-else {
-audioCtx.resume();
-bascule = !bascule;
-bouton.style.background = "red";
-symbole.innerHTML = "&#10073;&#10073;"
-}
-}
-    
-// Initial value
-let initialValue = (Math.log(440) - minv) / scale + minp;
-slider.value = initialValue.toFixed(0);
-slider.dispatchEvent(new Event('input'));
-
-let gainNode = audioCtx.createGain();
-gainNode.connect(audioCtx.destination);
-
-// Connecter l'oscillateur au noeud de gain
-oscillator.connect(gainNode);
-
-// Créer le curseur de volume
-let volumeSlider = document.getElementById("volumeSlider");
-let volumeOutput = document.getElementById("volume");
-volumeOutput.innerHTML = volumeSlider.value; // Afficher la valeur par défaut
-
-// Mettre à jour le volume chaque fois que l'utilisateur change la valeur du curseur
-volumeSlider.oninput = function() {
-let volume = this.value / 100 * 2 - 1;
-gainNode.gain.value = volume;
-volumeOutput.innerHTML = this.value;
-}
-
-</script>
-
+<div class="sw" data-w="generateur"></div>
 
 {{%note%}}
 - piège de bien mesurer entre deux couleurs identiques
 - Permet de parler de comment améliorer la précision lorsque phénomène répétitif :mesurer un nombre n de répétitions puis diviser le résultat par n (l'unique mesure a théoriquement la même précision que l'on mesure 1 ou 10 périodes mais par contre, dans le cas de 10, on divise cette précision d'une mesure unique par 10. Donc la mesure est 10 fois meilleure !)
+- Défi classe : monter la fréquence jusqu'à ce que les élèves n'entendent plus rien (levez la main quand vous n'entendez plus !). Les plus âgés perdent les aigus en premier. Prévenir du volume avant de lancer le son.
+- Changer la forme du signal : la hauteur (donc la période) ne change pas mais le son n'est plus le même, ce qui prépare la notion de timbre.
 {{%/note%}}
 
 ---
@@ -553,14 +393,18 @@ Tous les animaux pareils ?
 
 Pour un son musical, la <span class="imp">hauteur</span> désigne la note jouée (plus ou moins grave ou aigüe).
 
+<div class="glass">
 <span style="color:#61D836"><b>La hauteur est liée à la fréquence</b></span> :<br>
 plus la fréquence est grande,<br><span class="fragment">plus la hauteur est <span class="fragment">grande</span></span><br><span class="fragment">et plus la note est <span class="fragment">aigüe.</span></span>
+</div>
 
 ---
 
 Le signal de deux notes identiques jouées par des instruments différents possède la même période<br>mais la <span class="imp">forme des signaux</span> est différente.
 
-<p class="fragment fade-up">On appelle <span class="imp">timbre</span> ce qui distingue<br>deux notes de même hauteur.</p>
+<div class="glass fragment fade-up">
+<p>On appelle <span class="imp">timbre</span> ce qui distingue<br>deux notes de même hauteur.</p>
+</div>
 
 ---
 
@@ -574,7 +418,9 @@ https://www.edumedia-sciences.com/fr/media/frame/320/?auth=8c1ba56b82bdf81fef2eb
 
 Enfin, la troisième caractéristique<br>d'un son est son <span class="imp" style="color:#61D836">intensité</span>.
 
-<p class="fragment fade-up">L'<span class="imp" style="color:#61D836">intensité sonore</span> est <span class="imp" style="color:#FF644E">liée</span><br>à l'<span class="imp">amplitude</span> du signal.</p>
+<div class="glass fragment fade-up">
+<p>L'<span class="imp" style="color:#61D836">intensité sonore</span> est <span class="imp" style="color:#FF644E">liée</span><br>à l'<span class="imp">amplitude</span> du signal.</p>
+</div>
 
 ---
 
@@ -608,7 +454,9 @@ Mais cette relation de proportionnalité rend mal compte de notre <span class="i
 
 <p class="fragment fade-up">On peut par exemple mesurer que l'<span style="color:#61D836"><b>intensité sonore</b></span> du son émis par quelqu'un qui parle fort est environ 10&nbsp;000 fois plus grande que celle d'une personne qui chuchote à la même distance ! Pourtant, on n'a<br>pas la <span class="imp" style="color:#FFD932">sensation</span> d'un son 10&nbsp;000 fois plus fort...</p>
 
-<p class="fragment fade-up"><span class="imp" style="color:#61D836">Intensité sonore</span> et <span class="imp" style="color:#FFD932">sensation auditive</span><br>ne sont pas <span class="imp" style="color:#FF644E">proportionnelles</span>&nbsp;!</p>
+<div class="glass fragment fade-up">
+<p><span class="imp" style="color:#61D836">Intensité sonore</span> et <span class="imp" style="color:#FFD932">sensation auditive</span><br>ne sont pas <span class="imp" style="color:#FF644E">proportionnelles</span>&nbsp;!</p>
+</div>
 
 {{%note%}}
 70dB pour parler fort
@@ -624,20 +472,26 @@ Pour tenir compte de cette échelle non proportionnelle, on utilise une autre gr
 
 ---
 
-Une trompette seule produit un niveau sonore<br>de 80 dB. Et quatre trompettes identiques ensemble ?
-
-<ol class="vote">
-<li class="fragment">80 dB</li>
-<li class="fragment juste">86 dB</li>
-<li class="fragment">160 dB</li>
-<li class="fragment">320 dB</li>
-</ol>
-<div class="fragment revele"></div>
-
-<p class="fragment fade-up">Intensité sonore multipliée par 4…<br>mais niveau sonore augmenté de <span class="imp">6 dB</span> seulement !</p>
+{{< qcm
+    q=`Une trompette seule produit un niveau sonore de 80&nbsp;dB. <span class="ask">Et quatre trompettes identiques ensemble&nbsp;?</span>`
+    a1=`80 dB`
+    a2=`86 dB`
+    a3=`160 dB`
+    a4=`320 dB`
+    bonne="2"
+    expl=`Intensité sonore multipliée par 4… mais niveau sonore augmenté de <span class="imp">6 dB</span> seulement&nbsp;!` >}}
 
 ---
 
+<h3>Ajoutons des trompettes</h3>
+
+<div class="sw" data-w="trompettes"></div>
+
+{{%note%}}
+Chaque fois que l'on double le nombre de trompettes (bouton « × 2 »), l'intensité double mais le niveau n'augmente que de 3 dB.
+{{%/note%}}
+
+---
 
 {{< slide  background-video="/trompettedbfort.mp4" background-size="contain" background-transition="concave" background-video-loop="true">}}
 
@@ -664,16 +518,95 @@ il faut 3 tel, 1 choisit le capteur "niveau de bruit" (qui moyenne le niveau son
 
 ---
 
-Durée limite d’exposition (sans protection)<br>avant dommages :
-- de 120 à 140 dB, quelques secondes suffisent à
-provoquer des dégâts irréversibles ;
-- 95 dB : 15 min / jour ;
-- 86 dB : 2h / jour ;
-- 80 dB : 8h / jour.
+<p>Durée limite d’exposition (sans protection)<br>avant dommages&nbsp;:</p>
 
+<div class="expo">
+<div class="expo-row d1 fragment fade-up"><span class="expo-db">120 à 140&nbsp;dB</span><span class="expo-t">quelques secondes suffisent à provoquer des <b>dégâts irréversibles</b></span></div>
+<div class="expo-row d2 fragment fade-up"><span class="expo-db">95&nbsp;dB</span><span class="expo-t"><b>15 min</b> / jour</span></div>
+<div class="expo-row d3 fragment fade-up"><span class="expo-db">86&nbsp;dB</span><span class="expo-t"><b>2 h</b> / jour</span></div>
+<div class="expo-row d4 fragment fade-up"><span class="expo-db">80&nbsp;dB</span><span class="expo-t"><b>8 h</b> / jour</span></div>
+</div>
 
 {{%/section%}}
 
 ---
 
+{{% section %}}
+
+<div class="part-title">
+<i data-part="bilan" hidden></i>
+<span class="num">★</span>
+<h2>Bilan : à vous de jouer&nbsp;!</h2>
+<p>6 questions pour vérifier ce que l'on a retenu</p>
+</div>
+
+---
+
+{{< qcm
+    q=`Lorsqu’un signal sonore se propage&nbsp;:`
+    a1=`les molécules ou les atomes du milieu se déplacent de l’émetteur du son jusqu’aux oreilles`
+    a2=`les molécules ou les atomes du milieu oscillent sur place`
+    bonne="2"
+    expl=`L’onde sonore transporte de l’énergie et de l’information <b>sans transport de matière</b>.` >}}
+
+---
+
+{{< qcm
+    q=`Un ultrason se déplace plus vite qu’un son audible.`
+    a1=`vrai`
+    a2=`faux`
+    bonne="2"
+    expl=`La vitesse du son dépend du <b>milieu</b>, pas de la fréquence.` >}}
+
+---
+
+{{< qcm
+    q=`L’unité de la fréquence, le hertz (Hz), est équivalente à&nbsp;:`
+    a1=`$\mathrm{s^{-1}}$`
+    a2=`$\mathrm{m\cdot s^{-1}}$`
+    a3=`$\mathrm{s\cdot m^{-1}}$`
+    bonne="1"
+    expl=`Une fréquence est un nombre de répétitions <b>par seconde</b>&nbsp;: $f=\dfrac{1}{T}$.` >}}
+
+---
+
+{{< qcm
+    q=`Dans un stade, des enceintes sont placées à $d=102$&nbsp;m de la scène. De quelle valeur faut-il retarder leur signal pour que leur son se superpose à celui de la scène&nbsp;? <span class="mut">(dans l’air, $v_{son}=340\ \mathrm{m/s}$)</span>`
+    a1=`$35$ ms`
+    a2=`$300$ ms`
+    a3=`$3{,}5$ s`
+    a4=`$30$ s`
+    bonne="2"
+    expl=`$\Delta t=\tfrac{d}{v_{son}}=\tfrac{102}{340}=0{,}300\ \mathrm{s}=300\ \mathrm{ms}$` >}}
+
+---
+
+{{< qcm
+    q=`Deux signaux de même fréquence, de même amplitude mais de formes différentes se distinguent par&nbsp;:`
+    a1=`leur timbre`
+    a2=`leur hauteur`
+    a3=`leur niveau sonore`
+    bonne="1"
+    expl=`Même fréquence → même hauteur&nbsp;; même amplitude → même intensité&nbsp;; la forme du signal, c’est le <b>timbre</b>.` >}}
+
+---
+
+{{< qcm
+    q=`Une source sonore émet un son. Si une deuxième source identique se met à émettre à la même distance, le niveau d’intensité sonore reçu&nbsp;:`
+    a1=`double`
+    a2=`ne varie pas`
+    a3=`augmente de 3&nbsp;dB`
+    a4=`est divisé par deux`
+    bonne="3"
+    expl=`L’intensité sonore double, mais le niveau n’augmente que de <b>3&nbsp;dB</b>.` >}}
+
+{{%/section%}}
+
+---
+
+<i data-part="bilan" hidden></i>
+
 [Retour site](https://coursphychi.github.io/2nde/son/)
+
+<script src="/js/son/core.js"></script>
+<script src="/js/son/widgets.js"></script>

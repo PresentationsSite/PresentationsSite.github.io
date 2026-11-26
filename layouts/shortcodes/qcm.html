@@ -3,7 +3,8 @@
   -----------------------------------
   QCM à quatre propositions numérotées 1 à 4, pour voter aux doigts.
   Une pression sur → (ou le bouton « Réponse ») révèle la bonne réponse et l'explication.
-  Les touches 1 à 4 surlignent une proposition (pratique pour marquer le vote majoritaire).
+  Les touches 1 à 4 (ou un clic sur une carte) comptent un vote ; Maj+touche en retire un.
+  Les propositions a3 et a4 sont facultatives (2 ou 3 propositions possibles).
 
     {{< qcm
         q=`Question (HTML et formules $...$ acceptés)`
@@ -14,13 +15,16 @@
   Le comportement (touches, révélation) est dans static/js/soleil/core.js ; le style dans static/css/soleil.css.
 */ -}}
 {{- $b := int (.Get "bonne") -}}
-<div class="qcm" data-bonne="{{ $b }}">
+{{- $n := 0 -}}{{- range slice "a1" "a2" "a3" "a4" }}{{ if $.Get . }}{{ $n = add $n 1 }}{{ end }}{{ end -}}
+<div class="qcm" data-bonne="{{ $b }}" data-count="{{ $n }}">
 <div class="qcm-tag"><span class="qcm-hand">☝</span> QCM · vote aux doigts</div>
 <div class="qcm-q">{{ .Get "q" | safeHTML }}</div>
 <div class="qcm-grid">
 {{- range $i, $k := slice "a1" "a2" "a3" "a4" }}
-{{- $n := add $i 1 }}
-<div class="qcm-opt{{ if eq $n $b }} ok{{ end }}" data-n="{{ $n }}"><span class="qcm-n">{{ $n }}</span><span class="qcm-t">{{ $.Get $k | safeHTML }}</span></div>
+{{- $m := add $i 1 }}
+{{- if $.Get $k }}
+<div class="qcm-opt{{ if eq $m $b }} ok{{ end }}" data-n="{{ $m }}"><span class="qcm-n">{{ $m }}</span><span class="qcm-t">{{ $.Get $k | safeHTML }}</span></div>
+{{- end }}
 {{- end }}
 </div>
 <div class="qcm-expl fragment">{{ with .Get "expl" }}{{ . | safeHTML }}{{ else }}Bonne réponse : {{ $b }}.{{ end }}</div>
