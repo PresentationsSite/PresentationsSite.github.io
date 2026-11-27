@@ -12,7 +12,7 @@ highlight_theme = "atom-one-dark-reasonable"
   Style    : static/css/son.css
   Scripts  : static/js/son/core.js (ambiance par partie, votes, boîte à outils)
              static/js/son/widgets.js (animations interactives)
-  Widgets  : <div class="sw" data-w="sphere|onde|course|eclair|gifonce|periode|oscillation|generateur|chrono|pouls|trompettes"></div>
+  Widgets  : <div class="sw" data-w="sphere|onde|course|eclair|videoonce|periode|oscillation|generateur|chrono|pouls|trompettes"></div>
   Votes    : shortcode qcm (2 à 4 propositions). Touches 1 à 4 ou clic sur une carte = un vote
              (Maj + touche = retirer un vote) ; → ou « Voir la réponse » = correction.
   Cellule à révéler au clic : <td class="rv" data-v="réponse">?</td>
@@ -55,7 +55,7 @@ highlight_theme = "atom-one-dark-reasonable"
 <div class="sw" data-w="sphere"></div>
 
 {{%note%}}
-Reproduction animée du gif : la sphère pulse et chaque particule oscille sur place (amplitude constante), la perturbation se propage de proche en proche. Cliquer pour mettre en pause.
+Une source pulsante émet une onde qui se propage radialement : chaque particule oscille sur place, c'est la perturbation qui voyage de proche en proche. Couleur et brillance = compression locale ; les anneaux marquent les crêtes de compression. Cliquer pour mettre en pause.
 {{%/note%}}
 
 ---
@@ -215,11 +215,11 @@ Laisser les élèves estimer Δt avant l'arrivée de chaque point (distance au c
 
 ---
 
-<div class="sw" data-w="gifonce" data-src="https://media1.giphy.com/media/lkimn0qpby38zMJMY/giphy.gif" data-sound="/tonnerre.mp3" data-delay="2" data-duration="3"></div>
+<div class="sw" data-w="videoonce" data-mp4="/eclair.mp4" data-webm="/eclair.webm" data-sound="/tonnerre.mp3" data-delay="2"></div>
 
 {{%note%}}
-Le gif ne se joue qu'une fois puis reste figé sur sa dernière image ; le tonnerre retentit seul 2 secondes après la fin du gif.
-Réglages dans la balise ci-dessus : data-delay (secondes avant le tonnerre), data-duration (durée supposée du gif si elle ne peut pas être lue automatiquement).
+L'éclair est une vidéo locale (static/eclair.mp4 et eclair.webm, convertie depuis le gif d'origine) : elle ne se joue qu'une fois puis reste figée sur sa dernière image ; le tonnerre retentit seul 2 secondes après la fin.
+Réglage dans la balise ci-dessus : data-delay (secondes entre la fin de la vidéo et le tonnerre).
 {{%/note%}}
 
 ---

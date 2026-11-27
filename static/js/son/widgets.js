@@ -479,6 +479,7 @@
   var COL_ROUGE = 'rgba(254,100,78,.25)', COL_BLEU = 'rgba(85,193,253,.25)';
 
   SonW.def('periode', {
+    swipe: true,
     build: function (el, I) {
       var s = I.s, cv = mk(1080, 608);
       s.cv = cv; s.clock = 0; s.pause = false;
@@ -571,7 +572,7 @@
   SonW.def('oscillation', {
     build: function (el, I) {
       var s = I.s, cv = mk(900, 350);
-      s.cv = cv; s.f = 0.5; s.phi = 0; s.play = true; s.TW = 4;
+      s.cv = cv; s.f = 0.5; s.tt = 0; s.play = true; s.TW = 5;
       el.innerHTML = '<div class="w-box"></div>';
       var box = $('.w-box', el);
       box.appendChild(cv.c);
@@ -589,10 +590,9 @@
     },
     tick: function (el, I, t, dt) {
       var s = I.s, X = s.cv.x, W = s.cv.w, H = s.cv.h;
-      if (s.play) s.phi += s.f * dt;
+      if (s.play) s.tt = (s.tt + dt) % s.TW;
       var f = s.f, TW = s.TW, mid = 165, A = 110, px0 = 250, pw = 610;
-      var cyc = TW * f, tt = (s.phi % cyc) / f;            // instant affiché dans la fenêtre [0, TW]
-      var y = Math.sin(2 * Math.PI * s.phi);
+      var tt = s.tt, y = Math.sin(2 * Math.PI * f * tt);        // le point est toujours sur la courbe y = sin(2πft)
       var xt = function (tm) { return px0 + tm / TW * pw; };
       X.clearRect(0, 0, W, H);
       X.lineCap = 'round'; X.lineJoin = 'round';
@@ -650,7 +650,7 @@
   });
 
   /* =================================================================== */
-  /* Gif lu une seule fois, puis son (tonnerre) retentissant seul          */
+  /* Vidéo lue une seule fois (image finale figée), puis son (tonnerre)   */
   /* =================================================================== */
   // Taille « plein écran » en unités de diapo (équivalent d'un fond d'écran en background-size: contain)
   function plein(ratio) {
@@ -658,119 +658,115 @@
     var w = Math.min(vw, vh * ratio);
     return { w: w, h: w / ratio, vw: vw, vh: vh };
   }
-  function dormir(ms) { return new Promise(function (r) { setTimeout(r, Math.max(0, ms)); }); }
-  SonW.def('gifonce', {
+  function stopTimers(s) { s.timers.forEach(clearTimeout); s.timers = []; }
+  SonW.def('videoonce', {
+    swipe: true,                       // plein écran : le glissement doit rester possible
     build: function (el, I) {
-      var s = I.s;
-      s.src = el.getAttribute('data-src'); s.snd = el.getAttribute('data-sound');
-      s.delay = parseFloat(el.getAttribute('data-delay') || '2');        // pause entre la fin du gif et le son (s)
-      s.dur = parseFloat(el.getAttribute('data-duration') || '3');       // durée supposée si elle ne peut pas être lue (s)
-      s.jeton = 0; s.timers = [];
-      el.innerHTML = '<div class="gifonce"><img alt="" style="display:none"><canvas style="display:none"></canvas></div>';
-      s.img = $('img', el); s.cvs = $('canvas', el); s.box = $('.gifonce', el);
+      var s = I.s, mp4 = el.getAttribute('data-mp4'), webm = el.getAttribute('data-webm');
+      s.snd = el.getAttribute('data-sound'); s.delay = parseFloat(el.getAttribute('data-delay') || '2'); s.jeton = 0; s.timers = [];
+      el.innerHTML = '<div class="gifonce"><video muted playsinline preload="auto" disablepictureinpicture>' +
+        (mp4 ? '<source src="' + mp4 + '" type="video/mp4">' : '') + (webm ? '<source src="' + webm + '" type="video/webm">' : '') + '</video></div>';
+      s.v = $('video', el); s.box = $('.gifonce', el);
       s.fit = function () { var d = plein(1); s.box.style.width = d.vw + 'px'; s.box.style.height = d.vh + 'px'; };
       s.fit(); if (window.Reveal && Reveal.on) Reveal.on('resize', s.fit);
+      s.v.addEventListener('ended', function () {
+        var j = s.jeton;
+        if (s.snd) s.timers.push(setTimeout(function () { if (j === s.jeton) SonW.play(s.snd, 0.9); }, s.delay * 1000));   // le tonnerre retentit seul
+      });
       if (s.snd) SonW.preload(s.snd);
     },
-    enter: function (el, I) { var s = I.s, j = ++s.jeton; s.fit(); stopTimers(s); start(el, s, j); },
-    leave: function (el, I) { var s = I.s; s.jeton++; stopTimers(s); }
+    enter: function (el, I) {
+      var s = I.s; s.jeton++; stopTimers(s); s.fit();
+      try { s.v.currentTime = 0; } catch (e) { }
+      var p = s.v.play(); if (p && p.catch) p.catch(function () { });
+    },
+    leave: function (el, I) { var s = I.s; s.jeton++; stopTimers(s); s.v.pause(); }
   });
-  function stopTimers(s) { s.timers.forEach(clearTimeout); s.timers = []; }
-  function apres(s, j, ms, fn) { s.timers.push(setTimeout(function () { if (j === s.jeton) fn(); }, ms)); }
-  function fin(s, j) { if (s.snd) apres(s, j, s.delay * 1000, function () { SonW.play(s.snd, 0.9); }); }
-  function start(el, s, j) {
-    s.img.style.display = 'none'; s.cvs.style.display = 'none';
-    // 1) lecture image par image (WebCodecs) : le gif ne boucle pas et se fige sur sa dernière image
-    if (window.ImageDecoder) {
-      fetch(s.src, { mode: 'cors' }).then(function (r) { if (!r.ok) throw new Error('http'); return r.arrayBuffer(); }).then(function (buf) {
-        if (j !== s.jeton) return;
-        var dec = new ImageDecoder({ data: buf, type: 'image/gif' });
-        return dec.tracks.ready.then(function () {
-          var n = dec.tracks.selectedTrack.frameCount, t0 = performance.now(), cum = 0, i = 0, c = s.cvs, x = c.getContext('2d');
-          function suivant() {
-            if (j !== s.jeton) { dec.close(); return; }
-            if (i >= n) { dec.close(); fin(s, j); return; }
-            dec.decode({ frameIndex: i }).then(function (res) {
-              var im = res.image;
-              if (j !== s.jeton) { im.close(); return; }
-              if (c.width !== im.displayWidth) { c.width = im.displayWidth; c.height = im.displayHeight; }
-              x.drawImage(im, 0, 0); c.style.display = 'block';
-              cum += (im.duration || 30000) / 1000; im.close(); i++;
-              dormir(t0 + cum - performance.now()).then(suivant);
-            }).catch(function () { dec.close(); if (i === 0) secours(el, s, j); else fin(s, j); });
-          }
-          suivant();
-        });
-      }).catch(function () { if (j === s.jeton) secours(el, s, j); });
-    } else secours(el, s, j);
-  }
-  // 2) repli : on redémarre le gif et on fige l'image au bout de la durée supposée
-  function secours(el, s, j) {
-    var im = s.img;
-    im.onload = function () {
-      if (j !== s.jeton) return;
-      im.style.display = 'block';
-      apres(s, j, s.dur * 1000, function () {
-        try { s.cvs.width = im.naturalWidth; s.cvs.height = im.naturalHeight; s.cvs.getContext('2d').drawImage(im, 0, 0); s.cvs.style.display = 'block'; im.style.display = 'none'; } catch (e) { }
-        fin(s, j);
-      });
-    };
-    im.onerror = function () { fin(s, j); };
-    im.src = s.src + (s.src.indexOf('?') < 0 ? '?' : '&') + 'r=' + Date.now();
-  }
-
 
   /* =================================================================== */
-  /* Sphère qui pulse dans un nuage de particules (reproduction du gif)   */
-  /* Mesuré sur le gif d'origine en suivant les points d'une image à      */
-  /* l'autre : chaque particule oscille radialement autour de sa position */
-  /* de repos r0 avec une amplitude de 54 px (constante), une longueur     */
-  /* d'onde de 93 px et la phase  ωt − k·r0 − 1,353  (période 3,33 s).    */
-  /* Le rayon de la sphère varie de 46,5 ± 11,65 px (maximum à 0,135 T).   */
+  /* Onde sonore qui se propage radialement depuis une source pulsante     */
+  /* Chaque particule oscille radialement autour de sa position de repos  */
+  /* (déplacement A·cos(ωt − k·r0)) ; la couleur et la brillance suivent   */
+  /* la compression locale ; les crêtes de compression sont soulignées par */
+  /* des anneaux lumineux qui s'éloignent de la source.                   */
   /* =================================================================== */
-  var SPH = { A: 54.1, k: 0.06767, c: 1.353, T: 3.33, R: 46.5, dR: 11.65, ph: 0.135, dens: 0.0068, rouge: 0.014, M: 80 };
-  function semisSphere(s) {
-    // positions de repos uniformes dans un disque de 485 px de rayon (comme dans le gif), densité 0,0072 point/px²
-    var R = 485;
-    s.Wl = 540 * s.vw / s.vh;                       // repère logique : hauteur 540, largeur selon l'écran
-    s.n = Math.round(0.0072 * Math.PI * R * R);
-    s.ux = new Float32Array(s.n); s.uy = new Float32Array(s.n); s.r0 = new Float32Array(s.n); s.px = new Float32Array(s.n); s.py = new Float32Array(s.n); s.rouge = new Uint8Array(s.n);
-    for (var i = 0; i < s.n; i++) {
-      var r = R * Math.sqrt(Math.random()) + 1e-3, a = Math.random() * 6.2832;
-      s.px[i] = r * Math.cos(a); s.py[i] = r * Math.sin(a); s.r0[i] = r; s.rouge[i] = Math.random() < SPH.rouge ? 1 : 0;
+  var ONDE = { lam: 110, T: 2.6, A: 14, R0: 38, dR: 8, N: 2400, Rmax: 470 };
+  // dégradé de la couleur des particules : creux (indigo) -> crête de compression (blanc rosé), aux couleurs du thème
+  var PAL = [[38, 42, 120], [70, 80, 205], [124, 104, 255], [55, 214, 255], [150, 240, 255], [255, 228, 246]];
+  function palette(t) {                       // t dans [0, 1]
+    var x = t * (PAL.length - 1), i = Math.min(PAL.length - 2, Math.floor(x)), f = x - i, a = PAL[i], b = PAL[i + 1];
+    return [a[0] + (b[0] - a[0]) * f, a[1] + (b[1] - a[1]) * f, a[2] + (b[2] - a[2]) * f];
+  }
+  function sprites() {
+    var out = [];
+    for (var b = 0; b < 12; b++) {
+      var c = document.createElement('canvas'); c.width = c.height = 24;
+      var x = c.getContext('2d'), col = palette(b / 11).map(Math.round), g = x.createRadialGradient(12, 12, 0, 12, 12, 12);
+      g.addColorStop(0, 'rgba(' + col + ',1)'); g.addColorStop(0.35, 'rgba(' + col + ',.55)'); g.addColorStop(1, 'rgba(' + col + ',0)');
+      x.fillStyle = g; x.fillRect(0, 0, 24, 24); out.push(c);
     }
+    return out;
   }
   SonW.def('sphere', {
+    swipe: true,
     build: function (el, I) {
-      var s = I.s; s.clock = 0; s.pause = false;
+      var s = I.s; s.clock = 0; s.pause = false; s.spr = sprites();
       var c = document.createElement('canvas'); c.className = 'plein'; c.style.cursor = 'pointer';
       c.title = 'Cliquer pour mettre en pause / relancer'; el.appendChild(c); s.c = c;
       s.fit = function () {
         var d = plein(1), sc = (window.Reveal && Reveal.getScale && Reveal.getScale()) || 1;
         s.vw = d.vw; s.vh = d.vh; c.style.width = d.vw + 'px'; c.style.height = d.vh + 'px';
-        var q = Math.min(2, Math.max(1, Math.round(sc * 2) / 2 + 0.5));            // résolution d'affichage
-        c.width = Math.round(d.vw * sc * q); c.height = Math.round(d.vh * sc * q); s.q = sc * q;
-        semisSphere(s);
+        var q = Math.min(1.5, Math.max(1, window.devicePixelRatio || 1));
+        c.width = Math.round(d.vw * sc * q); c.height = Math.round(d.vh * sc * q);
       };
+      // positions de repos uniformes dans un disque
+      s.n = ONDE.N; s.px = new Float32Array(s.n); s.py = new Float32Array(s.n); s.r0 = new Float32Array(s.n);
+      for (var i = 0; i < s.n; i++) {
+        var r = ONDE.Rmax * Math.sqrt(Math.random()) + 1, a = Math.random() * 6.2832;
+        s.px[i] = r * Math.cos(a); s.py[i] = r * Math.sin(a); s.r0[i] = r;
+      }
       s.fit(); if (window.Reveal && Reveal.on) Reveal.on('resize', s.fit);
       c.addEventListener('click', function () { s.pause = !s.pause; });
     },
     enter: function (el, I) { I.s.clock = 0; I.s.fit(); },
     tick: function (el, I, t, dt) {
       var s = I.s; if (!s.pause) s.clock += dt;
-      var X = s.c.getContext('2d');
-      var k = s.c.height / 540;                          // pixels du canvas par unité logique
+      var X = s.c.getContext('2d'), k = s.c.height / 540, K = 2 * Math.PI / ONDE.lam, ph = 2 * Math.PI * s.clock / ONDE.T, Wl = 540 * s.vw / s.vh;
+      var Rs = ONDE.R0 + ONDE.dR * Math.cos(ph - K * ONDE.R0), i, u, f, x, y, cmp, b, w, th, st, AK = ONDE.A * K * 0.97;
       X.setTransform(1, 0, 0, 1, 0, 0); X.clearRect(0, 0, s.c.width, s.c.height);
       X.setTransform(k, 0, 0, k, s.c.width / 2, s.c.height / 2);
-      var ph = 2 * Math.PI * s.clock / SPH.T, rs = SPH.R + SPH.dR * Math.cos(ph - 2 * Math.PI * SPH.ph), mi = rs + 5, i, u, f, x, y, bleu = new Path2D(), rouge = new Path2D();
-      for (i = 0; i < s.n; i++) {
-        u = SPH.A * Math.cos(ph - SPH.k * s.r0[i] - SPH.c);
-        f = (s.r0[i] + u) / s.r0[i]; x = s.px[i] * f; y = s.py[i] * f;
-        if (x * x + y * y < mi * mi || x < -s.Wl / 2 - 3 || x > s.Wl / 2 + 3 || y < -273 || y > 273) continue;
-        (s.rouge[i] ? rouge : bleu).moveTo(x + 1.6, y); (s.rouge[i] ? rouge : bleu).arc(x, y, 1.6, 0, 6.2832);
+      // halo autour de la source
+      var g = X.createRadialGradient(0, 0, 0, 0, 0, 300);
+      g.addColorStop(0, 'rgba(55,214,255,.22)'); g.addColorStop(0.35, 'rgba(124,104,255,.09)'); g.addColorStop(1, 'rgba(124,104,255,0)');
+      X.fillStyle = g; X.fillRect(-Wl / 2, -270, Wl, 540);
+      X.globalCompositeOperation = 'lighter';
+      // anneaux lumineux sur les crêtes de compression
+      var base = ONDE.lam * (((s.clock / ONDE.T + 0.25) % 1 + 1) % 1);
+      for (var n = 0; n < 7; n++) {
+        var r = base + n * ONDE.lam; if (r < Rs + 4) continue;
+        var al = Math.max(0, 1 - r / 560); al = 0.6 * al * al;
+        if (al < 0.02) continue;
+        X.strokeStyle = 'rgba(' + (n % 2 ? '150,160,255' : '120,230,255') + ',' + al.toFixed(3) + ')'; X.lineWidth = 2 + 4 * al; X.shadowColor = 'rgba(55,214,255,.9)'; X.shadowBlur = 14;
+        X.beginPath(); X.arc(0, 0, r, 0, 6.2832); X.stroke();
       }
-      X.fillStyle = '#3e74d1'; X.fill(bleu); X.fillStyle = '#d22143'; X.fill(rouge);
-      X.fillStyle = '#5e5e5e'; X.beginPath(); X.arc(0, 0, rs, 0, 6.2832); X.fill();
+      X.shadowBlur = 0;
+      // particules : couleur et taille selon la compression locale
+      for (i = 0; i < s.n; i++) {
+        th = ph - K * s.r0[i]; u = ONDE.A * Math.cos(th); f = (s.r0[i] + u) / s.r0[i];
+        x = s.px[i] * f; y = s.py[i] * f;
+        if (x < -Wl / 2 - 6 || x > Wl / 2 + 6 || y < -276 || y > 276) continue;
+        cmp = 1 / Math.max(0.22, 1 + AK * Math.sin(th));            // densité relative (1 = repos)
+        b = Math.max(0, Math.min(11, Math.floor((cmp - 0.55) / 3.0 * 11)));
+        w = 7 + b * 1.15;
+        X.drawImage(s.spr[b], x - w / 2, y - w / 2, w, w);
+      }
+      // source : orbe lumineux pulsant + onde de choc à chaque période
+      X.globalCompositeOperation = 'source-over';
+      var sh = (s.clock / ONDE.T) % 1;
+      X.strokeStyle = 'rgba(255,111,181,' + (0.55 * (1 - sh)).toFixed(3) + ')'; X.lineWidth = 3; X.beginPath(); X.arc(0, 0, Rs + 6 + sh * 46, 0, 6.2832); X.stroke();
+      var og = X.createRadialGradient(-Rs * 0.3, -Rs * 0.3, Rs * 0.1, 0, 0, Rs);
+      og.addColorStop(0, '#ffffff'); og.addColorStop(0.35, '#8ff0ff'); og.addColorStop(1, '#4a6bff');
+      X.shadowColor = 'rgba(55,214,255,.95)'; X.shadowBlur = 38; X.fillStyle = og; X.beginPath(); X.arc(0, 0, Rs, 0, 6.2832); X.fill(); X.shadowBlur = 0;
     }
   });
 

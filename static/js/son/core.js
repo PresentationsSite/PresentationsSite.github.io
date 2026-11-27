@@ -107,9 +107,11 @@
       var d = SonW.defs[el.getAttribute('data-w')];
       if (!d || el._sw) return;
       el._sw = true;
-      el.setAttribute('data-prevent-swipe', '');
-      var inst = { el: el, d: d, slide: el.closest('section'), actif: false, s: {} };
+      var inst ={ el: el, d: d, slide: el.closest('section'), actif: false, s: {} };
       if (d.build) d.build(el, inst);
+      // seuls les curseurs (<input>) bloquent le glissement de diapo, pour qu'on puisse les faire glisser du doigt ;
+      // le reste de la diapo (dont les widgets plein écran) laisse passer le swipe
+      $$('input', el).forEach(function (n) { n.setAttribute('data-prevent-swipe', ''); });
       SonW.inst.push(inst);
     });
   }
@@ -312,6 +314,47 @@
     chip.classList.toggle('on', visible);
   }
 
+  /* ------------------------------------------------ mise en page stable */
+  // reveal.js recentre verticalement la diapo à chaque changement de fragment d'après sa hauteur du moment :
+  // si une police, une formule MathJax ou une image arrive entre-temps (cas fréquent sur téléphone),
+  // tout le contenu « saute » à l'apparition d'une réponse. On recentre donc dès qu'une ressource arrive,
+  // puis on mémorise la position verticale de la diapo et on la restitue après chaque fragment.
+  var topMemo = new WeakMap(), tRelayout = null;
+  function memoriserTop() { var s = window.Reveal && Reveal.getCurrentSlide(); if (s) topMemo.set(s, s.style.top); }
+  function relayoutPlusTard() {
+    clearTimeout(tRelayout);
+    tRelayout = setTimeout(function () { relayout(); memoriserTop(); }, 120);
+  }
+  function stabiliserMiseEnPage() {
+    if (document.fonts && document.fonts.load) {
+      // les graisses de la police du thème sont chargées d'emblée (et non à la première apparition d'un mot en gras,
+      // par exemple dans la correction d'un QCM : le texte changerait alors de hauteur au moment de la réponse)
+      ['300', '400', '600', '800'].forEach(function (w) { document.fonts.load(w + ' 1em Outfit').then(relayoutPlusTard, function () { }); });
+      if (document.fonts.addEventListener) document.fonts.addEventListener('loadingdone', relayoutPlusTard);
+    }
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(relayoutPlusTard);
+    window.addEventListener('load', relayoutPlusTard);
+    document.addEventListener('load', function (e) { if (e.target && e.target.tagName === 'IMG') relayoutPlusTard(); }, true);
+    (function mj(n) {
+      var m = window.MathJax;
+      if (m && m.startup && m.startup.promise) m.startup.promise.then(relayoutPlusTard);
+      else if (n < 60) setTimeout(function () { mj(n + 1); }, 250);
+    })(0);
+    Reveal.on('slidechanged', function () { setTimeout(function () { relayout(); memoriserTop(); }, 900); });
+    Reveal.on('resize', relayoutPlusTard);
+    ['fragmentshown', 'fragmenthidden'].forEach(function (ev) {
+      Reveal.on(ev, function () {
+        var s = Reveal.getCurrentSlide();
+        if (s && topMemo.has(s) && s.style.top !== topMemo.get(s)) s.style.top = topMemo.get(s);
+      });
+    });
+    if ('ResizeObserver' in window) {
+      var ro = new ResizeObserver(relayoutPlusTard);
+      Reveal.on('slidechanged', function (e) { ro.disconnect(); if (e.currentSlide) ro.observe(e.currentSlide); });
+    }
+    setTimeout(function () { memoriserTop(); }, 1500);
+  }
+
   /* --------------------------------------------------------------- démarrage */
   function demarrer() {
     if (!window.Reveal) { setTimeout(demarrer, 100); return; }
@@ -321,6 +364,7 @@
     initDock();
     scan();
     relayout();
+    stabiliserMiseEnPage();
     Reveal.on('ready', function () { relayout(); majAmbiance(); });
     Reveal.on('slidechanged', majAmbiance);
     Reveal.on('resize', function () { /* les widgets se redessinent à chaque image */ });
