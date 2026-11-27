@@ -549,12 +549,19 @@
       X.beginPath(); X.arc(bx, by, 15, 0, 6.2832); X.fill();
       X.beginPath(); X.arc(xt(tt), py, 8, 0, 6.2832); X.fill(); X.shadowBlur = 0;
 
-      // lampe : bleue quand le signal est positif, rouge quand il est négatif
-      var pos = y >= 0, lc = pos ? '#3a8dff' : '#ff3b3b', lx = 110, ly = 332;
+      // lampe : bleue quand le signal est positif, rouge quand il est négatif.
+      // La transition est continue (teinte proportionnelle à y) et, au-delà de 1,5 Hz, lissée dans le temps (filtre passe-bas) :
+      // à haute fréquence la lampe ne clignote plus brutalement, elle oscille doucement entre les deux teintes.
+      var pos = y >= 0, lx = 110, ly = 332;
+      var gain = 14 / Math.max(1, f / 1.2), mcible = 0.5 + 0.5 * Math.tanh(gain * y);          // 0 = rouge, 1 = bleu
+      var tau = 0.03 * Math.max(0, f - 1.5);                                                    // constante de temps du lissage (s)
+      if (s.lamp == null || tau === 0) s.lamp = mcible; else s.lamp += (mcible - s.lamp) * (1 - Math.exp(-dt / tau));
+      var m = s.lamp, lc = 'rgb(' + Math.round(255 + (58 - 255) * m) + ',' + Math.round(59 + (141 - 59) * m) + ',' + Math.round(59 + (255 - 59) * m) + ')';
       X.fillStyle = lc; X.shadowColor = lc; X.shadowBlur = 26;
       X.beginPath(); X.arc(lx, ly, 13, 0, 6.2832); X.fill(); X.shadowBlur = 0;
       X.fillStyle = 'rgba(255,255,255,.75)'; X.font = '300 15px Outfit, sans-serif'; X.textAlign = 'left';
-      X.fillText(pos ? 'signal positif' : 'signal négatif', lx + 24, ly + 5); X.textAlign = 'center';
+      if (f <= 3) X.fillText(pos ? 'signal positif' : 'signal négatif', lx + 24, ly + 5);   // le texte ne bascule pas non plus à haute fréquence
+      X.textAlign = 'center';
     }
   });
 
