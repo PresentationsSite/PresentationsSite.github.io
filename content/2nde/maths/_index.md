@@ -13,7 +13,7 @@ highlight_theme = "atom-one-dark-reasonable"
              listes, encadrés, votes, widgets, boîte à outils)
   Scripts  : static/js/son/core.js (votes aux doigts, boîte à outils, mise en page stable)
              static/js/maths/widgets.js (widgets) ; chargés par le shortcode maths-scripts
-  Widgets  : <div class="sw" data-w="heroexp|echelle|unites|composes|regles|virgule|og|cs"></div>
+  Widgets  : <div class="sw" data-w="heroexp|echelle|unites|composes|regles"></div>
   Votes    : shortcode qcm (touches 1-4 ou clic = un vote ; → = correction)
   Réponses : flèche <span class="arr">→</span> puis réponse <span class="fragment corr">…</span> (toujours en vert)
   Règles   : opérateur coloré qui apparaît en zoom au clic : <span class="op plus fragment zoom">+</span>
@@ -156,14 +156,6 @@ $$
 $$
 
 </div>
-
----
-
-<div class="sw" data-w="convertir"></div>
-
-{{%note%}}
-Les cinq boutons reprennent les exemples du cours (34 pm → km, 34 µg → fg, 34 m³ → nm³, 34 nm² → µm²) et un exemple en litres. Changer le préfixe, l'unité ou la puissance pour voir le détail du calcul.
-{{%/note%}}
 
 ---
 
@@ -440,6 +432,8 @@ $$
 
 ---
 
+<h3>À vous de jouer</h3>
+
 <div class="sw" data-w="composes"></div>
 
 {{%note%}}
@@ -661,14 +655,6 @@ Un nombre est écrit en <span class="imp">notation scientifique</span><br>lorsqu
 
 ---
 
-<div class="sw" data-w="virgule"></div>
-
-{{%note%}}
-Choisir un nombre (ou « Défi » pour un nombre tiré au hasard), puis faire glisser la virgule avec les deux boutons : le compteur n suit le déplacement et la case devient verte dès que le nombre est en notation scientifique. « Montre-moi » le fait automatiquement.
-{{%/note%}}
-
----
-
 Et si le nombre comporte déjà<br>une puissance de 10 ?
 
 <ul>
@@ -779,14 +765,6 @@ Deux petites vidéos qui reprennent tout ça :
 
 ---
 
-<div class="sw" data-w="og"></div>
-
-{{%note%}}
-Faire glisser a, changer n, ou utiliser les boutons (499, 500, 0,0087, 6 371 km, 400) : la barre montre le seuil 5 qui sépare « on garde 10^n » de « on passe à 10^(n+1) ».
-{{%/note%}}
-
----
-
 <ul>
 <li>$\pu{3E5}$ <span class="arr">→</span> <span class="fragment corr">$10^5$</span></li>
 <li>$\pu{5E5}$ <span class="arr">→</span> <span class="fragment corr">$10^6$</span></li>
@@ -864,14 +842,6 @@ Pour compter les chiffres significatifs :
 <li class="fragment fade-up">les zéros placés <span class="imp">entre</span> ou <span class="imp">après</span><br>des chiffres non nuls comptent ;</li>
 <li class="fragment fade-up">les zéros placés <b style="color:#FF644E">au début</b> ne comptent pas<br>(ils servent seulement à placer la virgule).</li>
 </ul>
-
----
-
-<div class="sw" data-w="cs"></div>
-
-{{%note%}}
-En vert : les chiffres qui comptent ; en gris : ceux qui ne comptent pas. Les boutons reprennent les cas du cours ; on peut aussi taper un nombre (par exemple 0,0320 ou 1,20×10^3). Le curseur du bas arrondit le nombre à N chiffres significatifs.
-{{%/note%}}
 
 ---
 
@@ -1125,7 +1095,7 @@ Un bloc d'aluminium de masse $m=\pu{54,0 g}$ occupe un volume $V=\pu{20,0 cm3}$.
 <div class="part-title">
 <i data-part="bilan" hidden></i>
 <span class="num">★</span>
-<h2>Bilan</h2>
+<h2>Bilan : à vous de jouer&nbsp;!</h2>
 <p>9 questions pour vérifier ce que l'on a retenu</p>
 </div>
 
