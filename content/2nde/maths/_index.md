@@ -23,7 +23,7 @@ highlight_theme = "atom-one-dark-reasonable"
 <div class="eq"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
 <h1>Maths et expressions numériques</h1>
 <p class="sub">en sciences physiques</p>
-<p class="hint">préfixes · puissances de 10 · notation scientifique · ordres de grandeur · chiffres significatifs<br>↓ sous-parties &nbsp;·&nbsp; 🎲 ⏱️ 🔴 boîte à outils en bas à gauche</p>
+<p class="hint">préfixes · unités composées · puissances de 10 · notation scientifique · ordres de grandeur · chiffres significatifs · rédaction<br>↓ sous-parties &nbsp;·&nbsp; 🎲 ⏱️ 🔴 boîte à outils en bas à gauche</p>
 </div>
 
 ---
@@ -269,8 +269,226 @@ $$
 {{% section %}}
 
 <div class="part-title">
-<i data-part="regles" hidden></i>
+<i data-part="unites" hidden></i>
 <span class="num">03</span>
+<h2>Unités composées<br>et exposants négatifs</h2>
+<p>m·s⁻¹, kg·m⁻³, mol·L⁻¹… pas de panique</p>
+</div>
+
+---
+
+<div class="glass">
+<p>Dans une unité, «&nbsp;<span class="imp">par</span>&nbsp;» veut dire «&nbsp;<span class="imp">divisé par</span>&nbsp;».</p>
+<p class="fragment fade-up">$\pu{72 km/h}$ se lit «&nbsp;72 kilomètres <b>par</b> heure&nbsp;» :<br>72 km parcourus pour <b>1 h</b>.</p>
+<p class="fragment fade-up">$\pu{0,79 g/mL}$ se lit «&nbsp;0,79 gramme <b>par</b> millilitre&nbsp;» :<br>0,79 g pour <b>1 mL</b>.</p>
+<p class="fragment fade-up petit">Le nombre se rapporte toujours à <b>une</b> unité de ce qui est «&nbsp;sous la barre&nbsp;».</p>
+</div>
+
+---
+
+<div class="regle">
+<span class="rh">Exposant négatif = division</span>
+<span class="rb">$x^{-1} = \dfrac{1}{x}$ &nbsp;&nbsp; $x^{-2} = \dfrac{1}{x^{2}}$ &nbsp;&nbsp; $x^{-3} = \dfrac{1}{x^{3}}$</span>
+<span class="rw">C'est la même idée que $10^{-3} = \dfrac{1}{10^{3}} = 0{,}001$ : on peut l'appliquer à n'importe quel symbole, unité comprise.</span>
+</div>
+
+<div class="fragment fade-up">
+
+$$\mathrm{m\cdot s^{-1}} = \mathrm m\times\frac{1}{\mathrm s} = \frac{\mathrm m}{\mathrm s}
+\qquad
+\mathrm{kg\cdot m^{-3}} = \frac{\mathrm{kg}}{\mathrm m^{3}}$$
+
+</div>
+
+---
+
+<h3>Décodez les unités</h3>
+
+<div class="sw" data-w="unites"></div>
+
+{{%note%}}
+Chaque bouton est écrit « avec une barre ». Le panneau montre l'écriture avec exposants (exposants négatifs en bleu, positifs en jaune), la façon de la lire et ce que ça veut dire concrètement. Le mode devinette floute l'écriture avec exposants : la classe propose, puis révèle d'un clic.
+{{%/note%}}
+
+---
+
+<div class="carte piege">
+<span class="ct">⚠ Plusieurs unités sous la barre</span>
+<p>$\dfrac{\mathrm J}{\mathrm{kg}\cdot\mathrm K}$ s'écrit $\mathrm{J\cdot kg^{-1}\cdot K^{-1}}$.</p>
+<p class="fragment fade-up"><b>Chaque</b> unité du dénominateur reçoit son propre exposant négatif.</p>
+<p class="fragment fade-up">Écrire «&nbsp;J/kg·K&nbsp;» est ambigu : on lirait $\dfrac{\mathrm J}{\mathrm{kg}}\times\mathrm K$. Avec une barre, on met des <b>parenthèses</b> : $\mathrm{J/(kg\cdot K)}$.</p>
+</div>
+
+---
+
+{{< qcm
+    q=`Que signifie $\mathrm{g\cdot mL^{-1}}$&nbsp;?`
+    a1=`gramme fois millilitre`
+    a2=`gramme par millilitre`
+    a3=`millilitre par gramme`
+    a4=`gramme moins un millilitre`
+    bonne="2"
+    expl=`$\mathrm{mL^{-1}}=\dfrac{1}{\mathrm{mL}}$ : on divise par le millilitre, soit des grammes <b>par</b> millilitre.` >}}
+
+---
+
+{{< qcm
+    q=`Quelle écriture désigne la même unité que $\mathrm{kg/m^3}$&nbsp;?`
+    a1=`$\mathrm{kg\cdot m^{3}}$`
+    a2=`$\mathrm{kg\cdot m^{-3}}$`
+    a3=`$\mathrm{kg^{-1}\cdot m^{3}}$`
+    a4=`$\mathrm{kg\cdot m^{-1}}$`
+    bonne="2"
+    expl=`Le $\mathrm{m^3}$ est sous la barre : il passe en exposant négatif, $\mathrm{m^{-3}}$. Le kg reste en haut, sans changement.` >}}
+
+---
+
+{{< qcm
+    q=`Une fréquence de $50\ \mathrm{s^{-1}}$ signifie&nbsp;:`
+    a1=`un phénomène qui dure 50 s`
+    a2=`50 répétitions chaque seconde (50 Hz)`
+    a3=`50 m parcourus par seconde`
+    a4=`une période de 50 s`
+    bonne="2"
+    expl=`$\mathrm{s^{-1}}=\dfrac{1}{\mathrm s}$ : «&nbsp;par seconde&nbsp;». Le hertz est justement $1\ \mathrm{Hz}=1\ \mathrm{s^{-1}}$.` >}}
+
+---
+
+<h3>Convertir une unité composée</h3>
+
+<ol class="etapes">
+<li class="fragment fade-up"><span class="et-t">Le haut (numérateur)</span><p>On le convertit comme d'habitude : on remplace le préfixe par sa puissance de 10.</p></li>
+<li class="fragment fade-up"><span class="et-t">Le bas (dénominateur)</span><p>On le convertit aussi… mais il agit <b>« à l'envers »</b> : une unité du bas 1000 fois plus petite donne un résultat 1000 fois plus grand.</p></li>
+<li class="fragment fade-up"><span class="et-t">On regroupe et on calcule</span><p>On écrit une seule fraction, avec les puissances de 10 (et, pour le temps, 60 ou 3 600).</p></li>
+</ol>
+
+---
+
+Convertir 72 km/h en m/s
+
+<div class="fragment fade-up">
+
+$$
+\begin{aligned}
+\pu{72 km/h} &= \frac{72\times\pu{10^{3} m}}{\pu{3600 s}}\\\\
+&= \frac{72\\,000\ \mathrm m}{3\\,600\ \mathrm s}\\\\
+&= \pu{20 m/s}
+\end{aligned}
+$$
+
+</div>
+
+<p class="fragment fade-up petit">car $\pu{1 km} = \pu{10^3 m}$ et $\pu{1 h} = \pu{3600 s}$.</p>
+
+---
+
+<div class="carte savoir">
+<span class="ct">À savoir : le facteur 3,6</span>
+<p>$\pu{1 m/s} = \dfrac{10^{-3}\ \mathrm{km}}{\dfrac{1}{3600}\ \mathrm{h}} = \pu{3,6 km/h}$</p>
+<p class="fragment fade-up">Pour passer des <b>m/s</b> aux <b>km/h</b> : on <b>multiplie</b> par 3,6.</p>
+<p class="fragment fade-up">Pour passer des <b>km/h</b> aux <b>m/s</b> : on <b>divise</b> par 3,6. &nbsp;Ex. : $\dfrac{72}{3{,}6}=20$ m/s.</p>
+</div>
+
+---
+
+Convertir 1,0 g/cm$^3$ en kg/m$^3$
+
+<div class="fragment fade-up">
+
+$$
+\begin{aligned}
+\pu{1,0 g/cm3} &= \frac{1{,}0\times\pu{10^{-3} kg}}{\left(\pu{10^{-2} m}\right)^3}\\\\
+&= \frac{1{,}0\times\pu{10^{-3} kg}}{\pu{10^{-6} m^3}}\\\\
+&= 1{,}0\times 10^{-3-(-6)}\ \pu{kg/m3}\\\\
+&= \pu{1,0E3 kg*m-3}
+\end{aligned}
+$$
+
+</div>
+
+<p class="fragment fade-up petit">car $\pu{1 g} = \pu{10^{-3} kg}$ et $\pu{1 cm} = \pu{10^{-2} m}$.</p>
+
+---
+
+<div class="glass">
+<p>Le plus important : <span class="imp">donner du sens</span> au résultat.</p>
+<p class="fragment fade-up">$\pu{1 g/cm3}$ : <b>1 g dans chaque cm$^3$</b>.</p>
+<p class="fragment fade-up">Or $1\ \mathrm{m^3}$ contient $10^{6}\ \mathrm{cm^3}$ : cela fait $10^{6}\ \mathrm g$ dans $1\ \mathrm{m^3}$.</p>
+<p class="fragment fade-up">Et $10^{6}\ \mathrm g = 10^{3}\ \mathrm{kg}$ : $\pu{1 g/cm3} = \pu{1E3 kg/m3}$.</p>
+<p class="fragment fade-up">L'eau pèse donc <b>1 000 kg par m$^3$</b>, soit 1 tonne&nbsp;!</p>
+<p class="fragment fade-up petit">Et comme $\pu{1 mL} = \pu{1 cm3}$ : $\pu{1 g/mL} = \pu{1 g/cm3} = \pu{1E3 kg/m3}$.</p>
+</div>
+
+---
+
+Convertir 0,10 mol/L en mol/m$^3$
+
+<div class="fragment fade-up">
+
+$$
+\begin{aligned}
+\pu{0,10 mol/L} &= \frac{\pu{0,10 mol}}{\pu{10^{-3} m^3}}\\\\
+&= 0{,}10\times 10^{3}\ \pu{mol/m3}\\\\
+&= \pu{1,0E2 mol*m-3}
+\end{aligned}
+$$
+
+</div>
+
+<p class="fragment fade-up petit">car $\pu{1 L} = \pu{1 dm3} = \pu{10^{-3} m3}$.</p>
+
+---
+
+<h3>À vous de jouer</h3>
+
+<div class="sw" data-w="composes"></div>
+
+{{%note%}}
+Les six boutons reprennent les exemples du cours. On peut aussi choisir une autre famille (vitesse, masse par volume, quantité de matière par volume) et changer n'importe quelle unité. Le détail montre : l'écriture avec exposant, la conversion du haut, celle du bas (à l'envers), le passage par les unités SI puis vers l'unité demandée.
+{{%/note%}}
+
+---
+
+{{< qcm
+    q=`$36\ \mathrm{km/h}$ valent&nbsp;:`
+    a1=`$129{,}6\ \mathrm{m/s}$`
+    a2=`$10\ \mathrm{m/s}$`
+    a3=`$36\,000\ \mathrm{m/s}$`
+    a4=`$0{,}6\ \mathrm{m/s}$`
+    bonne="2"
+    expl=`$\dfrac{36\times10^{3}\ \mathrm m}{3600\ \mathrm s}=10\ \mathrm{m/s}$ (ou $36 \div 3{,}6$).` >}}
+
+---
+
+{{< qcm
+    q=`L'éthanol a une masse volumique de $0{,}79\ \mathrm{g/mL}$. En $\mathrm{kg/m^3}$, cela fait&nbsp;:`
+    a1=`$0{,}79\ \mathrm{kg/m^3}$`
+    a2=`$79\ \mathrm{kg/m^3}$`
+    a3=`$790\ \mathrm{kg/m^3}$`
+    a4=`$790\,000\ \mathrm{kg/m^3}$`
+    bonne="3"
+    expl=`$1\ \mathrm{g/mL}=1\ \mathrm{g/cm^3}=10^{3}\ \mathrm{kg/m^3}$, donc $0{,}79\times10^{3}=790\ \mathrm{kg/m^3}$ (moins dense que l'eau).` >}}
+
+---
+
+{{< qcm
+    q=`$0{,}50\ \mathrm{mol\cdot L^{-1}}$ valent, en $\mathrm{mmol\cdot L^{-1}}$&nbsp;:`
+    a1=`$0{,}50$`
+    a2=`$5{,}0\times10^{2}$`
+    a3=`$5{,}0\times10^{-4}$`
+    a4=`$5{,}0\times10^{-1}$`
+    bonne="2"
+    expl=`$1\ \mathrm{mol}=10^{3}\ \mathrm{mmol}$ (le haut) et le litre ne change pas : $0{,}50\times10^{3}=5{,}0\times10^{2}\ \mathrm{mmol\cdot L^{-1}}$.` >}}
+
+{{% /section %}}
+
+---
+
+{{% section %}}
+
+<div class="part-title">
+<i data-part="regles" hidden></i>
+<span class="num">04</span>
 <h2>Rappels des règles avec<br>les puissances de 10</h2>
 <p>Trois règles suffisent</p>
 </div>
@@ -310,7 +528,7 @@ $$
 
 <div class="part-title">
 <i data-part="sci" hidden></i>
-<span class="num">04</span>
+<span class="num">05</span>
 <h2>Notation scientifique</h2>
 <p>Écrire les très grands et les très petits nombres</p>
 </div>
@@ -447,7 +665,7 @@ Deux petites vidéos qui reprennent tout ça :
 
 <div class="part-title">
 <i data-part="og" hidden></i>
-<span class="num">05</span>
+<span class="num">06</span>
 <h2>Ordre de grandeur<br>et puissances de 10</h2>
 <p>Estimer « à la louche »</p>
 </div>
@@ -601,7 +819,7 @@ L'échelle est ici logarithmique : √10 est au milieu, le seuil 5 est en pointi
 
 <div class="part-title">
 <i data-part="cs" hidden></i>
-<span class="num">06</span>
+<span class="num">07</span>
 <h2>Chiffres significatifs</h2>
 <p>Dire la précision d'une mesure</p>
 </div>
@@ -767,10 +985,133 @@ Vidéo riche (un peu trop) sur les cs :
 {{% section %}}
 
 <div class="part-title">
+<i data-part="redac" hidden></i>
+<span class="num">08</span>
+<h2>Rédiger un résultat</h2>
+<p>Ce que l'on écrit vraiment sur la copie</p>
+</div>
+
+---
+
+<h3>Les 5 réflexes</h3>
+
+<ol class="etapes compact">
+<li class="fragment fade-up"><span class="et-t">La formule littérale d'abord</span><p>On écrit la relation avec les symboles : $\rho = \dfrac{m}{V}$.</p></li>
+<li class="fragment fade-up"><span class="et-t">Des unités qui «&nbsp;se parlent&nbsp;»</span><p>On convertit les données <b>avant</b> de calculer (SI, ou unités cohérentes).</p></li>
+<li class="fragment fade-up"><span class="et-t">L'application numérique, unités comprises</span><p>On remplace chaque symbole par sa valeur <b>et</b> son unité.</p></li>
+<li class="fragment fade-up"><span class="et-t">Le calcul, sans arrondir en route</span><p>La calculatrice garde tout en mémoire ; l'arrondi ne vient qu'à la fin.</p></li>
+<li class="fragment fade-up"><span class="et-t">Le résultat arrondi, avec son unité</span><p>Bon nombre de chiffres significatifs, notation scientifique si besoin, unité écrite correctement.</p></li>
+</ol>
+
+---
+
+Un bloc d'aluminium de masse $m=\pu{54,0 g}$ occupe un volume $V=\pu{20,0 cm3}$.
+
+<span class="fragment fade-up">Calculer sa masse volumique $\rho$ en $\pu{kg*m-3}$.</span>
+
+---
+
+<h3>Une rédaction complète</h3>
+
+<div class="copie fragment fade-up"><p><span class="tag">1</span> $\rho = \dfrac{m}{V}$</p></div>
+<div class="copie fragment fade-up"><p><span class="tag">2</span> $m = \pu{54,0 g} = 54{,}0\times10^{-3}\ \mathrm{kg}$ &nbsp; et &nbsp; $V = \pu{20,0 cm3} = 20{,}0\times10^{-6}\ \mathrm{m^3}$</p></div>
+<div class="copie fragment fade-up"><p><span class="tag">3</span> $\rho = \dfrac{54{,}0\times10^{-3}\ \mathrm{kg}}{20{,}0\times10^{-6}\ \mathrm{m^3}}$</p></div>
+<div class="copie fragment fade-up"><p><span class="tag">4</span> <span class="brouillon">2700</span> <span class="petit">au brouillon : on ne l'écrit pas tel quel</span></p></div>
+<div class="copie fragment fade-up"><p><span class="tag">5</span> <span class="resultat">$\rho = 2{,}70\times10^{3}\ \pu{kg*m-3}$</span> <span class="petit">3 chiffres significatifs</span></p></div>
+
+---
+
+<div class="carte methode">
+<span class="ct">Pourquoi $2{,}70\times10^{3}$ et pas $2700$ ?</span>
+<p>Les données ont <b>3 chiffres significatifs</b> : le résultat aussi.</p>
+<p class="fragment fade-up">Mais «&nbsp;2 700&nbsp;» peut avoir 2, 3 ou 4 chiffres significatifs : <b>c'est ambigu</b>.</p>
+<p class="fragment fade-up">La notation scientifique lève le doute : $2{,}70\times10^{3}$ a bien 3 chiffres significatifs.</p>
+</div>
+
+---
+
+<div class="carte ok">
+<span class="ct">Le test du bon sens</span>
+<p>Le résultat est-il plausible ? On le compare à un ordre de grandeur que l'on connaît :</p>
+<p class="fragment fade-up" style="font-size:.8em"><span style="white-space:nowrap">eau : $1{,}0\times10^{3}\ \mathrm{kg\cdot m^{-3}}$</span> &nbsp;·&nbsp; <span style="white-space:nowrap">aluminium : $2{,}7\times10^{3}$</span> &nbsp;·&nbsp; <span style="white-space:nowrap">fer : $7{,}9\times10^{3}$</span></p>
+<p class="fragment fade-up" style="font-size:.8em"><span style="white-space:nowrap">marche : $1{,}4\ \mathrm{m\cdot s^{-1}}$ (5 km/h)</span> &nbsp;·&nbsp; <span style="white-space:nowrap">son : $3{,}4\times10^{2}\ \mathrm{m\cdot s^{-1}}$</span> &nbsp;·&nbsp; <span style="white-space:nowrap">lumière : $3{,}0\times10^{8}\ \mathrm{m\cdot s^{-1}}$</span></p>
+<p class="fragment fade-up petit">Un résultat de $2{,}7\times10^{-3}$ ou de $2{,}7\times10^{6}$ kg·m<sup>−3</sup> doit alerter : une conversion a dérapé.</p>
+</div>
+
+---
+
+<h3>Écrire les unités : symboles (1/2)</h3>
+
+<table class="fix">
+<thead><tr><th>Faux</th><th>Juste</th><th>Pourquoi</th></tr></thead>
+<tbody>
+<tr class="fragment fade-up"><td>5 kms</td><td>5 km</td><td>un symbole n'a jamais de «&nbsp;s&nbsp;» de pluriel</td></tr>
+<tr class="fragment fade-up"><td>2,5 Kg</td><td>2,5 kg</td><td>le préfixe kilo s'écrit k minuscule</td></tr>
+<tr class="fragment fade-up"><td>30 ml</td><td>30 mL</td><td>le litre s'écrit L (majuscule)</td></tr>
+<tr class="fragment fade-up"><td>50 hz</td><td>50 Hz</td><td>nom propre (Hertz, Newton, Joule…) : majuscule</td></tr>
+<tr class="fragment fade-up"><td>3 sec</td><td>3 s</td><td>le symbole de la seconde est s</td></tr>
+</tbody>
+</table>
+
+---
+
+<h3>Écrire les unités : nombres (2/2)</h3>
+
+<table class="fix">
+<thead><tr><th>Faux</th><th>Juste</th><th>Pourquoi</th></tr></thead>
+<tbody>
+<tr class="fragment fade-up"><td>12cm</td><td>12 cm</td><td>une espace entre le nombre et l'unité</td></tr>
+<tr class="fragment fade-up"><td>2.7 kg</td><td>2,7 kg</td><td>en français, la virgule est décimale</td></tr>
+<tr class="fragment fade-up"><td>3 m.s-1</td><td>3 m·s<sup>−1</sup></td><td>exposant en haut, point médian entre unités</td></tr>
+<tr class="fragment fade-up"><td>2,7E3 kg</td><td>2,7 × 10<sup>3</sup> kg</td><td>le «&nbsp;E&nbsp;» est un affichage de calculatrice</td></tr>
+<tr class="fragment fade-up"><td>20°c</td><td>20 °C</td><td>espace, degré, C majuscule</td></tr>
+</tbody>
+</table>
+
+---
+
+{{< qcm
+    q=`La calculatrice affiche <b>3.5E-4</b> pour une longueur en mètres. Sur la copie, on écrit&nbsp;:`
+    a1=`$3{,}5\mathrm{E}{-4}\ \mathrm m$`
+    a2=`$3{,}5\times10^{-4}\ \mathrm m$`
+    a3=`$3{,}5\times10^{4}\ \mathrm m$`
+    a4=`$3{,}5\times4\ \mathrm m$`
+    bonne="2"
+    expl=`«&nbsp;E-4&nbsp;» veut dire «&nbsp;× 10<sup>−4</sup>&nbsp;». Le «&nbsp;E&nbsp;» ne s'écrit pas sur la copie.` >}}
+
+---
+
+{{< qcm
+    q=`Quelle écriture est <b>correcte</b>&nbsp;?`
+    a1=`12.5 Kg`
+    a2=`12,5 kg`
+    a3=`12,5kgs`
+    a4=`12,5 Kgs`
+    bonne="2"
+    expl=`Virgule décimale, espace entre nombre et unité, k minuscule, pas de «&nbsp;s&nbsp;» de pluriel.` >}}
+
+---
+
+{{< qcm
+    q=`Rédaction&nbsp;: $\rho = \dfrac{54{,}0}{20{,}0} = 2{,}7 = 2\,700\ \mathrm{kg\cdot m^{-3}}$<br>Quelle est l'erreur principale&nbsp;?`
+    a1=`la formule est fausse`
+    a2=`les «&nbsp;=&nbsp;» sont faux (unités oubliées)`
+    a3=`il manque une virgule`
+    a4=`il n'y a aucune erreur`
+    bonne="2"
+    expl=`Un «&nbsp;=&nbsp;» doit relier deux écritures <b>égales</b> : $2{,}7\neq2\,700$, et les unités ont disparu en route.` >}}
+
+{{% /section %}}
+
+---
+
+{{% section %}}
+
+<div class="part-title">
 <i data-part="bilan" hidden></i>
 <span class="num">★</span>
 <h2>Bilan : à vous de jouer&nbsp;!</h2>
-<p>6 questions pour vérifier ce que l'on a retenu</p>
+<p>9 questions pour vérifier ce que l'on a retenu</p>
 </div>
 
 ---
@@ -837,6 +1178,39 @@ Vidéo riche (un peu trop) sur les cs :
     a4=`$9{,}26\ \text{J}$`
     bonne="2"
     expl=`La donnée la moins précise est $v$ (2 chiffres significatifs)&nbsp;: $E_c=9{,}3\ \text{J}$.` >}}
+
+---
+
+{{< qcm
+    q=`$\mathrm{J\cdot kg^{-1}\cdot K^{-1}}$ se lit&nbsp;:`
+    a1=`joule fois kilogramme fois kelvin`
+    a2=`joule par kilogramme et par kelvin`
+    a3=`joule par kilogramme fois kelvin`
+    a4=`kilogramme par joule et par kelvin`
+    bonne="2"
+    expl=`Chaque unité à exposant négatif est «&nbsp;sous la barre&nbsp;» : $\dfrac{\mathrm J}{\mathrm{kg}\cdot\mathrm K}$.` >}}
+
+---
+
+{{< qcm
+    q=`$54\ \mathrm{km/h}$ valent, en $\mathrm{m\cdot s^{-1}}$&nbsp;:`
+    a1=`$15$`
+    a2=`$194$`
+    a3=`$54\,000$`
+    a4=`$0{,}015$`
+    bonne="1"
+    expl=`$\dfrac{54\times10^{3}\ \mathrm m}{3600\ \mathrm s}=15\ \mathrm{m\cdot s^{-1}}$ (ou $54\div3{,}6$).` >}}
+
+---
+
+{{< qcm
+    q=`Laquelle de ces écritures est <b>correcte</b> pour une masse volumique&nbsp;?`
+    a1=`$2.7E3\ \mathrm{kg/m3}$`
+    a2=`$2{,}7\times10^{3}\,\mathrm{kg\cdot m^{-3}}$`
+    a3=`$2{,}7\times10^{3}\,\mathrm{kgs\cdot m^{-3}}$`
+    a4=`$2{,}7\times10^{3}$`
+    bonne="2"
+    expl=`Virgule décimale, notation scientifique, unité sans «&nbsp;s&nbsp;», exposant en haut et unité toujours présente.` >}}
 
 {{% /section %}}
 

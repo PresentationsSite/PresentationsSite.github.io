@@ -12,6 +12,8 @@ html[data-part="regles"]      { --acc: #b69cff; --acc2: #ff6fb5; --n1: rgba(150,
 html[data-part="sci"]         { --acc: #ff6fb5; --acc2: #ffc43a; --n1: rgba(255, 90, 170, .26);  --n2: rgba(255, 170, 40, .20); }
 html[data-part="og"]          { --acc: #35e08a; --acc2: #37d6ff; --n1: rgba(53, 224, 138, .24);  --n2: rgba(55, 214, 255, .22); }
 html[data-part="cs"]          { --acc: #5cc8ff; --acc2: #7be0c4; --n1: rgba(60, 170, 255, .26);  --n2: rgba(60, 220, 190, .20); }
+html[data-part="unites"]      { --acc: #ff8f6b; --acc2: #ffd23a; --n1: rgba(255, 120, 80, .28);  --n2: rgba(255, 200, 60, .18); }
+html[data-part="redac"]       { --acc: #e08bff; --acc2: #6fa8ff; --n1: rgba(210, 110, 255, .26); --n2: rgba(70, 150, 255, .20); }
 
 /* ------------------------------------------------------------ décor : exposants qui dérivent */
 body::after {
@@ -184,6 +186,41 @@ body::after {
 .reveal .cs-round { margin-top: .5em; padding: .3em 1em; border-radius: 18px; display: inline-flex; gap: .8em; align-items: center; flex-wrap: wrap; justify-content: center; font-size: .62em; background: var(--glass); border: 1px solid rgba(255, 255, 255, .14); }
 .reveal .cs-round b { color: var(--acc); font-size: 1.15em; }
 
+/* ------------------------------------------------------------ widget : décodeur d'unités composées */
+.reveal .ud { width: 920px; max-width: 100%; margin: 0 auto; text-align: center; }
+.reveal .ud-chips { gap: .3em .45em; font-size: .6em; }
+.reveal .ud-chips .w-btn { padding: .15em .7em; }
+.reveal .ud-card { margin: .25em auto; padding: .35em 1.2em .5em; border-radius: 24px; background: var(--glass); border: 1px solid rgba(255, 255, 255, .14); box-shadow: 0 14px 40px rgba(0, 0, 0, .45), inset 0 1px 0 rgba(255, 255, 255, .12); }
+.reveal .ud-name { font-size: .55em; color: var(--mut); text-transform: uppercase; letter-spacing: .1em; font-weight: 700; }
+.reveal .ud-big { font-size: 1.9em; font-weight: 800; line-height: 1.35; cursor: pointer; transition: filter .35s; }
+.reveal .ud-big.hid { filter: blur(12px); }
+.reveal .ud-hint { font-size: .5em; color: var(--acc); visibility: hidden; margin-top: -.4em; }
+.reveal .ud-rows { display: grid; grid-template-columns: 1fr 1.5fr; gap: .3em 1em; font-size: .68em; margin-top: .4em; }
+.reveal .ud-rows > div { padding: .25em .5em; border-radius: 14px; background: rgba(255, 255, 255, .05); }
+.reveal .ud-rows span { display: block; font-size: .68em; color: var(--mut); text-transform: uppercase; letter-spacing: .08em; }
+.reveal .ud-sens { font-size: .6em; margin-top: .5em; line-height: 1.4; }
+.reveal .ud-sens { transition: filter .35s; } .reveal .ud-sens.hid { filter: blur(8px); }
+.reveal .ud-sens u { text-decoration: none; color: var(--acc); font-weight: 700; }
+.reveal .ud sup, .reveal .uc sup { font-size: .62em; }
+.reveal .dot { color: var(--acc); font-weight: 800; margin: 0 .07em; }
+.reveal .uc .cv-form { font-size: .66em; margin: .1em 0 .3em; }
+.reveal .uc .w-row { margin: .25em 0; }
+.reveal .uc .cv-steps { font-size: .64em; line-height: 1.55; min-height: 0; }
+
+/* ------------------------------------------------------------ tableau « ✗ / ✓ » (écriture des unités) */
+.reveal table.fix { border-collapse: separate; border-spacing: 0 6px; margin: .3em auto; font-size: .92em; }
+.reveal table.fix th { padding: .15em .8em; font-weight: 700; color: var(--mut); text-transform: uppercase; letter-spacing: .08em; font-size: .7em; border: 0; }
+.reveal table.fix td:not(:last-child) { white-space: nowrap; }
+.reveal table.fix td { padding: .3em 1em; border: 0; text-align: center; background: rgba(12, 16, 44, .8); }
+.reveal table.fix td:first-child { color: #ff8a7a; border-radius: 12px 0 0 12px; border-left: 6px solid #ff644e; text-decoration: line-through; text-decoration-color: rgba(255, 100, 78, .7); }
+.reveal table.fix td:nth-child(2) { color: #6af0a6; font-weight: 800; border-left: 2px solid rgba(255, 255, 255, .1); }
+.reveal table.fix td:last-child { text-align: left; font-size: .82em; color: var(--mut); border-radius: 0 12px 12px 0; }
+
+/* copie annotée : une rédaction bien présentée */
+.reveal .copie { display: block; width: 90%; box-sizing: border-box; margin: .25em auto; padding: .22em 1.2em; text-align: left; font-size: .8em; border-radius: 16px; background: rgba(255, 255, 255, .06); border: 1px dashed rgba(255, 255, 255, .35); }
+.reveal .copie .tag { display: inline-block; min-width: 1.5em; margin-right: .5em; text-align: center; font-size: .7em; font-weight: 800; border-radius: 999px; background: var(--acc); color: #0b0d22; }
+.reveal .copie p { margin: .2em 0; }
+
 @media (prefers-reduced-motion: reduce) { body::after { animation: none !important; } }
 
 /* page de titre */
@@ -200,3 +237,8 @@ body::after {
 .reveal .rg-sl { gap: .4em 2.4em; margin: 0 0 .3em; }
 .reveal .rg-card { font-size: .62em; margin: .25em 0; padding: .2em 1em; }
 .reveal .rg .w-note { display: none; }
+
+/* liste d'étapes resserrée (5 réflexes) */
+.reveal ol.etapes.compact > li { margin: .22em 0; padding: .18em .8em .22em 2.7em; font-size: .68em; }
+.reveal ol.etapes.compact > li::before { top: .3em; }
+.reveal ol.etapes.compact p { margin: 0; }
