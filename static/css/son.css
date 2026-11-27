@@ -434,3 +434,20 @@ body.laser-on, body.laser-on .reveal, body.laser-on .reveal * { cursor: none !im
 html, body { overscroll-behavior: none; }
 .reveal .slides { touch-action: none; -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
 .reveal .slides input, .reveal .slides button, .reveal .slides canvas { touch-action: manipulation; }
+
+/* ------------------------------------------------------------ axe du spectre sonore */
+/* L'apparence de base est portée par les attributs du SVG ; ici seulement les animations. */
+.reveal .spec .onde { animation: son-onde var(--dur, 3s) linear infinite; }
+.reveal .spec .o1 { --dur: 4s; } .reveal .spec .o2 { --dur: 1.8s; } .reveal .spec .o3 { --dur: .9s; }
+@keyframes son-onde { to { transform: translateX(calc(var(--lam) * -1)); } }
+.reveal .spec .zone, .reveal .spec .borne, .reveal .spec .axe { transform-box: fill-box; transform-origin: left center; }
+.reveal section.present .spec .axe  { animation: son-spec-fondu .6s .05s both; }
+.reveal section.present .spec .z1   { animation: son-spec-zone .8s .25s cubic-bezier(.22, 1, .36, 1) both; }
+.reveal section.present .spec .z2   { animation: son-spec-zone .8s .65s cubic-bezier(.22, 1, .36, 1) both; }
+.reveal section.present .spec .z3   { animation: son-spec-zone .8s 1.05s cubic-bezier(.22, 1, .36, 1) both; }
+.reveal section.present .spec .b1   { animation: son-spec-fondu .5s 1.0s both; }
+.reveal section.present .spec .b2   { animation: son-spec-fondu .5s 1.4s both; }
+.reveal .spec .z2 rect { filter: drop-shadow(0 0 14px rgba(55, 214, 255, .55)); }
+@keyframes son-spec-zone { from { opacity: 0; transform: scaleX(.2); } to { opacity: 1; transform: none; } }
+@keyframes son-spec-fondu { from { opacity: 0; } to { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .reveal .spec .onde { animation: none; } }
