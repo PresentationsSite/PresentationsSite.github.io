@@ -486,7 +486,7 @@
       var box = $('.w-box', el);
       box.appendChild(cv.c);
       box.insertAdjacentHTML('beforeend',
-        '<div class="w-ctrl long"><span class="w-lab">Fréquence</span><input class="w-range osc-f" type="range" min="0.2" max="2" step="0.05" value="0.5"><span class="w-val osc-v"></span></div>' +
+        '<div class="w-ctrl long"><span class="w-lab">Fréquence</span><input class="w-range osc-f" type="range" min="0.2" max="5" step="0.05" value="0.5"><span class="w-val osc-v"></span></div>' +
         '<div class="w-row"><span class="w-lab">$T=\\dfrac{1}{f}=$</span><span class="w-val osc-t"></span>' + btn('⏸ Pause', '', 'data-p="1"') + '</div>');
       var rng = $('.osc-f', box);
       function aff() { s.f = +rng.value; $('.osc-v', box).textContent = fmt(s.f, 2) + ' Hz'; $('.osc-t', box).textContent = fmt(1 / s.f, 2) + ' s'; }
@@ -527,7 +527,7 @@
 
       // courbe y = sin(2πft) sur la fenêtre
       X.beginPath(); X.lineWidth = 3; X.strokeStyle = C.violet; X.shadowColor = C.violet; X.shadowBlur = 10;
-      for (var i = 0; i <= 300; i++) { var tm = i / 300 * TW, yy = mid - A * Math.sin(2 * Math.PI * f * tm); if (i === 0) X.moveTo(xt(tm), yy); else X.lineTo(xt(tm), yy); }
+      for (var i = 0; i <= 1000; i++) { var tm = i / 1000 * TW, yy = mid - A * Math.sin(2 * Math.PI * f * tm); if (i === 0) X.moveTo(xt(tm), yy); else X.lineTo(xt(tm), yy); }
       X.stroke(); X.shadowBlur = 0;
 
       // période T (accolade rose sous la courbe)
