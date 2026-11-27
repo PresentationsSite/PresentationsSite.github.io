@@ -133,7 +133,7 @@
       var box = $('.w-box', el);
       box.appendChild(cv.c);
       box.insertAdjacentHTML('beforeend',
-        '<div class="w-row"><button type="button" class="gen-play" aria-label="Écouter ou arrêter le son"><span class="gp-ico"></span><span class="gp-lab">Écouter</span><span class="gp-eq"><b></b><b></b><b></b><b></b><b></b></span></button>' +
+        '<div class="w-row gen-info"><button type="button" class="gen-play" aria-label="Écouter ou arrêter le son"><span class="gp-ico"></span><span class="gp-lab">Écouter</span><span class="gp-eq"><b></b><b></b><b></b><b></b><b></b></span></button>' +
         '<span class="gen-big" style="margin-left:.8em"><span class="g-f" style="color:#ffc43a"></span></span>' +
         '<span class="w-lab">$T=\\dfrac{1}{f}=$</span><span class="gen-big g-t" style="color:#ff6fb5"></span><span class="w-lab g-n"></span></div>' +
         '<div class="w-ctrl long"><span class="w-lab">20 Hz</span><input class="w-range g-fr" type="range" min="0" max="1000" value="500" aria-label="Fréquence"><span class="w-lab">20 kHz</span></div>' +
@@ -153,7 +153,16 @@
         $('.g-t', box).textContent = T >= 0.1 ? fmt(T, T < 10 ? 2 : 1) + ' ms' : fmt(T * 1000, 0) + ' µs';
         $('.g-n', box).textContent = note(s.f);
         $('.g-v', box).textContent = s.vol;
+        fitInfo();
       }
+      // la ligne fréquence / période / note ne doit jamais passer à la ligne ni être coupée : on réduit la taille du texte si besoin
+      var info = $('.gen-info', box);
+      function fitInfo() {
+        // seul le texte (pas le bouton) rétrécit : la hauteur de la ligne reste donc constante
+        var f = 1; info.style.setProperty('--fit', f);
+        while (info.scrollWidth > info.clientWidth + 1 && f > 0.55) { f -= 0.02; info.style.setProperty('--fit', f.toFixed(2)); }
+      }
+      s.fitInfo = fitInfo;
       function audio() {
         if (!s.osc) return;
         var ac = SonW.audio(), t = ac.currentTime;
@@ -188,11 +197,13 @@
         }
       });
       setF(440); aff();
-      if (window.MathJax && MathJax.typesetPromise) { var tp = function () { MathJax.typesetPromise([box]).catch(function () { }); }; if (MathJax.startup && MathJax.startup.promise) MathJax.startup.promise.then(tp); else tp(); }
+      if (window.MathJax && MathJax.typesetPromise) { var tp = function () { MathJax.typesetPromise([box]).then(function () { fitInfo(); }, function () { }); }; if (MathJax.startup && MathJax.startup.promise) MathJax.startup.promise.then(tp); else tp(); }
     },
     leave: function (el, I) { I.s.stop(); },
     tick: function (el, I, t, dt) {
-      var s = I.s, x = s.cv.x, W = s.cv.w, H = s.cv.h, mid = H / 2, nP = 3;
+      var s = I.s, x = s.cv.x, W = s.cv.w, H = s.cv.h, mid = H / 2;
+      // nombre de périodes affichées : environ 1,5 à 20 Hz, 8 à 440 Hz, 60 à 20 kHz (progression régulière, pas à l'échelle)
+      var nP = 1.5 * Math.pow(40, Math.log(s.f / 20) / Math.log(1000));
       s.scroll += dt * (s.on ? 0.5 : 0.12);
       x.clearRect(0, 0, W, H);
       // repère
@@ -203,12 +214,12 @@
       // période : repères verticaux pointillés
       var span = W - 40, per = span / nP, ph0 = s.scroll % 1;
       x.setLineDash([3, 6]); x.strokeStyle = 'rgba(255,111,181,.35)'; x.lineWidth = 1;
-      for (var k = 0; k <= nP; k++) { var xx = 30 + (k - ph0) * per; if (xx > 34 && xx < W - 10) { x.beginPath(); x.moveTo(xx, 30); x.lineTo(xx, H - 34); x.stroke(); } }
+      for (var k = 0; k <= Math.ceil(nP) + 1 && per >= 10; k++) { var xx = 30 + (k - ph0) * per; if (xx > 34 && xx < W - 56) { x.beginPath(); x.moveTo(xx, 30); x.lineTo(xx, H - 34); x.stroke(); } }
       x.setLineDash([]);
       // signal
       var A = 66 * s.vol / 100, F = FORMES[s.forme].f;
       x.beginPath(); x.lineWidth = 3.2; x.strokeStyle = C.amber; x.shadowColor = C.amber; x.shadowBlur = 12; x.lineJoin = 'round';
-      for (var px = 32; px <= W - 14; px += 1) {
+      for (var px = 32; px <= W - 56; px += 0.5) {
         var ph = (px - 30) / per + ph0, y = mid - A * F(ph);
         if (px === 32) x.moveTo(px, y); else x.lineTo(px, y);
       }
@@ -216,11 +227,11 @@
       // accolade de la période
       var x1 = 30 + (1 - ph0) * per; if (x1 < 40) x1 += per;
       var x2 = x1 + per;
-      if (x2 < W - 8) {
+      if (x2 < W - 56) {
         x.strokeStyle = C.pink; x.fillStyle = C.pink; x.lineWidth = 2.5;
         var yb = H - 20;
         x.beginPath(); x.moveTo(x1, yb); x.lineTo(x2, yb); x.moveTo(x1, yb - 6); x.lineTo(x1, yb + 6); x.moveTo(x2, yb - 6); x.lineTo(x2, yb + 6); x.stroke();
-        x.font = '800 18px Outfit, sans-serif'; x.textAlign = 'center'; x.fillText('T', (x1 + x2) / 2, yb - 8);
+        if (per >= 16) { x.font = '800 18px Outfit, sans-serif'; x.textAlign = 'center'; x.fillText('T', (x1 + x2) / 2, yb - 8); }
       }
     }
   });

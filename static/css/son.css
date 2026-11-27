@@ -454,3 +454,10 @@ html, body { overscroll-behavior: none; }
 
 /* Fragments « étape » : ne contiennent rien, ils servent seulement à compter les swipes d'une diapo animée */
 .reveal .etape { position: absolute; width: 0; height: 0; overflow: hidden; pointer-events: none; }
+
+/* Générateur : la ligne « fréquence / période / note » reste sur une seule ligne (taille ajustée par le script si besoin) */
+.reveal .gen-info { flex-wrap: nowrap; justify-content: flex-start; white-space: nowrap; width: 860px; max-width: 100%; margin-left: auto; margin-right: auto; overflow: hidden; gap: 0 .5em; padding-left: 1.2em; box-sizing: border-box; } /* bouton fixe à gauche : il ne bouge plus quand le texte change */
+.reveal .gen-info > * { flex: none; }
+.reveal .gen-info .g-f { display: inline-block; min-width: 3.4em; text-align: right; font-variant-numeric: tabular-nums; }
+.reveal .gen-info .gen-big { font-size: calc(1.3em * var(--fit, 1)); }
+.reveal .gen-info .w-lab { font-size: calc(1em * var(--fit, 1)); }
