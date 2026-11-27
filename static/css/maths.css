@@ -1,0 +1,202 @@
+/*
+ * Présentation « Maths » (2nde) : complète le thème de la présentation « Son » (static/css/son.css, chargé avant).
+ *  - décor : exposants et préfixes qui dérivent lentement (à la place des ondes sonores) ;
+ *  - une ambiance de couleurs par partie (attribut data-part sur <html>, posé par js/son/core.js) ;
+ *  - composants : tableaux de préfixes, cartes d'étapes, règle encadrée, widgets interactifs.
+ */
+
+/* ------------------------------------------------------------ ambiances */
+html[data-part="prefixes"]    { --acc: #ffc43a; --acc2: #ff8a5c; --n1: rgba(255, 170, 40, .28);  --n2: rgba(255, 90, 90, .20); }
+html[data-part="conversions"] { --acc: #37d6ff; --acc2: #6f8cff; --n1: rgba(55, 214, 255, .28);  --n2: rgba(60, 100, 255, .24); }
+html[data-part="regles"]      { --acc: #b69cff; --acc2: #ff6fb5; --n1: rgba(150, 110, 255, .30); --n2: rgba(255, 90, 170, .20); }
+html[data-part="sci"]         { --acc: #ff6fb5; --acc2: #ffc43a; --n1: rgba(255, 90, 170, .26);  --n2: rgba(255, 170, 40, .20); }
+html[data-part="og"]          { --acc: #35e08a; --acc2: #37d6ff; --n1: rgba(53, 224, 138, .24);  --n2: rgba(55, 214, 255, .22); }
+html[data-part="cs"]          { --acc: #5cc8ff; --acc2: #7be0c4; --n1: rgba(60, 170, 255, .26);  --n2: rgba(60, 220, 190, .20); }
+
+/* ------------------------------------------------------------ décor : exposants qui dérivent */
+body::after {
+  inset: 0; height: auto; bottom: auto;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='720' height='460' viewBox='0 0 720 460'%3E%3Cg fill='%23ffffff' font-family='Georgia,serif' font-style='italic' font-size='34'%3E%3Ctext x='40' y='70'%3E10%3Ctspan font-size='20' dy='-14'%3E3%3C/tspan%3E%3C/text%3E%3Ctext x='260' y='130'%3E%C2%B5%3C/text%3E%3Ctext x='470' y='60'%3E10%3Ctspan font-size='20' dy='-14'%3E-6%3C/tspan%3E%3C/text%3E%3Ctext x='600' y='190'%3Ek%3C/text%3E%3Ctext x='110' y='230'%3E%C3%97%3C/text%3E%3Ctext x='330' y='280'%3E10%3Ctspan font-size='20' dy='-14'%3E9%3C/tspan%3E%3C/text%3E%3Ctext x='560' y='340'%3En%3C/text%3E%3Ctext x='40' y='380'%3EM%3C/text%3E%3Ctext x='200' y='430'%3E10%3Ctspan font-size='20' dy='-14'%3E-3%3C/tspan%3E%3C/text%3E%3Ctext x='420' y='420'%3EG%3C/text%3E%3Ctext x='650' y='430'%3Ep%3C/text%3E%3C/g%3E%3C/svg%3E");
+  background-size: 720px 460px; background-repeat: repeat; background-position: 0 0;
+  opacity: .055;
+  animation: maths-derive 160s linear infinite;
+}
+@keyframes maths-derive { to { background-position: -720px -460px; } }
+
+/* ------------------------------------------------------------ titres de partie */
+.reveal .part-title .num { font-size: 3.4em; }
+.reveal .part-title .sub2 { color: var(--mut); font-size: .62em; margin-top: .6em; letter-spacing: .02em; }
+
+/* ------------------------------------------------------------ tableaux de préfixes */
+.reveal table.pref { border-collapse: separate; border-spacing: 0 5px; margin: .2em auto; font-size: .68em; font-variant-numeric: tabular-nums; }
+.reveal table.pref th { padding: .15em .7em; font-weight: 600; color: var(--mut); text-transform: uppercase; letter-spacing: .08em; font-size: .72em; }
+.reveal table.pref td { padding: .32em .75em; text-align: center; background: color-mix(in srgb, var(--c) 14%, rgba(12, 16, 44, .85)); border: 0; }
+.reveal table.pref tr > td:first-child { border-left: 6px solid var(--c); border-radius: 12px 0 0 12px; font-weight: 800; text-align: left; font-size: 1.1em; }
+.reveal table.pref tr > td:last-child { border-radius: 0 12px 12px 0; }
+.reveal table.pref .sym { color: var(--c); font-weight: 800; font-size: 1.25em; }
+.reveal table.pref .lu { font-style: italic; opacity: .85; font-size: .9em; }
+.reveal table.pref tr.up { --c: #ffc43a; }
+.reveal table.pref tr.down { --c: #37d6ff; }
+.reveal table.pref td sup { font-size: .6em; }
+
+/* ------------------------------------------------------------ cartes (méthode, piège, à savoir) */
+.reveal .carte {
+  display: block; width: fit-content; max-width: 94%; margin: .45em auto; padding: .35em 1.1em .45em; text-align: left; font-size: .95em;
+  border-radius: 18px; border-left: 7px solid var(--k, var(--acc)); background: color-mix(in srgb, var(--k, var(--acc)) 12%, rgba(12, 16, 44, .82));
+  box-shadow: 0 12px 34px rgba(0, 0, 0, .45), inset 0 1px 0 rgba(255, 255, 255, .1);
+}
+.reveal .carte .ct { display: block; font-weight: 800; color: var(--k, var(--acc)); font-size: .8em; letter-spacing: .06em; text-transform: uppercase; margin-bottom: .15em; }
+.reveal .carte p { margin: .25em 0; }
+.reveal .carte.piege { --k: #ff644e; }
+.reveal .carte.savoir { --k: #ffc43a; }
+.reveal .carte.methode { --k: #37d6ff; }
+.reveal .carte.ok { --k: #35e08a; }
+
+/* règle encadrée */
+.reveal .regle {
+  display: block; width: fit-content; max-width: 92%; margin: .5em auto; padding: .4em 1.3em .5em; text-align: center;
+  border: 3px solid #ff644e; border-radius: 20px; background: rgba(255, 100, 78, .10);
+  box-shadow: 0 0 36px -8px rgba(255, 100, 78, .6), 0 14px 34px rgba(0, 0, 0, .4);
+}
+.reveal .regle .rh { display: block; font-weight: 800; color: #ff8a7a; font-size: .72em; letter-spacing: .06em; text-transform: uppercase; }
+.reveal .regle .rb { display: block; font-size: .95em; margin-top: .2em; }
+.reveal .regle .rw { display: block; font-size: .62em; opacity: .8; margin-top: .3em; font-style: italic; }
+
+/* étapes numérotées */
+.reveal ol.etapes { list-style: none; counter-reset: et; margin: .3em auto; padding: 0; width: 92%; text-align: left; }
+.reveal ol.etapes > li { counter-increment: et; position: relative; margin: .35em 0; padding: .3em .8em .35em 2.7em; border-radius: 16px; background: rgba(12, 16, 44, .8); border: 1px solid rgba(255, 255, 255, .13); font-size: .78em; }
+.reveal ol.etapes > li::before { content: counter(et); position: absolute; left: .55em; top: .45em; width: 1.7em; height: 1.7em; border-radius: 50%; display: grid; place-items: center; font-weight: 800; color: #0b0d22; background: linear-gradient(135deg, var(--acc2), var(--acc)); box-shadow: 0 0 14px -2px var(--acc); }
+.reveal ol.etapes .et-t { display: block; font-weight: 800; color: var(--acc); }
+.reveal ol.etapes p { margin: .15em 0; }
+.reveal .brouillon { padding: 0 .35em; border-radius: .3em; background: rgba(255, 255, 255, .12); font-family: monospace; }
+.reveal .resultat { display: inline-block; padding: .05em .5em; border-radius: 12px; background: rgba(53, 224, 138, .14); border: 1px solid rgba(53, 224, 138, .5); }
+
+/* badges et chiffres significatifs */
+.reveal .badge { display: inline-block; min-width: 1.7em; padding: 0 .5em; border-radius: 999px; background: #35e08a; color: #07210f; font-weight: 800; font-size: .8em; text-align: center; }
+.reveal .badge.min { background: #ff644e; color: #fff; }
+.reveal .cs-y { color: #35e08a; font-weight: 800; }
+.reveal .cs-n { color: #8a90ad; }
+
+/* tableau de conversion des litres */
+.reveal table.unites { border-collapse: collapse; margin: .4em auto; font-size: .9em; font-variant-numeric: tabular-nums; }
+.reveal table.unites th, .reveal table.unites td { min-width: 2.6em; padding: .25em .6em; border: 1px solid rgba(255, 255, 255, .25); text-align: center; }
+.reveal table.unites th { background: rgba(55, 214, 255, .16); color: #7fe3ff; }
+.reveal table.unites td { font-weight: 800; font-size: 1.2em; }
+.reveal table.unites .u0 { background: rgba(255, 196, 58, .22); color: #ffd978; }
+
+/* ------------------------------------------------------------ widget : explorateur de préfixes */
+.reveal .pf { width: 920px; max-width: 100%; margin: 0 auto; }
+.reveal .pf-row { display: flex; gap: 6px; justify-content: center; align-items: flex-end; margin: .3em 0 .1em; }
+.reveal .pf-chip {
+  --c: #8a90ad; flex: 1 1 0; min-width: 0; padding: .32em 0 .28em; border-radius: 14px; text-align: center; cursor: pointer; font: inherit; color: var(--txt);
+  font-weight: 800; font-size: .72em; line-height: 1.05; background: rgba(255, 255, 255, .06); border: 2px solid rgba(255, 255, 255, .16);
+  transition: transform .25s var(--ease), background .25s, border-color .25s, box-shadow .25s;
+}
+.reveal .pf-chip small { display: block; font-weight: 400; font-size: .56em; opacity: .75; margin-top: .15em; }
+.reveal .pf-chip.up { --c: #ffc43a; } .reveal .pf-chip.down { --c: #37d6ff; }
+.reveal .pf-chip.minor { font-weight: 600; font-style: italic; opacity: .8; font-size: .66em; }
+.reveal .pf-chip:hover { border-color: var(--c); }
+.reveal .pf-chip.sel { transform: translateY(-8px) scale(1.1); background: color-mix(in srgb, var(--c) 24%, transparent); border-color: var(--c); box-shadow: 0 0 26px -2px var(--c); opacity: 1; }
+.reveal .pf-axis { height: 6px; margin: .5em 4% .2em; border-radius: 6px; background: linear-gradient(90deg, #ffc43a, #8a90ad 50%, #37d6ff); opacity: .6; position: relative; }
+.reveal .pf-axis i { position: absolute; top: -7px; width: 20px; height: 20px; margin-left: -10px; border-radius: 50%; background: #fff; border: 4px solid var(--acc); box-shadow: 0 0 16px var(--acc); transition: left .45s var(--ease); }
+.reveal .pf-axl { display: flex; justify-content: space-between; margin: 0 4%; font-size: .45em; color: var(--mut); }
+.reveal .pf-detail { display: flex; align-items: center; justify-content: center; gap: 1em; margin-top: .5em; padding: .4em 1em; border-radius: 22px; background: var(--glass); border: 1px solid rgba(255, 255, 255, .14); text-align: left; min-height: 3.6em; box-shadow: 0 14px 40px rgba(0, 0, 0, .45); }
+.reveal .pf-big { font-size: 2.3em; font-weight: 800; line-height: 1; min-width: 1.3em; text-align: center; color: var(--c, var(--acc)); text-shadow: 0 0 22px var(--c, var(--acc)); }
+.reveal .pf-txt { font-size: .72em; line-height: 1.35; }
+.reveal .pf-txt b { color: var(--c, var(--acc)); }
+.reveal .pf-fact { font-size: 1.15em; font-weight: 800; }
+
+/* ------------------------------------------------------------ widget : convertisseur */
+.reveal .cv { width: 900px; max-width: 100%; margin: 0 auto; text-align: center; }
+.reveal .cv-form { display: flex; flex-wrap: wrap; gap: .3em .5em; align-items: center; justify-content: center; font-size: .72em; margin: .2em 0 .5em; }
+.reveal .cv-form input, .reveal .cv-form select {
+  font: inherit; color: #fff; background: rgba(255, 255, 255, .09); border: 2px solid rgba(255, 255, 255, .25); border-radius: 12px; padding: .15em .45em; outline: none;
+}
+.reveal .cv-form input { width: 3.8em; text-align: center; font-weight: 800; color: var(--acc); }
+.reveal .cv-form select option { color: #111; }
+.reveal .cv-form input:focus, .reveal .cv-form select:focus { border-color: var(--acc); }
+.reveal .cv-steps { text-align: left; width: fit-content; max-width: 100%; margin: 0 auto; padding: .45em 1.1em; border-radius: 20px; background: var(--glass); border: 1px solid rgba(255, 255, 255, .14); font-size: .74em; line-height: 1.7; min-height: 6.2em; box-shadow: 0 14px 40px rgba(0, 0, 0, .45); }
+.reveal .cv-steps .ln { display: block; animation: son-rise .45s var(--ease) both; }
+.reveal .cv-steps .ln:nth-child(2) { animation-delay: .25s; } .reveal .cv-steps .ln:nth-child(3) { animation-delay: .5s; } .reveal .cv-steps .ln:nth-child(4) { animation-delay: .75s; }
+.reveal .cv-steps .why { color: var(--mut); font-size: .8em; font-style: italic; }
+.reveal .cv-steps .res { display: inline-block; padding: 0 .55em; border-radius: 12px; background: rgba(53, 224, 138, .16); border: 1px solid rgba(53, 224, 138, .55); font-weight: 800; }
+.reveal .cv-steps sup { font-size: .62em; }
+.reveal .e-neg { color: #7fe3ff; } .reveal .e-pos { color: #ffc43a; }
+
+/* ------------------------------------------------------------ widget : règles des puissances */
+.reveal .rg { width: 900px; max-width: 100%; margin: 0 auto; }
+.reveal .rg-sl { display: flex; justify-content: center; gap: 2.2em; font-size: .62em; margin: .1em 0 .5em; flex-wrap: wrap; }
+.reveal .rg-sl label { display: flex; align-items: center; gap: .6em; }
+.reveal .rg-sl .v { min-width: 1.6em; font-weight: 800; color: var(--acc); font-size: 1.2em; font-variant-numeric: tabular-nums; }
+.reveal .rg-card { display: block; margin: .35em 0; padding: .3em 1em; border-radius: 18px; text-align: center; font-size: .74em; color: #fff; box-shadow: 0 10px 28px rgba(0, 0, 0, .45), inset 0 1px 0 rgba(255, 255, 255, .25); background: linear-gradient(160deg, var(--f1), var(--f2)); }
+.reveal .rg-card.b { --f1: #1d93d6; --f2: #00629f; }
+.reveal .rg-card.r { --f1: #ff7a66; --f2: #d9402b; }
+.reveal .rg-card.g { --f1: #2fcb16; --f2: #138a00; }
+.reveal .rg-card .eq { display: block; font-weight: 800; font-size: 1.15em; line-height: 1.5; }
+.reveal .rg-card .dec { display: block; font-size: .8em; opacity: .92; }
+.reveal .rg-card .op { color: #fff3a0; text-shadow: 0 0 10px rgba(255, 243, 160, .9); }
+.reveal .rg-card sup { font-size: .62em; }
+
+/* ------------------------------------------------------------ widget : virgule qui glisse (notation scientifique) */
+.reveal .vg { width: 900px; max-width: 100%; margin: 0 auto; text-align: center; }
+.reveal .vg-pre { display: flex; flex-wrap: wrap; gap: .3em .5em; justify-content: center; margin: .15em 0 .35em; font-size: .62em; }
+.reveal .vg-num { font-size: 2.2em; font-weight: 800; letter-spacing: .04em; font-variant-numeric: tabular-nums; min-height: 1.35em; padding: .05em .4em; border-radius: 20px; display: inline-block; background: var(--glass); border: 2px solid rgba(255, 255, 255, .16); transition: border-color .3s, box-shadow .3s; }
+.reveal .vg-num.ok { border-color: #35e08a; box-shadow: 0 0 34px -4px #35e08a; }
+.reveal .vg-num .d0 { color: #8a90ad; }
+.reveal .vg-num .d1 { color: var(--acc); text-shadow: 0 0 16px var(--acc); }
+.reveal .vg-num .pt { color: #ffc43a; display: inline-block; animation: son-pop .4s cubic-bezier(.34, 1.56, .64, 1); text-shadow: 0 0 14px #ffc43a; }
+.reveal .vg-eq { font-size: .9em; margin: .2em 0; font-variant-numeric: tabular-nums; }
+.reveal .vg-eq .n { color: #ff6fb5; font-weight: 800; }
+.reveal .vg-msg { min-height: 1.5em; font-size: .6em; color: var(--mut); }
+.reveal .vg-msg.bon { color: #35e08a; font-weight: 800; }
+
+/* ------------------------------------------------------------ widget : ordre de grandeur */
+.reveal .og { width: 900px; max-width: 100%; margin: 0 auto; text-align: center; }
+.reveal .og-top { font-size: 1.5em; font-weight: 800; margin: .1em 0; font-variant-numeric: tabular-nums; }
+.reveal .og-bar { position: relative; height: 64px; margin: .6em 3% .2em; border-radius: 16px; overflow: hidden; display: flex; box-shadow: 0 10px 30px rgba(0, 0, 0, .45); }
+.reveal .og-zone { display: grid; place-items: center; font-size: .52em; line-height: 1.2; font-weight: 600; transition: flex-basis .5s var(--ease); }
+.reveal .og-lo { background: linear-gradient(135deg, #1d93d6, #3a5cff); } .reveal .og-hi { background: linear-gradient(135deg, #ff9a2e, #ff4d6d); }
+.reveal .og-cur { position: absolute; top: 0; bottom: 0; width: 4px; margin-left: -2px; background: #fff; box-shadow: 0 0 14px #fff; transition: left .25s var(--ease); }
+.reveal .og-cur::after { content: attr(data-v); position: absolute; top: -1.7em; left: 50%; transform: translateX(-50%); font-size: .55em; font-weight: 800; background: #fff; color: #111; padding: 0 .5em; border-radius: 8px; }
+.reveal .og-thr { position: absolute; top: 0; bottom: 0; width: 0; border-left: 3px dashed rgba(255, 255, 255, .85); transition: left .5s var(--ease); }
+.reveal .og-ticks { position: relative; height: 1.3em; margin: 0 3%; font-size: .5em; color: var(--mut); }
+.reveal .og-ticks span { position: absolute; transform: translateX(-50%); transition: left .5s var(--ease); }
+.reveal .og-ctrl { display: flex; justify-content: center; align-items: center; gap: .6em 1.4em; flex-wrap: wrap; font-size: .58em; margin: .3em 0; }
+.reveal .og-ctrl select { font: inherit; color: #fff; background: rgba(255, 255, 255, .09); border: 2px solid rgba(255, 255, 255, .25); border-radius: 10px; padding: .1em .4em; }
+.reveal .og-ctrl select option { color: #111; }
+.reveal .og-res { display: flex; justify-content: center; gap: 1em; flex-wrap: wrap; font-size: .8em; margin-top: .3em; }
+.reveal .og-pill { padding: .1em .9em; border-radius: 999px; font-weight: 800; border: 2px solid var(--p); color: var(--p); background: color-mix(in srgb, var(--p) 14%, transparent); }
+.reveal .og-pill small { display: block; font-weight: 400; font-size: .55em; color: var(--mut); }
+.reveal .og-pill.lo { --p: #4aa8ff; } .reveal .og-pill.hi { --p: #ffa23a; }
+.reveal .og-pill.diff { box-shadow: 0 0 24px -2px var(--p); }
+.reveal .og-note { font-size: .5em; min-height: 2.4em; color: var(--mut); }
+
+/* ------------------------------------------------------------ widget : chiffres significatifs */
+.reveal .cs { width: 900px; max-width: 100%; margin: 0 auto; text-align: center; }
+.reveal .cs-pre { display: flex; flex-wrap: wrap; gap: .3em .5em; justify-content: center; font-size: .6em; margin: .1em 0 .4em; }
+.reveal .cs-in { font: inherit; font-size: .8em; text-align: center; width: 9em; color: var(--acc); font-weight: 800; background: rgba(255, 255, 255, .09); border: 2px solid rgba(255, 255, 255, .25); border-radius: 12px; padding: .1em .4em; outline: none; }
+.reveal .cs-in:focus { border-color: var(--acc); }
+.reveal .cs-show { font-size: 2.1em; font-weight: 800; letter-spacing: .05em; margin: .2em 0; min-height: 1.3em; font-variant-numeric: tabular-nums; }
+.reveal .cs-show .pw { color: #8a90ad; font-size: .6em; letter-spacing: 0; }
+.reveal .cs-count { font-size: .9em; margin: .1em 0 .2em; }
+.reveal .cs-count .badge { font-size: 1.2em; }
+.reveal .cs-msg { font-size: .58em; min-height: 1.6em; color: var(--mut); }
+.reveal .cs-round { margin-top: .5em; padding: .3em 1em; border-radius: 18px; display: inline-flex; gap: .8em; align-items: center; flex-wrap: wrap; justify-content: center; font-size: .62em; background: var(--glass); border: 1px solid rgba(255, 255, 255, .14); }
+.reveal .cs-round b { color: var(--acc); font-size: 1.15em; }
+
+@media (prefers-reduced-motion: reduce) { body::after { animation: none !important; } }
+
+/* page de titre */
+.reveal .hero h1 { font-size: 2.1em; line-height: 1.1; }
+.reveal .hero .sub { font-size: .9em; }
+/* deux cartes côte à côte (aires / volumes) */
+.reveal .duo { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; width: 96%; margin: .3em auto; align-items: stretch; }
+.reveal .duo .carte { margin: 0; width: auto; max-width: none; font-size: .72em; }
+
+/* exposants des widgets : relevés explicitement (le « super » par défaut passait trop bas dans certaines cartes) */
+.reveal .sw sup { vertical-align: baseline; position: relative; top: -.5em; line-height: 0; }
+/* règles des puissances : tout tient sur la diapo */
+.reveal .rg-sl input.w-range { width: 260px; }
+.reveal .rg-sl { gap: .4em 2.4em; margin: 0 0 .3em; }
+.reveal .rg-card { font-size: .62em; margin: .25em 0; padding: .2em 1em; }
+.reveal .rg .w-note { display: none; }

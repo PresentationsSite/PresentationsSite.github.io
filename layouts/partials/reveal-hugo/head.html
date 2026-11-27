@@ -9,6 +9,10 @@
 {{- with .Param "son_css" }}
 <link rel="stylesheet" href="{{ . | relURL }}?v={{ now.Unix }}">
 {{- end }}
+{{- /* Feuille de style complémentaire (présentation « Maths »), chargée après la précédente. */ -}}
+{{- with .Param "maths_css" }}
+<link rel="stylesheet" href="{{ . | relURL }}?v={{ now.Unix }}">
+{{- end }}
 {{- /* Thème « noir moderne » : script de mise en valeur des questions. */ -}}
 {{- with .Param "reveal_hugo.custom_css" -}}
 {{- if in (printf "%v" .) "noir-moderne" }}

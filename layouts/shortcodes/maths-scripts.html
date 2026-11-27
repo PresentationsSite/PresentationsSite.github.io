@@ -1,0 +1,8 @@
+{{- /*
+  Shortcode : maths-scripts  (présentation « Maths »)
+  Charge le noyau commun (votes, boîte à outils, mise en page stable) puis les widgets de la présentation,
+  avec un numéro de version qui change à chaque construction du site (pas de vieux fichiers en cache).
+    {{< maths-scripts >}}
+*/ -}}
+<script src="{{ "js/son/core.js" | relURL }}?v={{ now.Unix }}"></script>
+<script src="{{ "js/maths/widgets.js" | relURL }}?v={{ now.Unix }}"></script>

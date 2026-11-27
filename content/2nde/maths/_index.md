@@ -1,135 +1,113 @@
 +++
 title = "Maths"
 outputs = ["Reveal"]
+son_css = "css/son.css"
+maths_css = "css/maths.css"
 [reveal_hugo]
 theme = "black"
-custom_css = "css/noir-moderne.css"
 highlight_theme = "atom-one-dark-reasonable"
-
 +++
 
+<!--
+  Présentation « Maths et expressions numériques » (2nde), dans le style de « Son ».
+  Style    : static/css/son.css (socle commun) + static/css/maths.css (ambiances, composants, widgets)
+  Scripts  : static/js/son/core.js (votes aux doigts, boîte à outils, mise en page stable)
+             static/js/maths/widgets.js (widgets) ; chargés par le shortcode maths-scripts
+  Widgets  : <div class="sw" data-w="echelle|convertir|regles|virgule|og|cs"></div>
+  Votes    : shortcode qcm (touches 1-4 ou clic = un vote ; → = correction)
+  Contenu  : les diapos d'origine + le détail des blocs repliables de la page « entraînement »
+             (coursphychi.github.io/2nde/entrainement).
+-->
 
-<style>
-img {border: none !important}
-
-.imp {font-weight:bold;color:#00A2FF;}
-
-span {font-weight:normal;color:white;}
-
-ul {
-margin-left: auto;
-margin-right: auto;
-text-align: left;
-width: fit-content;
-list-style-position: inside;
-}
-
-ul li {
-text-indent: -1em;
-padding-left: 1em;
-}
-
-td {
-text-align: center !important;
-}
-
-th:not(:last-child), td:not(:last-child) { border-right: 1px solid #00A2FF; }
-</style>
-
-
-## Maths et expressions numériques<br>en sciences physiques
+<div class="hero">
+<div class="eq"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+<h1>Maths et expressions numériques</h1>
+<p class="sub">en sciences physiques</p>
+<p class="hint">préfixes · puissances de 10 · notation scientifique · ordres de grandeur · chiffres significatifs<br>↓ sous-parties &nbsp;·&nbsp; 🎲 ⏱️ 🔴 boîte à outils en bas à gauche</p>
+</div>
 
 ---
 
 {{% section %}}
 
-## Multiples et sous-multiples
+<div class="part-title">
+<i data-part="prefixes" hidden></i>
+<span class="num">01</span>
+<h2>Multiples et<br>sous-multiples</h2>
+<p>Pour remplacer les puissances de 10</p>
+</div>
 
-Pour remplacer les puissances de 10
+---
+
+<div class="glass">
+<p>Un préfixe n'est qu'un <span class="imp">facteur multiplicatif</span><br>collé devant l'unité.</p>
+<p class="fragment fade-up">«&nbsp;<span class="imp">kilo</span>&nbsp;» veut dire «&nbsp;$\times\,10^{3}$&nbsp;»,<br>«&nbsp;<span class="imp">milli</span>&nbsp;» veut dire «&nbsp;$\times\,10^{-3}$&nbsp;».</p>
+<p class="fragment fade-up">Convertir, c'est donc<br><span class="imp">remplacer le préfixe par sa puissance de 10</span>.</p>
+</div>
+
+---
+
+<h3>Explorez l'échelle des préfixes</h3>
+
+<div class="sw" data-w="echelle"></div>
+
+{{%note%}}
+Cliquer sur un préfixe pour voir son facteur, comment il se lit et un exemple ; « Visite guidée » les parcourt du femto au péta. Les préfixes en italique (hecto, déca, déci, centi) servent surtout dans la vie courante.
+{{%/note%}}
 
 ---
 
 ### les multiples :
 
----
-
-<table style="color:#00A2FF">
-<thead>
-<tr>
-<th>multiple</th><th>abréviation</th><th>puissance de 10</th>
-</tr>
-</thead>
+<table class="pref">
+<thead><tr><th>Préfixe</th><th>Symbole</th><th>Facteur</th><th>Se lit</th><th>Exemple</th></tr></thead>
 <tbody>
-<tr>
-<td>kilo</td>
-<td>k</td>
-<td ><span class="fragment">$10^3$</span></td>
-</tr>
-<tr>
-<td ><span class="fragment">méga</span></td>
-<td ><span class="fragment">M</span></td>
-<td>$10^6$</td>
-</tr>
-<tr>
-<td ><span class="fragment">giga</span></td>
-<td ><span class="fragment">G</span></td>
-<td>$10^9$</td>
-</tr>
-<tr>
-<td><span class="fragment">téra</span></td>
-<td ><span class="fragment">T</span></td>
-<td>$10^{12}$</td>
-</tr>
-<tr>
-<td><span class="fragment">péta</span></td>
-<td ><span class="fragment">P</span></td>
-<td>$10^{15}$</td>
-</tr>
+<tr class="up"><td>kilo</td><td class="sym">k</td><td>$10^{3}$</td><td class="lu">mille</td><td>$\pu{1 kg} = \pu{1E3 g}$</td></tr>
+<tr class="up fragment fade-up"><td>méga</td><td class="sym">M</td><td>$10^{6}$</td><td class="lu">million</td><td>$\pu{1 MJ} = \pu{1E6 J}$</td></tr>
+<tr class="up fragment fade-up"><td>giga</td><td class="sym">G</td><td>$10^{9}$</td><td class="lu">milliard</td><td>$\pu{1 GW} = \pu{1E9 W}$</td></tr>
+<tr class="up fragment fade-up"><td>téra</td><td class="sym">T</td><td>$10^{12}$</td><td class="lu">mille milliards</td><td>$\pu{1 Ts} = \pu{1E12 s}$</td></tr>
+<tr class="up fragment fade-up"><td>péta</td><td class="sym">P</td><td>$10^{15}$</td><td class="lu">million de milliards</td><td>$\pu{1 PV} = \pu{1E15 V}$</td></tr>
 </tbody>
 </table>
-
 
 ---
 
 ### les sous-multiples :
 
+<table class="pref">
+<thead><tr><th>Préfixe</th><th>Symbole</th><th>Facteur</th><th>Se lit</th><th>Exemple</th></tr></thead>
+<tbody>
+<tr class="down"><td>milli</td><td class="sym">m</td><td>$10^{-3}$</td><td class="lu">millième</td><td>$\pu{1 ms} = \pu{1E-3 s}$</td></tr>
+<tr class="down fragment fade-up"><td>micro</td><td class="sym">μ</td><td>$10^{-6}$</td><td class="lu">millionième</td><td>$\pu{1 μW} = \pu{1E-6 W}$</td></tr>
+<tr class="down fragment fade-up"><td>nano</td><td class="sym">n</td><td>$10^{-9}$</td><td class="lu">milliardième</td><td>$\pu{1 ng} = \pu{1E-9 g}$</td></tr>
+<tr class="down fragment fade-up"><td>pico</td><td class="sym">p</td><td>$10^{-12}$</td><td class="lu">millième de milliardième</td><td>$\pu{1 pJ} = \pu{1E-12 J}$</td></tr>
+<tr class="down fragment fade-up"><td>femto</td><td class="sym">f</td><td>$10^{-15}$</td><td class="lu">millionième de milliardième</td><td>$\pu{1 fm} = \pu{1E-15 m}$</td></tr>
+</tbody>
+</table>
 
 ---
 
-<table style="color:#00A2FF">
-<thead>
-<tr>
-<th>sous-multiple</th><th>abréviation</th><th>puissance de 10</th>
-</tr>
-</thead>
+<p>Les préfixes qui vont <span class="imp">de mille en mille</span><br>(puissances de 10 multiples de 3) sont<br>les plus utilisés en sciences.</p>
+
+<p class="fragment fade-up petit">Quatre autres servent surtout dans la vie courante :</p>
+
+<table class="pref fragment fade-up">
 <tbody>
-<tr>
-<td>milli</td>
-<td>m</td>
-<td ><span class="fragment">$10^{-3}$</span></td>
-</tr>
-<tr>
-<td ><span class="fragment">micro</span></td>
-<td ><span class="fragment">μ</span></td>
-<td>$10^{-6}$</td>
-</tr>
-<tr>
-<td ><span class="fragment">nano</span></td>
-<td ><span class="fragment">n</span></td>
-<td>$10^{-9}$</td>
-</tr>
-<tr>
-<td><span class="fragment">pico</span></td>
-<td ><span class="fragment">p</span></td>
-<td>$10^{-12}$</td>
-</tr>
-<tr>
-<td><span class="fragment">femto</span></td>
-<td ><span class="fragment">f</span></td>
-<td>$10^{-15}$</td>
-</tr>
+<tr class="up"><td>hecto</td><td class="sym">h</td><td>$10^{2}$</td><td class="lu">cent</td><td>$\pu{1 hL} = \pu{1E2 L}$</td></tr>
+<tr class="up"><td>déca</td><td class="sym">da</td><td>$10^{1}$</td><td class="lu">dix</td><td>$\pu{1 dam} = \pu{1E1 m}$</td></tr>
+<tr class="down"><td>déci</td><td class="sym">d</td><td>$10^{-1}$</td><td class="lu">dixième</td><td>$\pu{1 dL} = \pu{1E-1 L}$</td></tr>
+<tr class="down"><td>centi</td><td class="sym">c</td><td>$10^{-2}$</td><td class="lu">centième</td><td>$\pu{1 cm} = \pu{1E-2 m}$</td></tr>
 </tbody>
 </table>
+
+---
+
+<div class="carte methode">
+<span class="ct">La méthode : remplacer le préfixe</span>
+<p>$\pu{4,7 km} = 4{,}7\times 10^{3}\ \mathrm{m} = \pu{4,7E3 m}$</p>
+<p class="fragment fade-up">$\pu{250 mL} = 250\times 10^{-3}\ \mathrm{L} = \pu{0,250 L}$</p>
+<p class="fragment fade-up">Dans l'autre sens, on fait apparaître la puissance de 10 du préfixe voulu :<br>$\pu{5,8E-7 m} = 580\times 10^{-9}\ \mathrm{m} = \pu{580 nm}$</p>
+</div>
 
 {{% /section %}}
 
@@ -137,7 +115,12 @@ Pour remplacer les puissances de 10
 
 {{% section %}}
 
-## Conversions :
+<div class="part-title">
+<i data-part="conversions" hidden></i>
+<span class="num">02</span>
+<h2>Conversions</h2>
+<p>Remplacer, calculer, vérifier</p>
+</div>
 
 ---
 
@@ -173,17 +156,47 @@ $$
 
 ---
 
-Combien y a-t-il de $\text{mm}^3$ dans $\pu{1 m^3}$ ?
+<h3>À vous de jouer</h3>
 
-<ol class="vote">
-<li class="fragment">$10^3$</li>
-<li class="fragment">$10^6$</li>
-<li class="fragment juste">$10^9$</li>
-<li class="fragment">$10^{12}$</li>
-</ol>
-<div class="fragment revele"></div>
+<div class="sw" data-w="convertir"></div>
 
-<p class="fragment fade-up">$\pu{1 m^3} = \left(10^3\ \text{mm}\right)^3 = 10^9\ \text{mm}^3$</p>
+{{%note%}}
+Les cinq boutons reprennent les exemples du cours (34 pm → km, 34 µg → fg, 34 m³ → nm³, 34 nm² → µm²) et un exemple en litres. Changer le préfixe, l'unité ou la puissance pour voir le détail du calcul.
+{{%/note%}}
+
+---
+
+<h3>Aires et volumes : attention aux exposants</h3>
+
+<div class="duo">
+<div class="carte methode fragment fade-up">
+<span class="ct">Aires : on élève au carré</span>
+$\begin{aligned}\pu{1 dm2} &= \pu{1 dm}\times\pu{1 dm}\\ &= \pu{10^2 mm}\times\pu{10^2 mm}\\ &= \left(10^2\right)^2\ \pu{mm2}\\ &= \pu{1E4 mm2}\end{aligned}$
+</div>
+<div class="carte savoir fragment fade-up">
+<span class="ct">Volumes : on élève au cube</span>
+$\begin{aligned}\pu{1 dm3} &= \pu{1 dm}\times\pu{1 dm}\times\pu{1 dm}\\ &= \pu{10^2 mm}\times\pu{10^2 mm}\times\pu{10^2 mm}\\ &= \left(10^2\right)^3\ \pu{mm3}\\ &= \pu{1E6 mm3}\end{aligned}$
+</div>
+</div>
+
+---
+
+<div class="glass">
+<p>L'idée : entre dm et mm, les <span class="imp">longueurs</span> sont multipliées par $10^2$.</p>
+<p class="fragment fade-up">Une <span class="imp" style="color:#FFD932">aire</span> est une longueur $\times$ une longueur :<br>elle est multipliée par $\left(10^2\right)^2$.</p>
+<p class="fragment fade-up">Un <span class="imp" style="color:#FF644E">volume</span> est longueur $\times$ longueur $\times$ longueur :<br>il est multiplié par $\left(10^2\right)^3$.</p>
+</div>
+
+---
+
+{{< qcm
+    q=`Combien y a-t-il de $\mathrm{mm}^3$ dans $1\ \mathrm{m}^3$&nbsp;?`
+    a1=`$10^3$`
+    a2=`$10^6$`
+    a3=`$10^9$`
+    a4=`$10^{12}$`
+    bonne="3"
+    expl=`$1\ \mathrm{m}^3 = \left(10^3\ \mathrm{mm}\right)^3 = 10^9\ \mathrm{mm}^3$` >}}
 
 ---
 
@@ -221,22 +234,32 @@ $$
 
 </div>
 
-{{% /section %}}
+---
+
+<div class="carte piege">
+<span class="ct">⚠ Piège classique</span>
+<p>$\pu{1 m2}$ ne vaut <b>pas</b> $\pu{100 cm2}$ !</p>
+<p class="fragment fade-up">Le facteur $10^2$ des longueurs doit être élevé au carré :<br>$\pu{1 m2} = \left(10^2\right)^2\ \pu{cm2} = \pu{1E4 cm2}$.</p>
+</div>
 
 ---
 
-{{% section %}}
+<h3>Le tableau de conversion des litres</h3>
 
-## Rappels des règles avec<br>les puissances de 10 :
+<table class="unites">
+<thead><tr><th>hL</th><th>daL</th><th class="u0">L</th><th>dL</th><th>cL</th><th>mL</th></tr></thead>
+<tbody><tr><td></td><td></td><td class="u0">1</td><td class="fragment fade-up">0</td><td class="fragment fade-up">0</td><td class="fragment fade-up">0</td></tr></tbody>
+</table>
+
+<p class="fragment fade-up petit">Chaque colonne vers la droite correspond à un facteur 10.<br>On lit : $\pu{1 L = 10 dL = 100 cL = 1000 mL}$,<br>et de même $\pu{1 hL = 100 L}$.</p>
 
 ---
 
-<div style="margin:auto; background-color:#0076BA; padding:20px 60px; width:fit-content; color:white; border-radius:10px; font-size:1.2em;">
-$10^a\times10^b=$ <span class="fragment"> $10^{a\color{#FF644E}+\color{white}b}$ </span>
-
-$\displaystyle 10^a/10^b=\frac{10^a}{10^b}=$ <span class="fragment"> $10^{a\color{#FF644E}-\color{white}b}$ </span>
-
-$\left(10^a\right)^b=$ <span class="fragment"> $10^{a\color{#FF644E}\times\color{white}b}$ </span>
+<div class="carte savoir">
+<span class="ct">À savoir</span>
+<p>$\pu{1 L} = \pu{1 dm3}$, et donc (en divisant par 1000) $\pu{1 mL} = \pu{1 cm3}$.</p>
+<p class="fragment fade-up">Un <b>are</b> est l'aire d'un carré de $\pu{10 m}$ de côté :<br>$\pu{1 a} = \pu{10 m}\times\pu{10 m} = \pu{1E2 m2}$.</p>
+<p class="fragment fade-up">Un <b>hectare</b> vaut 100 ares, soit un carré de $\pu{100 m}$ de côté :<br>$\pu{1 ha} = \pu{100 m}\times\pu{100 m} = \pu{1E4 m2}$.</p>
 </div>
 
 {{% /section %}}
@@ -245,7 +268,52 @@ $\left(10^a\right)^b=$ <span class="fragment"> $10^{a\color{#FF644E}\times\color
 
 {{% section %}}
 
-## Notation scientifique
+<div class="part-title">
+<i data-part="regles" hidden></i>
+<span class="num">03</span>
+<h2>Rappels des règles avec<br>les puissances de 10</h2>
+<p>Trois règles suffisent</p>
+</div>
+
+---
+
+<div class="fcard b" style="padding:.35em 1.5em;">
+<p>$10^a\times10^b=$ <span class="fragment"> $10^{a\color{#FFF3A0}+\color{white}b}$ </span></p>
+
+<p>$\displaystyle 10^a/10^b=\frac{10^a}{10^b}=$ <span class="fragment"> $10^{a\color{#FFF3A0}-\color{white}b}$ </span></p>
+
+<p>$\left(10^a\right)^b=$ <span class="fragment"> $10^{a\color{#FFF3A0}\times\color{white}b}$ </span></p>
+</div>
+
+---
+
+<h3>Testez les règles</h3>
+
+<div class="sw" data-w="regles"></div>
+
+---
+
+{{< qcm
+    q=`$\dfrac{10^{5}}{10^{-2}}=$ ?`
+    a1=`$10^{3}$`
+    a2=`$10^{7}$`
+    a3=`$10^{-3}$`
+    a4=`$10^{-7}$`
+    bonne="2"
+    expl=`On soustrait les exposants : $5-(-2)=7$, donc $\dfrac{10^{5}}{10^{-2}}=10^{7}$.` >}}
+
+{{% /section %}}
+
+---
+
+{{% section %}}
+
+<div class="part-title">
+<i data-part="sci" hidden></i>
+<span class="num">04</span>
+<h2>Notation scientifique</h2>
+<p>Écrire les très grands et les très petits nombres</p>
+</div>
 
 ---
 
@@ -262,14 +330,14 @@ Les physiciens manipulent des nombres<br>très grands ou très petits :
 
 Un nombre est écrit en <span class="imp">notation scientifique</span><br>lorsqu'il est sous la forme :
 
-<p class="fragment fade-up" style="font-size:1.6em">$a\times10^{n}$</p>
+<div class="fcard r fragment fade-up" style="font-size:1.6em">$a\times10^{n}$</div>
 
 <ul>
 <li class="fragment fade-up">$a$ est un nombre décimal avec <span class="imp">un seul chiffre<br>non nul avant la virgule</span> : $1\leqslant a \lt 10$ ;</li>
 <li class="fragment fade-up">$n$ est un <span class="imp">entier relatif</span> : $n\in\mathbb{Z}$.</li>
 </ul>
 
-<p class="fragment fade-up" style="font-size:0.7em"><u>Rq</u> : pour un nombre négatif, le signe se place devant :<br>charge de l'électron $=-1{,}6\times10^{-19}\ \text{C}$.</p>
+<p class="fragment fade-up petit">Rq : pour un nombre négatif, le signe se place devant :<br>charge de l'électron $=-1{,}6\times10^{-19}\ \text{C}$.</p>
 
 ---
 
@@ -291,6 +359,16 @@ Un nombre est écrit en <span class="imp">notation scientifique</span><br>lorsqu
 
 ---
 
+<h3>À vous : faites glisser la virgule</h3>
+
+<div class="sw" data-w="virgule"></div>
+
+{{%note%}}
+Choisir un nombre (ou « Défi » pour un nombre tiré au hasard), puis faire glisser la virgule avec les deux boutons : le compteur n suit le déplacement et la case devient verte dès que le nombre est en notation scientifique. « Montre-moi » le fait automatiquement.
+{{%/note%}}
+
+---
+
 Et si le nombre comporte déjà<br>une puissance de 10 ?
 
 <ul>
@@ -302,31 +380,29 @@ Et si le nombre comporte déjà<br>une puissance de 10 ?
 
 ---
 
-Ces quatre écritures valent toutes 25 000.<br>Laquelle est en notation scientifique ?
-
-<ol class="vote">
-<li class="fragment">$250\times10^{2}$</li>
-<li class="fragment">$25\times10^{3}$</li>
-<li class="fragment juste">$2{,}5\times10^{4}$</li>
-<li class="fragment">$0{,}25\times10^{5}$</li>
-</ol>
-<div class="fragment revele"></div>
-
----
-
-Comment s'écrit $0{,}0045$<br>en notation scientifique ?
-
-<ol class="vote">
-<li class="fragment">$4{,}5\times10^{3}$</li>
-<li class="fragment juste">$4{,}5\times10^{-3}$</li>
-<li class="fragment">$45\times10^{-4}$</li>
-<li class="fragment">$4{,}5\times10^{-2}$</li>
-</ol>
-<div class="fragment revele"></div>
+{{< qcm
+    q=`Ces quatre écritures valent toutes 25 000. <span class="ask">Laquelle est en notation scientifique&nbsp;?</span>`
+    a1=`$250\times10^{2}$`
+    a2=`$25\times10^{3}$`
+    a3=`$2{,}5\times10^{4}$`
+    a4=`$0{,}25\times10^{5}$`
+    bonne="3"
+    expl=`Seule $2{,}5\times10^{4}$ a un seul chiffre non nul avant la virgule&nbsp;: $1\leqslant 2{,}5<10$.` >}}
 
 ---
 
-Écrire en notation scientifique :
+{{< qcm
+    q=`Comment s'écrit $0{,}0045$ en notation scientifique&nbsp;?`
+    a1=`$4{,}5\times10^{3}$`
+    a2=`$4{,}5\times10^{-3}$`
+    a3=`$45\times10^{-4}$`
+    a4=`$4{,}5\times10^{-2}$`
+    bonne="2"
+    expl=`La virgule glisse de 3 rangs vers la droite&nbsp;: $n=-3$.` >}}
+
+---
+
+<span class="ask">Écrire en notation scientifique :</span>
 
 <ul style="font-size:0.85em">
 <li>rayon de la Terre : $6\,370\ \text{km}$ <span class="fragment corr">$\longrightarrow 6{,}37\times10^{3}\ \text{km}$</span></li>
@@ -338,7 +414,7 @@ Comment s'écrit $0{,}0045$<br>en notation scientifique ?
 
 ---
 
-Calculer et donner le résultat<br>en notation scientifique :
+<span class="ask">Calculer et donner le résultat<br>en notation scientifique :</span>
 
 <ul style="font-size:0.85em">
 <li>$(3\times10^{4})\times(2\times10^{-7})$ <span class="fragment corr">$=6\times10^{-3}$</span></li>
@@ -369,13 +445,32 @@ Deux petites vidéos qui reprennent tout ça :
 
 {{% section %}}
 
-## Ordre de grandeur<br>et puissances de 10
+<div class="part-title">
+<i data-part="og" hidden></i>
+<span class="num">05</span>
+<h2>Ordre de grandeur<br>et puissances de 10</h2>
+<p>Estimer « à la louche »</p>
+</div>
 
 ---
 
 <span class="imp">Ordre de grandeur ?</span>
 
-<p class="fragment fade-up">L'ordre de grandeur d'un nombre $a\times 10^b$<br>écrit en notation scientifique ($1≤a<10$) vaut :
+<div class="glass">
+<p>L'ordre de grandeur d'un nombre est une <span class="imp">puissance de 10</span><br>qui en donne une idée «&nbsp;à la louche&nbsp;».</p>
+<p class="fragment fade-up">Il permet de comparer d'un coup d'œil des grandeurs<br>très différentes, de la taille d'un atome à celle d'une galaxie.</p>
+</div>
+
+---
+
+<ol class="etapes">
+<li><span class="et-t">Écrire le nombre en notation scientifique</span><p>$a\times 10^{n}$, avec $1 \leqslant a < 10$ et $n$ entier.</p></li>
+<li class="fragment fade-up"><span class="et-t">Comparer $a$ à 5</span><p>Si $a < 5$, l'ordre de grandeur est $10^{n}$.<br>Si $a \geqslant 5$, c'est la puissance suivante&nbsp;: $10^{n+1}$.</p></li>
+</ol>
+
+---
+
+<p>L'ordre de grandeur d'un nombre $a\times 10^b$<br>écrit en notation scientifique ($1≤a<10$) vaut :</p>
 
 <ul>
 <li class="fragment fade-up"><span class="imp">$10^b$</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;si <span class="imp">$a<5$</span></li>
@@ -384,11 +479,39 @@ Deux petites vidéos qui reprennent tout ça :
 
 ---
 
+<h3>Essayez : faites glisser la valeur de <i>a</i></h3>
+
+<div class="sw" data-w="og"></div>
+
+{{%note%}}
+Faire glisser a, changer n, ou utiliser les boutons (499, 500, 0,0087, 6 371 km, 400). Le bouton « 🔬 Pour les curieux » affiche aussi le seuil √10 des physiciens (voir la fin de cette partie).
+{{%/note%}}
+
+---
+
 - $\pu{3E5}$ $\\,\\,$ ${\longrightarrow}$  <span class="fragment">$10^5$</span>
 - $\pu{5E5}$ $\\,\\,$ ${\longrightarrow}$ <span class="fragment">$10^6$</span>
 - $\pu{8E-5}$ ${\longrightarrow}$ <span class="fragment">$10^{-4}$</span>
 - $\pu{2E-5}$ ${\longrightarrow}$ <span class="fragment">$10^{-5}$</span>
 - $\pu{3,5}$ $\qquad \\;$ ${\longrightarrow}$ <span class="fragment">$10^0$ ou $1$</span>
+
+---
+
+<table class="vit">
+<tr><th>Nombre</th><th>Notation scientifique</th><th>Comparaison</th><th>Ordre de grandeur</th></tr>
+<tr><td>$499$</td><td>$4{,}99\times 10^{2}$</td><td>$4{,}99 < 5$</td><td><b style="color:#4aa8ff">$10^{2}$</b></td></tr>
+<tr class="fragment fade-up"><td>$500$</td><td>$5{,}00\times 10^{2}$</td><td>$5{,}00 \geqslant 5$</td><td><b style="color:#ffa23a">$10^{3}$</b></td></tr>
+<tr class="fragment fade-up"><td>$0{,}0087$</td><td>$8{,}7\times 10^{-3}$</td><td>$8{,}7 \geqslant 5$</td><td><b style="color:#ffa23a">$10^{-2}$</b></td></tr>
+<tr class="fragment fade-up"><td>$\pu{6371 km}$<br><span class="mut">rayon de la Terre</span></td><td>$\pu{6,371E6 m}$</td><td>$6{,}371 \geqslant 5$</td><td><b style="color:#ffa23a">$\pu{1E7 m}$</b></td></tr>
+</table>
+
+---
+
+<div class="carte piege">
+<span class="ct">⚠ Avec les puissances négatives</span>
+<p>«&nbsp;La puissance suivante&nbsp;» de $10^{-3}$ est $10^{-2}$<br>(car $-3+1=-2$), et non $10^{-4}$.</p>
+<p class="fragment fade-up">On monte <b>toujours vers le plus grand</b>.</p>
+</div>
 
 ---
 
@@ -401,19 +524,101 @@ D'autres ordres de grandeur à trouver :
 - $\pu{5,0E-4}/1000$ ${\longrightarrow}$ <span class="fragment">$10^{-6}$</span>
 - $\frac{9800}{\pu{1060000}}$  ${\longrightarrow}$ <span class="fragment">$10^{-2}$</span>
 
+---
+
+<div class="part-title">
+<span class="num" style="font-size:2.6em">🔬</span>
+<h2>Pour les curieux</h2>
+<p>Pourquoi les physiciens choisissent plutôt<br>le seuil $\sqrt{10}\approx 3{,}16$</p>
+</div>
+
+---
+
+<div class="glass">
+<p>Le seuil 5 est une <span class="imp">convention</span> :<br>elle est pratique, mais elle ne correspond pas tout à fait<br>à l'idée de «&nbsp;puissance de 10 la plus proche&nbsp;»<br>telle qu'un physicien la conçoit.</p>
+</div>
+
+---
+
+<h3>Comparer avec des rapports,<br>pas avec des différences</h3>
+
+<p class="petit">Deux ordres de grandeur d'écart : l'une est environ <b>100 fois</b> plus grande que l'autre.<br>On raisonne en «&nbsp;combien de fois plus&nbsp;», pas en «&nbsp;combien de plus&nbsp;».</p>
+
+<p class="fragment fade-up">Prenons $400$ : il est <span class="imp">4 fois</span> plus grand que $100$,<br>mais seulement <span class="imp" style="color:#FFD932">2,5 fois</span> plus petit que $1000$.</p>
+
+<p class="fragment fade-up">En ce sens, $400$ est plus proche de $10^3$ que de $10^2$ !</p>
+
+---
+
+Cherchons le nombre $m$ situé à égale distance de $1$ et de $10$<br>au sens des <span class="imp">rapports</span> : même facteur de $1$ à $m$ que de $m$ à $10$.
+
+<div class="fcard g fragment fade-up" style="font-size:.95em">
+$\dfrac{m}{1} = \dfrac{10}{m} \iff m^2 = 10 \iff m = \sqrt{10} \approx 3{,}16$
+</div>
+
+<p class="fragment fade-up petit">($m>0$)</p>
+
+---
+
+<h3>Sur une échelle logarithmique</h3>
+
+<p class="petit">Sur une échelle où chaque facteur 10 occupe la même longueur<br>(axe d'un graphique semi-logarithmique), $\sqrt{10}$ tombe pile au milieu :</p>
+
+<p class="petit fragment fade-up">Le seuil $5$ se retrouve nettement au-delà du milieu :<br>c'est ce que montre la diapo suivante.</p>
+
+---
+
+<h3>Essayez l'échelle logarithmique</h3>
+
+<div class="sw" data-w="og" data-log="1"></div>
+
+{{%note%}}
+L'échelle est ici logarithmique : √10 est au milieu, le seuil 5 est en pointillés. Essayer le bouton 400 : les deux conventions donnent des ordres de grandeur différents. Le bouton « 🔬 » permet de revenir à l'échelle linéaire.
+{{%/note%}}
+
+---
+
+<div class="carte methode">
+<span class="ct">Lien avec le logarithme décimal</span>
+<p>(celui du pH, en terminale)</p>
+<p class="fragment fade-up">Cette convention revient à arrondir $\log x$ à l'entier le plus proche :<br>l'ordre de grandeur de $x$ est $10^{k}$, où $k$ est l'entier le plus proche de $\log x$.</p>
+<p class="fragment fade-up">Par exemple, $\log 400 \approx 2{,}60$, dont l'entier le plus proche est $3$ :<br>l'ordre de grandeur est $10^3$.</p>
+</div>
+
+---
+
+<div class="carte ok">
+<span class="ct">En pratique</span>
+<p>Les deux conventions ne diffèrent que lorsque $a$ est compris entre $3{,}16$ et $5$,<br>ce qui ne change pas grand-chose pour une estimation.</p>
+<p class="fragment fade-up"><b>Dans ce cours et dans les quiz, on utilise le seuil 5.</b></p>
+</div>
+
 {{% /section %}}
 
 ---
 
 {{% section %}}
 
-## Chiffres significatifs
+<div class="part-title">
+<i data-part="cs" hidden></i>
+<span class="num">06</span>
+<h2>Chiffres significatifs</h2>
+<p>Dire la précision d'une mesure</p>
+</div>
 
 ---
 
 Une longueur mesurée avec une règle<br>graduée en millimètres s'écrit $12{,}3\ \text{cm}$,<br>et non $12{,}3000\ \text{cm}$.
 
 <p class="fragment fade-up">Les chiffres d'une valeur renseignent sur sa <span class="imp">précision</span> :<br>on n'écrit que ceux qui ont un sens,<br>les <span class="imp">chiffres significatifs</span>.</p>
+
+---
+
+<div class="glass">
+<p>Écrire $\pu{3,50 kg}$ plutôt que $\pu{3,5 kg}$ n'est pas un détail :</p>
+<p class="fragment fade-up">le zéro final affirme que la masse est connue<br><span class="imp">au centième de kilogramme près</span>.</p>
+<p class="fragment fade-up">Le nombre de chiffres significatifs <span class="imp">raconte la précision</span> de la mesure.</p>
+</div>
 
 ---
 
@@ -427,6 +632,16 @@ Pour compter les chiffres significatifs :
 
 ---
 
+<h3>Comptez avec le widget</h3>
+
+<div class="sw" data-w="cs"></div>
+
+{{%note%}}
+En vert : les chiffres qui comptent ; en gris : ceux qui ne comptent pas. Les boutons reprennent les cas du cours ; on peut aussi taper un nombre (par exemple 0,0320 ou 1,20×10^3). Le curseur du bas arrondit le nombre à N chiffres significatifs.
+{{%/note%}}
+
+---
+
 <ul>
 <li>$4{,}52$ <span class="fragment corr">$\longrightarrow$ 3 chiffres significatifs</span></li>
 <li>$1{,}050$ <span class="fragment corr">$\longrightarrow$ 4 chiffres significatifs</span></li>
@@ -434,7 +649,7 @@ Pour compter les chiffres significatifs :
 <li>$3{,}0\times10^{8}$ <span class="fragment corr">$\longrightarrow$ 2 chiffres significatifs</span></li>
 </ul>
 
-<p class="fragment fade-up"><u>Rq</u> : en notation scientifique $a\times10^{n}$,<br>il suffit de compter les chiffres de $a$.</p>
+<p class="fragment fade-up"><u>Rq</u> : en notation scientifique $a\times10^{n}$,<br>il suffit de compter les chiffres de $a$ (la puissance de 10 ne compte pas).</p>
 
 ---
 
@@ -452,17 +667,14 @@ Combien de chiffres significatifs<br>compte $1\\,500\ \text{m}$ ?
 
 ---
 
-Combien de chiffres significatifs<br>compte $0{,}0320$ ?
-
-<ol class="vote">
-<li class="fragment">2</li>
-<li class="fragment juste">3</li>
-<li class="fragment">4</li>
-<li class="fragment">5</li>
-</ol>
-<div class="fragment revele"></div>
-
-<p class="fragment fade-up">Les zéros du début ne comptent pas,<br>mais le zéro final, lui, compte : $3{,}20\times10^{-2}$.</p>
+{{< qcm
+    q=`Combien de chiffres significatifs compte $0{,}0320$&nbsp;?`
+    a1=`2`
+    a2=`3`
+    a3=`4`
+    a4=`5`
+    bonne="2"
+    expl=`Les zéros du début ne comptent pas, mais le zéro final, lui, compte&nbsp;: $3{,}20\times10^{-2}$.` >}}
 
 ---
 
@@ -479,13 +691,31 @@ Pour <span class="imp">arrondir</span>, on regarde le chiffre suivant :<br>s'il 
 
 ---
 
-Et après un calcul ?
-
-<div class="encadre fragment fade-up" style="margin-top:0.5em">
-Le résultat d'une multiplication ou d'une division<br>s'écrit avec <b>autant de chiffres significatifs</b><br>que la donnée qui en a <b>le moins</b>.
+<div class="regle">
+<span class="rh">⚖ Calcul ne contenant que des multiplications et des divisions</span>
+<span class="rb">On garde dans le résultat <b>autant de chiffres significatifs</b><br>que la mesure qui en contient <b>le moins</b>.</span>
+<span class="rw fragment fade-up">Un calcul ne peut pas être plus précis que sa donnée la moins précise : c'est le maillon faible qui décide.</span>
 </div>
 
-<p class="fragment fade-up" style="font-size:0.7em"><u>Rq</u> : on garde tous les chiffres pendant le calcul<br>et on n'arrondit qu'à la fin.</p>
+<p class="fragment fade-up petit">Rq : on garde tous les chiffres pendant le calcul<br>et on n'arrondit qu'à la fin.</p>
+
+---
+
+<h3>Exemple guidé : une énergie cinétique</h3>
+
+<ol class="etapes">
+<li><span class="et-t">Repérer la précision des données</span><p>$m = \pu{3,50 kg}$ <span class="badge">3</span> &nbsp;&nbsp; $v = \pu{2,3 m*s-1}$ <span class="badge min">2</span></p><p>C'est la vitesse, la moins précise, qui impose <b>2 chiffres significatifs</b> au résultat.</p></li>
+<li class="fragment fade-up"><span class="et-t">Calculer sans arrondir en cours de route</span><p>La calculatrice affiche <span class="brouillon">9,2575</span> : cette valeur reste au brouillon.</p><p class="petit">Si le calcul a plusieurs étapes, on réutilise les résultats non arrondis (touche <b>Ans</b> ou mémoire).</p></li>
+<li class="fragment fade-up"><span class="et-t">Écrire le résultat arrondi sur la copie</span><p><span class="resultat">$E_c = \tfrac 12\, m\times v^2 = \tfrac 12 \times 3{,}50\times 2{,}3^2 = \pu{9,3 J}$</span></p></li>
+</ol>
+
+---
+
+<div class="carte piege">
+<span class="ct">⚠ Attention au facteur ½</span>
+<p>Le $2$ de $\frac 12$ n'est pas une mesure mais un <b>coefficient mathématique exact</b>.</p>
+<p class="fragment fade-up">Son nombre de chiffres significatifs est infini (c'est $2{,}00000\ldots$) :<br>il ne limite jamais la précision du résultat.</p>
+</div>
 
 ---
 
@@ -497,23 +727,18 @@ Un son parcourt $d = 1{,}7\ \text{km}$ en $\Delta t = 5{,}00\ \text{s}$.
 
 ---
 
-Éthanol : $\rho = 0{,}79\ \text{g/mL}$ et $V = 12{,}0\ \text{mL}$.<br>La calculatrice affiche $m = \rho\times V = 9{,}48$.
-
-Quel résultat faut-il écrire ?
-
-<ol class="vote">
-<li class="fragment">$9{,}48\ \text{g}$</li>
-<li class="fragment juste">$9{,}5\ \text{g}$</li>
-<li class="fragment">$9\ \text{g}$</li>
-<li class="fragment">$10\ \text{g}$</li>
-</ol>
-<div class="fragment revele"></div>
-
-<p class="fragment fade-up">$\rho$ n'a que 2 chiffres significatifs :<br>le résultat aussi.</p>
+{{< qcm
+    q=`Éthanol&nbsp;: $\rho = 0{,}79\ \text{g/mL}$ et $V = 12{,}0\ \text{mL}$. La calculatrice affiche $m = \rho\times V = 9{,}48$. <span class="ask">Quel résultat écrire&nbsp;?</span>`
+    a1=`$9{,}48\ \text{g}$`
+    a2=`$9{,}5\ \text{g}$`
+    a3=`$9\ \text{g}$`
+    a4=`$10\ \text{g}$`
+    bonne="2"
+    expl=`$\rho$ n'a que 2 chiffres significatifs&nbsp;: le résultat aussi.` >}}
 
 ---
 
-Calculer en donnant le résultat avec<br>le bon nombre de chiffres significatifs :
+<span class="ask">Calculer en donnant le résultat avec<br>le bon nombre de chiffres significatifs :</span>
 
 <ul style="font-size:0.85em">
 <li>Poids : $m = 2{,}5\ \text{kg}$ et $g = 9{,}81\ \text{N/kg}$<br><span class="fragment corr">$P = m\times g = 24{,}525\ldots$</span> <span class="fragment corr">$\Rightarrow P = 25\ \text{N}$</span></li>
@@ -539,5 +764,86 @@ Vidéo riche (un peu trop) sur les cs :
 
 ---
 
-[Retour](https://coursphychi.github.io/2nde/atome/)
+{{% section %}}
 
+<div class="part-title">
+<i data-part="bilan" hidden></i>
+<span class="num">★</span>
+<h2>Bilan : à vous de jouer&nbsp;!</h2>
+<p>6 questions pour vérifier ce que l'on a retenu</p>
+</div>
+
+---
+
+{{< qcm
+    q=`$\pu{5,8E-7 m}$ s'écrit aussi&nbsp;:`
+    a1=`$58\ \text{nm}$`
+    a2=`$580\ \text{nm}$`
+    a3=`$5{,}8\ \mu\text{m}$`
+    a4=`$5\,800\ \text{nm}$`
+    bonne="2"
+    expl=`$5{,}8\times10^{-7}\ \text{m}=580\times10^{-9}\ \text{m}=580\ \text{nm}$.` >}}
+
+---
+
+{{< qcm
+    q=`Combien y a-t-il de $\mathrm{cm}^2$ dans $1\ \mathrm{m}^2$&nbsp;?`
+    a1=`$10^{2}$`
+    a2=`$10^{4}$`
+    a3=`$10^{3}$`
+    a4=`$10^{6}$`
+    bonne="2"
+    expl=`$1\ \mathrm{m}^2=\left(10^{2}\ \mathrm{cm}\right)^2=10^{4}\ \mathrm{cm}^2$.` >}}
+
+---
+
+{{< qcm
+    q=`$48{,}5\times10^{3}\ \text{J}$ s'écrit en notation scientifique&nbsp;:`
+    a1=`$4{,}85\times10^{3}\ \text{J}$`
+    a2=`$4{,}85\times10^{4}\ \text{J}$`
+    a3=`$485\times10^{2}\ \text{J}$`
+    a4=`$4{,}85\times10^{5}\ \text{J}$`
+    bonne="2"
+    expl=`$48{,}5=4{,}85\times10^{1}$, donc $48{,}5\times10^{3}=4{,}85\times10^{4}$.` >}}
+
+---
+
+{{< qcm
+    q=`Quel est l'ordre de grandeur du rayon de la Terre, $6\,371\ \text{km}$, exprimé en mètres&nbsp;?`
+    a1=`$10^{6}\ \text{m}$`
+    a2=`$10^{7}\ \text{m}$`
+    a3=`$10^{4}\ \text{m}$`
+    a4=`$10^{3}\ \text{m}$`
+    bonne="2"
+    expl=`$6\,371\ \text{km}=6{,}371\times10^{6}\ \text{m}$ et $6{,}371\geqslant5$ : l'ordre de grandeur est $10^{7}\ \text{m}$.` >}}
+
+---
+
+{{< qcm
+    q=`Combien de chiffres significatifs compte $3{,}50$&nbsp;?`
+    a1=`1`
+    a2=`2`
+    a3=`3`
+    bonne="3"
+    expl=`Le zéro final compte&nbsp;: la valeur est connue au centième près.` >}}
+
+---
+
+{{< qcm
+    q=`$E_c=\tfrac12\,m\,v^2$ avec $m=3{,}50\ \text{kg}$ et $v=2{,}3\ \text{m/s}$ (la calculatrice affiche $9{,}2575$). <span class="ask">Quel résultat écrire&nbsp;?</span>`
+    a1=`$9{,}2575\ \text{J}$`
+    a2=`$9{,}3\ \text{J}$`
+    a3=`$9\ \text{J}$`
+    a4=`$9{,}26\ \text{J}$`
+    bonne="2"
+    expl=`La donnée la moins précise est $v$ (2 chiffres significatifs)&nbsp;: $E_c=9{,}3\ \text{J}$.` >}}
+
+{{% /section %}}
+
+---
+
+<i data-part="bilan" hidden></i>
+
+[Retour à la page entraînement](https://coursphychi.github.io/2nde/entrainement/)
+
+{{< maths-scripts >}}
