@@ -12,7 +12,7 @@ highlight_theme = "atom-one-dark-reasonable"
   Style    : static/css/son.css
   Scripts  : static/js/son/core.js (ambiance par partie, votes, boîte à outils)
              static/js/son/widgets.js (animations interactives)
-  Widgets  : <div class="sw" data-w="sphere|onde|course|eclair|videoonce|periode|oscillation|generateur|chrono|pouls|trompettes"></div>
+  Widgets  : <div class="sw" data-w="sphere|course|eclair|videoonce|periode|signal|oscillation|generateur|chrono|pouls|trompettes"></div>
   Votes    : shortcode qcm (2 à 4 propositions). Touches 1 à 4 ou clic sur une carte = un vote
              (Maj + touche = retirer un vote) ; → ou « Voir la réponse » = correction.
   Cellule à révéler au clic : <td class="rv" data-v="réponse">?</td>
@@ -55,7 +55,7 @@ highlight_theme = "atom-one-dark-reasonable"
 <div class="sw" data-w="sphere"></div>
 
 {{%note%}}
-Une source pulsante émet une onde qui se propage radialement : chaque particule oscille sur place, c'est la perturbation qui voyage de proche en proche. Couleur et brillance = compression locale ; les anneaux marquent les crêtes de compression. Cliquer pour mettre en pause.
+Reproduction animée du gif : la sphère pulse et chaque particule oscille sur place (amplitude constante), la perturbation se propage de proche en proche sous forme d'anneaux. Cliquer pour mettre en pause.
 {{%/note%}}
 
 ---
@@ -102,16 +102,6 @@ Vote aux doigts : les élèves lèvent 1, 2, 3 ou 4 doigts. Appuyer sur 1-4 (ou 
 ---
 
 {{< youtube-slide id="BYe4x3x35is" ratio="16x9" >}}
-
----
-
-<h3>Voyons-le à l'échelle des particules</h3>
-
-<div class="sw" data-w="onde"></div>
-
-{{%note%}}
-Changer de milieu : la particule rouge ne fait qu'osciller sur place, c'est l'onde (le front en pointillés) qui avance. Dans le vide, il n'y a rien pour transmettre la vibration. Les vitesses affichées sont à l'échelle (rapport 1 : 4,4 : 17) mais la fréquence de la source est très basse pour que l'on voie le mouvement.
-{{%/note%}}
 
 ---
 
@@ -281,39 +271,40 @@ Les sons musicaux sont des signaux <span class="imp">périodiques</span>.
 
 ---
 
-{{< slide  background-image="/sansperiode.png" background-size="contain" background-transition="concave-in fade-out">}}
-
----
-
-{{< slide  background-image="/periode.png" background-size="contain" background-transition="none">}}
-
----
-
-{{< slide transition="none" >}}
-
 <div class="sw" data-w="periode"></div>
 
+<span class="fragment etape"></span><span class="fragment etape"></span>
+
 {{%note%}}
-Reproduction animée du gif : la bande rouge (une période) glisse le long du signal, on découpe le signal en 4 périodes identiques, puis on les superpose : elles coïncident exactement. Cliquer sur l'animation pour la mettre en pause.
+Une seule diapo, trois étapes (un swipe ou → à chaque fois) :
+1. le signal périodique seul ;
+2. la bande rouge « une période T » apparaît (flèche tracée du centre vers les bords) ;
+3. l'animation du gif d'origine démarre exactement à cet état : la bande glisse le long du signal, on découpe en 4 périodes identiques, puis on les superpose (elles coïncident). Cliquer sur l'animation pour la mettre en pause.
 {{%/note%}}
 
 ---
 
 <p><span class="ask">Que vaut la période de ce signal&nbsp;?</span></p>
 
-<div class="fig" style="position:relative">
-<img class="fragment fade-out" data-fragment-index="0" style="display:block;width:100%;height:auto;margin:0" src="/exoper1.png" alt="Signal périodique">
-<img class="corr-img fragment" data-fragment-index="0" style="display:block;width:100%;height:auto;margin:0;position:absolute;left:0;top:0" src="/exoper1corr.png" alt="Correction : une période du signal">
-</div>
+<div class="sw" data-w="signal" data-fig="carre"></div>
+
+<span class="fragment etape"></span>
+
+{{%note%}}
+Le swipe (ou →) affiche la période sur le signal.
+{{%/note%}}
 
 ---
 
 <p><span class="ask">Que vaut la période de ce signal&nbsp;?</span></p>
 
-<div class="fig" style="position:relative">
-<img class="fragment fade-out" data-fragment-index="0" style="display:block;width:100%;height:auto;margin:0" src="/exoper2.png" alt="Signal périodique">
-<img class="corr-img fragment" data-fragment-index="0" style="display:block;width:100%;height:auto;margin:0;position:absolute;left:0;top:0" src="/exoper2corr.png" alt="Correction : une période du signal">
-</div>
+<div class="sw" data-w="signal" data-fig="dent"></div>
+
+<span class="fragment etape"></span>
+
+{{%note%}}
+Le swipe (ou →) affiche la période sur le signal.
+{{%/note%}}
 
 ---
 

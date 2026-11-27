@@ -451,3 +451,6 @@ html, body { overscroll-behavior: none; }
 @keyframes son-spec-zone { from { opacity: 0; transform: scaleX(.2); } to { opacity: 1; transform: none; } }
 @keyframes son-spec-fondu { from { opacity: 0; } to { opacity: 1; } }
 @media (prefers-reduced-motion: reduce) { .reveal .spec .onde { animation: none; } }
+
+/* Fragments « étape » : ne contiennent rien, ils servent seulement à compter les swipes d'une diapo animée */
+.reveal .etape { position: absolute; width: 0; height: 0; overflow: hidden; pointer-events: none; }

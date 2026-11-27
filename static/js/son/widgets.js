@@ -21,106 +21,6 @@
   function dur(s) { return fmt(s, s < 0.1 ? 3 : s < 1 ? 2 : s < 10 ? 1 : 0) + ' s'; }
 
   /* =================================================================== */
-  /* Propagation : les particules oscillent sur place, l'onde avance      */
-  /* =================================================================== */
-  var MILIEUX = {
-    vide:  { nom: 'Vide',  dens: 0,    c: 0,    col: '#fff',    r: 2,   txt: 'Aucune particule : rien ne peut transmettre la vibration, donc <b style="color:#ff644e">pas de son</b>.' },
-    air:   { nom: 'Air',   dens: 0.42, c: 120,  col: '#7fd6ff', r: 2.3, txt: 'Air : $v\\approx 340\\ \\mathrm{m/s}$, particules <b>peu serrées</b>.' },
-    eau:   { nom: 'Eau',   dens: 0.70, c: 530,  col: '#5b8dff', r: 2.7, txt: 'Eau : $v\\approx 1500\\ \\mathrm{m/s}$, particules plus serrées.' },
-    acier: { nom: 'Acier', dens: 1,    c: 2050, col: '#cfd8ea', r: 3.1, txt: 'Acier : $v\\approx 5800\\ \\mathrm{m/s}$, particules très serrées.' }
-  };
-  // Positions de repos tirées au hasard (distance minimale entre particules pour éviter les recouvrements),
-  // tailles légèrement différentes ; une quinzaine de particules rouges, elles aussi dispersées au hasard.
-  function semis(s) {
-    s.parts = [];
-    var essais = 0;
-    while (s.parts.length < 640 && essais++ < 16000) {
-      var px = s.xmin + Math.random() * (s.xmax - s.xmin), py = s.ymin + Math.random() * (s.ymax - s.ymin), ok = true;
-      for (var q = 0; q < s.parts.length; q++) {
-        var ddx = s.parts[q].x - px, ddy = s.parts[q].y - py;
-        if (ddx * ddx + ddy * ddy < 36) { ok = false; break; }
-      }
-      if (ok) s.parts.push({ x: px, y: py, r: Math.random(), t: 0.75 + 0.5 * Math.random() });
-    }
-    s.trace = [];
-    for (var j = 0; j < 14; j++) s.trace.push({ x: s.xmin + 80 + Math.random() * (s.xmax - s.xmin - 160), y: s.ymin + Math.random() * (s.ymax - s.ymin), t: 1 });
-  }
-  SonW.def('onde', {
-    build: function (el, I) {
-      var cv = mk(880, 250), s = I.s;
-      s.cv = cv; s.mil = 'air'; s.clock = 0; s.t0 = 0; s.f = 2; s.A = 9;
-      s.cols = 70; s.rows = 8; s.x0 = 70; s.dx = 11; s.y0 = 38; s.dy = 25; s.trac = 30;
-      s.xmin = s.x0; s.xmax = s.x0 + (s.cols - 1) * s.dx; s.ymin = s.y0 - 10; s.ymax = s.y0 + (s.rows - 1) * s.dy + 10;
-      semis(s);
-      el.innerHTML = '<div class="w-box"></div>';
-      var box = $('.w-box', el);
-      box.appendChild(cv.c);
-      box.insertAdjacentHTML('beforeend',
-        '<div class="w-row"><span class="w-lab">Milieu :</span>' +
-        ['vide', 'air', 'eau', 'acier'].map(function (m) { return btn(MILIEUX[m].nom, m === 'air' ? 'on' : '', 'data-m="' + m + '"'); }).join('') +
-        btn('🔊 Émettre', 'go', 'data-e="1"') + '</div><div class="w-note"></div>');
-      box.addEventListener('click', function (e) {
-        var b = e.target.closest('button'); if (!b) return;
-        if (b.getAttribute('data-m')) {
-          s.mil = b.getAttribute('data-m');
-          $$('button[data-m]', box).forEach(function (x) { x.classList.toggle('on', x === b); });
-          maj(el, s);
-        }
-        s.t0 = s.clock;
-      });
-      maj(el, s);
-    },
-    enter: function (el, I) { I.s.t0 = I.s.clock; semis(I.s); },
-    tick: function (el, I, t, dt) {
-      var s = I.s, x = s.cv.x, W = s.cv.w, H = s.cv.h, m = MILIEUX[s.mil];
-      s.clock += dt;
-      var tt = s.clock - s.t0, f = s.f;
-      x.clearRect(0, 0, W, H);
-      // haut-parleur
-      x.font = '34px sans-serif'; x.textAlign = 'center'; x.textBaseline = 'middle';
-      x.fillText('🔈', 30, s.y0 + (s.rows - 1) * s.dy / 2);
-      var xEnd = s.x0 + (s.cols - 1) * s.dx;
-      // particules (chacune oscille autour de sa position de repos)
-      function point(p, col, r, flou) {
-        var tau = tt - (p.x - s.x0) / m.c, u = 0;
-        if (tau > 0) u = s.A * Math.min(1, tau * f * 2) * Math.sin(2 * Math.PI * f * tau);
-        x.beginPath(); x.fillStyle = col; x.shadowColor = col; x.shadowBlur = flou;
-        x.arc(p.x + u, p.y, r * p.t, 0, 6.2832); x.fill();
-      }
-      if (m.dens > 0) {
-        for (var k = 0; k < s.parts.length; k++) if (s.parts[k].r < m.dens) point(s.parts[k], m.col, m.r, 4);
-        // particules rouges : anneau pointillé = position de repos, le point rouge oscille autour
-        x.shadowBlur = 0; x.strokeStyle = 'rgba(255,100,78,.6)'; x.lineWidth = 1.2; x.setLineDash([2, 2]);
-        for (k = 0; k < s.trace.length; k++) { x.beginPath(); x.arc(s.trace[k].x, s.trace[k].y, m.r + 4.5, 0, 6.2832); x.stroke(); }
-        x.setLineDash([]);
-        for (k = 0; k < s.trace.length; k++) point(s.trace[k], C.red, m.r + 1.4, 10);
-      }
-      x.shadowBlur = 0;
-      if (m.dens === 0) {
-        x.fillStyle = 'rgba(255,255,255,.55)'; x.font = '300 22px Outfit, sans-serif';
-        x.fillText('(aucune particule)', W / 2, s.y0 + (s.rows - 1) * s.dy / 2);
-      }
-      // front d'onde
-      if (m.c > 0) {
-        var xf = s.x0 + m.c * tt;
-        if (xf < xEnd + 6) {
-          x.strokeStyle = 'rgba(255,255,255,.55)'; x.setLineDash([6, 6]); x.lineWidth = 2;
-          x.beginPath(); x.moveTo(xf, 8); x.lineTo(xf, H - 52); x.stroke(); x.setLineDash([]);
-          x.fillStyle = 'rgba(255,255,255,.8)'; x.font = '300 16px Outfit, sans-serif'; x.fillText('front de l\u2019onde', Math.min(xf, W - 70), H - 40);
-        }
-      }
-      // légende de la particule suivie
-      if (m.dens === 0) return;
-      x.fillStyle = C.red; x.font = '600 17px Outfit, sans-serif'; x.textAlign = 'center';
-      x.fillText('● particules rouges : elles ne font qu\u2019osciller autour de leur position de repos (○)', W / 2, H - 14);
-    }
-  });
-  function maj(el, s) {
-    var n = $('.w-note', el); n.innerHTML = MILIEUX[s.mil].txt;
-    if (window.MathJax && MathJax.typesetPromise) MathJax.typesetPromise([n]).catch(function () { });
-  }
-
-  /* =================================================================== */
   /* Course du son dans l'air, l'eau et l'acier                           */
   /* =================================================================== */
   var COURSE = [
@@ -491,12 +391,16 @@
       cv.c.addEventListener('click', function () { s.pause = !s.pause; });
       if (document.fonts && document.fonts.load) { document.fonts.load('30px "Gochi Hand"'); document.fonts.load('17px "Gochi Hand"'); }
     },
-    enter: function (el, I) { I.s.clock = 0; I.s.fit(); },
+    enter: function (el, I) { I.s.clock = 0; I.s.rt = 0; I.s.st = -1; I.s.fit(); },
     tick: function (el, I, t, dt) {
-      var s = I.s; if (!s.pause) s.clock += dt;
-      var f = (s.clock / 0.03) % PER_NF, X = s.cv.x;
+      var s = I.s, st = etape(el);
+      s.rt = (s.rt || 0) + dt;
+      // étape 0 : le signal seul ; étape 1 (1er swipe) : la bande « une période » apparaît ; étape 2 (2e swipe) : animation du gif
+      if (st !== s.st) { s.st = st; s.tst = s.rt; if (st < 2) s.clock = 0; }
+      if (!s.pause && st >= 2) s.clock += dt;
+      var f = st >= 2 ? (s.clock / 0.03) % PER_NF : 0, X = s.cv.x;
       X.clearRect(0, 0, 1080, 608);
-      var xr = XRED(f);
+      var xr = XRED(f), ap = st === 1 ? clamp01((s.rt - s.tst) / 0.6) : 1;      // ap : avancement de l'apparition de la bande
 
       // --- bandes (une période chacune)
       function bande(x, dy, h, col, ombre) {
@@ -517,7 +421,7 @@
         bande(BAND_X0 + 2 * PER_T, dyb, hb3, COL_BLEU, BLEU0);
         bande(BAND_X0 + 3 * PER_T, -0.97 * dyb, hr4, COL_ROUGE, ROUGE0);
       }
-      bande(xr, 0, BAND_H, COL_ROUGE, ROUGE0);
+      if (st >= 1) bande(xr, 0, BAND_H * facil(ap), COL_ROUGE, ROUGE0);
 
       // --- axes
       var g1 = X.createLinearGradient(128, 0, 1020, 0);
@@ -555,14 +459,19 @@
         [0, 2, 3].forEach(function (k) { courbe(k, (1 - k) * PER_T * sc, 0, 1, 1.7); });
       }
 
-      // --- flèche de la période et lettre T (suivent la bande rouge mobile)
-      X.strokeStyle = '#fe644e'; X.fillStyle = '#fe644e'; X.lineWidth = 2.4; X.lineCap = 'butt';
-      var ya = 130.8, xa = xr + 1, xb = xr + PER_T - 1;
-      X.beginPath(); X.moveTo(xa + 8, ya); X.lineTo(xb - 8, ya); X.stroke();
-      X.beginPath(); X.moveTo(xa, ya); X.lineTo(xa + 12, ya - 5.8); X.lineTo(xa + 12, ya + 5.8); X.closePath(); X.fill();
-      X.beginPath(); X.moveTo(xb, ya); X.lineTo(xb - 12, ya - 5.8); X.lineTo(xb - 12, ya + 5.8); X.closePath(); X.fill();
-      X.font = '30px "Gochi Hand", "Patrick Hand", cursive'; X.textAlign = 'center';
-      X.fillText('T', xr + PER_T / 2, 124);
+      // --- flèche de la période et lettre T (suivent la bande rouge mobile) ; au 1er swipe la flèche se trace du centre vers les bords
+      if (st >= 1) {
+        var pf = st === 1 ? facil((s.rt - s.tst - 0.25) / 0.45) : 1, pl = st === 1 ? facil((s.rt - s.tst - 0.6) / 0.35) : 1;
+        var ya = 130.8, xc = xr + PER_T / 2, xa = xc - (PER_T / 2 - 1) * pf, xb = xc + (PER_T / 2 - 1) * pf;
+        X.strokeStyle = '#fe644e'; X.fillStyle = '#fe644e'; X.lineWidth = 2.4; X.lineCap = 'butt';
+        if (pf > 0.02) {
+          X.beginPath(); X.moveTo(xa + 8 * pf, ya); X.lineTo(xb - 8 * pf, ya); X.stroke();
+          X.beginPath(); X.moveTo(xa, ya); X.lineTo(xa + 12 * pf, ya - 5.8 * pf); X.lineTo(xa + 12 * pf, ya + 5.8 * pf); X.closePath(); X.fill();
+          X.beginPath(); X.moveTo(xb, ya); X.lineTo(xb - 12 * pf, ya - 5.8 * pf); X.lineTo(xb - 12 * pf, ya + 5.8 * pf); X.closePath(); X.fill();
+        }
+        X.globalAlpha = pl; X.font = '30px "Gochi Hand", "Patrick Hand", cursive'; X.textAlign = 'center';
+        X.fillText('T', xc, 124 + 8 * (1 - pl)); X.globalAlpha = 1;
+      }
     }
   });
 
@@ -658,6 +567,10 @@
     var w = Math.min(vw, vh * ratio);
     return { w: w, h: w / ratio, vw: vw, vh: vh };
   }
+  // étape courante d'une diapo à fragments : nombre de fragments « étape » déjà affichés (un swipe = une étape)
+  function etape(el) { var sec = el.closest('section'); return sec ? sec.querySelectorAll('.fragment.visible').length : 0; }
+  function clamp01(x) { return Math.max(0, Math.min(1, x)); }
+  function facil(x) { x = clamp01(x); return 1 - Math.pow(1 - x, 3); }
   function stopTimers(s) { s.timers.forEach(clearTimeout); s.timers = []; }
   SonW.def('videoonce', {
     swipe: true,                       // plein écran : le glissement doit rester possible
@@ -684,89 +597,125 @@
   });
 
   /* =================================================================== */
-  /* Onde sonore qui se propage radialement depuis une source pulsante     */
-  /* Chaque particule oscille radialement autour de sa position de repos  */
-  /* (déplacement A·cos(ωt − k·r0)) ; la couleur et la brillance suivent   */
-  /* la compression locale ; les crêtes de compression sont soulignées par */
-  /* des anneaux lumineux qui s'éloignent de la source.                   */
+  /* Sphère qui pulse dans un nuage de particules (reproduction du gif)   */
+  /* Mesuré sur le gif d'origine en suivant les points d'une image à      */
+  /* l'autre : chaque particule oscille radialement autour de sa position */
+  /* de repos r0 avec une amplitude de 54 px (constante), une longueur     */
+  /* d'onde de 93 px et la phase  ωt − k·r0 − 1,353  (période 3,33 s).    */
+  /* Le rayon de la sphère varie de 46,5 ± 11,65 px (maximum à 0,135 T).   */
   /* =================================================================== */
-  var ONDE = { lam: 110, T: 2.6, A: 14, R0: 38, dR: 8, N: 2400, Rmax: 470 };
-  // dégradé de la couleur des particules : creux (indigo) -> crête de compression (blanc rosé), aux couleurs du thème
-  var PAL = [[38, 42, 120], [70, 80, 205], [124, 104, 255], [55, 214, 255], [150, 240, 255], [255, 228, 246]];
-  function palette(t) {                       // t dans [0, 1]
-    var x = t * (PAL.length - 1), i = Math.min(PAL.length - 2, Math.floor(x)), f = x - i, a = PAL[i], b = PAL[i + 1];
-    return [a[0] + (b[0] - a[0]) * f, a[1] + (b[1] - a[1]) * f, a[2] + (b[2] - a[2]) * f];
-  }
-  function sprites() {
-    var out = [];
-    for (var b = 0; b < 12; b++) {
-      var c = document.createElement('canvas'); c.width = c.height = 24;
-      var x = c.getContext('2d'), col = palette(b / 11).map(Math.round), g = x.createRadialGradient(12, 12, 0, 12, 12, 12);
-      g.addColorStop(0, 'rgba(' + col + ',1)'); g.addColorStop(0.35, 'rgba(' + col + ',.55)'); g.addColorStop(1, 'rgba(' + col + ',0)');
-      x.fillStyle = g; x.fillRect(0, 0, 24, 24); out.push(c);
+  var SPH = { A: 54.1, k: 0.06767, c: 1.353, T: 3.33, R: 46.5, dR: 11.65, ph: 0.135, dens: 0.0068, rouge: 0.014, M: 80 };
+  function semisSphere(s) {
+    // positions de repos uniformes dans un disque de 485 px de rayon (comme dans le gif), densité 0,0072 point/px²
+    var R = 485;
+    s.Wl = 540 * s.vw / s.vh;                       // repère logique : hauteur 540, largeur selon l'écran
+    s.n = Math.round(0.0072 * Math.PI * R * R);
+    s.ux = new Float32Array(s.n); s.uy = new Float32Array(s.n); s.r0 = new Float32Array(s.n); s.px = new Float32Array(s.n); s.py = new Float32Array(s.n); s.rouge = new Uint8Array(s.n);
+    for (var i = 0; i < s.n; i++) {
+      var r = R * Math.sqrt(Math.random()) + 1e-3, a = Math.random() * 6.2832;
+      s.px[i] = r * Math.cos(a); s.py[i] = r * Math.sin(a); s.r0[i] = r; s.rouge[i] = Math.random() < SPH.rouge ? 1 : 0;
     }
-    return out;
   }
   SonW.def('sphere', {
-    swipe: true,
     build: function (el, I) {
-      var s = I.s; s.clock = 0; s.pause = false; s.spr = sprites();
+      var s = I.s; s.clock = 0; s.pause = false;
       var c = document.createElement('canvas'); c.className = 'plein'; c.style.cursor = 'pointer';
       c.title = 'Cliquer pour mettre en pause / relancer'; el.appendChild(c); s.c = c;
       s.fit = function () {
         var d = plein(1), sc = (window.Reveal && Reveal.getScale && Reveal.getScale()) || 1;
         s.vw = d.vw; s.vh = d.vh; c.style.width = d.vw + 'px'; c.style.height = d.vh + 'px';
-        var q = Math.min(1.5, Math.max(1, window.devicePixelRatio || 1));
-        c.width = Math.round(d.vw * sc * q); c.height = Math.round(d.vh * sc * q);
+        var q = Math.min(2, Math.max(1, Math.round(sc * 2) / 2 + 0.5));            // résolution d'affichage
+        c.width = Math.round(d.vw * sc * q); c.height = Math.round(d.vh * sc * q); s.q = sc * q;
+        semisSphere(s);
       };
-      // positions de repos uniformes dans un disque
-      s.n = ONDE.N; s.px = new Float32Array(s.n); s.py = new Float32Array(s.n); s.r0 = new Float32Array(s.n);
-      for (var i = 0; i < s.n; i++) {
-        var r = ONDE.Rmax * Math.sqrt(Math.random()) + 1, a = Math.random() * 6.2832;
-        s.px[i] = r * Math.cos(a); s.py[i] = r * Math.sin(a); s.r0[i] = r;
-      }
       s.fit(); if (window.Reveal && Reveal.on) Reveal.on('resize', s.fit);
       c.addEventListener('click', function () { s.pause = !s.pause; });
     },
     enter: function (el, I) { I.s.clock = 0; I.s.fit(); },
     tick: function (el, I, t, dt) {
       var s = I.s; if (!s.pause) s.clock += dt;
-      var X = s.c.getContext('2d'), k = s.c.height / 540, K = 2 * Math.PI / ONDE.lam, ph = 2 * Math.PI * s.clock / ONDE.T, Wl = 540 * s.vw / s.vh;
-      var Rs = ONDE.R0 + ONDE.dR * Math.cos(ph - K * ONDE.R0), i, u, f, x, y, cmp, b, w, th, st, AK = ONDE.A * K * 0.97;
+      var X = s.c.getContext('2d');
+      var k = s.c.height / 540;                          // pixels du canvas par unité logique
       X.setTransform(1, 0, 0, 1, 0, 0); X.clearRect(0, 0, s.c.width, s.c.height);
       X.setTransform(k, 0, 0, k, s.c.width / 2, s.c.height / 2);
-      // halo autour de la source
-      var g = X.createRadialGradient(0, 0, 0, 0, 0, 300);
-      g.addColorStop(0, 'rgba(55,214,255,.22)'); g.addColorStop(0.35, 'rgba(124,104,255,.09)'); g.addColorStop(1, 'rgba(124,104,255,0)');
-      X.fillStyle = g; X.fillRect(-Wl / 2, -270, Wl, 540);
-      X.globalCompositeOperation = 'lighter';
-      // anneaux lumineux sur les crêtes de compression
-      var base = ONDE.lam * (((s.clock / ONDE.T + 0.25) % 1 + 1) % 1);
-      for (var n = 0; n < 7; n++) {
-        var r = base + n * ONDE.lam; if (r < Rs + 4) continue;
-        var al = Math.max(0, 1 - r / 560); al = 0.6 * al * al;
-        if (al < 0.02) continue;
-        X.strokeStyle = 'rgba(' + (n % 2 ? '150,160,255' : '120,230,255') + ',' + al.toFixed(3) + ')'; X.lineWidth = 2 + 4 * al; X.shadowColor = 'rgba(55,214,255,.9)'; X.shadowBlur = 14;
-        X.beginPath(); X.arc(0, 0, r, 0, 6.2832); X.stroke();
-      }
-      X.shadowBlur = 0;
-      // particules : couleur et taille selon la compression locale
+      var ph = 2 * Math.PI * s.clock / SPH.T, rs = SPH.R + SPH.dR * Math.cos(ph - 2 * Math.PI * SPH.ph), mi = rs + 5, i, u, f, x, y, bleu = new Path2D(), rouge = new Path2D();
       for (i = 0; i < s.n; i++) {
-        th = ph - K * s.r0[i]; u = ONDE.A * Math.cos(th); f = (s.r0[i] + u) / s.r0[i];
-        x = s.px[i] * f; y = s.py[i] * f;
-        if (x < -Wl / 2 - 6 || x > Wl / 2 + 6 || y < -276 || y > 276) continue;
-        cmp = 1 / Math.max(0.22, 1 + AK * Math.sin(th));            // densité relative (1 = repos)
-        b = Math.max(0, Math.min(11, Math.floor((cmp - 0.55) / 3.0 * 11)));
-        w = 7 + b * 1.15;
-        X.drawImage(s.spr[b], x - w / 2, y - w / 2, w, w);
+        u = SPH.A * Math.cos(ph - SPH.k * s.r0[i] - SPH.c);
+        f = (s.r0[i] + u) / s.r0[i]; x = s.px[i] * f; y = s.py[i] * f;
+        if (x * x + y * y < mi * mi || x < -s.Wl / 2 - 3 || x > s.Wl / 2 + 3 || y < -273 || y > 273) continue;
+        (s.rouge[i] ? rouge : bleu).moveTo(x + 1.6, y); (s.rouge[i] ? rouge : bleu).arc(x, y, 1.6, 0, 6.2832);
       }
-      // source : orbe lumineux pulsant + onde de choc à chaque période
-      X.globalCompositeOperation = 'source-over';
-      var sh = (s.clock / ONDE.T) % 1;
-      X.strokeStyle = 'rgba(255,111,181,' + (0.55 * (1 - sh)).toFixed(3) + ')'; X.lineWidth = 3; X.beginPath(); X.arc(0, 0, Rs + 6 + sh * 46, 0, 6.2832); X.stroke();
-      var og = X.createRadialGradient(-Rs * 0.3, -Rs * 0.3, Rs * 0.1, 0, 0, Rs);
-      og.addColorStop(0, '#ffffff'); og.addColorStop(0.35, '#8ff0ff'); og.addColorStop(1, '#4a6bff');
-      X.shadowColor = 'rgba(55,214,255,.95)'; X.shadowBlur = 38; X.fillStyle = og; X.beginPath(); X.arc(0, 0, Rs, 0, 6.2832); X.fill(); X.shadowBlur = 0;
+      X.fillStyle = '#3e74d1'; X.fill(bleu); X.fillStyle = '#d22143'; X.fill(rouge);
+      X.fillStyle = '#5e5e5e'; X.beginPath(); X.arc(0, 0, rs, 0, 6.2832); X.fill();
+    }
+  });
+
+
+  /* =================================================================== */
+  /* Signaux carré et dents de scie : la période s'affiche au swipe        */
+  /* (géométrie relevée sur les figures d'origine, repère 1080 × 608)      */
+  /* =================================================================== */
+  var FIGS = {
+    carre: { gauche: 164.1, droite: 828.3, haut: 192.3, bas: 415.4,
+             pts: [[164.1, 415.4], [258.9, 415.4], [258.9, 192.3], [354.0, 192.3], [354.0, 415.4], [449.1, 415.4], [449.1, 192.3], [543.5, 192.3], [543.5, 415.4], [639.0, 415.4], [639.0, 192.3], [734.4, 192.3], [734.4, 415.4], [828.3, 415.4]],
+             bande: [449.0, 638.1], texte: [{ t: 'T = 0,8 ms', x: 543.2, y: 130.5, taille: 21 }], fleche: 142.9 },
+    dent:  { pts: [[175.0, 414.1], [271.5, 193.1], [271.5, 415.2], [366.4, 193.1], [366.4, 415.2], [461.5, 193.1], [461.5, 415.2], [555.9, 193.1], [555.9, 415.2], [651.7, 193.1], [651.7, 415.2], [746.6, 193.1], [746.6, 415.2], [843.7, 193.9]],
+             bande: [461.3, 557.1], texte: [{ t: 'T', x: 512.9, y: 123.6, taille: 30 }, { t: '= 0,4 ms', x: 511, y: 160.4, taille: 21 }], fleche: 131.6 }
+  };
+  SonW.def('signal', {
+    build: function (el, I) {
+      var s = I.s, cfg = FIGS[el.getAttribute('data-fig')] || FIGS.carre;
+      s.cfg = cfg; s.rt = 0; s.st = -1;
+      // repère logique 860 × 450 : on ne garde que la partie utile de la figure (x ∈ [100, 960], y ∈ [50, 500])
+      var cv = mk(860, 450); s.cv = cv; cv.c.style.width = '900px'; cv.c.style.height = Math.round(900 * 450 / 860) + 'px'; cv.c.style.display = 'block'; cv.c.style.margin = '0 auto';
+      el.appendChild(cv.c);
+      if (document.fonts && document.fonts.load) { document.fonts.load('21px "Gochi Hand"'); document.fonts.load('17px "Gochi Hand"'); }
+    },
+    enter: function (el, I) { I.s.rt = 0; I.s.st = -1; },
+    tick: function (el, I, t, dt) {
+      var s = I.s, c = s.cfg, X = s.cv.x, st = etape(el);
+      s.rt += dt; if (st !== s.st) { s.st = st; s.tst = s.rt; }
+      var ap = st >= 1 ? clamp01((s.rt - s.tst) / 0.6) : 0;
+      X.setTransform(2, 0, 0, 2, -200, -100); X.clearRect(0, 0, 1080, 608);
+      var HY = 303.7, VX = 234.6;
+      // bande de la période (apparaît au swipe : dévoilée de haut en bas)
+      if (ap > 0) {
+        var h = 374 * facil(ap), y0 = 101.7, w = c.bande[1] - c.bande[0], g = X.createLinearGradient(0, y0, 0, y0 + h);
+        g.addColorStop(0, COL_ROUGE); g.addColorStop(Math.max(0, 1 - 16 / Math.max(h, 1)), COL_ROUGE); g.addColorStop(1, 'rgba(254,100,78,0)');
+        X.fillStyle = ap < 1 ? g : COL_ROUGE; X.fillRect(c.bande[0], y0, w, h);
+      }
+      // axes et graduations
+      var g1 = X.createLinearGradient(124, 0, 916, 0);
+      g1.addColorStop(0, 'rgba(213,213,213,0)'); g1.addColorStop(.06, 'rgba(213,213,213,.95)'); g1.addColorStop(.9, 'rgba(213,213,213,.95)'); g1.addColorStop(1, 'rgba(213,213,213,0)');
+      X.strokeStyle = g1; X.lineWidth = 2.2; X.lineCap = 'round'; X.beginPath(); X.moveTo(124, HY); X.lineTo(918, HY); X.stroke();
+      var g2 = X.createLinearGradient(0, 98, 0, 487);
+      g2.addColorStop(0, 'rgba(213,213,213,.35)'); g2.addColorStop(.25, 'rgba(213,213,213,.95)'); g2.addColorStop(.85, 'rgba(213,213,213,.95)'); g2.addColorStop(1, 'rgba(213,213,213,.15)');
+      X.strokeStyle = g2; X.lineWidth = 2; X.beginPath(); X.moveTo(VX, 98); X.lineTo(VX, 487); X.stroke();
+      X.strokeStyle = 'rgba(213,213,213,.7)'; X.lineWidth = 1.3;
+      for (var j = -8; j <= 52; j++) { var tx = VX + j * 11.9, hh = j % 4 === 0 ? 5.5 : 2.4; X.beginPath(); X.moveTo(tx, HY - hh); X.lineTo(tx, HY + hh); X.stroke(); }
+      X.fillStyle = '#d5d5d5'; X.lineJoin = 'round';
+      X.beginPath(); X.moveTo(923.8, HY); X.lineTo(914.5, HY - 4.7); X.lineTo(914.5, HY + 4.7); X.closePath(); X.fill();
+      X.beginPath(); X.moveTo(VX, 89.3); X.lineTo(VX - 4.7, 98.3); X.lineTo(VX + 4.7, 98.3); X.closePath(); X.fill();
+      X.font = '17px "Gochi Hand", "Patrick Hand", cursive'; X.textAlign = 'center';
+      X.fillText('amplitude', 234.4, 78.5); X.fillText('temps', 889.5, 324.5); X.fillText('0,2 ms', 291.5, 330);
+      // signal
+      X.beginPath(); X.strokeStyle = '#a8f060'; X.lineWidth = 3.4; X.lineJoin = 'round'; X.lineCap = 'butt';
+      c.pts.forEach(function (q, i) { if (i === 0) X.moveTo(q[0], q[1]); else X.lineTo(q[0], q[1]); });
+      X.stroke();
+      // flèche de la période (tracée du centre vers les bords) et texte
+      if (ap > 0) {
+        var pf = facil((s.rt - s.tst - 0.25) / 0.45), pl = facil((s.rt - s.tst - 0.6) / 0.35), xm = (c.bande[0] + c.bande[1]) / 2, half = (c.bande[1] - c.bande[0]) / 2 - 0.5;
+        X.strokeStyle = '#fe644e'; X.fillStyle = '#fe644e'; X.lineWidth = 2.2; X.lineCap = 'butt';
+        if (pf > 0.02) {
+          var xa = xm - half * pf, xb = xm + half * pf, ya = c.fleche;
+          X.beginPath(); X.moveTo(xa + 7 * pf, ya); X.lineTo(xb - 7 * pf, ya); X.stroke();
+          X.beginPath(); X.moveTo(xa, ya); X.lineTo(xa + 10 * pf, ya - 3.6 * pf); X.lineTo(xa + 10 * pf, ya + 3.6 * pf); X.closePath(); X.fill();
+          X.beginPath(); X.moveTo(xb, ya); X.lineTo(xb - 10 * pf, ya - 3.6 * pf); X.lineTo(xb - 10 * pf, ya + 3.6 * pf); X.closePath(); X.fill();
+        }
+        X.globalAlpha = pl; X.textAlign = 'center';
+        c.texte.forEach(function (tx) { X.font = tx.taille + 'px "Gochi Hand", "Patrick Hand", cursive'; X.fillText(tx.t, tx.x, tx.y + 6 * (1 - pl)); });
+        X.globalAlpha = 1;
+      }
     }
   });
 
