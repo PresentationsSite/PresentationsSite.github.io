@@ -605,3 +605,13 @@ html {
 .reveal .rl sup .opw { vertical-align: -.3em; margin: 0 .04em; }
 .reveal .opw { width: 1.15em; }
 .reveal .sg { width: .72em; height: .72em; margin: -.36em 0 0 -.36em; }
+
+/* « test du bon sens » : chaque exemple est insécable (valeur et unité restent ensemble) */
+.reveal .vals { display: flex; flex-wrap: wrap; gap: .1em 1.6em; font-size: .8em; margin: .4em 0; }
+.reveal .vals > span { white-space: nowrap; }
+.reveal .vals sup { font-size: .62em; line-height: 0; }
+/* aires / volumes : un espace entre les deux cartes */
+.reveal .duo { gap: 28px; }
+.reveal .nw { white-space: nowrap; }
+.reveal .nw sup { font-size: .62em; line-height: 0; }
+.reveal .vals { font-size: .7em; gap: .1em 1.3em; }

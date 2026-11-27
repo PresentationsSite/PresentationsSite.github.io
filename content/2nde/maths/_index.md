@@ -1015,12 +1015,12 @@ Un bloc d'aluminium de masse $m=\pu{54,0 g}$ occupe un volume $V=\pu{20,0 cm3}$.
 
 ---
 
-<div class="carte ok">
+<div class="carte ok" style="width:90%">
 <span class="ct">Le test du bon sens</span>
 <p>Le résultat est-il plausible ? On le compare à un ordre de grandeur que l'on connaît :</p>
-<p class="fragment fade-up" style="font-size:.8em"><span style="white-space:nowrap">eau : $1{,}0\times10^{3}\ \mathrm{kg\cdot m^{-3}}$</span> &nbsp;·&nbsp; <span style="white-space:nowrap">aluminium : $2{,}7\times10^{3}$</span> &nbsp;·&nbsp; <span style="white-space:nowrap">fer : $7{,}9\times10^{3}$</span></p>
-<p class="fragment fade-up" style="font-size:.8em"><span style="white-space:nowrap">marche : $1{,}4\ \mathrm{m\cdot s^{-1}}$ (5 km/h)</span> &nbsp;·&nbsp; <span style="white-space:nowrap">son : $3{,}4\times10^{2}\ \mathrm{m\cdot s^{-1}}$</span> &nbsp;·&nbsp; <span style="white-space:nowrap">lumière : $3{,}0\times10^{8}\ \mathrm{m\cdot s^{-1}}$</span></p>
-<p class="fragment fade-up petit">Un résultat de $2{,}7\times10^{-3}$ ou de $2{,}7\times10^{6}$ kg·m<sup>−3</sup> doit alerter : une conversion a dérapé.</p>
+<p class="vals fragment fade-up"><span>eau&nbsp;: 1,0&nbsp;×&nbsp;10<sup>3</sup>&nbsp;kg·m<sup>−3</sup></span> <span>aluminium&nbsp;: 2,7&nbsp;×&nbsp;10<sup>3</sup></span> <span>fer&nbsp;: 7,9&nbsp;×&nbsp;10<sup>3</sup></span></p>
+<p class="vals fragment fade-up"><span>marche&nbsp;: 1,4&nbsp;m·s<sup>−1</sup> (5&nbsp;km/h)</span> <span>son&nbsp;: 3,4&nbsp;×&nbsp;10<sup>2</sup>&nbsp;m·s<sup>−1</sup></span> <span>lumière&nbsp;: 3,0&nbsp;×&nbsp;10<sup>8</sup>&nbsp;m·s<sup>−1</sup></span></p>
+<p class="fragment fade-up petit">Un résultat de <span class="nw">2,7&nbsp;×&nbsp;10<sup>−3</sup></span> ou de <span class="nw">2,7&nbsp;×&nbsp;10<sup>6</sup>&nbsp;kg·m<sup>−3</sup></span> doit alerter&nbsp;: une conversion a dérapé.</p>
 </div>
 
 ---
