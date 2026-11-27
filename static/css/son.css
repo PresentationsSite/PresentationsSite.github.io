@@ -244,7 +244,7 @@ body::after {
   background: rgba(53, 224, 138, .1); border: 1px solid rgba(53, 224, 138, .4);
 }
 .reveal .qcm-go { display: block; margin: .8em auto 0; font: inherit; font-size: .62em; padding: .35em 1.1em; border-radius: 999px; cursor: pointer; color: var(--txt); background: transparent; border: 1px solid rgba(255, 255, 255, .3); }
-.reveal .qcm.revealed .qcm-go { display: none; }
+.reveal .qcm.revealed .qcm-go { visibility: hidden; } /* garde la place : la diapo ne se décale pas à la correction */
 
 /* ----------------------------------------------------------- widgets */
 .reveal .sw { margin: 0 auto; text-align: center; }

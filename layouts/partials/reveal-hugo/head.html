@@ -3,6 +3,12 @@
 <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+{{- /* Feuille de style propre à une présentation (paramètre « son_css » du front matter) :
+       l'adresse porte un numéro de version qui change à chaque construction du site, pour que
+       les navigateurs (téléphones surtout) ne gardent jamais une ancienne copie en cache. */ -}}
+{{- with .Param "son_css" }}
+<link rel="stylesheet" href="{{ . | relURL }}?v={{ now.Unix }}">
+{{- end }}
 {{- /* Thème « noir moderne » : script de mise en valeur des questions. */ -}}
 {{- with .Param "reveal_hugo.custom_css" -}}
 {{- if in (printf "%v" .) "noir-moderne" }}

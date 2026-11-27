@@ -1,9 +1,9 @@
 +++
 title = "Son"
 outputs = ["Reveal"]
+son_css = "css/son.css"
 [reveal_hugo]
 theme = "black"
-custom_css = "css/son.css"
 highlight_theme = "atom-one-dark-reasonable"
 +++
 
@@ -12,7 +12,7 @@ highlight_theme = "atom-one-dark-reasonable"
   Style    : static/css/son.css
   Scripts  : static/js/son/core.js (ambiance par partie, votes, boîte à outils)
              static/js/son/widgets.js (animations interactives)
-  Widgets  : <div class="sw" data-w="onde|course|eclair|gifonce|periode|oscillation|generateur|chrono|pouls|trompettes"></div>
+  Widgets  : <div class="sw" data-w="sphere|onde|course|eclair|gifonce|periode|oscillation|generateur|chrono|pouls|trompettes"></div>
   Votes    : shortcode qcm (2 à 4 propositions). Touches 1 à 4 ou clic sur une carte = un vote
              (Maj + touche = retirer un vote) ; → ou « Voir la réponse » = correction.
   Cellule à révéler au clic : <td class="rv" data-v="réponse">?</td>
@@ -52,7 +52,11 @@ highlight_theme = "atom-one-dark-reasonable"
 
 ---
 
-{{< slide  background-image="/animsonrond.gif" background-size="contain" background-transition="concave">}}
+<div class="sw" data-w="sphere"></div>
+
+{{%note%}}
+Reproduction animée du gif : la sphère pulse et chaque particule oscille sur place (amplitude constante), la perturbation se propage de proche en proche. Cliquer pour mettre en pause.
+{{%/note%}}
 
 ---
 
@@ -133,23 +137,23 @@ Il faut donc <span class="imp">diviser par 3,6</span><br>pour passer <span class
 <p class="fragment fade-up"><span class="ask">Que doit-on alors faire pour passer des m/s aux km/h&nbsp;?</span></p>
 
 
-<div class="conv">
-<svg viewBox="0 -20 760 380" role="img" aria-label="Pour passer des km/h aux m/s on divise par 3,6, pour passer des m/s aux km/h on multiplie par 3,6">
+<div class="conv" style="width:760px;max-width:100%;margin:.2em auto 0">
+<svg style="display:block;width:100%;height:auto;overflow:visible" viewBox="0 -20 760 380" role="img" aria-label="Pour passer des km/h aux m/s on divise par 3,6, pour passer des m/s aux km/h on multiplie par 3,6">
 <defs>
 <linearGradient id="gb" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2aa6ee"/><stop offset="1" stop-color="#0063a0"/></linearGradient>
 <linearGradient id="gg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3fdc22"/><stop offset="1" stop-color="#138a00"/></linearGradient>
 </defs>
-<g class="pill"><rect x="20" y="130" width="230" height="90" rx="45" fill="url(#gb)"/><text x="135" y="191">km/h</text></g>
-<g class="pill"><rect x="510" y="130" width="230" height="90" rx="45" fill="url(#gg)"/><text x="625" y="191">m/s</text></g>
+<g class="pill"><rect x="20" y="130" width="230" height="90" rx="45" fill="url(#gb)"/><text x="135" y="191" text-anchor="middle" fill="#fff" font-family="Outfit, sans-serif" font-weight="800" font-size="46">km/h</text></g>
+<g class="pill"><rect x="510" y="130" width="230" height="90" rx="45" fill="url(#gg)"/><text x="625" y="191" text-anchor="middle" fill="#fff" font-family="Outfit, sans-serif" font-weight="800" font-size="46">m/s</text></g>
 <g class="top">
-<path class="arc" pathLength="1" d="M135 126 C135 -10 625 -10 625 100"/>
+<path class="arc" pathLength="1" fill="none" stroke="#ff644e" stroke-width="7" stroke-linecap="round" d="M135 126 C135 -10 625 -10 625 100"/>
 <polygon class="head" points="625,128 610,100 640,100" fill="#ff644e"/>
-<g class="lab"><rect x="305" y="-6" width="150" height="56" rx="28" fill="#ff644e"/><text x="380" y="33">÷ 3,6</text></g>
+<g class="lab"><rect x="305" y="-6" width="150" height="56" rx="28" fill="#ff644e"/><text x="380" y="33" text-anchor="middle" fill="#fff" font-family="Outfit, sans-serif" font-weight="800" font-size="34">÷ 3,6</text></g>
 </g>
 <g class="bot fragment">
-<path class="arc" pathLength="1" d="M625 224 C625 358 135 358 135 252"/>
+<path class="arc" pathLength="1" fill="none" stroke="#ffc43a" stroke-width="7" stroke-linecap="round" d="M625 224 C625 358 135 358 135 252"/>
 <polygon class="head" points="135,222 120,252 150,252" fill="#ffc43a"/>
-<g class="lab"><rect x="305" y="300" width="150" height="56" rx="28" fill="#ffc43a"/><text x="380" y="339" style="fill:#1b1300">× 3,6</text></g>
+<g class="lab"><rect x="305" y="300" width="150" height="56" rx="28" fill="#ffc43a"/><text x="380" y="339" text-anchor="middle" fill="#1b1300" font-family="Outfit, sans-serif" font-weight="800" font-size="34">× 3,6</text></g>
 </g>
 </svg>
 </div>
@@ -297,18 +301,18 @@ Reproduction animée du gif : la bande rouge (une période) glisse le long du si
 
 <p><span class="ask">Que vaut la période de ce signal&nbsp;?</span></p>
 
-<div class="fig">
-<img class="fragment fade-out" data-fragment-index="0" src="/exoper1.png" alt="Signal périodique">
-<img class="corr-img fragment" data-fragment-index="0" src="/exoper1corr.png" alt="Correction : une période du signal">
+<div class="fig" style="position:relative">
+<img class="fragment fade-out" data-fragment-index="0" style="display:block;width:100%;height:auto;margin:0" src="/exoper1.png" alt="Signal périodique">
+<img class="corr-img fragment" data-fragment-index="0" style="display:block;width:100%;height:auto;margin:0;position:absolute;left:0;top:0" src="/exoper1corr.png" alt="Correction : une période du signal">
 </div>
 
 ---
 
 <p><span class="ask">Que vaut la période de ce signal&nbsp;?</span></p>
 
-<div class="fig">
-<img class="fragment fade-out" data-fragment-index="0" src="/exoper2.png" alt="Signal périodique">
-<img class="corr-img fragment" data-fragment-index="0" src="/exoper2corr.png" alt="Correction : une période du signal">
+<div class="fig" style="position:relative">
+<img class="fragment fade-out" data-fragment-index="0" style="display:block;width:100%;height:auto;margin:0" src="/exoper2.png" alt="Signal périodique">
+<img class="corr-img fragment" data-fragment-index="0" style="display:block;width:100%;height:auto;margin:0;position:absolute;left:0;top:0" src="/exoper2corr.png" alt="Correction : une période du signal">
 </div>
 
 ---
@@ -643,5 +647,4 @@ il faut 3 tel, 1 choisit le capteur "niveau de bruit" (qui moyenne le niveau son
 
 [Retour site](https://coursphychi.github.io/2nde/son/)
 
-<script src="/js/son/core.js"></script>
-<script src="/js/son/widgets.js"></script>
+{{< son-scripts >}}

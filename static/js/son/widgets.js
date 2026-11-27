@@ -29,25 +29,29 @@
     eau:   { nom: 'Eau',   dens: 0.70, c: 530,  col: '#5b8dff', r: 2.7, txt: 'Eau : $v\\approx 1500\\ \\mathrm{m/s}$, particules plus serrées.' },
     acier: { nom: 'Acier', dens: 1,    c: 2050, col: '#cfd8ea', r: 3.1, txt: 'Acier : $v\\approx 5800\\ \\mathrm{m/s}$, particules très serrées.' }
   };
+  // Positions de repos tirées au hasard (distance minimale entre particules pour éviter les recouvrements),
+  // tailles légèrement différentes ; une quinzaine de particules rouges, elles aussi dispersées au hasard.
+  function semis(s) {
+    s.parts = [];
+    var essais = 0;
+    while (s.parts.length < 640 && essais++ < 16000) {
+      var px = s.xmin + Math.random() * (s.xmax - s.xmin), py = s.ymin + Math.random() * (s.ymax - s.ymin), ok = true;
+      for (var q = 0; q < s.parts.length; q++) {
+        var ddx = s.parts[q].x - px, ddy = s.parts[q].y - py;
+        if (ddx * ddx + ddy * ddy < 36) { ok = false; break; }
+      }
+      if (ok) s.parts.push({ x: px, y: py, r: Math.random(), t: 0.75 + 0.5 * Math.random() });
+    }
+    s.trace = [];
+    for (var j = 0; j < 14; j++) s.trace.push({ x: s.xmin + 80 + Math.random() * (s.xmax - s.xmin - 160), y: s.ymin + Math.random() * (s.ymax - s.ymin), t: 1 });
+  }
   SonW.def('onde', {
     build: function (el, I) {
       var cv = mk(880, 250), s = I.s;
       s.cv = cv; s.mil = 'air'; s.clock = 0; s.t0 = 0; s.f = 2; s.A = 9;
       s.cols = 70; s.rows = 8; s.x0 = 70; s.dx = 11; s.y0 = 38; s.dy = 25; s.trac = 30;
-      // positions de repos tirées au hasard (avec une distance minimale pour éviter les recouvrements)
-      s.parts = [];
-      var xmin = s.x0, xmax = s.x0 + (s.cols - 1) * s.dx, ymin = s.y0 - 10, ymax = s.y0 + (s.rows - 1) * s.dy + 10, essais = 0;
-      while (s.parts.length < 620 && essais++ < 14000) {
-        var px = xmin + Math.random() * (xmax - xmin), py = ymin + Math.random() * (ymax - ymin), ok = true;
-        for (var q = 0; q < s.parts.length; q++) {
-          var ddx = s.parts[q].x - px, ddy = s.parts[q].y - py;
-          if (ddx * ddx + ddy * ddy < 42) { ok = false; break; }
-        }
-        if (ok) s.parts.push({ x: px, y: py, r: Math.random() });
-      }
-      // particules suivies (colonne rouge), elles aussi à des hauteurs aléatoires
-      s.trace = [];
-      for (var j = 0; j < 8; j++) s.trace.push({ x: s.x0 + s.trac * s.dx, y: ymin + (j + 0.5 + (Math.random() - .5) * .7) * (ymax - ymin) / 8 });
+      s.xmin = s.x0; s.xmax = s.x0 + (s.cols - 1) * s.dx; s.ymin = s.y0 - 10; s.ymax = s.y0 + (s.rows - 1) * s.dy + 10;
+      semis(s);
       el.innerHTML = '<div class="w-box"></div>';
       var box = $('.w-box', el);
       box.appendChild(cv.c);
@@ -66,7 +70,7 @@
       });
       maj(el, s);
     },
-    enter: function (el, I) { I.s.t0 = I.s.clock; },
+    enter: function (el, I) { I.s.t0 = I.s.clock; semis(I.s); },
     tick: function (el, I, t, dt) {
       var s = I.s, x = s.cv.x, W = s.cv.w, H = s.cv.h, m = MILIEUX[s.mil];
       s.clock += dt;
@@ -76,22 +80,20 @@
       x.font = '34px sans-serif'; x.textAlign = 'center'; x.textBaseline = 'middle';
       x.fillText('🔈', 30, s.y0 + (s.rows - 1) * s.dy / 2);
       var xEnd = s.x0 + (s.cols - 1) * s.dx;
-      // position de repos de la particule suivie
-      var xt = s.x0 + s.trac * s.dx;
-      if (m.dens > 0) {
-        x.strokeStyle = 'rgba(255,100,78,.45)'; x.setLineDash([4, 5]); x.lineWidth = 1.5;
-        x.beginPath(); x.moveTo(xt, 14); x.lineTo(xt, H - 52); x.stroke(); x.setLineDash([]);
-      }
       // particules (chacune oscille autour de sa position de repos)
       function point(p, col, r, flou) {
         var tau = tt - (p.x - s.x0) / m.c, u = 0;
         if (tau > 0) u = s.A * Math.min(1, tau * f * 2) * Math.sin(2 * Math.PI * f * tau);
         x.beginPath(); x.fillStyle = col; x.shadowColor = col; x.shadowBlur = flou;
-        x.arc(p.x + u, p.y, r, 0, 6.2832); x.fill();
+        x.arc(p.x + u, p.y, r * p.t, 0, 6.2832); x.fill();
       }
       if (m.dens > 0) {
         for (var k = 0; k < s.parts.length; k++) if (s.parts[k].r < m.dens) point(s.parts[k], m.col, m.r, 4);
-        for (k = 0; k < s.trace.length; k++) point(s.trace[k], C.red, m.r + 1.6, 10);
+        // particules rouges : anneau pointillé = position de repos, le point rouge oscille autour
+        x.shadowBlur = 0; x.strokeStyle = 'rgba(255,100,78,.6)'; x.lineWidth = 1.2; x.setLineDash([2, 2]);
+        for (k = 0; k < s.trace.length; k++) { x.beginPath(); x.arc(s.trace[k].x, s.trace[k].y, m.r + 4.5, 0, 6.2832); x.stroke(); }
+        x.setLineDash([]);
+        for (k = 0; k < s.trace.length; k++) point(s.trace[k], C.red, m.r + 1.4, 10);
       }
       x.shadowBlur = 0;
       if (m.dens === 0) {
@@ -110,7 +112,7 @@
       // légende de la particule suivie
       if (m.dens === 0) return;
       x.fillStyle = C.red; x.font = '600 17px Outfit, sans-serif'; x.textAlign = 'center';
-      x.fillText('↕ cette particule ne fait qu\u2019osciller sur place', Math.min(Math.max(xt, 200), W - 200), H - 14);
+      x.fillText('● particules rouges : elles ne font qu\u2019osciller autour de leur position de repos (○)', W / 2, H - 14);
     }
   });
   function maj(el, s) {
@@ -695,7 +697,7 @@
               x.drawImage(im, 0, 0); c.style.display = 'block';
               cum += (im.duration || 30000) / 1000; im.close(); i++;
               dormir(t0 + cum - performance.now()).then(suivant);
-            }).catch(function () { dec.close(); fin(s, j); });
+            }).catch(function () { dec.close(); if (i === 0) secours(el, s, j); else fin(s, j); });
           }
           suivant();
         });
@@ -716,5 +718,60 @@
     im.onerror = function () { fin(s, j); };
     im.src = s.src + (s.src.indexOf('?') < 0 ? '?' : '&') + 'r=' + Date.now();
   }
+
+
+  /* =================================================================== */
+  /* Sphère qui pulse dans un nuage de particules (reproduction du gif)   */
+  /* Mesuré sur le gif d'origine en suivant les points d'une image à      */
+  /* l'autre : chaque particule oscille radialement autour de sa position */
+  /* de repos r0 avec une amplitude de 54 px (constante), une longueur     */
+  /* d'onde de 93 px et la phase  ωt − k·r0 − 1,353  (période 3,33 s).    */
+  /* Le rayon de la sphère varie de 46,5 ± 11,65 px (maximum à 0,135 T).   */
+  /* =================================================================== */
+  var SPH = { A: 54.1, k: 0.06767, c: 1.353, T: 3.33, R: 46.5, dR: 11.65, ph: 0.135, dens: 0.0068, rouge: 0.014, M: 80 };
+  function semisSphere(s) {
+    // positions de repos uniformes dans un disque de 485 px de rayon (comme dans le gif), densité 0,0072 point/px²
+    var R = 485;
+    s.Wl = 540 * s.vw / s.vh;                       // repère logique : hauteur 540, largeur selon l'écran
+    s.n = Math.round(0.0072 * Math.PI * R * R);
+    s.ux = new Float32Array(s.n); s.uy = new Float32Array(s.n); s.r0 = new Float32Array(s.n); s.px = new Float32Array(s.n); s.py = new Float32Array(s.n); s.rouge = new Uint8Array(s.n);
+    for (var i = 0; i < s.n; i++) {
+      var r = R * Math.sqrt(Math.random()) + 1e-3, a = Math.random() * 6.2832;
+      s.px[i] = r * Math.cos(a); s.py[i] = r * Math.sin(a); s.r0[i] = r; s.rouge[i] = Math.random() < SPH.rouge ? 1 : 0;
+    }
+  }
+  SonW.def('sphere', {
+    build: function (el, I) {
+      var s = I.s; s.clock = 0; s.pause = false;
+      var c = document.createElement('canvas'); c.className = 'plein'; c.style.cursor = 'pointer';
+      c.title = 'Cliquer pour mettre en pause / relancer'; el.appendChild(c); s.c = c;
+      s.fit = function () {
+        var d = plein(1), sc = (window.Reveal && Reveal.getScale && Reveal.getScale()) || 1;
+        s.vw = d.vw; s.vh = d.vh; c.style.width = d.vw + 'px'; c.style.height = d.vh + 'px';
+        var q = Math.min(2, Math.max(1, Math.round(sc * 2) / 2 + 0.5));            // résolution d'affichage
+        c.width = Math.round(d.vw * sc * q); c.height = Math.round(d.vh * sc * q); s.q = sc * q;
+        semisSphere(s);
+      };
+      s.fit(); if (window.Reveal && Reveal.on) Reveal.on('resize', s.fit);
+      c.addEventListener('click', function () { s.pause = !s.pause; });
+    },
+    enter: function (el, I) { I.s.clock = 0; I.s.fit(); },
+    tick: function (el, I, t, dt) {
+      var s = I.s; if (!s.pause) s.clock += dt;
+      var X = s.c.getContext('2d');
+      var k = s.c.height / 540;                          // pixels du canvas par unité logique
+      X.setTransform(1, 0, 0, 1, 0, 0); X.clearRect(0, 0, s.c.width, s.c.height);
+      X.setTransform(k, 0, 0, k, s.c.width / 2, s.c.height / 2);
+      var ph = 2 * Math.PI * s.clock / SPH.T, rs = SPH.R + SPH.dR * Math.cos(ph - 2 * Math.PI * SPH.ph), mi = rs + 5, i, u, f, x, y, bleu = new Path2D(), rouge = new Path2D();
+      for (i = 0; i < s.n; i++) {
+        u = SPH.A * Math.cos(ph - SPH.k * s.r0[i] - SPH.c);
+        f = (s.r0[i] + u) / s.r0[i]; x = s.px[i] * f; y = s.py[i] * f;
+        if (x * x + y * y < mi * mi || x < -s.Wl / 2 - 3 || x > s.Wl / 2 + 3 || y < -273 || y > 273) continue;
+        (s.rouge[i] ? rouge : bleu).moveTo(x + 1.6, y); (s.rouge[i] ? rouge : bleu).arc(x, y, 1.6, 0, 6.2832);
+      }
+      X.fillStyle = '#3e74d1'; X.fill(bleu); X.fillStyle = '#d22143'; X.fill(rouge);
+      X.fillStyle = '#5e5e5e'; X.beginPath(); X.arc(0, 0, rs, 0, 6.2832); X.fill();
+    }
+  });
 
 })();

@@ -1,0 +1,8 @@
+{{- /*
+  Shortcode : son-scripts  (présentation « Son »)
+  Charge les scripts de la présentation avec un numéro de version qui change à chaque
+  construction du site : plus de vieux fichiers JavaScript gardés en cache par le navigateur.
+    {{< son-scripts >}}
+*/ -}}
+<script src="{{ "js/son/core.js" | relURL }}?v={{ now.Unix }}"></script>
+<script src="{{ "js/son/widgets.js" | relURL }}?v={{ now.Unix }}"></script>
