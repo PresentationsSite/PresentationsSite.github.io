@@ -24,7 +24,7 @@ highlight_theme = "atom-one-dark-reasonable"
 <div class="eq"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
 <h1>Le Son</h1>
 <p class="sub">Émission, propagation et perception</p>
-<p class="hint">↓ sous-parties &nbsp;·&nbsp; 🎲 ⏱️ 🔴 boîte à outils en bas à gauche</p>
+<p class="hint">→ parties ↓ sous-parties</p>
 </div>
 
 ---
@@ -124,7 +124,7 @@ Commençons par convertir des km/h en m/s<br>en prenant l'exemple de $\pu{72 km/
 
 Il faut donc <span class="imp">diviser par 3,6</span><br>pour passer <span class="imp">des km/h aux m/s</span>.
 
-<p class="fragment fade-up"><span class="ask">Que doit-on alors faire pour passer des m/s aux km/h&nbsp;?</span></p>
+<p class="fragment fade-up"><span class="ask">Que doit-on alors faire<br>pour passer des m/s aux km/h&nbsp;?</span></p>
 
 
 <div class="conv" style="width:760px;max-width:100%;margin:.2em auto 0">
@@ -420,7 +420,7 @@ Tous les animaux pareils ?
 
 Pour un son musical, la <span class="imp">hauteur</span> désigne la note jouée (plus ou moins grave ou aigüe).
 
-<div class="glass">
+<div class="glass fragment fade-up">
 <span style="color:#61D836"><b>La hauteur est liée à la fréquence</b></span> :<br>
 plus la fréquence est grande,<br><span class="fragment">plus la hauteur est <span class="fragment">grande</span></span><br><span class="fragment">et plus la note est <span class="fragment">aigüe.</span></span>
 </div>
