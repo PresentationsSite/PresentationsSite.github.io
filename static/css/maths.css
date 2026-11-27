@@ -406,14 +406,14 @@ body::after {
 .reveal .ud-chips .w-btn { padding: .15em .7em; }
 .reveal .ud-card { margin: .25em auto; padding: .35em 1.2em .5em; border-radius: 24px; background: var(--glass); border: 1px solid rgba(255, 255, 255, .14); box-shadow: 0 14px 40px rgba(0, 0, 0, .45), inset 0 1px 0 rgba(255, 255, 255, .12); }
 .reveal .ud-name { font-size: .55em; color: var(--mut); text-transform: uppercase; letter-spacing: .1em; font-weight: 700; }
-.reveal .ud-big { font-size: 1.9em; font-weight: 800; line-height: 1.35; cursor: pointer; transition: filter .35s; }
-.reveal .ud-big.hid { filter: blur(12px); }
-.reveal .ud-hint { font-size: .5em; color: var(--acc); visibility: hidden; margin-top: -.4em; }
+.reveal .ud-big { font-size: 1.9em; font-weight: 800; line-height: 1.35; }
+/* (mode devinette retiré) */
+/* (mode devinette retiré) */
 .reveal .ud-rows { display: grid; grid-template-columns: 1fr 1.5fr; gap: .3em 1em; font-size: .68em; margin-top: .4em; }
 .reveal .ud-rows > div { padding: .25em .5em; border-radius: 14px; background: rgba(255, 255, 255, .05); }
 .reveal .ud-rows span { display: block; font-size: .68em; color: var(--mut); text-transform: uppercase; letter-spacing: .08em; }
 .reveal .ud-sens { font-size: .6em; margin-top: .5em; line-height: 1.4; }
-.reveal .ud-sens { transition: filter .35s; } .reveal .ud-sens.hid { filter: blur(8px); }
+/* (mode devinette retiré) */
 .reveal .ud-sens u { text-decoration: none; color: var(--acc); font-weight: 700; }
 .reveal .ud sup, .reveal .uc sup { font-size: .62em; }
 .reveal .dot { color: var(--acc); font-weight: 800; margin: 0 .07em; }
@@ -570,3 +570,38 @@ html {
 }
 .reveal .regle .rh { color: color-mix(in srgb, var(--k) 60%, #fff); }
 .reveal .carte { border-left-width: 6px; box-shadow: 0 0 26px -12px var(--k, var(--acc)), 0 12px 34px rgba(0, 0, 0, .45), inset 0 1px 0 rgba(255, 255, 255, .1); }
+
+/* Tout ce qui porte une largeur de 100 % reste dans son cadre, rembourrage compris
+   (la feuille globale impose « li { width: 100% } ») */
+.reveal li { box-sizing: border-box; }
+.reveal .carte, .reveal .regle, .reveal .glass, .reveal .rcard, .reveal .copie { box-sizing: border-box; }
+
+/* tableau des litres : tient largement dans la diapo */
+.reveal table.unites { font-size: .8em; }
+.reveal table.unites th, .reveal table.unites td { min-width: 1.8em; padding: .25em .55em; }
+.reveal table.unites td { font-size: 1.1em; }
+/* aires / volumes : deux colonnes qui peuvent rétrécir */
+.reveal .duo { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); width: 98%; gap: 10px; }
+.reveal .duo .carte { min-width: 0; padding: .3em .7em .4em; font-size: .62em; overflow: hidden; }
+.reveal .duo .carte mjx-container { max-width: 100%; }
+/* aires / volumes : les deux cartes s'empilent (elles ne tenaient pas côte à côte sur téléphone) */
+.reveal .duo { grid-template-columns: minmax(0, 1fr); width: 74%; gap: 8px; }
+.reveal .duo .carte { font-size: .7em; overflow: visible; }
+
+/* règles : les signes + − × sont dessinés (traits), donc exactement centrés dans leur emplacement */
+.reveal .opw { position: relative; display: inline-block; width: 1em; height: 1em; min-width: 0; margin: 0 .06em; vertical-align: -.2em; }
+.reveal .opw .ph { position: absolute; inset: 0; display: grid; place-items: center; font-size: 1em; line-height: 1; }
+.reveal .sg { position: absolute; left: 50%; top: 50%; width: .84em; height: .84em; margin: -.42em 0 0 -.42em; font-size: 1em; filter: drop-shadow(0 0 7px currentColor); }
+.reveal .sg::before, .reveal .sg::after { content: ""; position: absolute; background: currentColor; border-radius: .12em; }
+.reveal .sg.plus::before, .reveal .sg.minus::before { left: 0; right: 0; top: 50%; height: .18em; margin-top: -.09em; }
+.reveal .sg.plus::after { top: 0; bottom: 0; left: 50%; width: .18em; margin-left: -.09em; }
+.reveal .sg.times::before, .reveal .sg.times::after { left: -6%; right: -6%; top: 50%; height: .18em; margin-top: -.09em; }
+.reveal .sg.times::before { transform: rotate(45deg); } .reveal .sg.times::after { transform: rotate(-45deg); }
+.reveal .sg.plus { color: #ffd23a; } .reveal .sg.minus { color: #37d6ff; } .reveal .sg.times { color: #ff6fb5; }
+.reveal .rl sup .opw { font-size: 1.25em; }
+.reveal .opw { vertical-align: -.3em; }
+.reveal .sg.visible ~ .ph, .reveal .sg.visible + .ph { display: none; }
+.reveal .opw .ph { color: rgba(255, 255, 255, .85); font-size: .9em; }
+.reveal .rl sup .opw { vertical-align: -.3em; margin: 0 .04em; }
+.reveal .opw { width: 1.15em; }
+.reveal .sg { width: .72em; height: .72em; margin: -.36em 0 0 -.36em; }

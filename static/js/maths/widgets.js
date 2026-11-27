@@ -135,26 +135,24 @@
   ];
   SonW.def('unites', {
     build: function (el, I) {
-      var s = I.s; s.i = 0; s.hide = false; s.shown = false;
+      var s = I.s; s.i = 0;
       el.innerHTML = '<div class="ud"><div class="w-row ud-chips">' + UD.map(function (u, i) { return btn(ubarre(u[1]), '', 'data-i="' + i + '"'); }).join('') + '</div>' +
-        '<div class="ud-card"><div class="ud-name"></div><div class="ud-big"></div><div class="ud-hint">👆 cliquez pour révéler</div>' +
+        '<div class="ud-card"><div class="ud-name"></div><div class="ud-big"></div>' +
         '<div class="ud-rows"><div><span>Avec une barre</span><b class="ud-bar"></b></div><div><span>Se lit</span><b class="ud-lit"></b></div></div>' +
         '<div class="ud-sens"></div></div>' +
-        '<div class="w-row">' + btn('🙈 Mode devinette', '', 'data-h="1"') + '<span class="w-lab">ce qui est « sous la barre » passe en exposant négatif</span></div></div>';
-      var big = $('.ud-big', el), hint = $('.ud-hint', el);
+        '<div class="w-row"><span class="w-lab">ce qui est « sous la barre » passe en exposant négatif</span></div></div>';
+      var big = $('.ud-big', el);
       function maj() {
-        var u = UD[s.i], cache = s.hide && !s.shown;
+        var u = UD[s.i];
         $$('.ud-chips .w-btn', el).forEach(function (b, k) { b.classList.toggle('on', k === s.i); });
         $('.ud-name', el).textContent = u[0];
-        big.innerHTML = uex(u[1]); big.classList.toggle('hid', cache); hint.style.visibility = cache ? 'visible' : 'hidden';
+        big.innerHTML = uex(u[1]);
         $('.ud-bar', el).innerHTML = ubarre(u[1]); $('.ud-lit', el).innerHTML = '«&nbsp;' + u[2] + '&nbsp;»';
-        $('.ud-sens', el).innerHTML = u[3]; $('.ud-sens', el).classList.toggle('hid', cache);
+        $('.ud-sens', el).innerHTML = u[3];
       }
       el.addEventListener('click', function (e) {
         var b = e.target.closest('button');
-        if (b && b.getAttribute('data-i') != null) { s.i = +b.getAttribute('data-i'); s.shown = false; maj(); return; }
-        if (b && b.getAttribute('data-h')) { s.hide = !s.hide; s.shown = false; b.classList.toggle('on', s.hide); b.textContent = s.hide ? '👀 Arrêter la devinette' : '🙈 Mode devinette'; maj(); return; }
-        if (e.target.closest('.ud-big') && s.hide) { s.shown = true; maj(); }
+        if (b && b.getAttribute('data-i') != null) { s.i = +b.getAttribute('data-i'); maj(); }
       });
       maj();
     }

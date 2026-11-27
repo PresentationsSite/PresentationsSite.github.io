@@ -16,7 +16,7 @@ highlight_theme = "atom-one-dark-reasonable"
   Widgets  : <div class="sw" data-w="heroexp|echelle|unites|composes|regles"></div>
   Votes    : shortcode qcm (touches 1-4 ou clic = un vote ; → = correction)
   Réponses : flèche <span class="arr">→</span> puis réponse <span class="fragment corr">…</span> (toujours en vert)
-  Règles   : opérateur coloré qui apparaît en zoom au clic : <span class="op plus fragment zoom">+</span>
+  Règles   : opérateur coloré qui apparaît en zoom au clic : <span class="sg plus fragment zoom"></span>
   Contenu  : les diapos d'origine + le détail des blocs repliables de la page « entraînement »
              (coursphychi.github.io/2nde/entrainement).
 -->
@@ -300,7 +300,7 @@ $$\mathrm{m\cdot s^{-1}} = \mathrm m\times\frac{1}{\mathrm s} = \frac{\mathrm m}
 <div class="sw" data-w="unites"></div>
 
 {{%note%}}
-Chaque bouton est écrit « avec une barre ». Le panneau montre l'écriture avec exposants (exposants négatifs en bleu, positifs en jaune), la façon de la lire et ce que ça veut dire concrètement. Le mode devinette floute l'écriture avec exposants : la classe propose, puis révèle d'un clic.
+Chaque bouton est écrit « avec une barre ». Le panneau montre l'écriture avec exposants (exposants négatifs en bleu, positifs en jaune), la façon de la lire et ce que ça veut dire concrètement.
 {{%/note%}}
 
 ---
@@ -489,9 +489,9 @@ Les six boutons reprennent les exemples du cours. On peut aussi choisir une autr
 ---
 
 <div class="rcard b" style="padding:.45em 1.6em">
-<div class="rl">10<sup><i>a</i></sup> × 10<sup><i>b</i></sup> = <span class="fragment">10<sup><i>a</i><span class="opw"><span class="op plus fragment zoom">+</span><span class="ph">?</span></span><i>b</i></sup></span></div>
-<div class="rl"><span class="frac"><span>10<sup><i>a</i></sup></span><span>10<sup><i>b</i></sup></span></span> = <span class="fragment">10<sup><i>a</i><span class="opw"><span class="op minus fragment zoom">−</span><span class="ph">?</span></span><i>b</i></sup></span></div>
-<div class="rl">(10<sup><i>a</i></sup>)<sup><i>b</i></sup> = <span class="fragment">10<sup><i>a</i><span class="opw"><span class="op times fragment zoom">×</span><span class="ph">?</span></span><i>b</i></sup></span></div>
+<div class="rl">10<sup><i>a</i></sup> × 10<sup><i>b</i></sup> = <span class="fragment">10<sup><i>a</i><span class="opw"><span class="sg plus fragment zoom"></span><span class="ph">?</span></span><i>b</i></sup></span></div>
+<div class="rl"><span class="frac"><span>10<sup><i>a</i></sup></span><span>10<sup><i>b</i></sup></span></span> = <span class="fragment">10<sup><i>a</i><span class="opw"><span class="sg minus fragment zoom"></span><span class="ph">?</span></span><i>b</i></sup></span></div>
+<div class="rl">(10<sup><i>a</i></sup>)<sup><i>b</i></sup> = <span class="fragment">10<sup><i>a</i><span class="opw"><span class="sg times fragment zoom"></span><span class="ph">?</span></span><i>b</i></sup></span></div>
 </div>
 
 ---
