@@ -217,7 +217,7 @@
       var nopt = ''; for (var k = -9; k <= 9; k++) nopt += '<option value="' + k + '"' + (k === 2 ? ' selected' : '') + '>' + (k < 0 ? MOINS + (-k) : k) + '</option>';
       el.innerHTML = '<div class="og"><div class="og-top"></div><div class="og-bar"><div class="og-zone og-lo"></div><div class="og-zone og-hi"></div><div class="og-thr"></div><div class="og-cur"></div></div><div class="og-ticks"></div>' +
         '<div class="og-ctrl"><label>a = <b class="oa"></b> <input class="w-range og-a" type="range" min="1" max="9.99" step="0.01" value="4.7"></label><label>n <select class="og-n">' + nopt + '</select></label>' +
-        btn('🔬 Pour les curieux : seuil √10', '', 'data-log="1"') + '</div>' +
+        '</div>' +
         '<div class="og-res"></div><div class="og-note"></div>' +
         '<div class="w-row">' + [['499', 4.99, 2], ['500', 5, 2], ['0,0087', 8.7, -3], ['6 371 km', 6.371, 6], ['400', 4, 2]].map(function (c, i) { return btn(c[0], '', 'data-p="' + i + '"'); }).join('') + '</div></div>';
       var PRE = [[4.99, 2], [5, 2], [8.7, -3], [6.371, 6], [4, 2]];
@@ -243,7 +243,7 @@
         if (s.log) h += '<div class="og-pill ' + (pr ? 'hi' : 'lo') + (p5 !== pr ? ' diff' : '') + '">' + p10(pr ? n + 1 : n) + '<small>seuil √10 (physiciens)</small></div>';
         $('.og-res', el).innerHTML = h;
         $('.og-note', el).innerHTML = s.log ? (p5 !== pr ? 'Ici les deux conventions donnent des résultats différents : entre 3,16 et 5, un physicien arrondit à la puissance de 10 supérieure.' : 'Hors de l’intervalle [3,16 ; 5[, les deux conventions donnent le même résultat. Sur cette échelle logarithmique, √10 est exactement au milieu de 1 et 10.') : 'Si a < 5 on garde 10<sup>n</sup> ; si a ≥ 5 on passe à la puissance suivante 10<sup>n+1</sup>.';
-        $('[data-log]', el).classList.toggle('on', s.log);
+        /* échelle linéaire uniquement : plus de bascule logarithmique */
       }
       ra.addEventListener('input', render); sn.addEventListener('change', render);
       el.addEventListener('click', function (e) {
@@ -391,7 +391,7 @@
       var s = I.s; s.fam = 'vit';
       el.innerHTML = '<div class="cv uc"><div class="w-row">' + Object.keys(UC).map(function (k) { return btn(UC[k].nom, '', 'data-f="' + k + '"'); }).join('') + '</div>' +
         '<div class="cv-form">Convertir <input class="cv-v" value="72" inputmode="decimal" aria-label="Valeur"><select class="uc-n1" aria-label="Unité du haut (départ)"></select>/<select class="uc-d1" aria-label="Unité du bas (départ)"></select>' +
-        ' en <select class="uc-n2" aria-label="Unité du haut (arrivée)"></select>/<select class="uc-d2" aria-label="Unité du bas (arrivée)"></select> ?</div>' +
+        ' en <select class="uc-n2" aria-label="Unité du haut (arrivée)"></select>/<select class="uc-d2" aria-label="Unité du bas (arrivée)"></select></div>' +
         '<div class="w-row">' + UC_PRE.map(function (c, i) { return btn(c[0], '', 'data-p="' + i + '"'); }).join('') + '</div>' +
         '<div class="cv-steps"></div></div>';
       var f = { v: $('.cv-v', el), n1: $('.uc-n1', el), d1: $('.uc-d1', el), n2: $('.uc-n2', el), d2: $('.uc-d2', el) }, out = $('.cv-steps', el);
@@ -438,6 +438,42 @@
         else if (b.getAttribute('data-p') != null) { var c = UC_PRE[+b.getAttribute('data-p')]; fam(c[1], c[3], c[4], c[5], c[6]); f.v.value = String(c[2]).replace('.', ','); render(); }
       });
       var d0 = UC.vit.def; fam('vit', d0[1], d0[2], d0[3], d0[4]); render();
+    }
+  });
+
+  /* ================================================================= */
+  /* Page de titre : l'exposant de 10 défile de 10⁻¹⁵ à 10¹⁵              */
+  /* ================================================================= */
+  SonW.def('heroexp', {
+    build: function (el, I) {
+      var s = I.s, ticks = '';
+      for (var e = -15; e <= 15; e++) ticks += '<i class="' + (e % 3 === 0 ? 't3 ' : '') + (e < 0 ? 'neg' : e > 0 ? 'pos' : '') + '"></i>';
+      el.innerHTML = '<div class="hx"><div class="hx-n"><span class="b">10</span><span class="e"></span></div><div class="hx-d"></div><div class="hx-p"></div>' +
+        '<div class="hx-ax">' + ticks + '</div><div class="hx-axl"><span>10' + sup(-15) + '</span><span>1</span><span>10' + sup(15) + '</span></div></div>';
+      s.last = null; s.t0 = null;
+      var seq = [], i;
+      for (i = 0; i <= 15; i++) seq.push(i);
+      for (i = 14; i >= -15; i--) seq.push(i);
+      for (i = -14; i <= -1; i++) seq.push(i);
+      s.seq = seq;
+      var nodes = $$('.hx-ax i', el), nEl = $('.hx-n', el), eEl = $('.e', el), dEl = $('.hx-d', el), pEl = $('.hx-p', el), hx = $('.hx', el);
+      s.show = function (n) {
+        var c = n > 0 ? '#ffc43a' : n < 0 ? '#37d6ff' : '#ffffff', pre = null;
+        PF.forEach(function (p) { if (p[0] === n) pre = p; });
+        hx.style.setProperty('--c', c); nEl.style.setProperty('--c', c); pEl.style.setProperty('--c', c);
+        eEl.style.animation = 'none'; void eEl.offsetWidth; eEl.style.animation = '';
+        eEl.textContent = n < 0 ? MOINS + (-n) : String(n);
+        dEl.innerHTML = '= ' + dec(n);
+        pEl.innerHTML = pre && n !== 0 ? '<b>' + pre[1] + ' · ' + pre[2] + '</b>' : '';
+        nodes.forEach(function (x, k) { x.classList.toggle('on', k === n + 15); });
+      };
+      s.show(0);
+    },
+    enter: function (el, I) { I.s.t0 = null; },
+    tick: function (el, I, t) {
+      var s = I.s; if (s.t0 === null) s.t0 = t;
+      var k = Math.floor((t - s.t0) / 0.7) % s.seq.length;
+      if (k !== s.last) { s.last = k; s.show(s.seq[k]); }
     }
   });
 })();

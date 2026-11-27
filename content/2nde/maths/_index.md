@@ -1,7 +1,6 @@
 +++
 title = "Maths"
 outputs = ["Reveal"]
-son_css = "css/son.css"
 maths_css = "css/maths.css"
 [reveal_hugo]
 theme = "black"
@@ -9,21 +8,25 @@ highlight_theme = "atom-one-dark-reasonable"
 +++
 
 <!--
-  Présentation « Maths et expressions numériques » (2nde), dans le style de « Son ».
-  Style    : static/css/son.css (socle commun) + static/css/maths.css (ambiances, composants, widgets)
+  Présentation « Maths et expressions numériques » (2nde).
+  Style    : static/css/maths.css (feuille propre à cette présentation : fond quadrillé, ambiance par partie,
+             listes, encadrés, votes, widgets, boîte à outils)
   Scripts  : static/js/son/core.js (votes aux doigts, boîte à outils, mise en page stable)
              static/js/maths/widgets.js (widgets) ; chargés par le shortcode maths-scripts
-  Widgets  : <div class="sw" data-w="echelle|convertir|regles|virgule|og|cs"></div>
+  Widgets  : <div class="sw" data-w="heroexp|echelle|unites|composes|regles|virgule|og|cs"></div>
   Votes    : shortcode qcm (touches 1-4 ou clic = un vote ; → = correction)
+  Réponses : flèche <span class="arr">→</span> puis réponse <span class="fragment corr">…</span> (toujours en vert)
+  Règles   : opérateur coloré qui apparaît en zoom au clic : <span class="op plus fragment zoom">+</span>
   Contenu  : les diapos d'origine + le détail des blocs repliables de la page « entraînement »
              (coursphychi.github.io/2nde/entrainement).
 -->
 
 <div class="hero">
-<div class="eq"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
-<h1>Maths et expressions numériques</h1>
+<div class="sw hero-sw" data-w="heroexp"></div>
+<h1>Maths et<br><span class="nw">expressions numériques</span></h1>
 <p class="sub">en sciences physiques</p>
-<p class="hint">préfixes · unités composées · puissances de 10 · notation scientifique · ordres de grandeur · chiffres significatifs · rédaction<br>↓ sous-parties &nbsp;·&nbsp; 🎲 ⏱️ 🔴 boîte à outils en bas à gauche</p>
+<p class="topics">préfixes · unités composées · puissances de 10 · notation scientifique<br>ordres de grandeur · chiffres significatifs · rédaction d'un résultat</p>
+<p class="hint">→ parties &nbsp;&nbsp;·&nbsp;&nbsp; ↓ sous-parties</p>
 </div>
 
 ---
@@ -155,8 +158,6 @@ $$
 </div>
 
 ---
-
-<h3>À vous de jouer</h3>
 
 <div class="sw" data-w="convertir"></div>
 
@@ -439,8 +440,6 @@ $$
 
 ---
 
-<h3>À vous de jouer</h3>
-
 <div class="sw" data-w="composes"></div>
 
 {{%note%}}
@@ -495,12 +494,10 @@ Les six boutons reprennent les exemples du cours. On peut aussi choisir une autr
 
 ---
 
-<div class="fcard b" style="padding:.35em 1.5em;">
-<p>$10^a\times10^b=$ <span class="fragment"> $10^{a\color{#FFF3A0}+\color{white}b}$ </span></p>
-
-<p>$\displaystyle 10^a/10^b=\frac{10^a}{10^b}=$ <span class="fragment"> $10^{a\color{#FFF3A0}-\color{white}b}$ </span></p>
-
-<p>$\left(10^a\right)^b=$ <span class="fragment"> $10^{a\color{#FFF3A0}\times\color{white}b}$ </span></p>
+<div class="rcard b" style="padding:.45em 1.6em">
+<div class="rl">10<sup><i>a</i></sup> × 10<sup><i>b</i></sup> = <span class="fragment">10<sup><i>a</i><span class="opw"><span class="op plus fragment zoom">+</span><span class="ph">?</span></span><i>b</i></sup></span></div>
+<div class="rl"><span class="frac"><span>10<sup><i>a</i></sup></span><span>10<sup><i>b</i></sup></span></span> = <span class="fragment">10<sup><i>a</i><span class="opw"><span class="op minus fragment zoom">−</span><span class="ph">?</span></span><i>b</i></sup></span></div>
+<div class="rl">(10<sup><i>a</i></sup>)<sup><i>b</i></sup> = <span class="fragment">10<sup><i>a</i><span class="opw"><span class="op times fragment zoom">×</span><span class="ph">?</span></span><i>b</i></sup></span></div>
 </div>
 
 ---
@@ -508,6 +505,93 @@ Les six boutons reprennent les exemples du cours. On peut aussi choisir une autr
 <h3>Testez les règles</h3>
 
 <div class="sw" data-w="regles"></div>
+
+---
+
+<h3>Exemples : les produits</h3>
+
+<p class="petit">On <span class="op plus">additionne</span> les exposants.</p>
+
+<ul class="ex">
+<li>10<sup>3</sup> × 10<sup>5</sup> <span class="arr">→</span> <span class="fragment corr">10<sup>8</sup></span></li>
+<li>10<sup>−2</sup> × 10<sup>6</sup> <span class="arr">→</span> <span class="fragment corr">10<sup>4</sup></span></li>
+<li>10<sup>−4</sup> × 10<sup>−3</sup> <span class="arr">→</span> <span class="fragment corr">10<sup>−7</sup></span></li>
+<li>10<sup>5</sup> × 10<sup>−5</sup> <span class="arr">→</span> <span class="fragment corr">10<sup>0</sup> = 1</span></li>
+<li>10 × 10<sup>7</sup> <span class="arr">→</span> <span class="fragment corr">10<sup>8</sup></span> <span class="fragment mut">(car 10 = 10<sup>1</sup>)</span></li>
+</ul>
+
+---
+
+<h3>Exemples : les quotients</h3>
+
+<p class="petit">On <span class="op minus">soustrait</span> les exposants.</p>
+
+<ul class="ex">
+<li>10<sup>7</sup> / 10<sup>3</sup> <span class="arr">→</span> <span class="fragment corr">10<sup>4</sup></span></li>
+<li>10<sup>2</sup> / 10<sup>5</sup> <span class="arr">→</span> <span class="fragment corr">10<sup>−3</sup></span></li>
+<li>10<sup>5</sup> / 10<sup>−2</sup> <span class="arr">→</span> <span class="fragment corr">10<sup>7</sup></span></li>
+<li>10<sup>−3</sup> / 10<sup>−6</sup> <span class="arr">→</span> <span class="fragment corr">10<sup>3</sup></span></li>
+<li>1 / 10<sup>4</sup> <span class="arr">→</span> <span class="fragment corr">10<sup>−4</sup></span> <span class="fragment mut">(car 1 = 10<sup>0</sup>)</span></li>
+</ul>
+
+---
+
+<h3>Exemples : les puissances de puissances</h3>
+
+<p class="petit">On <span class="op times">multiplie</span> les exposants.</p>
+
+<ul class="ex">
+<li>(10<sup>3</sup>)<sup>2</sup> <span class="arr">→</span> <span class="fragment corr">10<sup>6</sup></span></li>
+<li>(10<sup>−2</sup>)<sup>3</sup> <span class="arr">→</span> <span class="fragment corr">10<sup>−6</sup></span></li>
+<li>(10<sup>4</sup>)<sup>−1</sup> <span class="arr">→</span> <span class="fragment corr">10<sup>−4</sup></span></li>
+<li>(10<sup>−3</sup>)<sup>−2</sup> <span class="arr">→</span> <span class="fragment corr">10<sup>6</sup></span></li>
+<li>(10<sup>2</sup>)<sup>0</sup> <span class="arr">→</span> <span class="fragment corr">10<sup>0</sup> = 1</span></li>
+</ul>
+
+---
+
+<h3>Un peu de tout</h3>
+
+<p class="petit">On applique les règles dans l'ordre, étape par étape.</p>
+
+<ul class="ex">
+<li>10<sup>3</sup> × 10<sup>4</sup> / 10<sup>5</sup> <span class="arr">→</span> <span class="fragment corr">10<sup>2</sup></span></li>
+<li>(10<sup>−2</sup>)<sup>3</sup> × 10<sup>8</sup> <span class="arr">→</span> <span class="fragment corr">10<sup>2</sup></span></li>
+<li>10<sup>6</sup> × 10<sup>−2</sup> / (10<sup>−1</sup>)<sup>2</sup> <span class="arr">→</span> <span class="fragment corr">10<sup>6</sup></span></li>
+<li>(10<sup>5</sup> × 10<sup>−3</sup>)<sup>3</sup> <span class="arr">→</span> <span class="fragment corr">10<sup>6</sup></span></li>
+<li>10<sup>−4</sup> / (10<sup>2</sup> × 10<sup>−5</sup>) <span class="arr">→</span> <span class="fragment corr">10<sup>−1</sup></span></li>
+</ul>
+
+---
+
+<div class="carte piege">
+<span class="ct">⚠ Les trois erreurs classiques</span>
+<p>10<sup>−3</sup> × 10<sup>−2</sup> = 10<sup>−5</sup>&nbsp;: on additionne −3 et −2, on ne trouve pas 10<sup>−1</sup>.</p>
+<p class="fragment fade-up">(10<sup>2</sup>)<sup>3</sup> = 10<sup>6</sup>&nbsp;: on <b>multiplie</b> les exposants (2 × 3), on ne trouve pas 10<sup>5</sup>.</p>
+<p class="fragment fade-up">10<sup>0</sup> = 1&nbsp;: et non 0.</p>
+</div>
+
+---
+
+{{< qcm
+    q=`$10^{3}\times10^{-5}=$ ?`
+    a1=`$10^{2}$`
+    a2=`$10^{-2}$`
+    a3=`$10^{-15}$`
+    a4=`$10^{-8}$`
+    bonne="2"
+    expl=`On additionne les exposants : $3+(-5)=-2$, donc $10^{3}\times10^{-5}=10^{-2}$.` >}}
+
+---
+
+{{< qcm
+    q=`$\left(10^{-2}\right)^{3}=$ ?`
+    a1=`$10^{6}$`
+    a2=`$10^{-5}$`
+    a3=`$10^{-6}$`
+    a4=`$10^{-8}$`
+    bonne="3"
+    expl=`On multiplie les exposants : $(-2)\times3=-6$, donc $\left(10^{-2}\right)^{3}=10^{-6}$.` >}}
 
 ---
 
@@ -548,7 +632,7 @@ Les physiciens manipulent des nombres<br>très grands ou très petits :
 
 Un nombre est écrit en <span class="imp">notation scientifique</span><br>lorsqu'il est sous la forme :
 
-<div class="fcard r fragment fade-up" style="font-size:1.6em">$a\times10^{n}$</div>
+<div class="rcard r fragment fade-up" style="font-size:1.5em">$a\times10^{n}$</div>
 
 <ul>
 <li class="fragment fade-up">$a$ est un nombre décimal avec <span class="imp">un seul chiffre<br>non nul avant la virgule</span> : $1\leqslant a \lt 10$ ;</li>
@@ -569,15 +653,13 @@ Un nombre est écrit en <span class="imp">notation scientifique</span><br>lorsqu
 <p class="fragment fade-up">Exemples :</p>
 
 <ul>
-<li class="fragment fade-up">$340$ $\longrightarrow$ <span class="fragment">$3{,}4\times10^{2}$</span></li>
-<li class="fragment fade-up">$6\,370\,000$ $\longrightarrow$ <span class="fragment">$6{,}37\times10^{6}$</span></li>
-<li class="fragment fade-up">$0{,}052$ $\longrightarrow$ <span class="fragment">$5{,}2\times10^{-2}$</span></li>
-<li class="fragment fade-up">$0{,}000\,8$ $\longrightarrow$ <span class="fragment">$8\times10^{-4}$</span></li>
+<li class="fragment fade-up">$340$ <span class="arr">→</span> <span class="fragment corr">$3{,}4\times10^{2}$</span></li>
+<li class="fragment fade-up">$6\,370\,000$ <span class="arr">→</span> <span class="fragment corr">$6{,}37\times10^{6}$</span></li>
+<li class="fragment fade-up">$0{,}052$ <span class="arr">→</span> <span class="fragment corr">$5{,}2\times10^{-2}$</span></li>
+<li class="fragment fade-up">$0{,}000\,8$ <span class="arr">→</span> <span class="fragment corr">$8\times10^{-4}$</span></li>
 </ul>
 
 ---
-
-<h3>À vous : faites glisser la virgule</h3>
 
 <div class="sw" data-w="virgule"></div>
 
@@ -590,8 +672,8 @@ Choisir un nombre (ou « Défi » pour un nombre tiré au hasard), puis faire gl
 Et si le nombre comporte déjà<br>une puissance de 10 ?
 
 <ul>
-<li class="fragment fade-up">$632\times10^{5}$<br>$\longrightarrow$ <span class="fragment">$6{,}32\times10^{2}\times10^{5}$</span> <span class="fragment">$=6{,}32\times10^{7}$</span></li>
-<li class="fragment fade-up">$0{,}25\times10^{-3}$<br>$\longrightarrow$ <span class="fragment">$2{,}5\times10^{-1}\times10^{-3}$</span> <span class="fragment">$=2{,}5\times10^{-4}$</span></li>
+<li class="fragment fade-up">$632\times10^{5}$<br><span class="arr">→</span> <span class="fragment corr">$6{,}32\times10^{2}\times10^{5}$</span> <span class="fragment corr">$=6{,}32\times10^{7}$</span></li>
+<li class="fragment fade-up">$0{,}25\times10^{-3}$<br><span class="arr">→</span> <span class="fragment corr">$2{,}5\times10^{-1}\times10^{-3}$</span> <span class="fragment corr">$=2{,}5\times10^{-4}$</span></li>
 </ul>
 
 <p class="fragment fade-up">Si on multiplie $a$ par 10, on retire 1 à $n$<br>(et inversement) : le nombre ne change pas !</p>
@@ -623,11 +705,11 @@ Et si le nombre comporte déjà<br>une puissance de 10 ?
 <span class="ask">Écrire en notation scientifique :</span>
 
 <ul style="font-size:0.85em">
-<li>rayon de la Terre : $6\,370\ \text{km}$ <span class="fragment corr">$\longrightarrow 6{,}37\times10^{3}\ \text{km}$</span></li>
-<li>épaisseur d'un cheveu : $0{,}000\,07\ \text{m}$ <span class="fragment corr">$\longrightarrow 7\times10^{-5}\ \text{m}$</span></li>
-<li>vitesse de la lumière : $300\,000\ \text{km/s}$ <span class="fragment corr">$\longrightarrow 3\times10^{5}\ \text{km/s}$</span></li>
-<li>$48{,}5\times10^{3}\ \text{J}$ <span class="fragment corr">$\longrightarrow 4{,}85\times10^{4}\ \text{J}$</span></li>
-<li>$0{,}032\times10^{-5}\ \text{m}$ <span class="fragment corr">$\longrightarrow 3{,}2\times10^{-7}\ \text{m}$</span></li>
+<li>rayon de la Terre : $6\,370\ \text{km}$ <span class="arr">→</span> <span class="fragment corr">$6{,}37\times10^{3}\ \text{km}$</span></li>
+<li>épaisseur d'un cheveu : $0{,}000\,07\ \text{m}$ <span class="arr">→</span> <span class="fragment corr">$7\times10^{-5}\ \text{m}$</span></li>
+<li>vitesse de la lumière : $300\,000\ \text{km/s}$ <span class="arr">→</span> <span class="fragment corr">$3\times10^{5}\ \text{km/s}$</span></li>
+<li>$48{,}5\times10^{3}\ \text{J}$ <span class="arr">→</span> <span class="fragment corr">$4{,}85\times10^{4}\ \text{J}$</span></li>
+<li>$0{,}032\times10^{-5}\ \text{m}$ <span class="arr">→</span> <span class="fragment corr">$3{,}2\times10^{-7}\ \text{m}$</span></li>
 </ul>
 
 ---
@@ -697,25 +779,26 @@ Deux petites vidéos qui reprennent tout ça :
 
 ---
 
-<h3>Essayez : faites glisser la valeur de <i>a</i></h3>
-
 <div class="sw" data-w="og"></div>
 
 {{%note%}}
-Faire glisser a, changer n, ou utiliser les boutons (499, 500, 0,0087, 6 371 km, 400). Le bouton « 🔬 Pour les curieux » affiche aussi le seuil √10 des physiciens (voir la fin de cette partie).
+Faire glisser a, changer n, ou utiliser les boutons (499, 500, 0,0087, 6 371 km, 400) : la barre montre le seuil 5 qui sépare « on garde 10^n » de « on passe à 10^(n+1) ».
 {{%/note%}}
 
 ---
 
-- $\pu{3E5}$ $\\,\\,$ ${\longrightarrow}$  <span class="fragment">$10^5$</span>
-- $\pu{5E5}$ $\\,\\,$ ${\longrightarrow}$ <span class="fragment">$10^6$</span>
-- $\pu{8E-5}$ ${\longrightarrow}$ <span class="fragment">$10^{-4}$</span>
-- $\pu{2E-5}$ ${\longrightarrow}$ <span class="fragment">$10^{-5}$</span>
-- $\pu{3,5}$ $\qquad \\;$ ${\longrightarrow}$ <span class="fragment">$10^0$ ou $1$</span>
+<ul>
+<li>$\pu{3E5}$ <span class="arr">→</span> <span class="fragment corr">$10^5$</span></li>
+<li>$\pu{5E5}$ <span class="arr">→</span> <span class="fragment corr">$10^6$</span></li>
+<li>$\pu{8E-5}$ <span class="arr">→</span> <span class="fragment corr">$10^{-4}$</span></li>
+<li>$\pu{2E-5}$ <span class="arr">→</span> <span class="fragment corr">$10^{-5}$</span></li>
+<li>$\pu{3,5}$ <span class="arr">→</span> <span class="fragment corr">$10^0$ ou $1$</span></li>
+</ul>
+
 
 ---
 
-<table class="vit">
+<table class="tbl">
 <tr><th>Nombre</th><th>Notation scientifique</th><th>Comparaison</th><th>Ordre de grandeur</th></tr>
 <tr><td>$499$</td><td>$4{,}99\times 10^{2}$</td><td>$4{,}99 < 5$</td><td><b style="color:#4aa8ff">$10^{2}$</b></td></tr>
 <tr class="fragment fade-up"><td>$500$</td><td>$5{,}00\times 10^{2}$</td><td>$5{,}00 \geqslant 5$</td><td><b style="color:#ffa23a">$10^{3}$</b></td></tr>
@@ -736,80 +819,14 @@ Faire glisser a, changer n, ou utiliser les boutons (499, 500, 0,0087, 6 371 km,
 D'autres ordres de grandeur à trouver :
 
 
-- $\pu{632E5}$  ${\longrightarrow}$  <span class="fragment">$10^8$</span>
-- $\pu{632E-4}$  ${\longrightarrow}$ <span class="fragment">$10^{-1}$</span>
-- $\left(\pu{2E1}\right)^3$ ${\longrightarrow}$ <span class="fragment">$10^4$</span>
-- $\pu{5,0E-4}/1000$ ${\longrightarrow}$ <span class="fragment">$10^{-6}$</span>
-- $\frac{9800}{\pu{1060000}}$  ${\longrightarrow}$ <span class="fragment">$10^{-2}$</span>
+<ul>
+<li>$\pu{632E5}$ <span class="arr">→</span> <span class="fragment corr">$10^8$</span></li>
+<li>$\pu{632E-4}$ <span class="arr">→</span> <span class="fragment corr">$10^{-1}$</span></li>
+<li>$\left(\pu{2E1}\right)^3$ <span class="arr">→</span> <span class="fragment corr">$10^4$</span></li>
+<li>$\pu{5,0E-4}/1000$ <span class="arr">→</span> <span class="fragment corr">$10^{-6}$</span></li>
+<li>$\frac{9800}{\pu{1060000}}$ <span class="arr">→</span> <span class="fragment corr">$10^{-2}$</span></li>
+</ul>
 
----
-
-<div class="part-title">
-<span class="num" style="font-size:2.6em">🔬</span>
-<h2>Pour les curieux</h2>
-<p>Pourquoi les physiciens choisissent plutôt<br>le seuil $\sqrt{10}\approx 3{,}16$</p>
-</div>
-
----
-
-<div class="glass">
-<p>Le seuil 5 est une <span class="imp">convention</span> :<br>elle est pratique, mais elle ne correspond pas tout à fait<br>à l'idée de «&nbsp;puissance de 10 la plus proche&nbsp;»<br>telle qu'un physicien la conçoit.</p>
-</div>
-
----
-
-<h3>Comparer avec des rapports,<br>pas avec des différences</h3>
-
-<p class="petit">Deux ordres de grandeur d'écart : l'une est environ <b>100 fois</b> plus grande que l'autre.<br>On raisonne en «&nbsp;combien de fois plus&nbsp;», pas en «&nbsp;combien de plus&nbsp;».</p>
-
-<p class="fragment fade-up">Prenons $400$ : il est <span class="imp">4 fois</span> plus grand que $100$,<br>mais seulement <span class="imp" style="color:#FFD932">2,5 fois</span> plus petit que $1000$.</p>
-
-<p class="fragment fade-up">En ce sens, $400$ est plus proche de $10^3$ que de $10^2$ !</p>
-
----
-
-Cherchons le nombre $m$ situé à égale distance de $1$ et de $10$<br>au sens des <span class="imp">rapports</span> : même facteur de $1$ à $m$ que de $m$ à $10$.
-
-<div class="fcard g fragment fade-up" style="font-size:.95em">
-$\dfrac{m}{1} = \dfrac{10}{m} \iff m^2 = 10 \iff m = \sqrt{10} \approx 3{,}16$
-</div>
-
-<p class="fragment fade-up petit">($m>0$)</p>
-
----
-
-<h3>Sur une échelle logarithmique</h3>
-
-<p class="petit">Sur une échelle où chaque facteur 10 occupe la même longueur<br>(axe d'un graphique semi-logarithmique), $\sqrt{10}$ tombe pile au milieu :</p>
-
-<p class="petit fragment fade-up">Le seuil $5$ se retrouve nettement au-delà du milieu :<br>c'est ce que montre la diapo suivante.</p>
-
----
-
-<h3>Essayez l'échelle logarithmique</h3>
-
-<div class="sw" data-w="og" data-log="1"></div>
-
-{{%note%}}
-L'échelle est ici logarithmique : √10 est au milieu, le seuil 5 est en pointillés. Essayer le bouton 400 : les deux conventions donnent des ordres de grandeur différents. Le bouton « 🔬 » permet de revenir à l'échelle linéaire.
-{{%/note%}}
-
----
-
-<div class="carte methode">
-<span class="ct">Lien avec le logarithme décimal</span>
-<p>(celui du pH, en terminale)</p>
-<p class="fragment fade-up">Cette convention revient à arrondir $\log x$ à l'entier le plus proche :<br>l'ordre de grandeur de $x$ est $10^{k}$, où $k$ est l'entier le plus proche de $\log x$.</p>
-<p class="fragment fade-up">Par exemple, $\log 400 \approx 2{,}60$, dont l'entier le plus proche est $3$ :<br>l'ordre de grandeur est $10^3$.</p>
-</div>
-
----
-
-<div class="carte ok">
-<span class="ct">En pratique</span>
-<p>Les deux conventions ne diffèrent que lorsque $a$ est compris entre $3{,}16$ et $5$,<br>ce qui ne change pas grand-chose pour une estimation.</p>
-<p class="fragment fade-up"><b>Dans ce cours et dans les quiz, on utilise le seuil 5.</b></p>
-</div>
 
 {{% /section %}}
 
@@ -850,8 +867,6 @@ Pour compter les chiffres significatifs :
 
 ---
 
-<h3>Comptez avec le widget</h3>
-
 <div class="sw" data-w="cs"></div>
 
 {{%note%}}
@@ -861,10 +876,10 @@ En vert : les chiffres qui comptent ; en gris : ceux qui ne comptent pas. Les bo
 ---
 
 <ul>
-<li>$4{,}52$ <span class="fragment corr">$\longrightarrow$ 3 chiffres significatifs</span></li>
-<li>$1{,}050$ <span class="fragment corr">$\longrightarrow$ 4 chiffres significatifs</span></li>
-<li>$0{,}0045$ <span class="fragment corr">$\longrightarrow$ 2 chiffres significatifs</span></li>
-<li>$3{,}0\times10^{8}$ <span class="fragment corr">$\longrightarrow$ 2 chiffres significatifs</span></li>
+<li>$4{,}52$ <span class="arr">→</span> <span class="fragment corr">3 chiffres significatifs</span></li>
+<li>$1{,}050$ <span class="arr">→</span> <span class="fragment corr">4 chiffres significatifs</span></li>
+<li>$0{,}0045$ <span class="arr">→</span> <span class="fragment corr">2 chiffres significatifs</span></li>
+<li>$3{,}0\times10^{8}$ <span class="arr">→</span> <span class="fragment corr">2 chiffres significatifs</span></li>
 </ul>
 
 <p class="fragment fade-up"><u>Rq</u> : en notation scientifique $a\times10^{n}$,<br>il suffit de compter les chiffres de $a$ (la puissance de 10 ne compte pas).</p>
@@ -901,10 +916,10 @@ Pour <span class="imp">arrondir</span>, on regarde le chiffre suivant :<br>s'il 
 <p class="fragment fade-up">Arrondir à 2 chiffres significatifs :</p>
 
 <ul>
-<li class="fragment fade-up">$9{,}81$ <span class="fragment corr">$\longrightarrow 9{,}8$</span></li>
-<li class="fragment fade-up">$0{,}0347$ <span class="fragment corr">$\longrightarrow 0{,}035$</span></li>
-<li class="fragment fade-up">$6\,371$ <span class="fragment corr">$\longrightarrow 6{,}4\times10^{3}$</span></li>
-<li class="fragment fade-up">$2{,}96$ <span class="fragment corr">$\longrightarrow 3{,}0$</span> <span class="fragment">(on garde le zéro !)</span></li>
+<li class="fragment fade-up">$9{,}81$ <span class="arr">→</span> <span class="fragment corr">$9{,}8$</span></li>
+<li class="fragment fade-up">$0{,}0347$ <span class="arr">→</span> <span class="fragment corr">$0{,}035$</span></li>
+<li class="fragment fade-up">$6\,371$ <span class="arr">→</span> <span class="fragment corr">$6{,}4\times10^{3}$</span></li>
+<li class="fragment fade-up">$2{,}96$ <span class="arr">→</span> <span class="fragment corr">$3{,}0$</span> <span class="fragment corr">(on garde le zéro !)</span></li>
 </ul>
 
 ---
@@ -1110,7 +1125,7 @@ Un bloc d'aluminium de masse $m=\pu{54,0 g}$ occupe un volume $V=\pu{20,0 cm3}$.
 <div class="part-title">
 <i data-part="bilan" hidden></i>
 <span class="num">★</span>
-<h2>Bilan : à vous de jouer&nbsp;!</h2>
+<h2>Bilan</h2>
 <p>9 questions pour vérifier ce que l'on a retenu</p>
 </div>
 
