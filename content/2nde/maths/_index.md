@@ -34,8 +34,133 @@ highlight_theme = "atom-one-dark-reasonable"
 {{% section %}}
 
 <div class="part-title">
-<i data-part="prefixes" hidden></i>
+<i data-part="regles" hidden></i>
 <span class="num">01</span>
+<h2>Rappels des règles avec<br>les puissances de 10</h2>
+<p>Trois règles suffisent</p>
+</div>
+
+---
+
+<div class="rcard b" style="padding:.45em 1.6em">
+<div class="rl">10<sup><i>a</i></sup> × 10<sup><i>b</i></sup> = <span class="fragment">10<sup><i>a</i><span class="opw"><span class="sg plus fragment zoom"></span><span class="ph">?</span></span><i>b</i></sup></span></div>
+<div class="rl"><span class="frac"><span>10<sup><i>a</i></sup></span><span>10<sup><i>b</i></sup></span></span> = <span class="fragment">10<sup><i>a</i><span class="opw"><span class="sg minus fragment zoom"></span><span class="ph">?</span></span><i>b</i></sup></span></div>
+<div class="rl">(10<sup><i>a</i></sup>)<sup><i>b</i></sup> = <span class="fragment">10<sup><i>a</i><span class="opw"><span class="sg times fragment zoom"></span><span class="ph">?</span></span><i>b</i></sup></span></div>
+</div>
+
+---
+
+<h3>Testez les règles</h3>
+
+<div class="sw" data-w="regles"></div>
+
+---
+
+<h3>Exemples : les produits</h3>
+
+<p class="petit">On <span class="op plus">additionne</span> les exposants.</p>
+
+<ul class="ex">
+<li>10<sup>3</sup> × 10<sup>5</sup> <span class="arr">→</span> <span class="fragment corr">10<sup>8</sup></span></li>
+<li>10<sup>−2</sup> × 10<sup>6</sup> <span class="arr">→</span> <span class="fragment corr">10<sup>4</sup></span></li>
+<li>10<sup>−4</sup> × 10<sup>−3</sup> <span class="arr">→</span> <span class="fragment corr">10<sup>−7</sup></span></li>
+<li>10<sup>5</sup> × 10<sup>−5</sup> <span class="arr">→</span> <span class="fragment corr">10<sup>0</sup> = 1</span></li>
+<li>10 × 10<sup>7</sup> <span class="arr">→</span> <span class="fragment corr">10<sup>8</sup></span> <span class="fragment mut">(car 10 = 10<sup>1</sup>)</span></li>
+</ul>
+
+---
+
+<h3>Exemples : les quotients</h3>
+
+<p class="petit">On <span class="op minus">soustrait</span> les exposants.</p>
+
+<ul class="ex">
+<li>10<sup>7</sup> / 10<sup>3</sup> <span class="arr">→</span> <span class="fragment corr">10<sup>4</sup></span></li>
+<li>10<sup>2</sup> / 10<sup>5</sup> <span class="arr">→</span> <span class="fragment corr">10<sup>−3</sup></span></li>
+<li>10<sup>5</sup> / 10<sup>−2</sup> <span class="arr">→</span> <span class="fragment corr">10<sup>7</sup></span></li>
+<li>10<sup>−3</sup> / 10<sup>−6</sup> <span class="arr">→</span> <span class="fragment corr">10<sup>3</sup></span></li>
+<li>1 / 10<sup>4</sup> <span class="arr">→</span> <span class="fragment corr">10<sup>−4</sup></span> <span class="fragment mut">(car 1 = 10<sup>0</sup>)</span></li>
+</ul>
+
+---
+
+<h3>Exemples : les puissances de puissances</h3>
+
+<p class="petit">On <span class="op times">multiplie</span> les exposants.</p>
+
+<ul class="ex">
+<li>(10<sup>3</sup>)<sup>2</sup> <span class="arr">→</span> <span class="fragment corr">10<sup>6</sup></span></li>
+<li>(10<sup>−2</sup>)<sup>3</sup> <span class="arr">→</span> <span class="fragment corr">10<sup>−6</sup></span></li>
+<li>(10<sup>4</sup>)<sup>−1</sup> <span class="arr">→</span> <span class="fragment corr">10<sup>−4</sup></span></li>
+<li>(10<sup>−3</sup>)<sup>−2</sup> <span class="arr">→</span> <span class="fragment corr">10<sup>6</sup></span></li>
+<li>(10<sup>2</sup>)<sup>0</sup> <span class="arr">→</span> <span class="fragment corr">10<sup>0</sup> = 1</span></li>
+</ul>
+
+---
+
+<h3>Un peu de tout</h3>
+
+<p class="petit">On applique les règles dans l'ordre, étape par étape.</p>
+
+<ul class="ex">
+<li>10<sup>3</sup> × 10<sup>4</sup> / 10<sup>5</sup> <span class="arr">→</span> <span class="fragment corr">10<sup>2</sup></span></li>
+<li>(10<sup>−2</sup>)<sup>3</sup> × 10<sup>8</sup> <span class="arr">→</span> <span class="fragment corr">10<sup>2</sup></span></li>
+<li>10<sup>6</sup> × 10<sup>−2</sup> / (10<sup>−1</sup>)<sup>2</sup> <span class="arr">→</span> <span class="fragment corr">10<sup>6</sup></span></li>
+<li>(10<sup>5</sup> × 10<sup>−3</sup>)<sup>3</sup> <span class="arr">→</span> <span class="fragment corr">10<sup>6</sup></span></li>
+<li>10<sup>−4</sup> / (10<sup>2</sup> × 10<sup>−5</sup>) <span class="arr">→</span> <span class="fragment corr">10<sup>−1</sup></span></li>
+</ul>
+
+---
+
+<div class="carte piege">
+<span class="ct">⚠ Les trois erreurs classiques</span>
+<p>10<sup>−3</sup> × 10<sup>−2</sup> = 10<sup>−5</sup>&nbsp;: on additionne −3 et −2, on ne trouve pas 10<sup>−1</sup>.</p>
+<p class="fragment fade-up">(10<sup>2</sup>)<sup>3</sup> = 10<sup>6</sup>&nbsp;: on <b>multiplie</b> les exposants (2 × 3), on ne trouve pas 10<sup>5</sup>.</p>
+<p class="fragment fade-up">10<sup>0</sup> = 1&nbsp;: et non 0.</p>
+</div>
+
+---
+
+{{< qcm
+    q=`$10^{3}\times10^{-5}=$ ?`
+    a1=`$10^{2}$`
+    a2=`$10^{-2}$`
+    a3=`$10^{-15}$`
+    a4=`$10^{-8}$`
+    bonne="2"
+    expl=`On additionne les exposants : $3+(-5)=-2$, donc $10^{3}\times10^{-5}=10^{-2}$.` >}}
+
+---
+
+{{< qcm
+    q=`$\left(10^{-2}\right)^{3}=$ ?`
+    a1=`$10^{6}$`
+    a2=`$10^{-5}$`
+    a3=`$10^{-6}$`
+    a4=`$10^{-8}$`
+    bonne="3"
+    expl=`On multiplie les exposants : $(-2)\times3=-6$, donc $\left(10^{-2}\right)^{3}=10^{-6}$.` >}}
+
+---
+
+{{< qcm
+    q=`$\dfrac{10^{5}}{10^{-2}}=$ ?`
+    a1=`$10^{3}$`
+    a2=`$10^{7}$`
+    a3=`$10^{-3}$`
+    a4=`$10^{-7}$`
+    bonne="2"
+    expl=`On soustrait les exposants : $5-(-2)=7$, donc $\dfrac{10^{5}}{10^{-2}}=10^{7}$.` >}}
+
+{{% /section %}}
+
+---
+
+{{% section %}}
+
+<div class="part-title">
+<i data-part="prefixes" hidden></i>
+<span class="num">02</span>
 <h2>Multiples et<br>sous-multiples</h2>
 <p>Pour remplacer les puissances de 10</p>
 </div>
@@ -63,7 +188,7 @@ Cliquer sur un préfixe pour voir son facteur, comment il se lit et un exemple ;
 ### les multiples :
 
 <table class="pref">
-<thead><tr><th>Préfixe</th><th>Symbole</th><th>Facteur</th><th>Se lit</th><th>Exemple</th></tr></thead>
+<thead><tr><th style="text-align:center;">Préfixe</th><th style="text-align:center;">Symbole</th><th style="text-align:center;">Facteur</th><th style="text-align:center;">Se lit</th><th style="text-align:center;">Exemple</th></tr></thead>
 <tbody>
 <tr class="up"><td>kilo</td><td class="sym">k</td><td>$10^{3}$</td><td class="lu">mille</td><td>$\pu{1 kg} = \pu{1E3 g}$</td></tr>
 <tr class="up fragment fade-up"><td>méga</td><td class="sym">M</td><td>$10^{6}$</td><td class="lu">million</td><td>$\pu{1 MJ} = \pu{1E6 J}$</td></tr>
@@ -78,7 +203,7 @@ Cliquer sur un préfixe pour voir son facteur, comment il se lit et un exemple ;
 ### les sous-multiples :
 
 <table class="pref">
-<thead><tr><th>Préfixe</th><th>Symbole</th><th>Facteur</th><th>Se lit</th><th>Exemple</th></tr></thead>
+<thead><tr><th style="text-align:center;">Préfixe</th><th style="text-align:center;">Symbole</th><th style="text-align:center;">Facteur</th><th style="text-align:center;">Se lit</th><th style="text-align:center;">Exemple</th></tr></thead>
 <tbody>
 <tr class="down"><td>milli</td><td class="sym">m</td><td>$10^{-3}$</td><td class="lu">millième</td><td>$\pu{1 ms} = \pu{1E-3 s}$</td></tr>
 <tr class="down fragment fade-up"><td>micro</td><td class="sym">μ</td><td>$10^{-6}$</td><td class="lu">millionième</td><td>$\pu{1 μW} = \pu{1E-6 W}$</td></tr>
@@ -103,14 +228,6 @@ Cliquer sur un préfixe pour voir son facteur, comment il se lit et un exemple ;
 </tbody>
 </table>
 
----
-
-<div class="carte methode">
-<span class="ct">La méthode : remplacer le préfixe</span>
-<p>$\pu{4,7 km} = 4{,}7\times 10^{3}\ \mathrm{m} = \pu{4,7E3 m}$</p>
-<p class="fragment fade-up">$\pu{250 mL} = 250\times 10^{-3}\ \mathrm{L} = \pu{0,250 L}$</p>
-<p class="fragment fade-up">Dans l'autre sens, on fait apparaître la puissance de 10 du préfixe voulu :<br>$\pu{5,8E-7 m} = 580\times 10^{-9}\ \mathrm{m} = \pu{580 nm}$</p>
-</div>
 
 {{% /section %}}
 
@@ -120,9 +237,18 @@ Cliquer sur un préfixe pour voir son facteur, comment il se lit et un exemple ;
 
 <div class="part-title">
 <i data-part="conversions" hidden></i>
-<span class="num">02</span>
+<span class="num">03</span>
 <h2>Conversions</h2>
 <p>Remplacer, calculer, vérifier</p>
+</div>
+
+---
+
+<div class="carte methode">
+<span class="ct">La méthode : remplacer le préfixe</span>
+<p class="fragment fade-up">$\pu{4,7 {\color{#FF968D}k}m} = 4{,}7{\color{#FF968D} \times 10^{3}}\ \mathrm{m}$</p>
+<p class="fragment fade-up">$\pu{250 {\color{#FF968D}m}L} = 250 {\color{#FF968D}\times 10^{-3}}\ \mathrm{L} = \pu{0,250 L}$</p>
+<p class="fragment fade-up">Dans l'autre sens, on fait apparaître la puissance de 10 du préfixe voulu :<br>$\pu{5,8E-7 m} = 580 {\color{#FF968D}\times 10^{-9}}\ \mathrm{m} = \pu{580 {\color{#FF968D}n}m}$</p>
 </div>
 
 ---
@@ -263,7 +389,7 @@ $$
 
 <div class="part-title">
 <i data-part="unites" hidden></i>
-<span class="num">03</span>
+<span class="num">04</span>
 <h2>Unités composées<br>et exposants négatifs</h2>
 <p>m·s⁻¹, kg·m⁻³, mol·L⁻¹… pas de panique</p>
 </div>
@@ -472,131 +598,6 @@ Les six boutons reprennent les exemples du cours. On peut aussi choisir une autr
     a4=`$5{,}0\times10^{-1}$`
     bonne="2"
     expl=`$1\ \mathrm{mol}=10^{3}\ \mathrm{mmol}$ (le haut) et le litre ne change pas : $0{,}50\times10^{3}=5{,}0\times10^{2}\ \mathrm{mmol\cdot L^{-1}}$.` >}}
-
-{{% /section %}}
-
----
-
-{{% section %}}
-
-<div class="part-title">
-<i data-part="regles" hidden></i>
-<span class="num">04</span>
-<h2>Rappels des règles avec<br>les puissances de 10</h2>
-<p>Trois règles suffisent</p>
-</div>
-
----
-
-<div class="rcard b" style="padding:.45em 1.6em">
-<div class="rl">10<sup><i>a</i></sup> × 10<sup><i>b</i></sup> = <span class="fragment">10<sup><i>a</i><span class="opw"><span class="sg plus fragment zoom"></span><span class="ph">?</span></span><i>b</i></sup></span></div>
-<div class="rl"><span class="frac"><span>10<sup><i>a</i></sup></span><span>10<sup><i>b</i></sup></span></span> = <span class="fragment">10<sup><i>a</i><span class="opw"><span class="sg minus fragment zoom"></span><span class="ph">?</span></span><i>b</i></sup></span></div>
-<div class="rl">(10<sup><i>a</i></sup>)<sup><i>b</i></sup> = <span class="fragment">10<sup><i>a</i><span class="opw"><span class="sg times fragment zoom"></span><span class="ph">?</span></span><i>b</i></sup></span></div>
-</div>
-
----
-
-<h3>Testez les règles</h3>
-
-<div class="sw" data-w="regles"></div>
-
----
-
-<h3>Exemples : les produits</h3>
-
-<p class="petit">On <span class="op plus">additionne</span> les exposants.</p>
-
-<ul class="ex">
-<li>10<sup>3</sup> × 10<sup>5</sup> <span class="arr">→</span> <span class="fragment corr">10<sup>8</sup></span></li>
-<li>10<sup>−2</sup> × 10<sup>6</sup> <span class="arr">→</span> <span class="fragment corr">10<sup>4</sup></span></li>
-<li>10<sup>−4</sup> × 10<sup>−3</sup> <span class="arr">→</span> <span class="fragment corr">10<sup>−7</sup></span></li>
-<li>10<sup>5</sup> × 10<sup>−5</sup> <span class="arr">→</span> <span class="fragment corr">10<sup>0</sup> = 1</span></li>
-<li>10 × 10<sup>7</sup> <span class="arr">→</span> <span class="fragment corr">10<sup>8</sup></span> <span class="fragment mut">(car 10 = 10<sup>1</sup>)</span></li>
-</ul>
-
----
-
-<h3>Exemples : les quotients</h3>
-
-<p class="petit">On <span class="op minus">soustrait</span> les exposants.</p>
-
-<ul class="ex">
-<li>10<sup>7</sup> / 10<sup>3</sup> <span class="arr">→</span> <span class="fragment corr">10<sup>4</sup></span></li>
-<li>10<sup>2</sup> / 10<sup>5</sup> <span class="arr">→</span> <span class="fragment corr">10<sup>−3</sup></span></li>
-<li>10<sup>5</sup> / 10<sup>−2</sup> <span class="arr">→</span> <span class="fragment corr">10<sup>7</sup></span></li>
-<li>10<sup>−3</sup> / 10<sup>−6</sup> <span class="arr">→</span> <span class="fragment corr">10<sup>3</sup></span></li>
-<li>1 / 10<sup>4</sup> <span class="arr">→</span> <span class="fragment corr">10<sup>−4</sup></span> <span class="fragment mut">(car 1 = 10<sup>0</sup>)</span></li>
-</ul>
-
----
-
-<h3>Exemples : les puissances de puissances</h3>
-
-<p class="petit">On <span class="op times">multiplie</span> les exposants.</p>
-
-<ul class="ex">
-<li>(10<sup>3</sup>)<sup>2</sup> <span class="arr">→</span> <span class="fragment corr">10<sup>6</sup></span></li>
-<li>(10<sup>−2</sup>)<sup>3</sup> <span class="arr">→</span> <span class="fragment corr">10<sup>−6</sup></span></li>
-<li>(10<sup>4</sup>)<sup>−1</sup> <span class="arr">→</span> <span class="fragment corr">10<sup>−4</sup></span></li>
-<li>(10<sup>−3</sup>)<sup>−2</sup> <span class="arr">→</span> <span class="fragment corr">10<sup>6</sup></span></li>
-<li>(10<sup>2</sup>)<sup>0</sup> <span class="arr">→</span> <span class="fragment corr">10<sup>0</sup> = 1</span></li>
-</ul>
-
----
-
-<h3>Un peu de tout</h3>
-
-<p class="petit">On applique les règles dans l'ordre, étape par étape.</p>
-
-<ul class="ex">
-<li>10<sup>3</sup> × 10<sup>4</sup> / 10<sup>5</sup> <span class="arr">→</span> <span class="fragment corr">10<sup>2</sup></span></li>
-<li>(10<sup>−2</sup>)<sup>3</sup> × 10<sup>8</sup> <span class="arr">→</span> <span class="fragment corr">10<sup>2</sup></span></li>
-<li>10<sup>6</sup> × 10<sup>−2</sup> / (10<sup>−1</sup>)<sup>2</sup> <span class="arr">→</span> <span class="fragment corr">10<sup>6</sup></span></li>
-<li>(10<sup>5</sup> × 10<sup>−3</sup>)<sup>3</sup> <span class="arr">→</span> <span class="fragment corr">10<sup>6</sup></span></li>
-<li>10<sup>−4</sup> / (10<sup>2</sup> × 10<sup>−5</sup>) <span class="arr">→</span> <span class="fragment corr">10<sup>−1</sup></span></li>
-</ul>
-
----
-
-<div class="carte piege">
-<span class="ct">⚠ Les trois erreurs classiques</span>
-<p>10<sup>−3</sup> × 10<sup>−2</sup> = 10<sup>−5</sup>&nbsp;: on additionne −3 et −2, on ne trouve pas 10<sup>−1</sup>.</p>
-<p class="fragment fade-up">(10<sup>2</sup>)<sup>3</sup> = 10<sup>6</sup>&nbsp;: on <b>multiplie</b> les exposants (2 × 3), on ne trouve pas 10<sup>5</sup>.</p>
-<p class="fragment fade-up">10<sup>0</sup> = 1&nbsp;: et non 0.</p>
-</div>
-
----
-
-{{< qcm
-    q=`$10^{3}\times10^{-5}=$ ?`
-    a1=`$10^{2}$`
-    a2=`$10^{-2}$`
-    a3=`$10^{-15}$`
-    a4=`$10^{-8}$`
-    bonne="2"
-    expl=`On additionne les exposants : $3+(-5)=-2$, donc $10^{3}\times10^{-5}=10^{-2}$.` >}}
-
----
-
-{{< qcm
-    q=`$\left(10^{-2}\right)^{3}=$ ?`
-    a1=`$10^{6}$`
-    a2=`$10^{-5}$`
-    a3=`$10^{-6}$`
-    a4=`$10^{-8}$`
-    bonne="3"
-    expl=`On multiplie les exposants : $(-2)\times3=-6$, donc $\left(10^{-2}\right)^{3}=10^{-6}$.` >}}
-
----
-
-{{< qcm
-    q=`$\dfrac{10^{5}}{10^{-2}}=$ ?`
-    a1=`$10^{3}$`
-    a2=`$10^{7}$`
-    a3=`$10^{-3}$`
-    a4=`$10^{-7}$`
-    bonne="2"
-    expl=`On soustrait les exposants : $5-(-2)=7$, donc $\dfrac{10^{5}}{10^{-2}}=10^{7}$.` >}}
 
 {{% /section %}}
 
