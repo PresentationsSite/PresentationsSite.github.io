@@ -246,41 +246,31 @@ Cliquer sur un préfixe pour voir son facteur, comment il se lit et un exemple ;
 
 <div class="carte methode">
 <span class="ct">La méthode : remplacer le préfixe</span>
-<p class="fragment fade-up">$\pu{4,7 {\color{#FF968D}k}m} = 4{,}7{\color{#FF968D} \times 10^{3}}\ \mathrm{m}$</p>
-<p class="fragment fade-up">$\pu{250 {\color{#FF968D}m}L} = 250 {\color{#FF968D}\times 10^{-3}}\ \mathrm{L} = \pu{0,250 L}$</p>
-<p class="fragment fade-up">Dans l'autre sens, on fait apparaître la puissance de 10 du préfixe voulu :<br>$\pu{5,8E-7 m} = 580 {\color{#FF968D}\times 10^{-9}}\ \mathrm{m} = \pu{580 {\color{#FF968D}n}m}$</p>
+<p class="fragment fade-up">$\pu{4,7 {\color{#FFC43A}k}m} = 4{,}7{\color{#FFC43A} \times 10^{3}}\ \mathrm{m}$</p>
+<p class="fragment fade-up">$\pu{250 {\color{#FFC43A}m}L} = 250 {\color{#FFC43A}\times 10^{-3}}\ \mathrm{L} = \pu{0,250 L}$</p>
+<p class="fragment fade-up">Dans l'autre sens, on fait apparaître la puissance de 10 du préfixe voulu :<br>$\pu{5,8E-7 m} = 580 {\color{#4FD8FF}\times 10^{-9}}\ \mathrm{m} = \pu{580 {\color{#4FD8FF}n}m}$</p>
 </div>
 
 ---
 
 Convertir 34 pm en km
 
-<div class="fragment fade-up">
-
-$$
-\begin{aligned}
-\pu{34 pm} &= \pu{34E-12 m}\\\\
-&= \pu{34E-12} \times \pu{10^{-3} km}\\\\
-&= \pu{34E-15 km}
-\end{aligned}
-$$
-
+<div class="steps">
+<div class="st fragment fade-up"><div class="f">$\pu{34 {\color{#FFC43A}p}m} = 34 {\color{#FFC43A}\times 10^{-12}}\ \mathrm{m}$</div><div class="c">on remplace le préfixe <b>pico</b> par <b>10<sup>−12</sup></b></div></div>
+<div class="st fragment fade-up"><div class="f">$\phantom{\pu{34 pm}} = 34\times 10^{-12}\times {\color{#4FD8FF}10^{-3}}\ \mathrm{{\color{#4FD8FF}k}m}$</div><div class="c">1&nbsp;m = <b>10<sup>−3</sup></b>&nbsp;<b>k</b>m (car 1&nbsp;km = 10<sup>3</sup>&nbsp;m)</div></div>
+<div class="st fragment fade-up"><div class="f">$\phantom{\pu{34 pm}} = 34\times 10^{-12+(-3)}\ \mathrm{km}$</div><div class="c">on additionne les exposants</div></div>
+<div class="st fragment fade-up"><div class="f">$\phantom{\pu{34 pm}} = {\color{#4CF09A}\pu{34E-15 km}}$</div><div class="c"></div></div>
 </div>
 
 ---
 
 Convertir 34 μg en fg (femtogramme)
 
-<div class="fragment fade-up">
-
-$$
-\begin{aligned}
-\pu{34 μg} &= \pu{34E-6 g}\\\\
-&= \pu{34E-6} \times \pu{10^{15} fg}\\\\
-&= \pu{34E9 fg}
-\end{aligned}
-$$
-
+<div class="steps">
+<div class="st fragment fade-up"><div class="f">$\pu{34 {\color{#FFC43A}μ}g} = 34 {\color{#FFC43A}\times 10^{-6}}\ \mathrm{g}$</div><div class="c">on remplace le préfixe <b>micro</b> par <b>10<sup>−6</sup></b></div></div>
+<div class="st fragment fade-up"><div class="f">$\phantom{\pu{34 μg}} = 34\times 10^{-6}\times {\color{#4FD8FF}10^{15}}\ \mathrm{{\color{#4FD8FF}f}g}$</div><div class="c">1&nbsp;g = <b>10<sup>15</sup></b>&nbsp;<b>f</b>g (car 1&nbsp;fg = 10<sup>−15</sup>&nbsp;g)</div></div>
+<div class="st fragment fade-up"><div class="f">$\phantom{\pu{34 μg}} = 34\times 10^{-6+15}\ \mathrm{fg}$</div><div class="c">on additionne les exposants</div></div>
+<div class="st fragment fade-up"><div class="f">$\phantom{\pu{34 μg}} = {\color{#4CF09A}\pu{34E9 fg}}$</div><div class="c"></div></div>
 </div>
 
 ---
@@ -290,11 +280,11 @@ $$
 <div class="duo">
 <div class="carte methode fragment fade-up">
 <span class="ct">Aires : on élève au carré</span>
-$\begin{aligned}\pu{1 dm2} &= \pu{1 dm}\times\pu{1 dm}\\ &= \pu{10^2 mm}\times\pu{10^2 mm}\\ &= \left(10^2\right)^2\ \pu{mm2}\\ &= \pu{1E4 mm2}\end{aligned}$
+$\begin{aligned}\pu{1 dm2} &= \pu{1 dm}\times\pu{1 dm}\\ &= {\color{#4FD8FF}\pu{10^2 mm}}\times{\color{#4FD8FF}\pu{10^2 mm}}\\ &= \left({\color{#4FD8FF}10^2}\right)^2\ \pu{mm2}\\ &= \pu{1E4 mm2}\end{aligned}$
 </div>
 <div class="carte savoir fragment fade-up">
 <span class="ct">Volumes : on élève au cube</span>
-$\begin{aligned}\pu{1 dm3} &= \pu{1 dm}\times\pu{1 dm}\times\pu{1 dm}\\ &= \pu{10^2 mm}\times\pu{10^2 mm}\times\pu{10^2 mm}\\ &= \left(10^2\right)^3\ \pu{mm3}\\ &= \pu{1E6 mm3}\end{aligned}$
+$\begin{aligned}\pu{1 dm3} &= \pu{1 dm}\times\pu{1 dm}\times\pu{1 dm}\\ &= {\color{#4FD8FF}\pu{10^2 mm}}\times{\color{#4FD8FF}\pu{10^2 mm}}\times{\color{#4FD8FF}\pu{10^2 mm}}\\ &= \left({\color{#4FD8FF}10^2}\right)^3\ \pu{mm3}\\ &= \pu{1E6 mm3}\end{aligned}$
 </div>
 </div>
 
@@ -321,16 +311,10 @@ $\begin{aligned}\pu{1 dm3} &= \pu{1 dm}\times\pu{1 dm}\times\pu{1 dm}\\ &= \pu{1
 
 Convertir 34 m$^3$ en nm$^3$
 
-<div class="fragment fade-up">
-
-$$
-\begin{aligned}
-\pu{34 m^3} &= 34 \times \left(10^9 \\,\pu{nm}\right)^3\\\\
-&= 34 \times \pu{10^{9\times 3} nm^3}\\\\
-&= 34\times\pu{10^{27} nm^3}
-\end{aligned}
-$$
-
+<div class="steps">
+<div class="st fragment fade-up"><div class="f">$\pu{34 m^3} = 34\times\left({\color{#4FD8FF}10^{9}}\ \mathrm{{\color{#4FD8FF}n}m}\right)^3$</div><div class="c">1&nbsp;m = <b>10<sup>9</sup></b>&nbsp;<b>n</b>m (car 1&nbsp;nm = 10<sup>−9</sup>&nbsp;m), puis on met au cube</div></div>
+<div class="st fragment fade-up"><div class="f">$\phantom{\pu{34 m^3}} = 34\times 10^{9\times 3}\ \mathrm{nm^3}$</div><div class="c">(10<sup>a</sup>)<sup>b</sup> = 10<sup>a×b</sup></div></div>
+<div class="st fragment fade-up"><div class="f">$\phantom{\pu{34 m^3}} = {\color{#4CF09A}34\times 10^{27}\ \mathrm{nm^3}}$</div><div class="c"></div></div>
 </div>
 
 ---
@@ -338,19 +322,12 @@ $$
 
 Convertir 34 nm$^2$ en μm$^2$
 
-<div class="fragment fade-up">
-
-$$
-\begin{aligned}
-\pu{34 nm^2} &= 34 \times \left(10^{-9} \\,\pu{m}\right)^2\\\\
-&= 34 \times \pu{10^{(-9)\times 2} m^2}\\\\
-&= 34\times\pu{10^{-18} m^2}\\\\
-&= 34\times\pu{10^{-18}\times\left(\pu{10^6 μm}\right)^2}\\\\
-&= 34\times 10^{-18} \times \pu{10^{12} μm2}\\\\
-&= \pu{34E-6  μm2}
-\end{aligned}
-$$
-
+<div class="steps">
+<div class="st fragment fade-up"><div class="f">$\pu{34 {\color{#FFC43A}n}m^2} = 34\times\left({\color{#FFC43A}10^{-9}}\ \mathrm m\right)^2$</div><div class="c">1&nbsp;<b>n</b>m = <b>10<sup>−9</sup></b>&nbsp;m, puis on met au carré</div></div>
+<div class="st fragment fade-up"><div class="f">$\phantom{\pu{34 nm^2}} = 34\times 10^{-18}\ \mathrm{m^2}$</div><div class="c">(10<sup>−9</sup>)<sup>2</sup> = 10<sup>−18</sup></div></div>
+<div class="st fragment fade-up"><div class="f">$\phantom{\pu{34 nm^2}} = 34\times 10^{-18}\times\left({\color{#4FD8FF}10^{6}}\ \mathrm{{\color{#4FD8FF}μ}m}\right)^2$</div><div class="c">1&nbsp;m = <b>10<sup>6</sup></b>&nbsp;<b>µ</b>m, puis on met au carré</div></div>
+<div class="st fragment fade-up"><div class="f">$\phantom{\pu{34 nm^2}} = 34\times 10^{-18}\times 10^{12}\ \mathrm{μm^2}$</div><div class="c">(10<sup>6</sup>)<sup>2</sup> = 10<sup>12</sup></div></div>
+<div class="st fragment fade-up"><div class="f">$\phantom{\pu{34 nm^2}} = {\color{#4CF09A}\pu{34E-6 μm2}}$</div><div class="c">on additionne les exposants : −18 + 12 = −6</div></div>
 </div>
 
 ---
@@ -391,7 +368,7 @@ $$
 <i data-part="unites" hidden></i>
 <span class="num">04</span>
 <h2>Unités composées<br>et exposants négatifs</h2>
-<p>m·s⁻¹, kg·m⁻³, mol·L⁻¹… pas de panique</p>
+<p>m·s<sup>−1</sup>, kg·m<sup>−3</sup>, mol·L<sup>−1</sup>… pas de panique</p>
 </div>
 
 ---
@@ -512,29 +489,23 @@ $$
 
 Convertir 1,0 g/cm$^3$ en kg/m$^3$
 
-<div class="fragment fade-up">
-
-$$
-\begin{aligned}
-\pu{1,0 g/cm3} &= \frac{1{,}0\times\pu{10^{-3} kg}}{\left(\pu{10^{-2} m}\right)^3}\\\\
-&= \frac{1{,}0\times\pu{10^{-3} kg}}{\pu{10^{-6} m^3}}\\\\
-&= 1{,}0\times 10^{-3-(-6)}\ \pu{kg/m3}\\\\
-&= \pu{1,0E3 kg*m-3}
-\end{aligned}
-$$
-
+<div class="steps dense">
+<div class="st fragment fade-up"><div class="f">$\pu{1,0 g/cm3} = \dfrac{1{,}0\ \mathrm{g}}{1\ \mathrm{cm}^3}$</div><div class="c">des grammes pour 1&nbsp;cm<sup>3</sup></div></div>
+<div class="st fragment fade-up"><div class="f">$\phantom{\pu{1,0 g/cm3}} = \dfrac{1{,}0\times{\color{#FFC43A}10^{-3}}\ \mathrm{{\color{#FFC43A}k}g}}{1\ \mathrm{cm}^3}$</div><div class="c">en haut : 1&nbsp;g = <b>10<sup>−3</sup></b>&nbsp;<b>k</b>g</div></div>
+<div class="st fragment fade-up"><div class="f">$\phantom{\pu{1,0 g/cm3}} = \dfrac{1{,}0\times10^{-3}\ \mathrm{kg}}{\left({\color{#4FD8FF}10^{-2}}\ \mathrm{m}\right)^3}$</div><div class="c">en bas : 1&nbsp;cm = <b>10<sup>−2</sup></b>&nbsp;m, puis on met au cube</div></div>
+<div class="st fragment fade-up"><div class="f">$\phantom{\pu{1,0 g/cm3}} = \dfrac{1{,}0\times10^{-3}\ \mathrm{kg}}{{\color{#4FD8FF}10^{-6}}\ \mathrm{m^3}}$</div><div class="c">(10<sup>−2</sup>)<sup>3</sup> = 10<sup>−6</sup></div></div>
+<div class="st fragment fade-up"><div class="f">$\phantom{\pu{1,0 g/cm3}} = 1{,}0\times 10^{-3-(-6)}\ \mathrm{kg/m^3}$</div><div class="c">diviser, c'est soustraire les exposants</div></div>
+<div class="st fragment fade-up"><div class="f">$\phantom{\pu{1,0 g/cm3}} = {\color{#4CF09A}\pu{1,0E3 kg*m-3}}$</div><div class="c"></div></div>
 </div>
-
-<p class="fragment fade-up petit">car $\pu{1 g} = \pu{10^{-3} kg}$ et $\pu{1 cm} = \pu{10^{-2} m}$.</p>
 
 ---
 
-<div class="glass">
+<div class="glass" style="font-size:.84em">
 <p>Le plus important :<br><span class="imp">donner du sens</span> au résultat.</p>
 <p class="fragment fade-up">$\pu{1 g/cm3}$ : <b>1 g dans chaque cm$^3$</b>.</p>
 <p class="fragment fade-up">Or $1\ \mathrm{m^3}$ contient $10^{6}\ \mathrm{cm^3}$&nbsp;: cela fait $10^{6}\ \mathrm g$ dans $1\ \mathrm{m^3}$.</p>
 <p class="fragment fade-up">Et $10^{6}\ \mathrm g = 10^{3}\ \mathrm{kg}$ : $\pu{1 g/cm3} = \pu{1E3 kg/m3}$.</p>
-<p class="fragment fade-up">L'eau pèse donc<br><b>1 000 kg par m$^3$</b>, soit 1 tonne&nbsp;!</p>
+<p class="fragment fade-up">L'eau pèse donc <b>1 000 kg par m$^3$</b>, soit 1 tonne&nbsp;!</p>
 <p class="fragment fade-up petit">Et comme $\pu{1 mL} = \pu{1 cm3}$ : $\pu{1 g/mL} = \pu{1 g/cm3} = \pu{1E3 kg/m3}$.</p>
 </div>
 
@@ -542,20 +513,12 @@ $$
 
 Convertir 0,10 mol/L en mol/m$^3$
 
-<div class="fragment fade-up">
-
-$$
-\begin{aligned}
-\pu{0,10 mol/L} &= \frac{\pu{0,10 mol}}{\pu{10^{-3} m^3}}\\\\
-&= 0{,}10\times 10^{3}\ \pu{mol/m3}\\\\
-&= \pu{1,0E2 mol*m-3}
-\end{aligned}
-$$
-
+<div class="steps dense">
+<div class="st fragment fade-up"><div class="f">$\pu{0,10 mol/L} = \dfrac{0{,}10\ \mathrm{mol}}{1\ \mathrm{L}}$</div><div class="c">des moles pour 1&nbsp;L</div></div>
+<div class="st fragment fade-up"><div class="f">$\phantom{\pu{0,10 mol/L}} = \dfrac{0{,}10\ \mathrm{mol}}{{\color{#4FD8FF}10^{-3}}\ \mathrm{{\color{#4FD8FF}m^3}}}$</div><div class="c">en bas : 1&nbsp;L = 1&nbsp;dm<sup>3</sup> = <b>10<sup>−3</sup></b>&nbsp;m<sup>3</sup></div></div>
+<div class="st fragment fade-up"><div class="f">$\phantom{\pu{0,10 mol/L}} = 0{,}10\times 10^{3}\ \mathrm{mol/m^3}$</div><div class="c">diviser par 10<sup>−3</sup>, c'est multiplier par 10<sup>3</sup></div></div>
+<div class="st fragment fade-up"><div class="f">$\phantom{\pu{0,10 mol/L}} = {\color{#4CF09A}\pu{1,0E2 mol*m-3}}$</div><div class="c"></div></div>
 </div>
-
-<p class="fragment fade-up petit">car $\pu{1 L} = \pu{1 dm3} = \pu{10^{-3} m3}$.</p>
-
 
 ---
 
@@ -631,14 +594,14 @@ Un nombre est écrit en <span class="imp">notation scientifique</span><br>lorsqu
 
 <u>Méthode</u> : on place la virgule juste après<br>le <span class="imp">premier chiffre non nul</span>, puis on compte<br>de combien de rangs on l'a déplacée :
 
-<ul>
+<ul style="font-size:.78em">
 <li class="fragment fade-up">vers la gauche : <span class="imp">$n$ positif</span> (grand nombre)</li>
 <li class="fragment fade-up">vers la droite : <b style="color:#FFF056">$n$ négatif</b> (nombre plus petit que 1)</li>
 </ul>
 
-<p class="fragment fade-up">Exemples :</p>
+<p class="fragment fade-up" style="font-size:.78em">Exemples :</p>
 
-<ul>
+<ul style="font-size:.78em">
 <li class="fragment fade-up">$340$ <span class="arr">→</span> <span class="fragment corr">$3{,}4\times10^{2}$</span></li>
 <li class="fragment fade-up">$6\,370\,000$ <span class="arr">→</span> <span class="fragment corr">$6{,}37\times10^{6}$</span></li>
 <li class="fragment fade-up">$0{,}052$ <span class="arr">→</span> <span class="fragment corr">$5{,}2\times10^{-2}$</span></li>
@@ -650,8 +613,8 @@ Un nombre est écrit en <span class="imp">notation scientifique</span><br>lorsqu
 Et si le nombre comporte déjà<br>une puissance de 10 ?
 
 <ul>
-<li class="fragment fade-up">$632\times10^{5}$<br><span class="arr">→</span> <span class="fragment corr">$6{,}32\times10^{2}\times10^{5}$</span> <span class="fragment corr">$=6{,}32\times10^{7}$</span></li>
-<li class="fragment fade-up">$0{,}25\times10^{-3}$<br><span class="arr">→</span> <span class="fragment corr">$2{,}5\times10^{-1}\times10^{-3}$</span> <span class="fragment corr">$=2{,}5\times10^{-4}$</span></li>
+<li class="fragment fade-up">${\color{#4FD8FF}632}\times10^{5}$<br><span class="arr">→</span> <span class="fragment corr">${\color{#4FD8FF}6{,}32\times10^{2}}\times10^{5}$</span> <span class="fragment corr">$=6{,}32\times10^{7}$</span></li>
+<li class="fragment fade-up">${\color{#4FD8FF}0{,}25}\times10^{-3}$<br><span class="arr">→</span> <span class="fragment corr">${\color{#4FD8FF}2{,}5\times10^{-1}}\times10^{-3}$</span> <span class="fragment corr">$=2{,}5\times10^{-4}$</span></li>
 </ul>
 
 <p class="fragment fade-up">Si on multiplie $a$ par 10, on retire 1 à $n$<br>(et inversement) : le nombre ne change pas !</p>
