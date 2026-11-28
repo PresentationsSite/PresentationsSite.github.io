@@ -477,7 +477,7 @@ Chaque bouton est écrit « avec une barre ». Le panneau montre l'écriture ave
 
 <ol class="etapes">
 <li class="fragment fade-up"><span class="et-t">Le haut (numérateur)</span><p>On le convertit comme d'habitude : on remplace le préfixe par sa puissance de 10.</p></li>
-<li class="fragment fade-up"><span class="et-t">Le bas (dénominateur)</span><p>On le convertit aussi… mais il agit <b>« à l'envers »</b> : une unité du bas 1000 fois plus petite donne un résultat 1000 fois plus grand.</p></li>
+<li class="fragment fade-up"><span class="et-t">Le bas (dénominateur)</span><p>On le convertit aussi… mais il agit <b>« à l'envers&nbsp;»</b> : une unité du bas 1000 fois plus petite donne un résultat 1000 fois plus grand.</p></li>
 <li class="fragment fade-up"><span class="et-t">On regroupe et on calcule</span><p>On écrit une seule fraction, avec les puissances de 10 (et, pour le temps, 60 ou 3 600).</p></li>
 </ol>
 
@@ -505,7 +505,7 @@ $$
 <span class="ct">À savoir : le facteur 3,6</span>
 <p>$\pu{1 m/s} = \dfrac{10^{-3}\ \mathrm{km}}{\dfrac{1}{3600}\ \mathrm{h}} = \pu{3,6 km/h}$</p>
 <p class="fragment fade-up">Pour passer des <b>m/s</b> aux <b>km/h</b> : on <b>multiplie</b> par 3,6.</p>
-<p class="fragment fade-up">Pour passer des <b>km/h</b> aux <b>m/s</b> : on <b>divise</b> par 3,6. &nbsp;Ex. : $\dfrac{72}{3{,}6}=20$ m/s.</p>
+<p class="fragment fade-up">Pour passer des <b>km/h</b> aux <b>m/s</b> :<br>on <b>divise</b> par 3,6. &nbsp;Ex. : $\dfrac{72}{3{,}6}=20$ m/s.</p>
 </div>
 
 ---
@@ -530,11 +530,11 @@ $$
 ---
 
 <div class="glass">
-<p>Le plus important : <span class="imp">donner du sens</span> au résultat.</p>
+<p>Le plus important :<br><span class="imp">donner du sens</span> au résultat.</p>
 <p class="fragment fade-up">$\pu{1 g/cm3}$ : <b>1 g dans chaque cm$^3$</b>.</p>
-<p class="fragment fade-up">Or $1\ \mathrm{m^3}$ contient $10^{6}\ \mathrm{cm^3}$ : cela fait $10^{6}\ \mathrm g$ dans $1\ \mathrm{m^3}$.</p>
+<p class="fragment fade-up">Or $1\ \mathrm{m^3}$ contient $10^{6}\ \mathrm{cm^3}$&nbsp;: cela fait $10^{6}\ \mathrm g$ dans $1\ \mathrm{m^3}$.</p>
 <p class="fragment fade-up">Et $10^{6}\ \mathrm g = 10^{3}\ \mathrm{kg}$ : $\pu{1 g/cm3} = \pu{1E3 kg/m3}$.</p>
-<p class="fragment fade-up">L'eau pèse donc <b>1 000 kg par m$^3$</b>, soit 1 tonne&nbsp;!</p>
+<p class="fragment fade-up">L'eau pèse donc<br><b>1 000 kg par m$^3$</b>, soit 1 tonne&nbsp;!</p>
 <p class="fragment fade-up petit">Et comme $\pu{1 mL} = \pu{1 cm3}$ : $\pu{1 g/mL} = \pu{1 g/cm3} = \pu{1E3 kg/m3}$.</p>
 </div>
 
@@ -556,15 +556,6 @@ $$
 
 <p class="fragment fade-up petit">car $\pu{1 L} = \pu{1 dm3} = \pu{10^{-3} m3}$.</p>
 
----
-
-<h3>À vous de jouer</h3>
-
-<div class="sw" data-w="composes"></div>
-
-{{%note%}}
-Les six boutons reprennent les exemples du cours. On peut aussi choisir une autre famille (vitesse, masse par volume, quantité de matière par volume) et changer n'importe quelle unité. Le détail montre : l'écriture avec exposant, la conversion du haut, celle du bas (à l'envers), le passage par les unités SI puis vers l'unité demandée.
-{{%/note%}}
 
 ---
 
@@ -897,7 +888,7 @@ Pour <span class="imp">arrondir</span>, on regarde le chiffre suivant :<br>s'il 
 
 <div class="regle">
 <span class="rh">⚖ Calcul ne contenant que des multiplications et des divisions</span>
-<span class="rb">On garde dans le résultat <b>autant de chiffres significatifs</b><br>que la mesure qui en contient <b>le moins</b>.</span>
+<span class="rb">On garde dans le résultat <br><b>autant de chiffres significatifs</b> que <br> la mesure qui en contient <b>le moins</b>.</span>
 <span class="rw fragment fade-up">Un calcul ne peut pas être plus précis que sa donnée la moins précise : c'est le maillon faible qui décide.</span>
 </div>
 
@@ -909,7 +900,7 @@ Pour <span class="imp">arrondir</span>, on regarde le chiffre suivant :<br>s'il 
 
 <ol class="etapes">
 <li><span class="et-t">Repérer la précision des données</span><p>$m = \pu{3,50 kg}$ <span class="badge">3</span> &nbsp;&nbsp; $v = \pu{2,3 m*s-1}$ <span class="badge min">2</span></p><p>C'est la vitesse, la moins précise, qui impose <b>2 chiffres significatifs</b> au résultat.</p></li>
-<li class="fragment fade-up"><span class="et-t">Calculer sans arrondir en cours de route</span><p>La calculatrice affiche <span class="brouillon">9,2575</span> : cette valeur reste au brouillon.</p><p class="petit">Si le calcul a plusieurs étapes, on réutilise les résultats non arrondis (touche <b>Ans</b> ou mémoire).</p></li>
+<li class="fragment fade-up"><span class="et-t">Calculer sans arrondir en cours de route</span><p>La calculatrice affiche <span class="brouillon">9,2575</span>&nbsp;: cette valeur reste au brouillon.</p><p class="petit">Si le calcul a plusieurs étapes, on réutilise les résultats non arrondis (touche <b>Ans</b> ou mémoire).</p></li>
 <li class="fragment fade-up"><span class="et-t">Écrire le résultat arrondi sur la copie</span><p><span class="resultat">$E_c = \tfrac 12\, m\times v^2 = \tfrac 12 \times 3{,}50\times 2{,}3^2 = \pu{9,3 J}$</span></p></li>
 </ol>
 
@@ -932,7 +923,7 @@ Un son parcourt $d = 1{,}7\ \text{km}$ en $\Delta t = 5{,}00\ \text{s}$.
 ---
 
 {{< qcm
-    q=`Éthanol&nbsp;: $\rho = 0{,}79\ \text{g/mL}$ et $V = 12{,}0\ \text{mL}$. La calculatrice affiche $m = \rho\times V = 9{,}48$. <span class="ask">Quel résultat écrire&nbsp;?</span>`
+    q=`Éthanol&nbsp;: $\rho = 0{,}79\ \text{g/mL}$ et $V = 12{,}0\ \text{mL}$. La calculatrice affiche $m = \rho\times V = 9{,}48$.<br><span class="ask">Quel résultat écrire&nbsp;?</span>`
     a1=`$9{,}48\ \text{g}$`
     a2=`$9{,}5\ \text{g}$`
     a3=`$9\ \text{g}$`
@@ -1029,12 +1020,12 @@ Un bloc d'aluminium de masse $m=\pu{54,0 g}$ occupe un volume $V=\pu{20,0 cm3}$.
 <h3>Écrire les unités : symboles (1/2)</h3>
 
 <table class="fix">
-<thead><tr><th>Faux</th><th>Juste</th><th>Pourquoi</th></tr></thead>
+<thead><tr><th style="text-align:center;">Faux</th><th style="text-align:center;">Juste</th><th >Pourquoi</th></tr></thead>
 <tbody>
 <tr class="fragment fade-up"><td>5 kms</td><td>5 km</td><td>un symbole n'a jamais de «&nbsp;s&nbsp;» de pluriel</td></tr>
 <tr class="fragment fade-up"><td>2,5 Kg</td><td>2,5 kg</td><td>le préfixe kilo s'écrit k minuscule</td></tr>
 <tr class="fragment fade-up"><td>30 ml</td><td>30 mL</td><td>le litre s'écrit L (majuscule)</td></tr>
-<tr class="fragment fade-up"><td>50 hz</td><td>50 Hz</td><td>nom propre (Hertz, Newton, Joule…) : majuscule</td></tr>
+<tr class="fragment fade-up"><td>50 hz</td><td>50 Hz</td><td>nom propre (Hertz, Newton, Joule…)&nbsp;: majuscule</td></tr>
 <tr class="fragment fade-up"><td>3 sec</td><td>3 s</td><td>le symbole de la seconde est s</td></tr>
 </tbody>
 </table>
@@ -1044,7 +1035,7 @@ Un bloc d'aluminium de masse $m=\pu{54,0 g}$ occupe un volume $V=\pu{20,0 cm3}$.
 <h3>Écrire les unités : nombres (2/2)</h3>
 
 <table class="fix">
-<thead><tr><th>Faux</th><th>Juste</th><th>Pourquoi</th></tr></thead>
+<thead><tr><th style="text-align:center;">Faux</th><th style="text-align:center;">Juste</th><th>Pourquoi</th></tr></thead>
 <tbody>
 <tr class="fragment fade-up"><td>12cm</td><td>12 cm</td><td>une espace entre le nombre et l'unité</td></tr>
 <tr class="fragment fade-up"><td>2.7 kg</td><td>2,7 kg</td><td>en français, la virgule est décimale</td></tr>
