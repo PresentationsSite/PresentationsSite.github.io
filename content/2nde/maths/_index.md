@@ -503,7 +503,7 @@ Convertir 1,0 g/cm$^3$ en kg/m$^3$
 <div class="glass" style="font-size:.84em">
 <p>Le plus important :<br><span class="imp">donner du sens</span> au résultat.</p>
 <p class="fragment fade-up">$\pu{1 g/cm3}$ : <b>1 g dans chaque cm$^3$</b>.</p>
-<p class="fragment fade-up">Or $1\ \mathrm{m^3}$ contient $10^{6}\ \mathrm{cm^3}$&nbsp;: cela fait $10^{6}\ \mathrm g$ dans $1\ \mathrm{m^3}$.</p>
+<p class="fragment fade-up">Or $1\ \mathrm{m^3}$ contient $10^{6}\ \mathrm{cm^3}$ ce qui fait $10^{6}\ \mathrm g$ dans $1\ \mathrm{m^3}$.</p>
 <p class="fragment fade-up">Et $10^{6}\ \mathrm g = 10^{3}\ \mathrm{kg}$ : $\pu{1 g/cm3} = \pu{1E3 kg/m3}$.</p>
 <p class="fragment fade-up">L'eau pèse donc <b>1 000 kg par m$^3$</b>, soit 1 tonne&nbsp;!</p>
 <p class="fragment fade-up petit">Et comme $\pu{1 mL} = \pu{1 cm3}$ : $\pu{1 g/mL} = \pu{1 g/cm3} = \pu{1E3 kg/m3}$.</p>
